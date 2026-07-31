@@ -396,6 +396,10 @@
   .row.open .mdet { display: block; }
   .row .mdet b { font-weight: 500; color: #16222e; }
 }
+/* FREE VIEW CLARITY */
+#freeline { margin: 8px 0 0 0; text-align: right; font-size: 13px; font-weight: 300; color: #6b7885; }
+#freeline button { background: none; border: none; padding: 0 0 1px 0; margin-left: 5px; font: inherit; font-weight: 500; color: var(--gold); border-bottom: 1px solid rgba(201,164,76,0.5); cursor: pointer; }
+@media (max-width: 640px) { #freeline { text-align: left; font-size: 12.5px; line-height: 1.6; } }
 </style>
 </head>
 <body>
@@ -1299,5 +1303,40 @@
   mq.addEventListener('change', scan);
 })();
 </script>
-</body>
+<script>
+(function(){
+  function totals(){
+    var n2 = document.getElementById('fcpop-n2');
+    var total = n2 ? (n2.textContent||'').trim() : '';
+    var free = document.getElementById('fcpop-free');
+    return { total: total, free: free ? (free.textContent||'').trim() : '50' };
+  }
+  function paint(){
+    var t = totals();
+    if (!t.total) return;
+    var host = document.getElementById('fcwrap');
+    if (host && !document.getElementById('freeline')) {
+      var p = document.createElement('div');
+      p.id = 'freeline';
+      p.innerHTML = 'You are seeing the ' + t.free + ' soonest departures. The other ' + (Number(t.total) - Number(t.free)) + ' are free too, no card needed.<button type="button" id="freecta">See all ' + t.total + ' free</button>';
+      host.parentNode.insertBefore(p, host.nextSibling);
+      p.querySelector('#freecta').addEventListener('click', function(){
+        var cta = document.getElementById('fcpop-cta');
+        if (cta) { cta.click(); return; }
+        var help = document.getElementById('fchelp'); if (help) help.click();
+      });
+    }
+    var chip = document.querySelector('#lhead .lock, #lhead .locked, #ltitle + span');
+    document.querySelectorAll('#lhead span, #lhead b').forEach(function(el){
+      if (/^\+\d+\s+locked$/i.test((el.textContent||'').trim())) {
+        el.textContent = el.textContent.replace(/locked/i, 'more, free');
+      }
+    });
+  }
+  paint();
+  var box = document.getElementById('rows');
+  if (box) new MutationObserver(paint).observe(box, {childList:true});
+  setTimeout(paint, 1500); setTimeout(paint, 4000);
+})();
+</script></body>
 </html>
