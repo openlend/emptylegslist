@@ -83,6 +83,9 @@ footer a{color:rgba(255,255,255,.85)}
 <div class="stat"><div><b id="s-route">0</b><span>on this route now</span></div><div><b id="s-from">0</b><span>leaving London</span></div><div><b id="s-to">0</b><span>arriving in Nice</span></div><div><b id="s-upd">live</b><span>last checked</span></div></div>
 <p class="meta" id="updnote" style="margin:-10px 0 18px">Checking this route...</p>
 <div id="rows"></div>
+<h2>Recently listed on this corridor</h2>
+<p class="meta" style="margin:-4px 0 12px">Both directions, newest first, up to 20 flights. These are the actual legs operators have published between London and the Cote d'Azur, with the price exactly as they listed it.</p>
+<div id="hist"></div>
 <div class="alert">
   <h2>Tell me when this route appears</h2>
   <p>London to Nice empty legs show up with days of notice, not weeks. Leave your email and we watch both directions for you, London to Nice and Nice to London, and send you nothing else.</p>
@@ -179,6 +182,29 @@ footer a{color:rgba(255,255,255,.85)}
      }).join("");
    });
 
+  /* Recent flights on the corridor, both directions */
+  (function(){
+    var host=document.getElementById("hist");
+    if(!host) return;
+    fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
+      .then(function(r){return r.ok?r.json():[];})
+      .then(function(all){
+        function has(v,t){ return String(v||"").toLowerCase().indexOf(t)!==-1; }
+        var corridor=all.filter(function(x){
+          var a=has(x.from_airport,"london")||has(x.from_airport,"luton")||has(x.from_airport,"stansted")||has(x.from_airport,"farnborough")||has(x.from_airport,"biggin");
+          var b=has(x.to_airport,"nice")||has(x.to_airport,"cannes");
+          var a2=has(x.from_airport,"nice")||has(x.from_airport,"cannes");
+          var b2=has(x.to_airport,"london")||has(x.to_airport,"luton")||has(x.to_airport,"stansted")||has(x.to_airport,"farnborough")||has(x.to_airport,"biggin");
+          return (a&&b)||(a2&&b2);
+        }).slice(0,20);
+        if(!corridor.length){ host.innerHTML='<div class="empty">Nothing on the London and Cote d\'Azur corridor is listed at this moment. It is one of the busiest repositioning routes in Europe, so it rarely stays empty for long.</div>'; return; }
+        host.innerHTML='<table style="width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(14,35,56,.07);font-size:14px"><thead><tr style="background:#f7f9fb;text-align:left"><th style="padding:10px 12px;font-weight:600">Date</th><th style="padding:10px 12px;font-weight:600">Route</th><th style="padding:10px 12px;font-weight:600">Aircraft</th><th style="padding:10px 12px;font-weight:600">Price as listed</th></tr></thead><tbody>'+corridor.map(function(x){
+          var price=x.price_note?esc(x.price_note).replace(" listed",""):"On enquiry";
+          var ac=x.aircraft_type?esc(x.aircraft_type):"On enquiry";
+          return '<tr style="border-top:1px solid var(--line)"><td style="padding:10px 12px;white-space:nowrap">'+d(x.departure_date)+'</td><td style="padding:10px 12px">'+esc(x.from_airport)+' &rarr; '+esc(x.to_airport)+'</td><td style="padding:10px 12px">'+ac+(x.seats?' &middot; '+x.seats+' seats':"")+'</td><td style="padding:10px 12px;white-space:nowrap">'+price+'</td></tr>';
+        }).join("")+'</tbody></table>';
+      });
+  })();
   /* Route alert signup */
   (function(){
     var f=document.getElementById("alertForm");
