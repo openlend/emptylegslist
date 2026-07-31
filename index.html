@@ -337,26 +337,45 @@
   #go { min-height: 44px; }
 }
 
-/* MOBILE COMPACT ROW: one line per date, route and aircraft; smaller CTA */
+/* MOBILE CARD UX: each flight is its own full width card, route first, clear meta line */
 @media (max-width: 640px) {
-  .row { grid-template-areas: "date price" "route route" "ac time" "cta cta"; gap: 6px 12px; padding: 13px 16px; }
-  .c-date .day { font-size: 17px; }
-  .c-date .mon { font-size: 11px; }
-  .c-date .dow { font-size: 10px; margin-left: 6px; }
-  .c-route { display: flex; align-items: baseline; gap: 7px; min-width: 0; }
+  #listings { background: transparent; box-shadow: none; }
+  #lhead { background: #fff; margin-bottom: 10px; padding: 16px; }
+  #rows { display: block; }
+  .row {
+    background: #fff;
+    border: none;
+    border-top: 1px solid #eaeff4;
+    border-bottom: 1px solid #eaeff4;
+    margin: 0 0 10px 0;
+    padding: 14px 16px 15px 16px;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "route route" "date price" "ac time" "cta cta";
+    gap: 9px 12px;
+    align-items: center;
+  }
+  .c-route { grid-area: route; display: flex; align-items: baseline; gap: 7px; min-width: 0; }
   .c-route > div { min-width: 0; display: flex; align-items: baseline; gap: 5px; overflow: hidden; }
-  .c-route .city { font-size: 15px; display: block; -webkit-line-clamp: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .c-route .city { font-size: 17px; font-weight: 600; display: block; -webkit-line-clamp: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .c-route .iata { font-size: 10.5px; margin-top: 0; flex: 0 0 auto; }
   .c-route svg { flex: 0 0 auto; }
-  .c-ac { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 7px; }
+  .c-date { grid-area: date; justify-self: start; background: #f4f6f9; border-radius: 999px; padding: 4px 11px; }
+  .c-date .day { font-size: 14px; }
+  .c-date .mon { font-size: 11px; }
+  .c-date .dow { font-size: 10px; margin-left: 6px; }
+  .c-price { grid-area: price; text-align: right; }
+  .c-price .pr { font-size: 18px; }
+  .c-price .prq { font-size: 12px; white-space: nowrap; }
+  .c-ac { grid-area: ac; display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 7px; }
   .c-ac .ac { font-size: 13px; }
   .c-ac .acsub { font-size: 11.5px; margin-top: 0; }
   .c-ac .acsub::before { content: "\00b7"; margin-right: 7px; color: #c6cfd8; }
+  .c-time { grid-area: time; text-align: right; }
   .c-time .tm { font-size: 12.5px; }
-  .c-price .pr { font-size: 17px; }
-  .c-cta { justify-content: space-between; gap: 10px; margin-top: 4px; }
+  .c-cta { grid-area: cta; justify-content: space-between; gap: 10px; margin-top: 3px; }
   .c-cta .btn { flex: 0 0 auto; padding: 11px 20px; font-size: 13px; min-height: 0; }
   .c-cta .listed { font-size: 11.5px; }
+  #pager, #gate, #unlocked { background: #fff; }
 }
 </style>
 </head>
