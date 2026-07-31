@@ -30,7 +30,7 @@
   #hin { position: relative; max-width: 1120px; margin: 0 auto; padding: 26px 20px 0 20px; }
   #logo { display: inline-block; line-height: 0; }
   #logo img { width: auto; height: 46px; display: block; }
-  @media (max-width: 700px) { #logo img { height: 36px; } }
+  @media (max-width: 700px) { #logo img { height: 46px; } }
   h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 54px; font-weight: 400; line-height: 1.05; margin: 34px 0 16px 0; }
   #sub { font-size: 15px; font-weight: 300; line-height: 1.7; max-width: 420px; margin: 0 0 26px 0; color: rgba(255,255,255,0.8); }
   #tr { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -337,14 +337,15 @@
   #go { min-height: 44px; }
 }
 
-/* MOBILE CARD UX v2: three lines per flight, route first, price next to the button */
+/* MOBILE CARD UX v3: fixed 3 row grid so every card lines up the same way */
 @media (max-width: 640px) {
   #listings { background: transparent; box-shadow: none; }
   #lhead { background: #fff; margin-bottom: 10px; padding: 16px; }
   #rows { display: block; }
   .row {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "route route route" "date ac time" "price price cta";
     align-items: center;
     background: #fff;
     border: none;
@@ -352,32 +353,31 @@
     border-bottom: 1px solid #eaeff4;
     margin: 0 0 10px 0;
     padding: 13px 16px 14px 16px;
-    gap: 7px 9px;
+    gap: 8px 9px;
   }
-  .c-route { order: 1; flex: 1 1 100%; display: flex; align-items: baseline; gap: 7px; min-width: 0; }
-  .c-route > div { min-width: 0; display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; }
-  .c-route .city { font-size: 16.5px; font-weight: 600; display: inline; -webkit-line-clamp: unset; white-space: normal; overflow: visible; line-height: 1.25; }
-  .c-route .iata { font-size: 10.5px; margin-top: 0; flex: 0 0 auto; }
-  .c-route svg { flex: 0 0 auto; }
-  .c-date { order: 2; flex: 0 0 auto; background: #f4f6f9; border-radius: 999px; padding: 3px 10px; }
+  .c-route { grid-area: route; display: block; min-width: 0; }
+  .c-route > div { display: inline; min-width: 0; }
+  .c-route .city { font-size: 16.5px; font-weight: 600; display: inline; -webkit-line-clamp: unset; white-space: normal; overflow: visible; line-height: 1.3; }
+  .c-route .iata { font-size: 10.5px; display: inline; margin: 0 0 0 4px; }
+  .c-route svg { display: inline; vertical-align: middle; margin: 0 5px; flex: none; }
+  .c-date { grid-area: date; justify-self: start; background: #f4f6f9; border-radius: 999px; padding: 3px 10px; }
   .c-date .day { font-size: 13px; }
   .c-date .mon { font-size: 10.5px; }
   .c-date .dow { font-size: 9.5px; margin-left: 5px; }
-  .c-ac { order: 3; flex: 1 1 auto; min-width: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 6px; }
-  .c-ac .ac { font-size: 12.5px; font-weight: 400; }
-  .c-ac .acsub { font-size: 11.5px; margin-top: 0; }
-  .c-ac .acsub::before { content: "\00b7"; margin-right: 6px; color: #c6cfd8; }
-  .c-time { order: 4; flex: 0 0 auto; margin-left: auto; text-align: right; }
+  .c-ac { grid-area: ac; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .c-ac .ac, .c-ac .acsub { display: inline; font-size: 12.5px; margin: 0; }
+  .c-ac .acsub { font-size: 11.5px; }
+  .c-ac .acsub::before { content: "\00b7"; margin: 0 5px 0 4px; color: #c6cfd8; }
+  .c-time { grid-area: time; justify-self: end; text-align: right; }
   .c-time .tm { font-size: 12px; }
-  .c-price { order: 5; flex: 1 1 auto; text-align: left; }
+  .c-price { grid-area: price; justify-self: start; text-align: left; }
   .c-price .pr { font-size: 19px; }
   .c-price .prc { font-size: 11px; margin-left: 3px; }
-  .c-price .prq { font-size: 12px; white-space: nowrap; }
-  .c-cta { order: 6; flex: 0 0 auto; margin-left: auto; gap: 0; margin-top: 0; }
+  .c-price .prq { font-size: 12.5px; white-space: nowrap; }
+  .c-cta { grid-area: cta; justify-self: end; gap: 0; margin: 0; }
   .c-cta .btn { flex: 0 0 auto; padding: 11px 22px; font-size: 13px; min-height: 0; }
   .c-cta .listed { display: none; }
   #pager, #gate, #unlocked { background: #fff; }
-  /* search form: labels live inside the field placeholders */
   #filters .f label[for="f-from"], #filters .f label[for="f-to"] { display: none; }
 }
 /* MOBILE HERO: drop the three trust cards, shorter intro */
