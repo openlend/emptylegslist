@@ -421,7 +421,7 @@
   #f-cur { font-size: 12.5px; padding: 6px 8px; }
   #lupd { order: 5; flex: 1 1 100%; text-align: left; font-size: 11.5px; margin: 0; }
   /* hero image: keep the subject visible on a narrow screen */
-  #hbg { background-position: 78% center; background-size: cover; }
+  #hbg { background-position: 30% center; background-size: cover; }
 }
 #nofree { background: #fff; border: 1px solid #eef2f6; border-radius: 12px; padding: 18px 20px; margin: 0 0 18px 0; font-size: 14px; font-weight: 300; color: #46525f; line-height: 1.7; }
 #nofree button { display: block; margin-top: 10px; background: var(--gold); border: none; border-radius: 8px; padding: 11px 20px; font: inherit; font-weight: 500; color: #241d00; cursor: pointer; }
@@ -435,7 +435,7 @@
 }
 /* MOBILE: search first, filters row, city carousel, hero focal point */
 @media (max-width: 640px) {
-  #hbg { background-position: 90% center; }
+  #hbg { background-position: 30% center; }
   #filters .mrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; margin-top: 12px; }
   #filters .mrow #fmore { margin: 0; }
   #filters .mrow #fcwrap { margin: 0; width: auto; justify-content: flex-end; }
@@ -1516,6 +1516,7 @@
     row.appendChild(cw);
     var fl = document.getElementById('freeline');
     if (fl) filters.appendChild(fl);
+    new MutationObserver(function(){ var l=document.getElementById('freeline'); var r=document.querySelector('#filters .mrow'); if (l && r && r.contains(l)) filters.appendChild(l); }).observe(filters, {childList:true, subtree:true});
   }
   layout();
   setTimeout(layout, 1200);
