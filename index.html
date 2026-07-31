@@ -433,6 +433,30 @@
 @media (min-width: 641px) and (max-width: 1200px) {
   #hbg { background-image: url('/_vercel/image?url=https%3A%2F%2Ftheflyingengineer.com%2Fwp-content%2Fuploads%2F2026%2F07%2F362414ed-216d-42b5-9c69-20f69bf53574.jpg&w=1200&q=72'); }
 }
+/* MOBILE: search first, filters row, city carousel, hero focal point */
+@media (max-width: 640px) {
+  #hbg { background-position: 90% center; }
+  #filters .mrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; margin-top: 12px; }
+  #filters .mrow #fmore { margin: 0; }
+  #filters .mrow #fcwrap { margin: 0; width: auto; justify-content: flex-end; }
+  #fbar { margin-top: 14px; }
+  #routes .rgrid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  #routes .rgrid::-webkit-scrollbar { display: none; }
+  #routes .rgrid .rcard { flex: 0 0 68%; scroll-snap-align: start; }
+  #routes .rgrid .rcard:nth-child(n+3) { display: block; }
+  #routes .rgrid .rcard:nth-child(n+4) { display: block; }
+}
+@media (max-width: 900px) {
+  #routes .rgrid .rcard:nth-child(n+4) { display: block; }
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -1470,6 +1494,31 @@
   boot();
   var rowsBox = document.getElementById('rows');
   if (rowsBox) new MutationObserver(function(){ load(fixPills); setTimeout(updateHelper, 60); }).observe(rowsBox, { childList: true });
+})();
+</script><script>
+(function(){
+  var mq = window.matchMedia('(max-width: 640px)');
+  function layout(){
+    if (!mq.matches) return;
+    var filters = document.getElementById('filters');
+    var bar = document.getElementById('fbar');
+    var more = document.getElementById('fmore');
+    var cw = document.getElementById('fcwrap');
+    if (!filters || !bar || !more || !cw) return;
+    if (document.querySelector('#filters .mrow')) return;
+    /* Search bar goes right under the fields, above the secondary row */
+    filters.insertBefore(bar, more);
+    var row = document.createElement('div');
+    row.className = 'mrow';
+    filters.appendChild(row);
+    row.appendChild(more);
+    row.appendChild(cw);
+    var fl = document.getElementById('freeline');
+    if (fl) filters.appendChild(fl);
+  }
+  layout();
+  setTimeout(layout, 1200);
+  mq.addEventListener('change', layout);
 })();
 </script></body>
 </html>
