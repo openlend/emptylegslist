@@ -384,37 +384,17 @@
   #hin { padding-top: 20px; }
   h1 { margin-top: 26px; }
 }
-/* MOBILE ACCORDION: tap a card to reveal aircraft, seats, flight time */
+/* MOBILE ACCORDION: preview shows date, seats and time; tap to reveal the rest */
 @media (max-width: 640px) {
-  .row { cursor: pointer; }
-  .row .mdet {
-    grid-column: 1 / -1;
-    display: none;
-    border-top: 1px solid #eef2f6;
-    margin-top: 2px;
-    padding-top: 10px;
-    font-size: 12.5px;
-    font-weight: 300;
-    color: #6b7885;
-    line-height: 1.75;
-  }
+  .row { cursor: pointer; grid-template-areas: "route route" "meta chev" "price cta" "det det"; }
+  .row .mmeta { grid-area: meta; display: flex; align-items: center; flex-wrap: wrap; gap: 7px; min-width: 0; }
+  .row .mchip { font-size: 12px; font-weight: 300; color: #5d6b79; background: #f4f6f9; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+  .c-time { display: none; }
+  .row .mchev { grid-area: chev; justify-self: end; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: #b3bdc7; font-size: 10px; transition: transform .18s ease; }
+  .row.open .mchev { transform: rotate(180deg); }
+  .row .mdet { grid-area: det; display: none; border-top: 1px solid #eef2f6; margin-top: 2px; padding-top: 10px; font-size: 12.5px; font-weight: 300; color: #6b7885; line-height: 1.8; }
   .row.open .mdet { display: block; }
   .row .mdet b { font-weight: 500; color: #16222e; }
-  .row .mchev {
-    grid-area: chev;
-    justify-self: end;
-    width: 22px;
-    height: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #9aa6b2;
-    font-size: 11px;
-    transition: transform .18s ease;
-  }
-  .row.open .mchev { transform: rotate(180deg); }
-  .row { grid-template-areas: "route route" "date chev" "price cta" "det det"; }
-  .row .mdet { grid-area: det; }
 }
 </style>
 </head>
@@ -1270,27 +1250,38 @@
 (function(){
   var mq = window.matchMedia('(max-width: 640px)');
   function txt(el){ return el ? el.innerText.replace(/\s+/g,' ').trim() : ''; }
+  function real(s){ return s && !/on enquiry/i.test(s); }
+  function chip(t){ var s=document.createElement('span'); s.className='mchip'; s.textContent=t; return s; }
   function build(row){
-    if (row.querySelector('.mdet')) return;
-    var ac = txt(row.querySelector('.c-ac .ac'));
-    var seats = txt(row.querySelector('.c-ac .acsub'));
-    var time = txt(row.querySelector('.c-time'));
+    if (row.querySelector('.mmeta')) return;
+    var date = row.querySelector('.c-date');
+    var acTxt = txt(row.querySelector('.c-ac .ac'));
+    var seatTxt = txt(row.querySelector('.c-ac .acsub'));
+    var timeTxt = txt(row.querySelector('.c-time'));
     var listed = txt(row.querySelector('.c-cta .listed'));
+    var wrap = document.createElement('div');
+    wrap.className = 'mmeta';
+    if (date) wrap.appendChild(date);
+    var m = seatTxt.match(/(\d+)\s*seat/i);
+    if (m) wrap.appendChild(chip(m[1] + ' seats'));
+    if (real(timeTxt)) wrap.appendChild(chip(timeTxt));
+    row.appendChild(wrap);
     var bits = [];
-    if (ac) bits.push('Aircraft <b>' + ac + '</b>');
-    if (seats) bits.push(seats.replace(/^Up to /,'Seats <b>').concat('</b>').replace(' seats</b>','</b>'));
-    if (time) bits.push('Flight time <b>' + time + '</b>');
+    if (real(acTxt)) bits.push('Aircraft <b>' + acTxt + '</b>');
+    if (m) bits.push('Up to <b>' + m[1] + ' seats</b>');
+    if (real(timeTxt)) bits.push('Flight time <b>' + timeTxt + '</b>');
     if (listed) bits.push(listed);
-    if (!bits.length) return;
-    var d = document.createElement('div');
-    d.className = 'mdet';
-    d.innerHTML = bits.join('<br>');
-    row.appendChild(d);
-    var ch = document.createElement('span');
-    ch.className = 'mchev';
-    ch.setAttribute('aria-hidden','true');
-    ch.textContent = '\u25BC';
-    row.appendChild(ch);
+    if (bits.length) {
+      var d = document.createElement('div');
+      d.className = 'mdet';
+      d.innerHTML = bits.join('<br>');
+      row.appendChild(d);
+      var ch = document.createElement('span');
+      ch.className = 'mchev';
+      ch.setAttribute('aria-hidden','true');
+      ch.textContent = '\u25BC';
+      row.appendChild(ch);
+    }
   }
   function scan(){ if(!mq.matches) return; var rows=document.querySelectorAll('#rows .row'); for (var i=0;i<rows.length;i++) build(rows[i]); }
   scan();
