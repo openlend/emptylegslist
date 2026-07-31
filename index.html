@@ -336,6 +336,28 @@
   h1 { font-size: 30px; }
   .c-cta .btn, #go { min-height: 46px; }
 }
+
+/* MOBILE COMPACT ROW: one line per date, route and aircraft; smaller CTA */
+@media (max-width: 640px) {
+  .row { grid-template-areas: "date price" "route route" "ac time" "cta cta"; gap: 6px 12px; padding: 13px 16px; }
+  .c-date .day { font-size: 17px; }
+  .c-date .mon { font-size: 11px; }
+  .c-date .dow { font-size: 10px; margin-left: 6px; }
+  .c-route { display: flex; align-items: baseline; gap: 7px; min-width: 0; }
+  .c-route > div { min-width: 0; display: flex; align-items: baseline; gap: 5px; overflow: hidden; }
+  .c-route .city { font-size: 15px; display: block; -webkit-line-clamp: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .c-route .iata { font-size: 10.5px; margin-top: 0; flex: 0 0 auto; }
+  .c-route svg { flex: 0 0 auto; }
+  .c-ac { display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 7px; }
+  .c-ac .ac { font-size: 13px; }
+  .c-ac .acsub { font-size: 11.5px; margin-top: 0; }
+  .c-ac .acsub::before { content: "\00b7"; margin-right: 7px; color: #c6cfd8; }
+  .c-time .tm { font-size: 12.5px; }
+  .c-price .pr { font-size: 17px; }
+  .c-cta { justify-content: space-between; gap: 10px; margin-top: 4px; }
+  .c-cta .btn { flex: 0 0 auto; padding: 10px 20px; font-size: 13px; min-height: 42px; }
+  .c-cta .listed { font-size: 11.5px; }
+}
 </style>
 </head>
 <body>
