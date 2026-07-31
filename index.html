@@ -1383,5 +1383,71 @@
   var lab = document.querySelector('#curwrap > span');
   if (lab && /show prices in/i.test(lab.textContent)) lab.textContent = 'Prices in';
 })();
+</script><script>
+/* Full-list awareness: real city counts and honest search counts across every flight, not just the free 50 */
+(function(){
+  var H = document.documentElement.innerHTML;
+  var BASE = (H.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
+  var KEY = (H.match(/sb_publishable_[A-Za-z0-9_\-]+/)||[])[0] || (H.match(/eyJ[A-Za-z0-9_\-\.]{40,}/)||[])[0];
+  if (!BASE || !KEY) return;
+  var HEAD = { apikey: KEY, Authorization: 'Bearer ' + KEY };
+  var ALLROWS = null;
+  function city(s){ return String(s||'').split(',')[0].trim(); }
+  function load(cb){
+    if (ALLROWS) { cb(ALLROWS); return; }
+    fetch(BASE + '/rest/v1/empty_legs?select=from_airport,to_airport&limit=2000', { headers: HEAD })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(j){ ALLROWS = j || []; cb(ALLROWS); })
+      .catch(function(){ cb([]); });
+  }
+  /* 1. City chips show how many flights exist in the whole list */
+  function fixPills(rows){
+    if (!rows.length) return;
+    var counts = {};
+    rows.forEach(function(r){ var c = city(r.from_airport); if (c) counts[c] = (counts[c]||0) + 1; });
+    document.querySelectorAll('#pills .p').forEach(function(b){
+      var t = (b.textContent||'').trim();
+      var m = t.match(/^(.*?)\s*\((\d+)\)$/);
+      if (!m) return;
+      var name = m[1].trim();
+      var real = counts[name];
+      if (!real) { for (var k in counts) { if (k.toLowerCase().indexOf(name.toLowerCase()) === 0) { real = counts[k]; break; } } }
+      if (real && String(real) !== m[2]) b.innerHTML = b.innerHTML.replace('(' + m[2] + ')', '(' + real + ')');
+    });
+  }
+  /* 2. When a search finds nothing in the free view, say how many exist in the full list */
+  function searchCount(rows){
+    var f = (document.getElementById('f-from')||{}).value || '';
+    var t = (document.getElementById('f-to')||{}).value || '';
+    f = f.trim().toLowerCase(); t = t.trim().toLowerCase();
+    if (!f && !t) return null;
+    var n = rows.filter(function(r){
+      var okF = !f || String(r.from_airport||'').toLowerCase().indexOf(f) !== -1;
+      var okT = !t || String(r.to_airport||'').toLowerCase().indexOf(t) !== -1;
+      return okF && okT;
+    }).length;
+    return { n: n, from: f, to: t };
+  }
+  function label(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+  function updateHelper(){
+    var box = document.getElementById('nofree');
+    if (!box) return;
+    load(function(rows){
+      var r = searchCount(rows);
+      if (!r) return;
+      var route = r.from && r.to ? (label(r.from) + ' to ' + label(r.to)) : (r.from ? ('from ' + label(r.from)) : ('to ' + label(r.to)));
+      var msg = r.n
+        ? ('The full list has <b>' + r.n + '</b> flight' + (r.n === 1 ? '' : 's') + ' ' + route + '. None of them is in the free 50 soonest, and opening the rest is free.')
+        : ('No flight ' + route + ' anywhere in the list right now. Set an alert and we will email you when one appears.');
+      var b = box.querySelector('button');
+      box.innerHTML = msg;
+      if (b) box.appendChild(b);
+    });
+  }
+  function boot(){ load(fixPills); }
+  boot();
+  var rowsBox = document.getElementById('rows');
+  if (rowsBox) new MutationObserver(function(){ load(fixPills); setTimeout(updateHelper, 60); }).observe(rowsBox, { childList: true });
+})();
 </script></body>
 </html>
