@@ -50,6 +50,22 @@ footer{background:#0a1a2e;color:rgba(255,255,255,.6);font-size:13px;padding:26px
 footer .in{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
 footer a{color:rgba(255,255,255,.85)}
 @media(max-width:640px){.wrap{padding:0 16px 60px}#rows .row{border-radius:0;margin-left:-16px;margin-right:-16px}}
+.alert{background:var(--navy);color:#fff;border-radius:14px;padding:22px 20px;margin:26px 0 10px}
+.alert h2{color:#fff;margin:0 0 6px;font-size:22px}
+.alert p{color:rgba(255,255,255,.72);font-size:14px;margin:0 0 14px}
+.alert form{display:flex;flex-wrap:wrap;gap:10px}
+.alert input[type=email]{flex:1 1 240px;min-width:0;padding:12px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:14px}
+.alert input::placeholder{color:rgba(255,255,255,.5)}
+.alert .btn{border:none;cursor:pointer}
+.alert .ok{font-size:13.5px;color:#9fe0b4;margin-top:10px}
+.alert .err{font-size:13.5px;color:#ffb4b4;margin-top:10px}
+.alert label.ck{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:rgba(255,255,255,.6);flex:1 1 100%;margin-top:2px}
+.airports{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 20px}
+.airports a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:13px;text-decoration:none;color:#46525f}
+.airports a:hover{border-color:var(--gold)}
+.mapwrap{border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(14,35,56,.08);margin:0 0 22px;background:#fff}
+.mapwrap iframe{display:block;width:100%;height:320px;border:0}
+@media(max-width:640px){.mapwrap iframe{height:240px}}
 </style>
 </head>
 <body>
@@ -59,6 +75,32 @@ footer a{color:rgba(255,255,255,.85)}
 <p class="lede">One way repositioning flights on this route, exactly as the operators list them. Prices are the operator's own, not a marked up quote, and you enquire with them directly.</p>
 <div class="stat"><div><b id="s-route">0</b><span>on this route now</span></div><div><b id="s-from">0</b><span>leaving London</span></div><div><b id="s-to">0</b><span>arriving in Nice</span></div><div><b id="s-upd">live</b><span>refreshed 3x a day</span></div></div>
 <div id="rows"></div>
+<div class="alert">
+  <h2>Tell me when this route appears</h2>
+  <p>London to Nice empty legs show up with days of notice, not weeks. Leave your email and we send you this route only, nothing else.</p>
+  <form id="alertForm" novalidate>
+    <input type="email" id="alertEmail" placeholder="you@company.com" autocomplete="email" required>
+    <button class="btn" type="submit" id="alertBtn">Email me this route</button>
+    <label class="ck"><input type="checkbox" id="alertConsent" checked> Yes, email me when a London to Nice empty leg is listed. One click to stop at any time.</label>
+  </form>
+  <div id="alertMsg"></div>
+</div>
+
+<h2>The route on a map</h2>
+<div class="mapwrap">
+  <iframe title="London to Nice route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-1.9%2C43.2%2C8.4%2C52.4&amp;layer=mapnik&amp;marker=51.5%2C-0.13"></iframe>
+</div>
+<p class="meta" style="margin-top:-12px;margin-bottom:22px">Roughly 1h 45m in the air, about 1,000 km. Nice sits under two hours from most London business airports, which is why the aircraft repositions so often.</p>
+
+<h2>The airports on this route</h2>
+<div class="airports">
+  <a href="https://www.london-luton.co.uk/" target="_blank" rel="noopener nofollow">London Luton LTN</a>
+  <a href="https://www.stanstedairport.com/" target="_blank" rel="noopener nofollow">London Stansted STN</a>
+  <a href="https://www.farnboroughairport.com/" target="_blank" rel="noopener nofollow">Farnborough FAB</a>
+  <a href="https://www.bigginhillairport.com/" target="_blank" rel="noopener nofollow">London Biggin Hill BQH</a>
+  <a href="https://www.nice.aeroport.fr/" target="_blank" rel="noopener nofollow">Nice Cote d'Azur NCE</a>
+  <a href="https://www.cannes.aeroport.fr/" target="_blank" rel="noopener nofollow">Cannes Mandelieu CEQ</a>
+</div>
 <h2>What you are looking at</h2>
 <p>An empty leg exists because of a flight someone else already paid for. A jet flies a client from Nice to London, then has to get back, or it has to reach London to start the next charter. That return or repositioning flight is empty, the operator is paying for it either way, so it goes on their site at a fraction of the normal charter price. London to Nice is one of the routes where this happens often, because the traffic between the two is heavy and rarely balanced in both directions.</p>
 <p>The practical trade is simple. You give up control of the date and often the exact time, and in exchange you fly private for a lot less. If your plans are firm to the hour, a normal charter quote is the honest answer. If you can move by a day, this page is worth checking regularly.</p>
@@ -107,6 +149,27 @@ footer a{color:rgba(255,255,255,.85)}
         +'<div class="cta"><a class="btn" href="/quote?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'">Enquire</a><span class="meta">Listed by the operator</span></div></div>';
      }).join("");
    });
+
+  /* Route alert signup */
+  (function(){
+    var f=document.getElementById("alertForm");
+    if(!f) return;
+    var msg=document.getElementById("alertMsg");
+    f.addEventListener("submit", function(e){
+      e.preventDefault();
+      var email=(document.getElementById("alertEmail").value||"").trim();
+      var consent=document.getElementById("alertConsent").checked;
+      if(email.indexOf("@")<1 || email.length<6){ msg.innerHTML='<div class="err">That email does not look right.</div>'; return; }
+      if(!consent){ msg.innerHTML='<div class="err">Tick the box so we are allowed to email you.</div>'; return; }
+      var btn=document.getElementById("alertBtn"); btn.disabled=true; btn.textContent="Saving...";
+      fetch(BASE+"/rest/v1/empty_leg_alerts",{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify({email:email,from_interest:"London",to_interest:"Nice",consent:true,frequency:"instant"})})
+        .then(function(r){
+          if(r.ok){ msg.innerHTML='<div class="ok">Done. You will get an email the moment a London to Nice empty leg is listed.</div>'; f.style.display="none"; }
+          else { msg.innerHTML='<div class="err">Could not save that just now. Try again in a minute.</div>'; btn.disabled=false; btn.textContent="Email me this route"; }
+        })
+        .catch(function(){ msg.innerHTML='<div class="err">Could not save that just now. Try again in a minute.</div>'; btn.disabled=false; btn.textContent="Email me this route"; });
+    });
+  })();
 })();
 </script>
 </body>
