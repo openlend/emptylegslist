@@ -561,15 +561,24 @@
     if(cached && cached.at && (Date.now()-cached.at) < 43200000 && cached.rates){
       RATES=cached.rates; cb(); return;
     }
-    fetch("https://api.frankfurter.app/latest?base=EUR&symbols=USD,GBP,CHF,CAD")
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if(!d || !d.rates) throw new Error("no rates");
-        RATES=d.rates; RATES.EUR=1;
-        try { localStorage.setItem("el_rates", JSON.stringify({at:Date.now(), rates:RATES})); } catch(e){}
-        cb();
-      })
-      .catch(function(){ RATES=null; cb(); });
+    // Primary is the ECB reference set; the fallback keeps the feature alive if it is down.
+    function store(rates){
+      RATES=rates; RATES.EUR=1;
+      try { localStorage.setItem("el_rates", JSON.stringify({at:Date.now(), rates:RATES})); } catch(e){}
+      cb();
+    }
+    fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD,GBP,CHF,CAD")
+      .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .then(function(d){ if(!d||!d.rates) throw 0; store(d.rates); })
+      .catch(function(){
+        fetch("https://open.er-api.com/v6/latest/EUR")
+          .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+          .then(function(d){
+            if(!d||!d.rates) throw 0;
+            store({USD:d.rates.USD, GBP:d.rates.GBP, CHF:d.rates.CHF, CAD:d.rates.CAD});
+          })
+          .catch(function(){ RATES=null; cb(); });
+      });
   }
 
   function convert(amount, from, to){
