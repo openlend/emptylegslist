@@ -415,6 +415,9 @@
   /* hero image: keep the subject visible on a narrow screen */
   #hbg { background-position: 78% center; background-size: cover; }
 }
+#nofree { background: #fff; border: 1px solid #eef2f6; border-radius: 12px; padding: 18px 20px; margin: 0 0 18px 0; font-size: 14px; font-weight: 300; color: #46525f; line-height: 1.7; }
+#nofree button { display: block; margin-top: 10px; background: var(--gold); border: none; border-radius: 8px; padding: 11px 20px; font: inherit; font-weight: 500; color: #241d00; cursor: pointer; }
+@media (max-width: 640px) { #nofree { border-radius: 0; border-left: none; border-right: none; font-size: 13.5px; } }
 </style>
 </head>
 <body>
@@ -1321,10 +1324,11 @@
 <script>
 (function(){
   function totals(){
+    var fc = document.getElementById('fcount');
+    var m = fc ? (fc.innerText||'').replace(/,/g,'').match(/(\d+)\s*of\s*(\d+)/) : null;
+    if (m) return { free: m[1], total: m[2] };
     var n2 = document.getElementById('fcpop-n2');
-    var total = n2 ? (n2.textContent||'').trim() : '';
-    var free = document.getElementById('fcpop-free');
-    return { total: total, free: free ? (free.textContent||'').trim() : '50' };
+    return { free: '50', total: n2 ? (n2.textContent||'').trim() : '' };
   }
   function paint(){
     var t = totals();
@@ -1348,9 +1352,25 @@
       }
     });
   }
-  paint();
+  function emptyHelp(){
+    var t = totals();
+    var rows = document.querySelectorAll('#rows .row').length;
+    var none = document.getElementById('none');
+    var box = document.getElementById('rows');
+    var old = document.getElementById('nofree');
+    if (rows > 0 || !t.total) { if (old) old.remove(); return; }
+    if (old) return;
+    var d = document.createElement('div');
+    d.id = 'nofree';
+    d.innerHTML = 'No match among the ' + t.free + ' flights in the free view. The full list has ' + t.total + ' flights and it is free to open.<button type="button" id="nofreecta">See all ' + t.total + ' free</button>';
+    if (box && box.parentNode) box.parentNode.insertBefore(d, box.nextSibling);
+    var b = document.getElementById('nofreecta');
+    if (b) b.addEventListener('click', function(){ var cta=document.getElementById('fcpop-cta'); if(cta){cta.click();return;} var h=document.getElementById('fchelp'); if(h) h.click(); });
+  }
+  function refresh(){ paint(); emptyHelp(); }
+  refresh();
   var box = document.getElementById('rows');
-  if (box) new MutationObserver(paint).observe(box, {childList:true});
+  if (box) new MutationObserver(refresh).observe(box, {childList:true});
   setTimeout(paint, 1500); setTimeout(paint, 4000);
 })();
 </script><script>
