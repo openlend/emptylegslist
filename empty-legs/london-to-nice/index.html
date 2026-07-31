@@ -66,6 +66,13 @@ footer a{color:rgba(255,255,255,.85)}
 .mapwrap{border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(14,35,56,.08);margin:0 0 22px;background:#fff}
 .mapwrap iframe{display:block;width:100%;height:320px;border:0}
 @media(max-width:640px){.mapwrap iframe{height:240px}}
+.mapinner{position:relative}
+.mapinner iframe{pointer-events:none}
+.mapline{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.pin{position:absolute;transform:translate(-50%,-100%);font-size:11.5px;font-weight:600;color:#0D1F36;background:rgba(255,255,255,.92);border-radius:999px;padding:3px 9px 3px 20px;white-space:nowrap;box-shadow:0 1px 3px rgba(14,35,56,.25);pointer-events:none}
+.pin b{position:absolute;left:7px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 2px rgba(201,162,76,.35)}
+.pin-b{transform:translate(-50%,-130%)}
+.mapopen{position:absolute;right:10px;bottom:10px;background:#fff;border-radius:8px;padding:7px 12px;font-size:12.5px;text-decoration:none;color:#0D1F36;box-shadow:0 1px 3px rgba(14,35,56,.25)}
 </style>
 </head>
 <body>
@@ -73,22 +80,31 @@ footer a{color:rgba(255,255,255,.85)}
 <div class="wrap">
 <h1>Empty legs from London to Nice</h1>
 <p class="lede">One way repositioning flights on this route, exactly as the operators list them. Prices are the operator's own, not a marked up quote, and you enquire with them directly.</p>
-<div class="stat"><div><b id="s-route">0</b><span>on this route now</span></div><div><b id="s-from">0</b><span>leaving London</span></div><div><b id="s-to">0</b><span>arriving in Nice</span></div><div><b id="s-upd">live</b><span>refreshed 3x a day</span></div></div>
+<div class="stat"><div><b id="s-route">0</b><span>on this route now</span></div><div><b id="s-from">0</b><span>leaving London</span></div><div><b id="s-to">0</b><span>arriving in Nice</span></div><div><b id="s-upd">live</b><span>last checked</span></div></div>
+<p class="meta" id="updnote" style="margin:-10px 0 18px">Checking this route...</p>
 <div id="rows"></div>
 <div class="alert">
   <h2>Tell me when this route appears</h2>
-  <p>London to Nice empty legs show up with days of notice, not weeks. Leave your email and we send you this route only, nothing else.</p>
+  <p>London to Nice empty legs show up with days of notice, not weeks. Leave your email and we watch both directions for you, London to Nice and Nice to London, and send you nothing else.</p>
   <form id="alertForm" novalidate>
     <input type="email" id="alertEmail" placeholder="you@company.com" autocomplete="email" required>
     <button class="btn" type="submit" id="alertBtn">Email me this route</button>
-    <label class="ck"><input type="checkbox" id="alertConsent" checked> Yes, email me when a London to Nice empty leg is listed. One click to stop at any time.</label>
+    <label class="ck"><input type="checkbox" id="alertConsent" checked> Yes, email me when an empty leg is listed in either direction on this route. One click to stop at any time.</label>
   </form>
   <div id="alertMsg"></div>
 </div>
 
 <h2>The route on a map</h2>
 <div class="mapwrap">
-  <iframe title="London to Nice route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-1.9%2C43.2%2C8.4%2C52.4&amp;layer=mapnik&amp;marker=51.5%2C-0.13"></iframe>
+  <div class="mapinner">
+    <iframe title="London to Nice route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-1.9%2C43.2%2C8.4%2C52.4&amp;layer=mapnik"></iframe>
+    <svg class="mapline" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M17.21 10.56 Q 38 42 88.5 95.34" fill="none" stroke="#0D1F36" stroke-width="0.9" stroke-dasharray="2.4 1.8" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <span class="pin pin-a" style="left:17.21%;top:10.56%"><b></b>London</span>
+    <span class="pin pin-b" style="left:88.5%;top:95.34%"><b></b>Nice</span>
+    <a class="mapopen" href="https://www.openstreetmap.org/directions?from=London&amp;to=Nice" target="_blank" rel="noopener nofollow">Open map</a>
+  </div>
 </div>
 <p class="meta" style="margin-top:-12px;margin-bottom:22px">Roughly 1h 45m in the air, about 1,000 km. Nice sits under two hours from most London business airports, which is why the aircraft repositions so often.</p>
 
@@ -133,6 +149,19 @@ footer a{color:rgba(255,255,255,.85)}
      document.getElementById("s-route").textContent=onRoute.length;
      document.getElementById("s-from").textContent=fromCity.length;
      document.getElementById("s-to").textContent=toCity.length;
+     (function(){
+       var pool = onRoute.length ? onRoute : fromCity.concat(toCity);
+       var newest = null;
+       pool.forEach(function(x){ var p = x.published_at || x.collected_at; if (p && (!newest || p > newest)) newest = p; });
+       var el = document.getElementById("s-upd");
+       var note = document.getElementById("updnote");
+       if (!newest) { if(note) note.textContent = "This route is refreshed three times a day."; return; }
+       var t = new Date(newest), now = new Date();
+       var mins = Math.round((now - t) / 60000);
+       var human = mins < 90 ? (mins + " min ago") : (mins < 2880 ? (Math.round(mins/60) + "h ago") : (Math.round(mins/1440) + "d ago"));
+       if (el) el.textContent = human;
+       if (note) note.textContent = "Prices and availability on this route were last checked " + human + " (" + t.toISOString().slice(0,16).replace("T"," ") + " UTC). We recheck three times a day.";
+     })();
      var host=document.getElementById("rows");
      if(!onRoute.length){
        host.innerHTML='<div class="empty">No London to Nice empty leg is listed right now. This route usually reappears within days, and there are '+fromCity.length+' flights leaving London and '+toCity.length+' arriving in Nice at the moment. <a href="/">Browse the full list</a>.</div>';
@@ -162,9 +191,9 @@ footer a{color:rgba(255,255,255,.85)}
       if(email.indexOf("@")<1 || email.length<6){ msg.innerHTML='<div class="err">That email does not look right.</div>'; return; }
       if(!consent){ msg.innerHTML='<div class="err">Tick the box so we are allowed to email you.</div>'; return; }
       var btn=document.getElementById("alertBtn"); btn.disabled=true; btn.textContent="Saving...";
-      fetch(BASE+"/rest/v1/empty_leg_alerts",{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify({email:email,from_interest:"London",to_interest:"Nice",consent:true,frequency:"instant"})})
+      fetch(BASE+"/rest/v1/empty_leg_alerts",{method:"POST",headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json",Prefer:"return=minimal"},body:JSON.stringify([{email:email,from_interest:"London",to_interest:"Nice",consent:true,frequency:"instant"},{email:email,from_interest:"Nice",to_interest:"London",consent:true,frequency:"instant"}])})
         .then(function(r){
-          if(r.ok){ msg.innerHTML='<div class="ok">Done. You will get an email the moment a London to Nice empty leg is listed.</div>'; f.style.display="none"; }
+          if(r.ok){ msg.innerHTML='<div class="ok">Done. You will get an email the moment an empty leg is listed in either direction, London to Nice or Nice to London.</div>'; f.style.display="none"; }
           else { msg.innerHTML='<div class="err">Could not save that just now. Try again in a minute.</div>'; btn.disabled=false; btn.textContent="Email me this route"; }
         })
         .catch(function(){ msg.innerHTML='<div class="err">Could not save that just now. Try again in a minute.</div>'; btn.disabled=false; btn.textContent="Email me this route"; });
