@@ -337,45 +337,48 @@
   #go { min-height: 44px; }
 }
 
-/* MOBILE CARD UX: each flight is its own full width card, route first, clear meta line */
+/* MOBILE CARD UX v2: three lines per flight, route first, price next to the button */
 @media (max-width: 640px) {
   #listings { background: transparent; box-shadow: none; }
   #lhead { background: #fff; margin-bottom: 10px; padding: 16px; }
   #rows { display: block; }
   .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     background: #fff;
     border: none;
     border-top: 1px solid #eaeff4;
     border-bottom: 1px solid #eaeff4;
     margin: 0 0 10px 0;
-    padding: 14px 16px 15px 16px;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "route route" "date price" "ac time" "cta cta";
-    gap: 9px 12px;
-    align-items: center;
+    padding: 13px 16px 14px 16px;
+    gap: 7px 9px;
   }
-  .c-route { grid-area: route; display: flex; align-items: baseline; gap: 7px; min-width: 0; }
-  .c-route > div { min-width: 0; display: flex; align-items: baseline; gap: 5px; overflow: hidden; }
-  .c-route .city { font-size: 17px; font-weight: 600; display: block; -webkit-line-clamp: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .c-route { order: 1; flex: 1 1 100%; display: flex; align-items: baseline; gap: 7px; min-width: 0; }
+  .c-route > div { min-width: 0; display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; }
+  .c-route .city { font-size: 16.5px; font-weight: 600; display: inline; -webkit-line-clamp: unset; white-space: normal; overflow: visible; line-height: 1.25; }
   .c-route .iata { font-size: 10.5px; margin-top: 0; flex: 0 0 auto; }
   .c-route svg { flex: 0 0 auto; }
-  .c-date { grid-area: date; justify-self: start; background: #f4f6f9; border-radius: 999px; padding: 4px 11px; }
-  .c-date .day { font-size: 14px; }
-  .c-date .mon { font-size: 11px; }
-  .c-date .dow { font-size: 10px; margin-left: 6px; }
-  .c-price { grid-area: price; text-align: right; }
-  .c-price .pr { font-size: 18px; }
-  .c-price .prq { font-size: 12px; white-space: nowrap; }
-  .c-ac { grid-area: ac; display: flex; align-items: baseline; flex-wrap: wrap; gap: 3px 7px; }
-  .c-ac .ac { font-size: 13px; }
+  .c-date { order: 2; flex: 0 0 auto; background: #f4f6f9; border-radius: 999px; padding: 3px 10px; }
+  .c-date .day { font-size: 13px; }
+  .c-date .mon { font-size: 10.5px; }
+  .c-date .dow { font-size: 9.5px; margin-left: 5px; }
+  .c-ac { order: 3; flex: 1 1 auto; min-width: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px 6px; }
+  .c-ac .ac { font-size: 12.5px; font-weight: 400; }
   .c-ac .acsub { font-size: 11.5px; margin-top: 0; }
-  .c-ac .acsub::before { content: "\00b7"; margin-right: 7px; color: #c6cfd8; }
-  .c-time { grid-area: time; text-align: right; }
-  .c-time .tm { font-size: 12.5px; }
-  .c-cta { grid-area: cta; justify-content: space-between; gap: 10px; margin-top: 3px; }
-  .c-cta .btn { flex: 0 0 auto; padding: 11px 20px; font-size: 13px; min-height: 0; }
-  .c-cta .listed { font-size: 11.5px; }
+  .c-ac .acsub::before { content: "\00b7"; margin-right: 6px; color: #c6cfd8; }
+  .c-time { order: 4; flex: 0 0 auto; margin-left: auto; text-align: right; }
+  .c-time .tm { font-size: 12px; }
+  .c-price { order: 5; flex: 1 1 auto; text-align: left; }
+  .c-price .pr { font-size: 19px; }
+  .c-price .prc { font-size: 11px; margin-left: 3px; }
+  .c-price .prq { font-size: 12px; white-space: nowrap; }
+  .c-cta { order: 6; flex: 0 0 auto; margin-left: auto; gap: 0; margin-top: 0; }
+  .c-cta .btn { flex: 0 0 auto; padding: 11px 22px; font-size: 13px; min-height: 0; }
+  .c-cta .listed { display: none; }
   #pager, #gate, #unlocked { background: #fff; }
+  /* search form: labels live inside the field placeholders */
+  #filters .f label[for="f-from"], #filters .f label[for="f-to"] { display: none; }
 }
 /* MOBILE HERO: drop the three trust cards, shorter intro */
 @media (max-width: 640px) {
@@ -1222,5 +1225,18 @@
   </a>
 </div>
 
+<script>
+(function(){
+  // On phones the From/To labels are hidden, so put them inside the fields
+  function setPh(){
+    var small = window.matchMedia('(max-width: 640px)').matches;
+    var f = document.getElementById('f-from'), t = document.getElementById('f-to');
+    if (f) f.placeholder = small ? 'From: any departure' : 'Any departure';
+    if (t) t.placeholder = small ? 'To: any destination' : 'Any destination';
+  }
+  setPh();
+  window.addEventListener('resize', setPh);
+})();
+</script>
 </body>
 </html>
