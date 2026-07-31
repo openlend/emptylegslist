@@ -56,6 +56,15 @@
   #ltitle { font-size: 17px; font-weight: 500; }
   #ltitle b { font-weight: 600; }
   #lsort { background: none; border: none; color: var(--gold); font-size: 13.5px; font-weight: 500; cursor: pointer; font-family: Raleway, sans-serif; padding: 0; }
+  #curwrap { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 300; color: #8a97a5; }
+  #curwrap select { padding: 6px 9px; border: 1px solid #e3e9ef; border-radius: 8px; background: #fff; font-family: Raleway, sans-serif; font-size: 12.5px; color: #46525f; cursor: pointer; }
+  #curwrap select:focus { outline: none; border-color: var(--gold); }
+  .prapprox { font-size: 10.5px; color: #a9b4bf; letter-spacing: .3px; }
+  .pinfo { display: inline-flex; align-items: center; justify-content: center; width: 15px; height: 15px; margin-left: 5px; border: 1px solid #cfd8e2; border-radius: 999px; background: #fff; color: #7d8b98; font-size: 10px; font-style: italic; font-family: Georgia, serif; cursor: pointer; vertical-align: middle; padding: 0; line-height: 1; }
+  .pinfo:hover { border-color: var(--gold); color: var(--navy); }
+  .pexact { display: none; margin-top: 4px; font-size: 11px; font-weight: 400; color: #6b7885; }
+  .pexact.on { display: block; }
+  @media (max-width: 760px) { #curwrap { width: 100%; justify-content: flex-start; margin-top: 4px; } }
   #lupd { margin-left: auto; font-size: 12px; font-weight: 300; color: #a3aeba; }
   .thead { display: flex; gap: 16px; padding: 11px 26px; background: #fafbfd; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 10.5px; font-weight: 500; letter-spacing: 1.1px; color: #9aa7b4; }
   .row { display: flex; gap: 16px; padding: 17px 26px; border-bottom: 1px solid var(--line); align-items: center; transition: background .15s; }
@@ -375,6 +384,16 @@
     <div id="lhead">
       <span id="ltitle"><b>0</b> empty leg flights</span>
       <button id="lsort" type="button">Soonest departure first</button>
+      <label id="curwrap" for="f-cur"><span>Show prices in</span>
+        <select id="f-cur">
+          <option value="">As listed</option>
+          <option value="EUR">EUR &euro;</option>
+          <option value="USD">USD $</option>
+          <option value="GBP">GBP &pound;</option>
+          <option value="CHF">CHF</option>
+          <option value="CAD">CAD $</option>
+        </select>
+      </label>
       <span id="lupd"></span>
     </div>
     <div id="listings"></div>
@@ -529,6 +548,44 @@
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
   function city(n){ if(!n) return ""; var i=n.lastIndexOf(", "); return i>0?n.slice(0,i):n; }
   function pval(note){ if(!note) return null; var m=note.replace(/,/g,"").match(/(\d+(?:\.\d+)?)/); return m?Number(m[1]):null; }
+  /* ---------- approximate currency conversion ----------
+     Rates come from the ECB reference set via Frankfurter and are cached for 12h.
+     Conversions are rounded to the nearest 100 and always marked approximate; the
+     operator's actual listed figure stays one tap away behind the i. */
+  var CUR = "", RATES = null;
+  try { CUR = localStorage.getItem("el_cur") || ""; } catch(e) { CUR = ""; }
+
+  function loadRates(cb){
+    var cached=null;
+    try { cached=JSON.parse(localStorage.getItem("el_rates")||"null"); } catch(e){}
+    if(cached && cached.at && (Date.now()-cached.at) < 43200000 && cached.rates){
+      RATES=cached.rates; cb(); return;
+    }
+    fetch("https://api.frankfurter.app/latest?base=EUR&symbols=USD,GBP,CHF,CAD")
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(!d || !d.rates) throw new Error("no rates");
+        RATES=d.rates; RATES.EUR=1;
+        try { localStorage.setItem("el_rates", JSON.stringify({at:Date.now(), rates:RATES})); } catch(e){}
+        cb();
+      })
+      .catch(function(){ RATES=null; cb(); });
+  }
+
+  function convert(amount, from, to){
+    if(!RATES || !from || !to || from===to) return null;
+    var f=RATES[from], t=RATES[to];
+    if(!f || !t) return null;
+    return (amount / f) * t;
+  }
+
+  function numFrom(note){
+    var m=String(note||"").replace(/,/g,"").match(/(\d+(?:\.\d+)?)/);
+    return m ? Number(m[1]) : null;
+  }
+
+  function group(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+
   function pcur(note){ if(!note) return ""; var m=note.match(/([A-Z]{3})/); return m?m[1]:""; }
   function pamt(note){ if(!note) return ""; return note.replace(" listed","").replace(/^[A-Z]{3}\s*/,"").trim(); }
   function ago(iso){ if(!iso) return ""; var h=(Date.now()-new Date(iso).getTime())/3600000;
@@ -543,9 +600,22 @@
       dh='<div class="dnum"><span class="day">'+ (+dp[2]) +'</span><span class="mon">'+MON[+dp[1]-1]+'</span></div><div class="dow">'+DOW[dt.getDay()]+'</div>'; }
     else dh='<div class="dow">TBC</div>';
 
-    var ph = l.price_note
-      ? '<div class="pr">'+esc(pamt(l.price_note))+'</div><div class="prc">'+esc(pcur(l.price_note))+'</div>'
-      : '<div class="prq">Price on<br>enquiry</div>';
+    var ph;
+    if(!l.price_note){
+      ph = '<div class="prq">Price on<br>enquiry</div>';
+    } else {
+      var listedCur=pcur(l.price_note), listedAmt=pamt(l.price_note);
+      var conv = CUR ? convert(numFrom(l.price_note), listedCur, CUR) : null;
+      if(conv){
+        var rounded = Math.round(conv/100)*100;
+        ph = '<div class="pr">&#8776; '+group(rounded)+'</div>'+
+             '<div class="prc">'+esc(CUR)+' <span class="prapprox">approx.</span>'+
+             '<button class="pinfo" type="button" aria-label="Show the operator\'s listed price">i</button></div>'+
+             '<div class="pexact">Operator lists '+esc(listedCur)+' '+esc(listedAmt)+'</div>';
+      } else {
+        ph = '<div class="pr">'+esc(listedAmt)+'</div><div class="prc">'+esc(listedCur)+'</div>';
+      }
+    }
 
     var th = l.est_flight_time
       ? '<div class="tm"><svg viewBox="0 0 24 24" width="14" height="14" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" fill="none" stroke="#b3bdc7" stroke-width="1.8"/><path d="M 12 7 L 12 12 L 15.5 14" fill="none" stroke="#b3bdc7" stroke-width="1.8" stroke-linecap="round"/></svg>'+esc(l.est_flight_time)+'</div>'
@@ -864,6 +934,27 @@
   });
 
   loadLegs();
+
+  /* ---------- currency selector ---------- */
+  (function(){
+    var sel=document.getElementById("f-cur");
+    if(!sel) return;
+    if(CUR) sel.value=CUR;
+    sel.addEventListener("change",function(){
+      CUR=sel.value;
+      try { localStorage.setItem("el_cur", CUR); } catch(e){}
+      if(CUR && !RATES) loadRates(function(){ apply(); });
+      else apply();
+    });
+    document.addEventListener("click",function(e){
+      var b=e.target.closest && e.target.closest(".pinfo");
+      if(!b) return;
+      var cell=b.closest(".c-price");
+      var ex=cell && cell.querySelector(".pexact");
+      if(ex) ex.classList.toggle("on");
+    });
+    if(CUR) loadRates(function(){ apply(); });
+  })();
 
   /* ---------- collapse the filter panel on small screens ---------- */
   (function(){
