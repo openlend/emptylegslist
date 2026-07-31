@@ -337,41 +337,37 @@
   #go { min-height: 44px; }
 }
 
-/* MOBILE CARD UX v3: fixed 3 row grid so every card lines up the same way */
+/* MOBILE CARD UX v4: three clean lines, no truncated aircraft, bigger gap between cards */
 @media (max-width: 640px) {
   #listings { background: transparent; box-shadow: none; }
-  #lhead { background: #fff; margin-bottom: 10px; padding: 16px; }
+  #lhead { background: #fff; margin-bottom: 12px; padding: 16px; }
   #rows { display: block; }
   .row {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-areas: "route route route" "date ac time" "price price cta";
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "route route" "date time" "price cta";
     align-items: center;
     background: #fff;
     border: none;
-    border-top: 1px solid #eaeff4;
-    border-bottom: 1px solid #eaeff4;
-    margin: 0 0 10px 0;
-    padding: 13px 16px 14px 16px;
-    gap: 8px 9px;
+    box-shadow: 0 1px 2px rgba(14, 35, 56, 0.07);
+    margin: 0 0 14px 0;
+    padding: 15px 16px 16px 16px;
+    gap: 10px 10px;
   }
   .c-route { grid-area: route; display: block; min-width: 0; }
   .c-route > div { display: inline; min-width: 0; }
-  .c-route .city { font-size: 16.5px; font-weight: 600; display: inline; -webkit-line-clamp: unset; white-space: normal; overflow: visible; line-height: 1.3; }
+  .c-route .city { font-size: 17px; font-weight: 600; display: inline; -webkit-line-clamp: unset; white-space: normal; overflow: visible; line-height: 1.3; }
   .c-route .iata { font-size: 10.5px; display: inline; margin: 0 0 0 4px; }
   .c-route svg { display: inline; vertical-align: middle; margin: 0 5px; flex: none; }
-  .c-date { grid-area: date; justify-self: start; background: #f4f6f9; border-radius: 999px; padding: 3px 10px; }
+  .c-date { grid-area: date; justify-self: start; background: #f4f6f9; border-radius: 999px; padding: 4px 11px; }
   .c-date .day { font-size: 13px; }
   .c-date .mon { font-size: 10.5px; }
   .c-date .dow { font-size: 9.5px; margin-left: 5px; }
-  .c-ac { grid-area: ac; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .c-ac .ac, .c-ac .acsub { display: inline; font-size: 12.5px; margin: 0; }
-  .c-ac .acsub { font-size: 11.5px; }
-  .c-ac .acsub::before { content: "\00b7"; margin: 0 5px 0 4px; color: #c6cfd8; }
+  .c-ac { display: none; }
   .c-time { grid-area: time; justify-self: end; text-align: right; }
-  .c-time .tm { font-size: 12px; }
+  .c-time .tm { font-size: 12.5px; }
   .c-price { grid-area: price; justify-self: start; text-align: left; }
-  .c-price .pr { font-size: 19px; }
+  .c-price .pr { font-size: 20px; }
   .c-price .prc { font-size: 11px; margin-left: 3px; }
   .c-price .prq { font-size: 12.5px; white-space: nowrap; }
   .c-cta { grid-area: cta; justify-self: end; gap: 0; margin: 0; }
