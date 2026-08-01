@@ -857,6 +857,23 @@
     }
     prefill("from", "tfe-from", "tfe-from-iata");
     prefill("to", "tfe-to", "tfe-to-iata");
+    // A leg Enquire passes ?date=YYYY-MM-DD; honour it. An empty leg is one way on
+    // the operator's date, so the trip type follows.
+    var qDate = params.get("date");
+    if (qDate && /^\d{4}-\d{2}-\d{2}$/.test(qDate)) {
+      var dd = document.getElementById("tfe-dep-date");
+      if (dd) dd.value = qDate;
+      var tt = document.getElementById("tfe-trip-type");
+      if (tt) tt.value = "One way";
+      document.querySelectorAll("[data-trip]").forEach(function (b) {
+        var on = b.getAttribute("data-trip") === "One way";
+        b.style.background = on ? "#296dae" : "#f4f7fa";
+        b.style.borderColor = on ? "#296dae" : "#f4f7fa";
+        b.style.color = on ? "#ffffff" : "#55636f";
+      });
+      var rd = document.getElementById("tfe-ret-date");
+      if (rd) { rd.value = ""; rd.parentElement.style.opacity = "0.45"; }
+    }
     if (PICKS.from && PICKS.to) maybeEstimate();
   })();
 
