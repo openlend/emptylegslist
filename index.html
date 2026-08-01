@@ -1571,9 +1571,10 @@ setTimeout(go,600);setTimeout(go,2000);
 </script>
 <!-- ACCORDION + FREQ ROW -->
 <style>
-.afreq-opts{display:flex;flex-wrap:nowrap;gap:8px}
+.afreq-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.afreq-opts label{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .afreq-opts label{white-space:nowrap;text-align:center;justify-content:center}
-@media(max-width:640px){
+@media(max-width:900px){
 .afreq-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .afreq-opts label{padding:9px 2px!important;font-size:12px!important;letter-spacing:0}
 }
@@ -1588,7 +1589,7 @@ setTimeout(go,600);setTimeout(go,2000);
 (function(){
 function freq(){
 var opts=document.querySelector(".afreq-opts");if(!opts)return;
-if(window.innerWidth<=640){
+if(window.innerWidth<=900){
 var ls=opts.querySelectorAll("label");
 for(var i=0;i<ls.length;i++){var sp=ls[i].querySelector("span");
 if(sp&&/as soon as listed/i.test(sp.textContent)){sp.setAttribute("data-full",sp.textContent);sp.textContent="Instant";}}
