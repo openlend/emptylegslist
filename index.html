@@ -1654,9 +1654,9 @@ var s=lead.querySelector("span.lead-t");
 if(!s){s=document.createElement("span");s.className="lead-t";lead.insertBefore(s,lead.firstChild);}
 if(s.innerHTML!==txt)s.innerHTML=txt;
 var cta=document.getElementById("freecta"),help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
-if(cta&&cta.parentNode!==lead)lead.appendChild(cta);
-if(help&&help.parentNode!==lead)lead.appendChild(help);
-if(pop&&pop.parentNode!==lead)lead.appendChild(pop);
+if(cta)lead.appendChild(cta);
+if(help)lead.appendChild(help);
+if(pop)lead.appendChild(pop);
 }
 function boot(){
 compose();
