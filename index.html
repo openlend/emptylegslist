@@ -1623,5 +1623,53 @@ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded"
 setTimeout(go,700);setTimeout(go,2200);
 })();
 </script>
+<!-- HERO LEAD LINE -->
+<style>
+#herostats #fcwrap,#herostats #freeline{display:none!important}
+#herolead{color:rgba(255,255,255,.92);font-size:16.5px;line-height:1.7;margin:14px 0 0;max-width:660px;position:relative}
+#herolead b{color:var(--gold);font-weight:600}
+#herolead #freecta{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--gold);text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap}
+#herolead #fchelp{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;width:20px;height:20px;line-height:1;border-radius:50%;font-size:11px;font-weight:600;margin-left:8px;padding:0;cursor:pointer;vertical-align:middle;display:inline-flex;align-items:center;justify-content:center}
+#herolead #fcpop{position:absolute;left:0;top:100%;margin-top:8px;z-index:40;max-width:420px}
+@media(max-width:640px){#herolead{font-size:15.5px;margin-top:12px}#herolead #fcpop{max-width:none;right:0}}
+</style>
+<script>
+(function(){
+function readCounts(){
+var el=document.getElementById("fcount");if(!el)return null;
+var m=(el.textContent||"").match(/[0-9][0-9,]*/g);if(!m||!m.length)return null;
+return m.map(function(s){return Number(s.replace(/,/g,""));});
+}
+function fmt(n){try{return n.toLocaleString("en-GB");}catch(e){return String(n);}}
+function compose(){
+var host=document.getElementById("herostats");if(!host)return;
+var c=readCounts();if(!c)return;
+var lead=document.getElementById("herolead");
+if(!lead){lead=document.createElement("p");lead.id="herolead";host.appendChild(lead);}
+var shown=c[0],total=c.length>1?c[1]:c[0],rest=total-shown;
+var txt="<b>"+fmt(shown)+"</b> of <b>"+fmt(total)+"</b> empty leg flights, straight from charter operators.";
+if(c.length<2)txt="<b>"+fmt(total)+"</b> empty leg flights, straight from charter operators.";
+if(rest>0)txt+=" The other <b>"+fmt(rest)+"</b> are free to see too. ";else txt+=" ";
+var s=lead.querySelector("span.lead-t");
+if(!s){s=document.createElement("span");s.className="lead-t";lead.insertBefore(s,lead.firstChild);}
+if(s.innerHTML!==txt)s.innerHTML=txt;
+var cta=document.getElementById("freecta"),help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
+if(cta&&cta.parentNode!==lead)lead.appendChild(cta);
+if(help&&help.parentNode!==lead)lead.appendChild(help);
+if(pop&&pop.parentNode!==lead)lead.appendChild(pop);
+}
+function boot(){
+compose();
+if(!window.MutationObserver||window.__leadMO)return;
+var mo=new MutationObserver(function(){compose();});
+var f=document.getElementById("fcount"),fl=document.getElementById("freeline");
+if(f)mo.observe(f,{childList:true,characterData:true,subtree:true});
+if(fl)mo.observe(fl,{childList:true,subtree:true});
+window.__leadMO=mo;
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",boot);}else{boot();}
+setTimeout(boot,900);setTimeout(boot,2500);setTimeout(boot,5000);
+})();
+</script>
 </body>
 </html>
