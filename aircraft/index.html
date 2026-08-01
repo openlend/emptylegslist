@@ -37,7 +37,9 @@ h2{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:24px;m
 p{margin:0 0 14px}
 .btn{display:inline-block;background:var(--gold);color:#241d00;border-radius:9px;padding:12px 24px;font-weight:600;font-size:14px;text-decoration:none}
 footer{background:#0a1a2e;color:rgba(255,255,255,.6);font-size:13px;padding:26px 20px}
-footer .in{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between}
+footer .in{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between}
+footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
+footer a{text-decoration:none}
 footer a{color:rgba(255,255,255,.85)}
 @media(max-width:640px){.wrap{padding:0 16px 60px}}
 </style>
@@ -46,38 +48,63 @@ footer a{color:rgba(255,255,255,.85)}
 <header><div class="in"><a class="brand" href="/"><img src="/brand/icon-512.png" alt="Empty Leg List"> EMPTY LEG LIST</a><a class="back" href="/">All empty legs &rarr;</a></div></header>
 <div class="wrap">
 <h1>Empty legs by aircraft type</h1>
-<p class="lede">Every aircraft type with empty legs on the list right now. Each page shows the flights currently offered on that type, what the operator published for seats and price, and the manufacturer figures for range and cabin.</p>
+<p class="lede">Every aircraft type we keep a page for, with the number of flights listed on each one right now. Each page shows the flights currently offered on that type, what the operator published for seats and price, and the manufacturer figures for range and cabin.</p>
 <div class="grid">
-  <a class="card" href="/aircraft/citation-cj4-gen2" data-slug="citation-cj4-gen2"><b>Cessna Citation CJ4 Gen2</b><span class="cat">Light jet</span><span class="sp">up to 9 seats &middot; about 2,165 nm</span><span class="n" id="n-citation-cj4-gen2">&nbsp;</span></a>
-  <a class="card" href="/aircraft/legacy-500" data-slug="legacy-500"><b>Embraer Legacy 500</b><span class="cat">Midsize jet</span><span class="sp">9 seats, up to 12 &middot; about 3,125 nm</span><span class="n" id="n-legacy-500">&nbsp;</span></a>
-  <a class="card" href="/aircraft/praetor-600" data-slug="praetor-600"><b>Embraer Praetor 600</b><span class="cat">Super midsize jet</span><span class="sp">8 to 9 seats &middot; about 4,018 nm</span><span class="n" id="n-praetor-600">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-latitude" data-slug="citation-latitude"><b>Cessna Citation Latitude</b><span class="cat">Midsize jet</span><span class="sp">up to 9 seats &middot; up to about 2,700 nm</span><span class="n" id="n-citation-latitude">&nbsp;</span></a>
-  <a class="card" href="/aircraft/pilatus-pc-12-ngx" data-slug="pilatus-pc-12-ngx"><b>Pilatus PC-12 NGX</b><span class="cat">Single engine turboprop</span><span class="sp">up to 9 seats &middot; up to about 1,803 nm</span><span class="n" id="n-pilatus-pc-12-ngx">&nbsp;</span></a>
-  <a class="card" href="/aircraft/legacy-650" data-slug="legacy-650"><b>Embraer Legacy 650</b><span class="cat">Heavy jet</span><span class="sp">13 seats &middot; up to about 3,900 nm</span><span class="n" id="n-legacy-650">&nbsp;</span></a>
-  <a class="card" href="/aircraft/falcon-7x" data-slug="falcon-7x"><b>Dassault Falcon 7X</b><span class="cat">Heavy jet</span><span class="sp">around 12 to 14 seats &middot; around 5,950 nm</span><span class="n" id="n-falcon-7x">&nbsp;</span></a>
-  <a class="card" href="/aircraft/erj-135" data-slug="erj-135"><b>Embraer ERJ-135</b><span class="cat">Regional jet, executive or shuttle</span><span class="sp">varies by cabin &middot; varies by variant</span><span class="n" id="n-erj-135">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-xls" data-slug="citation-xls"><b>Cessna Citation XLS and XLS+</b><span class="cat">Midsize jet</span><span class="sp">up to 8 seats &middot; around 1,850 to 2,100 nm</span><span class="n" id="n-citation-xls">&nbsp;</span></a>
-  <a class="card" href="/aircraft/learjet-45xr" data-slug="learjet-45xr"><b>Bombardier Learjet 45XR</b><span class="cat">Light jet</span><span class="sp">up to 8 seats &middot; around 2,049 nm</span><span class="n" id="n-learjet-45xr">&nbsp;</span></a>
+  <a class="card" href="/aircraft/citation-cj4-gen2"><b>Cessna Citation CJ4 Gen2</b><span class="cat">Light jet</span><span class="sp">up to 9 in the listings we see, 10 in the... &middot; about 2,165 nm</span><span class="n" id="n-citation-cj4-gen2">&nbsp;</span></a>
+  <a class="card" href="/aircraft/praetor-600"><b>Embraer Praetor 600</b><span class="cat">Super midsize jet</span><span class="sp">8 to 9 &middot; about 4,018 nm with four passengers</span><span class="n" id="n-praetor-600">&nbsp;</span></a>
+  <a class="card" href="/aircraft/legacy-500"><b>Embraer Legacy 500 (EMB-550)</b><span class="cat">Midsize jet</span><span class="sp">9 in the standard cabin, up to 12 &middot; about 3,125 nm with four passengers</span><span class="n" id="n-legacy-500">&nbsp;</span></a>
+  <a class="card" href="/aircraft/citation-latitude"><b>Cessna Citation Latitude</b><span class="cat">Midsize jet</span><span class="sp">up to 9 &middot; up to about 2,700 nm</span><span class="n" id="n-citation-latitude">&nbsp;</span></a>
+  <a class="card" href="/aircraft/pilatus-pc-12-ngx"><b>Pilatus PC-12 NGX</b><span class="cat">Single engine turboprop</span><span class="sp">up to 9 in the listings we see, 10 in the... &middot; up to about 1,803 nm</span><span class="n" id="n-pilatus-pc-12-ngx">&nbsp;</span></a>
+  <a class="card" href="/aircraft/legacy-650"><b>Embraer Legacy 650</b><span class="cat">Heavy jet</span><span class="sp">13 in a typical executive layout &middot; up to about 3,900 nm</span><span class="n" id="n-legacy-650">&nbsp;</span></a>
+  <a class="card" href="/aircraft/falcon-7x"><b>Dassault Falcon 7X</b><span class="cat">Heavy jet</span><span class="sp">around 12 to 14 &middot; around 5,950 nm</span><span class="n" id="n-falcon-7x">&nbsp;</span></a>
+  <a class="card" href="/aircraft/citation-xls"><b>Cessna Citation XLS and XLS+</b><span class="cat">Midsize jet</span><span class="sp">up to 8 &middot; around 1,850 to 2,100 nm depending on the v...</span><span class="n" id="n-citation-xls">&nbsp;</span></a>
+  <a class="card" href="/aircraft/erj-135"><b>Embraer ERJ-135</b><span class="cat">Regional jet in executive or shuttle layout</span><span class="sp">varies widely by cabin, from executive la... &middot; shorter than the Legacy family built on the...</span><span class="n" id="n-erj-135">&nbsp;</span></a>
+  <a class="card" href="/aircraft/learjet-45xr"><b>Bombardier Learjet 45XR</b><span class="cat">Light jet</span><span class="sp">up to 8, 9 in an executive layout &middot; maximum around 2,049 nm</span><span class="n" id="n-learjet-45xr">&nbsp;</span></a>
+  <a class="card" href="/aircraft/king-air-260"><b>Beechcraft King Air 260</b><span class="cat">Twin turboprop</span><span class="sp">up to 9 &middot; 1,720 nm maximum, about 1,038 nm on the NBA...</span><span class="n" id="n-king-air-260">&nbsp;</span></a>
+  <a class="card" href="/aircraft/citation-cj2"><b>Cessna Citation CJ2+</b><span class="cat">Light jet</span><span class="sp">6 &middot; 1,626 nm maximum, about 1,480 nm with four...</span><span class="n" id="n-citation-cj2">&nbsp;</span></a>
+  <a class="card" href="/aircraft/citation-ultra"><b>Cessna Citation Ultra</b><span class="cat">Light jet</span><span class="sp">7 to 8 &middot; 1,651 nm maximum, 1,259 nm on the normal pr...</span><span class="n" id="n-citation-ultra">&nbsp;</span></a>
+  <a class="card" href="/aircraft/legacy-600"><b>Embraer Legacy 600</b><span class="cat">Heavy jet</span><span class="sp">13 to 14 &middot; 3,400 nm maximum, 3,091 nm on the normal pr...</span><span class="n" id="n-legacy-600">&nbsp;</span></a>
+  <a class="card" href="/aircraft/citation-sovereign"><b>Cessna Citation Sovereign</b><span class="cat">Super midsize jet</span><span class="sp">9 typically, up to 11 in a dense layout &middot; 3,010 nm maximum, 2,620 nm on the normal pr...</span><span class="n" id="n-citation-sovereign">&nbsp;</span></a>
+  <a class="card" href="/aircraft/citation-m2"><b>Cessna Citation M2</b><span class="cat">Light jet</span><span class="sp">7 &middot; 1,550 nm maximum</span><span class="n" id="n-citation-m2">&nbsp;</span></a>
+  <a class="card" href="/aircraft/challenger-350"><b>Bombardier Challenger 350</b><span class="cat">Super midsize jet</span><span class="sp">8 &middot; 3,421 nm with four passengers, 3,277 nm wit...</span><span class="n" id="n-challenger-350">&nbsp;</span></a>
+  <a class="card" href="/aircraft/challenger-300"><b>Bombardier Challenger 300</b><span class="cat">Super midsize jet</span><span class="sp">8 to 9, up to 10 if the lavatory seat is... &middot; 3,340 nm maximum, 3,065 nm on the normal pr...</span><span class="n" id="n-challenger-300">&nbsp;</span></a>
+  <a class="card" href="/aircraft/nextant-400xt"><b>Nextant 400XT</b><span class="cat">Light jet</span><span class="sp">7 in the cabin description, 9 in the sour... &middot; 2,160 nm maximum, 1,852 nm on the normal pr...</span><span class="n" id="n-nextant-400xt">&nbsp;</span></a>
+  <a class="card" href="/aircraft/hawker-900xp"><b>Hawker 900XP</b><span class="cat">Midsize jet</span><span class="sp">8 &middot; 2,930 nm maximum, 2,825 nm on the normal pr...</span><span class="n" id="n-hawker-900xp">&nbsp;</span></a>
+  <a class="card" href="/aircraft/citation-mustang"><b>Cessna Citation Mustang</b><span class="cat">Very light jet</span><span class="sp">4, or 5 with the optional belted lavatory... &middot; 1,200 nm maximum, 718 nm on the normal prof...</span><span class="n" id="n-citation-mustang">&nbsp;</span></a>
+  <a class="card" href="/aircraft/legacy-450"><b>Embraer Legacy 450</b><span class="cat">Midsize jet</span><span class="sp">7 to 8 typically, 9 maximum &middot; 2,904 nm maximum, 2,500 nm on the normal pr...</span><span class="n" id="n-legacy-450">&nbsp;</span></a>
+  <a class="card" href="/aircraft/falcon-900ex"><b>Dassault Falcon 900EX</b><span class="cat">Heavy jet</span><span class="sp">8 to 12 &middot; published figures vary between 4,500 and 4...</span><span class="n" id="n-falcon-900ex">&nbsp;</span></a>
+  <a class="card" href="/aircraft/king-air-200"><b>Beechcraft King Air 200 and B200</b><span class="cat">Twin turboprop</span><span class="sp">6 to 8 depending on the source and the ca... &middot; 1,580 nm maximum, 1,164 nm on the normal pr...</span><span class="n" id="n-king-air-200">&nbsp;</span></a>
+  <a class="card" href="/aircraft/falcon-2000"><b>Dassault Falcon 2000 and 2000LX</b><span class="cat">Heavy jet</span><span class="sp">8 typically, up to 10 &middot; 2000LX: 3,970 nm normal, 4,145 nm maximum....</span><span class="n" id="n-falcon-2000">&nbsp;</span></a>
+  <a class="card" href="/aircraft/challenger-604"><b>Bombardier Challenger 604</b><span class="cat">Heavy jet</span><span class="sp">10 to 12 typically, up to 19 depending on... &middot; 4,024 nm on the NBAA four passenger profile...</span><span class="n" id="n-challenger-604">&nbsp;</span></a>
+  <a class="card" href="/aircraft/gulfstream-g550"><b>Gulfstream G550</b><span class="cat">Heavy jet</span><span class="sp">13 to 14 typically, up to 18 or 19 in exe... &middot; 6,975 nm with four passengers, 6,360 nm wit...</span><span class="n" id="n-gulfstream-g550">&nbsp;</span></a>
+  <a class="card" href="/aircraft/challenger-3500"><b>Bombardier Challenger 3500</b><span class="cat">Super midsize jet</span><span class="sp">10 in the source&#x27;s table, commonly config... &middot; 3,400 nm maximum, 3,200 nm on the normal pr...</span><span class="n" id="n-challenger-3500">&nbsp;</span></a>
+  <a class="card" href="/aircraft/global-6000"><b>Bombardier Global 6000</b><span class="cat">Heavy jet</span><span class="sp">8 to 19 depending on configuration; 17 in... &middot; 6,000 nm with eight passengers on the NBAA...</span><span class="n" id="n-global-6000">&nbsp;</span></a>
+  <a class="card" href="/aircraft/learjet-75"><b>Bombardier Learjet 75</b><span class="cat">Light to midsize jet, classified differently by different sources</span><span class="sp">4 to 9 depending on the layout; the Liber... &middot; 2,080 nm maximum</span><span class="n" id="n-learjet-75">&nbsp;</span></a>
 </div>
 
 <h2>Why the type matters</h2>
 <p>An empty leg is a repositioning flight, so you are taking the aircraft the operator already has moving. That means the cabin, the range and the runway it can use are fixed before you book. A turboprop reaches a short regional strip a jet cannot; a heavy jet gives you thirteen seats for close to midsize money when it happens to be flying your way. Picking by type is the fastest way to filter a list like this.</p>
 <p style="margin-top:24px"><a class="btn" href="/">See all empty legs</a></p>
 </div>
-<footer><div class="in"><span>&copy; 2026 Empty Leg List</span><span><a href="/">Home</a> &nbsp; <a href="/quote">Request a quote</a></span></div></footer>
+<footer><div class="in"><span>&copy; 2026 Publishing Office SRL</span><span class="nav"><a href="/">Home</a><a href="/aircraft/">Aircraft</a><a href="/about">About</a><a href="/contact">Contact</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a></span></div></footer>
 <script>
 (function(){
   var BASE="https://wscowiseslaovmmfuzyv.supabase.co";
   var KEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
-  var KEYS={"citation-cj4-gen2": ["citation cj4"], "legacy-500": ["legacy 500", "emb-550"], "praetor-600": ["praetor 600"], "citation-latitude": ["citation latitude"], "pilatus-pc-12-ngx": ["pc-12"], "legacy-650": ["legacy 650"], "falcon-7x": ["falcon 7x"], "erj-135": ["erj-135"], "citation-xls": ["citation xls"], "learjet-45xr": ["learjet 45"]};
-  fetch(BASE+"/rest/v1/empty_legs?select=aircraft_type&limit=2000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
+  var KEYS={"citation-cj4-gen2": [["citation cj4"], []], "praetor-600": [["praetor 600"], []], "legacy-500": [["legacy 500", "emb-550"], []], "citation-latitude": [["citation latitude"], []], "pilatus-pc-12-ngx": [["pc-12"], []], "legacy-650": [["legacy 650"], []], "falcon-7x": [["falcon 7x"], []], "citation-xls": [["citation xls"], []], "erj-135": [["erj-135"], []], "learjet-45xr": [["learjet 45"], []], "king-air-260": [["king air 260"], []], "citation-cj2": [["cj2"], []], "citation-ultra": [["citation ultra"], []], "legacy-600": [["legacy 600"], []], "citation-sovereign": [["sovereign"], []], "citation-m2": [["citation m2"], []], "challenger-350": [["challenger 350"], ["3500"]], "challenger-300": [["challenger 300"], []], "nextant-400xt": [["nextant 400"], []], "hawker-900xp": [["hawker 900"], []], "citation-mustang": [["mustang"], []], "legacy-450": [["legacy 450"], []], "falcon-900ex": [["falcon 900"], []], "king-air-200": [["king air b200", "king air 200", "be20"], []], "falcon-2000": [["falcon 2000"], []], "challenger-604": [["challenger 604"], []], "gulfstream-g550": [["g550", "gulfstream 550"], []], "challenger-3500": [["challenger 3500"], []], "global-6000": [["global 6000"], []], "learjet-75": [["learjet 75"], []]};
+  var today=new Date().toISOString().slice(0,10);
+  fetch(BASE+"/rest/v1/empty_legs?select=aircraft_type,departure_date&limit=2000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
    .then(function(r){return r.ok?r.json():[];})
    .then(function(all){
      for(var slug in KEYS){
-       var ks=KEYS[slug],c=0;
+       var ks=KEYS[slug][0],nt=KEYS[slug][1],c=0;
        for(var i=0;i<all.length;i++){
-         var v=String(all[i].aircraft_type||"").toLowerCase();
-         for(var j=0;j<ks.length;j++){if(v.indexOf(ks[j])!==-1){c++;break;}}
+         var row=all[i];
+         if(String(row.departure_date||"")<today) continue;
+         var v=String(row.aircraft_type||"").toLowerCase(),bad=false,j;
+         for(j=0;j<nt.length;j++){if(v.indexOf(nt[j])!==-1){bad=true;break;}}
+         if(bad) continue;
+         for(j=0;j<ks.length;j++){if(v.indexOf(ks[j])!==-1){c++;break;}}
        }
        var el=document.getElementById("n-"+slug);
        if(el)el.textContent=c?(c+(c===1?" flight listed":" flights listed")):"none listed right now";
