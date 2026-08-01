@@ -150,6 +150,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+  <url><loc>https://emptylegslist.com/aircraft/</loc><lastmod>2026-08-01</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://emptylegslist.com/aircraft/citation-cj4-gen2</loc><lastmod>2026-08-01</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://emptylegslist.com/aircraft/legacy-500</loc><lastmod>2026-08-01</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
   <url><loc>https://emptylegslist.com/aircraft/praetor-600</loc><lastmod>2026-08-01</lastmod><changefreq>daily</changefreq><priority>0.6</priority></url>
