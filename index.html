@@ -517,8 +517,8 @@
         <span id="fcount"></span>
         <button id="fchelp" type="button" aria-label="Why am I seeing only some of the flights?" aria-expanded="false">i</button>
         <div id="fcpop" role="dialog" aria-labelledby="fcpop-h" hidden>
-          <h4 id="fcpop-h">Why only <span id="fcpop-free">50</span> of <span id="fcpop-n">501</span>?</h4>
-          <p>The free view shows the <b>50 soonest departures</b>. The rest of the list &mdash; every route, aircraft and published price &mdash; opens with a free account.</p>
+          <h4 id="fcpop-h">Why only <span id="fcpop-free">300</span> of <span id="fcpop-n">501</span>?</h4>
+          <p>The free view shows the <b>300 soonest departures</b>. The rest of the list &mdash; every route, aircraft and published price &mdash; opens with a free account.</p>
           <p>No password to remember, no card, no charge. Just your contact details so operators can reach you back.</p>
           <button type="button" id="fcpop-cta">Join free to see all <span id="fcpop-n2">501</span> flights</button>
         </div>
@@ -691,7 +691,7 @@
   var DOW = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
   var ALL = [], SORT = "date", PRESET = "", PAGE = 1, PER = 20, VIEW = [];
   var FN = URLB + "/functions/v1/empty-legs";
-  var TOKEN = "", GATED = true, TOTAL = 0, FREECAP = 50, MEMAIL = "";
+  var TOKEN = "", GATED = true, TOTAL = 0, FREECAP = 300, MEMAIL = "";
   try { TOKEN = localStorage.getItem("el_token") || ""; } catch (e) { TOKEN = ""; }
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -1431,7 +1431,7 @@
   if (lab && /show prices in/i.test(lab.textContent)) lab.textContent = 'Prices in';
 })();
 </script><script>
-/* Full-list awareness: real city counts and honest search counts across every flight, not just the free 50 */
+/* Full-list awareness: real city counts and honest search counts across every flight, not just the free view */
 (function(){
   var H = document.documentElement.innerHTML;
   var BASE = (H.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
@@ -1484,7 +1484,7 @@
       if (!r) return;
       var route = r.from && r.to ? (label(r.from) + ' to ' + label(r.to)) : (r.from ? ('from ' + label(r.from)) : ('to ' + label(r.to)));
       var msg = r.n
-        ? ('The full list has <b>' + r.n + '</b> flight' + (r.n === 1 ? '' : 's') + ' ' + route + '. None of them is in the free 50 soonest, and opening the rest is free.')
+        ? ('The full list has <b>' + r.n + '</b> flight' + (r.n === 1 ? '' : 's') + ' ' + route + '. None of them is in the free view, and opening the rest is free.')
         : ('No flight ' + route + ' anywhere in the list right now. Set an alert and we will email you when one appears.');
       var b = box.querySelector('button');
       box.innerHTML = msg;
