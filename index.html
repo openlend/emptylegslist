@@ -1522,5 +1522,16 @@
   setTimeout(layout, 1200);
   mq.addEventListener('change', layout);
 })();
-</script></body>
+</script><!-- AIRCRAFT LINKS -->
+<script>
+(function(){
+var MAP=[["citation cj4","citation-cj4-gen2"],["legacy 500","legacy-500"],["emb-550","legacy-500"],["praetor 600","praetor-600"],["citation latitude","citation-latitude"],["pc-12","pilatus-pc-12-ngx"],["legacy 650","legacy-650"],["falcon 7x","falcon-7x"],["erj-135","erj-135"],["citation xls","citation-xls"],["learjet 45","learjet-45xr"]];
+function sl(t){t=String(t||"").toLowerCase();for(var i=0;i<MAP.length;i++){if(t.indexOf(MAP[i][0])!==-1)return MAP[i][1];}return null;}
+function link(){var els=document.querySelectorAll("#rows .ac");for(var i=0;i<els.length;i++){var e=els[i];if(e.getElementsByTagName("a").length)continue;var s=sl(e.textContent);if(!s)continue;var a=document.createElement("a");a.href="/aircraft/"+s;a.textContent=e.textContent;a.style.color="inherit";a.style.textDecoration="underline";a.style.textDecorationColor="rgba(0,0,0,.25)";a.title="See all empty legs on this aircraft";e.textContent="";e.appendChild(a);}}
+var host=document.getElementById("rows");
+if(host&&window.MutationObserver){new MutationObserver(link).observe(host,{childList:true,subtree:true});}
+link();setTimeout(link,1500);setTimeout(link,4000);
+})();
+</script>
+</body>
 </html>
