@@ -467,6 +467,7 @@
 </script>
 </head>
 <body>
+<script>try{if(!localStorage.getItem("el_cur"))localStorage.setItem("el_cur","EUR");}catch(e){}</script>
 
 <div id="h">
   <div id="hbg"></div><div id="hveil"></div>
@@ -536,7 +537,7 @@
       <label id="curwrap" for="f-cur"><span>Show prices in</span>
         <select id="f-cur">
           <option value="">As listed</option>
-          <option value="EUR">EUR &euro;</option>
+          <option value="EUR" selected>EUR &euro;</option>
           <option value="USD">USD $</option>
           <option value="GBP">GBP &pound;</option>
           <option value="CHF">CHF</option>
@@ -1532,6 +1533,40 @@ function link(){var els=document.querySelectorAll("#rows .ac");for(var i=0;i<els
 var host=document.getElementById("rows");
 if(host&&window.MutationObserver){new MutationObserver(link).observe(host,{childList:true,subtree:true});}
 link();setTimeout(link,1500);setTimeout(link,4000);
+})();
+</script>
+<!-- HEADER STATS + ONE ROW CONTROLS -->
+<style>
+#sub{display:none!important}
+#herostats{max-width:640px;margin:16px 0 0}
+#herostats #fcwrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:#fff;font-size:16px;font-weight:500}
+#herostats #fcwrap *{color:inherit}
+#herostats #fcount{color:#fff}
+#herostats #freeline{color:rgba(255,255,255,.75);font-size:13.5px;line-height:1.6;margin:6px 0 0}
+#herostats #freeline a,#herostats #fcwrap a{color:var(--gold)}
+#fbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+#fbar #fmore{margin:0;flex:0 0 auto}
+@media(max-width:640px){
+#fbar{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:stretch}
+#fbar #go,#fbar #clr,#fbar #fmore{margin:0;white-space:nowrap;display:flex;align-items:center;justify-content:center}
+#herostats #fcwrap{font-size:15px}
+}
+</style>
+<script>
+(function(){
+function go(){
+var hin=document.getElementById("hin");
+var h1=hin?hin.querySelector("h1"):null;
+var fc=document.getElementById("fcwrap"),fl=document.getElementById("freeline");
+var fb=document.getElementById("fbar"),fm=document.getElementById("fmore");
+if(h1&&fc&&!document.getElementById("herostats")){
+var box=document.createElement("div");box.id="herostats";
+box.appendChild(fc);if(fl)box.appendChild(fl);
+h1.parentNode.insertBefore(box,h1.nextSibling);}
+if(fb&&fm&&fm.parentNode!==fb){fb.appendChild(fm);}
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go);}else{go();}
+setTimeout(go,600);setTimeout(go,2000);
 })();
 </script>
 </body>
