@@ -69,7 +69,7 @@ footer a{color:rgba(255,255,255,.85)}
 <header><div class="in"><a class="brand" href="/"><img src="/brand/icon-512.png" alt="Empty Leg List"> EMPTY LEG LIST</a><a class="back" href="/">All empty legs &rarr;</a></div></header>
 <div class="wrap">
 <h1>Empty legs from London to Dublin</h1>
-<p class="lede">One way repositioning flights between London and Dublin, exactly as the operators list them. Prices are the operator's own, not a marked up quote, and you enquire with them directly.</p>
+<p class="lede">One way repositioning flights between London and Dublin, exactly as the operators list them. Prices are the operator's own, not a marked up quote. Send an enquiry on a flight and we take it to the operator that listed it.</p>
 <div class="stat"><div><b id="s-route">0</b><span>on this route now</span></div><div><b id="s-from">0</b><span>leaving London</span></div><div><b id="s-to">0</b><span>arriving in Dublin</span></div><div><b id="s-upd">live</b><span>last checked</span></div></div>
 <p class="meta" id="updnote" style="margin:-10px 0 18px">Checking this route...</p>
 <div id="rows"></div>
@@ -160,7 +160,7 @@ footer a{color:rgba(255,255,255,.85)}
          return '<div class="row"><div class="route">'+esc(x.from_airport)+(x.from_iata?'<span class="iata">'+esc(x.from_iata)+'</span>':"")+' &rarr; '+esc(x.to_airport)+(x.to_iata?'<span class="iata">'+esc(x.to_iata)+'</span>':"")+'</div>'
           +'<div class="meta">'+d(x.departure_date)+' &middot; '+ac+seats+time+'</div>'
           +'<div class="price">'+price+'</div>'
-          +'<div class="cta"><a class="btn" href="/quote?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'">Enquire</a><span class="meta">Listed by the operator</span></div></div>';
+          +'<div class="cta"><a class="btn" href="/quote?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'&leg='+encodeURIComponent(x.id||"")+'&legtext='+encodeURIComponent(esc(x.from_airport)+" to "+esc(x.to_airport)+", "+d(x.departure_date)+(x.aircraft_type?(", "+x.aircraft_type):"")+(x.price_note?(", "+String(x.price_note).replace(" listed","")):""))+'">Enquire</a><span class="meta">Listed by the operator</span></div></div>';
        }).join("");
      }
      var hist=document.getElementById("hist");
