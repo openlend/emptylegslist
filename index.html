@@ -10,8 +10,16 @@
 <meta property="og:description" content="Live empty leg flights from charter operators worldwide, updated three times a day.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emptylegslist.com/">
-<meta property="og:image" content="https://emptylegslist.com/brand/icon-512.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://emptylegslist.com/_vercel/image?url=https%3A%2F%2Ftheflyingengineer.com%2Fwp-content%2Fuploads%2F2026%2F07%2F362414ed-216d-42b5-9c69-20f69bf53574.jpg&w=1200&q=75">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Empty leg flights listed by charter operators">
+<meta property="og:site_name" content="Empty Leg List">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://emptylegslist.com/_vercel/image?url=https%3A%2F%2Ftheflyingengineer.com%2Fwp-content%2Fuploads%2F2026%2F07%2F362414ed-216d-42b5-9c69-20f69bf53574.jpg&w=1200&q=75">
+<meta name="twitter:title" content="Empty Leg List">
+<meta name="twitter:description" content="Live empty leg flights from charter operators worldwide, updated three times a day.">
 <link rel="icon" href="/brand/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/brand/icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/brand/icon-16.png">
@@ -30,7 +38,7 @@
   #hin { position: relative; max-width: 1120px; margin: 0 auto; padding: 26px 20px 0 20px; }
   #logo { display: inline-block; line-height: 0; }
   #logo img { width: auto; height: 46px; display: block; }
-  @media (max-width: 700px) { #logo img { height: 36px; } }
+  @media (max-width: 700px) { #logo img { height: 46px; } }
   h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 54px; font-weight: 400; line-height: 1.05; margin: 34px 0 16px 0; }
   #sub { font-size: 15px; font-weight: 300; line-height: 1.7; max-width: 420px; margin: 0 0 26px 0; color: rgba(255,255,255,0.8); }
   #tr { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -315,9 +323,151 @@
   #fcpop-cta { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: linear-gradient(135deg, #e0b73a 0%, #c9a227 100%); color: #241d00; border: none; padding: 11px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: Raleway, sans-serif; transition: transform .16s, box-shadow .16s; }
   #fcpop-cta:hover { transform: translateY(-1px); box-shadow: 0 7px 18px rgba(201,162,39,0.3); }
   @media (max-width: 640px) { #fcwrap { margin-left: 0; width: 100%; } #fcpop { right: auto; left: 0; width: min(296px, calc(100vw - 56px)); } #fcpop::before { right: auto; left: 14px; } }
+
+/* MOBILE FULL BLEED: cards run edge to edge on phones, tighter inner padding */
+@media (max-width: 640px) {
+  #wrap { padding-left: 0; padding-right: 0; margin-top: -46px; }
+  #wrap .card, #filters.card, .rgroup, #alerts, #gate { border-radius: 0; }
+  #wrap .card { box-shadow: 0 3px 16px rgba(14,35,56,0.08); }
+  .rgroup { border-left: none; border-right: none; padding: 20px 16px 22px 16px; }
+  #filters { padding: 18px 16px 20px 16px; }
+  #lhead { padding: 18px 16px 14px 16px; }
+  .row { padding: 15px 16px; }
+  #pager { padding: 18px 16px; }
+  #gate { padding: 28px 16px 34px 16px; }
+  #unlocked { padding: 12px 16px; }
+  #alerts { padding: 32px 18px; }
+  #note { margin-left: 16px; margin-right: 16px; }
+  #copy, #backlink, #legal, #routes .rhead { padding-left: 16px; padding-right: 16px; }
+  #continents, #pills { padding-left: 16px; padding-right: 16px; }
+  #routes { margin: 26px 0 24px 0; }
+  h1 { font-size: 30px; }
+  #go { min-height: 44px; }
+}
+
+/* MOBILE CARD UX v4: three clean lines, no truncated aircraft, bigger gap between cards */
+@media (max-width: 640px) {
+  #listings { background: transparent; box-shadow: none; }
+  #lhead { background: #fff; margin-bottom: 12px; padding: 16px; }
+  #rows { display: block; }
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "route route" "date time" "price cta";
+    align-items: center;
+    background: #fff;
+    border: none;
+    box-shadow: 0 1px 2px rgba(14, 35, 56, 0.07);
+    margin: 0 0 14px 0;
+    padding: 15px 16px 16px 16px;
+    gap: 10px 10px;
+  }
+  .c-route { grid-area: route; display: block; min-width: 0; }
+  .c-route > div { display: inline; min-width: 0; }
+  .c-route .city { font-size: 17px; font-weight: 600; display: inline; -webkit-line-clamp: unset; white-space: normal; overflow: visible; line-height: 1.3; }
+  .c-route .iata { font-size: 10.5px; display: inline; margin: 0 0 0 4px; }
+  .c-route svg { display: inline; vertical-align: middle; margin: 0 5px; flex: none; }
+  .c-date { grid-area: date; justify-self: start; background: #f4f6f9; border-radius: 999px; padding: 4px 11px; }
+  .c-date .day { font-size: 13px; }
+  .c-date .mon { font-size: 10.5px; }
+  .c-date .dow { font-size: 9.5px; margin-left: 5px; }
+  .c-ac { display: none; }
+  .c-time { grid-area: time; justify-self: end; text-align: right; }
+  .c-time .tm { font-size: 12.5px; }
+  .c-price { grid-area: price; justify-self: start; text-align: left; }
+  .c-price .pr { font-size: 20px; }
+  .c-price .prc { font-size: 11px; margin-left: 3px; }
+  .c-price .prq { font-size: 12.5px; white-space: nowrap; }
+  .c-cta { grid-area: cta; justify-self: end; gap: 0; margin: 0; }
+  .c-cta .btn { flex: 0 0 auto; padding: 11px 22px; font-size: 13px; min-height: 0; }
+  .c-cta .listed { display: none; }
+  #pager, #gate, #unlocked { background: #fff; }
+  #filters .f label[for="f-from"], #filters .f label[for="f-to"] { display: none; }
+}
+/* MOBILE HERO: drop the three trust cards, shorter intro */
+@media (max-width: 640px) {
+  #tr { display: none; }
+  #sub .sublong { display: none; }
+  #sub { font-size: 15.5px; line-height: 1.6; margin-bottom: 20px; max-width: none; }
+  #hin { padding-top: 20px; }
+  h1 { margin-top: 26px; }
+}
+/* MOBILE ACCORDION: preview shows date, seats and time; tap to reveal the rest */
+@media (max-width: 640px) {
+  .row { cursor: pointer; grid-template-areas: "route route" "meta chev" "price cta" "det det"; }
+  .row .mmeta { grid-area: meta; display: flex; align-items: center; flex-wrap: wrap; gap: 7px; min-width: 0; }
+  .row .mchip { font-size: 12px; font-weight: 300; color: #5d6b79; background: #f4f6f9; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+  .c-time { display: none; }
+  .row .mchev { grid-area: chev; justify-self: end; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: #b3bdc7; font-size: 10px; transition: transform .18s ease; }
+  .row.open .mchev { transform: rotate(180deg); }
+  .row .mdet { grid-area: det; display: none; border-top: 1px solid #eef2f6; margin-top: 2px; padding-top: 10px; font-size: 12.5px; font-weight: 300; color: #6b7885; line-height: 1.8; }
+  .row.open .mdet { display: block; }
+  .row .mdet b { font-weight: 500; color: #16222e; }
+}
+/* FREE VIEW CLARITY */
+#freeline { margin: 8px 0 0 0; text-align: right; font-size: 13px; font-weight: 300; color: #6b7885; }
+#freeline button { background: none; border: none; padding: 0 0 1px 0; margin-left: 5px; font: inherit; font-weight: 500; color: var(--gold); border-bottom: 1px solid rgba(201,164,76,0.5); cursor: pointer; }
+@media (max-width: 640px) { #freeline { text-align: left; font-size: 12.5px; line-height: 1.6; } }
+/* MOBILE: tidy the filter chips row and the list header */
+@media (max-width: 640px) {
+  #continents, #pills { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; margin: 12px 0; padding-left: 16px; padding-right: 16px; }
+  #continents::-webkit-scrollbar, #pills::-webkit-scrollbar { display: none; }
+  .cont, .p { flex: 0 0 auto; font-size: 12.5px; padding: 8px 13px; }
+  #lhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 14px 16px 13px 16px; }
+  #ltitle { font-size: 16.5px; }
+  #lsort { order: 3; font-size: 12.5px; }
+  #curwrap { order: 4; margin: 0 0 0 auto; width: auto; justify-content: flex-end; }
+  #curwrap > span { font-size: 12px; color: #8a97a5; }
+  #f-cur { font-size: 12.5px; padding: 6px 8px; }
+  #lupd { order: 5; flex: 1 1 100%; text-align: left; font-size: 11.5px; margin: 0; }
+  /* hero image: keep the subject visible on a narrow screen */
+  #hbg { background-position: 30% center; background-size: cover; }
+}
+#nofree { background: #fff; border: 1px solid #eef2f6; border-radius: 12px; padding: 18px 20px; margin: 0 0 18px 0; font-size: 14px; font-weight: 300; color: #46525f; line-height: 1.7; }
+#nofree button { display: block; margin-top: 10px; background: var(--gold); border: none; border-radius: 8px; padding: 11px 20px; font: inherit; font-weight: 500; color: #241d00; cursor: pointer; }
+@media (max-width: 640px) { #nofree { border-radius: 0; border-left: none; border-right: none; font-size: 13.5px; } }
+/* SPEED: serve a phone sized hero instead of the 1916px original */
+@media (max-width: 640px) {
+  #hbg { background-image: url('/_vercel/image?url=https%3A%2F%2Ftheflyingengineer.com%2Fwp-content%2Fuploads%2F2026%2F07%2F362414ed-216d-42b5-9c69-20f69bf53574.jpg&w=828&q=70'); background-position: 78% center; }
+}
+@media (min-width: 641px) and (max-width: 1200px) {
+  #hbg { background-image: url('/_vercel/image?url=https%3A%2F%2Ftheflyingengineer.com%2Fwp-content%2Fuploads%2F2026%2F07%2F362414ed-216d-42b5-9c69-20f69bf53574.jpg&w=1200&q=72'); }
+}
+/* MOBILE: search first, filters row, city carousel, hero focal point */
+@media (max-width: 640px) {
+  #hbg { background-position: 30% center; }
+  #filters .mrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; margin-top: 12px; }
+  #filters .mrow #fmore { margin: 0; }
+  #filters .mrow #fcwrap { margin: 0; width: auto; justify-content: flex-end; }
+  #fbar { margin-top: 14px; }
+  #routes .rgrid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  #routes .rgrid::-webkit-scrollbar { display: none; }
+  #routes .rgrid .rcard { flex: 0 0 68%; scroll-snap-align: start; }
+  #routes .rgrid .rcard:nth-child(n+3) { display: block; }
+  #routes .rgrid .rcard:nth-child(n+4) { display: block; }
+}
+@media (max-width: 900px) {
+  #routes .rgrid .rcard:nth-child(n+4) { display: block; }
+}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebSite","@id":"https://emptylegslist.com/#website","url":"https://emptylegslist.com/","name":"Empty Leg List","description":"Live empty leg flights from charter operators worldwide, updated three times a day.","inLanguage":"en","publisher":{"@id":"https://emptylegslist.com/#org"}},
+{"@type":"Organization","@id":"https://emptylegslist.com/#org","name":"Empty Leg List","url":"https://emptylegslist.com/","logo":"https://emptylegslist.com/brand/icon-512.png"},
+{"@type":"WebPage","@id":"https://emptylegslist.com/#webpage","url":"https://emptylegslist.com/","name":"Empty Leg List","isPartOf":{"@id":"https://emptylegslist.com/#website"},"about":{"@id":"https://emptylegslist.com/#org"},"description":"One-way repositioning flights from charter operators, free to search and enquire."}
+]}
+</script>
 </head>
 <body>
+<script>try{if(!localStorage.getItem("el_cur"))localStorage.setItem("el_cur","EUR");}catch(e){}</script>
 
 <div id="h">
   <div id="hbg"></div><div id="hveil"></div>
@@ -335,7 +485,7 @@
       </div>
     </nav>
     <h1>Empty Leg Flights</h1>
-    <p id="sub">Live one-way repositioning flights from charter operators worldwide. The aircraft flies the route anyway, so the operator offers it at a reduced price. Updated three times a day.</p>
+    <p id="sub">One-way repositioning flights, straight from charter operators. <span class="sublong">The aircraft flies the route anyway, so the operator offers the seats at a reduced price. </span>Updated three times a day.</p>
     <div id="tr">
       <div class="tr"><svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M 13 2 L 5 13 L 11 13 L 10 22 L 19 10 L 13 10 Z" fill="none" stroke="#c9a227" stroke-width="1.7" stroke-linejoin="round"/></svg><span><span class="tr-t">Fast enquiries</span><br><span class="tr-s">Operators reply directly</span></span></div>
       <div class="tr"><svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M 12 2 L 20 5 L 20 11 C 20 16.5 16.6 20.6 12 22 C 7.4 20.6 4 16.5 4 11 L 4 5 Z" fill="none" stroke="#c9a227" stroke-width="1.7" stroke-linejoin="round"/></svg><span><span class="tr-t">No obligation</span><br><span class="tr-s">Free, with no pressure</span></span></div>
@@ -368,8 +518,8 @@
         <span id="fcount"></span>
         <button id="fchelp" type="button" aria-label="Why am I seeing only some of the flights?" aria-expanded="false">i</button>
         <div id="fcpop" role="dialog" aria-labelledby="fcpop-h" hidden>
-          <h4 id="fcpop-h">Why only <span id="fcpop-free">50</span> of <span id="fcpop-n">501</span>?</h4>
-          <p>The free view shows the <b>50 soonest departures</b>. The rest of the list &mdash; every route, aircraft and published price &mdash; opens with a free account.</p>
+          <h4 id="fcpop-h">Why only <span id="fcpop-free">300</span> of <span id="fcpop-n">501</span>?</h4>
+          <p>The free view shows the <b>300 soonest departures</b>. The rest of the list &mdash; every route, aircraft and published price &mdash; opens with a free account.</p>
           <p>No password to remember, no card, no charge. Just your contact details so operators can reach you back.</p>
           <button type="button" id="fcpop-cta">Join free to see all <span id="fcpop-n2">501</span> flights</button>
         </div>
@@ -387,7 +537,7 @@
       <label id="curwrap" for="f-cur"><span>Show prices in</span>
         <select id="f-cur">
           <option value="">As listed</option>
-          <option value="EUR">EUR &euro;</option>
+          <option value="EUR" selected>EUR &euro;</option>
           <option value="USD">USD $</option>
           <option value="GBP">GBP &pound;</option>
           <option value="CHF">CHF</option>
@@ -529,6 +679,7 @@
     <span class="sep"></span>
     <span><svg viewBox="0 0 24 24" width="15" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M 12 2 L 20 5 L 20 11 C 20 16.5 16.6 20.6 12 22 C 7.4 20.6 4 16.5 4 11 L 4 5 Z" fill="none" stroke="#a9b4bf" stroke-width="1.5" stroke-linejoin="round"/></svg>Not a broker. Not an operator. Not a party to any booking.</span>
   </div>
+<div id="sitenav" style="max-width:1120px;margin:18px auto 34px;padding:0 20px;display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;font-size:13.5px;line-height:2"><a href="/aircraft/" style="color:#5d6b79;text-decoration:none">Aircraft types</a><a href="/about" style="color:#5d6b79;text-decoration:none">About</a><a href="/contact" style="color:#5d6b79;text-decoration:none">Contact</a><a href="/terms" style="color:#5d6b79;text-decoration:none">Terms</a><a href="/privacy" style="color:#5d6b79;text-decoration:none">Privacy</a><a href="/cookies" style="color:#5d6b79;text-decoration:none">Cookies</a></div>
 
 </div>
 
@@ -542,7 +693,7 @@
   var DOW = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
   var ALL = [], SORT = "date", PRESET = "", PAGE = 1, PER = 20, VIEW = [];
   var FN = URLB + "/functions/v1/empty-legs";
-  var TOKEN = "", GATED = true, TOTAL = 0, FREECAP = 50, MEMAIL = "";
+  var TOKEN = "", GATED = true, TOTAL = 0, FREECAP = 300, MEMAIL = "";
   try { TOKEN = localStorage.getItem("el_token") || ""; } catch (e) { TOKEN = ""; }
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
@@ -601,21 +752,6 @@
     if(h<1) return "Listed just now"; if(h<24) return "Listed "+Math.round(h)+"h ago";
     var d=Math.round(h/24); return "Listed "+d+"d ago"; }
 
-  function legQS(l){
-    var q = [];
-    function add(k, v){ if(v!=null && v!=="") q.push(k+"="+encodeURIComponent(v)); }
-    add("from", l.from_iata || city(l.from_airport));
-    add("to", l.to_iata || city(l.to_airport));
-    add("fromcity", city(l.from_airport));
-    add("tocity", city(l.to_airport));
-    add("date", l.departure_date);
-    add("aircraft", l.aircraft_type);
-    add("seats", l.seats);
-    add("price", l.price_note ? l.price_note.replace(" listed","") : "");
-    add("leg", l.id);
-    return q.join("&");
-  }
-
   function row(l){
     var el=document.createElement("div"); el.className="row";
     var dp=(l.departure_date||"").split("-");
@@ -655,7 +791,7 @@
       '<div class="c-ac"><div class="ac">'+esc(l.aircraft_type||"Aircraft on enquiry")+'</div><div class="acsub">'+(l.seats?("Up to "+l.seats+" seats"):"Seats on enquiry")+'</div></div>'+
       '<div class="c-time">'+th+'</div>'+
       '<div class="c-price">'+ph+'</div>'+
-      '<div class="c-cta"><a class="btn" href="'+QUOTE+'?'+legQS(l)+'">Enquire <svg viewBox="0 0 24 24" width="13" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="listed">'+esc(ago(l.published_at))+'</div></div>';
+      '<div class="c-cta"><a class="btn" href="'+QUOTE+'?from='+encodeURIComponent(l.from_iata||city(l.from_airport))+'&to='+encodeURIComponent(l.to_iata||city(l.to_airport))+'">Enquire <svg viewBox="0 0 24 24" width="13" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="listed">'+esc(ago(l.published_at))+'</div></div>';
     return el;
   }
 
@@ -1044,6 +1180,7 @@
   // Photographs we hold. A city with no entry gets a monogram card instead of a
   // stock photo of somewhere else.
   var CITY_PIC = {
+  "Wevelgem":"wevelgem",
     "London":"london", "Paris":"paris", "New York":"new-york", "Dubai":"dubai",
     "Toronto":"toronto", "Ibiza":"ibiza", "Nice":"nice", "Mykonos":"mykonos",
     "Milan":"milan", "Birmingham":"birmingham", "Antwerp":"antwerp",
@@ -1167,5 +1304,372 @@
   </a>
 </div>
 
+<script>
+(function(){
+  // On phones the From/To labels are hidden, so put them inside the fields
+  function setPh(){
+    var small = window.matchMedia('(max-width: 640px)').matches;
+    var f = document.getElementById('f-from'), t = document.getElementById('f-to');
+    if (f) f.placeholder = small ? 'From: any departure' : 'Any departure';
+    if (t) t.placeholder = small ? 'To: any destination' : 'Any destination';
+  }
+  setPh();
+  window.addEventListener('resize', setPh);
+})();
+</script>
+<script>
+(function(){
+  var mq = window.matchMedia('(max-width: 640px)');
+  function txt(el){ return el ? el.innerText.replace(/\s+/g,' ').trim() : ''; }
+  function real(s){ return s && !/on enquiry/i.test(s); }
+  function chip(t){ var s=document.createElement('span'); s.className='mchip'; s.textContent=t; return s; }
+  function build(row){
+    if (row.querySelector('.mmeta')) return;
+    var date = row.querySelector('.c-date');
+    var acTxt = txt(row.querySelector('.c-ac .ac'));
+    var seatTxt = txt(row.querySelector('.c-ac .acsub'));
+    var timeTxt = txt(row.querySelector('.c-time'));
+    var listed = txt(row.querySelector('.c-cta .listed'));
+    var wrap = document.createElement('div');
+    wrap.className = 'mmeta';
+    if (date) wrap.appendChild(date);
+    var m = seatTxt.match(/(\d+)\s*seat/i);
+    if (m) wrap.appendChild(chip(m[1] + ' seats'));
+    if (real(timeTxt)) wrap.appendChild(chip(timeTxt));
+    row.appendChild(wrap);
+    var bits = [];
+    if (real(acTxt)) bits.push('Aircraft <b>' + acTxt + '</b>');
+    if (m) bits.push('Up to <b>' + m[1] + ' seats</b>');
+    if (real(timeTxt)) bits.push('Flight time <b>' + timeTxt + '</b>');
+    if (listed) bits.push(listed);
+    if (bits.length) {
+      var d = document.createElement('div');
+      d.className = 'mdet';
+      d.innerHTML = bits.join('<br>');
+      row.appendChild(d);
+      var ch = document.createElement('span');
+      ch.className = 'mchev';
+      ch.setAttribute('aria-hidden','true');
+      ch.textContent = '\u25BC';
+      row.appendChild(ch);
+    }
+  }
+  function scan(){ if(!mq.matches) return; var rows=document.querySelectorAll('#rows .row'); for (var i=0;i<rows.length;i++) build(rows[i]); }
+  scan();
+  var box = document.getElementById('rows');
+  if (box) {
+    new MutationObserver(function(){ scan(); }).observe(box, {childList:true, subtree:false});
+    box.addEventListener('click', function(e){
+      if (!mq.matches) return;
+      if (e.target.closest('a, button, select, input')) return;
+      var row = e.target.closest('.row');
+      if (!row || !row.querySelector('.mdet')) return;
+      row.classList.toggle('open');
+    });
+  }
+  mq.addEventListener('change', scan);
+})();
+</script>
+<script>
+(function(){
+  function totals(){
+    var free = document.getElementById('fcpop-free');
+    var n2 = document.getElementById('fcpop-n2');
+    var fc = document.getElementById('fcount');
+    var m = fc ? (fc.innerText||'').replace(/,/g,'').match(/(\d+)\s*of\s*(\d+)/) : null;
+    var total = m ? m[2] : (n2 ? (n2.textContent||'').trim() : '');
+    return { free: free ? (free.textContent||'50').trim() : '50', total: total };
+  }
+  function paint(){
+    var t = totals();
+    if (!t.total || t.total === '0') return;
+    var host = document.getElementById('fcwrap');
+    var line = document.getElementById('freeline');
+    if (!line) {
+      if (!host) return;
+      line = document.createElement('div');
+      line.id = 'freeline';
+      host.parentNode.insertBefore(line, host.nextSibling);
+    }
+    var rest = Number(t.total) - Number(t.free);
+    var html = 'The free view shows the ' + t.free + ' soonest departures of ' + t.total + '. The other ' + rest + ' are free too, no card needed.<button type="button" id="freecta">See all ' + t.total + ' free</button>';
+    if (line.getAttribute('data-html') !== html) {
+      line.innerHTML = html;
+      line.setAttribute('data-html', html);
+      var b = line.querySelector('#freecta');
+      if (b) b.addEventListener('click', function(){ var cta=document.getElementById('fcpop-cta'); if(cta){cta.click();return;} var h=document.getElementById('fchelp'); if(h) h.click(); });
+    }
+    document.querySelectorAll('#lhead span, #lhead b').forEach(function(el){
+      if (/^\+\d+\s+locked$/i.test((el.textContent||'').trim())) {
+        el.textContent = el.textContent.replace(/locked/i, 'more, free');
+      }
+    });
+  }
+  function emptyHelp(){
+    var t = totals();
+    var rows = document.querySelectorAll('#rows .row').length;
+    var none = document.getElementById('none');
+    var box = document.getElementById('rows');
+    var old = document.getElementById('nofree');
+    if (rows > 0 || !t.total) { if (old) old.remove(); return; }
+    if (old) return;
+    var d = document.createElement('div');
+    d.id = 'nofree';
+    d.innerHTML = 'No match among the ' + t.free + ' flights in the free view. The full list has ' + t.total + ' flights and it is free to open.<button type="button" id="nofreecta">See all ' + t.total + ' free</button>';
+    if (box && box.parentNode) box.parentNode.insertBefore(d, box.nextSibling);
+    var b = document.getElementById('nofreecta');
+    if (b) b.addEventListener('click', function(){ var cta=document.getElementById('fcpop-cta'); if(cta){cta.click();return;} var h=document.getElementById('fchelp'); if(h) h.click(); });
+  }
+  function refresh(){ paint(); emptyHelp(); }
+  refresh();
+  var box = document.getElementById('rows');
+  if (box) new MutationObserver(refresh).observe(box, {childList:true});
+  setTimeout(paint, 1500); setTimeout(paint, 4000);
+})();
+</script><script>
+(function(){
+  if (!window.matchMedia('(max-width: 640px)').matches) return;
+  var lab = document.querySelector('#curwrap > span');
+  if (lab && /show prices in/i.test(lab.textContent)) lab.textContent = 'Prices in';
+})();
+</script><script>
+/* Full-list awareness: real city counts and honest search counts across every flight, not just the free view */
+(function(){
+  var H = document.documentElement.innerHTML;
+  var BASE = (H.match(/https:\/\/[a-z0-9]+\.supabase\.co/)||[])[0];
+  var KEY = (H.match(/sb_publishable_[A-Za-z0-9_\-]+/)||[])[0] || (H.match(/eyJ[A-Za-z0-9_\-\.]{40,}/)||[])[0];
+  if (!BASE || !KEY) return;
+  var HEAD = { apikey: KEY, Authorization: 'Bearer ' + KEY };
+  var ALLROWS = null;
+  function city(s){ return String(s||'').split(',')[0].trim(); }
+  function load(cb){
+    if (ALLROWS) { cb(ALLROWS); return; }
+    fetch(BASE + '/rest/v1/empty_legs?select=from_airport,to_airport&limit=2000', { headers: HEAD })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(j){ ALLROWS = j || []; cb(ALLROWS); })
+      .catch(function(){ cb([]); });
+  }
+  /* 1. City chips show how many flights exist in the whole list */
+  function fixPills(rows){
+    if (!rows.length) return;
+    var counts = {};
+    rows.forEach(function(r){ var c = city(r.from_airport); if (c) counts[c] = (counts[c]||0) + 1; });
+    document.querySelectorAll('#pills .p').forEach(function(b){
+      var t = (b.textContent||'').trim();
+      var m = t.match(/^(.*?)\s*\((\d+)\)$/);
+      if (!m) return;
+      var name = m[1].trim();
+      var real = counts[name];
+      if (!real) { for (var k in counts) { if (k.toLowerCase().indexOf(name.toLowerCase()) === 0) { real = counts[k]; break; } } }
+      if (real && String(real) !== m[2]) b.innerHTML = b.innerHTML.replace('(' + m[2] + ')', '(' + real + ')');
+    });
+  }
+  /* 2. When a search finds nothing in the free view, say how many exist in the full list */
+  function searchCount(rows){
+    var f = (document.getElementById('f-from')||{}).value || '';
+    var t = (document.getElementById('f-to')||{}).value || '';
+    f = f.trim().toLowerCase(); t = t.trim().toLowerCase();
+    if (!f && !t) return null;
+    var n = rows.filter(function(r){
+      var okF = !f || String(r.from_airport||'').toLowerCase().indexOf(f) !== -1;
+      var okT = !t || String(r.to_airport||'').toLowerCase().indexOf(t) !== -1;
+      return okF && okT;
+    }).length;
+    return { n: n, from: f, to: t };
+  }
+  function label(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+  function updateHelper(){
+    var box = document.getElementById('nofree');
+    if (!box) return;
+    load(function(rows){
+      var r = searchCount(rows);
+      if (!r) return;
+      var route = r.from && r.to ? (label(r.from) + ' to ' + label(r.to)) : (r.from ? ('from ' + label(r.from)) : ('to ' + label(r.to)));
+      var msg = r.n
+        ? ('The full list has <b>' + r.n + '</b> flight' + (r.n === 1 ? '' : 's') + ' ' + route + '. None of them is in the free view, and opening the rest is free.')
+        : ('No flight ' + route + ' anywhere in the list right now. Set an alert and we will email you when one appears.');
+      var b = box.querySelector('button');
+      box.innerHTML = msg;
+      if (b) box.appendChild(b);
+    });
+  }
+  function boot(){ load(fixPills); }
+  boot();
+  var rowsBox = document.getElementById('rows');
+  if (rowsBox) new MutationObserver(function(){ load(fixPills); setTimeout(updateHelper, 60); }).observe(rowsBox, { childList: true });
+})();
+</script><script>
+(function(){
+  var mq = window.matchMedia('(max-width: 640px)');
+  function layout(){
+    if (!mq.matches) return;
+    var filters = document.getElementById('filters');
+    var bar = document.getElementById('fbar');
+    var more = document.getElementById('fmore');
+    var cw = document.getElementById('fcwrap');
+    if (!filters || !bar || !more || !cw) return;
+    if (document.querySelector('#filters .mrow')) return;
+    /* Search bar goes right under the fields, above the secondary row */
+    filters.insertBefore(bar, more);
+    var row = document.createElement('div');
+    row.className = 'mrow';
+    filters.appendChild(row);
+    row.appendChild(more);
+    row.appendChild(cw);
+    var fl = document.getElementById('freeline');
+    if (fl) filters.appendChild(fl);
+    new MutationObserver(function(){ var l=document.getElementById('freeline'); var r=document.querySelector('#filters .mrow'); if (l && r && r.contains(l)) filters.appendChild(l); }).observe(filters, {childList:true, subtree:true});
+  }
+  layout();
+  setTimeout(layout, 1200);
+  mq.addEventListener('change', layout);
+})();
+</script><!-- AIRCRAFT LINKS -->
+<script>
+(function(){
+var MAP=[["citation cj4","citation-cj4-gen2"],["legacy 500","legacy-500"],["emb-550","legacy-500"],["praetor 600","praetor-600"],["citation latitude","citation-latitude"],["pc-12","pilatus-pc-12-ngx"],["legacy 650","legacy-650"],["falcon 7x","falcon-7x"],["erj-135","erj-135"],["citation xls","citation-xls"],["learjet 45","learjet-45xr"]];
+function sl(t){t=String(t||"").toLowerCase();for(var i=0;i<MAP.length;i++){if(t.indexOf(MAP[i][0])!==-1)return MAP[i][1];}return null;}
+function link(){var els=document.querySelectorAll("#rows .ac");for(var i=0;i<els.length;i++){var e=els[i];if(e.getElementsByTagName("a").length)continue;var s=sl(e.textContent);if(!s)continue;var a=document.createElement("a");a.href="/aircraft/"+s;a.textContent=e.textContent;a.style.color="inherit";a.style.textDecoration="underline";a.style.textDecorationColor="rgba(0,0,0,.25)";a.title="See all empty legs on this aircraft";e.textContent="";e.appendChild(a);}}
+var host=document.getElementById("rows");
+if(host&&window.MutationObserver){new MutationObserver(link).observe(host,{childList:true,subtree:true});}
+link();setTimeout(link,1500);setTimeout(link,4000);
+})();
+</script>
+<!-- HEADER STATS + ONE ROW CONTROLS -->
+<style>
+#sub{display:none!important}
+#herostats{max-width:640px;margin:16px 0 0}
+#herostats #fcwrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:#fff;font-size:16px;font-weight:500}
+#herostats #fcwrap *{color:inherit}
+#herostats #fcount{color:#fff}
+#herostats #freeline{color:rgba(255,255,255,.75);font-size:13.5px;line-height:1.6;margin:6px 0 0}
+#herostats #freeline a,#herostats #fcwrap a{color:var(--gold)}
+#fbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+#fbar #fmore{margin:0;flex:0 0 auto}
+@media(max-width:640px){
+#fbar{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:stretch}
+#fbar #go,#fbar #clr,#fbar #fmore{margin:0;white-space:nowrap;display:flex;align-items:center;justify-content:center}
+#herostats #fcwrap{font-size:15px}
+}
+</style>
+<script>
+(function(){
+function go(){
+var hin=document.getElementById("hin");
+var h1=hin?hin.querySelector("h1"):null;
+var fc=document.getElementById("fcwrap"),fl=document.getElementById("freeline");
+var fb=document.getElementById("fbar"),fm=document.getElementById("fmore");
+if(h1&&fc&&!document.getElementById("herostats")){
+var box=document.createElement("div");box.id="herostats";
+box.appendChild(fc);if(fl)box.appendChild(fl);
+h1.parentNode.insertBefore(box,h1.nextSibling);}
+if(fb&&fm&&fm.parentNode!==fb){fb.appendChild(fm);}
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go);}else{go();}
+setTimeout(go,600);setTimeout(go,2000);
+})();
+</script>
+<!-- ACCORDION + FREQ ROW -->
+<style>
+.afreq-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.afreq-opts label{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.afreq-opts label{white-space:nowrap;text-align:center;justify-content:center}
+@media(max-width:900px){
+.afreq-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.afreq-opts label{padding:9px 2px!important;font-size:12px!important;letter-spacing:0}
+}
+#copy-main .blk.acc .blkhead{cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+#copy-main .blk.acc .blkhead h2,#copy-main .blk.acc .blkhead h3{margin:0}
+#copy-main .blk.acc .chev{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:1px solid var(--line,#edf1f5);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8a97a5;transition:transform .18s ease;margin-top:6px}
+#copy-main .blk.acc.open .chev{transform:rotate(180deg)}
+#copy-main .blk.acc .blkbody{display:none}
+#copy-main .blk.acc.open .blkbody{display:block}
+</style>
+<script>
+(function(){
+function freq(){
+var opts=document.querySelector(".afreq-opts");if(!opts)return;
+if(window.innerWidth<=900){
+var ls=opts.querySelectorAll("label");
+for(var i=0;i<ls.length;i++){var sp=ls[i].querySelector("span");
+if(sp&&/as soon as listed/i.test(sp.textContent)){sp.setAttribute("data-full",sp.textContent);sp.textContent="Instant";}}
+}}
+function acc(){
+var m=document.getElementById("copy-main");if(!m)return;
+var blks=m.querySelectorAll(".blk");
+for(var i=0;i<blks.length;i++){(function(b,idx){
+if(b.className.indexOf("acc")!==-1)return;
+var body=b.querySelector(".ico")?b.querySelector(".ico").nextElementSibling:b.firstElementChild;
+if(!body)return;
+var h=body.querySelector("h2,h3");if(!h)return;
+var head=document.createElement("div");head.className="blkhead";
+body.insertBefore(head,h);head.appendChild(h);
+var chev=document.createElement("span");chev.className="chev";chev.innerHTML="&#9660;";head.appendChild(chev);
+var wrap=document.createElement("div");wrap.className="blkbody";
+while(head.nextSibling){wrap.appendChild(head.nextSibling);}
+body.appendChild(wrap);
+b.className+=" acc"+(idx===0?" open":"");
+head.addEventListener("click",function(){
+if(b.className.indexOf("open")!==-1){b.className=b.className.replace(/\s*open/,"");}else{b.className+=" open";}
+});
+})(blks[i],i);}
+}
+function ops(){
+var as=document.querySelectorAll('a[href*="theflyingengineer.com/add-listing"]');
+for(var i=0;i<as.length;i++){as[i].setAttribute("href","/for-operators");as[i].removeAttribute("target");as[i].removeAttribute("rel");}
+}
+function go(){freq();acc();ops();}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go);}else{go();}
+setTimeout(go,700);setTimeout(go,2200);
+})();
+</script>
+<!-- HERO LEAD LINE -->
+<style>
+#herostats #fcwrap,#herostats #freeline{display:none!important}
+#herolead{color:rgba(255,255,255,.92);font-size:16.5px;line-height:1.7;margin:14px 0 0;max-width:660px;position:relative}
+#herolead b{color:var(--gold);font-weight:600}
+#herolead #freecta{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--gold);text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap}
+#herolead #fchelp{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;width:20px;height:20px;line-height:1;border-radius:50%;font-size:11px;font-weight:600;margin-left:8px;padding:0;cursor:pointer;vertical-align:middle;display:inline-flex;align-items:center;justify-content:center}
+#herolead #fcpop{position:absolute;left:0;top:100%;margin-top:8px;z-index:40;max-width:420px}
+@media(max-width:640px){#herolead{font-size:15.5px;margin-top:12px}#herolead #fcpop{max-width:none;right:0}}
+</style>
+<script>
+(function(){
+function readCounts(){
+var el=document.getElementById("fcount");if(!el)return null;
+var m=(el.textContent||"").match(/[0-9][0-9,]*/g);if(!m||!m.length)return null;
+return m.map(function(s){return Number(s.replace(/,/g,""));});
+}
+function fmt(n){try{return n.toLocaleString("en-GB");}catch(e){return String(n);}}
+function compose(){
+var host=document.getElementById("herostats");if(!host)return;
+var c=readCounts();if(!c)return;
+var lead=document.getElementById("herolead");
+if(!lead){lead=document.createElement("p");lead.id="herolead";host.appendChild(lead);}
+var shown=c[0],total=c.length>1?c[1]:c[0],rest=total-shown;
+var txt="<b>"+fmt(shown)+"</b> of <b>"+fmt(total)+"</b> empty leg flights, straight from charter operators.";
+if(c.length<2)txt="<b>"+fmt(total)+"</b> empty leg flights, straight from charter operators.";
+if(rest>0)txt+=" The other <b>"+fmt(rest)+"</b> are free to see too. ";else txt+=" ";
+var s=lead.querySelector("span.lead-t");
+if(!s){s=document.createElement("span");s.className="lead-t";lead.insertBefore(s,lead.firstChild);}
+if(s.innerHTML!==txt)s.innerHTML=txt;
+var cta=document.getElementById("freecta"),help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
+if(cta)lead.appendChild(cta);
+if(help)lead.appendChild(help);
+if(pop)lead.appendChild(pop);
+}
+function boot(){
+compose();
+if(!window.MutationObserver||window.__leadMO)return;
+var mo=new MutationObserver(function(){compose();});
+var f=document.getElementById("fcount"),fl=document.getElementById("freeline");
+if(f)mo.observe(f,{childList:true,characterData:true,subtree:true});
+if(fl)mo.observe(fl,{childList:true,subtree:true});
+window.__leadMO=mo;
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",boot);}else{boot();}
+setTimeout(boot,900);setTimeout(boot,2500);setTimeout(boot,5000);
+})();
+</script>
 </body>
 </html>
