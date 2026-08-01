@@ -457,6 +457,20 @@
 @media (max-width: 900px) {
   #routes .rgrid .rcard:nth-child(n+4) { display: block; }
 }
+
+  #bigfoot { background: var(--navy); color: rgba(255,255,255,0.75); margin-top: 50px; }
+  #bigfoot .bf-in { max-width: 1120px; margin: 0 auto; padding: 46px 20px 30px; display: grid; grid-template-columns: 1.5fr 0.8fr 1.1fr 1fr 0.9fr; gap: 34px; }
+  #bigfoot h4 { margin: 0 0 12px; font-size: 11.5px; letter-spacing: .14em; color: var(--gold); font-weight: 600; text-transform: uppercase; }
+  #bigfoot nav { display: flex; flex-direction: column; gap: 7px; }
+  #bigfoot a { color: rgba(255,255,255,0.72); font-size: 12.5px; line-height: 1.45; transition: color .15s; }
+  #bigfoot a:hover { color: #fff; }
+  .bf-brand img { width: 190px; height: auto; display: block; margin-bottom: 14px; }
+  .bf-brand p { margin: 0 0 10px; font-size: 12.5px; line-height: 1.65; max-width: 280px; }
+  .bf-brand a { color: var(--gold); }
+  .bf-legal { color: rgba(255,255,255,0.45); font-size: 11.5px; }
+  .bf-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding: 16px 20px; text-align: center; font-size: 11.5px; color: rgba(255,255,255,0.4); }
+  @media (max-width: 1000px) { #bigfoot .bf-in { grid-template-columns: 1fr 1fr; } .bf-brand { grid-column: 1 / -1; } }
+  @media (max-width: 560px) { #bigfoot .bf-in { grid-template-columns: 1fr 1fr; } }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -679,7 +693,77 @@
     <span class="sep"></span>
     <span><svg viewBox="0 0 24 24" width="15" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M 12 2 L 20 5 L 20 11 C 20 16.5 16.6 20.6 12 22 C 7.4 20.6 4 16.5 4 11 L 4 5 Z" fill="none" stroke="#a9b4bf" stroke-width="1.5" stroke-linejoin="round"/></svg>Not a broker. Not an operator. Not a party to any booking.</span>
   </div>
-<div id="sitenav" style="max-width:1120px;margin:18px auto 34px;padding:0 20px;display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;font-size:13.5px;line-height:2"><a href="/aircraft/" style="color:#5d6b79;text-decoration:none">Aircraft types</a><a href="/about" style="color:#5d6b79;text-decoration:none">About</a><a href="/contact" style="color:#5d6b79;text-decoration:none">Contact</a><a href="/terms" style="color:#5d6b79;text-decoration:none">Terms</a><a href="/privacy" style="color:#5d6b79;text-decoration:none">Privacy</a><a href="/cookies" style="color:#5d6b79;text-decoration:none">Cookies</a></div>
+<footer id="bigfoot">
+  <div class="bf-in">
+    <div class="bf-col bf-brand">
+      <img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224">
+      <p>Live empty leg flights from charter operators worldwide, updated three times a day. Operated by Publishing Office SRL, the team behind <a href="https://theflyingengineer.com/">The Flying Engineer</a>.</p>
+      <p class="bf-legal">A listing service only. Not a broker, not an operator, not a party to any booking. No commission.</p>
+    </div>
+    <div class="bf-col">
+      <h4>Destinations</h4>
+      <nav>
+        <a href="/empty-legs/london">London</a>
+        <a href="/empty-legs/paris">Paris</a>
+        <a href="/empty-legs/nice">Nice</a>
+        <a href="/empty-legs/ibiza">Ibiza</a>
+        <a href="/empty-legs/amsterdam">Amsterdam</a>
+        <a href="/empty-legs/vienna">Vienna</a>
+        <a href="/empty-legs/athens">Athens</a>
+        <a href="/empty-legs/brussels">Brussels</a>
+        <a href="/empty-legs/palma">Palma</a>
+        <a href="/empty-legs/cannes">Cannes</a>
+        <a href="/empty-legs/toronto">Toronto</a>
+        <a href="/empty-legs/cape-town">Cape Town</a>
+      </nav>
+    </div>
+    <div class="bf-col">
+      <h4>Popular routes</h4>
+      <nav>
+        <a href="/empty-legs/london-to-nice">London → Nice</a>
+        <a href="/empty-legs/london-to-paris">London → Paris</a>
+        <a href="/empty-legs/london-to-ibiza">London → Ibiza</a>
+        <a href="/empty-legs/london-to-dublin">London → Dublin</a>
+        <a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a>
+        <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
+        <a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a>
+        <a href="/empty-legs/geneva-to-london">Geneva → London</a>
+        <a href="/empty-legs/vienna-to-london">Vienna → London</a>
+        <a href="/empty-legs/johannesburg-to-cape-town">Johannesburg → Cape Town</a>
+      </nav>
+    </div>
+    <div class="bf-col">
+      <h4>Aircraft</h4>
+      <nav>
+        <a href="/aircraft/">All aircraft types</a>
+        <a href="/aircraft/citation-latitude">Citation Latitude</a>
+        <a href="/aircraft/citation-xls">Citation XLS</a>
+        <a href="/aircraft/citation-mustang">Citation Mustang</a>
+        <a href="/aircraft/challenger-350">Challenger 350</a>
+        <a href="/aircraft/legacy-500">Legacy 500</a>
+        <a href="/aircraft/legacy-650">Legacy 650</a>
+        <a href="/aircraft/falcon-7x">Falcon 7X</a>
+        <a href="/aircraft/praetor-600">Praetor 600</a>
+        <a href="/aircraft/gulfstream-g550">Gulfstream G550</a>
+        <a href="/aircraft/global-6000">Global 6000</a>
+      </nav>
+    </div>
+    <div class="bf-col">
+      <h4>Company</h4>
+      <nav>
+        <a href="/quote">Request a quote</a>
+        <a href="/for-operators">For operators</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/cookies">Cookies</a>
+        <a href="https://theflyingengineer.com/">The Flying Engineer</a>
+      </nav>
+    </div>
+  </div>
+  <div class="bf-bottom">&copy; 2026 Publishing Office SRL &middot; emptylegslist.com</div>
+</footer>
 
 </div>
 
