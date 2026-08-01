@@ -30,6 +30,10 @@
   #tfe-nav a:hover { text-decoration: underline; }
   #tfe-logo { font-weight: 800; font-size: 17px; letter-spacing: 0.5px; margin-right: auto; display: flex; align-items: center; gap: 9px; }
   #tfe-nav-cta { background: #296dae; padding: 11px 20px; border-radius: 12px; }
+  #tfe-leg-banner { display: none; margin: 0 0 22px 0; padding: 16px 18px; background: linear-gradient(135deg, #0e2338 0%, #16304c 100%); border-radius: 14px; color: #fff; }
+  #tfe-leg-banner .lb-k { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; color: #c9a24c; margin-bottom: 6px; }
+  #tfe-leg-banner .lb-route { font-size: 18px; font-weight: 800; }
+  #tfe-leg-banner .lb-meta { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 5px; line-height: 1.6; }
   #tfe-hero-badge { display: inline-block; border: 1px solid rgba(255,255,255,0.5); border-radius: 999px; padding: 7px 16px; font-size: 12px; font-weight: 700; letter-spacing: 0.6px; margin: 34px 0 18px 0; }
   #tfe-hero h1 { font-size: 44px; line-height: 1.12; font-weight: 800; margin: 0 0 16px 0; max-width: 560px; }
   #tfe-hero-sub { font-size: 16.5px; line-height: 1.6; max-width: 430px; margin: 0 0 30px 0; color: rgba(255,255,255,0.92); }
@@ -62,7 +66,6 @@
     <span id="tfe-hero-badge">THE FLYING ENGINEER NETWORK</span>
     <h1>Request a Private Jet Charter Quote</h1>
     <p id="tfe-hero-sub">Tell us your route, date, and passenger count. We forward your request to charter operators in our network. Operators who can serve your route reply to you directly with quotes.</p>
-<div id="tfe-leg" style="display:none;background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.22);border-radius:12px;padding:12px 14px;margin:0 0 22px 0;max-width:460px"><div style="font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:4px">Enquiring about this flight</div><div id="tfe-leg-text" style="font-size:15px;font-weight:600;color:#fff"></div><div style="font-size:12.5px;color:rgba(255,255,255,.66);margin-top:6px">We send this request to the operator that listed it first. If they do not reply, other operators on the route may quote you an alternative, and we will tell you that it is not the same flight.</div></div>
     <div id="tfe-chips">
       <div>
         <div style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;"><svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" fill="none" stroke="#ffffff" stroke-width="2"/><path d="M 12 7 L 12 12 L 16 14" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/></svg></div>
@@ -82,34 +85,7 @@
 
 <div style="font-family: Raleway, sans-serif; color: #16222e; background: linear-gradient(180deg, #dcebfa 0%, #eef5fc 100%); border-radius: 36px; max-width: 1140px; margin: 0 auto; padding: 40px 18px;">
 
-  <!-- QUICK ENQUIRY: shown only when the visitor arrives from a specific flight -->
-<div id="qk" style="display:none;max-width:1140px;margin:0 auto;padding:0 20px 10px">
-  <div style="background:#fff;border-radius:22px;box-shadow:0 10px 40px rgba(9,18,32,.10);padding:26px 24px;max-width:560px;margin:-40px auto 30px">
-    <div id="qk-step1">
-      <div style="font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:#8a97a5;margin-bottom:6px">Enquire about this flight</div>
-      <div id="qk-leg" style="font-size:19px;font-weight:800;color:#16222e;line-height:1.3;margin-bottom:6px"></div>
-      <p style="font-size:14px;color:#55636f;margin:0 0 18px">Leave your email and we take it to the operator that listed this flight. No call centre, no obligation, and we tell you if the flight is gone.</p>
-      <form id="qk-form" novalidate style="display:flex;flex-wrap:wrap;gap:10px">
-        <input id="qk-email" type="email" placeholder="you@company.com" autocomplete="email" required style="flex:1 1 260px;min-width:0;padding:14px 16px;border:2px solid #e7edf3;border-radius:12px;font:inherit;font-size:15px">
-        <button type="submit" id="qk-btn" style="background:#296dae;color:#fff;border:none;border-radius:12px;padding:14px 26px;font:inherit;font-size:15px;font-weight:700;cursor:pointer">Send enquiry</button>
-        <div id="qk-err" style="flex:1 1 100%;font-size:13px;color:#c0392b"></div>
-      </form>
-      <p style="font-size:12px;color:#8a97a5;margin:12px 0 0">Takes one field. You can add details on the next step if you want a faster answer.</p>
-    </div>
-    <div id="qk-step2" style="display:none">
-      <div style="font-size:19px;font-weight:800;color:#16222e;margin-bottom:6px">Request sent</div>
-      <p style="font-size:14px;color:#55636f;margin:0 0 16px">We are on it. Two optional details help the operator answer with a real price instead of a question.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px">
-        <input id="qk-phone" type="tel" placeholder="Phone, optional" style="flex:1 1 200px;min-width:0;padding:13px 15px;border:2px solid #e7edf3;border-radius:12px;font:inherit;font-size:15px">
-        <input id="qk-pax" type="number" min="1" max="19" placeholder="Passengers" style="flex:0 1 140px;min-width:0;padding:13px 15px;border:2px solid #e7edf3;border-radius:12px;font:inherit;font-size:15px">
-        <button type="button" id="qk-btn2" style="background:#16222e;color:#fff;border:none;border-radius:12px;padding:13px 24px;font:inherit;font-size:15px;font-weight:700;cursor:pointer">Add details</button>
-      </div>
-      <p id="qk-done" style="font-size:13px;color:#1a9c4b;margin:12px 0 0;display:none">Added. The operator has everything they need.</p>
-      <p style="font-size:12.5px;color:#8a97a5;margin:14px 0 0"><a href="/" style="color:#296dae">Back to the empty legs list</a></p>
-    </div>
-  </div>
-</div>
-<div id="tfe-cols">
+  <div id="tfe-cols">
   <div id="tfe-side">
     <div style="font-size: 15px; font-weight: 800; letter-spacing: 0.6px; color: #16222e;">WHY BOOK WITH<br>OUR NETWORK?<div style="width: 44px; height: 3px; background: #296dae; margin-top: 8px;"></div></div>
     <div style="display: flex; align-items: center; gap: 14px;">
@@ -137,6 +113,11 @@
         <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M 6 3 L 15 3 L 19 7 L 19 21 L 6 21 Z" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/><path d="M 15 3 L 15 7 L 19 7 M 9 12 L 16 12 M 9 16 L 16 16" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/></svg>
       </div>
       <div>
+        <div id="tfe-leg-banner">
+          <div class="lb-k">EMPTY LEG ENQUIRY</div>
+          <div class="lb-route" id="tfe-lb-route"></div>
+          <div class="lb-meta" id="tfe-lb-meta"></div>
+        </div>
         <h2 style="font-size: 24px; font-weight: 800; margin: 0;">Your Trip Details</h2>
         <p style="font-size: 14px; color: #8a97a5; margin: 2px 0 0 0;">Two minutes. Free, with no booking obligation. One request reaches the charter operators covering your route.</p>
       </div>
@@ -834,8 +815,7 @@
   attachAutocomplete("tfe-from", "tfe-from-list", "tfe-from-iata", "from");
   attachAutocomplete("tfe-to", "tfe-to-list", "tfe-to-iata", "to");
 
-  (function(){ try{ var p=new URLSearchParams(location.search); var t=p.get("legtext"); if(!t) return; var box=document.getElementById("tfe-leg"), el=document.getElementById("tfe-leg-text"); if(box&&el){ el.textContent=t; box.style.display="block"; } var n=document.getElementById("tfe-notes"); if(n && !n.value){ n.value="Empty leg listed on emptylegslist.com: "+t+(p.get("leg")?(" (ref "+p.get("leg")+")"):""); } }catch(e){} })();
-    // ---- URL prefill (?from=LTN&to=IBZ or city names), used by empty-legs page ----
+  // ---- URL prefill (?from=LTN&to=IBZ or city names), used by empty-legs page ----
   (function () {
     var params = new URLSearchParams(location.search);
     function prefill(key, inputId, iataId) {
@@ -857,6 +837,56 @@
     }
     prefill("from", "tfe-from", "tfe-from-iata");
     prefill("to", "tfe-to", "tfe-to-iata");
+
+    // ---- empty leg context: when Enquire on a specific leg brought the visitor here,
+    // show which flight this is about and fill everything we know.
+    var legDate = params.get("date"), legAc = params.get("aircraft"),
+        legSeats = params.get("seats"), legPrice = params.get("price"),
+        legId = params.get("leg"),
+        fromCity = params.get("fromcity") || params.get("from") || "",
+        toCity = params.get("tocity") || params.get("to") || "";
+    if (legDate || legAc || legId) {
+      // one-way by definition, on the operator's date
+      var tt = document.getElementById("tfe-trip-type");
+      if (tt) tt.value = "One way";
+      document.querySelectorAll("[data-trip]").forEach(function (b) {
+        var on = b.getAttribute("data-trip") === "One way";
+        b.style.background = on ? "#296dae" : "#f4f7fa";
+        b.style.borderColor = on ? "#296dae" : "#f4f7fa";
+        b.style.color = on ? "#ffffff" : "#55636f";
+      });
+      var ret = document.getElementById("tfe-ret-date");
+      if (ret) { ret.value = ""; ret.parentElement.style.opacity = "0.45"; }
+      if (legDate && /^\d{4}-\d{2}-\d{2}$/.test(legDate)) {
+        var dd = document.getElementById("tfe-dep-date");
+        if (dd) dd.value = legDate;
+      }
+      var banner = document.getElementById("tfe-leg-banner");
+      if (banner) {
+        document.getElementById("tfe-lb-route").textContent = fromCity + " \u2192 " + toCity;
+        var bits = [];
+        if (legDate) {
+          var d = new Date(legDate + "T00:00:00");
+          if (!isNaN(d)) bits.push(d.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" }));
+        }
+        if (legAc) bits.push(legAc);
+        if (legSeats) bits.push("up to " + legSeats + " seats");
+        bits.push(legPrice ? ("listed at " + legPrice) : "price on enquiry");
+        document.getElementById("tfe-lb-meta").textContent =
+          bits.join(" \u00b7 ") + ". Availability changes without notice; the operator confirms the final price.";
+        banner.style.display = "block";
+      }
+      // carry the flight into the lead so the emails and CRM know exactly which leg
+      var notes = document.querySelector('[name="notes"]');
+      if (notes && !notes.value) {
+        notes.value = "Empty leg enquiry: " + fromCity + " to " + toCity +
+          (legDate ? " on " + legDate : "") +
+          (legAc ? ", " + legAc : "") +
+          (legSeats ? ", up to " + legSeats + " seats" : "") +
+          (legPrice ? ", listed at " + legPrice : "") +
+          (legId ? " [leg " + legId + "]" : "");
+      }
+    }
     if (PICKS.from && PICKS.to) maybeEstimate();
   })();
 
@@ -928,7 +958,7 @@
       consent: true,
       est_distance_nm: dist,
       company: val("company") || null,
-      source: "emptylegslist.com/quote", leg_ref: (new URLSearchParams(location.search)).get("leg") || null, leg_summary: (new URLSearchParams(location.search)).get("legtext") || null, notes_prefix: null
+      source: "emptylegslist.com/quote"
     };
     var btn = form.querySelector("button[type=submit]");
     btn.disabled = true;
@@ -959,48 +989,5 @@
 })();
 </script>
 
-<script>
-/* Quick enquiry: one field first, details after. Only when a specific flight was clicked. */
-(function(){
-  var p=new URLSearchParams(location.search);
-  var legtext=p.get("legtext"), leg=p.get("leg");
-  if(!legtext) return;
-  var box=document.getElementById("qk"); if(!box) return;
-  var cols=document.getElementById("tfe-cols");
-  document.getElementById("qk-leg").textContent=legtext;
-  box.style.display="block";
-  if(cols) cols.style.display="none";
-  var SUPA="https://wscowiseslaovmmfuzyv.supabase.co";
-  var SKEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
-  var saved=null;
-  function post(extra){
-    var payload={ trip_type:"One way", from_location:p.get("from")||"", to_location:p.get("to")||"", departure_date:p.get("date")||null, passengers:(extra&&extra.pax)||null, full_name:"", email:saved, phone:(extra&&extra.phone)||null, consent:true, notes:"Empty leg: "+legtext+(leg?(" (ref "+leg+")"):""), leg_ref:leg||null, leg_summary:legtext, source:"emptylegslist.com/quick-enquiry" };
-    return fetch(SUPA+"/functions/v1/charter-lead",{method:"POST",headers:{apikey:SKEY,"Content-Type":"application/json"},body:JSON.stringify(payload)});
-  }
-  document.getElementById("qk-form").addEventListener("submit",function(e){
-    e.preventDefault();
-    var email=(document.getElementById("qk-email").value||"").trim();
-    var err=document.getElementById("qk-err");
-    if(email.indexOf("@")<1||email.length<6){ err.textContent="That email does not look right."; return; }
-    err.textContent="";
-    var b=document.getElementById("qk-btn"); b.disabled=true; b.textContent="Sending...";
-    saved=email;
-    post(null).then(function(r){
-      if(!r.ok) throw 0;
-      document.getElementById("qk-step1").style.display="none";
-      document.getElementById("qk-step2").style.display="block";
-    }).catch(function(){ err.textContent="Could not send that just now. Try again in a minute."; b.disabled=false; b.textContent="Send enquiry"; });
-  });
-  document.getElementById("qk-btn2").addEventListener("click",function(){
-    var phone=(document.getElementById("qk-phone").value||"").trim();
-    var pax=(document.getElementById("qk-pax").value||"").trim();
-    if(!phone && !pax) return;
-    var b=document.getElementById("qk-btn2"); b.disabled=true; b.textContent="Saving...";
-    post({phone:phone||null,pax:pax||null}).then(function(){
-      document.getElementById("qk-done").style.display="block";
-      b.textContent="Added";
-    }).catch(function(){ b.disabled=false; b.textContent="Add details"; });
-  });
-})();
-</script></body>
+</body>
 </html>
