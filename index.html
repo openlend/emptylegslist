@@ -1569,5 +1569,58 @@ if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded"
 setTimeout(go,600);setTimeout(go,2000);
 })();
 </script>
+<!-- ACCORDION + FREQ ROW -->
+<style>
+.afreq-opts{display:flex;flex-wrap:nowrap;gap:8px}
+.afreq-opts label{white-space:nowrap;text-align:center;justify-content:center}
+@media(max-width:640px){
+.afreq-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.afreq-opts label{padding:9px 2px!important;font-size:12px!important;letter-spacing:0}
+}
+#copy-main .blk.acc .blkhead{cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+#copy-main .blk.acc .blkhead h2,#copy-main .blk.acc .blkhead h3{margin:0}
+#copy-main .blk.acc .chev{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:1px solid var(--line,#edf1f5);display:flex;align-items:center;justify-content:center;font-size:11px;color:#8a97a5;transition:transform .18s ease;margin-top:6px}
+#copy-main .blk.acc.open .chev{transform:rotate(180deg)}
+#copy-main .blk.acc .blkbody{display:none}
+#copy-main .blk.acc.open .blkbody{display:block}
+</style>
+<script>
+(function(){
+function freq(){
+var opts=document.querySelector(".afreq-opts");if(!opts)return;
+if(window.innerWidth<=640){
+var ls=opts.querySelectorAll("label");
+for(var i=0;i<ls.length;i++){var sp=ls[i].querySelector("span");
+if(sp&&/as soon as listed/i.test(sp.textContent)){sp.setAttribute("data-full",sp.textContent);sp.textContent="Instant";}}
+}}
+function acc(){
+var m=document.getElementById("copy-main");if(!m)return;
+var blks=m.querySelectorAll(".blk");
+for(var i=0;i<blks.length;i++){(function(b,idx){
+if(b.className.indexOf("acc")!==-1)return;
+var body=b.querySelector(".ico")?b.querySelector(".ico").nextElementSibling:b.firstElementChild;
+if(!body)return;
+var h=body.querySelector("h2,h3");if(!h)return;
+var head=document.createElement("div");head.className="blkhead";
+body.insertBefore(head,h);head.appendChild(h);
+var chev=document.createElement("span");chev.className="chev";chev.innerHTML="&#9660;";head.appendChild(chev);
+var wrap=document.createElement("div");wrap.className="blkbody";
+while(head.nextSibling){wrap.appendChild(head.nextSibling);}
+body.appendChild(wrap);
+b.className+=" acc"+(idx===0?" open":"");
+head.addEventListener("click",function(){
+if(b.className.indexOf("open")!==-1){b.className=b.className.replace(/\s*open/,"");}else{b.className+=" open";}
+});
+})(blks[i],i);}
+}
+function ops(){
+var as=document.querySelectorAll('a[href*="theflyingengineer.com/add-listing"]');
+for(var i=0;i<as.length;i++){as[i].setAttribute("href","/for-operators");as[i].removeAttribute("target");as[i].removeAttribute("rel");}
+}
+function go(){freq();acc();ops();}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go);}else{go();}
+setTimeout(go,700);setTimeout(go,2200);
+})();
+</script>
 </body>
 </html>
