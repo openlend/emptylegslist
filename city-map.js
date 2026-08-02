@@ -1,15 +1,20 @@
 /* Empty Leg List — destination map for city pages.
  *
- * Drop this on a city page together with:
+ * Usage on a city page:
  *   <div class="citymap" data-city="London"></div>
  *   <script src="/city-map.js" defer></script>
  *
- * It reads the live flights from the same gated edge function the listings page
- * uses, works out which corridors actually run from that city, and draws them
- * over an OpenStreetMap embed. Nothing is hardcoded per city and no corridor is
- * invented: if a line is on the map, those flights exist in the data right now.
+ * It reads the live flights from the same edge function the listings page uses,
+ * works out which corridors actually run from that city, and draws them on a
+ * real slippy map. Nothing is hardcoded per city and no corridor is invented:
+ * if a line is on the map, those flights are open in the data right now.
  *
- * Airport coordinates below come from the OurAirports public dataset.
+ * Leaflet is used rather than an OpenStreetMap <iframe> embed on purpose. The
+ * embed picks its own zoom to fit a bbox, so it shows a wider area than asked
+ * for and any overlay drawn in percentages drifts off the tiles. Leaflet's
+ * fitBounds and latLngToLayerPoint keep markers and lines exactly on geography.
+ *
+ * Airport coordinates come from the OurAirports public dataset.
  */
 (function () {
   "use strict";
@@ -18,6 +23,8 @@
 
   var FN = "https://wscowiseslaovmmfuzyv.supabase.co/functions/v1/empty-legs";
   var KEY = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
+  var LEAFLET_CSS = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+  var LEAFLET_JS = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
 
   // Multi-airport cities are one place to a traveller.
   var FOLD = {
@@ -29,7 +36,7 @@
     "paris le bourget": "Paris", "le bourget": "Paris",
     "nice cote d'azur": "Nice", "nice côte d'azur": "Nice",
     "birmingham international": "Birmingham", "larnarca": "Larnaca",
-    "kortrijk-wevelgem": "Wevelgem", "wevelgem": "Wevelgem"
+    "kortrijk-wevelgem": "Wevelgem"
   };
 
   function cityOf(name) {
@@ -48,73 +55,54 @@
     });
   }
 
-  // Web Mercator, so the overlay lines sit correctly on the OSM tiles.
-  function merc(lat) {
-    var r = lat * Math.PI / 180;
-    return Math.log(Math.tan(r) + 1 / Math.cos(r));
+  function load(cb) {
+    if (window.L) return cb();
+    var css = document.createElement("link");
+    css.rel = "stylesheet"; css.href = LEAFLET_CSS;
+    document.head.appendChild(css);
+    var js = document.createElement("script");
+    js.src = LEAFLET_JS;
+    js.onload = cb;
+    js.onerror = function () { cb(new Error("leaflet failed")); };
+    document.head.appendChild(js);
   }
 
-  function render(host, city, partners) {
-    if (!partners.length) { host.style.display = "none"; return; }
+  function draw(host, city, origin, partners) {
+    var wrap = document.createElement("div");
+    wrap.className = "cm-wrap";
+    host.appendChild(wrap);
 
-    var pts = partners.map(function (p) { return p.co; });
-    pts.push(partners[0].origin);
+    var note = document.createElement("p");
+    note.className = "cm-note";
+    note.textContent = "Where aircraft actually reposition to and from " + city +
+      " on the flights listed right now. The number is how many are open on that corridor.";
+    host.appendChild(note);
 
-    var lats = pts.map(function (p) { return p[0]; });
-    var lons = pts.map(function (p) { return p[1]; });
-    var padLat = Math.max(1.2, (Math.max.apply(null, lats) - Math.min.apply(null, lats)) * 0.18);
-    var padLon = Math.max(1.6, (Math.max.apply(null, lons) - Math.min.apply(null, lons)) * 0.18);
-    var s = Math.min.apply(null, lats) - padLat, n = Math.max.apply(null, lats) + padLat;
-    var w = Math.min.apply(null, lons) - padLon, e = Math.max.apply(null, lons) + padLon;
+    var map = L.map(wrap, {
+      zoomControl: true, scrollWheelZoom: false, attributionControl: true
+    });
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 12, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 
-    // OpenStreetMap's embed letterboxes a bbox whose shape does not match the
-    // frame, which would leave the pins floating off the tiles. Grow the short
-    // side (in projected units, so the maths matches the overlay) until the
-    // bbox has the same aspect as the container.
-    var ASPECT = window.matchMedia("(max-width:560px)").matches ? 4 / 3 : 16 / 9;
-    var DEG = 180 / Math.PI;             // merc() returns radians; longitude is degrees
-    var mS = merc(s), mN = merc(n);
-    var wSpan = e - w;                   // degrees
-    var hSpan = (mN - mS) * DEG;         // same units as wSpan
-    if (wSpan / hSpan < ASPECT) {
-      var addW = (hSpan * ASPECT - wSpan) / 2;
-      w -= addW; e += addW;
-    } else {
-      var addH = (wSpan / ASPECT - hSpan) / 2 / DEG;   // back to mercator radians
-      mS -= addH; mN += addH;
-      s = Math.atan(Math.sinh(mS)) * DEG;
-      n = Math.atan(Math.sinh(mN)) * DEG;
+    function pin(latlng, label, cls) {
+      L.marker(latlng, {
+        icon: L.divIcon({ className: "", html: '<span class="cm-pin ' + cls + '">' + label + "</span>", iconSize: null }),
+        keyboard: false, interactive: false
+      }).addTo(map);
     }
-    w = Math.max(-179, w); e = Math.min(179, e);
-    s = Math.max(-84, s); n = Math.min(84, n);
-    mS = merc(s); mN = merc(n);
-    function x(lon) { return ((lon - w) / (e - w)) * 100; }
-    function y(lat) { return (1 - (merc(lat) - mS) / (mN - mS)) * 100; }
 
-    var o = partners[0].origin;
-    var lines = partners.map(function (p) {
-      return '<line x1="' + x(o[1]).toFixed(2) + '" y1="' + y(o[0]).toFixed(2) +
-             '" x2="' + x(p.co[1]).toFixed(2) + '" y2="' + y(p.co[0]).toFixed(2) + '"/>';
-    }).join("");
+    partners.forEach(function (p) {
+      L.polyline([origin, p.co], {
+        color: "#0D1F36", weight: 1.4, opacity: 0.65, dashArray: "4 4", interactive: false
+      }).addTo(map);
+      pin(p.co, "<i></i>" + esc(p.city) + " <b>" + p.n + "</b>", "");
+    });
+    pin(origin, "<i></i>" + esc(city), "cm-origin");
 
-    var pins = partners.map(function (p) {
-      return '<span class="cm-pin" style="left:' + x(p.co[1]).toFixed(2) + '%;top:' + y(p.co[0]).toFixed(2) +
-             '%"><i></i>' + esc(p.city) + ' <b>' + p.n + '</b></span>';
-    }).join("");
-
-    var bbox = [w.toFixed(3), s.toFixed(3), e.toFixed(3), n.toFixed(3)].join(",");
-
-    host.innerHTML =
-      '<div class="cm-wrap">' +
-        '<iframe title="Map of empty leg routes from ' + esc(city) + '" loading="lazy" ' +
-          'src="https://www.openstreetmap.org/export/embed.html?bbox=' + bbox + '&layer=mapnik"></iframe>' +
-        '<svg class="cm-line" viewBox="0 0 100 100" preserveAspectRatio="none">' + lines + '</svg>' +
-        '<span class="cm-pin cm-origin" style="left:' + x(o[1]).toFixed(2) + '%;top:' + y(o[0]).toFixed(2) +
-          '%"><i></i>' + esc(city) + '</span>' +
-        pins +
-      '</div>' +
-      '<p class="cm-note">Where aircraft actually reposition to and from ' + esc(city) +
-      ' on the flights listed right now. The number is how many are open on that corridor.</p>';
+    var bounds = L.latLngBounds([origin].concat(partners.map(function (p) { return p.co; })));
+    map.fitBounds(bounds, { padding: [46, 46] });
+    setTimeout(function () { map.invalidateSize(); map.fitBounds(bounds, { padding: [46, 46] }); }, 250);
   }
 
   function boot() {
@@ -125,31 +113,39 @@
       .then(function (r) { return r.json(); })
       .then(function (d) {
         var legs = (d && d.legs) || [];
+        var jobs = [];
+
         hosts.forEach(function (host) {
           var city = host.getAttribute("data-city") || "";
-          if (!city) { host.style.display = "none"; return; }
+          if (!city) return;
 
-          var counts = {}, coords = {}, originCo = null;
+          var counts = {}, coords = {}, origin = null;
           legs.forEach(function (l) {
             var f = cityOf(l.from_airport), t = cityOf(l.to_airport);
-            var here = null, other = null, otherIata = null, hereIata = null;
-            if (f === city) { here = f; other = t; otherIata = l.to_iata; hereIata = l.from_iata; }
-            else if (t === city) { here = t; other = f; otherIata = l.from_iata; hereIata = l.to_iata; }
-            if (!here || !other || other === city) return;
-            if (hereIata && AP[hereIata] && !originCo) originCo = AP[hereIata];
+            var other, otherIata, hereIata;
+            if (f === city) { other = t; otherIata = l.to_iata; hereIata = l.from_iata; }
+            else if (t === city) { other = f; otherIata = l.from_iata; hereIata = l.to_iata; }
+            else return;
+            if (!other || other === city) return;
+            if (!origin && hereIata && AP[hereIata]) origin = AP[hereIata];
             if (!otherIata || !AP[otherIata]) return;
             counts[other] = (counts[other] || 0) + 1;
             coords[other] = AP[otherIata];
           });
 
-          if (!originCo) { host.style.display = "none"; return; }
-
           var partners = Object.keys(counts)
-            .map(function (c) { return { city: c, n: counts[c], co: coords[c], origin: originCo }; })
+            .map(function (c) { return { city: c, n: counts[c], co: coords[c] }; })
             .sort(function (a, b) { return b.n - a.n; })
             .slice(0, 6);
 
-          render(host, city, partners);
+          if (!origin || !partners.length) { host.style.display = "none"; return; }
+          jobs.push({ host: host, city: city, origin: origin, partners: partners });
+        });
+
+        if (!jobs.length) return;
+        load(function (err) {
+          if (err) { jobs.forEach(function (j) { j.host.style.display = "none"; }); return; }
+          jobs.forEach(function (j) { draw(j.host, j.city, j.origin, j.partners); });
         });
       })
       .catch(function () {
@@ -159,20 +155,18 @@
 
   var css =
     ".citymap{margin:22px 0 30px}" +
-    ".cm-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid #e4eaf0;background:#eef3f7;aspect-ratio:16/9;min-height:260px}" +
-    ".cm-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:saturate(.9)}" +
-    ".cm-line{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}" +
-    ".cm-line line{stroke:#0D1F36;stroke-width:1.1;stroke-dasharray:3 2.4;opacity:.75;vector-effect:non-scaling-stroke}" +
-    ".cm-pin{position:absolute;transform:translate(-50%,-50%);display:inline-flex;align-items:center;gap:6px;" +
-      "background:rgba(255,255,255,.94);border:1px solid #dde5ed;border-radius:999px;padding:3px 9px;" +
-      "font:500 11.5px/1 Raleway,system-ui,sans-serif;color:#16222e;white-space:nowrap;pointer-events:none;" +
-      "box-shadow:0 2px 8px rgba(13,31,54,.16)}" +
-    ".cm-pin i{width:6px;height:6px;border-radius:999px;background:#C9A24C;display:block}" +
+    ".cm-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid #e4eaf0;" +
+      "background:#eef3f7;height:420px;z-index:0}" +
+    ".cm-wrap .leaflet-container{height:100%;width:100%;background:#eef3f7;font:inherit}" +
+    ".cm-pin{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;" +
+      "background:rgba(255,255,255,.95);border:1px solid #dde5ed;border-radius:999px;padding:3px 9px;" +
+      "font:500 11.5px/1 Raleway,system-ui,sans-serif;color:#16222e;" +
+      "box-shadow:0 2px 8px rgba(13,31,54,.18);transform:translate(-50%,-50%)}" +
+    ".cm-pin i{width:6px;height:6px;border-radius:999px;background:#C9A24C;display:block;flex:0 0 auto}" +
     ".cm-pin b{font-weight:600;color:#8a6f10}" +
-    ".cm-origin{background:#0D1F36;border-color:#0D1F36;color:#fff;font-weight:600;z-index:2}" +
-    ".cm-origin i{background:#C9A24C}" +
+    ".cm-pin.cm-origin{background:#0D1F36;border-color:#0D1F36;color:#fff;font-weight:600}" +
     ".cm-note{margin:10px 2px 0;font:300 12.5px/1.6 Raleway,system-ui,sans-serif;color:#7c8894}" +
-    "@media(max-width:560px){.cm-pin{font-size:10.5px;padding:2px 7px}.cm-wrap{aspect-ratio:4/3}}";
+    "@media(max-width:560px){.cm-wrap{height:320px}.cm-pin{font-size:10.5px;padding:2px 7px}}";
 
   var st = document.createElement("style");
   st.textContent = css;
