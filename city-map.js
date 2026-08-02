@@ -139,7 +139,7 @@
             .sort(function (a, b) { return b.n - a.n; })
             .slice(0, 6);
 
-          if (!origin || !partners.length) { host.style.display = "none"; return; }
+          if (!origin || !partners.length) return;   // nothing yet; a later retry may find it
           jobs.push({ host: host, city: city, origin: origin, partners: partners });
         });
 
@@ -149,9 +149,7 @@
           jobs.forEach(function (j) { draw(j.host, j.city, j.origin, j.partners); });
         });
       })
-      .catch(function () {
-        hosts.forEach(function (h) { h.style.display = "none"; });
-      });
+      .catch(function () { /* leave the slot empty and let the retry try again */ });
   }
 
   var css =
@@ -181,9 +179,9 @@
     var tries = 0;
     var iv = setInterval(function () {
       var pending = Array.prototype.slice.call(document.querySelectorAll(".citymap"))
-        .filter(function (h) { return !h.querySelector(".cm-wrap") && h.style.display !== "none"; });
+        .filter(function (h) { return !h.querySelector(".cm-wrap"); });
       if (pending.length) boot();
-      if (++tries > 6) clearInterval(iv);
+      if (++tries > 10) clearInterval(iv);
     }, 900);
   }
 
