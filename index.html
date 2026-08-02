@@ -1554,7 +1554,7 @@
       host.parentNode.insertBefore(line, host.nextSibling);
     }
     var rest = Number(t.total) - Number(t.free);
-    var html = 'The free view shows the ' + t.free + ' soonest departures of ' + t.total + '. The other ' + rest + ' are free too, no card needed.<button type="button" id="freecta">See all ' + t.total + ' free</button>';
+    var html = 'The free view shows the ' + t.free + ' flights with a published price, of ' + t.total + ' listed. The other ' + rest + ' are free too, no card needed.<button type="button" id="freecta">See all ' + t.total + ' free</button>';
     if (line.getAttribute('data-html') !== html) {
       line.innerHTML = html;
       line.setAttribute('data-html', html);
