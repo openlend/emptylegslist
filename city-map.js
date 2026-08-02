@@ -72,17 +72,18 @@
     // side (in projected units, so the maths matches the overlay) until the
     // bbox has the same aspect as the container.
     var ASPECT = window.matchMedia("(max-width:560px)").matches ? 4 / 3 : 16 / 9;
+    var DEG = 180 / Math.PI;             // merc() returns radians; longitude is degrees
     var mS = merc(s), mN = merc(n);
-    var wSpan = e - w, hSpan = mN - mS;
+    var wSpan = e - w;                   // degrees
+    var hSpan = (mN - mS) * DEG;         // same units as wSpan
     if (wSpan / hSpan < ASPECT) {
-      var needW = hSpan * ASPECT, addW = (needW - wSpan) / 2;
+      var addW = (hSpan * ASPECT - wSpan) / 2;
       w -= addW; e += addW;
     } else {
-      var needH = wSpan / ASPECT, addH = (needH - hSpan) / 2;
+      var addH = (wSpan / ASPECT - hSpan) / 2 / DEG;   // back to mercator radians
       mS -= addH; mN += addH;
-      // convert the projected bounds back to latitude for the bbox
-      s = (Math.atan(Math.sinh(mS)) * 180) / Math.PI;
-      n = (Math.atan(Math.sinh(mN)) * 180) / Math.PI;
+      s = Math.atan(Math.sinh(mS)) * DEG;
+      n = Math.atan(Math.sinh(mN)) * DEG;
     }
     w = Math.max(-179, w); e = Math.min(179, e);
     s = Math.max(-84, s); n = Math.min(84, n);
