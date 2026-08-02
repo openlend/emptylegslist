@@ -266,8 +266,6 @@
   #navtoggle.x span:nth-child(2) { opacity: 0; }
   #navtoggle.x span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
   body.navlock { overflow: hidden; }
-  /* nav box-sizing fix: width:100% children were overflowing by their padding */
-  #nav, #nav * { box-sizing: border-box; }
   @media (max-width: 1000px) {
     #navtoggle { display: block; position: relative; z-index: 60; }
     #nav { gap: 16px; padding: 14px 0; }
@@ -542,7 +540,7 @@
           </div>
         </div>
         <div class="nitem">
-          <button class="nl ntrig" type="button" aria-expanded="false">Aircraft <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="nl ntrig" type="button" aria-expanded="false">Aircraft types <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="mega">
             <div class="mcol"><h4>Types on the list</h4><div class="mgrid"><a href="/aircraft/citation-latitude">Citation Latitude</a><a href="/aircraft/citation-xls">Citation XLS</a><a href="/aircraft/citation-mustang">Citation Mustang</a><a href="/aircraft/citation-cj2">Citation CJ2</a><a href="/aircraft/challenger-350">Challenger 350</a><a href="/aircraft/challenger-604">Challenger 604</a><a href="/aircraft/legacy-500">Legacy 500</a><a href="/aircraft/legacy-650">Legacy 650</a><a href="/aircraft/praetor-600">Praetor 600</a><a href="/aircraft/falcon-7x">Falcon 7X</a><a href="/aircraft/gulfstream-g550">Gulfstream G550</a><a href="/aircraft/global-6000">Global 6000</a></div></div>
             <div class="mcol mnarrow"><h4>Browse</h4><div class="mgrid one"><a href="/aircraft/">All aircraft types</a><a href="#listings">All empty legs</a><a href="#alerts">Get route alerts</a></div></div>
@@ -787,7 +785,7 @@
       </nav>
     </div>
     <div class="bf-col">
-      <h4>Aircraft</h4>
+      <h4>Aircraft types</h4>
       <nav>
         <a href="/aircraft/">All aircraft types</a>
         <a href="/aircraft/citation-latitude">Citation Latitude</a>
