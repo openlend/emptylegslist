@@ -62,6 +62,17 @@
   button.send::after { content:""; position:absolute; top:0; left:-60%; width:40%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent); transform:skewX(-18deg); transition:left .55s cubic-bezier(.2,.8,.3,1); }
   button.send:hover::after { left:120%; }
 
+  #picker { grid-column:1 / -1; display:none; }
+  #picker .pk-l { font-size:12px; font-weight:500; color:#6b7885; margin-bottom:8px; }
+  .pk-opt { display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid #e2e8ef;
+    border-radius:10px; margin-bottom:8px; cursor:pointer; background:#fbfcfd; transition:border-color .15s, background .15s; }
+  .pk-opt:hover { border-color:var(--gold); }
+  .pk-opt.on { border-color:var(--gold); background:#fdf9ee; }
+  .pk-opt input { accent-color:var(--gold); flex:0 0 auto; }
+  .pk-main { flex:1 1 auto; min-width:0; }
+  .pk-d { font-size:14px; font-weight:600; }
+  .pk-s { font-size:12px; color:#7c8894; margin-top:2px; }
+  .pk-p { font-size:13.5px; font-weight:600; white-space:nowrap; }
   .msg { grid-column:1 / -1; display:none; padding:12px 14px; border-radius:10px; font-size:13.5px; }
   .msg.err { display:block; background:#fdeeee; color:#a33b27; }
 
@@ -236,6 +247,62 @@
       document.getElementById("datewrap").style.display = "none";
       document.getElementById("date").value = date;
     }
+  } else if (from && to) {
+    // Route known but the exact flight was lost on the way here (city and route
+    // page cards link with from/to only). Offer the live flights on this route
+    // so the visitor picks one instead of typing details we already have.
+    (function () {
+      var grid = document.getElementById("f");
+      var wrap = document.createElement("div");
+      wrap.id = "picker";
+      grid.insertBefore(wrap, grid.firstChild);
+      fetch("https://wscowiseslaovmmfuzyv.supabase.co/functions/v1/empty-legs",
+        { headers: { apikey: "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy" } })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          function norm(x) { return String(x || "").toLowerCase().replace(/,\s*[a-z]{2}$/, "").replace(/\s*\(.*\)\s*$/, "").trim(); }
+          function ends(inter, airport, iata) {
+            var i = norm(inter);
+            return !i || norm(airport).indexOf(i) !== -1 || String(iata || "").toLowerCase() === i;
+          }
+          var legs = (d.legs || []).filter(function (l) {
+            return ends(from, l.from_airport, l.from_iata) && ends(to, l.to_airport, l.to_iata);
+          }).slice(0, 6);
+          if (!legs.length) return;   // nothing matched; the plain date field stays
+          document.getElementById("datewrap").style.display = "none";
+          wrap.style.display = "block";
+          wrap.innerHTML = '<div class="pk-l">These flights are live on this route \u2014 pick the one you mean</div>' +
+            legs.map(function (l, n) {
+              var d2 = new Date(l.departure_date + "T00:00:00");
+              var ds = isNaN(d2) ? l.departure_date : d2.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+              var price = l.price_note ? l.price_note.replace(" listed", "") : "Price on enquiry";
+              return '<label class="pk-opt"><input type="radio" name="pk" value="' + n + '">' +
+                '<span class="pk-main"><span class="pk-d">' + esc(ds) + '</span>' +
+                '<span class="pk-s" style="display:block">' + esc(l.aircraft_type || "Aircraft on enquiry") + (l.seats ? " \u00b7 up to " + l.seats + " seats" : "") + '</span></span>' +
+                '<span class="pk-p">' + esc(price) + '</span></label>';
+            }).join("") +
+            '<label class="pk-opt"><input type="radio" name="pk" value="other">' +
+            '<span class="pk-main"><span class="pk-d">Another date</span><span class="pk-s" style="display:block">Ask the operators about this route generally</span></span></label>';
+          wrap.addEventListener("change", function (e) {
+            var v = e.target && e.target.value;
+            Array.prototype.forEach.call(wrap.querySelectorAll(".pk-opt"), function (o) {
+              o.classList.toggle("on", o.querySelector("input").checked);
+            });
+            if (v === "other") {
+              document.getElementById("datewrap").style.display = "";
+              date = ""; aircraft = ""; seats = ""; price = ""; legId = "";
+              return;
+            }
+            var l = legs[Number(v)];
+            if (!l) return;
+            document.getElementById("datewrap").style.display = "none";
+            date = l.departure_date; aircraft = l.aircraft_type || ""; seats = l.seats ? String(l.seats) : "";
+            price = l.price_note ? l.price_note.replace(" listed", "") : ""; legId = l.id;
+            document.getElementById("date").value = date;
+          });
+        })
+        .catch(function () {});
+    })();
   } else {
     // No leg in the link: this is a general request, so ask for the route.
     document.getElementById("h1").textContent = "Tell us what you are looking for";
