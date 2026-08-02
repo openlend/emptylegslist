@@ -82,7 +82,10 @@ footer a{color:rgba(255,255,255,.85)}
   /* mobile: wide tables scroll inside the page instead of stretching it */
   html, body { max-width: 100vw; overflow-x: hidden; }
   @media (max-width: 700px) {
-    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    table { width: 100%; table-layout: fixed; }
+    th, td { padding: 8px 5px; font-size: 12px; white-space: normal; word-break: break-word; vertical-align: top; }
+    th:nth-child(1), td:nth-child(1) { width: 58px; }
+    th:nth-child(4), td:nth-child(4) { width: 74px; white-space: nowrap; text-align: right; }
   }
 </style>
 </head>
@@ -209,7 +212,7 @@ footer a{color:rgba(255,255,255,.85)}
           return (a&&b)||(a2&&b2);
         }).slice(0,20);
         if(!corridor.length){ host.innerHTML='<div class="empty">Nothing on the London and Cote d\'Azur corridor is listed at this moment. It is one of the busiest repositioning routes in Europe, so it rarely stays empty for long.</div>'; return; }
-        host.innerHTML='<table style="width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(14,35,56,.07);font-size:14px"><thead><tr style="background:#f7f9fb;text-align:left"><th style="padding:10px 12px;font-weight:600">Date</th><th style="padding:10px 12px;font-weight:600">Route</th><th style="padding:10px 12px;font-weight:600">Aircraft</th><th style="padding:10px 12px;font-weight:600">Price as listed</th></tr></thead><tbody>'+corridor.map(function(x){
+        host.innerHTML='<table style="width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(14,35,56,.07);font-size:14px"><thead><tr style="background:#f7f9fb;text-align:left"><th style="padding:10px 12px;font-weight:600">Date</th><th style="padding:10px 12px;font-weight:600">Route</th><th style="padding:10px 12px;font-weight:600">Aircraft</th><th style="padding:10px 12px;font-weight:600">Price</th></tr></thead><tbody>'+corridor.map(function(x){
           var price=x.price_note?esc(x.price_note).replace(" listed",""):"On enquiry";
           var ac=x.aircraft_type?esc(x.aircraft_type):"On enquiry";
           return '<tr style="border-top:1px solid var(--line)"><td style="padding:10px 12px;white-space:nowrap">'+d(x.departure_date)+'</td><td style="padding:10px 12px">'+esc(x.from_airport)+' &rarr; '+esc(x.to_airport)+'</td><td style="padding:10px 12px">'+ac+(x.seats?' &middot; '+x.seats+' seats':"")+'</td><td style="padding:10px 12px;white-space:nowrap">'+price+'</td></tr>';
