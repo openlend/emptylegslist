@@ -67,7 +67,26 @@
     var s = Math.min.apply(null, lats) - padLat, n = Math.max.apply(null, lats) + padLat;
     var w = Math.min.apply(null, lons) - padLon, e = Math.max.apply(null, lons) + padLon;
 
+    // OpenStreetMap's embed letterboxes a bbox whose shape does not match the
+    // frame, which would leave the pins floating off the tiles. Grow the short
+    // side (in projected units, so the maths matches the overlay) until the
+    // bbox has the same aspect as the container.
+    var ASPECT = window.matchMedia("(max-width:560px)").matches ? 4 / 3 : 16 / 9;
     var mS = merc(s), mN = merc(n);
+    var wSpan = e - w, hSpan = mN - mS;
+    if (wSpan / hSpan < ASPECT) {
+      var needW = hSpan * ASPECT, addW = (needW - wSpan) / 2;
+      w -= addW; e += addW;
+    } else {
+      var needH = wSpan / ASPECT, addH = (needH - hSpan) / 2;
+      mS -= addH; mN += addH;
+      // convert the projected bounds back to latitude for the bbox
+      s = (Math.atan(Math.sinh(mS)) * 180) / Math.PI;
+      n = (Math.atan(Math.sinh(mN)) * 180) / Math.PI;
+    }
+    w = Math.max(-179, w); e = Math.min(179, e);
+    s = Math.max(-84, s); n = Math.min(84, n);
+    mS = merc(s); mN = merc(n);
     function x(lon) { return ((lon - w) / (e - w)) * 100; }
     function y(lat) { return (1 - (merc(lat) - mS) / (mN - mS)) * 100; }
 
