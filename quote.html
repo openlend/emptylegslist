@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+/* leg-enquiry redirect.
+   Enquire buttons across the listing, city, route and aircraft pages were built
+   as /quote?from=..&to=.., which lands on the full charter form. A specific
+   empty leg belongs on /enquire instead. Plain /quote (the nav link, no route
+   params) still opens this page as normal. Runs before render so there is no flash. */
+(function () {
+  try {
+    var p = new URLSearchParams(location.search);
+    if (p.get("from") && p.get("to")) {
+      location.replace("/enquire" + location.search + location.hash);
+    }
+  } catch (e) {}
+})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Private Jet Charter Quote | The Flying Engineer</title>
