@@ -66,7 +66,6 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 <div id="in"></div>
 
 <h2>Where these flights go</h2>
-<div class="citymap" data-city="London"></div>
 <p id="corr">Working out the busiest corridors...</p>
 <div class="more" id="corrlinks"></div>
 
@@ -175,6 +174,5 @@ if(tlinks.length)tl.innerHTML=tlinks.join("");else tl.parentNode.removeChild(tl)
 .catch(function(){document.getElementById("updnote").textContent="Live availability could not be loaded right now.";});
 })();
 </script>
-<script src="/city-map.js" defer></script>
 </body>
 </html>
