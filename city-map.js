@@ -106,7 +106,8 @@
   }
 
   function boot() {
-    var hosts = Array.prototype.slice.call(document.querySelectorAll(".citymap"));
+    var hosts = Array.prototype.slice.call(document.querySelectorAll(".citymap"))
+      .filter(function (h) { return !h.querySelector(".cm-wrap"); });
     if (!hosts.length) return;
 
     fetch(FN, { headers: { apikey: KEY } })
@@ -172,6 +173,20 @@
   st.textContent = css;
   document.head.appendChild(st);
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  // The city page renders its own sections after its data arrives, which can
+  // replace the container this map lives in. Start after load and re-check a
+  // couple of times, rendering only into hosts that are still empty.
+  function start() {
+    boot();
+    var tries = 0;
+    var iv = setInterval(function () {
+      var pending = Array.prototype.slice.call(document.querySelectorAll(".citymap"))
+        .filter(function (h) { return !h.querySelector(".cm-wrap") && h.style.display !== "none"; });
+      if (pending.length) boot();
+      if (++tries > 6) clearInterval(iv);
+    }, 900);
+  }
+
+  if (document.readyState === "complete") start();
+  else window.addEventListener("load", start);
 })();
