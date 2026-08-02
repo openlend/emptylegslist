@@ -246,8 +246,13 @@
     if (date) {
       document.getElementById("datewrap").style.display = "none";
       document.getElementById("date").value = date;
+    } else {
+      // Route known, flight identity lost on the way here: offer the live flights.
+      offerFlights();
     }
-  } else if (from && to) {
+  }
+
+  function offerFlights() {
     // Route known but the exact flight was lost on the way here (city and route
     // page cards link with from/to only). Offer the live flights on this route
     // so the visitor picks one instead of typing details we already have.
@@ -303,7 +308,9 @@
         })
         .catch(function () {});
     })();
-  } else {
+  }
+
+  if (!from || !to) {
     // No leg in the link: this is a general request, so ask for the route.
     document.getElementById("h1").textContent = "Tell us what you are looking for";
     document.getElementById("lede").textContent =
