@@ -1556,6 +1556,8 @@
       host.parentNode.insertBefore(line, host.nextSibling);
     }
     var rest = Number(t.total) - Number(t.free);
+    if (rest <= 0) { line.style.display = "none"; return; }
+    line.style.display = "";
     var html = 'The free view shows the ' + t.free + ' flights with a published price, of ' + t.total + ' listed. The other ' + rest + ' are free too, no card needed.<button type="button" id="freecta">See all ' + t.total + ' free</button>';
     if (line.getAttribute('data-html') !== html) {
       line.innerHTML = html;
@@ -1814,14 +1816,14 @@ var shown=c[0],total=c.length>1?c[1]:c[0],rest=total-shown;
 var txt="<b>"+fmt(shown)+"</b> of <b>"+fmt(total)+"</b> empty leg flights, straight from charter operators.";
 if(c.length<2)txt="<b>"+fmt(total)+"</b> empty leg flights, straight from charter operators.";
 if(rest>0)txt+=" The other <b>"+fmt(rest)+"</b> are free to see too. ";else txt+=" ";
+var full=(c.length>1&&rest<=0);
+if(full)txt="<b>"+fmt(total)+"</b> empty leg flights, straight from charter operators. Your member view shows every flight. ";
 var s=lead.querySelector("span.lead-t");
 if(!s){s=document.createElement("span");s.className="lead-t";lead.insertBefore(s,lead.firstChild);}
 if(s.innerHTML!==txt)s.innerHTML=txt;
 var _all=document.querySelectorAll("button#freecta");for(var _i=0;_i<_all.length-1;_i++){if(_all[_i].parentNode)_all[_i].parentNode.removeChild(_all[_i]);}
 var cta=_all.length?_all[_all.length-1]:null,help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
-if(cta)lead.appendChild(cta);
-if(help)lead.appendChild(help);
-if(pop)lead.appendChild(pop);
+if(full){if(cta)cta.style.display="none";if(help)help.style.display="none";if(pop)pop.style.display="none";}else{if(cta){cta.style.display="";lead.appendChild(cta);}if(help){help.style.display="";lead.appendChild(help);}if(pop)lead.appendChild(pop);}
 }
 function boot(){
 compose();
