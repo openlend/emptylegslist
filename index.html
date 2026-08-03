@@ -848,17 +848,17 @@
 
   function loadRates(cb){
     var cached=null;
-    try { cached=JSON.parse(localStorage.getItem("el_rates")||"null"); } catch(e){}
+    try { cached=JSON.parse(localStorage.getItem("el_rates2")||"null"); } catch(e){}
     if(cached && cached.at && (Date.now()-cached.at) < 43200000 && cached.rates){
       RATES=cached.rates; cb(); return;
     }
     // Primary is the ECB reference set; the fallback keeps the feature alive if it is down.
     function store(rates){
       RATES=rates; RATES.EUR=1;
-      try { localStorage.setItem("el_rates", JSON.stringify({at:Date.now(), rates:RATES})); } catch(e){}
+      try { localStorage.setItem("el_rates2", JSON.stringify({at:Date.now(), rates:RATES})); } catch(e){}
       cb();
     }
-    fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD,GBP,CHF,CAD")
+    fetch("https://api.frankfurter.dev/v1/latest?base=EUR&symbols=USD,GBP,CHF,CAD,ZAR,AUD")
       .then(function(r){ if(!r.ok) throw 0; return r.json(); })
       .then(function(d){ if(!d||!d.rates) throw 0; store(d.rates); })
       .catch(function(){
@@ -866,14 +866,15 @@
           .then(function(r){ if(!r.ok) throw 0; return r.json(); })
           .then(function(d){
             if(!d||!d.rates) throw 0;
-            store({USD:d.rates.USD, GBP:d.rates.GBP, CHF:d.rates.CHF, CAD:d.rates.CAD});
+            store({USD:d.rates.USD, GBP:d.rates.GBP, CHF:d.rates.CHF, CAD:d.rates.CAD, ZAR:d.rates.ZAR, AUD:d.rates.AUD});
           })
           .catch(function(){ RATES=null; cb(); });
       });
   }
 
   function convert(amount, from, to){
-    if(!RATES || !from || !to || from===to) return null;
+    if(!RATES || !from || !to) return null;
+    if(from===to) return amount;
     var f=RATES[from], t=RATES[to];
     if(!f || !t) return null;
     return (amount / f) * t;
@@ -910,10 +911,8 @@
       if(conv){
         var rounded = Math.round(conv/100)*100;
         var prs = (l.seats && +l.seats > 0) ? Math.round(conv / +l.seats / 10) * 10 : null;
-        ph = '<div class="pr">'+csym(CUR)+group(rounded)+'</div>'+
+        ph = '<div class="pr">'+csym(CUR)+group(rounded)+' <button class="pinfo" type="button" aria-label="Show the operator\'s listed price">i</button></div>'+
              (prs ? '<div class="prs">'+csym(CUR)+group(prs)+' per seat</div>' : '')+
-             '<div class="prc">'+
-             '<button class="pinfo" type="button" aria-label="Show the operator\'s listed price">i</button></div>'+
              '<div class="pexact">Operator lists '+esc(listedCur)+' '+esc(listedAmt)+'</div>';
       } else {
         var rawn = numFrom(l.price_note);
