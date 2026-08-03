@@ -1821,7 +1821,8 @@ if(rest>0)txt+=" The other <b>"+fmt(rest)+"</b> are free to see too. ";else txt+
 var s=lead.querySelector("span.lead-t");
 if(!s){s=document.createElement("span");s.className="lead-t";lead.insertBefore(s,lead.firstChild);}
 if(s.innerHTML!==txt)s.innerHTML=txt;
-var cta=document.getElementById("freecta"),help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
+var _all=document.querySelectorAll("button#freecta");for(var _i=0;_i<_all.length-1;_i++){if(_all[_i].parentNode)_all[_i].parentNode.removeChild(_all[_i]);}
+var cta=_all.length?_all[_all.length-1]:null,help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
 if(cta)lead.appendChild(cta);
 if(help)lead.appendChild(help);
 if(pop)lead.appendChild(pop);
