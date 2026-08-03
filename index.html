@@ -892,6 +892,7 @@
     if(h<1) return "Listed just now"; if(h<24) return "Listed "+Math.round(h)+"h ago";
     var d=Math.round(h/24); return "Listed "+d+"d ago"; }
 
+  function csym(cur){ return { USD: "$", EUR: "€", GBP: "£", CAD: "C$", CHF: "CHF " }[cur] || (cur + " "); }
   function row(l){
     var el=document.createElement("div"); el.className="row";
     var dp=(l.departure_date||"").split("-");
@@ -909,15 +910,15 @@
       if(conv){
         var rounded = Math.round(conv/100)*100;
         var prs = (l.seats && +l.seats > 0) ? Math.round(conv / +l.seats / 10) * 10 : null;
-        ph = '<div class="pr">&#8776; '+group(rounded)+'</div>'+
-             (prs ? '<div class="prs">&#8776; '+group(prs)+' per seat</div>' : '')+
-             '<div class="prc">'+esc(CUR)+' <span class="prapprox">approx.</span>'+
+        ph = '<div class="pr">'+csym(CUR)+group(rounded)+'</div>'+
+             (prs ? '<div class="prs">'+csym(CUR)+group(prs)+' per seat</div>' : '')+
+             '<div class="prc">'+'<span class="prapprox">approx.</span>'+
              '<button class="pinfo" type="button" aria-label="Show the operator\'s listed price">i</button></div>'+
              '<div class="pexact">Operator lists '+esc(listedCur)+' '+esc(listedAmt)+'</div>';
       } else {
         var rawn = numFrom(l.price_note);
         var prs2 = (l.seats && +l.seats > 0 && rawn > 0) ? Math.round(rawn / +l.seats / 10) * 10 : null;
-        ph = '<div class="pr">'+esc(listedAmt)+'</div><div class="prc">'+esc(listedCur)+'</div>'+(prs2 ? '<div class="prs">&#8776; '+group(prs2)+' per seat</div>' : '');
+        ph = '<div class="pr">'+csym(listedCur)+esc(listedAmt)+'</div>'+(prs2 ? '<div class="prs">'+csym(listedCur)+group(prs2)+' per seat</div>' : '');
       }
     }
 
