@@ -83,6 +83,20 @@
       <p class="note" id="anone" style="display:none">You are not following any routes yet. Add one below and we email you when matching flights appear.</p>
     </div>
     <div class="card">
+      <h2>Your travel profile</h2>
+      <div id="pview" style="display:none">
+        <p id="psummary" style="font-size:14.5px; line-height:1.7; margin:0 0 10px"></p>
+        <p class="note" id="pplaces" style="margin:0 0 14px"></p>
+        <div id="pmatches"></div>
+        <button class="b2" id="pedit" style="margin-top:8px">Update my profile</button>
+      </div>
+      <div id="pform">
+        <p class="note" style="margin:0 0 10px">Tell us how you travel, in your own words — where you live, the events and places you fly to, who you travel with. We build a profile and point you at flights that fit.</p>
+        <textarea id="ptext" rows="4" style="width:100%; font:inherit; font-size:14px; padding:11px 12px; border:1px solid var(--line); border-radius:9px; background:#fbfcfd; resize:vertical" placeholder="e.g. I live in London and fly to the south of France most summers — Monaco Yacht Show, Cannes. Sometimes Geneva for work."></textarea>
+        <button class="b1" id="psave" style="margin-top:10px">Build my profile</button>
+      </div>
+    </div>
+    <div class="card">
       <h2>Follow a new route</h2>
       <div class="grid">
         <input type="text" id="nfrom" placeholder="From (city or airport, optional)">
@@ -111,6 +125,7 @@
     document.getElementById("dash").className = "";
     document.getElementById("wname").textContent = d.full_name || d.email;
     document.getElementById("wsub").textContent = d.email + " \u00b7 member since " + new Date(d.member_since).toLocaleDateString("en-GB", { day:"numeric", month:"short", year:"numeric" });
+    renderProfile(d.profile, d.matches || []);
     var list = document.getElementById("alist");
     list.innerHTML = "";
     var live = d.alerts.filter(function(a){ return true; });
@@ -159,6 +174,52 @@
     document.getElementById("dash").className = "hidden";
   }
 
+  function legLine(l){
+    var d = l.departure_date ? new Date(l.departure_date + "T00:00:00Z").toLocaleDateString("en-GB", { weekday:"short", day:"numeric", month:"short" }) : "Date TBC";
+    var pr = l.price_note ? " · " + l.price_note.replace(" listed","") : "";
+    var from = String(l.from_airport||"").split(",")[0]; var to = String(l.to_airport||"").split(",")[0];
+    var a = document.createElement("a");
+    a.href = "/enquire?from=" + encodeURIComponent(from) + "&to=" + encodeURIComponent(to) + (l.departure_date ? "&date=" + l.departure_date : "") + "&leg=" + encodeURIComponent(l.id);
+    a.style.cssText = "display:block;padding:10px 12px;border:1px solid var(--line);border-radius:9px;margin-bottom:8px;text-decoration:none;color:var(--ink);font-size:13.5px;background:#fbfcfd";
+    a.innerHTML = "<b>" + esc(from) + "</b> <span style=\"color:var(--gold)\">&#8594;</span> <b>" + esc(to) + "</b> <span style=\"color:var(--mute)\">· " + esc(d) + (l.aircraft_type ? " · " + esc(l.aircraft_type) : "") + esc(pr) + "</span>";
+    return a;
+  }
+  function renderProfile(p, matches){
+    var view = document.getElementById("pview"), form = document.getElementById("pform");
+    if (!p || !p.summary) { view.style.display = "none"; form.style.display = ""; return; }
+    view.style.display = ""; form.style.display = "none";
+    document.getElementById("psummary").textContent = p.summary;
+    document.getElementById("pplaces").textContent = (p.interests && p.interests.length) ? "Places on your radar: " + p.interests.join(", ") : "";
+    var box = document.getElementById("pmatches");
+    box.innerHTML = "";
+    if (matches.length) {
+      var h = document.createElement("p"); h.className = "note"; h.style.margin = "0 0 8px"; h.textContent = "Flights matching your profile right now:";
+      box.appendChild(h);
+      matches.slice(0,8).forEach(function(l){ box.appendChild(legLine(l)); });
+    } else {
+      var n = document.createElement("p"); n.className = "note"; n.textContent = "No matching flights listed today. Follow the routes below and we email you when one appears.";
+      box.appendChild(n);
+    }
+    if (p.raw_text) document.getElementById("ptext").value = p.raw_text;
+  }
+  document.getElementById("pedit").addEventListener("click", function(){
+    document.getElementById("pview").style.display = "none";
+    document.getElementById("pform").style.display = "";
+  });
+  document.getElementById("psave").addEventListener("click", function(){
+    var t = document.getElementById("ptext").value.trim();
+    if (t.length < 15) { say("Tell us a little more first.", "err"); return; }
+    var btn = this; btn.disabled = true; btn.textContent = "Thinking...";
+    fetch(FN, { method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify({ action:"profile", key:KEY, text:t }) })
+      .then(function(r){ return r.json().then(function(d){ return { s:r.status, d:d }; }); })
+      .then(function(x){
+        btn.disabled = false; btn.textContent = "Build my profile";
+        if (x.s !== 200) { say(x.d.error || "That did not work. Try again.", "err"); return; }
+        say("Profile saved.", "ok");
+        renderProfile(x.d.profile, x.d.matches || []);
+      })
+      .catch(function(){ btn.disabled = false; btn.textContent = "Build my profile"; say("Network problem. Try again.", "err"); });
+  });
   document.getElementById("lsend").addEventListener("click", function(){
     var e = document.getElementById("lemail").value.trim();
     if (e.indexOf("@") < 1) { say("That email does not look right.", "err"); return; }
