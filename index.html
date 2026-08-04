@@ -526,6 +526,7 @@
 ]}
 </script>
 <style>
+#herolead { position: relative; }
 /* sticky mobile nav */
 @media (max-width: 1000px) {
   #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 60; background: rgba(13,31,54,.97); padding: 10px 18px; box-shadow: 0 2px 16px rgba(0,0,0,.28); }
@@ -1842,7 +1843,7 @@ if(!s){s=document.createElement("span");s.className="lead-t";lead.insertBefore(s
 if(s.innerHTML!==txt)s.innerHTML=txt;
 var _all=document.querySelectorAll("button#freecta");for(var _i=0;_i<_all.length-1;_i++){if(_all[_i].parentNode)_all[_i].parentNode.removeChild(_all[_i]);}
 var cta=_all.length?_all[_all.length-1]:null,help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
-if(full){if(cta)cta.style.display="none";if(help)help.style.display="none";if(pop)pop.style.display="none";}else{if(cta){cta.style.display="";lead.appendChild(cta);}if(help){help.style.display="";lead.appendChild(help);}if(pop)lead.appendChild(pop);}
+if(full){if(cta)cta.style.display="none";if(help)help.style.display="none";if(pop)pop.style.display="none";}else{if(cta){cta.style.display="";lead.appendChild(cta);}if(help){help.style.display="";lead.appendChild(help);}if(pop){pop.style.display="";lead.appendChild(pop);}}
 }
 function boot(){
 compose();
