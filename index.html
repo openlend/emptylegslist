@@ -84,6 +84,8 @@
   .c-time { flex: 0 0 86px; }
   .c-price { flex: 0 0 108px; }
   .prs { font-size: 11px; color: #7c8894; margin-top: 2px; white-space: nowrap; }
+  .pwas { font-size: 11px; color: #2c8a4b; font-weight: 600; margin-top: 1px; white-space: nowrap; }
+  .pwas s { color: #9aa5b1; font-weight: 400; }
   .c-cta { flex: 0 0 156px; text-align: right; }
   .dnum { display: flex; align-items: baseline; justify-content: center; gap: 4px; line-height: 1.1; }
   .mon { font-size: 11px; font-weight: 500; letter-spacing: 1px; color: var(--mute); }
@@ -916,8 +918,17 @@
       if(conv){
         var rounded = Math.round(conv/100)*100;
         var prs = (l.seats && +l.seats > 0) ? Math.round(conv / +l.seats / 10) * 10 : null;
+        var drop = null;
+        if (l.prev_price_note && l.price_changed_at) {
+          var oldn = numFrom(l.prev_price_note), newn = numFrom(l.price_note);
+          if (oldn && newn && oldn > newn && (Date.now() - new Date(l.price_changed_at).getTime()) < 7*86400000) {
+            var oldConv = convert(oldn, pcur(l.prev_price_note), CUR);
+            if (oldConv) drop = Math.round(oldConv/100)*100;
+          }
+        }
         ph = '<div class="pr">'+csym(CUR)+group(rounded)+' <button class="pinfo" type="button" aria-label="Show the operator\'s listed price">i</button></div>'+
              (prs ? '<div class="prs">'+csym(CUR)+group(prs)+' per seat</div>' : '')+
+             (drop ? '<div class="pwas">&#8595; was <s>'+csym(CUR)+group(drop)+'</s></div>' : '')+
              '<div class="pexact">Operator lists '+esc(listedCur)+' '+esc(listedAmt)+'</div>';
       } else {
         var rawn = numFrom(l.price_note);
