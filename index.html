@@ -1351,7 +1351,25 @@
     "paris le bourget":"Paris", "le bourget":"Paris",
     "nice cote d'azur":"Nice", "nice côte d'azur":"Nice",
     "larnarca":"Larnaca",
-    "birmingham international":"Birmingham"
+    "birmingham international":"Birmingham",
+    // Same city, several airport spellings from different operators.
+    "cannes/mandelieu":"Cannes", "cannes-mandelieu":"Cannes",
+    "malaga/costa del sol":"Malaga", "m\u00e1laga":"Malaga",
+    "olbia costa smeralda":"Olbia",
+    "palma de mallorca":"Palma de Mallorca", "pmi":"Palma de Mallorca",
+    "ibz":"Ibiza", "bcn":"Barcelona", "alc":"Alicante",
+    "geneva international":"Geneva",
+    "nice cote d'azur international":"Nice",
+    "toulon/hy\u00e8res/le palyvestre":"Toulon-Hy\u00e8res",
+    "toulon/hyeres/le palyvestre":"Toulon-Hy\u00e8res",
+    "toulon-le palyvestre/hyeres international":"Toulon-Hy\u00e8res",
+    "toulon-hyeres":"Toulon-Hy\u00e8res",
+    "providenciales island, turks and caicos islands":"Turks and Caicos",
+    "mbpv":"Turks and Caicos", "turks and caicos":"Turks and Caicos",
+    "tenerife south/reina sofia":"Tenerife",
+    "cabo san lucas, mexico":"Los Cabos", "san jose del cabo":"Los Cabos",
+    "san jos\u00e9 del cabo, mexico":"Los Cabos",
+    "nassau, bahamas":"Nassau"
   };
   function cityKey(name){
     if(!name) return "";
@@ -1370,7 +1388,24 @@
     "London":"london", "Paris":"paris", "New York":"new-york", "Dubai":"dubai",
     "Toronto":"toronto", "Ibiza":"ibiza", "Nice":"nice", "Mykonos":"mykonos",
     "Milan":"milan", "Birmingham":"birmingham", "Antwerp":"antwerp",
-    "Johannesburg":"johannesburg"
+    "Johannesburg":"johannesburg",
+
+    // Summer \u2014 sea and islands
+    "Cannes":"cannes", "Larnaca":"larnaca", "Malaga":"malaga", "Olbia":"olbia",
+    "Toulon-Hy\u00e8res":"toulon", "Barcelona":"barcelona", "Athens":"athens",
+    "Palma de Mallorca":"palma", "Turks and Caicos":"turks-and-caicos",
+    "Bodrum":"bodrum", "Preveza":"preveza", "Alicante":"alicante",
+
+    // Winter \u2014 Alps and ski
+    "Salzburg":"salzburg", "Zurich":"zurich", "Geneva":"geneva",
+    "Calgary":"calgary", "Sion":"sion", "Reno":"reno", "Munich":"munich",
+    "Lugano":"lugano", "Denver":"denver", "Innsbruck":"innsbruck",
+
+    // Winter sun and safari
+    "Miami":"miami", "Cape Town":"cape-town", "Fort Lauderdale":"fort-lauderdale",
+    "Scottsdale":"scottsdale", "Mpumalanga":"kruger", "Malelane":"kruger",
+    "Maun":"maun", "Los Cabos":"los-cabos", "Tenerife":"tenerife",
+    "Port Louis":"mauritius", "Nassau":"nassau", "Antigua":"antigua"
   };
 
   var AGG=null;
