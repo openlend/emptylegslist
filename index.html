@@ -669,37 +669,16 @@
   <div class="rgroup">
     <div class="rhead">
       <span class="ricon"><svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M 3 19 L 21 19 M 4.5 14.5 L 8 15.5 L 20 9 L 18 6.5 L 12.5 9 L 7.5 6 L 5.5 7 L 8.5 10.5 L 5.5 12 L 4 11 L 3 11.5 Z" fill="none" stroke="#C9A24C" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
-      <div><h3>Popular departure cities for private jets</h3><p id="rfromsub">Where the most empty legs are leaving from right now.</p></div>
+      <div><h3>Popular cities for private jets</h3><p id="rallsub">The cities most empty legs touch, arriving and departing.</p></div>
     </div>
-    <div class="rgrid" id="rfrom"></div>
+    <div class="rgrid" id="rall"></div>
   </div>
-  <div class="rgroup">
-    <div class="rhead">
-      <span class="ricon"><svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M 3 19 L 21 19 M 20 13.5 L 16.5 14.5 L 5 8.5 L 7 6 L 12.5 8.5 L 17.5 5.5 L 19.5 6.5 L 16.5 10 L 19.5 11.5 L 21 10.5 L 22 11 Z" fill="none" stroke="#C9A24C" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
-      <div><h3>Popular arrival cities for private jets</h3><p id="rtosub">Where those aircraft are heading.</p></div>
-    </div>
-    <div class="rgrid" id="rto"></div>
-  </div>
-  <div class="rgroup" id="grp-summer" style="display:none">
+  <div class="rgroup" id="grp-season" style="display:none">
     <div class="rhead">
       <span class="ricon"><svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4.2" fill="none" stroke="#C9A24C" stroke-width="1.5"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4" stroke="#C9A24C" stroke-width="1.5" stroke-linecap="round"/></svg></span>
-      <div><h3 id="h-summer">Summer by the sea</h3><p id="s-summer">Coast and island destinations with legs on the list right now.</p></div>
+      <div><h3 id="h-season">Popular destinations for private jets</h3><p id="s-season"></p></div>
     </div>
-    <div class="rgrid" id="col-summer"></div>
-  </div>
-  <div class="rgroup" id="grp-winter" style="display:none">
-    <div class="rhead">
-      <span class="ricon"><svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M3.5 7l17 10M20.5 7l-17 10" stroke="#C9A24C" stroke-width="1.5" stroke-linecap="round"/><path d="M9 4l3 2 3-2M9 20l3-2 3 2" fill="none" stroke="#C9A24C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <div><h3 id="h-winter">Winter in the Alps</h3><p id="s-winter">Ski-season gateways. Availability builds through the winter.</p></div>
-    </div>
-    <div class="rgrid" id="col-winter"></div>
-  </div>
-  <div class="rgroup" id="grp-sun" style="display:none">
-    <div class="rhead">
-      <span class="ricon"><svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 21c0-6 0-9 .5-12" stroke="#C9A24C" stroke-width="1.5" stroke-linecap="round"/><path d="M12.5 9c-3-3-6-2.5-7.5-1 2-.5 4 .5 5.5 2M12.5 9c3-3 6-2.5 7.5-1-2-.5-4 .5-5.5 2M12.5 9c0-3.5 2-5.5 4-6-1.5 1.5-2 3.5-2 5.5" fill="none" stroke="#C9A24C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <div><h3 id="h-sun">Winter sun and safari</h3><p id="s-sun">Where the aircraft head when Europe cools down.</p></div>
-    </div>
-    <div class="rgrid" id="col-sun"></div>
+    <div class="rgrid" id="col-season"></div>
   </div>
 </section>
 
@@ -1460,7 +1439,8 @@
     var pic=CITY_PIC[item.city];
     var b=document.createElement("button");
     b.type="button"; b.className="rcard";
-    b.setAttribute("aria-label", item.n+" empty legs "+(dir==="from"?"from ":"to ")+item.city);
+    b.setAttribute("aria-label", item.label ||
+      (item.n+" empty legs "+(dir==="from"?"from ":"to ")+item.city));
     var sub = item.airports>1 ? (item.airports+" airports") : "";
     b.innerHTML =
       (pic ? '<img src="/brand/cities/'+pic+'.jpg" alt="" loading="lazy" width="460" height="600">'
@@ -1484,38 +1464,32 @@
   }
 
   function buildRoutes(){
-    [["from","rfrom","rfromsub"],["to","rto","rtosub"]].forEach(function(cfg){
-      var field=cfg[0]==="from"?"from_airport":"to_airport";
-      var host=document.getElementById(cfg[1]);
-      if(!host) return;
-      host.innerHTML="";
-      var list=tally(field).slice(0,5);
-      list.forEach(function(item){ host.appendChild(routeCard(item, cfg[0])); });
-      var note=document.getElementById(cfg[2]);
-      if(note && list.length){
-        note.textContent = (cfg[0]==="from"
-          ? "Busiest departure cities across the "
-          : "Most common arrival cities across the ") + (TOTAL||ALL.length) + " legs listed right now.";
-      }
+    var host=document.getElementById("rall");
+    if(!host) return;
+    // Departures and arrivals ranked the same pool and produced near-identical
+    // strips, so they are one list: every leg touching the city, either way.
+    var n={}, air={};
+    ["from_airport","to_airport"].forEach(function(f){
+      tally(f).forEach(function(it){
+        n[it.city]=(n[it.city]||0)+it.n;
+        air[it.city]=Math.max(air[it.city]||0, it.airports||0);
+      });
     });
+    var list=Object.keys(n).map(function(c){
+      return { city:c, n:n[c], airports:air[c]||0,
+               label:n[c]+" empty legs to or from "+c };
+    }).sort(function(x,y){ return y.n-x.n || x.city.localeCompare(y.city); }).slice(0,5);
+    host.innerHTML="";
+    list.forEach(function(it){ host.appendChild(routeCard(it,"to")); });
+    var note=document.getElementById("rallsub");
+    if(note && list.length){
+      note.textContent="The cities most of the "+(TOTAL||ALL.length)+
+        " legs listed right now touch, arriving or departing.";
+    }
   }
 
-  // Curated seasonal collections. Editorial lists, not volume rankings, so the
-  // strips stop repeating the same operator hubs twice. A city only appears if
-  // it has legs in the live data and a photograph on file.
-  var COLLECTIONS = [
-    { id:"summer", cities:["Nice","Cannes","Larnaca","Malaga","Olbia","Ibiza",
-      "Toulon-Hy\u00e8res","Barcelona","Athens","Palma de Mallorca",
-      "Turks and Caicos","Bodrum","Preveza","Alicante"] },
-    { id:"winter", cities:["Salzburg","Zurich","Geneva","Calgary","Sion","Reno",
-      "Munich","Lugano","Denver","Innsbruck"] },
-    { id:"sun", cities:["Miami","Johannesburg","Cape Town","Fort Lauderdale",
-      "Scottsdale","Mpumalanga","Maun","Los Cabos","Tenerife","Port Louis",
-      "Nassau","Antigua"] }
-  ];
-
-  // Northern-hemisphere season from the visitor's clock. The headings follow
-  // the calendar so nobody has to remember to edit them four times a year.
+  // Northern-hemisphere season from the visitor's clock, so the copy follows
+  // the calendar instead of needing an edit four times a year.
   function season(){
     var m=new Date().getMonth();               // 0 = January
     if(m<=1||m===11) return "winter";
@@ -1524,61 +1498,55 @@
     return "autumn";
   }
 
-  // A strip only claims a season when that claim is true. The Mediterranean
-  // list is not a "winter destination" list, so out of season it is named for
-  // what it is instead.
-  var SEASON_COPY = {
-    summer: {
-      inSeason: ["spring","summer","autumn"],
-      on:  function(s){ return "Popular "+s+" destinations for private jets"; },
-      off: function(){ return "Mediterranean coast and islands by private jet"; },
-      sub: "Coast and island destinations with legs on the list right now."
-    },
-    winter: {
-      inSeason: ["winter"],
-      on:  function(s){ return "Popular "+s+" destinations for private jets"; },
-      off: function(){ return "Alpine and ski destinations by private jet"; },
-      sub: "Ski-season gateways. Availability builds through the winter."
-    },
-    sun: {
-      inSeason: ["autumn","winter"],
-      on:  function(){ return "Winter sun and safari destinations for private jets"; },
-      off: function(){ return "Long-haul sun and safari destinations by private jet"; },
-      sub: "Where the aircraft head when Europe cools down."
-    }
+  // Curated lists, each tagged with the seasons it is actually true for.
+  // Whichever are in season merge into the single strip below.
+  var COLLECTIONS = [
+    { seasons:["spring","summer","autumn"],
+      cities:["Nice","Cannes","Larnaca","Malaga","Olbia","Ibiza","Toulon-Hy\u00e8res",
+              "Barcelona","Athens","Palma de Mallorca","Turks and Caicos","Bodrum",
+              "Preveza","Alicante"] },
+    { seasons:["winter"],
+      cities:["Salzburg","Zurich","Geneva","Calgary","Sion","Reno","Munich",
+              "Lugano","Denver","Innsbruck"] },
+    { seasons:["autumn","winter"],
+      cities:["Miami","Johannesburg","Cape Town","Fort Lauderdale","Scottsdale",
+              "Mpumalanga","Maun","Los Cabos","Tenerife","Port Louis","Nassau","Antigua"] }
+  ];
+
+  var SEASON_SUB = {
+    spring:"Coast and island destinations with legs on the list right now.",
+    summer:"Coast and island destinations with legs on the list right now.",
+    autumn:"Where the aircraft head as Europe cools down.",
+    winter:"Ski gateways and long-haul sun, with legs on the list right now."
   };
 
-  function headings(){
-    var s=season();
-    Object.keys(SEASON_COPY).forEach(function(id){
-      var c=SEASON_COPY[id], h=document.getElementById("h-"+id), p=document.getElementById("s-"+id);
-      if(h) h.textContent = c.inSeason.indexOf(s)>-1 ? c.on(s) : c.off(s);
-      if(p) p.textContent = c.sub;
-    });
-  }
-
   function buildCollections(){
-    headings();
-    // Arrivals only: these are destination strips, the card reads "legs to",
-    // and clicking one filters the table by To.
-    var seen={}, air={};
-    tally("to_airport").forEach(function(it){
-      seen[it.city]=it.n; air[it.city]=it.airports||0;
+    var host=document.getElementById("col-season");
+    var grp=document.getElementById("grp-season");
+    if(!host||!grp) return;
+    var se=season();
+
+    var arr={}, air={};
+    tally("to_airport").forEach(function(it){ arr[it.city]=it.n; air[it.city]=it.airports||0; });
+
+    var want={};
+    COLLECTIONS.forEach(function(c){
+      if(c.seasons.indexOf(se)===-1) return;
+      c.cities.forEach(function(x){ want[x]=1; });
     });
-    COLLECTIONS.forEach(function(col){
-      var host=document.getElementById("col-"+col.id);
-      var grp=document.getElementById("grp-"+col.id);
-      if(!host||!grp) return;
-      host.innerHTML="";
-      var items=col.cities
-        .filter(function(c){ return seen[c] && CITY_PIC[c]; })
-        .map(function(c){ return { city:c, n:seen[c], airports:air[c]||0 }; })
-        .sort(function(a,b){ return b.n-a.n; })
-        .slice(0,12);
-      if(!items.length){ grp.style.display="none"; return; }
-      grp.style.display="";
-      items.forEach(function(it){ host.appendChild(routeCard(it,"to")); });
-    });
+
+    var items=Object.keys(want)
+      .filter(function(c){ return arr[c] && CITY_PIC[c]; })
+      .map(function(c){ return { city:c, n:arr[c], airports:air[c]||0 }; })
+      .sort(function(x,y){ return y.n-x.n || x.city.localeCompare(y.city); })
+      .slice(0,12);
+
+    host.innerHTML="";
+    if(!items.length){ grp.style.display="none"; return; }
+    grp.style.display="";
+    document.getElementById("h-season").textContent="Popular "+se+" destinations for private jets";
+    document.getElementById("s-season").textContent=SEASON_SUB[se];
+    items.forEach(function(it){ host.appendChild(routeCard(it,"to")); });
   }
 
   function buildContinents(){
