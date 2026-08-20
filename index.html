@@ -312,7 +312,7 @@
   .rhead .ricon { flex: 0 0 auto; width: 40px; height: 40px; border: 1px solid rgba(201,162,39,0.4); border-radius: 11px; display: flex; align-items: center; justify-content: center; }
   .rhead h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 400; margin: 0; }
   .rhead p { margin: 3px 0 0 0; font-size: 13px; font-weight: 300; color: var(--mute); }
-  .rgrid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .rgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .rcard { position: relative; display: block; aspect-ratio: 23/30; border-radius: 12px; overflow: hidden; background: linear-gradient(150deg, #1b3552 0%, #0d1f36 100%); cursor: pointer; border: none; padding: 0; font-family: Raleway, sans-serif; text-align: left; transition: transform .2s cubic-bezier(.2,.8,.3,1), box-shadow .2s; }
   .rcard:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(13,31,54,0.22); }
   .rcard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -323,7 +323,7 @@
   .rcard .rsub { display: block; font-size: 11.5px; font-weight: 300; color: rgba(255,255,255,0.62); margin-top: 3px; min-height: 15px; }
   .rcard .rcount { display: inline-flex; align-items: center; gap: 6px; margin-top: 9px; padding: 5px 10px; background: rgba(0,0,0,0.42); border: 1px solid rgba(201,162,39,0.45); border-radius: 7px; font-size: 12px; color: #fff; }
   .rcard .rcount b { font-weight: 600; }
-  @media (max-width: 900px) { .rgrid { grid-template-columns: repeat(3, 1fr); } .rgrid .rcard:nth-child(n+4) { display: none; } }
+  @media (max-width: 1100px) { .rgrid { grid-template-columns: repeat(3, 1fr); } .rgrid .rcard:nth-child(n+4) { display: none; } }
   @media (max-width: 560px) { .rgrid { grid-template-columns: repeat(2, 1fr); } .rgrid .rcard:nth-child(n+3) { display: none; } .rgroup { padding: 20px 18px 22px 18px; } }
 
   /* ---- access gate ---- */
@@ -536,6 +536,8 @@
   #hbg { background-size: auto 130%; background-position: 45% 40px; background-repeat: no-repeat; }
 }
 </style>
+  <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <script>try{if(!localStorage.getItem("el_cur"))localStorage.setItem("el_cur","EUR");}catch(e){}</script>
@@ -552,7 +554,7 @@
         <div class="nitem">
           <button class="nl ntrig" type="button" aria-expanded="false">Destinations <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="mega">
-            <div class="mcol"><h4>Cities</h4><div class="mgrid"><a href="/empty-legs/london">London</a><a href="/empty-legs/paris">Paris</a><a href="/empty-legs/nice">Nice</a><a href="/empty-legs/ibiza">Ibiza</a><a href="/empty-legs/amsterdam">Amsterdam</a><a href="/empty-legs/vienna">Vienna</a><a href="/empty-legs/athens">Athens</a><a href="/empty-legs/brussels">Brussels</a><a href="/empty-legs/palma">Palma</a><a href="/empty-legs/cannes">Cannes</a><a href="/empty-legs/antwerp">Antwerp</a><a href="/empty-legs/birmingham">Birmingham</a><a href="/empty-legs/toronto">Toronto</a><a href="/empty-legs/cape-town">Cape Town</a><a href="/empty-legs/johannesburg">Johannesburg</a><a href="/empty-legs/wevelgem">Wevelgem</a><a href="/empty-legs/larnaca">Larnaca</a><a href="/empty-legs/olbia">Olbia</a><a href="/empty-legs/toulon">Toulon</a><a href="/empty-legs/belfast">Belfast</a></div></div>
+            <div class="mcol"><h4>Cities</h4><div class="mgrid"><a href="/empty-legs/london">London</a><a href="/empty-legs/las-vegas">Las Vegas</a><a href="/empty-legs/miami">Miami</a><a href="/empty-legs/malaga">Malaga</a><a href="/empty-legs/salzburg">Salzburg</a><a href="/empty-legs/paris">Paris</a><a href="/empty-legs/nice">Nice</a><a href="/empty-legs/ibiza">Ibiza</a><a href="/empty-legs/amsterdam">Amsterdam</a><a href="/empty-legs/vienna">Vienna</a><a href="/empty-legs/athens">Athens</a><a href="/empty-legs/brussels">Brussels</a><a href="/empty-legs/palma">Palma</a><a href="/empty-legs/cannes">Cannes</a><a href="/empty-legs/antwerp">Antwerp</a><a href="/empty-legs/birmingham">Birmingham</a><a href="/empty-legs/toronto">Toronto</a><a href="/empty-legs/cape-town">Cape Town</a><a href="/empty-legs/johannesburg">Johannesburg</a><a href="/empty-legs/wevelgem">Wevelgem</a><a href="/empty-legs/larnaca">Larnaca</a><a href="/empty-legs/olbia">Olbia</a><a href="/empty-legs/toulon">Toulon</a><a href="/empty-legs/belfast">Belfast</a></div></div>
             <div class="mcol"><h4>Popular routes</h4><div class="mgrid"><a href="/empty-legs/london-to-nice">London → Nice</a><a href="/empty-legs/london-to-paris">London → Paris</a><a href="/empty-legs/london-to-ibiza">London → Ibiza</a><a href="/empty-legs/london-to-dublin">London → Dublin</a><a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a><a href="/empty-legs/london-to-athens">London → Athens</a><a href="/empty-legs/birmingham-to-london">Birmingham → London</a><a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a><a href="/empty-legs/geneva-to-london">Geneva → London</a><a href="/empty-legs/vienna-to-london">Vienna → London</a><a href="/empty-legs/nice-to-london">Nice → London</a><a href="/empty-legs/johannesburg-to-cape-town">Johannesburg → Cape Town</a></div></div>
           </div>
         </div>
@@ -769,7 +771,7 @@
     <div class="bf-col">
       <h4>Destinations</h4>
       <nav>
-        <a href="/empty-legs/london">London</a>
+        <a href="/empty-legs/london">London</a><a href="/empty-legs/las-vegas">Las Vegas</a><a href="/empty-legs/miami">Miami</a><a href="/empty-legs/malaga">Malaga</a><a href="/empty-legs/salzburg">Salzburg</a>
         <a href="/empty-legs/paris">Paris</a>
         <a href="/empty-legs/nice">Nice</a>
         <a href="/empty-legs/ibiza">Ibiza</a>
@@ -1388,7 +1390,7 @@
     "London":"london", "Paris":"paris", "New York":"new-york", "Dubai":"dubai",
     "Toronto":"toronto", "Ibiza":"ibiza", "Nice":"nice", "Mykonos":"mykonos",
     "Milan":"milan", "Birmingham":"birmingham", "Antwerp":"antwerp",
-    "Johannesburg":"johannesburg",
+    "Johannesburg":"johannesburg", "Las Vegas":"las-vegas",
 
     // Summer \u2014 sea and islands
     "Cannes":"cannes", "Larnaca":"larnaca", "Malaga":"malaga", "Olbia":"olbia",
@@ -1986,5 +1988,43 @@ setTimeout(boot,900);setTimeout(boot,2500);setTimeout(boot,5000);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+
+  <!-- Conversion events. window.va is defined by the Vercel Analytics script;
+       the guard keeps everything working if it is blocked or still loading. -->
+  <script>
+  (function(){
+    function ev(name, data){
+      try { if (window.va) window.va("event", { name: name, data: data || {} }); }
+      catch (e) { /* analytics must never break the page */ }
+    }
+    window.elTrack = ev;
+
+    document.addEventListener("submit", function(e){
+      var id = e.target && e.target.id;
+      if (id === "af") ev("alert_subscribed", {
+        from: (document.getElementById("a-from")||{}).value || "any",
+        to:   (document.getElementById("a-to")||{}).value   || "any"
+      });
+      if (id === "gf") ev("account_unlocked", {});
+    }, true);
+
+    document.addEventListener("click", function(e){
+      var a = e.target.closest && e.target.closest("a");
+      if (a && a.href) {
+        if (a.href.indexOf("wa.me") > -1)        ev("whatsapp_click", {});
+        if (a.href.indexOf("add-listing") > -1)  ev("operator_listing_click", {});
+        if (a.href.indexOf("/quote") > -1)       ev("quote_page_click", {});
+      }
+      var card = e.target.closest && e.target.closest(".rcard");
+      if (card) {
+        var city = card.querySelector(".rcity");
+        var strip = card.closest("#col-season") ? "seasonal" : "popular";
+        ev("destination_card_click", { city: city ? city.textContent : "", strip: strip });
+      }
+      var enq = e.target.closest && e.target.closest(".enq, [data-enquire]");
+      if (enq) ev("listing_enquiry_click", {});
+    }, true);
+  })();
+  </script>
 </body>
 </html>

@@ -228,4 +228,52 @@
   <url><loc>https://emptylegslist.com/empty-legs/larnaca-to-nice</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://emptylegslist.com/empty-legs/london-to-inverness</loc><lastmod>2026-08-03</lastmod></url>
   <url><loc>https://emptylegslist.com/empty-legs/fort-worth-to-houston</loc><lastmod>2026-08-03</lastmod></url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/las-vegas</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/miami</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/malaga</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/salzburg</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/aircraft/citation-longitude</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/aircraft/gulfstream-g450</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/aircraft/gulfstream-v</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/aircraft/learjet-60xr</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

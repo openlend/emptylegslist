@@ -34,6 +34,8 @@
   h1, h2, h3, #tfe-hero h1 { font-family: "Playfair Display", Georgia, serif; }
   button[type="submit"] { background: linear-gradient(135deg,#C9A24C,#E5C87B) !important; color: #0D1F36 !important; border: none !important; font-weight: 600; }
 </style>
+  <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <!-- Charter quote page - Empty Leg List -->
@@ -1034,5 +1036,13 @@
     }).catch(function(){ b.disabled=false; b.textContent="Add details"; });
   });
 })();
-</script></body>
+</script>
+  <script>
+  document.addEventListener("submit", function(e){
+    if (e.target && e.target.id === "tfe-charter-form") {
+      try { if (window.va) window.va("event", { name: "quote_submitted", data: {} }); } catch (err) {}
+    }
+  }, true);
+  </script>
+</body>
 </html>
