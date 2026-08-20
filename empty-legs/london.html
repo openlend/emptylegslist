@@ -117,14 +117,14 @@ label.f{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:upper
 .count span{color:var(--mute);font-weight:300}
 .sortwrap{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--mute)}
 .sortwrap select{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;font-size:13px;background:#fff}
-.flight{display:grid;grid-template-columns:78px 1fr 150px 132px;gap:16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-bottom:11px;transition:box-shadow .18s,border-color .18s}
+.flight{display:grid;grid-template-columns:72px minmax(0,1.35fr) minmax(0,0.85fr) 132px;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin-bottom:11px;transition:box-shadow .18s,border-color .18s}
 .flight:hover{box-shadow:0 6px 20px rgba(13,31,54,.09);border-color:#d8e2ec}
 .when{text-align:center}
 .when b{display:block;font-size:15px;font-weight:600;color:var(--navy);line-height:1.15}
 .when span{font-size:11px;color:var(--mute);letter-spacing:.05em}
 .leg{display:flex;align-items:center;gap:12px;min-width:0}
 .pt{min-width:0}
-.pt b{display:block;font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pt b{display:block;font-size:14.5px;font-weight:600;line-height:1.2;overflow-wrap:anywhere}
 .pt span{font-size:11.5px;color:var(--mute);letter-spacing:.06em}
 .arrow{color:var(--gold);flex:0 0 auto}
 .ac{font-size:13px;color:#4a5866}
@@ -375,13 +375,7 @@ var OFFLINE=[{"from_airport": "London", "from_iata": null, "to_airport": "Wevelg
 
 
 /* photographs we hold, keyed by the display name cityKey() produces */
-var CITY_PIC={"Nice":"nice","Cannes":"cannes","Larnaca":"larnaca","Malaga":"malaga","Olbia":"olbia",
-"Ibiza":"ibiza","Barcelona":"barcelona","Athens":"athens","Palma de Mallorca":"palma","Bodrum":"bodrum",
-"Preveza":"preveza","Alicante":"alicante","Salzburg":"salzburg","Zurich":"zurich","Geneva":"geneva",
-"Calgary":"calgary","Sion":"sion","Reno":"reno","Munich":"munich","Lugano":"lugano","Denver":"denver",
-"Innsbruck":"innsbruck","Miami":"miami","Johannesburg":"johannesburg","Cape Town":"cape-town",
-"Fort Lauderdale":"fort-lauderdale","Scottsdale":"scottsdale","Maun":"maun","Nassau":"nassau",
-"Antigua":"antigua","Tenerife":"tenerife","Las Vegas":"las-vegas","Wevelgem":"wevelgem","Dubai":"dubai"};
+var CITY_PIC={"London":"london","Wevelgem":"wevelgem","Paris":"paris","Toronto":"toronto","Ibiza":"ibiza","Nice":"nice","Milan":"milan","Birmingham":"birmingham","Antwerp":"antwerp","Johannesburg":"johannesburg","Cannes":"cannes","Larnaca":"larnaca","Malaga":"malaga","Olbia":"olbia","Toulon-Hy\u00e8res":"toulon","Barcelona":"barcelona","Athens":"athens","Palma de Mallorca":"palma","Turks and Caicos":"turks-and-caicos","Bodrum":"bodrum","Preveza":"preveza","Alicante":"alicante","Salzburg":"salzburg","Zurich":"zurich","Geneva":"geneva","Calgary":"calgary","Sion":"sion","Reno":"reno","Munich":"munich","Lugano":"lugano","Denver":"denver","Innsbruck":"innsbruck","Miami":"miami","Cape Town":"cape-town","Fort Lauderdale":"fort-lauderdale","Scottsdale":"scottsdale","Mpumalanga":"kruger","Maun":"maun","Los Cabos":"los-cabos","Tenerife":"tenerife","Port Louis":"mauritius","Nassau":"nassau","Antigua":"antigua","Las Vegas":"las-vegas","Dubai":"dubai"};
 
 function esc(s){var d=document.createElement("div");d.textContent=(s==null?"":String(s));return d.innerHTML;}
 function fdate(x){try{var p=String(x).split("-");return {d:p[2],m:MON[Number(p[1])-1],y:p[0]};}catch(e){return {d:"",m:"",y:""};}}
@@ -393,6 +387,9 @@ function cityKey(s){var c=short(s);var m=c.toLowerCase().match(/^(london|paris|m
   if(/larnarca/i.test(c))return "Larnaca"; if(/^m[aá]laga/i.test(c))return "Malaga";
   if(/^cannes/i.test(c))return "Cannes"; if(/^olbia/i.test(c))return "Olbia";
   if(/^palma/i.test(c))return "Palma de Mallorca"; if(/^geneva/i.test(c))return "Geneva";
+  if(/^toulon/i.test(c))return "Toulon-Hy\u00e8res";
+  if(/^montpellier/i.test(c))return "Montpellier";
+  if(/^nice/i.test(c))return "Nice";
   return c;}
 
 function row(x){
@@ -509,7 +506,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 .then(function(all){
   var today=new Date().toISOString().slice(0,10);
   ALL=all.filter(function(x){return String(x.departure_date||"")>=today && (hit(x.from_airport)||hit(x.to_airport));});
-  document.getElementById("hero-live").textContent=ALL.length+" empty legs touching London right now";
+  document.getElementById("hero-live").textContent=ALL.length+" empty legs touching "+CITY+" right now";
   var newest=null;ALL.forEach(function(x){var p=x.published_at;if(p&&(!newest||p>newest))newest=p;});
   document.getElementById("stamp").textContent=newest
     ? "Availability last checked "+ago(new Date(newest))+". Prices are the operator's published figure for the whole aircraft and change without notice."
