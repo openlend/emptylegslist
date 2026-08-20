@@ -16,14 +16,84 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:60}
+header .in{max-width:1380px;margin:0 auto;padding:0 24px}
+body.navlock{overflow:hidden}
+/* ---------- header: lifted from index.html so it matches the site ---------- */
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:60}
+header .in{max-width:1380px;margin:0 auto;padding:0 24px}
+body.navlock{overflow:hidden}
+  #nav { position: relative; z-index: 40; display: flex; align-items: center; gap: 24px; max-width: 1332px; margin: 0 auto; padding: 18px 0 14px; }
+  #logo { display: inline-block; line-height: 0; flex: 0 0 auto; }
+  #logo img { width: auto; height: 44px; display: block; }
+  #nav .nlinks { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+  #nav a.nl, #nav button.ntrig { display: inline-flex; align-items: center; gap: 6px; padding: 10px 11px; border-radius: 9px;
+    font-family: Raleway, sans-serif; font-size: 13px; font-weight: 400; white-space: nowrap; color: rgba(255,255,255,0.76);
+    background: none; border: none; cursor: pointer; letter-spacing: .01em; transition: color .16s, background .16s; }
+  #nav a.nl:hover, #nav button.ntrig:hover, #nav .nitem:hover > .ntrig { color: #fff; background: rgba(255,255,255,0.08); }
+  #nav a.nl.cta { margin-left: 8px; padding: 10px 16px; border: 1px solid rgba(201,162,39,0.6); border-radius: 999px; color: var(--gold); font-weight: 500; }
+  #nav a.nl.cta:hover { background: var(--gold); border-color: var(--gold); color: #241d00; }
+  .nitem { position: relative; }
+  .nitem .ntrig svg { transition: transform .18s; opacity: .7; }
+  .nitem:hover .ntrig svg, .nitem.open .ntrig svg { transform: rotate(180deg); }
+  .mega { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(-6px);
+    display: flex; gap: 34px; padding: 24px 28px; background: #0b1a2e; border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; box-shadow: 0 24px 60px rgba(5,14,26,0.5); opacity: 0; visibility: hidden;
+    transition: opacity .18s, transform .18s, visibility 0s linear .45s; }
+  .nitem:hover .mega, .nitem.open .mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); transition: opacity .18s, transform .18s, visibility 0s; }
+  .mega::before { content: ""; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+  .mcol h4 { margin: 0 0 12px; font-size: 10.5px; letter-spacing: .15em; color: var(--gold); font-weight: 600; text-transform: uppercase; }
+  .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
+  .mgrid.one { grid-template-columns: 1fr; }
+  .mega a { display: block; padding: 6px 8px; margin-left: -8px; border-radius: 7px; font-size: 13px; font-weight: 300;
+    color: rgba(255,255,255,0.74); white-space: nowrap; transition: color .14s, background .14s; }
+  .mega a:hover { color: #fff; background: rgba(255,255,255,0.07); }
+  .mnarrow { border-left: 1px solid rgba(255,255,255,0.1); padding-left: 30px; }
+  #navtoggle { display: none; margin-left: auto; background: none; border: 1px solid rgba(255,255,255,0.25); border-radius: 9px; padding: 9px 11px; cursor: pointer; }
+  #navtoggle span { display: block; width: 17px; height: 1.6px; background: #fff; margin: 3.4px 0; }
+  #navtoggle span { transition: transform .22s cubic-bezier(.2,.8,.3,1), opacity .18s; }
+  #navtoggle.x span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+  #navtoggle.x span:nth-child(2) { opacity: 0; }
+  #navtoggle.x span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+  body.navlock { overflow: hidden; }
+  /* nav box-sizing fix: width:100% children were overflowing by their padding */
+  #nav, #nav * { box-sizing: border-box; }
+  @media (max-width: 1180px) {
+    #navtoggle { display: block; position: relative; z-index: 60; }
+    #nav { gap: 16px; padding: 14px 0; }
+    #nav .nlinks { display: none; position: fixed; inset: 0; z-index: 50; flex-direction: column;
+      align-items: stretch; gap: 0; margin: 0; padding: 84px 22px 30px; background: #0b1a2e; overflow-y: auto; }
+    #nav .nlinks.open { display: flex; }
+    html, body { max-width: 100vw; overflow-x: hidden; }
+    #nav .nitem { width: 100%; }
+    #nav a.nl, #nav button.ntrig { display: flex; width: 100%; justify-content: space-between; align-items: center;
+      padding: 16px 6px; font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.09); border-radius: 0; background: none; }
+    #nav .nitem .ntrig svg { width: 14px; height: 14px; opacity: .6; }
+    #nav a.nl.cta { margin: 22px 0 0; justify-content: center; border: none; border-radius: 12px; padding: 16px;
+      font-size: 15px; font-weight: 600; background: linear-gradient(135deg, #e0b73a 0%, var(--gold) 100%); color: #241d00; }
+    .mega { position: static; transform: none; display: none; padding: 2px 0 12px; background: none;
+      border: none; box-shadow: none; opacity: 1; visibility: visible; pointer-events: auto; }
+    .nitem.open .mega { display: block; }
+    .nitem.open .ntrig { color: #fff; border-bottom-color: transparent; }
+    .mcol h4 { margin: 12px 0 6px 8px; }
+    .mgrid { grid-template-columns: 1fr 1fr; gap: 2px 12px; }
+    .mega a { white-space: normal; font-size: 13.5px; padding: 9px 8px; margin-left: 0;
+      border: none; color: rgba(255,255,255,0.66); }
+    .mnarrow { border: none; padding-left: 0; }
+  }
+  #nav a.nl.list { border: 1px solid rgba(255,255,255,0.28); border-radius: 999px; padding: 10px 15px; margin-left: 4px; }
+  #nav a.nl.list:hover { border-color: var(--gold); color: var(--gold); background: transparent; }
+
+
 :root{--navy:#0D1F36;--gold:#C9A24C;--ink:#16222e;--mute:#8a97a5;--line:#edf1f5}
 *{box-sizing:border-box}body{margin:0;background:#f4f6f9;font-family:Raleway,sans-serif;color:var(--ink);font-weight:300;line-height:1.7}
 a{color:inherit}
-header{background:var(--navy);color:#fff;padding:16px 20px}
-header .in{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
-header a.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:600;letter-spacing:.12em;font-size:13px}
-header img{height:38px}
-header a.back{color:var(--gold);text-decoration:none;font-size:13.5px;white-space:nowrap}
+
+
+
+
+
 .wrap{max-width:960px;margin:0 auto;padding:0 20px 70px}
 h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(28px,5vw,42px);line-height:1.15;margin:34px 0 10px}
 .lede{font-size:16px;color:#46525f;margin:0 0 22px;max-width:640px}
@@ -93,7 +163,36 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-<header><div class="in"><a class="brand" href="/"><img src="/brand/icon-512.png" alt="Empty Leg List"> EMPTY LEG LIST</a><a class="back" href="/">All empty legs &rarr;</a></div></header>
+<header>
+  <div class="in">
+    <nav id="nav">
+      <a id="logo" href="/" aria-label="Empty Leg List home">
+        <img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224">
+      </a>
+      <button id="navtoggle" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="nlinks" id="nlinks">
+        <div class="nitem">
+          <button class="nl ntrig" type="button" aria-expanded="false">Destinations <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="mega">
+            <div class="mcol"><h4>Cities</h4><div class="mgrid"><a href="/empty-legs/london">London</a><a href="/empty-legs/las-vegas">Las Vegas</a><a href="/empty-legs/miami">Miami</a><a href="/empty-legs/malaga">Malaga</a><a href="/empty-legs/salzburg">Salzburg</a><a href="/empty-legs/paris">Paris</a><a href="/empty-legs/nice">Nice</a><a href="/empty-legs/ibiza">Ibiza</a><a href="/empty-legs/amsterdam">Amsterdam</a><a href="/empty-legs/vienna">Vienna</a><a href="/empty-legs/athens">Athens</a><a href="/empty-legs/brussels">Brussels</a><a href="/empty-legs/palma">Palma</a><a href="/empty-legs/cannes">Cannes</a><a href="/empty-legs/antwerp">Antwerp</a><a href="/empty-legs/birmingham">Birmingham</a><a href="/empty-legs/toronto">Toronto</a><a href="/empty-legs/cape-town">Cape Town</a><a href="/empty-legs/johannesburg">Johannesburg</a><a href="/empty-legs/wevelgem">Wevelgem</a><a href="/empty-legs/larnaca">Larnaca</a><a href="/empty-legs/olbia">Olbia</a><a href="/empty-legs/toulon">Toulon</a><a href="/empty-legs/belfast">Belfast</a></div></div>
+            <div class="mcol"><h4>Popular routes</h4><div class="mgrid"><a href="/empty-legs/london-to-nice">London → Nice</a><a href="/empty-legs/london-to-paris">London → Paris</a><a href="/empty-legs/london-to-ibiza">London → Ibiza</a><a href="/empty-legs/london-to-dublin">London → Dublin</a><a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a><a href="/empty-legs/london-to-athens">London → Athens</a><a href="/empty-legs/birmingham-to-london">Birmingham → London</a><a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a><a href="/empty-legs/geneva-to-london">Geneva → London</a><a href="/empty-legs/vienna-to-london">Vienna → London</a><a href="/empty-legs/nice-to-london">Nice → London</a><a href="/empty-legs/johannesburg-to-cape-town">Johannesburg → Cape Town</a></div></div>
+          </div>
+        </div>
+        <div class="nitem">
+          <button class="nl ntrig" type="button" aria-expanded="false">Aircraft types <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="mega">
+            <div class="mcol"><h4>Types on the list</h4><div class="mgrid"><a href="/aircraft/citation-latitude">Citation Latitude</a><a href="/aircraft/citation-xls">Citation XLS</a><a href="/aircraft/citation-mustang">Citation Mustang</a><a href="/aircraft/citation-cj2">Citation CJ2</a><a href="/aircraft/challenger-350">Challenger 350</a><a href="/aircraft/challenger-604">Challenger 604</a><a href="/aircraft/legacy-500">Legacy 500</a><a href="/aircraft/legacy-650">Legacy 650</a><a href="/aircraft/praetor-600">Praetor 600</a><a href="/aircraft/falcon-7x">Falcon 7X</a><a href="/aircraft/gulfstream-g550">Gulfstream G550</a><a href="/aircraft/global-6000">Global 6000</a></div></div>
+            <div class="mcol mnarrow"><h4>Browse</h4><div class="mgrid one"><a href="/aircraft/">All aircraft types</a><a href="/about">How it works</a><a href="/contact">Contact</a><a href="#listings">All empty legs</a><a href="#alerts">Get route alerts</a><a href="/account">My account</a></div></div>
+          </div>
+        </div>
+        <a class="nl" href="/for-operators">For operators</a>
+        <a class="nl" href="/account">My account</a>
+        <a class="nl list" href="https://theflyingengineer.com/add-listing/">List your flight</a>
+        <a class="nl cta" href="/quote">Request a quote</a>
+      </div>
+    </nav>
+  </div>
+</header>
 <div class="wrap">
 <h1>Empty legs from Cannes to Wevelgem</h1>
 <p class="lede">One way repositioning flights between Cannes and Wevelgem, exactly as the operators list them. Prices are the operator's own, not a marked up quote. Send an enquiry on a flight and we take it to the operator that listed it.</p>
@@ -230,6 +329,24 @@ fetch(BASE+"/rest/v1/empty_leg_alerts",{method:"POST",headers:{apikey:KEY,Author
 .catch(function(){msg.innerHTML='<div class="err">Could not save that just now. Try again in a minute.</div>';btn.disabled=false;btn.textContent="Email me this route";});
 });
 }
+})();
+</script>
+<script>
+(function () {
+var t = document.getElementById("navtoggle"), l = document.getElementById("nlinks");
+  if (!t || !l) return;
+  var c = t.cloneNode(true);
+  t.parentNode.replaceChild(c, t); t = c;
+  function set(open) {
+    l.classList.toggle("open", open);
+    document.body.classList.toggle("navlock", open);
+    t.classList.toggle("x", open);
+    t.setAttribute("aria-expanded", open ? "true" : "false");
+    if (!open) Array.prototype.forEach.call(document.querySelectorAll(".nitem.open"), function (n) { n.classList.remove("open"); });
+  }
+  t.addEventListener("click", function () { set(!l.classList.contains("open")); });
+  l.addEventListener("click", function (e) { if (e.target.closest && e.target.closest("a")) set(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
 </body>
