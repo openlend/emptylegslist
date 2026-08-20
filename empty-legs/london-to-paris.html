@@ -154,6 +154,20 @@ footer a{color:rgba(255,255,255,.85)}
     th:nth-child(1), td:nth-child(1) { width: 58px; }
     th:nth-child(4), td:nth-child(4) { width: 74px; white-space: nowrap; text-align: right; }
   }
+
+.rhero{position:relative;isolation:isolate;background:var(--navy);margin:0 0 4px}
+.rhero img{width:100%;height:min(30vw,300px);object-fit:cover;object-position:50% 45%;display:block}
+.rhero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,22,40,.92) 0%,rgba(9,22,40,.70) 38%,rgba(9,22,40,.10) 72%,rgba(9,22,40,0) 100%)}
+.rhero .rin{position:absolute;inset:0;z-index:1;max-width:960px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;justify-content:center}
+.rhero .rk{color:var(--gold);letter-spacing:.2em;font-size:11.5px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.rhero h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;color:#fff;font-size:clamp(24px,4vw,40px);line-height:1.1;margin:0}
+.rhero.nohero{min-height:190px}
+.rhero.nohero::after{background:linear-gradient(120deg,rgba(11,26,46,.9) 0%,rgba(18,48,79,.75) 60%,rgba(13,31,54,.9) 100%)}
+.rhero.nohero .rin{position:relative;min-height:190px}
+.mapwrap{margin:10px 0 26px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#eef3f7}
+.mapinner{position:relative;padding-bottom:52%;height:0}
+.mapinner iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.mapnote{font-size:12.5px;color:var(--mute);margin:8px 2px 0}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Empty Leg List","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"London to Paris empty legs","item":"https://emptylegslist.com/empty-legs/london-to-paris"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the London to Paris route produce empty leg flights?","acceptedAnswer":{"@type":"Answer","text":"Fifty minutes gate to gate, and the most flown private route in Europe. The volume is what creates the empty legs: with this many daily movements, some aircraft always end up on the wrong side of the Channel."}},{"@type":"Question","name":"When do empty legs from London to Paris usually appear?","acceptedAnswer":{"@type":"Answer","text":"Paris Fashion Weeks. Late February and late September, the two clearest spikes. Roland Garros and the rugby. Late May and the Six Nations weekends. Le Bourget Air Show. Every other June, when the airport itself is the destination."}}]}]}</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
@@ -190,6 +204,10 @@ footer a{color:rgba(255,255,255,.85)}
     </nav>
   </div>
 </header>
+<section class="rhero">
+  <img src="/brand/routes/london-to-paris-empty-legs.jpg" width="1600" height="694" fetchpriority="high" decoding="async" alt="the Seine and the Eiffel Tower at sunset, on the London to Paris empty leg route">
+  <div class="rin"><div class="rk">Empty legs</div></div>
+</section>
 <div class="wrap">
 <h1>Empty legs from London to Paris</h1>
 <p class="lede">One way repositioning flights between London and Paris, exactly as the operators list them. Prices are the operator's own, not a marked up quote. Send an enquiry on a flight and we take it to the operator that listed it.</p>
@@ -211,6 +229,10 @@ footer a{color:rgba(255,255,255,.85)}
 <li><b>Roland Garros and the rugby.</b> Late May and the Six Nations weekends.</li>
 <li><b>Le Bourget Air Show.</b> Every other June, when the airport itself is the destination.</li>
 </ul>
+
+<h2>The route on a map</h2>
+<div class="mapwrap"><div class="mapinner"><iframe title="London to Paris route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-1.73%2C47.76%2C4.04%2C52.71&amp;layer=mapnik"></iframe></div></div>
+<p class="mapnote">Approximate corridor between London and Paris. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
 <div class="airports">

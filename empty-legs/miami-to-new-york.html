@@ -157,6 +157,20 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
     th:nth-child(1), td:nth-child(1) { width: 58px; }
     th:nth-child(4), td:nth-child(4) { width: 74px; white-space: nowrap; text-align: right; }
   }
+
+.rhero{position:relative;isolation:isolate;background:var(--navy);margin:0 0 4px}
+.rhero img{width:100%;height:min(30vw,300px);object-fit:cover;object-position:50% 45%;display:block}
+.rhero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,22,40,.92) 0%,rgba(9,22,40,.70) 38%,rgba(9,22,40,.10) 72%,rgba(9,22,40,0) 100%)}
+.rhero .rin{position:absolute;inset:0;z-index:1;max-width:960px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;justify-content:center}
+.rhero .rk{color:var(--gold);letter-spacing:.2em;font-size:11.5px;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.rhero h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;color:#fff;font-size:clamp(24px,4vw,40px);line-height:1.1;margin:0}
+.rhero.nohero{min-height:190px}
+.rhero.nohero::after{background:linear-gradient(120deg,rgba(11,26,46,.9) 0%,rgba(18,48,79,.75) 60%,rgba(13,31,54,.9) 100%)}
+.rhero.nohero .rin{position:relative;min-height:190px}
+.mapwrap{margin:10px 0 26px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#eef3f7}
+.mapinner{position:relative;padding-bottom:52%;height:0}
+.mapinner iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.mapnote{font-size:12.5px;color:var(--mute);margin:8px 2px 0}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Empty Leg List","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Miami to New York empty legs","item":"https://emptylegslist.com/empty-legs/miami-to-new-york"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the Miami to New York route produce empty leg flights?","acceptedAnswer":{"@type":"Answer","text":"New York based aircraft dropping clients in Florida need to come home, and Florida based aircraft go north for summer work. Both directions generate listed legs on most days of the week."}},{"@type":"Question","name":"When do empty legs from Miami to New York usually appear?","acceptedAnswer":{"@type":"Answer","text":"Sunday and Monday. Weekenders fly home and the aircraft follow, so the start of the week is rich in northbound legs. Late April and May. The season winds down and half the ramp repositions north within a few weeks. After Art Basel and the Grand Prix. Event traffic clears out in a burst, and the legs appear the morning after."}}]}]}</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
@@ -193,6 +207,10 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
     </nav>
   </div>
 </header>
+<section class="rhero">
+  <img src="/brand/routes/miami-to-new-york-empty-legs.jpg" width="1600" height="694" fetchpriority="high" decoding="async" alt="the Miami Beach shoreline, on the Miami to New York empty leg route">
+  <div class="rin"><div class="rk">Empty legs</div></div>
+</section>
 <div class="wrap">
 <h1>Empty legs from Miami to New York</h1>
 <p class="lede">One way repositioning flights between Miami and New York, exactly as the operators list them. Prices are the operator's own, not a marked up quote. Send an enquiry on a flight and we take it to the operator that listed it.</p>
@@ -226,6 +244,10 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 <li><b>Late April and May.</b> The season winds down and half the ramp repositions north within a few weeks.</li>
 <li><b>After Art Basel and the Grand Prix.</b> Event traffic clears out in a burst, and the legs appear the morning after.</li>
 </ul>
+
+<h2>The route on a map</h2>
+<div class="mapwrap"><div class="mapinner"><iframe title="Miami to New York route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-81.89%2C21.58%2C-72.46%2C45.07&amp;layer=mapnik"></iframe></div></div>
+<p class="mapnote">Approximate corridor between Miami and New York. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
 <p class="meta" style="line-height:1.9">Miami-Opa locka Executive (OPF), Miami International (MIA) and Fort Lauderdale Executive (FXE) in the south; Teterboro (TEB) and Westchester County (HPN) on the New York side.</p>
