@@ -127,20 +127,29 @@
      their own data arrives, and a single load listener proved unreliable, so
      run immediately, again on the usual events, and retry a few times for any
      host that is still empty. */
+  /* A map that has rendered must never be hidden again. An earlier version
+     hid the host on any error, and a late failing pass was wiping out a map
+     that had already drawn, so the rule is now explicit and checked at every
+     exit: only an empty host is ever hidden. */
+  function hideIfEmpty(h) {
+    if (!h.querySelector(".rm-wrap")) h.style.display = "none";
+  }
+
   function start() {
     var hosts = Array.prototype.slice.call(document.querySelectorAll(".routemap"))
       .filter(function (h) { return !h.querySelector(".rm-wrap") && !h.dataset.rmBusy; });
     if (!hosts.length) return;
-    hosts.forEach(function (h) { h.dataset.rmBusy = "1"; });
+    hosts.forEach(function (h) {
+      h.dataset.rmBusy = "1";
+      h.style.removeProperty("display");   // clear a hide left by an earlier pass
+    });
     load(function (err) {
       hosts.forEach(function (h) {
         delete h.dataset.rmBusy;
-        if (err) { h.style.display = "none"; return; }
+        if (err) { hideIfEmpty(h); return; }
         if (!h.querySelector(".rm-wrap")) {
-          /* If draw throws part way, leave what rendered in place rather than
-             hiding it: a half-drawn map is still useful and a later retry can
-             finish the job. Only a total failure to load Leaflet hides it. */
           try { draw(h); } catch (e) {}
+          hideIfEmpty(h);
         }
       });
     });
