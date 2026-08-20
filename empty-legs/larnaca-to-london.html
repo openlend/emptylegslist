@@ -230,7 +230,7 @@ footer a{color:rgba(255,255,255,.85)}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Larnaca to London route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-7.55%2C30.22%2C41.05%2C56.16&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Larnaca" data-from-lat="34.8751" data-from-lon="33.6249" data-to="London" data-to-lat="51.5074" data-to-lon="-0.1278"></div>
 <p class="mapnote">Approximate corridor between Larnaca and London. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -353,5 +353,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

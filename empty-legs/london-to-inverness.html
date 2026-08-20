@@ -246,7 +246,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="London to Inverness route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-5.65%2C49.82%2C1.47%2C59.23&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="London" data-from-lat="51.5074" data-from-lon="-0.1278" data-to="Inverness" data-to-lat="57.5425" data-to-lon="-4.0475"></div>
 <p class="mapnote">Approximate corridor between London and Inverness. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -369,5 +369,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

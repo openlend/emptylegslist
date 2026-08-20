@@ -245,7 +245,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Vancouver to Calgary route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-125.20%2C48.00%2C-111.99%2C52.33&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Vancouver" data-from-lat="49.1967" data-from-lon="-123.1815" data-to="Calgary" data-to-lat="51.1315" data-to-lon="-114.0106"></div>
 <p class="mapnote">Approximate corridor between Vancouver and Calgary. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -368,5 +368,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

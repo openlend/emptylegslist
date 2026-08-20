@@ -230,7 +230,7 @@ footer a{color:rgba(255,255,255,.85)}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Birmingham to London route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-3.35%2C50.31%2C1.47%2C53.65&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Birmingham" data-from-lat="52.4539" data-from-lon="-1.748" data-to="London" data-to-lat="51.5074" data-to-lon="-0.1278"></div>
 <p class="mapnote">Approximate corridor between Birmingham and London. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -355,5 +355,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

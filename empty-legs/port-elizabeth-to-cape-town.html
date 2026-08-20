@@ -230,7 +230,7 @@ footer a{color:rgba(255,255,255,.85)}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Port Elizabeth to Cape Town route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=17.00%2C-35.19%2C27.22%2C-32.77&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Port Elizabeth" data-from-lat="-33.985" data-from-lon="25.6173" data-to="Cape Town" data-to-lat="-33.974" data-to-lon="18.6043"></div>
 <p class="mapnote">Approximate corridor between Port Elizabeth and Cape Town. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -351,5 +351,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

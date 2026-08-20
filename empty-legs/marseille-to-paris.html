@@ -246,7 +246,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Marseille to Paris route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=0.84%2C41.89%2C6.82%2C50.51&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Marseille" data-from-lat="43.4393" data-from-lon="5.2214" data-to="Paris" data-to-lat="48.9623" data-to-lon="2.4365"></div>
 <p class="mapnote">Approximate corridor between Marseille and Paris. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -369,5 +369,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

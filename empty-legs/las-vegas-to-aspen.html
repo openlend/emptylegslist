@@ -246,7 +246,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Las Vegas to Aspen route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-116.97%2C34.88%2C-105.05%2C40.42&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Las Vegas" data-from-lat="36.08" data-from-lon="-115.1522" data-to="Aspen" data-to-lat="39.2232" data-to-lon="-106.8687"></div>
 <p class="mapnote">Approximate corridor between Las Vegas and Aspen. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -369,5 +369,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

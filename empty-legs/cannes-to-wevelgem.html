@@ -245,7 +245,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Cannes to Wevelgem route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=1.61%2C41.51%2C8.56%2C52.85&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Cannes" data-from-lat="43.548" data-from-lon="6.9552" data-to="Wevelgem" data-to-lat="50.8189" data-to-lon="3.2096"></div>
 <p class="mapnote">Approximate corridor between Cannes and Wevelgem. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -371,5 +371,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

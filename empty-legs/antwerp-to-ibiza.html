@@ -230,7 +230,7 @@ footer a{color:rgba(255,255,255,.85)}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Antwerp to Ibiza route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-0.23%2C35.42%2C6.06%2C54.64&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Antwerp" data-from-lat="51.1907" data-from-lon="4.4632" data-to="Ibiza" data-to-lat="38.8729" data-to-lon="1.3731"></div>
 <p class="mapnote">Approximate corridor between Antwerp and Ibiza. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -352,5 +352,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

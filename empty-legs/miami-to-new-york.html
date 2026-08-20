@@ -246,7 +246,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Miami to New York route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-81.89%2C21.58%2C-72.46%2C45.07&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Miami" data-from-lat="25.7959" data-from-lon="-80.287" data-to="New York" data-to-lat="40.8501" data-to-lon="-74.0608"></div>
 <p class="mapnote">Approximate corridor between Miami and New York. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -369,5 +369,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

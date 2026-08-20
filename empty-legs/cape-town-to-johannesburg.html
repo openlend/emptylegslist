@@ -244,7 +244,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Cape Town to Johannesburg route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=16.48%2C-36.17%2C30.37%2C-23.95&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Cape Town" data-from-lat="-33.974" data-from-lon="18.6043" data-to="Johannesburg" data-to-lat="-26.1401" data-to-lon="28.2468"></div>
 <p class="mapnote">Approximate corridor between Cape Town and Johannesburg. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -371,5 +371,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

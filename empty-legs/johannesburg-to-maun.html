@@ -230,7 +230,7 @@ footer a{color:rgba(255,255,255,.85)}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Johannesburg to Maun route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=21.83%2C-27.87%2C29.85%2C-18.24&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Johannesburg" data-from-lat="-26.1401" data-from-lon="28.2468" data-to="Maun" data-to-lat="-19.9705" data-to-lon="23.4314"></div>
 <p class="mapnote">Approximate corridor between Johannesburg and Maun. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -351,5 +351,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

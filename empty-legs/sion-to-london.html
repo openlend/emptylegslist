@@ -246,7 +246,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Sion to London route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-1.77%2C44.74%2C8.97%2C52.99&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Sion" data-from-lat="46.2192" data-from-lon="7.3269" data-to="London" data-to-lat="51.5074" data-to-lon="-0.1278"></div>
 <p class="mapnote">Approximate corridor between Sion and London. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -369,5 +369,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

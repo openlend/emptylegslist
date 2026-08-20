@@ -246,7 +246,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Larnaca to Nice route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=1.41%2C32.42%2C39.43%2C46.12&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Larnaca" data-from-lat="34.8751" data-from-lon="33.6249" data-to="Nice" data-to-lat="43.6584" data-to-lon="7.2159"></div>
 <p class="mapnote">Approximate corridor between Larnaca and Nice. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -369,5 +369,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

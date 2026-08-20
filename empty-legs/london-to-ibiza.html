@@ -230,7 +230,7 @@ footer a{color:rgba(255,255,255,.85)}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="London to Ibiza route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-1.73%2C35.34%2C2.97%2C55.05&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="London" data-from-lat="51.5074" data-from-lon="-0.1278" data-to="Ibiza" data-to-lat="38.8729" data-to-lon="1.3731"></div>
 <p class="mapnote">Approximate corridor between London and Ibiza. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -353,5 +353,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>

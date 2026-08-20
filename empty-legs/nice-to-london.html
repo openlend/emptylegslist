@@ -231,7 +231,7 @@ footer a{color:rgba(255,255,255,.85)}
 </ul>
 
 <h2>The route on a map</h2>
-<div class="mapwrap"><div class="mapinner"><iframe title="Nice to London route map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.openstreetmap.org/export/embed.html?bbox=-1.74%2C41.46%2C8.83%2C53.71&amp;layer=mapnik"></iframe></div></div>
+<div class="routemap" data-from="Nice" data-from-lat="43.6584" data-from-lon="7.2159" data-to="London" data-to-lat="51.5074" data-to-lon="-0.1278"></div>
 <p class="mapnote">Approximate corridor between Nice and London. Operators fly the sector direct; the airports each listing uses are shown on the flight itself.</p>
 
 <h2>The airports on this route</h2>
@@ -356,5 +356,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-map.js" defer></script>
 </body>
 </html>
