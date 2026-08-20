@@ -115,6 +115,11 @@ label.f{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:upper
 .clear{display:block;width:100%;text-align:center;margin-top:10px;font-size:12.5px;color:var(--mute);text-decoration:underline;background:none;border:0;cursor:pointer;font-family:inherit}
 
 /* ---------- flight rows ---------- */
+.ov{background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:12px;padding:15px 18px;margin:0 2px 14px}
+.ov b{display:block;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--navy);margin-bottom:7px}
+.ov p{margin:0 0 5px;font-size:14px;color:#3f4c59;line-height:1.6}
+.ov p:last-child{margin-bottom:0}
+.ov em{font-style:normal;font-weight:600;color:var(--navy)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 2px 13px}
 .count{font-size:14px;font-weight:600}
 .count span{color:var(--mute);font-weight:300}
@@ -228,7 +233,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <div class="txt">
     <div class="sub">Empty legs</div>
     <h1>Belfast</h1>
-    <p>One-way repositioning flights to and from Belfast, straight from the charter operators that fly them.</p>
+    <p>Live empty leg flights to and from Belfast, straight from the charter operators that fly them.</p>
     <span class="live"><span class="dot"></span><span id="hero-live">Checking live availability&hellip;</span></span>
   </div>
 </section>
@@ -276,6 +281,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         </select>
       </div>
     </div>
+    <div class="ov" id="ov" style="display:none"></div>
     <div id="rows"><div class="none">Loading live availability…</div></div>
     <button class="more" id="more" hidden>View more flights</button>
     <p style="font-size:12.5px;color:#8a97a5;margin:16px 2px 0" id="stamp"></p>
@@ -412,6 +418,47 @@ function row(x){
    +'</article>';
 }
 
+
+/* A plain-language read of what is actually on the board right now, grouped by
+   aircraft and sector so it says "two Hawker 900XP flights to Nice on the 25th
+   and 26th" rather than making the visitor parse the table. */
+var NUM=["no","one","two","three","four","five","six","seven","eight","nine","ten"];
+function nword(n){return n<NUM.length?NUM[n]:String(n);}
+function dayList(ds){
+  var d=ds.map(function(x){return fdate(x);});
+  var sameMonth=d.every(function(x){return x.m===d[0].m;});
+  var days=d.map(function(x){return x.d;});
+  if(days.length===1) return days[0]+" "+d[0].m;
+  var last=days.pop();
+  return days.join(", ")+" and "+last+(sameMonth?" "+d[0].m:"");
+}
+function overview(list){
+  var host=document.getElementById("ov"); if(!host) return;
+  if(!list.length){host.style.display="none";return;}
+  var g={};
+  list.forEach(function(x){
+    var k=(x.aircraft_type||"~")+"|"+short(x.from_airport)+"|"+short(x.to_airport);
+    (g[k]=g[k]||[]).push(x);
+  });
+  var groups=Object.keys(g).map(function(k){return g[k];})
+    .sort(function(a,b){return b.length-a.length || String(a[0].departure_date).localeCompare(String(b[0].departure_date));});
+  var multi=groups.filter(function(r){return r.length>1;}).slice(0,3);
+  var rows=multi.length?multi:groups.slice(0,3);
+  var out=rows.map(function(r){
+    var ac=r[0].aircraft_type?esc(r[0].aircraft_type):"Aircraft on enquiry";
+    var a=esc(short(r[0].from_airport)), b=esc(short(r[0].to_airport));
+    var when=dayList(r.map(function(x){return x.departure_date;}).sort());
+    var n=r.length;
+    var noun=r[0].aircraft_type?(n>1?" flights":" flight"):(n>1?" legs":" leg");
+    return "<p><em>"+nword(n).charAt(0).toUpperCase()+nword(n).slice(1)+"</em> "+
+      (r[0].aircraft_type?ac:"")+noun+" from "+a+" to "+b+" on "+when+".</p>";
+  });
+  var extra=list.length-rows.reduce(function(s,r){return s+r.length;},0);
+  if(extra>0) out.push('<p style="color:#8a97a5">And '+extra+" more "+(extra===1?"leg":"legs")+" on the board below.</p>");
+  host.innerHTML="<b>On the board right now</b>"+out.join("");
+  host.style.display="";
+}
+
 function paint(){
   var host=document.getElementById("rows");
   document.getElementById("n").textContent=VIEW.length;
@@ -444,7 +491,7 @@ function apply(){
     if(s==="city")return short(a.to_airport).localeCompare(short(b.to_airport));
     return String(a.departure_date).localeCompare(String(b.departure_date));
   });
-  shown=PAGE; paint();
+  shown=PAGE; paint(); overview(VIEW);
 }
 
 function rail(){

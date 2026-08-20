@@ -115,16 +115,32 @@
   st.textContent = css;
   document.head.appendChild(st);
 
+  /* Init defensively. The corridor pages vary in how much they render after
+     their own data arrives, and a single load listener proved unreliable, so
+     run immediately, again on the usual events, and retry a few times for any
+     host that is still empty. */
   function start() {
     var hosts = Array.prototype.slice.call(document.querySelectorAll(".routemap"))
-      .filter(function (h) { return !h.querySelector(".rm-wrap"); });
+      .filter(function (h) { return !h.querySelector(".rm-wrap") && !h.dataset.rmBusy; });
     if (!hosts.length) return;
+    hosts.forEach(function (h) { h.dataset.rmBusy = "1"; });
     load(function (err) {
-      if (err) { hosts.forEach(function (h) { h.style.display = "none"; }); return; }
-      hosts.forEach(draw);
+      hosts.forEach(function (h) {
+        delete h.dataset.rmBusy;
+        if (err) { h.style.display = "none"; return; }
+        if (!h.querySelector(".rm-wrap")) {
+          try { draw(h); } catch (e) { h.style.display = "none"; }
+        }
+      });
     });
   }
 
-  if (document.readyState === "complete") start();
-  else window.addEventListener("load", start);
+  start();
+  document.addEventListener("DOMContentLoaded", start);
+  window.addEventListener("load", start);
+  var tries = 0;
+  var iv = setInterval(function () {
+    start();
+    if (++tries > 8 || document.querySelector(".rm-wrap")) clearInterval(iv);
+  }, 700);
 })();
