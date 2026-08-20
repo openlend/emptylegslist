@@ -93,8 +93,16 @@
     pin(to, host.dataset.to || "To", "rm-b");
 
     var bounds = L.latLngBounds(line);
-    map.fitBounds(bounds, { padding: [48, 48] });
-    setTimeout(function () { map.invalidateSize(); map.fitBounds(bounds, { padding: [48, 48] }); }, 250);
+    /* Fit once the container has a size. Calling fitBounds against a box that
+       has not been laid out yet throws, and that exception was being caught
+       upstream and hiding the finished map. */
+    function fit() {
+      try { map.invalidateSize(); map.fitBounds(bounds, { padding: [48, 48] }); } catch (e) {}
+    }
+    map.setView(bounds.getCenter(), 5);
+    requestAnimationFrame(fit);
+    setTimeout(fit, 250);
+    setTimeout(fit, 900);
   }
 
   var css =
@@ -129,7 +137,10 @@
         delete h.dataset.rmBusy;
         if (err) { h.style.display = "none"; return; }
         if (!h.querySelector(".rm-wrap")) {
-          try { draw(h); } catch (e) { h.style.display = "none"; }
+          /* If draw throws part way, leave what rendered in place rather than
+             hiding it: a half-drawn map is still useful and a later retry can
+             finish the job. Only a total failure to load Leaflet hides it. */
+          try { draw(h); } catch (e) {}
         }
       });
     });

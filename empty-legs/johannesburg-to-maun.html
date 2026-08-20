@@ -39,7 +39,7 @@ body.navlock{overflow:hidden}
     display: flex; gap: 34px; padding: 24px 28px; background: #0b1a2e; border: 1px solid rgba(255,255,255,0.12);
     border-radius: 14px; box-shadow: 0 24px 60px rgba(5,14,26,0.5); opacity: 0; visibility: hidden;
     transition: opacity .18s, transform .18s, visibility 0s linear .45s; }
-  .nitem:hover .mega, .nitem.open .mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); transition: opacity .18s, transform .18s, visibility 0s; }
+  .nitem.open .mega, .nitem:hover .mega { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); transition: opacity .18s, transform .18s, visibility 0s; }
   .mega::before { content: ""; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
   .mcol h4 { margin: 0 0 12px; font-size: 10.5px; letter-spacing: .15em; color: var(--gold); font-weight: 600; text-transform: uppercase; }
   .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
@@ -352,5 +352,6 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
 })();
 </script>
 <script src="/route-map.js" defer></script>
+<script src="/nav-intent.js" defer></script>
 </body>
 </html>
