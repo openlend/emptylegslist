@@ -175,9 +175,12 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:rgba(255,255,255,.75);margin-top:56px;padding:0;font-size:14px;line-height:1.65;font-weight:300}
-#bigfoot .bf-in{max-width:1680px;margin:0 auto;padding:56px 44px 34px;display:grid;grid-template-columns:1.4fr .9fr 1.1fr 1fr .95fr;gap:48px;text-align:left}
+#bigfoot .bf-in{box-sizing:border-box;max-width:1680px;margin:0 auto;padding:56px 44px 34px;display:grid;grid-template-columns:1.2fr 1.75fr 1.15fr .95fr .95fr;gap:44px;text-align:left}
 #bigfoot h4{margin:0 0 14px;font-size:12.5px;letter-spacing:.13em;color:#C9A24C;font-weight:600;text-transform:uppercase}
 #bigfoot nav{display:flex;flex-direction:column;gap:9px}
+#bigfoot h5{margin:0 0 10px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em}
+#bigfoot .bf-wide h5+nav{margin-bottom:20px}
+#bigfoot nav.bf-two{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px}
 #bigfoot a{color:rgba(255,255,255,.78);font-size:14px;line-height:1.5;text-decoration:none;transition:color .15s}
 #bigfoot a:hover{color:#fff}
 #bigfoot .bf-brand img{width:190px;height:auto;display:block;margin-bottom:14px}
@@ -188,7 +191,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 #bigfoot .bf-social a{font-size:13.5px}
 #bigfoot .bf-bottom{border-top:1px solid rgba(255,255,255,.12);padding:20px;text-align:center;font-size:13px;color:rgba(255,255,255,.5)}
 @media(max-width:1280px){#bigfoot .bf-in{padding:52px 28px 30px;gap:36px}}
-@media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}}
+@media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}#bigfoot .bf-wide{grid-column:1/-1}}
 @media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Empty Leg List","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Las Vegas to Aspen empty legs","item":"https://emptylegslist.com/empty-legs/las-vegas-to-aspen"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the Las Vegas to Aspen route produce empty leg flights?","acceptedAnswer":{"@type":"Answer","text":"Aircraft that bring visitors into Las Vegas for a convention or a fight are often needed next in the Colorado mountains, and the hop between the two is barely an hour. Aspen's runway and slot constraints also mean operators plan these repositions in advance, which is why they get listed."}},{"@type":"Question","name":"When do empty legs from Las Vegas to Aspen usually appear?","acceptedAnswer":{"@type":"Answer","text":"Ski season, December to March. The classic pattern: into Aspen full, out empty, and the reverse from Las Vegas. CES and the January conventions. The biggest ramp weeks in Las Vegas push aircraft onward across the region. Aspen summers. The festival and second-home season keeps mountain traffic going long after the snow."}}]}]}</script>
@@ -293,7 +296,6 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
             <div class="eln-grid one">
               <a href="/aircraft/">Compare cabins and range</a>
               <a href="/about">How empty legs work</a>
-              <a href="/quote">Ask for a quote instead</a>
               <a href="/contact">Ask us a question</a>
             </div>
           </div>
@@ -307,7 +309,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 
       <a class="eln-link" href="/for-operators">For operators</a>
       <a class="eln-link" href="/account">My account</a>
-      <a class="eln-cta" href="/quote">Request a quote</a>
+      <a class="eln-cta" href="/#alerts">Get empty leg alerts</a>
     </nav>
 
     <button class="eln-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="eln-drawer">
@@ -402,7 +404,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
       <a href="/account">My account</a>
       <a href="/contact">Contact</a>
     </div>
-    <a class="eln-dcta" href="/quote">Request a quote</a>
+    <a class="eln-dcta" href="/#alerts">Get empty leg alerts</a>
   </div>
 </aside>
 <section class="rhero">
@@ -491,9 +493,10 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
         <a href="https://www.pinterest.com/emptylegslist/empty-legs-list/" rel="me noopener" target="_blank">Pinterest</a>
       </div>
     </div>
-    <div class="bf-col">
+    <div class="bf-col bf-wide">
       <h4>Empty legs by city</h4>
-      <nav>
+      <h5>Europe</h5>
+      <nav class="bf-two">
         <a href="/empty-legs/london">London empty legs</a>
         <a href="/empty-legs/paris">Paris empty legs</a>
         <a href="/empty-legs/nice">Nice empty legs</a>
@@ -513,6 +516,9 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
         <a href="/empty-legs/toulon">Toulon empty legs</a>
         <a href="/empty-legs/birmingham">Birmingham empty legs</a>
         <a href="/empty-legs/belfast">Belfast empty legs</a>
+      </nav>
+      <h5>North America and Africa</h5>
+      <nav class="bf-two">
         <a href="/empty-legs/miami">Miami empty legs</a>
         <a href="/empty-legs/las-vegas">Las Vegas empty legs</a>
         <a href="/empty-legs/toronto">Toronto empty legs</a>
@@ -562,7 +568,8 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
     <div class="bf-col">
       <h4>Company</h4>
       <nav>
-        <a href="/quote">Request a quote</a>
+        <a href="/#listings">Every listing, live</a>
+        <a href="/#alerts">Get empty leg alerts</a>
         <a href="/for-operators">List your empty legs</a>
         <a href="/account">My account</a>
         <a href="/about">About Empty Leg List</a>
