@@ -9,20 +9,7 @@
  *
  * The label moves with transform only, never top or font-size, so the whole
  * travel runs on the compositor and the letters glide instead of reflowing. */
-/* Spacing. Before the labels floated, the gap between two fields came from the
- * label's own margin (label{margin:14px 0 5px} on the static pages). The label
- * now sits inside the field and its margin is zeroed, so the field has to carry
- * the gap itself. Without this, consecutive fields touch: on /for-operators the
- * measured gaps ran 12px, 0, 12px, 0, 12px, 0, because only the rows inside the
- * two-column grid were spaced and the grids themselves were not.
- *
- * A field that is already a grid or flex item is left alone and its container
- * carries the gap instead, so the two never stack up. 12px matches the gap those
- * grids already use. */
-.ffl { position: relative; margin-bottom: 12px; }
-.ffl:last-child { margin-bottom: 0; }
-:is(.two, .row, .fields, .grid):has(> .ffl) > .ffl { margin-bottom: 0; }
-:is(.two, .row, .fields, .grid):has(> .ffl) { margin-bottom: 12px; }
+.ffl { position: relative; }
 .ffl-wrap { display: block; }
 
 .ffl > label {

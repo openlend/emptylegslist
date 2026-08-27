@@ -124,12 +124,7 @@ header.elnav .eln-all {
 
 /* ---------- burger ---------- */
 .eln-burger {
-  /* Reset margin and padding explicitly. Pages carry their own button styling,
-     and on /for-operators a page rule was putting margin-top:16px and padding:14px
-     on it, which pushed the burger 8px below centre so it looked like it was
-     falling out of the header. Namespacing the selectors is not enough when the
-     page rule sets a property this file never mentions. */
-  display: none; margin: 0 0 0 auto; padding: 0;
+  display: none; margin-left: auto;
   width: 46px; height: 46px; border: 0; border-radius: 12px;
   background: rgba(255, 255, 255, 0.09); cursor: pointer;
   position: relative; flex: 0 0 auto;
@@ -148,14 +143,6 @@ body.eln-open .eln-burger span:nth-child(2) { opacity: 0; transform: scaleX(0.4)
 body.eln-open .eln-burger span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
 
 /* ---------- mobile drawer ---------- */
-/* Colour every link in the drawer here rather than relying on the page.
-   City pages set a{color:inherit} so the drawer inherited white and looked
-   right; the homepage sets no such rule, so its drawer links fell through to
-   the browser default and rendered blue and purple. The header must not depend
-   on what a page happens to declare. */
-.eln-drawer a { color: rgba(255, 255, 255, 0.92); text-decoration: none; }
-.eln-drawer button { margin: 0; }
-
 .eln-scrim {
   position: fixed; inset: 0; z-index: 205;
   background: rgba(9, 22, 40, 0.55);
@@ -201,13 +188,13 @@ body.eln-open .eln-drawer { transform: translateX(0); }
 }
 .eln-panel > div > div { padding-bottom: 12px; }
 .eln-dlinks { display: flex; flex-direction: column; gap: 2px; margin-top: 18px; }
-.eln-dlinks a { padding: 13px 2px; font-size: 16px; font-weight: 500; line-height: 1.35; color: rgba(255, 255, 255, 0.92); }
-.eln-drawer .eln-dcta {
-  display: block; margin: 20px 0 0; text-align: center;
+.eln-dlinks a { padding: 13px 2px; font-size: 16px; font-weight: 500; }
+.eln-dcta {
+  display: block; margin-top: 20px; text-align: center;
   background: var(--eln-gold); color: var(--eln-navy);
   padding: 15px 22px; border-radius: 999px; font-size: 16px; font-weight: 600;
 }
-.eln-drawer .eln-dcta:active { transform: scale(0.98); }
+.eln-dcta:active { transform: scale(0.98); }
 
 /* Sections cascade in behind the drawer once it has started moving. */
 body.eln-open .eln-drawer .eln-acc,
