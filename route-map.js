@@ -72,6 +72,12 @@
     wrap.className = "rm-wrap";
     host.appendChild(wrap);
 
+    /* The one-line note that follows the map is written into the page, not here.
+       Give it the map's width so the two line up instead of the text running the
+       full column while the map sits at 520px. */
+    var cap = host.nextElementSibling;
+    if (cap && cap.tagName === "P") cap.className += " rm-cap";
+
     var map = L.map(wrap, { zoomControl: true, scrollWheelZoom: false, attributionControl: true });
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 12,
@@ -96,8 +102,15 @@
     /* Fit once the container has a size. Calling fitBounds against a box that
        has not been laid out yet throws, and that exception was being caught
        upstream and hiding the finished map. */
+    /* One level wider than the tight fit. The corridor reads better with the
+       surrounding countries visible, and the two pins stop crowding the edges. */
     function fit() {
-      try { map.invalidateSize(); map.fitBounds(bounds, { padding: [48, 48] }); } catch (e) {}
+      try {
+        map.invalidateSize();
+        map.fitBounds(bounds, { padding: [56, 56] });
+        var z = map.getZoom();
+        if (z > 3) map.setZoom(z - 1);
+      } catch (e) {}
     }
     map.setView(bounds.getCenter(), 5);
     requestAnimationFrame(fit);
@@ -113,14 +126,15 @@
          so the frame stays sane on a desktop; on a phone it fills the column. */
       "background:#eef3f7;aspect-ratio:4/5;width:100%;max-width:520px;margin:0 auto;z-index:0}" +
     ".rm-wrap .leaflet-container{height:100%;width:100%;background:#eef3f7;font:inherit}" +
-    ".rm-pin{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;" +
-      "background:rgba(255,255,255,.95);border:1px solid #dde5ed;border-radius:999px;padding:3px 10px;" +
-      "font:500 12px/1 Raleway,system-ui,sans-serif;color:#16222e;" +
-      "box-shadow:0 2px 8px rgba(13,31,54,.18);transform:translate(-50%,-50%)}" +
-    ".rm-pin i{width:6px;height:6px;border-radius:999px;background:#C9A24C;display:block;flex:0 0 auto}" +
+    ".rm-cap{max-width:520px;margin:14px auto 0;font-size:13px;line-height:1.6;color:#5b6b7c}" +
+    ".rm-pin{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;" +
+      "background:rgba(255,255,255,.96);border:1px solid #dde5ed;border-radius:999px;padding:5px 13px;" +
+      "font:600 15px/1 Raleway,system-ui,sans-serif;color:#16222e;" +
+      "box-shadow:0 3px 10px rgba(13,31,54,.22);transform:translate(-50%,-50%)}" +
+    ".rm-pin i{width:7px;height:7px;border-radius:999px;background:#C9A24C;display:block;flex:0 0 auto}" +
     ".rm-pin.rm-b{background:#0D1F36;border-color:#0D1F36;color:#fff;font-weight:600}" +
     ".rm-pin.rm-b i{background:#C9A24C}" +
-    "@media(max-width:560px){.rm-wrap{max-width:none}.rm-pin{font-size:11px;padding:2px 8px}}";
+    "@media(max-width:560px){.rm-wrap{max-width:none}.rm-cap{max-width:none}.rm-pin{font-size:13.5px;padding:4px 11px}}";
 
   var st = document.createElement("style");
   st.textContent = css;

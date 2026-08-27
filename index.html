@@ -580,8 +580,8 @@
 
   <div id="filters" class="card">
     <div class="fgrid">
-      <div class="f"><label for="f-from">From</label><input type="text" id="f-from" list="dl-from" placeholder="Any departure" autocomplete="off"><datalist id="dl-from"></datalist></div>
-      <div class="f"><label for="f-to">To</label><input type="text" id="f-to" list="dl-to" placeholder="Any destination" autocomplete="off"><datalist id="dl-to"></datalist></div>
+      <div class="f"><label for="f-from">From</label><input type="text" id="f-from" list="dl-from" placeholder="City, country or code" autocomplete="off"><datalist id="dl-from"></datalist></div>
+      <div class="f"><label for="f-to">To</label><input type="text" id="f-to" list="dl-to" placeholder="City, country or code" autocomplete="off"><datalist id="dl-to"></datalist></div>
       <div class="f"><label for="f-date">Earliest date</label><input type="date" id="f-date"></div>
       <div class="f"><label for="f-ac">Aircraft</label><select id="f-ac"><option value="">Any aircraft</option></select></div>
       <div class="f"><label for="f-seats">Seats</label><select id="f-seats"><option value="">Any</option><option value="4">4 or more</option><option value="6">6 or more</option><option value="8">8 or more</option><option value="9">9 or more</option><option value="12">12 or more</option></select></div>
@@ -971,8 +971,18 @@
     var pr=document.getElementById("f-price").value;
 
     var out=ALL.filter(function(l){
-      if(f && ((l.from_airport||"")+" "+(l.from_iata||"")).toLowerCase().indexOf(f)===-1) return false;
-      if(t && ((l.to_airport||"")+" "+(l.to_iata||"")).toLowerCase().indexOf(t)===-1) return false;
+      /* A country name, a city or an airport code all work here. EL_PLACE
+         resolves a country exactly; anything else falls through to the plain
+         text match this filter has always done. */
+      var P = window.EL_PLACE;
+      if(f){
+        if(P){ if(!P.match(f, l.from_airport, l.from_iata)) return false; }
+        else if(((l.from_airport||"")+" "+(l.from_iata||"")).toLowerCase().indexOf(f)===-1) return false;
+      }
+      if(t){
+        if(P){ if(!P.match(t, l.to_airport, l.to_iata)) return false; }
+        else if(((l.to_airport||"")+" "+(l.to_iata||"")).toLowerCase().indexOf(t)===-1) return false;
+      }
       if(d && l.departure_date && l.departure_date < d) return false;
       if(ac && (l.aircraft_type||"") !== ac) return false;
       if(seats && !(l.seats && l.seats>=seats)) return false;
@@ -1074,6 +1084,18 @@
       o.textContent=MONFULL[Number(m.slice(5,7))-1]+" "+m.slice(0,4)+" ("+months[m]+")"; ms.appendChild(o); });
     function dl(id,obj){ var d=document.getElementById(id); Object.keys(obj).sort().forEach(function(c){ var o=document.createElement("option"); o.value=c; d.appendChild(o); }); }
     dl("dl-from",froms); dl("dl-to",tos);
+    /* countries first in the list, labelled, so it is obvious you can type one */
+    (function(){
+      var P=window.EL_PLACE; if(!P) return;
+      [["dl-from","from_airport"],["dl-to","to_airport"]].forEach(function(pair){
+        var d=document.getElementById(pair[0]); if(!d) return;
+        P.countriesPresent(ALL,pair[1]).forEach(function(c){
+          var o=document.createElement("option");
+          o.value=c.name; o.label="Country \u00b7 "+c.n+" flight"+(c.n===1?"":"s");
+          d.insertBefore(o,d.firstChild);
+        });
+      });
+    })();
     if(newest){ var h=Math.round((Date.now()-new Date(newest).getTime())/3600000);
       document.getElementById("lupd").textContent = h<1 ? "Updated just now" : (h<24 ? "Updated "+h+"h ago" : "Updated "+Math.round(h/24)+"d ago"); }
 
@@ -2026,6 +2048,7 @@ setTimeout(boot,900);setTimeout(boot,2500);setTimeout(boot,5000);
     }, true);
   })();
   </script>
+<script src="/place-index.js" defer></script>
 <script src="/nav-intent.js" defer></script>
 </body>
 </html>
