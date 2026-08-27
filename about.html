@@ -22,7 +22,7 @@ a{color:inherit}
 header{background:var(--navy);color:#fff;padding:16px 20px}
 header .in{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
 header a.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:600;letter-spacing:.12em;font-size:13px}
-header img{height:38px}
+header img{height:40px;width:auto}
 header a.back{color:var(--gold);text-decoration:none;font-size:13.5px;white-space:nowrap}
 .wrap{max-width:820px;margin:0 auto;padding:0 20px 70px}
 h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(27px,5vw,38px);line-height:1.15;margin:34px 0 10px}
@@ -50,12 +50,29 @@ footer .in{max-width:820px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px 18
 footer a{color:rgba(255,255,255,.85);text-decoration:none}
 footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:640px){.wrap{padding:0 16px 60px}}
+
+/* ---------- shared site footer (footer.py) ---------- */
+#bigfoot{background:#0D1F36;color:rgba(255,255,255,.75);margin-top:50px;padding:0;font-size:13px;line-height:1.65;font-weight:300}
+#bigfoot .bf-in{max-width:1120px;margin:0 auto;padding:46px 20px 30px;display:grid;grid-template-columns:1.5fr .85fr 1.05fr 1fr .9fr;gap:34px;text-align:left}
+#bigfoot h4{margin:0 0 12px;font-size:11.5px;letter-spacing:.14em;color:#C9A24C;font-weight:600;text-transform:uppercase}
+#bigfoot nav{display:flex;flex-direction:column;gap:7px}
+#bigfoot a{color:rgba(255,255,255,.72);font-size:12.5px;line-height:1.45;text-decoration:none;transition:color .15s}
+#bigfoot a:hover{color:#fff}
+#bigfoot .bf-brand img{width:190px;height:auto;display:block;margin-bottom:14px}
+#bigfoot .bf-brand p{margin:0 0 10px;font-size:12.5px;line-height:1.65;max-width:300px}
+#bigfoot .bf-brand p a{color:#C9A24C}
+#bigfoot .bf-legal{color:rgba(255,255,255,.45);font-size:11.5px}
+#bigfoot .bf-social{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:16px;max-width:300px}
+#bigfoot .bf-social a{font-size:12px}
+#bigfoot .bf-bottom{border-top:1px solid rgba(255,255,255,.12);padding:16px 20px;text-align:center;font-size:11.5px;color:rgba(255,255,255,.4)}
+@media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr}#bigfoot .bf-brand{grid-column:1/-1}}
+@media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
 </style>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-<header><div class="in"><a class="brand" href="/"><img src="/brand/icon-512.png" alt="Empty Leg List"> EMPTY LEG LIST</a><a class="back" href="/">All empty legs &rarr;</a></div></header>
+<header><div class="in"><a class="brand" href="/" aria-label="Empty Leg List home"><img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224"></a><a class="back" href="/">All empty legs &rarr;</a></div></header>
 <div class="wrap">
 <h1>About Empty Leg List</h1>
 <p class="lede">Empty Leg List collects empty leg flights that charter operators publish on their own websites and puts them in one place, so you can see what is actually flying without opening twenty tabs.</p>
@@ -94,6 +111,107 @@ Trading as Empty Leg List &middot; emptylegslist.com</p>
 
 <p style="margin-top:26px"><a class="btn" href="/">See live empty legs</a></p>
 </div>
-<footer><div class="in"><span>&copy; 2026 Publishing Office SRL</span><span class="nav"><a href="/">Home</a><a href="/aircraft/">Aircraft</a><a href="/about">About</a><a href="/contact">Contact</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a><a href="/cookies">Cookies</a></span></div></footer>
+<footer id="bigfoot">
+  <div class="bf-in">
+    <div class="bf-col bf-brand">
+      <img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224" loading="lazy" decoding="async">
+      <p>Live empty leg flights from charter operators worldwide, updated three times a day. Operated by Publishing Office SRL, the team behind <a href="https://theflyingengineer.com/">The Flying Engineer</a>.</p>
+      <p class="bf-legal">A listing service only. Not a broker, not an operator, not a party to any booking. No commission.</p>
+      <div class="bf-social">
+        <a href="https://www.facebook.com/1301142429746418" rel="me noopener" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/emptylegslist/" rel="me noopener" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/channel/UCUCbHB5iaHVJfdxzXWqQ66Q" rel="me noopener" target="_blank">YouTube</a>
+        <a href="https://www.tiktok.com/@emptylegslist" rel="me noopener" target="_blank">TikTok</a>
+        <a href="https://x.com/EmptyLegsList" rel="me noopener" target="_blank">X</a>
+        <a href="https://www.linkedin.com/company/empty-legs-list/" rel="me noopener" target="_blank">LinkedIn</a>
+        <a href="https://www.threads.net/emptylegslist" rel="me noopener" target="_blank">Threads</a>
+        <a href="https://www.pinterest.com/emptylegslist/empty-legs-list/" rel="me noopener" target="_blank">Pinterest</a>
+      </div>
+    </div>
+    <div class="bf-col">
+      <h4>Empty legs by city</h4>
+      <nav>
+        <a href="/empty-legs/london">London empty legs</a>
+        <a href="/empty-legs/paris">Paris empty legs</a>
+        <a href="/empty-legs/nice">Nice empty legs</a>
+        <a href="/empty-legs/cannes">Cannes empty legs</a>
+        <a href="/empty-legs/ibiza">Ibiza empty legs</a>
+        <a href="/empty-legs/palma">Palma empty legs</a>
+        <a href="/empty-legs/malaga">Malaga empty legs</a>
+        <a href="/empty-legs/athens">Athens empty legs</a>
+        <a href="/empty-legs/olbia">Olbia empty legs</a>
+        <a href="/empty-legs/larnaca">Larnaca empty legs</a>
+        <a href="/empty-legs/amsterdam">Amsterdam empty legs</a>
+        <a href="/empty-legs/brussels">Brussels empty legs</a>
+        <a href="/empty-legs/antwerp">Antwerp empty legs</a>
+        <a href="/empty-legs/wevelgem">Wevelgem empty legs</a>
+        <a href="/empty-legs/vienna">Vienna empty legs</a>
+        <a href="/empty-legs/salzburg">Salzburg empty legs</a>
+        <a href="/empty-legs/toulon">Toulon empty legs</a>
+        <a href="/empty-legs/birmingham">Birmingham empty legs</a>
+        <a href="/empty-legs/belfast">Belfast empty legs</a>
+        <a href="/empty-legs/miami">Miami empty legs</a>
+        <a href="/empty-legs/las-vegas">Las Vegas empty legs</a>
+        <a href="/empty-legs/toronto">Toronto empty legs</a>
+        <a href="/empty-legs/cape-town">Cape Town empty legs</a>
+        <a href="/empty-legs/johannesburg">Johannesburg empty legs</a>
+      </nav>
+    </div>
+    <div class="bf-col">
+      <h4>Popular routes</h4>
+      <nav>
+        <a href="/empty-legs/london-to-nice">London → Nice</a>
+        <a href="/empty-legs/london-to-paris">London → Paris</a>
+        <a href="/empty-legs/london-to-ibiza">London → Ibiza</a>
+        <a href="/empty-legs/london-to-dublin">London → Dublin</a>
+        <a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a>
+        <a href="/empty-legs/london-to-athens">London → Athens</a>
+        <a href="/empty-legs/london-to-malaga">London → Malaga</a>
+        <a href="/empty-legs/nice-to-london">Nice → London</a>
+        <a href="/empty-legs/paris-to-london">Paris → London</a>
+        <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
+        <a href="/empty-legs/geneva-to-london">Geneva → London</a>
+        <a href="/empty-legs/vienna-to-london">Vienna → London</a>
+        <a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a>
+        <a href="/empty-legs/wevelgem-to-malaga">Wevelgem → Malaga</a>
+        <a href="/empty-legs/johannesburg-to-cape-town">Johannesburg → Cape Town</a>
+        <a href="/empty-legs/miami-to-new-york">Miami → New York</a>
+      </nav>
+    </div>
+    <div class="bf-col">
+      <h4>Aircraft types</h4>
+      <nav>
+        <a href="/aircraft/">All aircraft types</a>
+        <a href="/aircraft/citation-mustang">Citation Mustang</a>
+        <a href="/aircraft/citation-m2">Citation M2</a>
+        <a href="/aircraft/citation-xls">Citation XLS</a>
+        <a href="/aircraft/citation-latitude">Citation Latitude</a>
+        <a href="/aircraft/citation-longitude">Citation Longitude</a>
+        <a href="/aircraft/challenger-350">Challenger 350</a>
+        <a href="/aircraft/legacy-500">Legacy 500</a>
+        <a href="/aircraft/legacy-650">Legacy 650</a>
+        <a href="/aircraft/praetor-600">Praetor 600</a>
+        <a href="/aircraft/falcon-7x">Falcon 7X</a>
+        <a href="/aircraft/gulfstream-g550">Gulfstream G550</a>
+        <a href="/aircraft/global-6000">Global 6000</a>
+      </nav>
+    </div>
+    <div class="bf-col">
+      <h4>Company</h4>
+      <nav>
+        <a href="/quote">Request a quote</a>
+        <a href="/for-operators">List your empty legs</a>
+        <a href="/account">My account</a>
+        <a href="/about">About Empty Leg List</a>
+        <a href="/contact">Contact</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/cookies">Cookies</a>
+        <a href="https://theflyingengineer.com/">The Flying Engineer</a>
+      </nav>
+    </div>
+  </div>
+  <div class="bf-bottom">&copy; 2026 Publishing Office SRL &middot; emptylegslist.com &middot; a listing service, not a broker</div>
+</footer>
 </body>
 </html>
