@@ -825,7 +825,7 @@ function row(x){
      +'<div class="pt"><b>'+esc(short(x.to_airport))+'</b><span>'+esc(x.to_iata||"")+'</span></div></div>'
    +'<div class="ac">'+(x.aircraft_type?esc(x.aircraft_type):"Aircraft on enquiry")+'<span>'+seats+'</span></div>'
    +'<div class="pricecell"><b>'+price+'</b><br>'
-     +'<a class="enquire" href="/quote?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")
+     +'<a class="enquire" href="/enquire?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")
      +'&date='+encodeURIComponent(x.departure_date||"")+'&leg='+encodeURIComponent(x.id||"")
      +'&legtext='+encodeURIComponent(legtext)+'">Enquire</a></div>'
    +'</article>';

@@ -538,7 +538,7 @@ footer a{color:rgba(255,255,255,.85)}
 </div>
 <h2>What you are looking at</h2>
 <p>An empty leg exists because of a flight someone else already paid for. A jet flies a client from <a href="/empty-legs/nice-to-london">Nice to London</a>, then has to get back, or it has to reach London to start the next charter. That return or flight is empty, the operator is paying for it either way, so it goes on their site at a fraction of the normal charter price. London to Nice is one of the routes where this happens often, because the traffic between the two is heavy and rarely balanced in both directions.</p>
-<p>The practical trade is simple. You give up control of the date and often the exact time, and in exchange you fly private for a lot less. If your plans are firm to the hour, a normal <a href="/quote">charter quote</a> is the honest answer. If you can move by a day, this page is worth checking regularly.</p>
+<p>The practical trade is simple. You give up control of the date and often the exact time, and in exchange you fly private for a lot less. If your plans are firm to the hour, a normal charter booking is the honest answer. If you can move by a day, this page is worth checking regularly.</p>
 <h3>How to use the list</h3>
 <p>Every flight below is pulled from the operator's own page, with the aircraft, seat count and price as they publish it. Where an operator does not publish a price we say so instead of inventing a number. When you enquire, you talk to the operator, not to a broker adding a margin.</p>
 <h3>Before you book</h3>
@@ -736,7 +736,7 @@ footer a{color:rgba(255,255,255,.85)}
        return '<div class="row"><div class="route">'+esc(x.from_airport)+(x.from_iata?'<span class="iata">'+esc(x.from_iata)+'</span>':"")+' &rarr; '+esc(x.to_airport)+(x.to_iata?'<span class="iata">'+esc(x.to_iata)+'</span>':"")+'</div>'
         +'<div class="meta">'+d(x.departure_date)+' &middot; '+ac+seats+time+'</div>'
         +'<div class="price">'+price+'</div>'
-        +'<div class="cta"><a class="btn" href="/quote?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'">Enquire</a><span class="meta">Listed by the operator</span></div></div>';
+        +'<div class="cta"><a class="btn" href="/enquire?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'">Enquire</a><span class="meta">Listed by the operator</span></div></div>';
      }).join("");
    });
 

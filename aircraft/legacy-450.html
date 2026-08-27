@@ -605,7 +605,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
        return '<div class="row"><div class="route">'+esc(x.from_airport)+' &rarr; '+esc(x.to_airport)+'</div>'
         +'<div class="meta">'+d(x.departure_date)+seats+time+'</div>'
         +'<div class="price">'+price+'</div>'
-        +'<div class="cta"><a class="btn" href="/quote?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'&leg='+encodeURIComponent(x.id||"")+'&legtext='+encodeURIComponent(legtext)+'">Enquire</a><span class="meta">As listed by the operator</span></div></div>';
+        +'<div class="cta"><a class="btn" href="/enquire?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'&leg='+encodeURIComponent(x.id||"")+'&legtext='+encodeURIComponent(legtext)+'">Enquire</a><span class="meta">As listed by the operator</span></div></div>';
      }).join("");
    })
    .catch(function(){document.getElementById("updnote").textContent="Live availability could not be loaded right now.";});

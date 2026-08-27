@@ -694,7 +694,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>What to know before you enquire</h2>
   <p>An empty leg exists because of the paid charter around it, so it can be sold or moved without notice. Every listing here is recorded from what the operator published, with the date we last saw it. Treat it as a strong indication rather than a guarantee, and confirm with the operator before planning around it.</p>
-  <p>Empty Leg List is a listing service. We are not a broker, not an operator, and not party to any booking, and we take no commission. Your enquiry goes to the operator covering the route, who confirms availability and final price with you directly. If nothing matches, <a href="/quote">request a charter quote</a> and we forward it to operators flying that corridor.</p>
+  <p>Empty Leg List is a listing service. We are not a broker, not an operator, and not party to any booking, and we take no commission. Your enquiry goes to the operator covering the route, who confirms availability and final price with you directly. If nothing matches, <a href="/#alerts">set a route alert</a> and we email you when a leg on that corridor is listed.</p>
 
   <h2>Where these flights go</h2>
   <p id="corr">Working out the busiest corridors&hellip;</p>
@@ -917,7 +917,7 @@ function row(x){
      +'<div class="pt"><b>'+esc(short(x.to_airport))+'</b><span>'+esc(x.to_iata||"")+'</span></div></div>'
    +'<div class="ac">'+(x.aircraft_type?esc(x.aircraft_type):"Aircraft on enquiry")+'<span>'+seats+'</span></div>'
    +'<div class="pricecell"><b>'+price+'</b><br>'
-     +'<a class="enquire" href="/quote?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")
+     +'<a class="enquire" href="/enquire?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")
      +'&date='+encodeURIComponent(x.departure_date||"")+'&leg='+encodeURIComponent(x.id||"")
      +'&legtext='+encodeURIComponent(legtext)+'">Enquire</a></div>'
    +'</article>';
