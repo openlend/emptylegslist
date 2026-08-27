@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operations | Empty Leg List</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/brand/icon-512.png">
+<meta name="theme-color" content="#0D1F36">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1F36;--gold:#C9A24C;--ink:#16222e;--mute:#8a97a5;--line:#e6ebf1}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f9;font-family:Raleway,system-ui,sans-serif;color:var(--ink);font-weight:300;line-height:1.6}
+header{background:var(--navy);color:#fff;padding:16px 20px}
+header .in{max-width:1240px;margin:0 auto;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+header b{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:20px}
+header span{color:rgba(255,255,255,.6);font-size:13px}
+header a{color:var(--gold);font-size:13px;margin-left:auto}
+.wrap{max-width:1240px;margin:0 auto;padding:22px 20px 70px}
+.gate{max-width:380px;margin:80px auto;background:#fff;border-radius:16px;padding:26px;box-shadow:0 2px 10px rgba(14,35,56,.08)}
+.gate h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:24px;margin:0 0 4px}
+.gate p{color:var(--mute);font-size:13.5px;margin:0 0 16px}
+input,select{font:inherit;padding:11px 13px;border:1px solid var(--line);border-radius:10px;width:100%;background:#fff}
+button{font:inherit;font-weight:600;background:var(--gold);color:#241d00;border:none;border-radius:10px;padding:11px 20px;cursor:pointer}
+button.ghost{background:#fff;border:1px solid var(--line);color:#46525f;font-weight:400;padding:5px 11px;font-size:12.5px}
+.err{color:#b3261e;font-size:13px;margin-top:10px}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 20px}
+.stats div{background:#fff;border-radius:12px;padding:12px 16px;min-width:130px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
+.stats b{display:block;font-size:22px;font-weight:600;color:var(--navy)}
+.stats span{font-size:12px;color:var(--mute)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.tabs button{background:#fff;border:1px solid var(--line);color:#46525f;font-weight:400;border-radius:999px;padding:8px 15px;font-size:13.5px}
+.tabs button.on{background:var(--navy);border-color:var(--navy);color:#fff;font-weight:500}
+.tabs button i{font-style:normal;color:var(--gold);margin-left:6px;font-weight:600}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(14,35,56,.07);font-size:13.5px}
+th{background:#f7f9fb;text-align:left;padding:10px 12px;font-weight:600;white-space:nowrap}
+td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top}
+tr.done{opacity:.5}
+td.w{max-width:420px}
+.when{white-space:nowrap;color:#5d6b79;font-size:12.5px}
+.tag{display:inline-block;background:#eef3f7;border-radius:999px;padding:2px 9px;font-size:11.5px;color:#46525f}
+.empty{background:#fff;border-radius:12px;padding:22px;color:#5d6b79}
+a{color:var(--navy)}
+@media(max-width:720px){table,thead,tbody,tr,td,th{display:block}thead{display:none}
+  tr{border-top:1px solid var(--line);padding:10px 12px}td{border:none;padding:2px 0}}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <b>Empty Leg List</b><span>Operations</span>
+  <span id="stamp"></span>
+  <a href="#" id="out" hidden>Lock</a>
+</div></header>
+
+<div id="gate" class="gate">
+  <h1>Operations</h1>
+  <p>Private page. It shows names and email addresses, so it is not linked from anywhere and search engines are told to skip it.</p>
+  <form id="f"><input id="pw" type="password" placeholder="Password" autocomplete="current-password" autofocus>
+  <div style="margin-top:12px"><button type="submit">Open</button></div></form>
+  <div class="err" id="gerr"></div>
+</div>
+
+<div class="wrap" id="app" hidden>
+  <div class="stats" id="stats"></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="view"></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var FN = "https://wscowiseslaovmmfuzyv.supabase.co/functions/v1/ops-data";
+  var KEY = "el-ops-pw";      // the password stays in this browser, never in the URL
+  var DATA = null, TAB = "leads";
+
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function when(t){
+    if(!t) return "";
+    var d=new Date(t), mins=Math.round((Date.now()-d)/60000);
+    var ago = mins<90 ? mins+" min ago" : (mins<2880 ? Math.round(mins/60)+"h ago" : Math.round(mins/1440)+"d ago");
+    return d.toISOString().slice(0,16).replace("T"," ")+" &middot; "+ago;
+  }
+  function pw(){ try { return sessionStorage.getItem(KEY) || localStorage.getItem(KEY) || ""; } catch(e){ return ""; } }
+
+  async function call(extra){
+    var body = Object.assign({ password: pw() }, extra||{});
+    var r = await fetch(FN, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body) });
+    if(r.status===401) throw new Error("wrong password");
+    if(!r.ok) throw new Error("server said "+r.status);
+    return r.json();
+  }
+
+  var TABS = [
+    ["leads","Quote requests"], ["messages","Contact messages"],
+    ["members","Members"], ["alerts","Route alerts"], ["sent","Alerts sent"]
+  ];
+
+  function open(l){ return (l.status||"").toLowerCase()==="done" ? "done" : ""; }
+
+  function rows(){
+    var d = DATA[TAB] || [];
+    if(!d.length) return '<div class="empty">Nothing here yet.</div>';
+    if(TAB==="leads") return table(
+      ["When","Who","Route","Date","Pax / aircraft","Notes",""],
+      d.map(function(l){ return ['<tr class="'+open(l)+'">',
+        '<td class="when">'+when(l.created_at)+'</td>',
+        '<td><b>'+esc(l.full_name)+'</b><br><a href="mailto:'+esc(l.email)+'">'+esc(l.email)+'</a>'+(l.phone?'<br>'+esc(l.phone):'')+'</td>',
+        '<td>'+esc(l.from_location)+' &rarr; '+esc(l.to_location)+'</td>',
+        '<td class="when">'+esc(l.departure_date||"")+'</td>',
+        '<td>'+esc(l.passengers||"")+(l.aircraft?' &middot; '+esc(l.aircraft):'')+'</td>',
+        '<td class="w">'+esc(l.notes||"")+'</td>',
+        '<td>'+mark("charter_leads",l)+'</td></tr>'].join(""); }).join(""));
+    if(TAB==="messages") return table(
+      ["When","Who","Subject","Message",""],
+      d.map(function(m){ return ['<tr class="'+open(m)+'">',
+        '<td class="when">'+when(m.created_at)+'</td>',
+        '<td><b>'+esc(m.name)+'</b><br><a href="mailto:'+esc(m.email)+'">'+esc(m.email)+'</a></td>',
+        '<td>'+esc(m.subject||"")+'</td>',
+        '<td class="w">'+esc(m.message||"")+'</td>',
+        '<td>'+mark("contact_messages",m)+'</td></tr>'].join(""); }).join(""));
+    if(TAB==="members") return table(
+      ["Joined","Who","Company","Phone","Last seen","Source"],
+      d.map(function(m){ return '<tr>'+
+        '<td class="when">'+when(m.created_at)+'</td>'+
+        '<td><b>'+esc(m.full_name||"")+'</b><br><a href="mailto:'+esc(m.email)+'">'+esc(m.email)+'</a>'+
+          (m.unsubscribed_at?' <span class="tag">unsubscribed</span>':'')+'</td>'+
+        '<td>'+esc(m.company||"")+'</td><td>'+esc(m.phone||"")+'</td>'+
+        '<td class="when">'+when(m.last_seen_at)+'</td>'+
+        '<td><span class="tag">'+esc(m.source||"")+'</span></td></tr>'; }).join(""));
+    if(TAB==="alerts") return table(
+      ["Asked","Email","Watching","Last sent"],
+      d.map(function(a){ return '<tr>'+
+        '<td class="when">'+when(a.created_at)+'</td>'+
+        '<td><a href="mailto:'+esc(a.email)+'">'+esc(a.email)+'</a>'+(a.unsubscribed_at?' <span class="tag">stopped</span>':'')+'</td>'+
+        '<td>'+esc(a.from_interest||"any")+' &rarr; '+esc(a.to_interest||"any")+'</td>'+
+        '<td class="when">'+when(a.last_sent_at)+'</td></tr>'; }).join(""));
+    return table(["Sent","Email","Flight"],
+      d.map(function(s){ return '<tr><td class="when">'+when(s.sent_at)+'</td>'+
+        '<td>'+esc(s.email)+'</td><td>'+esc(s.leg_key||"")+'</td></tr>'; }).join(""));
+  }
+  function table(head, body){
+    return '<table><thead><tr>'+head.map(function(h){return '<th>'+h+'</th>';}).join("")+
+      '</tr></thead><tbody>'+body+'</tbody></table>';
+  }
+  function mark(tbl, row){
+    var done = (row.status||"").toLowerCase()==="done";
+    return '<button class="ghost" data-t="'+tbl+'" data-id="'+esc(row.id)+'" data-s="'+(done?"":"done")+'">'+
+      (done?"Reopen":"Mark done")+'</button>';
+  }
+
+  function paint(){
+    document.getElementById("stats").innerHTML =
+      '<div><b>'+(DATA.board.upcoming_legs==null?"?":DATA.board.upcoming_legs)+'</b><span>flights on the board</span></div>'+
+      '<div><b>'+DATA.leads.filter(function(l){return (l.status||"").toLowerCase()!=="done";}).length+'</b><span>quote requests open</span></div>'+
+      '<div><b>'+DATA.messages.filter(function(m){return (m.status||"").toLowerCase()!=="done";}).length+'</b><span>messages open</span></div>'+
+      '<div><b>'+DATA.members.length+'</b><span>members</span></div>'+
+      '<div><b>'+DATA.alerts.filter(function(a){return !a.unsubscribed_at;}).length+'</b><span>live route alerts</span></div>';
+    document.getElementById("stamp").innerHTML = "board last refreshed "+when(DATA.board.last_refreshed);
+    document.getElementById("tabs").innerHTML = TABS.map(function(t){
+      return '<button data-tab="'+t[0]+'" class="'+(TAB===t[0]?"on":"")+'">'+t[1]+' <i>'+(DATA[t[0]]||[]).length+'</i></button>';
+    }).join("");
+    document.getElementById("view").innerHTML = rows();
+  }
+
+  async function load(){
+    DATA = await call();
+    document.getElementById("gate").hidden = true;
+    document.getElementById("app").hidden = false;
+    document.getElementById("out").hidden = false;
+    paint();
+  }
+
+  document.getElementById("f").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("pw").value.trim();
+    if(!v) return;
+    try { localStorage.setItem(KEY, v); } catch(err){ try { sessionStorage.setItem(KEY, v); } catch(e2){} }
+    try { await load(); }
+    catch(err){
+      try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); } catch(e3){}
+      document.getElementById("gerr").textContent = err.message;
+    }
+  });
+
+  document.getElementById("out").addEventListener("click", function(e){
+    e.preventDefault();
+    try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); } catch(err){}
+    location.reload();
+  });
+
+  document.addEventListener("click", async function(e){
+    var t = e.target.closest ? e.target.closest("[data-tab]") : null;
+    if(t){ TAB = t.getAttribute("data-tab"); paint(); return; }
+    var b = e.target.closest ? e.target.closest("[data-t]") : null;
+    if(!b) return;
+    b.disabled = true;
+    try {
+      await call({ action:"status", table:b.getAttribute("data-t"), id:b.getAttribute("data-id"), status:b.getAttribute("data-s") });
+      DATA = await call(); paint();
+    } catch(err){ b.disabled = false; alert(err.message); }
+  });
+
+  if(pw()) load().catch(function(){ /* stale password, show the gate */ });
+})();
+</script>
+</body>
+</html>
