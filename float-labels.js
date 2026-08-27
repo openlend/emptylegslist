@@ -128,6 +128,21 @@
     var padL = parseFloat(cs.paddingLeft);
     if (padL > 14) label.style.left = (padL - (flat ? 0 : 4)) + "px";
 
+    /* The label travels between two measured points, written as whole transforms
+       so the animation never touches layout. Resting: centred in the field, or
+       on the first line of a textarea. Floated: centred on the top border, or
+       seated 11px inside the top of a flat field. */
+    var measure = function () {
+      var lh = label.offsetHeight || 18;
+      var fh = el.offsetHeight || 48;
+      var rest = el.tagName === "TEXTAREA" ? 18 : (fh / 2 - lh / 2);
+      var up = (flat ? 11 : 0) - lh / 2;
+      host.style.setProperty("--ffl-rest", "translateY(" + Math.round(rest) + "px)");
+      host.style.setProperty("--ffl-up", "translateY(" + Math.round(up) + "px) scale(0.8)");
+    };
+    measure();
+    window.addEventListener("resize", measure);
+
     var ph = el.getAttribute("placeholder");
     if (ph) el.setAttribute("data-ph", ph);
 
@@ -141,8 +156,8 @@
     sync();
     fixIcons(host, el);
     /* Browsers restore values and autofill after load without firing input. */
-    setTimeout(function () { sync(); fixIcons(host, el); }, 80);
-    setTimeout(function () { sync(); fixIcons(host, el); }, 500);
+    setTimeout(function () { sync(); measure(); fixIcons(host, el); }, 80);
+    setTimeout(function () { sync(); measure(); fixIcons(host, el); }, 500);
   }
 
   function run() {

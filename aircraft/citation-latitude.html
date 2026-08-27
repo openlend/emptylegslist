@@ -53,27 +53,236 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:640px){.wrap{padding:0 16px 60px}#rows .row{border-radius:0;margin-left:-16px;margin-right:-16px}}
 
 /* ---------- shared site footer (footer.py) ---------- */
-#bigfoot{background:#0D1F36;color:rgba(255,255,255,.75);margin-top:50px;padding:0;font-size:13px;line-height:1.65;font-weight:300}
-#bigfoot .bf-in{max-width:1120px;margin:0 auto;padding:46px 20px 30px;display:grid;grid-template-columns:1.5fr .85fr 1.05fr 1fr .9fr;gap:34px;text-align:left}
-#bigfoot h4{margin:0 0 12px;font-size:11.5px;letter-spacing:.14em;color:#C9A24C;font-weight:600;text-transform:uppercase}
-#bigfoot nav{display:flex;flex-direction:column;gap:7px}
-#bigfoot a{color:rgba(255,255,255,.72);font-size:12.5px;line-height:1.45;text-decoration:none;transition:color .15s}
+#bigfoot{background:#0D1F36;color:rgba(255,255,255,.75);margin-top:56px;padding:0;font-size:14px;line-height:1.65;font-weight:300}
+#bigfoot .bf-in{max-width:1680px;margin:0 auto;padding:56px 44px 34px;display:grid;grid-template-columns:1.4fr .9fr 1.1fr 1fr .95fr;gap:48px;text-align:left}
+#bigfoot h4{margin:0 0 14px;font-size:12.5px;letter-spacing:.13em;color:#C9A24C;font-weight:600;text-transform:uppercase}
+#bigfoot nav{display:flex;flex-direction:column;gap:9px}
+#bigfoot a{color:rgba(255,255,255,.78);font-size:14px;line-height:1.5;text-decoration:none;transition:color .15s}
 #bigfoot a:hover{color:#fff}
 #bigfoot .bf-brand img{width:190px;height:auto;display:block;margin-bottom:14px}
-#bigfoot .bf-brand p{margin:0 0 10px;font-size:12.5px;line-height:1.65;max-width:300px}
+#bigfoot .bf-brand p{margin:0 0 12px;font-size:14px;line-height:1.7;max-width:330px}
 #bigfoot .bf-brand p a{color:#C9A24C}
-#bigfoot .bf-legal{color:rgba(255,255,255,.45);font-size:11.5px}
-#bigfoot .bf-social{display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:16px;max-width:300px}
-#bigfoot .bf-social a{font-size:12px}
-#bigfoot .bf-bottom{border-top:1px solid rgba(255,255,255,.12);padding:16px 20px;text-align:center;font-size:11.5px;color:rgba(255,255,255,.4)}
-@media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr}#bigfoot .bf-brand{grid-column:1/-1}}
+#bigfoot .bf-legal{color:rgba(255,255,255,.5);font-size:12.5px}
+#bigfoot .bf-social{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:18px;max-width:330px}
+#bigfoot .bf-social a{font-size:13.5px}
+#bigfoot .bf-bottom{border-top:1px solid rgba(255,255,255,.12);padding:20px;text-align:center;font-size:13px;color:rgba(255,255,255,.5)}
+@media(max-width:1280px){#bigfoot .bf-in{padding:52px 28px 30px;gap:36px}}
+@media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}}
 @media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
 </style>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
+  <link rel="stylesheet" href="/site-nav.css">
+  <script src="/site-nav.js" defer></script>
 </head>
 <body>
-<header><div class="in"><a class="brand" href="/" aria-label="Empty Leg List home"><img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224"></a><a class="back" href="/aircraft/">All aircraft &rarr;</a></div></header>
+<header class="elnav">
+  <div class="eln-bar">
+    <a class="eln-logo" href="/" aria-label="Empty Leg List home">
+      <img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224">
+    </a>
+
+    <nav class="eln-links" aria-label="Main">
+      <div class="eln-item">
+        <button class="eln-trig" type="button" aria-expanded="false">Destinations <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="eln-mega">
+          <div>
+            <h4>Empty legs by city</h4>
+            <div class="eln-grid">
+            <a href="/empty-legs/london">London</a>
+            <a href="/empty-legs/paris">Paris</a>
+            <a href="/empty-legs/nice">Nice</a>
+            <a href="/empty-legs/cannes">Cannes</a>
+            <a href="/empty-legs/ibiza">Ibiza</a>
+            <a href="/empty-legs/palma">Palma</a>
+            <a href="/empty-legs/malaga">Malaga</a>
+            <a href="/empty-legs/athens">Athens</a>
+            <a href="/empty-legs/olbia">Olbia</a>
+            <a href="/empty-legs/larnaca">Larnaca</a>
+            <a href="/empty-legs/amsterdam">Amsterdam</a>
+            <a href="/empty-legs/brussels">Brussels</a>
+            <a href="/empty-legs/antwerp">Antwerp</a>
+            <a href="/empty-legs/wevelgem">Wevelgem</a>
+            <a href="/empty-legs/vienna">Vienna</a>
+            <a href="/empty-legs/salzburg">Salzburg</a>
+            <a href="/empty-legs/toulon">Toulon</a>
+            <a href="/empty-legs/birmingham">Birmingham</a>
+            <a href="/empty-legs/belfast">Belfast</a>
+            <a href="/empty-legs/miami">Miami</a>
+            <a href="/empty-legs/las-vegas">Las Vegas</a>
+            <a href="/empty-legs/toronto">Toronto</a>
+            <a href="/empty-legs/cape-town">Cape Town</a>
+            <a href="/empty-legs/johannesburg">Johannesburg</a>
+            </div>
+          </div>
+          <div>
+            <h4>Popular routes</h4>
+            <div class="eln-grid">
+            <a href="/empty-legs/london-to-nice">London → Nice</a>
+            <a href="/empty-legs/london-to-paris">London → Paris</a>
+            <a href="/empty-legs/london-to-ibiza">London → Ibiza</a>
+            <a href="/empty-legs/london-to-dublin">London → Dublin</a>
+            <a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a>
+            <a href="/empty-legs/london-to-athens">London → Athens</a>
+            <a href="/empty-legs/nice-to-london">Nice → London</a>
+            <a href="/empty-legs/paris-to-london">Paris → London</a>
+            <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
+            <a href="/empty-legs/geneva-to-london">Geneva → London</a>
+            <a href="/empty-legs/vienna-to-london">Vienna → London</a>
+            <a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a>
+            <a href="/empty-legs/wevelgem-to-malaga">Wevelgem → Malaga</a>
+            <a href="/empty-legs/miami-to-new-york">Miami → New York</a>
+            </div>
+            <a class="eln-all" href="/#listings">Every listing, live <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="eln-promo">
+            <h5>Empty legs find you</h5>
+            <p>Pick a route and we email you the moment an operator publishes a leg on it.</p>
+            <a href="/#alerts">Set up an alert</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="eln-item">
+        <button class="eln-trig" type="button" aria-expanded="false">Aircraft <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="eln-mega">
+          <div>
+            <h4>Types on the list</h4>
+            <div class="eln-grid">
+            <a href="/aircraft/citation-mustang">Citation Mustang</a>
+            <a href="/aircraft/citation-m2">Citation M2</a>
+            <a href="/aircraft/citation-xls">Citation XLS</a>
+            <a href="/aircraft/citation-latitude">Citation Latitude</a>
+            <a href="/aircraft/citation-longitude">Citation Longitude</a>
+            <a href="/aircraft/citation-cj2">Citation CJ2</a>
+            <a href="/aircraft/challenger-350">Challenger 350</a>
+            <a href="/aircraft/challenger-604">Challenger 604</a>
+            <a href="/aircraft/legacy-500">Legacy 500</a>
+            <a href="/aircraft/legacy-650">Legacy 650</a>
+            <a href="/aircraft/praetor-600">Praetor 600</a>
+            <a href="/aircraft/falcon-7x">Falcon 7X</a>
+            <a href="/aircraft/gulfstream-g550">Gulfstream G550</a>
+            <a href="/aircraft/global-6000">Global 6000</a>
+            </div>
+            <a class="eln-all" href="/aircraft/">All aircraft types <span aria-hidden="true">→</span></a>
+          </div>
+          <div>
+            <h4>Working out what you need</h4>
+            <div class="eln-grid one">
+              <a href="/aircraft/">Compare cabins and range</a>
+              <a href="/about">How empty legs work</a>
+              <a href="/quote">Ask for a quote instead</a>
+              <a href="/contact">Ask us a question</a>
+            </div>
+          </div>
+          <div class="eln-promo">
+            <h5>Whole aircraft, one price</h5>
+            <p>Every price on the list is the operator's own figure for the whole aircraft, never per seat.</p>
+            <a href="/#listings">See what is live</a>
+          </div>
+        </div>
+      </div>
+
+      <a class="eln-link" href="/for-operators">For operators</a>
+      <a class="eln-link" href="/account">My account</a>
+      <a class="eln-cta" href="/quote">Request a quote</a>
+    </nav>
+
+    <button class="eln-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="eln-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="eln-scrim"></div>
+<aside class="eln-drawer" id="eln-drawer" aria-label="Menu">
+  <div class="eln-drawer-in">
+    <div class="eln-dtop">
+      <img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224">
+      <button class="eln-dclose" type="button" aria-label="Close menu">&times;</button>
+    </div>
+
+    <div class="eln-accs">
+    <div class="eln-acc">
+      <button type="button" aria-expanded="false">Empty legs by city <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="eln-panel"><div><div>
+        <a href="/empty-legs/london">London</a>
+        <a href="/empty-legs/paris">Paris</a>
+        <a href="/empty-legs/nice">Nice</a>
+        <a href="/empty-legs/cannes">Cannes</a>
+        <a href="/empty-legs/ibiza">Ibiza</a>
+        <a href="/empty-legs/palma">Palma</a>
+        <a href="/empty-legs/malaga">Malaga</a>
+        <a href="/empty-legs/athens">Athens</a>
+        <a href="/empty-legs/olbia">Olbia</a>
+        <a href="/empty-legs/larnaca">Larnaca</a>
+        <a href="/empty-legs/amsterdam">Amsterdam</a>
+        <a href="/empty-legs/brussels">Brussels</a>
+        <a href="/empty-legs/antwerp">Antwerp</a>
+        <a href="/empty-legs/wevelgem">Wevelgem</a>
+        <a href="/empty-legs/vienna">Vienna</a>
+        <a href="/empty-legs/salzburg">Salzburg</a>
+        <a href="/empty-legs/toulon">Toulon</a>
+        <a href="/empty-legs/birmingham">Birmingham</a>
+        <a href="/empty-legs/belfast">Belfast</a>
+        <a href="/empty-legs/miami">Miami</a>
+        <a href="/empty-legs/las-vegas">Las Vegas</a>
+        <a href="/empty-legs/toronto">Toronto</a>
+        <a href="/empty-legs/cape-town">Cape Town</a>
+        <a href="/empty-legs/johannesburg">Johannesburg</a>
+      </div></div></div>
+    </div>
+    <div class="eln-acc">
+      <button type="button" aria-expanded="false">Popular routes <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="eln-panel"><div><div>
+        <a href="/empty-legs/london-to-nice">London → Nice</a>
+        <a href="/empty-legs/london-to-paris">London → Paris</a>
+        <a href="/empty-legs/london-to-ibiza">London → Ibiza</a>
+        <a href="/empty-legs/london-to-dublin">London → Dublin</a>
+        <a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a>
+        <a href="/empty-legs/london-to-athens">London → Athens</a>
+        <a href="/empty-legs/nice-to-london">Nice → London</a>
+        <a href="/empty-legs/paris-to-london">Paris → London</a>
+        <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
+        <a href="/empty-legs/geneva-to-london">Geneva → London</a>
+        <a href="/empty-legs/vienna-to-london">Vienna → London</a>
+        <a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a>
+        <a href="/empty-legs/wevelgem-to-malaga">Wevelgem → Malaga</a>
+        <a href="/empty-legs/miami-to-new-york">Miami → New York</a>
+      </div></div></div>
+    </div>
+    <div class="eln-acc">
+      <button type="button" aria-expanded="false">Aircraft types <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="eln-panel"><div><div>
+        <a href="/aircraft/citation-mustang">Citation Mustang</a>
+        <a href="/aircraft/citation-m2">Citation M2</a>
+        <a href="/aircraft/citation-xls">Citation XLS</a>
+        <a href="/aircraft/citation-latitude">Citation Latitude</a>
+        <a href="/aircraft/citation-longitude">Citation Longitude</a>
+        <a href="/aircraft/citation-cj2">Citation CJ2</a>
+        <a href="/aircraft/challenger-350">Challenger 350</a>
+        <a href="/aircraft/challenger-604">Challenger 604</a>
+        <a href="/aircraft/legacy-500">Legacy 500</a>
+        <a href="/aircraft/legacy-650">Legacy 650</a>
+        <a href="/aircraft/praetor-600">Praetor 600</a>
+        <a href="/aircraft/falcon-7x">Falcon 7X</a>
+        <a href="/aircraft/gulfstream-g550">Gulfstream G550</a>
+        <a href="/aircraft/global-6000">Global 6000</a>
+        <a href="/aircraft/">All aircraft types</a>
+      </div></div></div>
+    </div>
+    </div>
+
+    <div class="eln-dlinks">
+      <a href="/#listings">Every listing, live</a>
+      <a href="/#alerts">Get route alerts</a>
+      <a href="/for-operators">For operators</a>
+      <a href="/about">How it works</a>
+      <a href="/account">My account</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a class="eln-dcta" href="/quote">Request a quote</a>
+  </div>
+</aside>
 <div class="wrap">
 <h1>Cessna Citation Latitude empty legs</h1>
 <p class="lede">Live empty leg flights currently listed on the Cessna Citation Latitude, with the seats and the price each operator published, plus what the type is actually good for.</p>
@@ -238,7 +447,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
       </nav>
     </div>
   </div>
-  <div class="bf-bottom">&copy; 2026 Publishing Office SRL &middot; emptylegslist.com &middot; a listing service, not a broker</div>
+  <div class="bf-bottom">&copy; 2026 Empty Legs List &middot; emptylegslist.com &middot; a listing service, not a broker.</div>
 </footer>
 <script>
 (function(){
