@@ -82,14 +82,7 @@
       cap.style.marginBottom = "";
     }
 
-        /* Touch: a one finger drag must scroll the page, not pan the map. Leaflet's
-       default grabs the gesture, so on a phone the map swallows the scroll and the
-       page appears stuck. dragging is switched off on coarse pointers and tap is
-       disabled with it; pinch to zoom still works, and the zoom buttons still work.
-       Reported from a real phone on 27 Aug 2026. */
-    var coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-    var map = L.map(wrap, { zoomControl: true, scrollWheelZoom: false,
-                            dragging: !coarse, tap: false, attributionControl: true });
+    var map = L.map(wrap, { zoomControl: true, scrollWheelZoom: false, attributionControl: true });
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 12,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
