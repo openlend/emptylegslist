@@ -1,0 +1,64 @@
+/* City board on a phone.
+ *
+ * The filter panel used to fill the whole first screen, so you scrolled past
+ * every control before you saw a single flight. On a phone it is now collapsed
+ * behind one button that says how many filters are on, and the flight cards are
+ * four short lines instead of six loose ones.
+ *
+ * Nothing changes above 860px.
+ */
+.bm-toggle { display: none; }
+
+@media (max-width: 860px) {
+  .bm-toggle {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    width: 100%; margin: 0 0 12px; padding: 14px 16px;
+    background: #fff; border: 1px solid var(--line, #e7edf3); border-radius: 12px;
+    font: inherit; font-size: 15px; font-weight: 600; color: var(--navy, #0D1F36);
+    cursor: pointer; text-align: left;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .bm-toggle:active { border-color: var(--gold, #C9A24C); }
+  .bm-toggle .bm-right { display: flex; align-items: center; gap: 9px; }
+  .bm-toggle .bm-n {
+    min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px;
+    background: var(--gold, #C9A24C); color: #241d00;
+    font-size: 12px; font-weight: 700; line-height: 22px; text-align: center;
+  }
+  .bm-toggle .bm-n[hidden] { display: none; }
+  .bm-toggle svg { transition: transform .22s cubic-bezier(.23,1,.32,1); opacity: .55; }
+  .bm-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+  .panel.bm-hide { display: none; }
+  .panel { margin-bottom: 14px; }
+
+  /* four lines: date, route, aircraft, then price and the button together */
+  .flight {
+    grid-template-columns: 1fr auto;
+    gap: 3px 10px;
+    padding: 14px 15px;
+    margin-bottom: 9px;
+  }
+  .flight .when { grid-column: 1 / -1; text-align: left; }
+  .flight .when b {
+    font-size: 11.5px; font-weight: 600; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--mute, #8a97a5);
+  }
+  .flight .leg { grid-column: 1 / -1; gap: 9px; }
+  .flight .pt b { font-size: 16px; }
+  .flight .pt span { display: none; }
+  .flight .ac {
+    grid-column: 1 / -1; white-space: normal; font-size: 12.5px;
+    color: var(--mute, #8a97a5); margin-top: 1px;
+  }
+  .flight .ac span { display: inline; }
+  .flight .ac span::before { content: "\00a0\00b7\00a0"; }
+  .flight .pricecell {
+    grid-column: 1 / -1; text-align: left; margin-top: 8px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .flight .pricecell br { display: none; }
+  .flight .pricecell b { font-size: 18px; }
+  .flight .enquire { margin-top: 0; padding: 10px 18px; font-size: 12px; }
+  .flight .tag { margin-top: 0; margin-left: 8px; }
+}
