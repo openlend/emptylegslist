@@ -79,3 +79,18 @@
 @media (max-width: 860px) {
   .ov { margin-top: 16px; font-size: 13.5px; }
 }
+
+/* The hero was exactly as tall as its photograph, min(46vw, 420px), while the
+ * words inside it are absolutely positioned. On a phone the text block is
+ * taller than 46vw, so it overflowed and the availability pill finished flush
+ * against the bottom edge with no air under it.
+ *
+ * On a phone the picture now fills whatever height the words need, instead of
+ * the words having to fit the picture. */
+@media (max-width: 860px) {
+  .hero { overflow: hidden; }
+  .hero img { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero .txt { position: relative; inset: auto; padding: 30px 20px 34px; }
+  .hero p { margin-bottom: 18px; }
+  .hero .live { align-self: flex-start; }
+}
