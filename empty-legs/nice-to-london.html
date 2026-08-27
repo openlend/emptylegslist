@@ -290,14 +290,14 @@ footer a{color:rgba(255,255,255,.85)}
      document.getElementById("s-from").textContent=fromCity.length;
      document.getElementById("s-to").textContent=toCity.length;
      (function(){
-       var pool=onRoute.length?onRoute:fromCity.concat(toCity), newest=null;
+       var pool=all, newest=null;
        pool.forEach(function(x){ var p=x.published_at||x.collected_at; if(p&&(!newest||p>newest)) newest=p; });
        var el=document.getElementById("s-upd"), note=document.getElementById("updnote");
        if(!newest){ if(note) note.textContent="This route is rechecked three times a day."; return; }
        var t=new Date(newest), mins=Math.round((new Date()-t)/60000);
        var human=mins<90?(mins+" min ago"):(mins<2880?(Math.round(mins/60)+"h ago"):(Math.round(mins/1440)+"d ago"));
        if(el) el.textContent=human;
-       if(note) note.textContent="Prices and availability on this route were last checked "+human+" ("+t.toISOString().slice(0,16).replace("T"," ")+" UTC). We recheck three times a day.";
+       if(note) note.textContent="Every listing on this page was last refreshed "+human+" ("+t.toISOString().slice(0,16).replace("T"," ")+" UTC). We recheck three times a day.";
      })();
      var host=document.getElementById("rows");
      if(!onRoute.length){
