@@ -10,7 +10,7 @@
 <meta property="og:description" content="Empty leg flights to and from Antwerp, listed by the charter operators that fly them. Live private jet availability for Belgium, prices as listed.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emptylegslist.com/empty-legs/antwerp">
-<meta property="og:image" content="https://emptylegslist.com/brand/logo-lockup-dark.png">
+<meta property="og:image" content="https://emptylegslist.com/brand/heroes/antwerp-empty-legs-private-jet.jpg">
 <meta property="og:image:alt" content="Antwerp Empty Legs">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/brand/icon-512.png">
@@ -228,8 +228,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   </div>
 </header>
 
-<section class="hero nohero">
-  
+<section class="hero">
+  <img src="/brand/heroes/antwerp-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="The Grote Markt in Antwerp, guild houses around the square">
   <div class="txt">
     <div class="sub">Empty legs</div>
     <h1>Antwerp</h1>
@@ -385,7 +385,7 @@ var CITY_PIC={"London":"london","Wevelgem":"wevelgem","Paris":"paris","Toronto":
 
 function esc(s){var d=document.createElement("div");d.textContent=(s==null?"":String(s));return d.innerHTML;}
 function fdate(x){try{var p=String(x).split("-");return {d:p[2],m:MON[Number(p[1])-1],y:p[0]};}catch(e){return {d:"",m:"",y:""};}}
-function hit(v){v=String(v||"").toLowerCase();for(var i=0;i<KEYS.length;i++){if(v.indexOf(KEYS[i])!==-1)return true;}return false;}
+function elN(s){return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}function elW(v,t){var s=elN(v),n=elN(t);if(!n)return false;var i=s.indexOf(n);while(i!==-1){if(i===0||!/[a-z0-9]/.test(s.charAt(i-1)))return true;i=s.indexOf(n,i+1);}return false;}function hit(v){for(var i=0;i<KEYS.length;i++){if(elW(v,KEYS[i]))return true;}return false;}
 function ago(t){var m=Math.round((new Date()-t)/60000);if(m<90)return m+" min ago";if(m<2880)return Math.round(m/60)+"h ago";return Math.round(m/1440)+"d ago";}
 function short(s){return String(s||"").replace(/,\s*[A-Z]{2}$/,"").replace(/\s*\(.*\)\s*$/,"").trim();}
 function cityKey(s){var c=short(s);var m=c.toLowerCase().match(/^(london|paris|milan|new york)\b/);
@@ -478,7 +478,7 @@ function apply(){
     var out=hit(x.from_airport), inn=hit(x.to_airport);
     if(dir==="out"&&!out)return false;
     if(dir==="in"&&!inn)return false;
-    if(other){var o=(out?x.to_airport:x.from_airport)||"";if(String(o).toLowerCase().indexOf(other)===-1)return false;}
+    if(other){var o=(out?x.to_airport:x.from_airport)||"";if(!elW(o,other))return false;}
     if(from&&String(x.departure_date)<from)return false;
     if(seats&&!(x.seats>=seats))return false;
     if(ponly&&!x.price_note)return false;

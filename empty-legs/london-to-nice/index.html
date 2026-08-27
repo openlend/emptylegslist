@@ -10,6 +10,9 @@
 <meta property="og:description" content="One way empty legs from London to Nice, straight from charter operators.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emptylegslist.com/empty-legs/london-to-nice/">
+<meta property="og:image" content="https://emptylegslist.com/brand/routes/london-to-nice-empty-legs.jpg">
+<meta property="og:image:alt" content="London to Nice empty legs">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/brand/favicon.ico" sizes="any">
 <meta name="theme-color" content="#0D1F36">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,6 +160,12 @@ footer a{color:rgba(255,255,255,.85)}
     th:nth-child(1), td:nth-child(1) { width: 58px; }
     th:nth-child(4), td:nth-child(4) { width: 74px; white-space: nowrap; text-align: right; }
   }
+
+.rhero{position:relative;isolation:isolate;background:#0D1F36;margin:0 0 4px}
+.rhero img{width:100%;height:min(30vw,300px);object-fit:cover;object-position:50% 45%;display:block}
+.rhero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,22,40,.92) 0%,rgba(9,22,40,.70) 38%,rgba(9,22,40,.10) 72%,rgba(9,22,40,0) 100%)}
+.rhero .rin{position:absolute;inset:0;z-index:1;max-width:960px;margin:0 auto;padding:0 20px;display:flex;flex-direction:column;justify-content:center}
+.rhero .rk{color:#C9A24C;letter-spacing:.2em;font-size:11.5px;text-transform:uppercase;font-weight:600}
 </style>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
@@ -192,6 +201,10 @@ footer a{color:rgba(255,255,255,.85)}
     </nav>
   </div>
 </header>
+<section class="rhero">
+  <img src="/brand/routes/london-to-nice-empty-legs.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="The port at Nice under a clouded sky, on the London to Nice empty leg route">
+  <div class="rin"><div class="rk">Empty legs</div></div>
+</section>
 <div class="wrap">
 <h1>Empty legs from London to Nice</h1>
 <p class="lede">Live empty leg flights on this route, exactly as the operators list them. Prices are the operator's own, not a marked up quote, and you enquire with them directly.</p>
@@ -201,6 +214,7 @@ footer a{color:rgba(255,255,255,.85)}
 <h2>Recently listed on this corridor</h2>
 <p class="meta" style="margin:-4px 0 12px">Both directions, newest first, up to 20 flights. These are the actual legs operators have published between London and the Cote d'Azur, with the price exactly as they listed it.</p>
 <div id="hist"></div>
+<section id="route-videos" data-route="london-to-nice" hidden></section>
 <div class="alert">
   <h2>Tell me when this route appears</h2>
   <p>London to Nice empty legs show up with days of notice, not weeks. Leave your email and we watch both directions for you, London to Nice and Nice to London, and send you nothing else.</p>
@@ -214,7 +228,7 @@ footer a{color:rgba(255,255,255,.85)}
 
 <h2>The route on a map</h2>
 <div class="routemap" data-from="London" data-from-lat="51.5074" data-from-lon="-0.1278" data-to="Nice" data-to-lat="43.6584" data-to-lon="7.2159"></div>
-<p class="meta" style="margin-top:-12px;margin-bottom:22px">Roughly 1h 45m in the air, about 1,000 km. Nice sits under two hours from most London business airports, which is why the aircraft repositions so often.</p>
+<p class="meta" style="margin-top:-12px;margin-bottom:22px">Roughly 1h 45m in the air, about 1,000 km (<a href="https://www.eurocontrol.int/" target="_blank" rel="noopener nofollow">Eurocontrol</a> is the authority for European route data). Nice sits under two hours from most London business airports, which is why the aircraft repositions so often.</p>
 
 <h2>The airports on this route</h2>
 <div class="airports">
@@ -226,17 +240,17 @@ footer a{color:rgba(255,255,255,.85)}
   <a href="https://www.cannes.aeroport.fr/" target="_blank" rel="noopener nofollow">Cannes Mandelieu CEQ</a>
 </div>
 <h2>What you are looking at</h2>
-<p>An empty leg exists because of a flight someone else already paid for. A jet flies a client from Nice to London, then has to get back, or it has to reach London to start the next charter. That return or flight is empty, the operator is paying for it either way, so it goes on their site at a fraction of the normal charter price. London to Nice is one of the routes where this happens often, because the traffic between the two is heavy and rarely balanced in both directions.</p>
-<p>The practical trade is simple. You give up control of the date and often the exact time, and in exchange you fly private for a lot less. If your plans are firm to the hour, a normal charter quote is the honest answer. If you can move by a day, this page is worth checking regularly.</p>
+<p>An empty leg exists because of a flight someone else already paid for. A jet flies a client from <a href="/empty-legs/nice-to-london">Nice to London</a>, then has to get back, or it has to reach London to start the next charter. That return or flight is empty, the operator is paying for it either way, so it goes on their site at a fraction of the normal charter price. London to Nice is one of the routes where this happens often, because the traffic between the two is heavy and rarely balanced in both directions.</p>
+<p>The practical trade is simple. You give up control of the date and often the exact time, and in exchange you fly private for a lot less. If your plans are firm to the hour, a normal <a href="/quote">charter quote</a> is the honest answer. If you can move by a day, this page is worth checking regularly.</p>
 <h3>How to use the list</h3>
 <p>Every flight below is pulled from the operator's own page, with the aircraft, seat count and price as they publish it. Where an operator does not publish a price we say so instead of inventing a number. When you enquire, you talk to the operator, not to a broker adding a margin.</p>
 <h3>Before you book</h3>
-<p>Check three things with the operator: whether the departure time can still shift, what happens if the paid leg that created this empty leg is cancelled, and which airport you are actually flying into. London means Luton, Stansted, Farnborough or Biggin Hill depending on the aircraft, and Nice is usually Cote d'Azur, a short drive from Monaco and Cannes.</p>
+<p>Check three things with the operator: whether the departure time can still shift, what happens if the paid leg that created this empty leg is cancelled, and which airport you are actually flying into. London means Luton, Stansted, Farnborough or Biggin Hill depending on the aircraft, and Nice is usually Cote d'Azur, a short drive from Monaco and <a href="/empty-legs/cannes">Cannes</a>.</p>
 <h2>Common questions</h2>
 <h3>How far ahead do these appear?</h3>
 <p>Usually days, sometimes two or three weeks. The operator only knows a leg is empty once the paid flight around it is confirmed, which is why the list changes daily and why an alert beats a bookmark.</p>
 <h3>Can I change the route slightly?</h3>
-<p>Sometimes. An operator to Nice may agree to depart from a different London airport, or to drop you at Cannes Mandelieu. It costs nothing to ask when you enquire.</p>
+<p>Sometimes. An operator to <a href="/empty-legs/nice">Nice</a> may agree to depart from a different <a href="/empty-legs/london">London</a> airport, or to drop you at Cannes Mandelieu. It costs nothing to ask when you enquire.</p>
 <p style="margin-top:26px"><a class="btn" href="/">See all empty legs</a></p>
 </div>
 <footer><div class="in"><span>&copy; 2026 Empty Leg List</span><span><a href="/">Home</a> &nbsp; <a href="/quote">Request a quote</a></span></div></footer>
@@ -250,7 +264,7 @@ footer a{color:rgba(255,255,255,.85)}
   fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
    .then(function(r){return r.ok?r.json():[];})
    .then(function(all){
-     function has(v,t){ return String(v||"").toLowerCase().indexOf(t)!==-1; }
+     function elN(s){return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}function elW(v,t){var s=elN(v),n=elN(t);if(!n)return false;var i=s.indexOf(n);while(i!==-1){if(i===0||!/[a-z0-9]/.test(s.charAt(i-1)))return true;i=s.indexOf(n,i+1);}return false;}function has(v,t){ return elW(v,t); }
      var onRoute=all.filter(function(x){ return has(x.from_airport,FROM) && has(x.to_airport,TO); });
      var fromCity=all.filter(function(x){ return has(x.from_airport,FROM); });
      var toCity=all.filter(function(x){ return has(x.to_airport,TO); });
@@ -294,7 +308,7 @@ footer a{color:rgba(255,255,255,.85)}
     fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
       .then(function(r){return r.ok?r.json():[];})
       .then(function(all){
-        function has(v,t){ return String(v||"").toLowerCase().indexOf(t)!==-1; }
+        function elN(s){return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}function elW(v,t){var s=elN(v),n=elN(t);if(!n)return false;var i=s.indexOf(n);while(i!==-1){if(i===0||!/[a-z0-9]/.test(s.charAt(i-1)))return true;i=s.indexOf(n,i+1);}return false;}function has(v,t){ return elW(v,t); }
         var corridor=all.filter(function(x){
           var a=has(x.from_airport,"london")||has(x.from_airport,"luton")||has(x.from_airport,"stansted")||has(x.from_airport,"farnborough")||has(x.from_airport,"biggin");
           var b=has(x.to_airport,"nice")||has(x.to_airport,"cannes");
@@ -351,6 +365,7 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
 })();
 </script>
+<script src="/route-videos.js" defer></script>
 <script src="/nav-intent.js" defer></script>
 </body>
 </html>

@@ -108,7 +108,10 @@
   var css =
     ".routemap{margin:10px 0 8px}" +
     ".rm-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid #e4eaf0;" +
-      "background:#eef3f7;height:400px;z-index:0}" +
+      /* 4:5 portrait. Most of these corridors run north to south, so a tall frame
+         holds both cities with far less empty sea than a wide one. Width is capped
+         so the frame stays sane on a desktop; on a phone it fills the column. */
+      "background:#eef3f7;aspect-ratio:4/5;width:100%;max-width:520px;margin:0 auto;z-index:0}" +
     ".rm-wrap .leaflet-container{height:100%;width:100%;background:#eef3f7;font:inherit}" +
     ".rm-pin{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;" +
       "background:rgba(255,255,255,.95);border:1px solid #dde5ed;border-radius:999px;padding:3px 10px;" +
@@ -117,7 +120,7 @@
     ".rm-pin i{width:6px;height:6px;border-radius:999px;background:#C9A24C;display:block;flex:0 0 auto}" +
     ".rm-pin.rm-b{background:#0D1F36;border-color:#0D1F36;color:#fff;font-weight:600}" +
     ".rm-pin.rm-b i{background:#C9A24C}" +
-    "@media(max-width:560px){.rm-wrap{height:300px}.rm-pin{font-size:11px;padding:2px 8px}}";
+    "@media(max-width:560px){.rm-wrap{max-width:none}.rm-pin{font-size:11px;padding:2px 8px}}";
 
   var st = document.createElement("style");
   st.textContent = css;

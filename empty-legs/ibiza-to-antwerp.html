@@ -8,6 +8,8 @@
 <meta name="description" content="Empty leg flights from Ibiza to Antwerp, listed by the charter operators that fly them. Live availability, prices as listed, enquire directly.">
 <meta property="og:title" content="Ibiza to Antwerp empty legs">
 <meta property="og:description" content="One way empty legs from Ibiza to Antwerp, straight from charter operators.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://emptylegslist.com/brand/routes/ibiza-to-antwerp-empty-legs.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emptylegslist.com/empty-legs/ibiza-to-antwerp">
 <link rel="icon" href="/brand/favicon.ico" sizes="any">
@@ -222,6 +224,7 @@ footer a{color:rgba(255,255,255,.85)}
 <h2>Recently listed on this corridor</h2>
 <p class="meta" style="margin:-4px 0 12px">Both directions, up to 20 flights, with the price exactly as the operator published it.</p>
 <div id="hist"></div>
+<section id="route-videos" data-route="ibiza-to-antwerp" hidden></section>
 
 <h2>When they show up</h2>
 <ul class="events">
@@ -271,7 +274,7 @@ footer a{color:rgba(255,255,255,.85)}
   var FROMC="Ibiza", TOC="Antwerp";
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
   function d(x){ try{ var p=String(x).split("-"); return p[2]+" "+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][Number(p[1])-1]+" "+p[0]; }catch(e){ return x; } }
-  function hit(v,list){ v=String(v||"").toLowerCase(); for(var i=0;i<list.length;i++){ if(v.indexOf(list[i])!==-1) return true; } return false; }
+  function elN(s){return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}function elW(v,t){var s=elN(v),n=elN(t);if(!n)return false;var i=s.indexOf(n);while(i!==-1){if(i===0||!/[a-z0-9]/.test(s.charAt(i-1)))return true;i=s.indexOf(n,i+1);}return false;}function hit(v,list){ for(var i=0;i<list.length;i++){ if(elW(v,list[i])) return true; } return false; }
   fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
    .then(function(r){return r.ok?r.json():[];})
    .then(function(all){
@@ -353,6 +356,7 @@ var t = document.getElementById("navtoggle"), l = document.getElementById("nlink
 })();
 </script>
 <script src="/route-map.js" defer></script>
+<script src="/route-videos.js" defer></script>
 <script src="/nav-intent.js" defer></script>
 </body>
 </html>
