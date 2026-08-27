@@ -76,7 +76,11 @@
        Give it the map's width so the two line up instead of the text running the
        full column while the map sits at 520px. */
     var cap = host.nextElementSibling;
-    if (cap && cap.tagName === "P") cap.className += " rm-cap";
+    if (cap && cap.tagName === "P") {
+      cap.className += " rm-cap";
+      cap.style.marginTop = "";      // several pages pull it up inline; undo that
+      cap.style.marginBottom = "";
+    }
 
     var map = L.map(wrap, { zoomControl: true, scrollWheelZoom: false, attributionControl: true });
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -105,12 +109,7 @@
     /* One level wider than the tight fit. The corridor reads better with the
        surrounding countries visible, and the two pins stop crowding the edges. */
     function fit() {
-      try {
-        map.invalidateSize();
-        map.fitBounds(bounds, { padding: [56, 56] });
-        var z = map.getZoom();
-        if (z > 3) map.setZoom(z - 1);
-      } catch (e) {}
+      try { map.invalidateSize(); map.fitBounds(bounds, { padding: [64, 64] }); } catch (e) {}
     }
     map.setView(bounds.getCenter(), 5);
     requestAnimationFrame(fit);
@@ -126,7 +125,7 @@
          so the frame stays sane on a desktop; on a phone it fills the column. */
       "background:#eef3f7;aspect-ratio:4/5;width:100%;max-width:520px;margin:0 auto;z-index:0}" +
     ".rm-wrap .leaflet-container{height:100%;width:100%;background:#eef3f7;font:inherit}" +
-    ".rm-cap{max-width:520px;margin:14px auto 0;font-size:13px;line-height:1.6;color:#5b6b7c}" +
+    ".rm-cap{max-width:520px;margin:18px auto 30px;font-size:13px;line-height:1.65;color:#5b6b7c}" +
     ".rm-pin{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;" +
       "background:rgba(255,255,255,.96);border:1px solid #dde5ed;border-radius:999px;padding:5px 13px;" +
       "font:600 15px/1 Raleway,system-ui,sans-serif;color:#16222e;" +

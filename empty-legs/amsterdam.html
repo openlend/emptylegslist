@@ -247,7 +247,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
       <option value="in">Arriving in Amsterdam</option>
     </select>
     <label class="f" for="f-other">Other city</label>
-    <input class="field" id="f-other" type="text" placeholder="Any city" list="cities">
+    <input class="field" id="f-other" type="text" placeholder="Any city or country" list="cities">
     <datalist id="cities"></datalist>
     <label class="f" for="f-from">Departing on or after</label>
     <input class="field" id="f-from" type="date">
@@ -480,7 +480,7 @@ function apply(){
     var out=hit(x.from_airport), inn=hit(x.to_airport);
     if(dir==="out"&&!out)return false;
     if(dir==="in"&&!inn)return false;
-    if(other){var o=(out?x.to_airport:x.from_airport)||"";if(!elW(o,other))return false;}
+    if(other){var o=(out?x.to_airport:x.from_airport)||"";if(window.EL_PLACE){if(!window.EL_PLACE.match(other,o,""))return false;}else if(!elW(o,other))return false;}
     if(from&&String(x.departure_date)<from)return false;
     if(seats&&!(x.seats>=seats))return false;
     if(ponly&&!x.price_note)return false;
@@ -510,6 +510,13 @@ function rail(){
     return '<a class="dest" href="#" data-city="'+esc(c)+'">'+pic+'<div><b>'+esc(c)+'</b><span>'+counts[c]+' from Amsterdam</span></div></a>';
   }).join("");
   document.getElementById("cities").innerHTML=Object.keys(counts).sort().map(function(c){return '<option value="'+esc(c)+'">';}).join("");
+  /* countries that have flights on this page, offered above the cities */
+  (function(){var P=window.EL_PLACE; if(!P) return;
+    var d=document.getElementById("cities"), seen={};
+    Object.keys(counts).forEach(function(c){var cc=P.countryOf(c); if(cc) seen[cc]=(seen[cc]||0)+counts[c];});
+    d.innerHTML=Object.keys(seen).sort(function(a,b){return seen[b]-seen[a];}).map(function(cc){
+      return '<option value="'+P.COUNTRY[cc][0]+'" label="Country &middot; '+seen[cc]+'">';}).join("")+d.innerHTML;
+  })();
   document.getElementById("rail").addEventListener("click",function(e){
     var a=e.target.closest(".dest"); if(!a)return; e.preventDefault();
     document.getElementById("f-other").value=a.getAttribute("data-city");
@@ -589,6 +596,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })();
 </script>
 <script src="/city-map.js" defer></script>
+<script src="/place-index.js" defer></script>
 <script src="/nav-intent.js" defer></script>
 </body>
 </html>
