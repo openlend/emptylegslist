@@ -539,9 +539,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         </select>
       </div>
     </div>
-    <div class="ov" id="ov" style="display:none"></div>
     <div id="rows"><div class="none">Loading live availability…</div></div>
     <button class="more" id="more" hidden>View more flights</button>
+    <div class="ov" id="ov" style="display:none"></div>
     <p style="font-size:12.5px;color:#8a97a5;margin:16px 2px 0" id="stamp"></p>
   </main>
 
@@ -780,7 +780,7 @@ function esc(s){var d=document.createElement("div");d.textContent=(s==null?"":St
 function fdate(x){try{var p=String(x).split("-");return {d:p[2],m:MON[Number(p[1])-1],y:p[0]};}catch(e){return {d:"",m:"",y:""};}}
 function elN(s){return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}function elW(v,t){var s=elN(v),n=elN(t);if(!n)return false;var i=s.indexOf(n);while(i!==-1){if(i===0||!/[a-z0-9]/.test(s.charAt(i-1)))return true;i=s.indexOf(n,i+1);}return false;}function hit(v){for(var i=0;i<KEYS.length;i++){if(elW(v,KEYS[i]))return true;}return false;}
 function ago(t){var m=Math.round((new Date()-t)/60000);if(m<90)return m+" min ago";if(m<2880)return Math.round(m/60)+"h ago";return Math.round(m/1440)+"d ago";}
-function short(s){return String(s||"").replace(/,\s*[A-Z]{2}$/,"").replace(/\s*\(.*\)\s*$/,"").trim();}
+function short(s){return String(s||"").replace(/,\s*[A-Z]{2}$/,"").replace(/\s*\(.*\)\s*$/,"").replace(/\s*\/.*$/,"").trim();}
 function cityKey(s){var c=short(s);var m=c.toLowerCase().match(/^(london|paris|milan|new york)\b/);
   if(m)return m[1].replace(/\b\w/g,function(ch){return ch.toUpperCase();});
   if(/larnarca/i.test(c))return "Larnaca"; if(/^m[aá]laga/i.test(c))return "Malaga";

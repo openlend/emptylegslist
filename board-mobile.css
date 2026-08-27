@@ -35,8 +35,8 @@
   /* four lines: date, route, aircraft, then price and the button together */
   .flight {
     grid-template-columns: 1fr auto;
-    gap: 3px 10px;
-    padding: 14px 15px;
+    gap: 0 10px;
+    padding: 14px 15px 13px;
     margin-bottom: 9px;
   }
   .flight .when { grid-column: 1 / -1; text-align: left; }
@@ -44,21 +44,38 @@
     font-size: 11.5px; font-weight: 600; letter-spacing: .09em;
     text-transform: uppercase; color: var(--mute, #8a97a5);
   }
-  .flight .leg { grid-column: 1 / -1; gap: 9px; }
-  .flight .pt b { font-size: 16px; }
+  /* three fixed columns so the arrow lands in the same place on every row */
+  .flight .leg {
+    grid-column: 1 / -1; margin-top: 3px;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px;
+  }
+  .flight .pt { min-width: 0; }
+  .flight .pt:last-of-type { text-align: right; }
+  /* a long field name must not push the card taller than the rest */
+  .flight .pt b {
+    font-size: 16px; line-height: 1.25;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
   .flight .pt span { display: none; }
+  .flight .arrow { margin: 0; }
   .flight .ac {
-    grid-column: 1 / -1; white-space: normal; font-size: 12.5px;
-    color: var(--mute, #8a97a5); margin-top: 1px;
+    grid-column: 1 / -1; font-size: 12.5px; color: var(--mute, #8a97a5);
+    margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .flight .ac span { display: inline; }
   .flight .ac span::before { content: "\00a0\00b7\00a0"; }
   .flight .pricecell {
-    grid-column: 1 / -1; text-align: left; margin-top: 8px;
+    grid-column: 1 / -1; text-align: left; margin-top: 11px;
     display: flex; align-items: center; justify-content: space-between; gap: 12px;
   }
   .flight .pricecell br { display: none; }
   .flight .pricecell b { font-size: 18px; }
   .flight .enquire { margin-top: 0; padding: 10px 18px; font-size: 12px; }
   .flight .tag { margin-top: 0; margin-left: 8px; }
+}
+
+/* The plain-language summary sits under the list now. */
+.ov { margin-top: 18px; }
+@media (max-width: 860px) {
+  .ov { margin-top: 16px; font-size: 13.5px; }
 }
