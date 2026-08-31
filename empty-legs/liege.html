@@ -226,14 +226,16 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 .hero .cta:hover,.hero .cta:focus-visible{background:#d9b463}
 /* the live counter was sitting on the button */
 .hero .live{margin-top:16px}
-/* thin navy dividers: between the hero and the band, and between the three
+/* thin white dividers: between the hero and the band, and between the three
    cards. Without them the photographs run into each other. */
-.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding-top:6px;background:var(--navy)}
+.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding-top:6px;background:#fff}
 .spot{position:relative;isolation:isolate;min-height:min(34vw,330px);display:flex;
   align-items:flex-end;overflow:hidden}
 .spot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+/* starts higher and lands darker than it first did: on the bright photographs,
+   Malaga's sky and Barcelona's beach, the gold label was washing out */
 .spot::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(180deg,rgba(9,22,40,0) 38%,rgba(9,22,40,.86) 100%)}
+  background:linear-gradient(180deg,rgba(9,22,40,0) 20%,rgba(9,22,40,.45) 52%,rgba(9,22,40,.93) 100%)}
 .spot .in{padding:22px 24px 24px;color:#fff;width:100%}
 .spot .k{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:10.5px;
   font-weight:600;margin-bottom:7px}
