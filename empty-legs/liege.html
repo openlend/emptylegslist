@@ -215,7 +215,83 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:1280px){#bigfoot .bf-in{padding:52px 28px 30px;gap:36px}}
 @media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}#bigfoot .bf-wide{grid-column:1/-1}}
 @media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
+/* --- city hero and landmark cards, cityhero.py --- */
+.hero img{display:block;height:min(58vw,560px)}
+.hero .tag{color:#fff;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  font-size:clamp(12px,1.7vw,17px);margin:0 0 14px;opacity:.92}
+.hero .cta{display:inline-block;background:var(--gold);color:#12233b;text-decoration:none;
+  font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:13px;
+  padding:13px 26px;border-radius:2px;width:fit-content;margin-top:4px;
+  transition:background .18s ease}
+.hero .cta:hover,.hero .cta:focus-visible{background:#d9b463}
+.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--navy)}
+.spot{position:relative;isolation:isolate;min-height:min(34vw,330px);display:flex;
+  align-items:flex-end;overflow:hidden}
+.spot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.spot::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(9,22,40,0) 38%,rgba(9,22,40,.86) 100%)}
+.spot .in{padding:22px 24px 24px;color:#fff;width:100%}
+.spot .k{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:10.5px;
+  font-weight:600;margin-bottom:7px}
+.spot h3{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(17px,2vw,21px);
+  letter-spacing:.03em;text-transform:uppercase;margin:0 0 7px;color:#fff}
+.spot p{margin:0;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.82);max-width:34ch}
+.spot .arw{margin-top:12px;color:var(--gold);font-size:19px;line-height:1}
+@media(max-width:860px){
+  .spots{grid-template-columns:1fr}
+  .spot{min-height:290px}
+  /* the gradient has to start higher on a phone: the text block is taller
+     relative to the card and the gold label was landing on bright sky */
+  .spot::after{background:linear-gradient(180deg,rgba(9,22,40,0) 8%,rgba(9,22,40,.55) 42%,rgba(9,22,40,.92) 100%)}
+  /* and the hero text does not fit in 58vw, so the picture gets more room */
+  .hero img{height:min(150vw,600px)}
+  .hero::after{background:linear-gradient(180deg,rgba(9,22,40,.55) 0%,rgba(9,22,40,.75) 55%,rgba(9,22,40,.92) 100%)}
+  .hero .txt{justify-content:flex-end;padding-bottom:26px}
+  .hero .cta{margin-bottom:12px}
+}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/liege-empty-legs-private-jet.jpg",
+  "name":"Liege empty leg flights","description":"The arcaded gallery of the Palace of the Prince-Bishops in Liege, and the Meuse running through the city beyond",
+  "width":2400,"height":1040,"encodingFormat":"image/jpeg",
+  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
+  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
+  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
+  "contentLocation":{"@type":"Place","name":"Liege, Belgium",
+    "address":{"@type":"PostalAddress","addressLocality":"Liege","addressCountry":"BE"},
+    "geo":{"@type":"GeoCoordinates","latitude":50.6374,"longitude":5.4432}}},
+ {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/liege-guillemins.jpg",
+  "name":"Liege empty leg flights","description":"The white steel and glass canopy of Liege-Guillemins station at dusk",
+  "width":1024,"height":878,"encodingFormat":"image/jpeg",
+  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
+  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
+  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
+  "contentLocation":{"@type":"Place","name":"Liege, Belgium",
+    "address":{"@type":"PostalAddress","addressLocality":"Liege","addressCountry":"BE"},
+    "geo":{"@type":"GeoCoordinates","latitude":50.6374,"longitude":5.4432}}},
+ {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/liege-bueren.jpg",
+  "name":"Liege empty leg flights","description":"The long stone staircase of the Montagne de Bueren climbing between brick houses above Liege",
+  "width":1024,"height":878,"encodingFormat":"image/jpeg",
+  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
+  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
+  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
+  "contentLocation":{"@type":"Place","name":"Liege, Belgium",
+    "address":{"@type":"PostalAddress","addressLocality":"Liege","addressCountry":"BE"},
+    "geo":{"@type":"GeoCoordinates","latitude":50.6374,"longitude":5.4432}}},
+ {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/liege-meuse.jpg",
+  "name":"Liege empty leg flights","description":"The Meuse at night in Liege, bridges and quays lit along both banks",
+  "width":1024,"height":878,"encodingFormat":"image/jpeg",
+  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
+  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
+  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
+  "contentLocation":{"@type":"Place","name":"Liege, Belgium",
+    "address":{"@type":"PostalAddress","addressLocality":"Liege","addressCountry":"BE"},
+    "geo":{"@type":"GeoCoordinates","latitude":50.6374,"longitude":5.4432}}},
+ {"@type":"WebPage","name":"Liege Empty Legs","url":"https://emptylegslist.com/empty-legs/liege",
+  "about":{"@type":"Place","name":"Liege Airport","address":{"@type":"PostalAddress","addressLocality":"Liege","addressCountry":"BE"}}}
+]}
+</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -573,16 +649,46 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   </div>
 </aside>
 
-<section class="hero nohero">
+<section class="hero">
+  <img src="/brand/heroes/liege-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="The arcaded gallery of the Palace of the Prince-Bishops in Liege, and the Meuse running through the city beyond">
   <div class="txt">
-    <div class="sub">Empty legs</div>
-    <h1>Liège</h1>
-    <p>Live empty leg flights to and from Liège, straight from the charter operators that fly them.</p>
+    <div class="sub">Liege, Belgium</div>
+    <h1>Li&egrave;ge</h1>
+    <p class="tag">Heritage, culture and innovation</p>
+    <p>Belgium's third airport city, on the Meuse an hour from Brussels, and a regular stop for repositioning business jets.</p>
+    <a class="cta" href="#listings">See the flights</a>
     <span class="live"><span class="dot"></span><span id="hero-live">Checking live availability&hellip;</span></span>
   </div>
 </section>
-
-<div class="shell">
+<section class="spots">
+  <article class="spot">
+    <img src="/brand/heroes/liege-guillemins.jpg" loading="lazy" decoding="async" alt="The white steel and glass canopy of Liege-Guillemins station at dusk">
+    <div class="in">
+      <div class="k">Modern landmark</div>
+      <h3>Guillemins Station</h3>
+      <p>Santiago Calatrava's steel and glass canopy, opened in 2009.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+  <article class="spot">
+    <img src="/brand/heroes/liege-bueren.jpg" loading="lazy" decoding="async" alt="The long stone staircase of the Montagne de Bueren climbing between brick houses above Liege">
+    <div class="in">
+      <div class="k">Iconic viewpoint</div>
+      <h3>Montagne de Bueren</h3>
+      <p>A single straight staircase climbing out of the old town.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+  <article class="spot">
+    <img src="/brand/heroes/liege-meuse.jpg" loading="lazy" decoding="async" alt="The Meuse at night in Liege, bridges and quays lit along both banks">
+    <div class="in">
+      <div class="k">River and city</div>
+      <h3>The Meuse</h3>
+      <p>The river the city is built along, and the reason it is here.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+</section><div class="shell">
 
   <!-- filters -->
   <aside class="panel">

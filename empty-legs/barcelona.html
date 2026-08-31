@@ -216,7 +216,83 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:1280px){#bigfoot .bf-in{padding:52px 28px 30px;gap:36px}}
 @media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}#bigfoot .bf-wide{grid-column:1/-1}}
 @media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
+/* --- city hero and landmark cards, cityhero.py --- */
+.hero img{display:block;height:min(58vw,560px)}
+.hero .tag{color:#fff;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  font-size:clamp(12px,1.7vw,17px);margin:0 0 14px;opacity:.92}
+.hero .cta{display:inline-block;background:var(--gold);color:#12233b;text-decoration:none;
+  font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:13px;
+  padding:13px 26px;border-radius:2px;width:fit-content;margin-top:4px;
+  transition:background .18s ease}
+.hero .cta:hover,.hero .cta:focus-visible{background:#d9b463}
+.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--navy)}
+.spot{position:relative;isolation:isolate;min-height:min(34vw,330px);display:flex;
+  align-items:flex-end;overflow:hidden}
+.spot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.spot::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(9,22,40,0) 38%,rgba(9,22,40,.86) 100%)}
+.spot .in{padding:22px 24px 24px;color:#fff;width:100%}
+.spot .k{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:10.5px;
+  font-weight:600;margin-bottom:7px}
+.spot h3{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(17px,2vw,21px);
+  letter-spacing:.03em;text-transform:uppercase;margin:0 0 7px;color:#fff}
+.spot p{margin:0;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.82);max-width:34ch}
+.spot .arw{margin-top:12px;color:var(--gold);font-size:19px;line-height:1}
+@media(max-width:860px){
+  .spots{grid-template-columns:1fr}
+  .spot{min-height:290px}
+  /* the gradient has to start higher on a phone: the text block is taller
+     relative to the card and the gold label was landing on bright sky */
+  .spot::after{background:linear-gradient(180deg,rgba(9,22,40,0) 8%,rgba(9,22,40,.55) 42%,rgba(9,22,40,.92) 100%)}
+  /* and the hero text does not fit in 58vw, so the picture gets more room */
+  .hero img{height:min(150vw,600px)}
+  .hero::after{background:linear-gradient(180deg,rgba(9,22,40,.55) 0%,rgba(9,22,40,.75) 55%,rgba(9,22,40,.92) 100%)}
+  .hero .txt{justify-content:flex-end;padding-bottom:26px}
+  .hero .cta{margin-bottom:12px}
+}
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/barcelona-empty-legs-private-jet.jpg",
+  "name":"Barcelona empty leg flights","description":"The terrace at Park Guell in Barcelona, mosaic benches and the city stretching to the sea",
+  "width":1396,"height":605,"encodingFormat":"image/jpeg",
+  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
+  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
+  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
+  "contentLocation":{"@type":"Place","name":"Barcelona, Spain",
+    "address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"},
+    "geo":{"@type":"GeoCoordinates","latitude":41.3874,"longitude":2.1686}}},
+ {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/barcelona-la-rambla.jpg",
+  "name":"Barcelona empty leg flights","description":"La Rambla in Barcelona, the tree-lined walk running down towards the harbour and the Columbus monument",
+  "width":487,"height":418,"encodingFormat":"image/jpeg",
+  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
+  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
+  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
+  "contentLocation":{"@type":"Place","name":"Barcelona, Spain",
+    "address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"},
+    "geo":{"@type":"GeoCoordinates","latitude":41.3874,"longitude":2.1686}}},
+ {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/barcelona-sagrada-familia.jpg",
+  "name":"Barcelona empty leg flights","description":"The Sagrada Familia in Barcelona seen across the park and the water, cranes still on the towers",
+  "width":487,"height":418,"encodingFormat":"image/jpeg",
+  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
+  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
+  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
+  "contentLocation":{"@type":"Place","name":"Barcelona, Spain",
+    "address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"},
+    "geo":{"@type":"GeoCoordinates","latitude":41.3874,"longitude":2.1686}}},
+ {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/barcelona-barceloneta.jpg",
+  "name":"Barcelona empty leg flights","description":"The city beach at Barceloneta, palms along the promenade and the sail-shaped hotel on the point",
+  "width":487,"height":418,"encodingFormat":"image/jpeg",
+  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
+  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
+  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
+  "contentLocation":{"@type":"Place","name":"Barcelona, Spain",
+    "address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"},
+    "geo":{"@type":"GeoCoordinates","latitude":41.3874,"longitude":2.1686}}},
+ {"@type":"WebPage","name":"Barcelona Empty Legs","url":"https://emptylegslist.com/empty-legs/barcelona",
+  "about":{"@type":"Place","name":"Barcelona El Prat","address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"}}}
+]}
+</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -575,16 +651,45 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 </aside>
 
 <section class="hero">
-  <img src="/brand/heroes/barcelona-empty-legs-private-jet.jpg" width="2000" height="866" fetchpriority="high" decoding="async" alt="Barcelona from the hills above the city">
+  <img src="/brand/heroes/barcelona-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="The terrace at Park Guell in Barcelona, mosaic benches and the city stretching to the sea">
   <div class="txt">
-    <div class="sub">Empty legs</div>
+    <div class="sub">Barcelona, Spain</div>
     <h1>Barcelona</h1>
-    <p>Live empty leg flights to and from Barcelona, straight from the charter operators that fly them.</p>
+    <p class="tag">Gaudi, the old city and the sea</p>
+    <p>On the Catalan coast, an hour from Ibiza and the Balearics, and one of the busiest private aviation gateways in the western Mediterranean.</p>
+    <a class="cta" href="#listings">See the flights</a>
     <span class="live"><span class="dot"></span><span id="hero-live">Checking live availability&hellip;</span></span>
   </div>
 </section>
-
-<div class="shell">
+<section class="spots">
+  <article class="spot">
+    <img src="/brand/heroes/barcelona-la-rambla.jpg" loading="lazy" decoding="async" alt="La Rambla in Barcelona, the tree-lined walk running down towards the harbour and the Columbus monument">
+    <div class="in">
+      <div class="k">City walk</div>
+      <h3>La Rambla</h3>
+      <p>The tree-lined walk running down to the harbour.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+  <article class="spot">
+    <img src="/brand/heroes/barcelona-sagrada-familia.jpg" loading="lazy" decoding="async" alt="The Sagrada Familia in Barcelona seen across the park and the water, cranes still on the towers">
+    <div class="in">
+      <div class="k">Landmark</div>
+      <h3>Sagrada Fam&iacute;lia</h3>
+      <p>Gaudi's basilica, begun in 1882 and still unfinished.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+  <article class="spot">
+    <img src="/brand/heroes/barcelona-barceloneta.jpg" loading="lazy" decoding="async" alt="The city beach at Barceloneta, palms along the promenade and the sail-shaped hotel on the point">
+    <div class="in">
+      <div class="k">Coast</div>
+      <h3>Barceloneta</h3>
+      <p>The city beach, a few minutes from the old town.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+</section><div class="shell">
 
   <!-- filters -->
   <aside class="panel">
