@@ -229,7 +229,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 .hero .live{margin-top:16px}
 /* thin white dividers: between the hero and the band, and between the three
    cards. Without them the photographs run into each other. */
-.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding-top:6px;background:#fff}
+.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding-top:2px;background:#fff}
 .spot{position:relative;isolation:isolate;min-height:min(34vw,330px);display:flex;
   align-items:flex-end;overflow:hidden}
 .spot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
@@ -264,54 +264,158 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   header.elnav{order:1}
   .hero{order:2}
   .shell{order:3}
-  .spots{order:4;padding-top:0;margin-top:6px}
+  .spots{order:4;padding-top:0;margin-top:2px}
   .trust{order:5}
   .prose{order:6}
   #bigfoot{order:7}
 }
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
- {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/barcelona-empty-legs-private-jet.jpg",
-  "name":"Barcelona empty leg flights","description":"The terrace at Park Guell in Barcelona, mosaic benches and the city stretching to the sea",
-  "width":1396,"height":605,"encodingFormat":"image/jpeg",
-  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
-  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
-  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
-  "contentLocation":{"@type":"Place","name":"Barcelona, Spain",
-    "address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"},
-    "geo":{"@type":"GeoCoordinates","latitude":41.3874,"longitude":2.1686}}},
- {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/barcelona-la-rambla.jpg",
-  "name":"Barcelona empty leg flights","description":"La Rambla in Barcelona, the tree-lined walk running down towards the harbour and the Columbus monument",
-  "width":487,"height":418,"encodingFormat":"image/jpeg",
-  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
-  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
-  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
-  "contentLocation":{"@type":"Place","name":"Barcelona, Spain",
-    "address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"},
-    "geo":{"@type":"GeoCoordinates","latitude":41.3874,"longitude":2.1686}}},
- {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/barcelona-sagrada-familia.jpg",
-  "name":"Barcelona empty leg flights","description":"The Sagrada Familia in Barcelona seen across the park and the water, cranes still on the towers",
-  "width":487,"height":418,"encodingFormat":"image/jpeg",
-  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
-  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
-  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
-  "contentLocation":{"@type":"Place","name":"Barcelona, Spain",
-    "address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"},
-    "geo":{"@type":"GeoCoordinates","latitude":41.3874,"longitude":2.1686}}},
- {"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/barcelona-barceloneta.jpg",
-  "name":"Barcelona empty leg flights","description":"The city beach at Barceloneta, palms along the promenade and the sail-shaped hotel on the point",
-  "width":487,"height":418,"encodingFormat":"image/jpeg",
-  "creditText":"Empty Leg List","copyrightNotice":"(c) 2026 Publishing Office SRL",
-  "creator":{"@type":"Organization","name":"Publishing Office SRL"},
-  "license":"https://emptylegslist.com/terms","acquireLicensePage":"https://emptylegslist.com/contact",
-  "contentLocation":{"@type":"Place","name":"Barcelona, Spain",
-    "address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"},
-    "geo":{"@type":"GeoCoordinates","latitude":41.3874,"longitude":2.1686}}},
- {"@type":"WebPage","name":"Barcelona Empty Legs","url":"https://emptylegslist.com/empty-legs/barcelona",
-  "about":{"@type":"Place","name":"Barcelona El Prat","address":{"@type":"PostalAddress","addressLocality":"Barcelona","addressCountry":"ES"}}}
-]}
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/barcelona-empty-legs-private-jet.jpg",
+   "name": "Barcelona empty leg flights",
+   "description": "The terrace at Park Guell in Barcelona, mosaic benches and the city stretching to the sea",
+   "width": 1396,
+   "height": 605,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Barcelona, Spain",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Barcelona",
+     "addressCountry": "ES"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 41.3874,
+     "longitude": 2.1686
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/barcelona-la-rambla.jpg",
+   "name": "Barcelona empty leg flights",
+   "description": "La Rambla in Barcelona, the tree-lined walk running down towards the harbour and the Columbus monument",
+   "width": 487,
+   "height": 418,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Barcelona, Spain",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Barcelona",
+     "addressCountry": "ES"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 41.3874,
+     "longitude": 2.1686
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/barcelona-sagrada-familia.jpg",
+   "name": "Barcelona empty leg flights",
+   "description": "The Sagrada Familia in Barcelona seen across the park and the water, cranes still on the towers",
+   "width": 487,
+   "height": 418,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Barcelona, Spain",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Barcelona",
+     "addressCountry": "ES"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 41.3874,
+     "longitude": 2.1686
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/barcelona-barceloneta.jpg",
+   "name": "Barcelona empty leg flights",
+   "description": "The city beach at Barceloneta, palms along the promenade and the sail-shaped hotel on the point",
+   "width": 487,
+   "height": 418,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Barcelona, Spain",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Barcelona",
+     "addressCountry": "ES"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 41.3874,
+     "longitude": 2.1686
+    }
+   }
+  },
+  {
+   "@type": "WebPage",
+   "name": "Barcelona Empty Legs",
+   "url": "https://emptylegslist.com/empty-legs/barcelona",
+   "about": {
+    "@type": "Place",
+    "name": "Barcelona El Prat",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Barcelona",
+     "addressCountry": "ES"
+    }
+   }
+  }
+ ]
+}
 </script>
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -672,7 +776,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 <section class="hero">
   <img src="/brand/heroes/barcelona-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="The terrace at Park Guell in Barcelona, mosaic benches and the city stretching to the sea">
   <div class="txt">
-    <div class="sub">Barcelona, Spain</div>
+    <div class="sub">Empty legs Barcelona, Spain</div>
     <h1>Barcelona</h1>
     <p class="tag">Gaudi, the old city and the sea</p>
     <p>On the Catalan coast, an hour from Ibiza and the Balearics, and one of the busiest private aviation gateways in the western Mediterranean.</p>

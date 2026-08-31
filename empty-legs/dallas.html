@@ -216,7 +216,205 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:1280px){#bigfoot .bf-in{padding:52px 28px 30px;gap:36px}}
 @media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}#bigfoot .bf-wide{grid-column:1/-1}}
 @media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
+/* --- city hero and landmark cards, cityhero.py --- */
+.hero img{display:block;height:min(58vw,560px)}
+.hero .tag{color:#fff;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  font-size:clamp(12px,1.7vw,17px);margin:0 0 14px;opacity:.92}
+.hero .cta{display:inline-block;background:var(--gold);color:#12233b;text-decoration:none;
+  font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:13px;
+  padding:13px 26px;border-radius:2px;width:fit-content;margin-top:4px;
+  transition:background .18s ease}
+.hero .cta:hover,.hero .cta:focus-visible{background:#d9b463}
+/* the live counter was sitting on the button */
+.hero .live{margin-top:16px}
+/* thin white dividers: between the hero and the band, and between the three
+   cards. Without them the photographs run into each other. */
+.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding-top:2px;background:#fff}
+.spot{position:relative;isolation:isolate;min-height:min(34vw,330px);display:flex;
+  align-items:flex-end;overflow:hidden}
+.spot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+/* starts higher and lands darker than it first did: on the bright photographs,
+   Malaga's sky and Barcelona's beach, the gold label was washing out */
+.spot::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(9,22,40,0) 20%,rgba(9,22,40,.45) 52%,rgba(9,22,40,.93) 100%)}
+.spot .in{padding:22px 24px 24px;color:#fff;width:100%}
+.spot .k{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:10.5px;
+  font-weight:600;margin-bottom:7px}
+.spot h3{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(17px,2vw,21px);
+  letter-spacing:.03em;text-transform:uppercase;margin:0 0 7px;color:#fff}
+.spot p{margin:0;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.82);max-width:34ch}
+.spot .arw{margin-top:12px;color:var(--gold);font-size:19px;line-height:1}
+@media(max-width:860px){
+  .spots{grid-template-columns:1fr}
+  .spot{min-height:290px}
+  /* the gradient has to start higher on a phone: the text block is taller
+     relative to the card and the gold label was landing on bright sky */
+  .spot::after{background:linear-gradient(180deg,rgba(9,22,40,0) 8%,rgba(9,22,40,.55) 42%,rgba(9,22,40,.92) 100%)}
+  /* and the hero text does not fit in 58vw, so the picture gets more room */
+  .hero img{height:min(150vw,600px)}
+  .hero::after{background:linear-gradient(180deg,rgba(9,22,40,.55) 0%,rgba(9,22,40,.75) 55%,rgba(9,22,40,.92) 100%)}
+  .hero .txt{justify-content:flex-end;padding-bottom:26px}
+  .hero .cta{margin-bottom:4px}
+  /* on a phone the three landmark cards go BELOW the flights: someone who
+     opened the page on their phone wants the legs first, not the scenery.
+     Body becomes a flex column purely so the band can be reordered; every
+     sibling gets an explicit order so nothing else moves. */
+  body{display:flex;flex-direction:column}
+  .eln-scrim,.eln-drawer{order:0}
+  header.elnav{order:1}
+  .hero{order:2}
+  .shell{order:3}
+  .spots{order:4;padding-top:0;margin-top:2px}
+  .trust{order:5}
+  .prose{order:6}
+  #bigfoot{order:7}
+}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/dallas-empty-legs-private-jet.jpg",
+   "name": "Dallas empty leg flights",
+   "description": "The Dallas skyline at sunset with Reunion Tower and the white arch of the Margaret Hunt Hill Bridge, the Texas flag flying beside it",
+   "width": 1387,
+   "height": 601,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Dallas, Texas",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Dallas",
+     "addressCountry": "US"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 32.7767,
+     "longitude": -96.797
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/dallas-deep-ellum.jpg",
+   "name": "Dallas empty leg flights",
+   "description": "The Deep Ellum arch over a street in Dallas, murals on the brick buildings and the skyline behind",
+   "width": 490,
+   "height": 421,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Dallas, Texas",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Dallas",
+     "addressCountry": "US"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 32.7767,
+     "longitude": -96.797
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/dallas-downtown-park.jpg",
+   "name": "Dallas empty leg flights",
+   "description": "A downtown Dallas park with a long reflecting pool, a concrete monument and the towers behind",
+   "width": 481,
+   "height": 413,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Dallas, Texas",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Dallas",
+     "addressCountry": "US"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 32.7767,
+     "longitude": -96.797
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/dallas-old-courthouse.jpg",
+   "name": "Dallas empty leg flights",
+   "description": "The red sandstone old courthouse in Dallas at dusk, traffic trails and the towers of downtown behind it",
+   "width": 490,
+   "height": 421,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Dallas, Texas",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Dallas",
+     "addressCountry": "US"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 32.7767,
+     "longitude": -96.797
+    }
+   }
+  },
+  {
+   "@type": "WebPage",
+   "name": "Dallas Empty Legs",
+   "url": "https://emptylegslist.com/empty-legs/dallas",
+   "about": {
+    "@type": "Place",
+    "name": "Dallas",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Dallas",
+     "addressCountry": "US"
+    }
+   }
+  }
+ ]
+}
+</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -575,16 +773,45 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 </aside>
 
 <section class="hero">
-  <img src="/brand/heroes/dallas-empty-legs-private-jet.jpg" width="2000" height="866" fetchpriority="high" decoding="async" alt="The Dallas skyline">
+  <img src="/brand/heroes/dallas-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="The Dallas skyline at sunset with Reunion Tower and the white arch of the Margaret Hunt Hill Bridge, the Texas flag flying beside it">
   <div class="txt">
-    <div class="sub">Empty legs</div>
+    <div class="sub">Empty legs Dallas, Texas</div>
     <h1>Dallas</h1>
-    <p>Live empty leg flights to and from Dallas, straight from the charter operators that fly them.</p>
+    <p class="tag">Downtown, Deep Ellum and the Trinity</p>
+    <p>Thirty-one recorded legs, spread widely across the United States rather than concentrated on one partner, with Aspen, Austin and Las Vegas at the top.</p>
+    <a class="cta" href="#listings">See the flights</a>
     <span class="live"><span class="dot"></span><span id="hero-live">Checking live availability&hellip;</span></span>
   </div>
 </section>
-
-<div class="shell">
+<section class="spots">
+  <article class="spot">
+    <img src="/brand/heroes/dallas-deep-ellum.jpg" loading="lazy" decoding="async" alt="The Deep Ellum arch over a street in Dallas, murals on the brick buildings and the skyline behind">
+    <div class="in">
+      <div class="k">Music and murals</div>
+      <h3>Deep Ellum</h3>
+      <p>The arch over the street, and the painted walls under it.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+  <article class="spot">
+    <img src="/brand/heroes/dallas-downtown-park.jpg" loading="lazy" decoding="async" alt="A downtown Dallas park with a long reflecting pool, a concrete monument and the towers behind">
+    <div class="in">
+      <div class="k">Downtown</div>
+      <h3>The park</h3>
+      <p>A long reflecting pool at the foot of the towers.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+  <article class="spot">
+    <img src="/brand/heroes/dallas-old-courthouse.jpg" loading="lazy" decoding="async" alt="The red sandstone old courthouse in Dallas at dusk, traffic trails and the towers of downtown behind it">
+    <div class="in">
+      <div class="k">Red sandstone</div>
+      <h3>The old courthouse</h3>
+      <p>The nineteenth century building the city grew around.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+</section><div class="shell">
 
   <!-- filters -->
   <aside class="panel">
