@@ -197,20 +197,6 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 @media(max-width:1280px){#bigfoot .bf-in{padding:52px 28px 30px;gap:36px}}
 @media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}#bigfoot .bf-wide{grid-column:1/-1}}
 @media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
-
-.recorded{width:100%;border-collapse:collapse;margin:14px 0 10px;font-size:14.5px}
-.recorded th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600;border-bottom:1px solid var(--line);padding:0 10px 8px 0}
-.recorded td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
-.recorded tr td:last-child{color:var(--mute);font-size:13.5px}
-@media(max-width:640px){.recorded,.recorded tbody,.recorded tr,.recorded td{display:block;width:100%}
-.recorded thead{display:none}
-.recorded tr{border-bottom:1px solid var(--line);padding:12px 0}
-.recorded td{border:0;padding:2px 0;text-align:left}
-.recorded td:first-child{font-weight:600;font-size:15px}
-.recorded td:nth-child(2){color:var(--ink)}
-/* the header row is hidden on a phone, so each cell carries its own label */
-.recorded td[data-l]::before{content:attr(data-l) ": ";color:var(--mute);font-size:13px}
-.recorded tr td:last-child{font-size:13.5px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Empty Leg List","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Toronto to Teterboro empty legs","item":"https://emptylegslist.com/empty-legs/toronto-to-teterboro"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the Toronto to Teterboro route produce empty leg flights?","acceptedAnswer":{"@type":"Answer","text":"Teterboro is the New York business aviation gateway and Toronto is the closest large Canadian business centre. Corporate aircraft run the sector and reposition back empty."}},{"@type":"Question","name":"When do empty legs from Toronto to Teterboro usually appear?","acceptedAnswer":{"@type":"Answer","text":"In ones and twos, usually two to four weeks ahead. We recorded five legs in four weeks."}}]}]}</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
@@ -330,6 +316,21 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
             <a href="/empty-legs/toronto-to-teterboro">Toronto → Teterboro</a>
             <a href="/empty-legs/wevelgem-to-cannes">Wevelgem → Cannes</a>
             <a href="/empty-legs/vancouver-to-calgary">Vancouver → Calgary</a>
+            <a href="/empty-legs/calgary-to-vancouver">Calgary → Vancouver</a>
+            <a href="/empty-legs/aspen-to-las-vegas">Aspen → Las Vegas</a>
+            <a href="/empty-legs/van-nuys-to-las-vegas">Van Nuys → Las Vegas</a>
+            <a href="/empty-legs/teterboro-to-toronto">Teterboro → Toronto</a>
+            <a href="/empty-legs/san-juan-to-miami">San Juan → Miami</a>
+            <a href="/empty-legs/sarasota-to-miami">Sarasota → Miami</a>
+            <a href="/empty-legs/nice-to-vienna">Nice → Vienna</a>
+            <a href="/empty-legs/nice-to-olbia">Nice → Olbia</a>
+            <a href="/empty-legs/scottsdale-to-las-vegas">Scottsdale → Las Vegas</a>
+            <a href="/empty-legs/carlsbad-to-truckee">Carlsbad → Truckee</a>
+            <a href="/empty-legs/las-vegas-to-vancouver">Las Vegas → Vancouver</a>
+            <a href="/empty-legs/college-station-to-fort-worth">College Station → Fort Worth</a>
+            <a href="/empty-legs/fort-worth-to-college-station">Fort Worth → College Station</a>
+            <a href="/empty-legs/manassas-to-miami">Manassas → Miami</a>
+            <a href="/empty-legs/las-vegas-to-scottsdale">Las Vegas → Scottsdale</a>
             </div>
             <a class="eln-all" href="/#listings">Every listing, live <span aria-hidden="true">→</span></a>
           </div>
@@ -501,6 +502,21 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
         <a href="/empty-legs/toronto-to-teterboro">Toronto → Teterboro</a>
         <a href="/empty-legs/wevelgem-to-cannes">Wevelgem → Cannes</a>
         <a href="/empty-legs/vancouver-to-calgary">Vancouver → Calgary</a>
+        <a href="/empty-legs/calgary-to-vancouver">Calgary → Vancouver</a>
+        <a href="/empty-legs/aspen-to-las-vegas">Aspen → Las Vegas</a>
+        <a href="/empty-legs/van-nuys-to-las-vegas">Van Nuys → Las Vegas</a>
+        <a href="/empty-legs/teterboro-to-toronto">Teterboro → Toronto</a>
+        <a href="/empty-legs/san-juan-to-miami">San Juan → Miami</a>
+        <a href="/empty-legs/sarasota-to-miami">Sarasota → Miami</a>
+        <a href="/empty-legs/nice-to-vienna">Nice → Vienna</a>
+        <a href="/empty-legs/nice-to-olbia">Nice → Olbia</a>
+        <a href="/empty-legs/scottsdale-to-las-vegas">Scottsdale → Las Vegas</a>
+        <a href="/empty-legs/carlsbad-to-truckee">Carlsbad → Truckee</a>
+        <a href="/empty-legs/las-vegas-to-vancouver">Las Vegas → Vancouver</a>
+        <a href="/empty-legs/college-station-to-fort-worth">College Station → Fort Worth</a>
+        <a href="/empty-legs/fort-worth-to-college-station">Fort Worth → College Station</a>
+        <a href="/empty-legs/manassas-to-miami">Manassas → Miami</a>
+        <a href="/empty-legs/las-vegas-to-scottsdale">Las Vegas → Scottsdale</a>
       </div></div></div>
     </div>
     <div class="eln-acc">
@@ -583,21 +599,21 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <p>This is an international sector, so customs and the fixed base operator at each end matter more than on a domestic hop. Ask the operator where you clear.</p>
 
   <h2>Every leg we have on record for this route</h2>
-  <p>Between 31 July and 27 August 2026 we recorded <b>5 empty legs</b> from Toronto to Teterboro. All of them carried a published price, from CAD 5,100 to CAD 8,000 for the whole aircraft. Each one was 54 minutes to an hour in the air, on a Citation Ultra or a Challenger 300.</p>
+  <p>Between 31 July and 28 August 2026 we recorded <b>5 empty legs</b> from Toronto to Teterboro. 2 of them carried a published price, from CAD 7,800 to CAD 8,000 for the whole aircraft. Each one was 54 minutes to an hour in the air, on a Citation Ultra or a Challenger 300.</p>
   <table class="recorded">
     <thead><tr><th>Departure</th><th>Aircraft</th><th>Seats</th><th>Operator's published price</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td>31 July 2026</td><td>Challenger 300</td><td data-l="Seats">9</td><td data-l="Price">CAD 7,800</td><td data-l="Status">Already flown</td></tr>
-      <tr><td>16 Aug 2026</td><td>Citation Ultra</td><td data-l="Seats">7</td><td data-l="Price">CAD 5,100</td><td data-l="Status">Already flown</td></tr>
+      <tr><td>31 July 2026</td><td>Challenger 300</td><td data-l="Seats">9</td><td data-l="Price">On request</td><td data-l="Status">Already flown</td></tr>
+      <tr><td>16 Aug 2026</td><td>Citation Ultra</td><td data-l="Seats">7</td><td data-l="Price">On request</td><td data-l="Status">Already flown</td></tr>
       <tr><td>12 Sept 2026</td><td>Citation Ultra</td><td data-l="Seats">7</td><td data-l="Price">CAD 8,000</td><td data-l="Status">On the board now</td></tr>
       <tr><td>13 Sept 2026</td><td>Challenger 300</td><td data-l="Seats">9</td><td data-l="Price">CAD 7,800</td><td data-l="Status">On the board now</td></tr>
-      <tr><td>20 Sept 2026</td><td>Citation Ultra</td><td data-l="Seats">7</td><td data-l="Price">CAD 5,100</td><td data-l="Status">No longer listed</td></tr>
+      <tr><td>20 Sept 2026</td><td>Citation Ultra</td><td data-l="Seats">7</td><td data-l="Price">On request</td><td data-l="Status">On the board now</td></tr>
     </tbody>
   </table>
   <p class="meta"><b>This is a record, not availability.</b> These are the legs we saw on this corridor in that window, kept so the route has a history you can judge it by. None of them is bookable from this table. What is actually open right now is the live list above, and if it is empty the route alert is the way to catch the next one.</p>
 
   <h2>Before you book</h2>
-  <p>Both aircraft types we have seen here are modest: a Citation Ultra with seven seats and a Challenger 300 with nine. The published prices ran from CAD 5,100 to CAD 8,000, and the same aircraft on the same route has appeared at two different prices, so the figure is worth asking about rather than assuming.</p>
+  <p>Both aircraft types we have seen here are modest: a Citation Ultra with seven seats and a Challenger 300 with nine. Two of the five legs carry a published price, the Ultra at CAD 8,000 and the Challenger 300 at CAD 7,800. The other three say price on request, so most of this corridor is a figure you have to ask for.</p>
   <p>Ask the operator three things: whether the departure time can still move, what happens if the paid flight that created this empty leg falls through, and where you clear customs.</p>
 
   <div class="alert">
@@ -613,9 +629,9 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 
 <h2>Other routes we track</h2>
 <div class="more">
-<a href="/empty-legs/johannesburg-to-cape-town">Teterboro to Toronto</a>
-<a href="/empty-legs/port-elizabeth-to-cape-town">Port Elizabeth to Cape Town</a>
-<a href="/empty-legs/maun-to-johannesburg">Maun to Johannesburg</a>
+<a href="/empty-legs/teterboro-to-toronto">Teterboro to Toronto</a>
+<a href="/empty-legs/montreal-to-toronto">Montreal to Toronto</a>
+<a href="/empty-legs/toronto-to-montreal">Toronto to Montreal</a>
 </div>
 <p style="margin-top:26px"><a class="btn" href="/">See all empty legs</a> &nbsp; <a href="/aircraft/" style="font-size:14px">Browse by aircraft type</a></p>
 </div>
@@ -743,6 +759,21 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
         <a href="/empty-legs/toronto-to-teterboro">Toronto → Teterboro</a>
         <a href="/empty-legs/wevelgem-to-cannes">Wevelgem → Cannes</a>
         <a href="/empty-legs/vancouver-to-calgary">Vancouver → Calgary</a>
+        <a href="/empty-legs/calgary-to-vancouver">Calgary → Vancouver</a>
+        <a href="/empty-legs/aspen-to-las-vegas">Aspen → Las Vegas</a>
+        <a href="/empty-legs/van-nuys-to-las-vegas">Van Nuys → Las Vegas</a>
+        <a href="/empty-legs/teterboro-to-toronto">Teterboro → Toronto</a>
+        <a href="/empty-legs/san-juan-to-miami">San Juan → Miami</a>
+        <a href="/empty-legs/sarasota-to-miami">Sarasota → Miami</a>
+        <a href="/empty-legs/nice-to-vienna">Nice → Vienna</a>
+        <a href="/empty-legs/nice-to-olbia">Nice → Olbia</a>
+        <a href="/empty-legs/scottsdale-to-las-vegas">Scottsdale → Las Vegas</a>
+        <a href="/empty-legs/carlsbad-to-truckee">Carlsbad → Truckee</a>
+        <a href="/empty-legs/las-vegas-to-vancouver">Las Vegas → Vancouver</a>
+        <a href="/empty-legs/college-station-to-fort-worth">College Station → Fort Worth</a>
+        <a href="/empty-legs/fort-worth-to-college-station">Fort Worth → College Station</a>
+        <a href="/empty-legs/manassas-to-miami">Manassas → Miami</a>
+        <a href="/empty-legs/las-vegas-to-scottsdale">Las Vegas → Scottsdale</a>
       </nav>
     </div>
     <div class="bf-col">
