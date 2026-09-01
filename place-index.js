@@ -29,7 +29,9 @@
     "larnarca": "larnaca", "birmingham international": "birmingham", "geneva international": "geneva",
     "malaga costa del sol": "malaga", "genova": "genoa", "napoli": "naples",
     "montpellier mediterranee": "montpellier", "providenciales island": "turks-and-caicos",
-    "fort lauderdale executive": "fort-lauderdale", "alc": "alicante", "bcn": "barcelona"
+    "fort lauderdale executive": "fort-lauderdale", "alc": "alicante", "bcn": "barcelona",
+    "kortrijk wevelgem international": "wevelgem", "kortrijk wevelgem": "wevelgem",
+    "mad": "madrid", "zrh": "zurich"
   };
 
   function slug(raw) {

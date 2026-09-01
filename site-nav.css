@@ -69,7 +69,7 @@ header.elnav .eln-cta {
 .eln-item { position: static; }
 .eln-mega {
   position: absolute; top: calc(100% + 10px); left: 50%;
-  width: min(1080px, calc(100vw - 48px));
+  width: min(1240px, calc(100vw - 48px));
   transform: translateX(-50%) translateY(-8px);
   background: #fff; color: var(--eln-ink);
   border-radius: 18px;
@@ -77,6 +77,7 @@ header.elnav .eln-cta {
   padding: 30px 34px 26px;
   display: grid; grid-template-columns: 1fr 1.35fr .85fr; gap: 38px;
   opacity: 0; visibility: hidden; pointer-events: none;
+  max-height: calc(100vh - var(--eln-h) - 24px); overflow-y: auto;
   transition: opacity 130ms ease, transform 130ms var(--eln-out), visibility 0s linear 130ms;
 }
 .eln-item.open > .eln-mega {
@@ -241,20 +242,21 @@ body.eln-lock { overflow: hidden; }
    The panel used to list all 74 cities at once: 110 links, 1428px tall, taller
    than the window it opened in. Now one region at a time. --- */
 /* routes get their own single column: at two columns the names truncated */
-.eln-mega.mega-dest{grid-template-columns:190px 1.15fr 1fr 250px}
+.eln-mega.mega-dest{grid-template-columns:172px 1.62fr 1fr 226px;gap:30px}
 .eln-mega.mega-dest .eln-col-route .eln-grid{grid-template-columns:1fr}
 .eln-regs{display:flex;flex-direction:column;gap:2px;margin-bottom:12px}
-.eln-regs button{display:flex;align-items:center;justify-content:space-between;gap:8px;
+.eln-regs button{display:block;
   width:100%;margin:0;padding:9px 11px;border:0;border-radius:6px;background:transparent;
   color:inherit;font:inherit;font-size:14px;text-align:left;cursor:pointer}
 .eln-regs button:hover{background:rgba(13,31,54,.06)}
 /* the panel is white, so the active label must not be white too */
 .eln-regs button.on{background:rgba(201,162,76,.18);color:var(--navy,#0D1F36);font-weight:600}
-.eln-regs .eln-n{font-size:11px;opacity:.55;font-variant-numeric:tabular-nums}
-.eln-pan{display:grid;grid-template-columns:1fr 1fr;gap:2px 18px;
-  max-height:392px;overflow-y:auto;overscroll-behavior:contain}
+.eln-pan{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 14px}
 .eln-pan[hidden]{display:none}
-@media(max-width:1100px){
-  .eln-mega.mega-dest{grid-template-columns:180px 1fr}
+@media(max-width:1220px){
+  .eln-mega.mega-dest{grid-template-columns:165px 1.5fr 1fr;gap:26px}
   .eln-mega.mega-dest .eln-promo{display:none}
+}
+@media(max-width:1000px){
+  .eln-mega .eln-pan{grid-template-columns:1fr 1fr}
 }
