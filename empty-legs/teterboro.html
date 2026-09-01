@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,10 +673,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Teterboro (TEB)</b> &mdash; the Port Authority field in Bergen County, and the one almost every listing here means.</li>
-    <li><b>Westchester County (HPN)</b> &mdash; north of the city, used when Teterboro is full or the aircraft is too heavy for it.</li>
-    <li><b>Morristown (MMU) and Republic (FRG)</b> &mdash; further out in New Jersey and on Long Island, and cheaper on handling.</li>
-    <li><b>Newark (EWR) and JFK</b> &mdash; airline fields that take the largest business aircraft.</li>
+    <li><b>Teterboro (TEB)</b>: the Port Authority field in Bergen County, and the one almost every listing here means.</li>
+    <li><b>Westchester County (HPN)</b>: north of the city, used when Teterboro is full or the aircraft is too heavy for it.</li>
+    <li><b>Morristown (MMU) and Republic (FRG)</b>: further out in New Jersey and on Long Island, and cheaper on handling.</li>
+    <li><b>Newark (EWR) and JFK</b>: airline fields that take the largest business aircraft.</li>
   </ul>
   <p>Which field you land at changes your drive, not your flight. Teterboro is the shortest run into Manhattan when the traffic behaves.</p>
 
@@ -1033,7 +1033,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

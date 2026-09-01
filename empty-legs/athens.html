@@ -449,6 +449,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 }
 </script>
 
+
+
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -852,7 +855,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -893,7 +896,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Athens</h2>
-  <p>Athens is the mainland hinge of Greek private aviation. Almost everything heading for the islands passes through it, and the summer charter that fills the Cyclades and the Ionian has to be repositioned afterwards — which is what puts <a href="/">empty leg flights</a> on the board here. The aircraft, crew and handling are already paid for on that returning sector, so the operator publishes it one-way at a reduced price rather than flying it empty.</p>
+  <p>Athens is the mainland hinge of Greek private aviation. Almost everything heading for the islands passes through it, and the summer charter that fills the Cyclades and the Ionian has to be repositioned afterwards, which is what puts <a href="/">empty leg flights</a> on the board here. The aircraft, crew and handling are already paid for on that returning sector, so the operator publishes it one-way at a reduced price rather than flying it empty.</p>
   <p>The season shapes everything. From June to September the board fills with island and Mediterranean sectors; outside that window it thins to mainland hops and the occasional northern European repositioning. Recent legs have run to <a href="/empty-legs/london">London</a>, Ioannina and Valletta, alongside the wider Greek and Mediterranean network that includes <a href="/empty-legs/preveza">Preveza</a> for the Ionian and <a href="/empty-legs/larnaca">Larnaca</a> further east. The live counts under &ldquo;Where these flights go&rdquo; are read from the current board rather than a fixed list.</p>
 
   <h2>Which Athens airport</h2>
@@ -905,8 +908,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <p>Ground time at ATH is short by international standards, and the drive to the centre is around forty minutes, longer in August traffic toward the coast.</p>
 
   <h2>What an empty leg from Athens costs</h2>
-  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Many Greek listings arrive without a published price, in which case the card reads <b>Price on enquiry</b> — we would rather say that than estimate. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the routes to a cheaper seat, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>Types on Greek sectors skew midsize and heavy, because the island runways and the summer loads both favour them — the <a href="/aircraft/legacy-650">Legacy 650</a>, <a href="/aircraft/citation-latitude">Citation Latitude</a> and <a href="/aircraft/challenger-604">Challenger 604</a> are the ones that recur. If cabin size matters more than the exact date, browse <a href="/aircraft/">by aircraft type</a>.</p>
+  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Many Greek listings arrive without a published price, in which case the card reads <b>Price on enquiry</b>: we would rather say that than estimate. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the routes to a cheaper seat, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
+  <p>Types on Greek sectors skew midsize and heavy, because the island runways and the summer loads both favour them: the <a href="/aircraft/legacy-650">Legacy 650</a>, <a href="/aircraft/citation-latitude">Citation Latitude</a> and <a href="/aircraft/challenger-604">Challenger 604</a> are the ones that recur. If cabin size matters more than the exact date, browse <a href="/aircraft/">by aircraft type</a>.</p>
 
   <h2>Athens empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>30 empty leg flights</b> touching Athens: 16 departing, 14 arriving, across 20 partner airports. The airports that came up most were London (6), Belgrade (2), Brussels (2), Ioannina (2). 16 different aircraft types appeared, most often the Praetor 600 (7), the Global 5000 (3), the Legacy 650 (3).</p>
@@ -1242,7 +1245,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. This is a small real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Edinburgh (EDI)</b> &mdash; the main field, with business aviation handled separately.</li>
-    <li><b>Glasgow (GLA) and Prestwick (PIK)</b> &mdash; west, both under an hour and a half by road.</li>
-    <li><b>Dundee (DND) and Aberdeen (ABZ)</b> &mdash; north, for Angus and the energy industry.</li>
+    <li><b>Edinburgh (EDI)</b>: the main field, with business aviation handled separately.</li>
+    <li><b>Glasgow (GLA) and Prestwick (PIK)</b>: west, both under an hour and a half by road.</li>
+    <li><b>Dundee (DND) and Aberdeen (ABZ)</b>: north, for Angus and the energy industry.</li>
   </ul>
   <p>Scotland is bigger than it looks on a map. Aberdeen is three hours from Edinburgh by road, so the field on the listing matters here more than it does in England.</p>
 
@@ -1032,7 +1032,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

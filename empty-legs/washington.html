@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Washington Dulles (IAD)</b> &mdash; the main international field, with business aviation on its own ramp.</li>
-    <li><b>Reagan National (DCA)</b> &mdash; closest to the centre, and subject to its own access rules.</li>
-    <li><b>Manassas (HEF) and Leesburg (JYO)</b> &mdash; the Virginia general aviation fields, quicker on the ground.</li>
+    <li><b>Washington Dulles (IAD)</b>: the main international field, with business aviation on its own ramp.</li>
+    <li><b>Reagan National (DCA)</b>: closest to the centre, and subject to its own access rules.</li>
+    <li><b>Manassas (HEF) and Leesburg (JYO)</b>: the Virginia general aviation fields, quicker on the ground.</li>
   </ul>
   <p>Airspace around the capital is restricted and the paperwork is real. Operators handle it, but it is one reason short notice into DCA is not always possible.</p>
 
@@ -1032,7 +1032,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

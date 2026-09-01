@@ -625,7 +625,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -671,10 +671,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Munich (MUC)</b> &mdash; the main field, with business aviation handled separately from the airline terminals.</li>
-    <li><b>Oberpfaffenhofen (OBF)</b> &mdash; twenty minutes south west, general aviation only and quicker on the ground.</li>
-    <li><b>Augsburg (AGB)</b> &mdash; about an hour north west.</li>
-    <li><b><a href="/empty-legs/salzburg">Salzburg</a> (SZG) and Innsbruck (INN)</b> &mdash; an hour and a half and two hours south east, and often the better arrival for the Alps.</li>
+    <li><b>Munich (MUC)</b>: the main field, with business aviation handled separately from the airline terminals.</li>
+    <li><b>Oberpfaffenhofen (OBF)</b>: twenty minutes south west, general aviation only and quicker on the ground.</li>
+    <li><b>Augsburg (AGB)</b>: about an hour north west.</li>
+    <li><b><a href="/empty-legs/salzburg">Salzburg</a> (SZG) and Innsbruck (INN)</b>: an hour and a half and two hours south east, and often the better arrival for the Alps.</li>
   </ul>
   <p>For the Bavarian and Austrian Alps, check Salzburg and Innsbruck as separate searches. On a short flight, the drive at the far end is usually the longer half of the journey.</p>
 
@@ -1033,7 +1033,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

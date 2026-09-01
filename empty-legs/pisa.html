@@ -625,7 +625,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -671,10 +671,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Pisa Galileo Galilei (PSA)</b> &mdash; on the edge of the city, and the field these listings mean.</li>
-    <li><b>Florence Peretola (FLR)</b> &mdash; an hour east, with a short runway that limits the larger types.</li>
-    <li><b>Lucca Tassignano (LIQL)</b> &mdash; twenty minutes north, general aviation only.</li>
-    <li><b>Genoa (GOA) and <a href="/empty-legs/bologna">Bologna</a> (BLQ)</b> &mdash; two hours away in either direction.</li>
+    <li><b>Pisa Galileo Galilei (PSA)</b>: on the edge of the city, and the field these listings mean.</li>
+    <li><b>Florence Peretola (FLR)</b>: an hour east, with a short runway that limits the larger types.</li>
+    <li><b>Lucca Tassignano (LIQL)</b>: twenty minutes north, general aviation only.</li>
+    <li><b>Genoa (GOA) and <a href="/empty-legs/bologna">Bologna</a> (BLQ)</b>: two hours away in either direction.</li>
   </ul>
   <p>Florence has the name, but Pisa takes the aircraft Florence cannot. For anything larger than a light jet, Pisa is usually the answer even when Florence is the destination.</p>
 
@@ -1030,7 +1030,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

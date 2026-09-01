@@ -625,7 +625,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -671,10 +671,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Milas-Bodrum (BJV)</b> &mdash; about forty minutes from the town, and the field these listings mean.</li>
-    <li><b>Dalaman (DLM)</b> &mdash; two and a half hours east, for Göcek and the Fethiye side.</li>
-    <li><b>Izmir (ADB)</b> &mdash; three hours north.</li>
-    <li><b>Kos (KGS)</b> &mdash; across the water in Greece, and a separate country for handling.</li>
+    <li><b>Milas-Bodrum (BJV)</b>: about forty minutes from the town, and the field these listings mean.</li>
+    <li><b>Dalaman (DLM)</b>: two and a half hours east, for Göcek and the Fethiye side.</li>
+    <li><b>Izmir (ADB)</b>: three hours north.</li>
+    <li><b>Kos (KGS)</b>: across the water in Greece, and a separate country for handling.</li>
   </ul>
   <p>Bodrum is a summer market. Legs appear in bursts around the season and go quickly, which makes an alert worth more here than a daily check.</p>
 
@@ -1030,7 +1030,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

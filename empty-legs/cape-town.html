@@ -624,7 +624,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -665,13 +665,13 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Cape Town</h2>
-  <p>Cape Town runs on the southern hemisphere summer. From November to March the city absorbs far more charter than it sends out, and the board reflects that — arrivals outnumber departures, because aircraft are flown down full and repositioned back empty. Those outbound sectors are the <a href="/">empty leg flights</a> here.</p>
+  <p>Cape Town runs on the southern hemisphere summer. From November to March the city absorbs far more charter than it sends out, and the board reflects that: arrivals outnumber departures, because aircraft are flown down full and repositioned back empty. Those outbound sectors are the <a href="/">empty leg flights</a> here.</p>
   <p>The domestic network dominates: Port Elizabeth, <a href="/empty-legs/johannesburg-to-cape-town">Johannesburg to Cape Town</a> and back, and Mpumalanga for the Kruger reserves. Longer legs reach Nairobi and Port Louis. The live counts below are read from the current board.</p>
 
   <h2>The airport</h2>
   <ul>
-    <li><b>Cape Town International (CPT)</b> — the single field, with a general aviation terminal on the eastern side, around twenty-five minutes from the city.</li>
-    <li><b>Port Elizabeth, George and Mossel Bay</b> — cover the Garden Route and appear as separate listings.</li>
+    <li><b>Cape Town International (CPT)</b>: the single field, with a general aviation terminal on the eastern side, around twenty-five minutes from the city.</li>
+    <li><b>Port Elizabeth, George and Mossel Bay</b>: cover the Garden Route and appear as separate listings.</li>
   </ul>
   <p>Cape Town is famously windy in summer; the south-easter can move slots by hours, so confirm timings on the day.</p>
 
@@ -1013,7 +1013,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

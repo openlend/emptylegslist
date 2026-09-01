@@ -625,7 +625,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -671,10 +671,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Bolzano (BZO)</b> &mdash; in the valley just south of the city, and the field these listings mean.</li>
-    <li><b>Innsbruck (INN)</b> &mdash; an hour and a half north over the Brenner.</li>
-    <li><b><a href="/empty-legs/verona">Verona</a> (VRN)</b> &mdash; two hours south, and the usual alternative for larger aircraft.</li>
-    <li><b>Venice (VCE)</b> &mdash; two and a half hours south east.</li>
+    <li><b>Bolzano (BZO)</b>: in the valley just south of the city, and the field these listings mean.</li>
+    <li><b>Innsbruck (INN)</b>: an hour and a half north over the Brenner.</li>
+    <li><b><a href="/empty-legs/verona">Verona</a> (VRN)</b>: two hours south, and the usual alternative for larger aircraft.</li>
+    <li><b>Venice (VCE)</b>: two and a half hours south east.</li>
   </ul>
   <p>Bolzano is a mountain field. Weather and aircraft performance limit it more than most, so a leg listed here can move for reasons that have nothing to do with the operator.</p>
 
@@ -1033,7 +1033,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

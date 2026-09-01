@@ -1357,7 +1357,7 @@
       body: JSON.stringify(payload)
     }).then(function (r) {
       if (!r.ok) throw new Error("status " + r.status);
-      showMsg("Request sent. Check your inbox for a confirmation \u2014 we are forwarding it to operators covering your route.", false);
+      showMsg("Request sent. Check your inbox for a confirmation, we are forwarding it to operators covering your route.", false);
       form.reset();
       PICKS.from = null;
       PICKS.to = null;

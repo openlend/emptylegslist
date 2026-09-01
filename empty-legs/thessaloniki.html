@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Thessaloniki Makedonia (SKG)</b> &mdash; on the coast east of the city, and the field these listings mean.</li>
-    <li><b>Kavala (KVA)</b> &mdash; further east, for the Halkidiki and Thassos side.</li>
-    <li><b>Athens (ATH)</b> &mdash; about five hours by road, so worth checking as a separate search rather than a substitute.</li>
+    <li><b>Thessaloniki Makedonia (SKG)</b>: on the coast east of the city, and the field these listings mean.</li>
+    <li><b>Kavala (KVA)</b>: further east, for the Halkidiki and Thassos side.</li>
+    <li><b>Athens (ATH)</b>: about five hours by road, so worth checking as a separate search rather than a substitute.</li>
   </ul>
   <p>This is a market where an alert is worth more than a daily check. Legs appear in bursts around the summer season and go quickly.</p>
 
@@ -1029,7 +1029,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

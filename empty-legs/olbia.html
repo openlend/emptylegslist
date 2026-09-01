@@ -624,7 +624,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -665,13 +665,13 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Olbia</h2>
-  <p>Olbia is the airport for the Costa Smeralda, which gives it one of the most concentrated seasons in the Mediterranean: quiet for nine months, then flat out for three. That compression is what generates <a href="/">empty leg flights</a> here — aircraft arrive full in July and August and have to be repositioned out.</p>
+  <p>Olbia is the airport for the Costa Smeralda, which gives it one of the most concentrated seasons in the Mediterranean: quiet for nine months, then flat out for three. That compression is what generates <a href="/">empty leg flights</a> here: aircraft arrive full in July and August and have to be repositioned out.</p>
   <p>The corridors are western Mediterranean and northern European: <a href="/empty-legs/nice">Nice</a> most often, then <a href="/empty-legs/olbia-to-london">Olbia to London</a>, Sofia and Figari in Corsica. The live counts below are read from the current board.</p>
 
   <h2>The airport</h2>
   <ul>
-    <li><b>Olbia Costa Smeralda (OLB)</b> — ten minutes from Olbia and around forty from Porto Cervo.</li>
-    <li><b>Cagliari (CAG) and Figari (FSC)</b> — cover the south of Sardinia and southern Corsica respectively, and appear as separate listings.</li>
+    <li><b>Olbia Costa Smeralda (OLB)</b>: ten minutes from Olbia and around forty from Porto Cervo.</li>
+    <li><b>Cagliari (CAG) and Figari (FSC)</b>: cover the south of Sardinia and southern Corsica respectively, and appear as separate listings.</li>
   </ul>
   <p>In peak weeks Olbia is slot-constrained and parking is limited, so operators sometimes reposition the aircraft out the same day.</p>
 
@@ -1013,7 +1013,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

@@ -451,6 +451,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
  ]
 }
 </script>
+
+
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -854,7 +857,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -900,10 +903,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Dallas Love Field (DAL)</b> &mdash; closest to downtown and heavily used by business aviation.</li>
-    <li><b>Addison (ADS)</b> &mdash; north of the city, general aviation only, and busy with it.</li>
-    <li><b>Dallas/Fort Worth International (DFW)</b> &mdash; the airline field, used by the largest aircraft.</li>
-    <li><b>Meacham (FTW) and Alliance (AFW)</b> &mdash; on the <a href="/empty-legs/fort-worth">Fort Worth</a> side of the metroplex.</li>
+    <li><b>Dallas Love Field (DAL)</b>: closest to downtown and heavily used by business aviation.</li>
+    <li><b>Addison (ADS)</b>: north of the city, general aviation only, and busy with it.</li>
+    <li><b>Dallas/Fort Worth International (DFW)</b>: the airline field, used by the largest aircraft.</li>
+    <li><b>Meacham (FTW) and Alliance (AFW)</b>: on the <a href="/empty-legs/fort-worth">Fort Worth</a> side of the metroplex.</li>
   </ul>
   <p>Dallas and Fort Worth are one market with several airports. If a listing names one and you wanted the other, the drive is usually well under an hour.</p>
 
@@ -1257,7 +1260,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

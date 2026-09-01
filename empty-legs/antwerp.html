@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -668,20 +668,20 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Antwerp</h2>
-  <p>Antwerp is a small, quick field that serves a city with a lot of private wealth — diamonds, shipping and a strong leisure-flying culture. It is faster on the ground than Brussels and popular with owners heading south, which is what puts <a href="/">empty leg flights</a> on this board.</p>
+  <p>Antwerp is a small, quick field that serves a city with a lot of private wealth: diamonds, shipping and a strong leisure-flying culture. It is faster on the ground than Brussels and popular with owners heading south, which is what puts <a href="/">empty leg flights</a> on this board.</p>
   <p>The corridors run to the Mediterranean and Iberia: Pisa, Girona, Faro, Jerez and Avignon have all appeared recently, and <a href="/empty-legs/antwerp-to-ibiza">Antwerp to Ibiza</a> is the route we keep a page for. The live counts below are read from the current board.</p>
 
   <h2>The airport and its neighbours</h2>
   <ul>
-    <li><b>Antwerp International (ANR)</b> — a short runway suited to light and midsize jets, ten minutes from the city centre.</li>
-    <li><b>Brussels (BRU)</b> — forty-five minutes south, and the option when the aircraft is too large for Antwerp.</li>
-    <li><b>Kortrijk-Wevelgem (KJK)</b> — an hour south-west, and by volume the busiest Belgian field on this list.</li>
+    <li><b>Antwerp International (ANR)</b>: a short runway suited to light and midsize jets, ten minutes from the city centre.</li>
+    <li><b>Brussels (BRU)</b>: forty-five minutes south, and the option when the aircraft is too large for Antwerp.</li>
+    <li><b>Kortrijk-Wevelgem (KJK)</b>: an hour south-west, and by volume the busiest Belgian field on this list.</li>
   </ul>
   <p>The runway length at Antwerp is the constraint worth checking: heavier jets will be listed at Brussels or Liège instead.</p>
 
   <h2>What an empty leg from Antwerp costs</h2>
   <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Where none is published the card says so rather than estimating. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>Light and midsize types carry almost all of this traffic — the <a href="/aircraft/citation-cj2">Citation CJ2+</a> and <a href="/aircraft/citation-xls">Citation XLS</a> recur most. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
+  <p>Light and midsize types carry almost all of this traffic: the <a href="/aircraft/citation-cj2">Citation CJ2+</a> and <a href="/aircraft/citation-xls">Citation XLS</a> recur most. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
 
   <h2>Antwerp empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>91 empty leg flights</b> touching Antwerp: 51 departing, 40 arriving, across 33 partner airports. The airports that came up most were Ibiza (25), Milan (6), Bydgoszcz (4), Girona (4). 10 different aircraft types appeared, most often the Embraer ERJ-135 (23), the Citation CJ2+ (20), the Citation XLS/XLS+ (16).</p>
@@ -1017,7 +1017,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

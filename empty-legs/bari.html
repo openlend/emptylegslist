@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Bari Karol Wojtyła (BRI)</b> &mdash; at Palese, ten kilometres north west of the city.</li>
-    <li><b>Brindisi (BDS)</b> &mdash; an hour and a half south, and closer for Ostuni and Lecce.</li>
-    <li><b>Grottaglie (TAR)</b> &mdash; inland near Taranto, used by general aviation.</li>
+    <li><b>Bari Karol Wojtyła (BRI)</b>: at Palese, ten kilometres north west of the city.</li>
+    <li><b>Brindisi (BDS)</b>: an hour and a half south, and closer for Ostuni and Lecce.</li>
+    <li><b>Grottaglie (TAR)</b>: inland near Taranto, used by general aviation.</li>
   </ul>
   <p>Puglia is long. Bari serves the north of it and Brindisi the south, and the drive between them is real, so check which one a listing means.</p>
 
@@ -1029,7 +1029,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

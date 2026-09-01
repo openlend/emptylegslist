@@ -451,6 +451,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 }
 </script>
 
+
+
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -854,7 +857,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -900,10 +903,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Liège (LGG)</b> &mdash; at Bierset, about ten kilometres west of the city, and the field these listings mean.</li>
-    <li><b>Maastricht Aachen (MST)</b> &mdash; half an hour north, just over the Dutch border.</li>
-    <li><b>Brussels (BRU) and <a href="/empty-legs/antwerp">Antwerp</a> (ANR)</b> &mdash; an hour and a half west, and far busier for passenger traffic.</li>
-    <li><b>Cologne Bonn (CGN)</b> &mdash; ninety minutes east, and often the better arrival for the German side.</li>
+    <li><b>Liège (LGG)</b>: at Bierset, about ten kilometres west of the city, and the field these listings mean.</li>
+    <li><b>Maastricht Aachen (MST)</b>: half an hour north, just over the Dutch border.</li>
+    <li><b>Brussels (BRU) and <a href="/empty-legs/antwerp">Antwerp</a> (ANR)</b>: an hour and a half west, and far busier for passenger traffic.</li>
+    <li><b>Cologne Bonn (CGN)</b>: ninety minutes east, and often the better arrival for the German side.</li>
   </ul>
   <p>Liège is closer to three borders than it is to most of Belgium. If your destination is Aachen, Maastricht or the German border towns, this is usually the shorter total journey.</p>
 
@@ -1262,7 +1265,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

@@ -1,4 +1,4 @@
-/* Empty Leg List — hover intent for the mega menu.
+/* Empty Leg List, hover intent for the mega menu.
  *
  * Pure CSS :hover closes the panel the instant the pointer leaves the trigger,
  * which makes the diagonal move from "Destinations" down to a city link a race

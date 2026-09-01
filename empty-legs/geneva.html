@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Geneva (GVA)</b> &mdash; the main field, straddling the French border with separate French and Swiss sectors.</li>
-    <li><b>Annecy (NCY) and Chambéry (CMF)</b> &mdash; on the French side, closer to some of the resorts.</li>
-    <li><b><a href="/empty-legs/sion">Sion</a> (SIR)</b> &mdash; up the Rhône valley, the Valais option.</li>
+    <li><b>Geneva (GVA)</b>: the main field, straddling the French border with separate French and Swiss sectors.</li>
+    <li><b>Annecy (NCY) and Chambéry (CMF)</b>: on the French side, closer to some of the resorts.</li>
+    <li><b><a href="/empty-legs/sion">Sion</a> (SIR)</b>: up the Rhône valley, the Valais option.</li>
   </ul>
   <p>Geneva is slot constrained in the peak winter weeks. An empty leg into a Saturday in February is rarer than the demand suggests, so flexibility pays.</p>
 
@@ -1032,7 +1032,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

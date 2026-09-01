@@ -624,7 +624,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -665,8 +665,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Amsterdam</h2>
-  <p>Amsterdam sits on one of the densest short-haul charter corridors in Europe, which is what puts <a href="/">empty leg flights</a> on the board here. The city is close enough to London, Brussels and Paris that aircraft reposition between them constantly, and every paid charter out of Schiphol leaves a one-way sector behind it. That returning flight is the empty leg — crew, fuel and handling already paid for, offered at a reduced one-way price rather than flown empty.</p>
-  <p>We keep dedicated pages for the corridors that recur, including <a href="/empty-legs/amsterdam-to-london">Amsterdam to London</a> and <a href="/empty-legs/london-to-amsterdam">London to Amsterdam</a>. What is actually on the board changes week to week — recent sectors have run south to <a href="/empty-legs/olbia">Olbia</a>, <a href="/empty-legs/palma">Palma</a> and <a href="/empty-legs/malaga">Malaga</a>, east to <a href="/empty-legs/salzburg">Salzburg</a>, and north to Reykjavik. The live figures under &ldquo;Where these flights go&rdquo; below are counted from the current board rather than from a fixed list.</p>
+  <p>Amsterdam sits on one of the densest short-haul charter corridors in Europe, which is what puts <a href="/">empty leg flights</a> on the board here. The city is close enough to London, Brussels and Paris that aircraft reposition between them constantly, and every paid charter out of Schiphol leaves a one-way sector behind it. That returning flight is the empty leg: crew, fuel and handling already paid for, offered at a reduced one-way price rather than flown empty.</p>
+  <p>We keep dedicated pages for the corridors that recur, including <a href="/empty-legs/amsterdam-to-london">Amsterdam to London</a> and <a href="/empty-legs/london-to-amsterdam">London to Amsterdam</a>. What is actually on the board changes week to week: recent sectors have run south to <a href="/empty-legs/olbia">Olbia</a>, <a href="/empty-legs/palma">Palma</a> and <a href="/empty-legs/malaga">Malaga</a>, east to <a href="/empty-legs/salzburg">Salzburg</a>, and north to Reykjavik. The live figures under &ldquo;Where these flights go&rdquo; below are counted from the current board rather than from a fixed list.</p>
 
   <h2>Which Amsterdam airport</h2>
   <p>Most listings here mean Schiphol, but it is worth checking which field before you commit:</p>
@@ -677,8 +677,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <p>Because the Netherlands is compact, the airport in the listing matters less here than it does in London. A Rotterdam arrival is usually inside an hour of central Amsterdam.</p>
 
   <h2>What an empty leg from Amsterdam costs</h2>
-  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. On the Amsterdam board most operators currently list availability without a price, so those cards read <b>Price on enquiry</b> — we would rather say that than estimate a number. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> sets out the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter comparison.</p>
-  <p>The types that turn up on these routes are mostly light and midsize — the <a href="/aircraft/citation-xls">Citation XLS</a>, <a href="/aircraft/citation-cj2">Citation CJ2+</a> and <a href="/aircraft/citation-latitude">Citation Latitude</a> — with heavier metal such as the <a href="/aircraft/legacy-650">Legacy 650</a> when the sector runs further. If cabin size matters more than the exact date, browsing <a href="/aircraft/">by aircraft type</a> is usually faster.</p>
+  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. On the Amsterdam board most operators currently list availability without a price, so those cards read <b>Price on enquiry</b>: we would rather say that than estimate a number. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> sets out the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter comparison.</p>
+  <p>The types that turn up on these routes are mostly light and midsize: the <a href="/aircraft/citation-xls">Citation XLS</a>, <a href="/aircraft/citation-cj2">Citation CJ2+</a> and <a href="/aircraft/citation-latitude">Citation Latitude</a>, with heavier metal such as the <a href="/aircraft/legacy-650">Legacy 650</a> when the sector runs further. If cabin size matters more than the exact date, browsing <a href="/aircraft/">by aircraft type</a> is usually faster.</p>
 
   <h2>Amsterdam empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>64 empty leg flights</b> touching Amsterdam: 31 departing, 33 arriving, across 35 partner airports. The airports that came up most were London Luton (10), London (5), Bodrum (3), Cologne (3). 13 different aircraft types appeared, most often the Embraer Legacy 500 (11), the Citation Latitude (10), the Citation XLS/XLS+ (6).</p>
@@ -1015,7 +1015,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. This is a small real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

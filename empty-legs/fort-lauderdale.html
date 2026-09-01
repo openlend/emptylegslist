@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,10 +673,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Fort Lauderdale/Hollywood International (FLL)</b> &mdash; the main field, with separate business aviation facilities.</li>
-    <li><b>Fort Lauderdale Executive (FXE)</b> &mdash; north of the city and heavily used by charter.</li>
-    <li><b>Opa-locka (OPF) and Miami Executive (TMB)</b> &mdash; the Miami-side general aviation fields, half an hour south.</li>
-    <li><b>Boca Raton (BCT) and Palm Beach (PBI)</b> &mdash; to the north, often listed separately.</li>
+    <li><b>Fort Lauderdale/Hollywood International (FLL)</b>: the main field, with separate business aviation facilities.</li>
+    <li><b>Fort Lauderdale Executive (FXE)</b>: north of the city and heavily used by charter.</li>
+    <li><b>Opa-locka (OPF) and Miami Executive (TMB)</b>: the Miami-side general aviation fields, half an hour south.</li>
+    <li><b>Boca Raton (BCT) and Palm Beach (PBI)</b>: to the north, often listed separately.</li>
   </ul>
   <p>The whole coast from Miami to Palm Beach is under two hours by road, so a listing at a neighbouring field may still suit.</p>
 
@@ -1030,7 +1030,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

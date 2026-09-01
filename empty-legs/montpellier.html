@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Montpellier-Méditerranée (MPL)</b> &mdash; eight kilometres from the centre, and the field these listings mean.</li>
-    <li><b>Nîmes (FNI) and Béziers (BZR)</b> &mdash; either side along the coast, both under an hour.</li>
-    <li><b>Marseille (MRS)</b> &mdash; further east, the larger option.</li>
+    <li><b>Montpellier-Méditerranée (MPL)</b>: eight kilometres from the centre, and the field these listings mean.</li>
+    <li><b>Nîmes (FNI) and Béziers (BZR)</b>: either side along the coast, both under an hour.</li>
+    <li><b>Marseille (MRS)</b>: further east, the larger option.</li>
   </ul>
   <p>Montpellier is about two hours by road from the Camargue and three from the western Riviera, so it can be the cheaper way into the south of France.</p>
 
@@ -1032,7 +1032,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

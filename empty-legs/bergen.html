@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,8 +673,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Bergen Flesland (BGO)</b> &mdash; about twenty minutes south of the city, and the field every Bergen listing means.</li>
-    <li><b>Stavanger Sola (SVG)</b> &mdash; further down the coast, the other western Norwegian option.</li>
+    <li><b>Bergen Flesland (BGO)</b>: about twenty minutes south of the city, and the field every Bergen listing means.</li>
+    <li><b>Stavanger Sola (SVG)</b>: further down the coast, the other western Norwegian option.</li>
   </ul>
   <p>Bergen is the starting point for the fjords, and in summer that is what most inbound charter is for.</p>
 
@@ -1031,7 +1031,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

@@ -449,6 +449,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 }
 </script>
 
+
+
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -852,7 +855,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -893,20 +896,20 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Cannes</h2>
-  <p>Cannes-Mandelieu sits a few minutes from the Croisette and takes the traffic that does not need a long runway. The film festival and the yacht shows compress an enormous amount of charter into a handful of weeks, and every one of those arrivals leaves a sector to fly back — the <a href="/">empty leg flights</a> on this board.</p>
+  <p>Cannes-Mandelieu sits a few minutes from the Croisette and takes the traffic that does not need a long runway. The film festival and the yacht shows compress an enormous amount of charter into a handful of weeks, and every one of those arrivals leaves a sector to fly back: the <a href="/">empty leg flights</a> on this board.</p>
   <p>The dominant corridor by a distance is <a href="/empty-legs/cannes-to-wevelgem">Cannes to Wevelgem</a>, which points at where the owners come from: Belgium and the Netherlands. Beyond it the board reaches to Lugano, Belgrade and Naples. The live counts below are read from the current board.</p>
 
   <h2>Which airport for Cannes</h2>
   <ul>
-    <li><b>Cannes-Mandelieu (CEQ)</b> — closest to the town, but the runway is short and noise rules are strict, so it suits light and some midsize types only.</li>
-    <li><b>Nice Côte d'Azur (NCE)</b> — twenty-five minutes east with no aircraft restriction and far more listings.</li>
-    <li><b>Saint-Tropez – La Môle (LTT)</b> — for the western bays, with the same size limits as Mandelieu.</li>
+    <li><b>Cannes-Mandelieu (CEQ)</b>: closest to the town, but the runway is short and noise rules are strict, so it suits light and some midsize types only.</li>
+    <li><b>Nice Côte d'Azur (NCE)</b>: twenty-five minutes east with no aircraft restriction and far more listings.</li>
+    <li><b>Saint-Tropez - La Môle (LTT)</b>: for the western bays, with the same size limits as Mandelieu.</li>
   </ul>
   <p>If the aircraft on a listing is a heavy jet, it will be at Nice regardless of what the destination says.</p>
 
   <h2>What an empty leg from Cannes costs</h2>
   <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Where none is published the card says so rather than estimating. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>Because of the runway, the types here are light and midsize — the <a href="/aircraft/citation-cj4-gen2">Citation CJ4</a> and <a href="/aircraft/citation-xls">Citation XLS</a> are the ones that recur. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
+  <p>Because of the runway, the types here are light and midsize: the <a href="/aircraft/citation-cj4-gen2">Citation CJ4</a> and <a href="/aircraft/citation-xls">Citation XLS</a> are the ones that recur. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
 
   <h2>Cannes empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>66 empty leg flights</b> touching Cannes: 29 departing, 37 arriving, across 26 partner airports. The airports that came up most were Wevelgem (17), Nice (7), Olbia (5), Brussels (3). 12 different aircraft types appeared, most often the Citation CJ4 Gen 2 (19), the Embraer Legacy 500 (11), the Citation Latitude (4).</p>
@@ -1243,7 +1246,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

@@ -448,6 +448,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
  ]
 }
 </script>
+
+
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -851,7 +854,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -897,14 +900,14 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airport</h2>
   <ul>
-    <li><b>Salzburg W. A. Mozart (SZG)</b> — the single field, three kilometres from the old town and inside an hour of Zell am See, Kitzbühel and the Tauern valleys.</li>
-    <li><b>Innsbruck (INN) and Munich (MUC)</b> — cover the Tyrol and the Bavarian side, and appear as separate listings.</li>
+    <li><b>Salzburg W. A. Mozart (SZG)</b>: the single field, three kilometres from the old town and inside an hour of Zell am See, Kitzbühel and the Tauern valleys.</li>
+    <li><b>Innsbruck (INN) and Munich (MUC)</b>: cover the Tyrol and the Bavarian side, and appear as separate listings.</li>
   </ul>
   <p>Alpine airports are weather-exposed in a way coastal ones are not. A listed leg can move or cancel on conditions as well as on the charter around it, so confirm closer to the date than you might elsewhere.</p>
 
   <h2>What an empty leg from Salzburg costs</h2>
   <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Where none is published the card says so rather than estimating. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>Winter Alpine traffic is mostly midsize — the <a href="/aircraft/citation-xls">Citation XLS</a> and <a href="/aircraft/challenger-350">Challenger 350</a> both appear here. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
+  <p>Winter Alpine traffic is mostly midsize: the <a href="/aircraft/citation-xls">Citation XLS</a> and <a href="/aircraft/challenger-350">Challenger 350</a> both appear here. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
 
   <h2>Salzburg empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>31 empty leg flights</b> touching Salzburg: 12 departing, 19 arriving, across 17 partner airports. The airports that came up most were Paris (4), Olbia (3), Wevelgem (3), Zurich (3). 7 different aircraft types appeared, most often the Citation CJ4 Gen 2 (6), the Gulfstream G550 (3), the Global 6000 (2).</p>
@@ -1240,7 +1243,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

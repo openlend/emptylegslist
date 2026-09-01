@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Berlin Brandenburg (BER)</b> &mdash; the single main airport since the older fields closed.</li>
-    <li><b>Schönhagen (EDAZ)</b> &mdash; south west of the city, general aviation only.</li>
-    <li><b>Leipzig/Halle (LEJ)</b> &mdash; about two hours south, and used when Berlin is constrained.</li>
+    <li><b>Berlin Brandenburg (BER)</b>: the single main airport since the older fields closed.</li>
+    <li><b>Schönhagen (EDAZ)</b>: south west of the city, general aviation only.</li>
+    <li><b>Leipzig/Halle (LEJ)</b>: about two hours south, and used when Berlin is constrained.</li>
   </ul>
   <p>Berlin now has one airport where it used to have three. Older listings and older habits still refer to Tegel and Schönefeld, but the traffic is all at BER.</p>
 
@@ -1032,7 +1032,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

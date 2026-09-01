@@ -1,4 +1,4 @@
-/* Empty Leg List — destination map for city pages.
+/* Empty Leg List, destination map for city pages.
  *
  * Usage on a city page:
  *   <div class="citymap" data-city="London"></div>

@@ -452,6 +452,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 }
 </script>
 
+
+
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -855,7 +858,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -901,9 +904,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Linate (LIN)</b> &mdash; closest to the centre and the preferred business aviation field.</li>
-    <li><b>Malpensa (MXP)</b> &mdash; the larger airport, further out, used by the biggest aircraft.</li>
-    <li><b>Bergamo Orio al Serio (BGY)</b> &mdash; east of the city and often cheaper on handling.</li>
+    <li><b>Linate (LIN)</b>: closest to the centre and the preferred business aviation field.</li>
+    <li><b>Malpensa (MXP)</b>: the larger airport, further out, used by the biggest aircraft.</li>
+    <li><b>Bergamo Orio al Serio (BGY)</b>: east of the city and often cheaper on handling.</li>
   </ul>
   <p>A listing that says Milan can mean any of the three. Linate is the short drive; Malpensa and Bergamo are both around an hour depending on traffic.</p>
 
@@ -1262,7 +1265,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

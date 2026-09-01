@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Sion (SIR)</b> &mdash; in the valley itself, the closest field to the Valais resorts.</li>
-    <li><b><a href="/empty-legs/geneva">Geneva</a> (GVA)</b> &mdash; about two hours west by road, and much busier.</li>
-    <li><b>Bern (BRN) and Samedan (SMV)</b> &mdash; the other Swiss options, Samedan for St Moritz.</li>
+    <li><b>Sion (SIR)</b>: in the valley itself, the closest field to the Valais resorts.</li>
+    <li><b><a href="/empty-legs/geneva">Geneva</a> (GVA)</b>: about two hours west by road, and much busier.</li>
+    <li><b>Bern (BRN) and Samedan (SMV)</b>: the other Swiss options, Samedan for St Moritz.</li>
   </ul>
   <p>A valley airport in winter is weather dependent in a way a coastal one is not. Operators plan for it, but it is worth building slack into the day.</p>
 
@@ -1032,7 +1032,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

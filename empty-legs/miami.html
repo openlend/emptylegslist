@@ -624,7 +624,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -670,10 +670,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>Which South Florida airport</h2>
   <ul>
-    <li><b>Miami-Opa Locka Executive (OPF)</b> — the main business aviation field, north of the city, and usually the fastest on the ground.</li>
-    <li><b>Miami Executive (TMB)</b> — south-west of the city, suited to lighter aircraft.</li>
-    <li><b>Miami International (MIA)</b> — only worth it if you are connecting to a scheduled long-haul sector.</li>
-    <li><b>Fort Lauderdale (FLL and FXE)</b> — thirty minutes north and often has availability when Miami does not.</li>
+    <li><b>Miami-Opa Locka Executive (OPF)</b>: the main business aviation field, north of the city, and usually the fastest on the ground.</li>
+    <li><b>Miami Executive (TMB)</b>: south-west of the city, suited to lighter aircraft.</li>
+    <li><b>Miami International (MIA)</b>: only worth it if you are connecting to a scheduled long-haul sector.</li>
+    <li><b>Fort Lauderdale (FLL and FXE)</b>: thirty minutes north and often has availability when Miami does not.</li>
   </ul>
   <p>If a listing shows Fort Lauderdale and you are heading for Miami Beach, the drive is usually shorter than waiting for the next Miami leg.</p>
 
@@ -1017,7 +1017,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Scottsdale Airport (SDL)</b> &mdash; in the north of the city, and the field almost every listing here means.</li>
-    <li><b>Phoenix Sky Harbor (PHX)</b> &mdash; the airline field, twenty minutes away and used by the largest aircraft.</li>
-    <li><b>Phoenix Deer Valley (DVT) and Phoenix-Mesa Gateway (AZA)</b> &mdash; the other general aviation options in the valley.</li>
+    <li><b>Scottsdale Airport (SDL)</b>: in the north of the city, and the field almost every listing here means.</li>
+    <li><b>Phoenix Sky Harbor (PHX)</b>: the airline field, twenty minutes away and used by the largest aircraft.</li>
+    <li><b>Phoenix Deer Valley (DVT) and Phoenix-Mesa Gateway (AZA)</b>: the other general aviation options in the valley.</li>
   </ul>
   <p>Scottsdale is inside the Phoenix metropolitan area, so a listing that names Phoenix may still land you close to where you are going.</p>
 
@@ -1032,7 +1032,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

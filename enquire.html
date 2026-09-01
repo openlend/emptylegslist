@@ -739,7 +739,7 @@
           if (!legs.length) return;   // nothing matched; the plain date field stays
           document.getElementById("datewrap").style.display = "none";
           wrap.style.display = "block";
-          wrap.innerHTML = '<div class="pk-l">These flights are live on this route \u2014 pick the one you mean</div>' +
+          wrap.innerHTML = '<div class="pk-l">These flights are live on this route, pick the one you mean</div>' +
             legs.map(function (l, n) {
               var d2 = new Date(l.departure_date + "T00:00:00");
               var ds = isNaN(d2) ? l.departure_date : d2.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
@@ -782,7 +782,7 @@
     // No leg in the link: this is a general request, so ask for the route.
     document.getElementById("h1").textContent = "Tell us what you are looking for";
     document.getElementById("lede").textContent =
-      "No particular flight selected. Give us the route and we forward it to operators covering it — free, and they reply to you directly.";
+      "No particular flight selected. Give us the route and we forward it to operators covering it: free, and they reply to you directly.";
     var grid = document.getElementById("f");
     var block = document.createElement("div");
     block.className = "f-full";

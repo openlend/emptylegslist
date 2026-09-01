@@ -707,7 +707,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -761,13 +761,13 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <p>Two matter, and the difference is significant:</p>
   <ul>
     <li><b>Toronto Pearson (YYZ)</b> is the main field, with several fixed base operators and no restriction on aircraft size. Most listings here mean Pearson.</li>
-    <li><b>Billy Bishop Toronto City (YTZ)</b> is on the island a few minutes from the financial district &mdash; by far the quickest arrival if you are heading downtown, but it has a short runway, a curfew and tighter noise rules, so it suits light and midsize types only.</li>
+    <li><b>Billy Bishop Toronto City (YTZ)</b> is on the island a few minutes from the financial district: by far the quickest arrival if you are heading downtown, but it has a short runway, a curfew and tighter noise rules, so it suits light and midsize types only.</li>
   </ul>
   <p>If the listing does not specify and you are heading downtown, it is worth asking the operator whether YTZ is an option before committing to Pearson.</p>
 
   <h2>What an empty leg from Toronto costs</h2>
-  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. North American operators frequently list availability without a price, in which case the card reads <b>Price on enquiry</b> &mdash; we would rather say that than estimate. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>Cross-border sectors are mostly flown by light and super-midsize types &mdash; the <a href="/aircraft/citation-cj4-gen2">Citation CJ4</a> and <a href="/aircraft/challenger-300">Challenger 300</a> recur most on this board, with the <a href="/aircraft/global-6000">Global 6000</a> on the longer runs. If cabin size matters more than the exact date, browse <a href="/aircraft/">by aircraft type</a>. A Canada&ndash;US empty leg still needs customs clearance at both ends, so check the arrival airport has it available at your slot.</p>
+  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. North American operators frequently list availability without a price, in which case the card reads <b>Price on enquiry</b>: we would rather say that than estimate. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
+  <p>Cross-border sectors are mostly flown by light and super-midsize types: the <a href="/aircraft/citation-cj4-gen2">Citation CJ4</a> and <a href="/aircraft/challenger-300">Challenger 300</a> recur most on this board, with the <a href="/aircraft/global-6000">Global 6000</a> on the longer runs. If cabin size matters more than the exact date, browse <a href="/aircraft/">by aircraft type</a>. A Canada-US empty leg still needs customs clearance at both ends, so check the arrival airport has it available at your slot.</p>
 
   <h2>Toronto empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>80 empty leg flights</b> touching Toronto: 40 departing, 40 arriving, across 32 partner airports. The airports that came up most were Montreal (10), Teterboro (9), Westhampton Beach (7), Sault Ste Marie (6). 11 different aircraft types appeared, most often the Citation Ultra (28), the Challenger 300 (24), the Citation XLS (9).</p>
@@ -1104,7 +1104,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. This is a small real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

@@ -705,7 +705,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -764,8 +764,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <p>Cyprus is small enough that either works at a push, but the drive between them is around ninety minutes, so it is worth checking which airport a listing actually means.</p>
 
   <h2>What an empty leg from Larnaca costs</h2>
-  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Where none is published the card reads <b>Price on enquiry</b> &mdash; we would rather say that than estimate a number. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>Because the sectors out of Cyprus are long by European standards &mdash; four to five hours to the UK &mdash; the types on this board skew larger than on short-haul routes. The <a href="/aircraft/legacy-650">Legacy 650</a> and <a href="/aircraft/citation-latitude">Citation Latitude</a> both recur, and heavier metal appears on Gulf sectors. Browse <a href="/aircraft/">by aircraft type</a> if range or cabin size is the deciding factor.</p>
+  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Where none is published the card reads <b>Price on enquiry</b>: we would rather say that than estimate a number. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
+  <p>Because the sectors out of Cyprus are long by European standards, four to five hours to the UK, the types on this board skew larger than on short-haul routes. The <a href="/aircraft/legacy-650">Legacy 650</a> and <a href="/aircraft/citation-latitude">Citation Latitude</a> both recur, and heavier metal appears on Gulf sectors. Browse <a href="/aircraft/">by aircraft type</a> if range or cabin size is the deciding factor.</p>
 
   <h2>Larnaca empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>3 empty leg flights</b> touching Larnaca: 2 departing, 1 arriving, across 2 partner airports. The airports that came up most were Dubai (2), Kalamata (1). 2 different aircraft types appeared, most often the Boeing BBJ (2), the Citation CJ2+ (1).</p>
@@ -1102,7 +1102,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. This is a small real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

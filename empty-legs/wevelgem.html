@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -668,14 +668,14 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Wevelgem</h2>
-  <p>Wevelgem is one of the highest-volume airports on this entire list, which surprises people who have never heard of it. It is a working business aviation field in West Flanders rather than a destination, and it feeds an unusually consistent flow of southbound charter — which is exactly why it produces so many <a href="/">empty leg flights</a>.</p>
+  <p>Wevelgem is one of the highest-volume airports on this entire list, which surprises people who have never heard of it. It is a working business aviation field in West Flanders rather than a destination, and it feeds an unusually consistent flow of southbound charter, which is exactly why it produces so many <a href="/">empty leg flights</a>.</p>
   <p>The corridors are almost entirely Mediterranean: <a href="/empty-legs/wevelgem-to-toulon">Wevelgem to Toulon</a>, <a href="/empty-legs/cannes-to-wevelgem">Cannes to Wevelgem</a>, <a href="/empty-legs/wevelgem-to-zurich">Wevelgem to Zurich</a>, <a href="/empty-legs/ibiza">Ibiza</a> and Montpellier. If you are flying south from Belgium or northern France, this board is worth checking before Brussels.</p>
 
   <h2>The airport and its neighbours</h2>
   <ul>
-    <li><b>Kortrijk-Wevelgem (KJK)</b> — a dedicated business aviation field, fast on the ground, roughly half an hour from Lille and an hour from Ghent or Bruges.</li>
-    <li><b>Brussels (BRU) and Antwerp (ANR)</b> — are the alternatives, both with more scheduled traffic and slower handling.</li>
-    <li><b>Lille (LIL)</b> — just across the French border, and occasionally the better option heading south-west.</li>
+    <li><b>Kortrijk-Wevelgem (KJK)</b>: a dedicated business aviation field, fast on the ground, roughly half an hour from Lille and an hour from Ghent or Bruges.</li>
+    <li><b>Brussels (BRU) and Antwerp (ANR)</b>: are the alternatives, both with more scheduled traffic and slower handling.</li>
+    <li><b>Lille (LIL)</b>: just across the French border, and occasionally the better option heading south-west.</li>
   </ul>
   <p>Because Wevelgem is a base rather than a destination, legs leaving it are usually the outbound half of a trip someone else has already paid for.</p>
 
@@ -1017,7 +1017,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

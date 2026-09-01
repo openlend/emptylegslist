@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,9 +673,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Madrid Barajas (MAD)</b> &mdash; the main field, with a business aviation terminal separate from the passenger ones.</li>
-    <li><b>Cuatro Vientos (LEVS)</b> &mdash; south west of the city, general aviation only and quicker on the ground.</li>
-    <li><b>Torrejón (TOJ)</b> &mdash; east of Madrid, used when Barajas is constrained.</li>
+    <li><b>Madrid Barajas (MAD)</b>: the main field, with a business aviation terminal separate from the passenger ones.</li>
+    <li><b>Cuatro Vientos (LEVS)</b>: south west of the city, general aviation only and quicker on the ground.</li>
+    <li><b>Torrejón (TOJ)</b>: east of Madrid, used when Barajas is constrained.</li>
   </ul>
   <p>Madrid sits in the middle of the country, so it is often the shortest total journey even when the coast looks closer on a map.</p>
 
@@ -1029,7 +1029,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

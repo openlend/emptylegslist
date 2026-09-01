@@ -448,6 +448,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
  ]
 }
 </script>
+
+
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -851,7 +854,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -893,12 +896,12 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 <div class="prose">
   <h2>Empty leg flights from London</h2>
   <p>London produces more <a href="/">empty leg flights</a> than any other city on this list, and the reason is structural rather than seasonal. The city has a large based fleet and constant outbound charter, and every paid charter that leaves London has to be repositioned afterwards. That returning sector is the empty leg: the aircraft, crew and handling are already paid for, so the operator publishes the seat or the whole aircraft at a reduced one-way price rather than flying it empty.</p>
-  <p>In practice that means London is one of the few places where waiting for a match is a realistic strategy. Short European corridors refill quickly — <a href="/empty-legs/london-to-nice">London to Nice</a>, <a href="/empty-legs/london-to-paris">London to Paris</a>, <a href="/empty-legs/london-to-ibiza">London to Ibiza</a> and <a href="/empty-legs/london-to-dublin">London to Dublin</a> are the ones that reappear most often on the board above. Longer sectors to the Gulf and the Atlantic show up less frequently but with more notice.</p>
+  <p>In practice that means London is one of the few places where waiting for a match is a realistic strategy. Short European corridors refill quickly: <a href="/empty-legs/london-to-nice">London to Nice</a>, <a href="/empty-legs/london-to-paris">London to Paris</a>, <a href="/empty-legs/london-to-ibiza">London to Ibiza</a> and <a href="/empty-legs/london-to-dublin">London to Dublin</a> are the ones that reappear most often on the board above. Longer sectors to the Gulf and the Atlantic show up less frequently but with more notice.</p>
 
   <h2>Which London airport</h2>
   <p>The city name in a listing is doing a lot of work. Luton, Farnborough, Biggin Hill and Stansted are four different drives and four different arrival experiences, so check which one before you commit:</p>
   <ul>
-    <li><b>Farnborough and Biggin Hill</b> are the quickest on the ground — dedicated business aviation, minimal queueing.</li>
+    <li><b>Farnborough and Biggin Hill</b> are the quickest on the ground: dedicated business aviation, minimal queueing.</li>
     <li><b>Luton</b> has the most movements, so it carries the widest choice of dates and aircraft.</li>
     <li><b>Stansted</b> takes the largest aircraft, which is where the heavy and ultra-long-range types tend to appear.</li>
     <li><b>Oxford</b> turns up occasionally and suits anything heading west or to the Midlands.</li>
@@ -906,7 +909,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>What an empty leg from London costs</h2>
   <p>Prices on this page are the operator's own published figure for the whole aircraft, not a per-seat fare, and they are shown exactly as listed. Where the operator has not published one, the card says so rather than estimating. The saving against a standard charter is real but it is not fixed, and it depends entirely on how badly the operator wants to avoid flying that sector empty. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> shows what a standard charter runs for comparison.</p>
-  <p>Aircraft on the London board range from light jets on the short hops through to heavy metal on the long ones — the <a href="/aircraft/citation-xls">Citation XLS</a> and <a href="/aircraft/citation-latitude">Citation Latitude</a> on European sectors, the <a href="/aircraft/global-6000">Global 6000</a> and <a href="/aircraft/gulfstream-g550">Gulfstream G550</a> when the route is intercontinental. Browsing <a href="/aircraft/">by aircraft type</a> is often faster than by route if cabin size matters more than the exact date.</p>
+  <p>Aircraft on the London board range from light jets on the short hops through to heavy metal on the long ones: the <a href="/aircraft/citation-xls">Citation XLS</a> and <a href="/aircraft/citation-latitude">Citation Latitude</a> on European sectors, the <a href="/aircraft/global-6000">Global 6000</a> and <a href="/aircraft/gulfstream-g550">Gulfstream G550</a> when the route is intercontinental. Browsing <a href="/aircraft/">by aircraft type</a> is often faster than by route if cabin size matters more than the exact date.</p>
 
   <h2>London empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>307 empty leg flights</b> touching London: 154 departing, 153 arriving, across 96 partner airports. The airports that came up most were Birmingham (26), Larnaca (19), Dublin (15), London Luton (11). 33 different aircraft types appeared, most often the Citation Latitude (68), the Praetor 600 (49), the Embraer Legacy 500 (36).</p>
@@ -1245,7 +1248,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

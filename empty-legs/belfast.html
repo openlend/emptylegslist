@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -673,15 +673,15 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>Which Belfast airport</h2>
   <ul>
-    <li><b>Belfast International (BFS)</b> — the longer runway, north-west of the city, and the one that takes larger aircraft.</li>
-    <li><b>George Best Belfast City (BHD)</b> — much closer to the centre but with a short runway and a strict curfew.</li>
-    <li><b>City of Derry (LDY)</b> — covers the north-west and appears occasionally as its own listing.</li>
+    <li><b>Belfast International (BFS)</b>: the longer runway, north-west of the city, and the one that takes larger aircraft.</li>
+    <li><b>George Best Belfast City (BHD)</b>: much closer to the centre but with a short runway and a strict curfew.</li>
+    <li><b>City of Derry (LDY)</b>: covers the north-west and appears occasionally as its own listing.</li>
   </ul>
   <p>If the listing does not specify and you are heading into central Belfast, ask the operator whether the City airport is possible.</p>
 
   <h2>What an empty leg from Belfast costs</h2>
   <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Where none is published the card says so rather than estimating. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>Irish Sea sectors are short, so the types are mostly light — the <a href="/aircraft/citation-cj2">Citation CJ2+</a> and <a href="/aircraft/citation-m2">Citation M2</a> appear most. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
+  <p>Irish Sea sectors are short, so the types are mostly light: the <a href="/aircraft/citation-cj2">Citation CJ2+</a> and <a href="/aircraft/citation-m2">Citation M2</a> appear most. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
 
   <h2>Belfast empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>26 empty leg flights</b> touching Belfast: 13 departing, 13 arriving, across 9 partner airports. The airports that came up most were Biggin Hill (10), Edinburgh (3), Preveza (3), Antwerp (2). 2 different aircraft types appeared, most often the Learjet 45XR (22), the Pilatus PC-12 (4).</p>
@@ -1018,7 +1018,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

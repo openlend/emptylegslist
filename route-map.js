@@ -1,4 +1,4 @@
-/* Empty Leg List — route map for corridor pages.
+/* Empty Leg List, route map for corridor pages.
  *
  * Usage:
  *   <div class="routemap"

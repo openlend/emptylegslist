@@ -641,7 +641,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -687,10 +687,10 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
   <h2>The airports</h2>
   <ul>
-    <li><b>Farnborough (FAB)</b> &mdash; business aviation only, and the field these listings mean.</li>
-    <li><b><a href="/empty-legs/london">London</a> Luton (LTN) and Biggin Hill (BQH)</b> &mdash; the other two London business fields, on the opposite sides of the city.</li>
-    <li><b>London City (LCY)</b> &mdash; in the Docklands, and the shortest run into the City itself.</li>
-    <li><b>Heathrow (LHR) and Gatwick (LGW)</b> &mdash; airline fields, slower on the ground and used mostly by the largest aircraft.</li>
+    <li><b>Farnborough (FAB)</b>: business aviation only, and the field these listings mean.</li>
+    <li><b><a href="/empty-legs/london">London</a> Luton (LTN) and Biggin Hill (BQH)</b>: the other two London business fields, on the opposite sides of the city.</li>
+    <li><b>London City (LCY)</b>: in the Docklands, and the shortest run into the City itself.</li>
+    <li><b>Heathrow (LHR) and Gatwick (LGW)</b>: airline fields, slower on the ground and used mostly by the largest aircraft.</li>
   </ul>
   <p>Which London field you use decides your drive more than your flight does. Farnborough is quick for the south west and the M3 corridor, and slow for anywhere east of the city.</p>
 
@@ -1049,7 +1049,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

@@ -624,7 +624,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -665,20 +665,20 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Nice</h2>
-  <p>Nice is the front door to the Côte d'Azur and one of the densest charter markets in Europe. Demand concentrates into a short summer window and the aircraft that bring people down have to go back up, which is what fills this board with <a href="/">empty leg flights</a> — one-way sectors offered at a reduced price because the operator would otherwise fly them empty.</p>
+  <p>Nice is the front door to the Côte d'Azur and one of the densest charter markets in Europe. Demand concentrates into a short summer window and the aircraft that bring people down have to go back up, which is what fills this board with <a href="/">empty leg flights</a>: one-way sectors offered at a reduced price because the operator would otherwise fly them empty.</p>
   <p>Recent legs have run to <a href="/empty-legs/olbia">Olbia</a>, <a href="/empty-legs/larnaca">Larnaca</a> and <a href="/empty-legs/malaga">Malaga</a>, with <a href="/empty-legs/nice-to-wevelgem">Nice to Wevelgem</a> and <a href="/empty-legs/nice-to-london">Nice to London</a> as the steady northern corridors. The live counts below are read from the current board.</p>
 
   <h2>Which airport for the Riviera</h2>
   <ul>
-    <li><b>Nice Côte d'Azur (NCE)</b> — the main field, with the widest choice of dates and aircraft, and a helicopter link to Monaco from the same site.</li>
-    <li><b>Cannes-Mandelieu (CEQ)</b> — closer to Cannes itself but with a short runway that rules out heavier jets.</li>
-    <li><b>Toulon-Hyères (TLN)</b> — further west, and the better arrival for Saint-Tropez and the Var.</li>
+    <li><b>Nice Côte d'Azur (NCE)</b>: the main field, with the widest choice of dates and aircraft, and a helicopter link to Monaco from the same site.</li>
+    <li><b>Cannes-Mandelieu (CEQ)</b>: closer to Cannes itself but with a short runway that rules out heavier jets.</li>
+    <li><b>Toulon-Hyères (TLN)</b>: further west, and the better arrival for Saint-Tropez and the Var.</li>
   </ul>
   <p>In August the drive along the coast is the slow part, so the airport in the listing matters more than the flight time.</p>
 
   <h2>What an empty leg from Nice costs</h2>
   <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Where none is published the card says so rather than estimating. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>Riviera sectors are short, so the types skew light and midsize — the <a href="/aircraft/citation-xls">Citation XLS</a> and <a href="/aircraft/citation-cj4-gen2">Citation CJ4</a> recur most. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
+  <p>Riviera sectors are short, so the types skew light and midsize: the <a href="/aircraft/citation-xls">Citation XLS</a> and <a href="/aircraft/citation-cj4-gen2">Citation CJ4</a> recur most. Browse <a href="/aircraft/">by aircraft type</a> if cabin size matters more than the exact date.</p>
 
   <h2>Nice empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>151 empty leg flights</b> touching Nice: 72 departing, 79 arriving, across 65 partner airports. The airports that came up most were Olbia (12), Ibiza (9), Cannes (7), Milan (7). 31 different aircraft types appeared, most often the Hawker 900XP (17), the Challenger 3500 (10), the Challenger 350 (8).</p>
@@ -1015,7 +1015,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

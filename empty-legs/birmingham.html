@@ -627,7 +627,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -668,14 +668,14 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 <div class="prose">
   <h2>Empty leg flights from Birmingham</h2>
-  <p>Birmingham is the main business aviation field for the Midlands and busier on this board than most people expect — it produces a comparable number of <a href="/">empty leg flights</a> to cities with far higher profiles, because the traffic is regular rather than seasonal.</p>
+  <p>Birmingham is the main business aviation field for the Midlands and busier on this board than most people expect: it produces a comparable number of <a href="/">empty leg flights</a> to cities with far higher profiles, because the traffic is regular rather than seasonal.</p>
   <p>The steadiest corridor is <a href="/empty-legs/birmingham-to-london">Birmingham to London</a>, usually to Oxford or Stansted. Beyond the UK the board reaches Paphos, Tenerife and Miami. The live counts below are read from the current board.</p>
 
   <h2>The airport and its neighbours</h2>
   <ul>
-    <li><b>Birmingham (BHX)</b> — the main field, with business aviation handled through a separate terminal, and quick access to the M42.</li>
-    <li><b>Coventry (CVT) and Wolverhampton (Halfpenny Green)</b> — take lighter aircraft and occasionally appear separately.</li>
-    <li><b>London Oxford (OXF)</b> — an hour south and the most common London-area counterpart on this board.</li>
+    <li><b>Birmingham (BHX)</b>: the main field, with business aviation handled through a separate terminal, and quick access to the M42.</li>
+    <li><b>Coventry (CVT) and Wolverhampton (Halfpenny Green)</b>: take lighter aircraft and occasionally appear separately.</li>
+    <li><b>London Oxford (OXF)</b>: an hour south and the most common London-area counterpart on this board.</li>
   </ul>
   <p>Note that operators sometimes write Birmingham for the Alabama airport of the same name; the country suffix in each listing tells you which.</p>
 
@@ -1017,7 +1017,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });

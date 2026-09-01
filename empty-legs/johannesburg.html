@@ -705,7 +705,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <select id="sort">
           <option value="date">Soonest departure</option>
           <option value="seats">Most seats</option>
-          <option value="city">City A–Z</option>
+          <option value="city">City A to Z</option>
         </select>
       </div>
     </div>
@@ -764,8 +764,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <p>If your onward plan is a lodge transfer rather than an airline connection, Lanseria is almost always the better arrival.</p>
 
   <h2>What an empty leg from Johannesburg costs</h2>
-  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Southern African safari operators frequently list availability without a price, so those cards read <b>Price on enquiry</b> &mdash; we would rather say that than estimate. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
-  <p>The workhorse on these routes is the <a href="/aircraft/pilatus-pc-12-ngx">Pilatus PC-12 NGX</a> &mdash; single turboprop, short unpaved strips, eight seats &mdash; which is exactly what bush airstrips demand. Jets such as the <a href="/aircraft/citation-cj4-gen2">Citation CJ4</a> appear on the Cape Town and regional city runs. Bush strips also carry strict baggage limits, usually soft bags only, so confirm the allowance with the operator before you pack. Browse <a href="/aircraft/">by aircraft type</a> if the airframe matters.</p>
+  <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Southern African safari operators frequently list availability without a price, so those cards read <b>Price on enquiry</b>: we would rather say that than estimate. Our guide to the <a href="https://theflyingengineer.com/most-affordable-way-to-charter-a-private-jet/" target="_blank" rel="noopener">most affordable way to charter a private jet</a> compares the options, and the <a href="https://theflyingengineer.com/private-jet-cost-per-hour/" target="_blank" rel="noopener">private jet cost per hour breakdown</a> gives the standard-charter benchmark.</p>
+  <p>The workhorse on these routes is the <a href="/aircraft/pilatus-pc-12-ngx">Pilatus PC-12 NGX</a>: single turboprop, short unpaved strips, eight seats, which is exactly what bush airstrips demand. Jets such as the <a href="/aircraft/citation-cj4-gen2">Citation CJ4</a> appear on the Cape Town and regional city runs. Bush strips also carry strict baggage limits, usually soft bags only, so confirm the allowance with the operator before you pack. Browse <a href="/aircraft/">by aircraft type</a> if the airframe matters.</p>
 
   <h2>Johannesburg empty legs, by the numbers</h2>
   <p>Between 31 July and 27 August 2026 we recorded <b>61 empty leg flights</b> touching Johannesburg: 25 departing, 36 arriving, across 19 partner airports. The airports that came up most were Cape Town (14), Maun (12), Pemba (5), Hoedspruit (4). 14 different aircraft types appeared, most often the King Air 260 (18), the Nextant 400XT (10), the Citation V (7).</p>
@@ -1102,7 +1102,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 })
 .catch(function(){
   ALL=OFFLINE.slice();
-  document.getElementById("hero-live").textContent="Offline preview \u2014 snapshot data";
+  document.getElementById("hero-live").textContent="Offline preview, snapshot data";
   document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. This is a small real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });
