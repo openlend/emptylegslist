@@ -22,7 +22,23 @@ header.elnav {
   font-family: Raleway, system-ui, sans-serif;
 }
 @supports (backdrop-filter: blur(12px)) {
-  header.elnav { background: rgba(13, 31, 54, 0.82); backdrop-filter: saturate(150%) blur(14px); }
+  header.elnav { background: rgba(13, 31, 54, 0.86); backdrop-filter: blur(14px); }
+}
+/* Over a photographic hero the bar is a darker navy and lets a little of the
+   picture through. Only there: at this alpha over a pale page it reads muddy,
+   and the aircraft and static pages have no hero. The saturate() that used to
+   be here is what made the bar look lighter than the hero under it. */
+/* Only the home page runs its photograph up under the bar (see #h in
+   index.html), so only there is there anything behind the bar to show. On a
+   city page the picture starts below it and a transparent bar would just show
+   the page background. */
+@supports selector(:has(*)) {
+  @media (min-width: 1001px) {
+    body:has(#h) header.elnav {
+      background: rgba(9, 22, 40, 0.68);
+      backdrop-filter: blur(14px);
+    }
+  }
 }
 header.elnav * { box-sizing: border-box; }
 header.elnav a { text-decoration: none; }

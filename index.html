@@ -34,7 +34,10 @@
   a { text-decoration: none; }
   #h { position: relative; background: var(--navy); color: #fff; overflow: hidden; padding-bottom: 90px; }
   #hbg { position: absolute; inset: 0; background: url('https://theflyingengineer.com/wp-content/uploads/2026/07/362414ed-216d-42b5-9c69-20f69bf53574.jpg') center right/cover no-repeat; }
-  #hveil { position: absolute; inset: 0; background: linear-gradient(102deg, var(--navy) 0%, rgba(14,35,56,0.95) 32%, rgba(14,35,56,0.55) 62%, rgba(14,35,56,0.1) 100%); }
+  /* The veil only has to carry the headline and the paragraph, which end
+   around 45 percent of the width. It used to be still 55 percent opaque at
+   62 percent, which is exactly where the subject of the photograph is. */
+#hveil { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(13,31,54,0.97) 0%, rgba(13,31,54,0.93) 26%, rgba(13,31,54,0.66) 44%, rgba(13,31,54,0.24) 64%, rgba(13,31,54,0.04) 84%, rgba(13,31,54,0) 100%); }
   #hin { position: relative; max-width: 1120px; margin: 0 auto; padding: 26px 20px 0 20px; }
   #logo { display: inline-block; line-height: 0; }
   #logo img { width: auto; height: 46px; display: block; }
@@ -528,7 +531,15 @@
 </script>
 <style>
 #herolead { position: relative; }
-@media (min-width: 1001px) { #h { overflow: visible; } }
+@media (min-width: 1001px) {
+  #h { overflow: visible; }
+  /* The photograph was 279px tall with the search card sitting over the lower
+     half of it, so the subject was never on screen. Run it up under the sticky
+     bar, which is translucent on this page, and give it room underneath the
+     text before the card starts. */
+  #h { margin-top: calc(var(--eln-h, 74px) * -1); padding-top: var(--eln-h, 74px); padding-bottom: 200px; }
+  #hin { padding-top: 40px; }
+}
 /* sticky mobile nav */
 @media (max-width: 1000px) {
   #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 60; background: rgba(13,31,54,.97); padding: 10px 18px; box-shadow: 0 2px 16px rgba(0,0,0,.28); }
@@ -612,6 +623,7 @@
               <a href="/empty-legs/dublin">Dublin</a>
               <a href="/empty-legs/edinburgh">Edinburgh</a>
               <a href="/empty-legs/bergen">Bergen</a>
+              <a href="/empty-legs/preveza">Preveza</a>
             </div>
             <div class="eln-pan" data-region="1" hidden>
               <a href="/empty-legs/teterboro">Teterboro</a>
@@ -637,6 +649,7 @@
               <a href="/empty-legs/montreal">Montreal</a>
               <a href="/empty-legs/calgary">Calgary</a>
               <a href="/empty-legs/sault-ste-marie">Sault Ste Marie</a>
+              <a href="/empty-legs/turks-and-caicos">Turks And Caicos</a>
             </div>
             <div class="eln-pan" data-region="2" hidden>
               <a href="/empty-legs/larnaca">Larnaca</a>
@@ -809,6 +822,8 @@
         <a href="/empty-legs/chicago">Chicago</a>
         <a href="/empty-legs/oakland">Oakland</a>
         <a href="/empty-legs/monterey">Monterey</a>
+        <a href="/empty-legs/preveza">Preveza</a>
+        <a href="/empty-legs/turks-and-caicos">Turks And Caicos</a>
       </div></div></div>
     </div>
     <div class="eln-acc">

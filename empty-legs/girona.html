@@ -454,6 +454,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 
 
+
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -531,6 +532,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
               <a href="/empty-legs/dublin">Dublin</a>
               <a href="/empty-legs/edinburgh">Edinburgh</a>
               <a href="/empty-legs/bergen">Bergen</a>
+              <a href="/empty-legs/preveza">Preveza</a>
             </div>
             <div class="eln-pan" data-region="1" hidden>
               <a href="/empty-legs/teterboro">Teterboro</a>
@@ -556,6 +558,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
               <a href="/empty-legs/montreal">Montreal</a>
               <a href="/empty-legs/calgary">Calgary</a>
               <a href="/empty-legs/sault-ste-marie">Sault Ste Marie</a>
+              <a href="/empty-legs/turks-and-caicos">Turks And Caicos</a>
             </div>
             <div class="eln-pan" data-region="2" hidden>
               <a href="/empty-legs/larnaca">Larnaca</a>
@@ -728,6 +731,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         <a href="/empty-legs/chicago">Chicago</a>
         <a href="/empty-legs/oakland">Oakland</a>
         <a href="/empty-legs/monterey">Monterey</a>
+        <a href="/empty-legs/preveza">Preveza</a>
+        <a href="/empty-legs/turks-and-caicos">Turks And Caicos</a>
       </div></div></div>
     </div>
     <div class="eln-acc">
@@ -1260,7 +1265,7 @@ fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{h
 .catch(function(){
   ALL=OFFLINE.slice();
   document.getElementById("hero-live").textContent="Offline preview, snapshot data";
-  document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. These eight flights are a real snapshot from 20 August 2026, shown only so the layout can be judged. On the live site this list is the full live board.';
+  document.getElementById("stamp").innerHTML='<b style="color:#b3541e">Offline preview.</b> The browser blocked the live data call because this file was opened from disk rather than served over https. On the live site this list is the full live board.';
   rail(); apply(); corridors();
 });
 })();
