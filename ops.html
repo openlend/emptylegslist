@@ -96,7 +96,12 @@ a{color:var(--navy)}
 
   var TABS = [
     ["leads","Quote requests"], ["messages","Contact messages"],
-    ["members","Members"], ["alerts","Route alerts"], ["sent","Alerts sent"]
+    ["members","Members"], ["alerts","Route alerts"], ["sent","Alerts sent"],
+    /* Operator names are deliberately never shown on the public site: the
+       empty-legs function replaces every one with "Network operator". This tab
+       is the one place they are visible, so there is somewhere to see who is
+       actually behind a listing and whether their feed is still alive. */
+    ["sources","Sources"]
   ];
 
   function open(l){ return (l.status||"").toLowerCase()==="done" ? "done" : ""; }
@@ -138,6 +143,21 @@ a{color:var(--navy)}
         '<td><a href="mailto:'+esc(a.email)+'">'+esc(a.email)+'</a>'+(a.unsubscribed_at?' <span class="tag">stopped</span>':'')+'</td>'+
         '<td>'+esc(a.from_interest||"any")+' &rarr; '+esc(a.to_interest||"any")+'</td>'+
         '<td class="when">'+when(a.last_sent_at)+'</td></tr>'; }).join(""));
+    if(TAB==="sources") return table(
+      ["Operator","Collector","Upcoming","Live rows","Last seen","Where from"],
+      d.map(function(s){
+        /* A stale source is not an empty one. Its legs are still on the site
+           and simply are not being refreshed, so the row is flagged rather
+           than hidden. */
+        var late = !!s.stale;
+        return '<tr class="'+(late?"done":"")+'">'+
+          '<td><b>'+esc(s.operator_name||"—")+'</b>'+(late?' <span class="tag">not reporting</span>':'')+'</td>'+
+          '<td><span class="tag">'+esc(s.collector||"")+'</span></td>'+
+          '<td>'+esc(s.upcoming_rows)+'</td>'+
+          '<td>'+esc(s.live_rows)+'</td>'+
+          '<td class="when">'+(s.hours_since==null?"never":(s.hours_since<48?Math.round(s.hours_since)+"h ago":Math.floor(s.hours_since/24)+"d ago"))+'</td>'+
+          '<td class="w"><a href="'+esc(s.source_url)+'" target="_blank" rel="noopener">'+esc(s.source_url)+'</a></td></tr>';
+      }).join(""));
     return table(["Sent","Email","Flight"],
       d.map(function(s){ return '<tr><td class="when">'+when(s.sent_at)+'</td>'+
         '<td>'+esc(s.email)+'</td><td>'+esc(s.leg_key||"")+'</td></tr>'; }).join(""));
@@ -158,7 +178,10 @@ a{color:var(--navy)}
       '<div><b>'+DATA.leads.filter(function(l){return (l.status||"").toLowerCase()!=="done";}).length+'</b><span>quote requests open</span></div>'+
       '<div><b>'+DATA.messages.filter(function(m){return (m.status||"").toLowerCase()!=="done";}).length+'</b><span>messages open</span></div>'+
       '<div><b>'+DATA.members.length+'</b><span>members</span></div>'+
-      '<div><b>'+DATA.alerts.filter(function(a){return !a.unsubscribed_at;}).length+'</b><span>live route alerts</span></div>';
+      '<div><b>'+DATA.alerts.filter(function(a){return !a.unsubscribed_at;}).length+'</b><span>live route alerts</span></div>'+
+      /* Sources that have stopped reporting. Zero is the state to expect: an
+         email goes out twice a day only when this is not zero. */
+      '<div><b>'+(DATA.sources||[]).filter(function(s){return s.stale;}).length+'</b><span>sources not reporting</span></div>';
     document.getElementById("stamp").innerHTML = "board last refreshed "+when(DATA.board.last_refreshed);
     document.getElementById("tabs").innerHTML = TABS.map(function(t){
       return '<button data-tab="'+t[0]+'" class="'+(TAB===t[0]?"on":"")+'">'+t[1]+' <i>'+(DATA[t[0]]||[]).length+'</i></button>';
