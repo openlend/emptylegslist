@@ -44,7 +44,8 @@ footer a{color:rgba(255,255,255,.85)}
 @media(max-width:640px){.wrap{padding:0 16px 60px}}
 
 /* ---------- shared site footer (footer.py) ---------- */
-#bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left}
+#bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
+#bigfoot *{box-sizing:border-box}   /* index.html is content-box, which made its footer column 56px wider than everywhere else */
 #bigfoot a{color:rgba(255,255,255,.78);text-decoration:none}
 #bigfoot a:hover,#bigfoot a:focus-visible{color:#fff;text-decoration:underline}
 
@@ -528,6 +529,7 @@ footer a{color:rgba(255,255,255,.85)}
 <p>If your city is here, start on its page. If it is not, the board still carries flights to airports we have no page for, so search the <a href="/#listings">full list</a> by departure and arrival instead.</p>
 <p>Empty Leg List is a listing service. We are not a broker, not an operator, and not a party to any booking. Your enquiry goes to the operator covering the route, who confirms availability and the final price with you directly.</p>
 <p><a class="btn" href="/#alerts">Get empty leg alerts</a></p>
+</div>
 
 <footer id="bigfoot">
   <div class="bf-alert">
