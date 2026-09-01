@@ -124,3 +124,47 @@
       });
   });
 })();
+
+/* Region tabs in the Destinations menu. Plain buttons, no framework: the panel
+   is already in the HTML, this only shows one region at a time. */
+(function () {
+  function wire(root) {
+    var regs = root.querySelectorAll(".eln-regs button");
+    if (!regs.length) return;
+    Array.prototype.forEach.call(regs, function (b) {
+      b.addEventListener("click", function () {
+        var want = b.getAttribute("data-region");
+        Array.prototype.forEach.call(regs, function (o) {
+          var on = o === b;
+          o.classList.toggle("on", on);
+          o.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        Array.prototype.forEach.call(root.querySelectorAll(".eln-pan"), function (pn) {
+          var on = pn.getAttribute("data-region") === want;
+          pn.hidden = !on;
+          pn.classList.toggle("on", on);
+        });
+      });
+    });
+  }
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll(".mega-dest"), wire);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+
+/* Footer columns collapse on a phone. Done here rather than in the markup so
+   that with JavaScript off they stay open, which is what they were before. */
+(function () {
+  function fold() {
+    var small = window.matchMedia("(max-width: 820px)").matches;
+    Array.prototype.forEach.call(
+      document.querySelectorAll("#bigfoot details.bf-col"),
+      function (d) { if (small) d.removeAttribute("open"); else d.setAttribute("open", ""); }
+    );
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fold);
+  else fold();
+  var t; window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fold, 200); });
+})();

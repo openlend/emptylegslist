@@ -235,3 +235,25 @@ body.eln-lock { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   header.elnav *, .eln-drawer, .eln-scrim { transition-duration: 1ms !important; animation: none !important; }
 }
+
+/* --- region tabs in the Destinations menu (1 September 2026) ---
+   The panel used to list all 74 cities at once: 110 links, 1428px tall, taller
+   than the window it opened in. Now one region at a time. --- */
+/* routes get their own single column: at two columns the names truncated */
+.eln-mega.mega-dest{grid-template-columns:190px 1.15fr 1fr 250px}
+.eln-mega.mega-dest .eln-col-route .eln-grid{grid-template-columns:1fr}
+.eln-regs{display:flex;flex-direction:column;gap:2px;margin-bottom:12px}
+.eln-regs button{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  width:100%;margin:0;padding:9px 11px;border:0;border-radius:6px;background:transparent;
+  color:inherit;font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.eln-regs button:hover{background:rgba(13,31,54,.06)}
+/* the panel is white, so the active label must not be white too */
+.eln-regs button.on{background:rgba(201,162,76,.18);color:var(--navy,#0D1F36);font-weight:600}
+.eln-regs .eln-n{font-size:11px;opacity:.55;font-variant-numeric:tabular-nums}
+.eln-pan{display:grid;grid-template-columns:1fr 1fr;gap:2px 18px;
+  max-height:290px;overflow-y:auto;overscroll-behavior:contain}
+.eln-pan[hidden]{display:none}
+@media(max-width:1100px){
+  .eln-mega.mega-dest{grid-template-columns:180px 1fr}
+  .eln-mega.mega-dest .eln-promo{display:none}
+}

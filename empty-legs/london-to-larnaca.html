@@ -172,29 +172,65 @@ footer a{color:rgba(255,255,255,.85)}
 .mapnote{font-size:12.5px;color:var(--mute);margin:8px 2px 0}
 
 /* ---------- shared site footer (footer.py) ---------- */
-#bigfoot{background:#0D1F36;color:rgba(255,255,255,.75);margin-top:56px;padding:0;font-size:14px;line-height:1.65;font-weight:300}
-#bigfoot .bf-in{box-sizing:border-box;max-width:1680px;margin:0 auto;padding:56px 44px 34px;display:grid;grid-template-columns:1.2fr 1.75fr 1.15fr .95fr .95fr;gap:44px;text-align:left}
-#bigfoot h4{margin:0 0 14px;font-size:12.5px;letter-spacing:.13em;color:#C9A24C;font-weight:600;text-transform:uppercase}
-#bigfoot nav{display:flex;flex-direction:column;gap:9px}
-#bigfoot h5{margin:0 0 10px;font-size:12px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em}
-#bigfoot .bf-wide h5+nav{margin-bottom:20px}
-#bigfoot nav.bf-two{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px}
-#bigfoot a{color:rgba(255,255,255,.78);font-size:14px;line-height:1.5;text-decoration:none;transition:color .15s}
-#bigfoot a:hover{color:#fff}
-#bigfoot .bf-brand img{width:190px;height:auto;display:block;margin-bottom:14px}
-#bigfoot p{color:rgba(255,255,255,.75)}
-#bigfoot .bf-brand p{margin:0 0 12px;font-size:14px;line-height:1.7;max-width:330px;color:rgba(255,255,255,.75)}
-#bigfoot .bf-brand p a{color:#C9A24C}
-#bigfoot .bf-legal{color:rgba(255,255,255,.5);font-size:12.5px}
-#bigfoot li{color:rgba(255,255,255,.75)}
-#bigfoot .bf-social{display:grid;grid-template-columns:repeat(4,38px);gap:10px;margin-top:20px;justify-content:start}
-#bigfoot .bf-social a{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);transition:background-color .15s ease,color .15s ease,border-color .15s ease}
-#bigfoot .bf-social a:hover{background:rgba(201,162,76,.18);border-color:rgba(201,162,76,.5);color:#fff}
+#bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left}
+#bigfoot a{color:rgba(255,255,255,.78);text-decoration:none}
+#bigfoot a:hover,#bigfoot a:focus-visible{color:#fff;text-decoration:underline}
+
+/* the alert band across the top */
+#bigfoot .bf-alert{border-bottom:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
+#bigfoot .bf-alert-in{max-width:1240px;margin:0 auto;padding:24px 28px;display:flex;
+  align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+#bigfoot .bf-alert strong{display:block;font-family:"Playfair Display",Georgia,serif;
+  font-weight:500;font-size:21px;color:#fff}
+#bigfoot .bf-alert span{color:rgba(255,255,255,.62);font-size:14px}
+#bigfoot .bf-cta{display:inline-flex;align-items:center;gap:9px;background:#C9A24C;color:#12233b;
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px;
+  padding:13px 22px;border-radius:26px;white-space:nowrap;transition:background .18s ease}
+#bigfoot .bf-cta:hover,#bigfoot .bf-cta:focus-visible{background:#d9b463;color:#12233b;text-decoration:none}
+
+#bigfoot .bf-in{max-width:1240px;margin:0 auto;padding:44px 28px 30px;
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:34px}
+#bigfoot .bf-brand img{width:186px;height:auto;display:block;margin-bottom:14px}
+#bigfoot .bf-brand p{margin:0 0 16px;color:rgba(255,255,255,.66);font-size:14px;max-width:34ch}
+#bigfoot .bf-social{display:grid;grid-template-columns:repeat(4,36px);gap:9px;width:max-content}
+#bigfoot .bf-social a{display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border:1px solid rgba(255,255,255,.18);border-radius:50%;
+  color:rgba(255,255,255,.8);transition:background .15s ease,border-color .15s ease}
+#bigfoot .bf-social a:hover{background:rgba(201,162,76,.2);border-color:#C9A24C;color:#fff}
 #bigfoot .bf-social svg{fill:currentColor;display:block}
-#bigfoot .bf-bottom{border-top:1px solid rgba(255,255,255,.12);padding:20px;text-align:center;font-size:13px;color:rgba(255,255,255,.5)}
-@media(max-width:1280px){#bigfoot .bf-in{padding:52px 28px 30px;gap:36px}}
-@media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}#bigfoot .bf-wide{grid-column:1/-1}}
-@media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
+
+#bigfoot summary{list-style:none;cursor:pointer}
+#bigfoot summary::-webkit-details-marker{display:none}
+#bigfoot h4{margin:0 0 13px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:#C9A24C;font-weight:600}
+#bigfoot nav{display:flex;flex-direction:column;gap:9px;font-size:14px}
+#bigfoot .bf-more{color:rgba(255,255,255,.5);font-size:13px;margin-top:3px}
+
+#bigfoot .bf-bottom{border-top:1px solid rgba(255,255,255,.12);
+  max-width:1240px;margin:0 auto;padding:20px 28px 26px;font-size:13px;color:rgba(255,255,255,.5)}
+#bigfoot .bf-bottom p{margin:0 0 8px;text-align:left}
+#bigfoot .bf-legal-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:18px;margin-bottom:10px}
+#bigfoot .bf-legal{color:rgba(255,255,255,.38);max-width:80ch}
+
+@media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:22px}
+  #bigfoot nav{font-size:13.5px}}
+
+@media(max-width:820px){
+  /* On a phone the old footer was 3868px, four screens under every page.
+     The columns fold into accordions; site-nav.js closes them on load, and
+     with JavaScript off they simply stay open as before. */
+  #bigfoot .bf-in{grid-template-columns:1fr;gap:0;padding:30px 20px 18px}
+  #bigfoot .bf-brand{margin-bottom:22px}
+  #bigfoot details.bf-col{border-top:1px solid rgba(255,255,255,.12)}
+  #bigfoot summary{display:flex;align-items:center;justify-content:space-between;padding:15px 2px}
+  #bigfoot summary h4{margin:0}
+  #bigfoot summary::after{content:"+";color:rgba(255,255,255,.5);font-size:19px;line-height:1}
+  #bigfoot details[open] summary::after{content:"\2212"}
+  #bigfoot details nav{padding:2px 2px 16px}
+  #bigfoot .bf-bottom{padding-bottom:84px}
+  #bigfoot .bf-alert-in{padding:20px}
+  #bigfoot .bf-alert strong{font-size:19px}
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Empty Leg List","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"London to Larnaca empty legs","item":"https://emptylegslist.com/empty-legs/london-to-larnaca"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the London to Larnaca route produce empty leg flights?","acceptedAnswer":{"@type":"Answer","text":"The outbound half of the Cyprus corridor. An aircraft has to be in Larnaca to collect passengers, and that positioning flight is empty."}},{"@type":"Question","name":"When do empty legs from London to Larnaca usually appear?","acceptedAnswer":{"@type":"Answer","text":"Cyprus summer season. The months when this leg appears most often. Orthodox Easter. A reliable spike in private traffic to Cyprus."}}]}]}</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
@@ -212,87 +248,103 @@ footer a{color:rgba(255,255,255,.85)}
     <nav class="eln-links" aria-label="Main">
       <div class="eln-item">
         <button class="eln-trig" type="button" aria-expanded="false">Destinations <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="eln-mega">
-          <div>
-            <h4>Empty legs by city</h4>
-            <div class="eln-grid">
-            <a href="/empty-legs/london">London</a>
-            <a href="/empty-legs/paris">Paris</a>
-            <a href="/empty-legs/nice">Nice</a>
-            <a href="/empty-legs/cannes">Cannes</a>
-            <a href="/empty-legs/naples">Naples</a>
-            <a href="/empty-legs/bari">Bari</a>
-            <a href="/empty-legs/milan">Milan</a>
-            <a href="/empty-legs/bologna">Bologna</a>
-            <a href="/empty-legs/ibiza">Ibiza</a>
-            <a href="/empty-legs/palma">Palma</a>
-            <a href="/empty-legs/malaga">Malaga</a>
-            <a href="/empty-legs/madrid">Madrid</a>
-            <a href="/empty-legs/barcelona">Barcelona</a>
-            <a href="/empty-legs/alicante">Alicante</a>
-            <a href="/empty-legs/girona">Girona</a>
-            <a href="/empty-legs/athens">Athens</a>
-            <a href="/empty-legs/thessaloniki">Thessaloniki</a>
-            <a href="/empty-legs/olbia">Olbia</a>
-            <a href="/empty-legs/larnaca">Larnaca</a>
-            <a href="/empty-legs/istanbul">Istanbul</a>
-            <a href="/empty-legs/amsterdam">Amsterdam</a>
-            <a href="/empty-legs/rotterdam">Rotterdam</a>
-            <a href="/empty-legs/brussels">Brussels</a>
-            <a href="/empty-legs/antwerp">Antwerp</a>
-            <a href="/empty-legs/wevelgem">Wevelgem</a>
-            <a href="/empty-legs/vienna">Vienna</a>
-            <a href="/empty-legs/salzburg">Salzburg</a>
-            <a href="/empty-legs/berlin">Berlin</a>
-            <a href="/empty-legs/zurich">Zurich</a>
-            <a href="/empty-legs/geneva">Geneva</a>
-            <a href="/empty-legs/sion">Sion</a>
-            <a href="/empty-legs/montpellier">Montpellier</a>
-            <a href="/empty-legs/toulon">Toulon</a>
-            <a href="/empty-legs/birmingham">Birmingham</a>
-            <a href="/empty-legs/oxford">Oxford</a>
-            <a href="/empty-legs/belfast">Belfast</a>
-            <a href="/empty-legs/dublin">Dublin</a>
-            <a href="/empty-legs/edinburgh">Edinburgh</a>
-            <a href="/empty-legs/bergen">Bergen</a>
-            <a href="/empty-legs/miami">Miami</a>
-            <a href="/empty-legs/fort-lauderdale">Fort Lauderdale</a>
-            <a href="/empty-legs/las-vegas">Las Vegas</a>
-            <a href="/empty-legs/scottsdale">Scottsdale</a>
-            <a href="/empty-legs/teterboro">Teterboro</a>
-            <a href="/empty-legs/washington">Washington</a>
-            <a href="/empty-legs/milwaukee">Milwaukee</a>
-            <a href="/empty-legs/waukesha">Waukesha</a>
-            <a href="/empty-legs/fort-worth">Fort Worth</a>
-            <a href="/empty-legs/dallas">Dallas</a>
-            <a href="/empty-legs/austin">Austin</a>
-            <a href="/empty-legs/aspen">Aspen</a>
-            <a href="/empty-legs/carlsbad">Carlsbad</a>
-            <a href="/empty-legs/toronto">Toronto</a>
-            <a href="/empty-legs/montreal">Montreal</a>
-            <a href="/empty-legs/calgary">Calgary</a>
-            <a href="/empty-legs/sault-ste-marie">Sault Ste Marie</a>
-            <a href="/empty-legs/cape-town">Cape Town</a>
-            <a href="/empty-legs/johannesburg">Johannesburg</a>
-            <a href="/empty-legs/maun">Maun</a>
-            <a href="/empty-legs/liege">Liege</a>
-            <a href="/empty-legs/farnborough">Farnborough</a>
-            <a href="/empty-legs/munich">Munich</a>
-            <a href="/empty-legs/linz">Linz</a>
-            <a href="/empty-legs/pisa">Pisa</a>
-            <a href="/empty-legs/bodrum">Bodrum</a>
-            <a href="/empty-legs/verona">Verona</a>
-            <a href="/empty-legs/bolzano">Bolzano</a>
-            <a href="/empty-legs/dusseldorf">Dusseldorf</a>
-            <a href="/empty-legs/cagliari">Cagliari</a>
-            <a href="/empty-legs/van-nuys">Van Nuys</a>
-            <a href="/empty-legs/houston">Houston</a>
-            <a href="/empty-legs/chicago">Chicago</a>
-            <a href="/empty-legs/oakland">Oakland</a>
-            <a href="/empty-legs/monterey">Monterey</a>
+        <div class="eln-mega mega-dest">
+          <div class="eln-col-reg">
+            <h4>Explore by region</h4>
+            <div class="eln-regs">
+            <button class="eln-reg on" type="button" data-region="0" aria-pressed="true">Europe <span class="eln-n">45</span></button>
+            <button class="eln-reg" type="button" data-region="1" aria-pressed="false">North America <span class="eln-n">23</span></button>
+            <button class="eln-reg" type="button" data-region="2" aria-pressed="false">Middle East <span class="eln-n">3</span></button>
+            <button class="eln-reg" type="button" data-region="3" aria-pressed="false">Africa <span class="eln-n">3</span></button>
+            </div>
+            <a class="eln-all" href="/empty-legs/">All destinations <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="eln-col-city">
+            <h4>Cities</h4>
+            <div class="eln-pan on" data-region="0">
+              <a href="/empty-legs/london">London</a>
+              <a href="/empty-legs/paris">Paris</a>
+              <a href="/empty-legs/nice">Nice</a>
+              <a href="/empty-legs/cannes">Cannes</a>
+              <a href="/empty-legs/milan">Milan</a>
+              <a href="/empty-legs/bologna">Bologna</a>
+              <a href="/empty-legs/bari">Bari</a>
+              <a href="/empty-legs/pisa">Pisa</a>
+              <a href="/empty-legs/verona">Verona</a>
+              <a href="/empty-legs/bolzano">Bolzano</a>
+              <a href="/empty-legs/cagliari">Cagliari</a>
+              <a href="/empty-legs/olbia">Olbia</a>
+              <a href="/empty-legs/ibiza">Ibiza</a>
+              <a href="/empty-legs/palma">Palma</a>
+              <a href="/empty-legs/malaga">Malaga</a>
+              <a href="/empty-legs/madrid">Madrid</a>
+              <a href="/empty-legs/barcelona">Barcelona</a>
+              <a href="/empty-legs/alicante">Alicante</a>
+              <a href="/empty-legs/girona">Girona</a>
+              <a href="/empty-legs/athens">Athens</a>
+              <a href="/empty-legs/thessaloniki">Thessaloniki</a>
+              <a href="/empty-legs/amsterdam">Amsterdam</a>
+              <a href="/empty-legs/rotterdam">Rotterdam</a>
+              <a href="/empty-legs/brussels">Brussels</a>
+              <a href="/empty-legs/antwerp">Antwerp</a>
+              <a href="/empty-legs/wevelgem">Wevelgem</a>
+              <a href="/empty-legs/liege">Liege</a>
+              <a href="/empty-legs/vienna">Vienna</a>
+              <a href="/empty-legs/salzburg">Salzburg</a>
+              <a href="/empty-legs/linz">Linz</a>
+              <a href="/empty-legs/berlin">Berlin</a>
+              <a href="/empty-legs/munich">Munich</a>
+              <a href="/empty-legs/dusseldorf">Dusseldorf</a>
+              <a href="/empty-legs/zurich">Zurich</a>
+              <a href="/empty-legs/geneva">Geneva</a>
+              <a href="/empty-legs/sion">Sion</a>
+              <a href="/empty-legs/montpellier">Montpellier</a>
+              <a href="/empty-legs/toulon">Toulon</a>
+              <a href="/empty-legs/birmingham">Birmingham</a>
+              <a href="/empty-legs/oxford">Oxford</a>
+              <a href="/empty-legs/farnborough">Farnborough</a>
+              <a href="/empty-legs/belfast">Belfast</a>
+              <a href="/empty-legs/dublin">Dublin</a>
+              <a href="/empty-legs/edinburgh">Edinburgh</a>
+              <a href="/empty-legs/bergen">Bergen</a>
+            </div>
+            <div class="eln-pan" data-region="1" hidden>
+              <a href="/empty-legs/teterboro">Teterboro</a>
+              <a href="/empty-legs/washington">Washington</a>
+              <a href="/empty-legs/miami">Miami</a>
+              <a href="/empty-legs/fort-lauderdale">Fort Lauderdale</a>
+              <a href="/empty-legs/naples">Naples</a>
+              <a href="/empty-legs/chicago">Chicago</a>
+              <a href="/empty-legs/milwaukee">Milwaukee</a>
+              <a href="/empty-legs/waukesha">Waukesha</a>
+              <a href="/empty-legs/dallas">Dallas</a>
+              <a href="/empty-legs/fort-worth">Fort Worth</a>
+              <a href="/empty-legs/austin">Austin</a>
+              <a href="/empty-legs/houston">Houston</a>
+              <a href="/empty-legs/las-vegas">Las Vegas</a>
+              <a href="/empty-legs/scottsdale">Scottsdale</a>
+              <a href="/empty-legs/aspen">Aspen</a>
+              <a href="/empty-legs/van-nuys">Van Nuys</a>
+              <a href="/empty-legs/carlsbad">Carlsbad</a>
+              <a href="/empty-legs/monterey">Monterey</a>
+              <a href="/empty-legs/oakland">Oakland</a>
+              <a href="/empty-legs/toronto">Toronto</a>
+              <a href="/empty-legs/montreal">Montreal</a>
+              <a href="/empty-legs/calgary">Calgary</a>
+              <a href="/empty-legs/sault-ste-marie">Sault Ste Marie</a>
+            </div>
+            <div class="eln-pan" data-region="2" hidden>
+              <a href="/empty-legs/larnaca">Larnaca</a>
+              <a href="/empty-legs/istanbul">Istanbul</a>
+              <a href="/empty-legs/bodrum">Bodrum</a>
+            </div>
+            <div class="eln-pan" data-region="3" hidden>
+              <a href="/empty-legs/cape-town">Cape Town</a>
+              <a href="/empty-legs/johannesburg">Johannesburg</a>
+              <a href="/empty-legs/maun">Maun</a>
             </div>
           </div>
-          <div>
+          <div class="eln-col-route">
             <h4>Popular routes</h4>
             <div class="eln-grid">
             <a href="/empty-legs/london-to-nice">London → Nice</a>
@@ -305,35 +357,6 @@ footer a{color:rgba(255,255,255,.85)}
             <a href="/empty-legs/paris-to-london">Paris → London</a>
             <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
             <a href="/empty-legs/geneva-to-london">Geneva → London</a>
-            <a href="/empty-legs/vienna-to-london">Vienna → London</a>
-            <a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a>
-            <a href="/empty-legs/wevelgem-to-malaga">Wevelgem → Malaga</a>
-            <a href="/empty-legs/miami-to-new-york">Miami → New York</a>
-            <a href="/empty-legs/toronto-to-montreal">Toronto → Montreal</a>
-            <a href="/empty-legs/las-vegas-to-van-nuys">Las Vegas → Van Nuys</a>
-            <a href="/empty-legs/toronto-to-teterboro">Toronto → Teterboro</a>
-            <a href="/empty-legs/wevelgem-to-cannes">Wevelgem → Cannes</a>
-            <a href="/empty-legs/vancouver-to-calgary">Vancouver → Calgary</a>
-            <a href="/empty-legs/calgary-to-vancouver">Calgary → Vancouver</a>
-            <a href="/empty-legs/aspen-to-las-vegas">Aspen → Las Vegas</a>
-            <a href="/empty-legs/van-nuys-to-las-vegas">Van Nuys → Las Vegas</a>
-            <a href="/empty-legs/teterboro-to-toronto">Teterboro → Toronto</a>
-            <a href="/empty-legs/san-juan-to-miami">San Juan → Miami</a>
-            <a href="/empty-legs/sarasota-to-miami">Sarasota → Miami</a>
-            <a href="/empty-legs/nice-to-vienna">Nice → Vienna</a>
-            <a href="/empty-legs/nice-to-olbia">Nice → Olbia</a>
-            <a href="/empty-legs/scottsdale-to-las-vegas">Scottsdale → Las Vegas</a>
-            <a href="/empty-legs/carlsbad-to-truckee">Carlsbad → Truckee</a>
-            <a href="/empty-legs/las-vegas-to-vancouver">Las Vegas → Vancouver</a>
-            <a href="/empty-legs/college-station-to-fort-worth">College Station → Fort Worth</a>
-            <a href="/empty-legs/fort-worth-to-college-station">Fort Worth → College Station</a>
-            <a href="/empty-legs/manassas-to-miami">Manassas → Miami</a>
-            <a href="/empty-legs/las-vegas-to-scottsdale">Las Vegas → Scottsdale</a>
-            <a href="/empty-legs/london-to-preveza">London → Preveza</a>
-            <a href="/empty-legs/preveza-to-london">Preveza → London</a>
-            <a href="/empty-legs/teterboro-to-bedford">Teterboro → Bedford</a>
-            <a href="/empty-legs/page-to-las-vegas">Page → Las Vegas</a>
-            <a href="/empty-legs/las-vegas-to-monterey">Las Vegas → Monterey</a>
             </div>
             <a class="eln-all" href="/#listings">Every listing, live <span aria-hidden="true">→</span></a>
           </div>
@@ -496,35 +519,6 @@ footer a{color:rgba(255,255,255,.85)}
         <a href="/empty-legs/paris-to-london">Paris → London</a>
         <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
         <a href="/empty-legs/geneva-to-london">Geneva → London</a>
-        <a href="/empty-legs/vienna-to-london">Vienna → London</a>
-        <a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a>
-        <a href="/empty-legs/wevelgem-to-malaga">Wevelgem → Malaga</a>
-        <a href="/empty-legs/miami-to-new-york">Miami → New York</a>
-        <a href="/empty-legs/toronto-to-montreal">Toronto → Montreal</a>
-        <a href="/empty-legs/las-vegas-to-van-nuys">Las Vegas → Van Nuys</a>
-        <a href="/empty-legs/toronto-to-teterboro">Toronto → Teterboro</a>
-        <a href="/empty-legs/wevelgem-to-cannes">Wevelgem → Cannes</a>
-        <a href="/empty-legs/vancouver-to-calgary">Vancouver → Calgary</a>
-        <a href="/empty-legs/calgary-to-vancouver">Calgary → Vancouver</a>
-        <a href="/empty-legs/aspen-to-las-vegas">Aspen → Las Vegas</a>
-        <a href="/empty-legs/van-nuys-to-las-vegas">Van Nuys → Las Vegas</a>
-        <a href="/empty-legs/teterboro-to-toronto">Teterboro → Toronto</a>
-        <a href="/empty-legs/san-juan-to-miami">San Juan → Miami</a>
-        <a href="/empty-legs/sarasota-to-miami">Sarasota → Miami</a>
-        <a href="/empty-legs/nice-to-vienna">Nice → Vienna</a>
-        <a href="/empty-legs/nice-to-olbia">Nice → Olbia</a>
-        <a href="/empty-legs/scottsdale-to-las-vegas">Scottsdale → Las Vegas</a>
-        <a href="/empty-legs/carlsbad-to-truckee">Carlsbad → Truckee</a>
-        <a href="/empty-legs/las-vegas-to-vancouver">Las Vegas → Vancouver</a>
-        <a href="/empty-legs/college-station-to-fort-worth">College Station → Fort Worth</a>
-        <a href="/empty-legs/fort-worth-to-college-station">Fort Worth → College Station</a>
-        <a href="/empty-legs/manassas-to-miami">Manassas → Miami</a>
-        <a href="/empty-legs/las-vegas-to-scottsdale">Las Vegas → Scottsdale</a>
-        <a href="/empty-legs/london-to-preveza">London → Preveza</a>
-        <a href="/empty-legs/preveza-to-london">Preveza → London</a>
-        <a href="/empty-legs/teterboro-to-bedford">Teterboro → Bedford</a>
-        <a href="/empty-legs/page-to-las-vegas">Page → Las Vegas</a>
-        <a href="/empty-legs/las-vegas-to-monterey">Las Vegas → Monterey</a>
       </div></div></div>
     </div>
     <div class="eln-acc">
@@ -621,11 +615,20 @@ footer a{color:rgba(255,255,255,.85)}
 <p style="margin-top:26px"><a class="btn" href="/">See all empty legs</a></p>
 </div>
 <footer id="bigfoot">
+  <div class="bf-alert">
+    <div class="bf-alert-in">
+      <div>
+        <strong>Let the right flight come to you.</strong>
+        <span>Route alerts, straight to your inbox.</span>
+      </div>
+      <a class="bf-cta" href="/#alerts">Get empty leg alerts <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+
   <div class="bf-in">
     <div class="bf-col bf-brand">
       <img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224" loading="lazy" decoding="async">
-      <p>Live empty leg flights from charter operators worldwide, updated three times a day. Operated by Publishing Office SRL, the team behind <a href="https://theflyingengineer.com/">The Flying Engineer</a>.</p>
-      <p class="bf-legal">A listing service only. Not a broker, not an operator, not a party to any booking. No commission.</p>
+      <p>Empty leg flights from charter operators worldwide, updated three times a day.</p>
       <div class="bf-social">
         <a href="https://www.facebook.com/1301142429746418" rel="me noopener" target="_blank" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" focusable="false"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.79 8.44-4.93 8.44-9.94z"/></svg></a>
         <a href="https://www.instagram.com/emptylegslist/" rel="me noopener" target="_blank" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.13 1.38C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.38 2.13.67.66 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.13-1.38.66-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.93 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm7.85-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg></a>
@@ -637,91 +640,35 @@ footer a{color:rgba(255,255,255,.85)}
         <a href="https://www.pinterest.com/emptylegslist/empty-legs-list/" rel="me noopener" target="_blank" aria-label="Pinterest" title="Pinterest"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" focusable="false"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.08 3.16 9.42 7.62 11.17-.1-.95-.2-2.4.04-3.44.22-.93 1.4-5.94 1.4-5.94s-.36-.72-.36-1.78c0-1.67.97-2.92 2.17-2.92 1.02 0 1.52.77 1.52 1.69 0 1.03-.66 2.57-1 4-.28 1.19.6 2.16 1.77 2.16 2.13 0 3.76-2.24 3.76-5.48 0-2.86-2.06-4.87-5-4.87-3.41 0-5.41 2.55-5.41 5.19 0 1.03.4 2.13.89 2.73.1.12.11.22.08.34-.09.37-.29 1.19-.33 1.36-.05.22-.17.27-.4.16-1.5-.7-2.44-2.89-2.44-4.65 0-3.79 2.75-7.27 7.94-7.27 4.17 0 7.41 2.97 7.41 6.94 0 4.14-2.61 7.47-6.23 7.47-1.22 0-2.36-.63-2.75-1.38l-.75 2.85c-.27 1.04-1 2.35-1.49 3.15 1.12.35 2.31.53 3.55.53 6.63 0 12-5.37 12-12S18.63 0 12 0z"/></svg></a>
       </div>
     </div>
-    <div class="bf-col bf-wide">
-      <h4>Empty legs by city</h4>
-      <h5>Europe</h5>
-      <nav class="bf-two">
-        <a href="/empty-legs/london">London empty legs</a>
-        <a href="/empty-legs/paris">Paris empty legs</a>
-        <a href="/empty-legs/nice">Nice empty legs</a>
-        <a href="/empty-legs/cannes">Cannes empty legs</a>
-        <a href="/empty-legs/naples">Naples empty legs</a>
-        <a href="/empty-legs/bari">Bari empty legs</a>
-        <a href="/empty-legs/milan">Milan empty legs</a>
-        <a href="/empty-legs/bologna">Bologna empty legs</a>
-        <a href="/empty-legs/ibiza">Ibiza empty legs</a>
-        <a href="/empty-legs/palma">Palma empty legs</a>
-        <a href="/empty-legs/malaga">Malaga empty legs</a>
-        <a href="/empty-legs/madrid">Madrid empty legs</a>
-        <a href="/empty-legs/barcelona">Barcelona empty legs</a>
-        <a href="/empty-legs/alicante">Alicante empty legs</a>
-        <a href="/empty-legs/girona">Girona empty legs</a>
-        <a href="/empty-legs/athens">Athens empty legs</a>
-        <a href="/empty-legs/thessaloniki">Thessaloniki empty legs</a>
-        <a href="/empty-legs/olbia">Olbia empty legs</a>
-        <a href="/empty-legs/larnaca">Larnaca empty legs</a>
-        <a href="/empty-legs/istanbul">Istanbul empty legs</a>
-        <a href="/empty-legs/amsterdam">Amsterdam empty legs</a>
-        <a href="/empty-legs/rotterdam">Rotterdam empty legs</a>
-        <a href="/empty-legs/brussels">Brussels empty legs</a>
-        <a href="/empty-legs/antwerp">Antwerp empty legs</a>
-        <a href="/empty-legs/wevelgem">Wevelgem empty legs</a>
-        <a href="/empty-legs/vienna">Vienna empty legs</a>
-        <a href="/empty-legs/salzburg">Salzburg empty legs</a>
-        <a href="/empty-legs/berlin">Berlin empty legs</a>
-        <a href="/empty-legs/zurich">Zurich empty legs</a>
-        <a href="/empty-legs/geneva">Geneva empty legs</a>
-        <a href="/empty-legs/sion">Sion empty legs</a>
-        <a href="/empty-legs/montpellier">Montpellier empty legs</a>
-        <a href="/empty-legs/toulon">Toulon empty legs</a>
-        <a href="/empty-legs/birmingham">Birmingham empty legs</a>
-        <a href="/empty-legs/oxford">Oxford empty legs</a>
-        <a href="/empty-legs/belfast">Belfast empty legs</a>
-        <a href="/empty-legs/dublin">Dublin empty legs</a>
-        <a href="/empty-legs/edinburgh">Edinburgh empty legs</a>
-        <a href="/empty-legs/bergen">Bergen empty legs</a>
-        <a href="/empty-legs/liege">Liege empty legs</a>
-        <a href="/empty-legs/farnborough">Farnborough empty legs</a>
-        <a href="/empty-legs/munich">Munich empty legs</a>
-        <a href="/empty-legs/linz">Linz empty legs</a>
-        <a href="/empty-legs/pisa">Pisa empty legs</a>
-        <a href="/empty-legs/bodrum">Bodrum empty legs</a>
-        <a href="/empty-legs/verona">Verona empty legs</a>
-        <a href="/empty-legs/bolzano">Bolzano empty legs</a>
-        <a href="/empty-legs/dusseldorf">Dusseldorf empty legs</a>
-        <a href="/empty-legs/cagliari">Cagliari empty legs</a>
+
+    <details class="bf-col" open>
+      <summary><h4>Explore</h4></summary>
+      <nav>
+        <a href="/#listings">Every listing, live</a>
+        <a href="/empty-legs/">All destinations</a>
+        <a href="/aircraft/">Aircraft types</a>
+        <a href="/#alerts">Get empty leg alerts</a>
+        <a href="/account">My account</a>
       </nav>
-      <h5>North America and Africa</h5>
-      <nav class="bf-two">
-        <a href="/empty-legs/miami">Miami empty legs</a>
-        <a href="/empty-legs/fort-lauderdale">Fort Lauderdale empty legs</a>
-        <a href="/empty-legs/las-vegas">Las Vegas empty legs</a>
-        <a href="/empty-legs/scottsdale">Scottsdale empty legs</a>
-        <a href="/empty-legs/teterboro">Teterboro empty legs</a>
-        <a href="/empty-legs/washington">Washington empty legs</a>
-        <a href="/empty-legs/milwaukee">Milwaukee empty legs</a>
-        <a href="/empty-legs/waukesha">Waukesha empty legs</a>
-        <a href="/empty-legs/fort-worth">Fort Worth empty legs</a>
-        <a href="/empty-legs/dallas">Dallas empty legs</a>
-        <a href="/empty-legs/austin">Austin empty legs</a>
-        <a href="/empty-legs/aspen">Aspen empty legs</a>
-        <a href="/empty-legs/carlsbad">Carlsbad empty legs</a>
-        <a href="/empty-legs/toronto">Toronto empty legs</a>
-        <a href="/empty-legs/montreal">Montreal empty legs</a>
-        <a href="/empty-legs/calgary">Calgary empty legs</a>
-        <a href="/empty-legs/sault-ste-marie">Sault Ste Marie empty legs</a>
-        <a href="/empty-legs/cape-town">Cape Town empty legs</a>
-        <a href="/empty-legs/johannesburg">Johannesburg empty legs</a>
-        <a href="/empty-legs/maun">Maun empty legs</a>
-        <a href="/empty-legs/van-nuys">Van Nuys empty legs</a>
-        <a href="/empty-legs/houston">Houston empty legs</a>
-        <a href="/empty-legs/chicago">Chicago empty legs</a>
-        <a href="/empty-legs/oakland">Oakland empty legs</a>
-        <a href="/empty-legs/monterey">Monterey empty legs</a>
+    </details>
+
+    <details class="bf-col" open>
+      <summary><h4>Destinations</h4></summary>
+      <nav>
+        <a href="/empty-legs/london">London</a>
+        <a href="/empty-legs/paris">Paris</a>
+        <a href="/empty-legs/nice">Nice</a>
+        <a href="/empty-legs/ibiza">Ibiza</a>
+        <a href="/empty-legs/milan">Milan</a>
+        <a href="/empty-legs/miami">Miami</a>
+        <a href="/empty-legs/las-vegas">Las Vegas</a>
+        <a href="/empty-legs/toronto">Toronto</a>
+        <a class="bf-more" href="/empty-legs/">All 74 destinations &rarr;</a>
       </nav>
-    </div>
-    <div class="bf-col">
-      <h4>Popular routes</h4>
+    </details>
+
+    <details class="bf-col" open>
+      <summary><h4>Popular routes</h4></summary>
       <nav>
         <a href="/empty-legs/london-to-nice">London → Nice</a>
         <a href="/empty-legs/london-to-paris">London → Paris</a>
@@ -731,77 +678,31 @@ footer a{color:rgba(255,255,255,.85)}
         <a href="/empty-legs/london-to-athens">London → Athens</a>
         <a href="/empty-legs/london-to-malaga">London → Malaga</a>
         <a href="/empty-legs/nice-to-london">Nice → London</a>
-        <a href="/empty-legs/paris-to-london">Paris → London</a>
-        <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
-        <a href="/empty-legs/geneva-to-london">Geneva → London</a>
-        <a href="/empty-legs/vienna-to-london">Vienna → London</a>
-        <a href="/empty-legs/antwerp-to-ibiza">Antwerp → Ibiza</a>
-        <a href="/empty-legs/wevelgem-to-malaga">Wevelgem → Malaga</a>
-        <a href="/empty-legs/johannesburg-to-cape-town">Johannesburg → Cape Town</a>
-        <a href="/empty-legs/miami-to-new-york">Miami → New York</a>
-        <a href="/empty-legs/toronto-to-montreal">Toronto → Montreal</a>
-        <a href="/empty-legs/las-vegas-to-van-nuys">Las Vegas → Van Nuys</a>
-        <a href="/empty-legs/toronto-to-teterboro">Toronto → Teterboro</a>
-        <a href="/empty-legs/wevelgem-to-cannes">Wevelgem → Cannes</a>
-        <a href="/empty-legs/vancouver-to-calgary">Vancouver → Calgary</a>
-        <a href="/empty-legs/calgary-to-vancouver">Calgary → Vancouver</a>
-        <a href="/empty-legs/aspen-to-las-vegas">Aspen → Las Vegas</a>
-        <a href="/empty-legs/van-nuys-to-las-vegas">Van Nuys → Las Vegas</a>
-        <a href="/empty-legs/teterboro-to-toronto">Teterboro → Toronto</a>
-        <a href="/empty-legs/san-juan-to-miami">San Juan → Miami</a>
-        <a href="/empty-legs/sarasota-to-miami">Sarasota → Miami</a>
-        <a href="/empty-legs/nice-to-vienna">Nice → Vienna</a>
-        <a href="/empty-legs/nice-to-olbia">Nice → Olbia</a>
-        <a href="/empty-legs/scottsdale-to-las-vegas">Scottsdale → Las Vegas</a>
-        <a href="/empty-legs/carlsbad-to-truckee">Carlsbad → Truckee</a>
-        <a href="/empty-legs/las-vegas-to-vancouver">Las Vegas → Vancouver</a>
-        <a href="/empty-legs/college-station-to-fort-worth">College Station → Fort Worth</a>
-        <a href="/empty-legs/fort-worth-to-college-station">Fort Worth → College Station</a>
-        <a href="/empty-legs/manassas-to-miami">Manassas → Miami</a>
-        <a href="/empty-legs/las-vegas-to-scottsdale">Las Vegas → Scottsdale</a>
-        <a href="/empty-legs/london-to-preveza">London → Preveza</a>
-        <a href="/empty-legs/preveza-to-london">Preveza → London</a>
-        <a href="/empty-legs/teterboro-to-bedford">Teterboro → Bedford</a>
-        <a href="/empty-legs/page-to-las-vegas">Page → Las Vegas</a>
-        <a href="/empty-legs/las-vegas-to-monterey">Las Vegas → Monterey</a>
+        <a class="bf-more" href="/#listings">Every listing, live &rarr;</a>
       </nav>
-    </div>
-    <div class="bf-col">
-      <h4>Aircraft types</h4>
+    </details>
+
+    <details class="bf-col" open>
+      <summary><h4>Company</h4></summary>
       <nav>
-        <a href="/aircraft/">All aircraft types</a>
-        <a href="/aircraft/citation-mustang">Citation Mustang</a>
-        <a href="/aircraft/citation-m2">Citation M2</a>
-        <a href="/aircraft/citation-xls">Citation XLS</a>
-        <a href="/aircraft/citation-latitude">Citation Latitude</a>
-        <a href="/aircraft/citation-longitude">Citation Longitude</a>
-        <a href="/aircraft/challenger-350">Challenger 350</a>
-        <a href="/aircraft/legacy-500">Legacy 500</a>
-        <a href="/aircraft/legacy-650">Legacy 650</a>
-        <a href="/aircraft/praetor-600">Praetor 600</a>
-        <a href="/aircraft/falcon-7x">Falcon 7X</a>
-        <a href="/aircraft/gulfstream-g550">Gulfstream G550</a>
-        <a href="/aircraft/global-6000">Global 6000</a>
-      </nav>
-    </div>
-    <div class="bf-col">
-      <h4>Company</h4>
-      <nav>
-        <a href="/#listings">Every listing, live</a>
-        <a href="/#alerts">Get empty leg alerts</a>
-        <a href="/for-operators">List your empty legs</a>
-        <a href="/account">My account</a>
-        <a href="/about">About Empty Leg List</a>
+        <a href="/about">About us</a>
+        <a href="/for-operators">For operators</a>
         <a href="/media">Media kit</a>
         <a href="/contact">Contact</a>
-        <a href="/terms">Terms</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/cookies">Cookies</a>
-        <a href="https://theflyingengineer.com/">The Flying Engineer</a>
       </nav>
-    </div>
+    </details>
   </div>
-  <div class="bf-bottom">&copy; 2026 Empty Legs List &middot; emptylegslist.com &middot; a listing service, not a broker.</div>
+
+  <div class="bf-bottom">
+    <p>&copy; 2026 Empty Leg List &middot; Publishing Office SRL &middot; from the team behind
+       <a href="https://theflyingengineer.com/">The Flying Engineer</a></p>
+    <nav class="bf-legal-links">
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/cookies">Cookies</a>
+    </nav>
+    <p class="bf-legal">A listing service only. Not a broker, not an operator, not a party to any booking. No commission.</p>
+  </div>
 </footer>
 <script>
 (function(){

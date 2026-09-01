@@ -36,13 +36,325 @@ td.money{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;whit
 .na{color:#b6c0cb}
 footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--mute);font-size:12.5px}
 </style>
+  <link rel="stylesheet" href="/site-nav.css">
+  <script src="/site-nav.js" defer></script>
 </head>
 <body>
-<header class="t"><div class="in">
-  <div class="k">Internal test page, not published</div>
-  <h1>Icarus Jet, the FlyEasy feed behind their empty legs page</h1>
-  <p>Read on 31 August 2026 from the widget embedded at icarusjet.com/private-jet-charter/empty-legs/. Not linked from anywhere, not in sitemap.xml, marked noindex. Built so we can look at the data before deciding anything.</p>
-</div></header>
+<header class="elnav">
+  <div class="eln-bar">
+    <a class="eln-logo" href="/" aria-label="Empty Leg List home">
+      <img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224">
+    </a>
+
+    <nav class="eln-links" aria-label="Main">
+      <div class="eln-item">
+        <button class="eln-trig" type="button" aria-expanded="false">Destinations <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="eln-mega mega-dest">
+          <div class="eln-col-reg">
+            <h4>Explore by region</h4>
+            <div class="eln-regs">
+            <button class="eln-reg on" type="button" data-region="0" aria-pressed="true">Europe <span class="eln-n">45</span></button>
+            <button class="eln-reg" type="button" data-region="1" aria-pressed="false">North America <span class="eln-n">23</span></button>
+            <button class="eln-reg" type="button" data-region="2" aria-pressed="false">Middle East <span class="eln-n">3</span></button>
+            <button class="eln-reg" type="button" data-region="3" aria-pressed="false">Africa <span class="eln-n">3</span></button>
+            </div>
+            <a class="eln-all" href="/empty-legs/">All destinations <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="eln-col-city">
+            <h4>Cities</h4>
+            <div class="eln-pan on" data-region="0">
+              <a href="/empty-legs/london">London</a>
+              <a href="/empty-legs/paris">Paris</a>
+              <a href="/empty-legs/nice">Nice</a>
+              <a href="/empty-legs/cannes">Cannes</a>
+              <a href="/empty-legs/milan">Milan</a>
+              <a href="/empty-legs/bologna">Bologna</a>
+              <a href="/empty-legs/bari">Bari</a>
+              <a href="/empty-legs/pisa">Pisa</a>
+              <a href="/empty-legs/verona">Verona</a>
+              <a href="/empty-legs/bolzano">Bolzano</a>
+              <a href="/empty-legs/cagliari">Cagliari</a>
+              <a href="/empty-legs/olbia">Olbia</a>
+              <a href="/empty-legs/ibiza">Ibiza</a>
+              <a href="/empty-legs/palma">Palma</a>
+              <a href="/empty-legs/malaga">Malaga</a>
+              <a href="/empty-legs/madrid">Madrid</a>
+              <a href="/empty-legs/barcelona">Barcelona</a>
+              <a href="/empty-legs/alicante">Alicante</a>
+              <a href="/empty-legs/girona">Girona</a>
+              <a href="/empty-legs/athens">Athens</a>
+              <a href="/empty-legs/thessaloniki">Thessaloniki</a>
+              <a href="/empty-legs/amsterdam">Amsterdam</a>
+              <a href="/empty-legs/rotterdam">Rotterdam</a>
+              <a href="/empty-legs/brussels">Brussels</a>
+              <a href="/empty-legs/antwerp">Antwerp</a>
+              <a href="/empty-legs/wevelgem">Wevelgem</a>
+              <a href="/empty-legs/liege">Liege</a>
+              <a href="/empty-legs/vienna">Vienna</a>
+              <a href="/empty-legs/salzburg">Salzburg</a>
+              <a href="/empty-legs/linz">Linz</a>
+              <a href="/empty-legs/berlin">Berlin</a>
+              <a href="/empty-legs/munich">Munich</a>
+              <a href="/empty-legs/dusseldorf">Dusseldorf</a>
+              <a href="/empty-legs/zurich">Zurich</a>
+              <a href="/empty-legs/geneva">Geneva</a>
+              <a href="/empty-legs/sion">Sion</a>
+              <a href="/empty-legs/montpellier">Montpellier</a>
+              <a href="/empty-legs/toulon">Toulon</a>
+              <a href="/empty-legs/birmingham">Birmingham</a>
+              <a href="/empty-legs/oxford">Oxford</a>
+              <a href="/empty-legs/farnborough">Farnborough</a>
+              <a href="/empty-legs/belfast">Belfast</a>
+              <a href="/empty-legs/dublin">Dublin</a>
+              <a href="/empty-legs/edinburgh">Edinburgh</a>
+              <a href="/empty-legs/bergen">Bergen</a>
+            </div>
+            <div class="eln-pan" data-region="1" hidden>
+              <a href="/empty-legs/teterboro">Teterboro</a>
+              <a href="/empty-legs/washington">Washington</a>
+              <a href="/empty-legs/miami">Miami</a>
+              <a href="/empty-legs/fort-lauderdale">Fort Lauderdale</a>
+              <a href="/empty-legs/naples">Naples</a>
+              <a href="/empty-legs/chicago">Chicago</a>
+              <a href="/empty-legs/milwaukee">Milwaukee</a>
+              <a href="/empty-legs/waukesha">Waukesha</a>
+              <a href="/empty-legs/dallas">Dallas</a>
+              <a href="/empty-legs/fort-worth">Fort Worth</a>
+              <a href="/empty-legs/austin">Austin</a>
+              <a href="/empty-legs/houston">Houston</a>
+              <a href="/empty-legs/las-vegas">Las Vegas</a>
+              <a href="/empty-legs/scottsdale">Scottsdale</a>
+              <a href="/empty-legs/aspen">Aspen</a>
+              <a href="/empty-legs/van-nuys">Van Nuys</a>
+              <a href="/empty-legs/carlsbad">Carlsbad</a>
+              <a href="/empty-legs/monterey">Monterey</a>
+              <a href="/empty-legs/oakland">Oakland</a>
+              <a href="/empty-legs/toronto">Toronto</a>
+              <a href="/empty-legs/montreal">Montreal</a>
+              <a href="/empty-legs/calgary">Calgary</a>
+              <a href="/empty-legs/sault-ste-marie">Sault Ste Marie</a>
+            </div>
+            <div class="eln-pan" data-region="2" hidden>
+              <a href="/empty-legs/larnaca">Larnaca</a>
+              <a href="/empty-legs/istanbul">Istanbul</a>
+              <a href="/empty-legs/bodrum">Bodrum</a>
+            </div>
+            <div class="eln-pan" data-region="3" hidden>
+              <a href="/empty-legs/cape-town">Cape Town</a>
+              <a href="/empty-legs/johannesburg">Johannesburg</a>
+              <a href="/empty-legs/maun">Maun</a>
+            </div>
+          </div>
+          <div class="eln-col-route">
+            <h4>Popular routes</h4>
+            <div class="eln-grid">
+            <a href="/empty-legs/london-to-nice">London → Nice</a>
+            <a href="/empty-legs/london-to-paris">London → Paris</a>
+            <a href="/empty-legs/london-to-ibiza">London → Ibiza</a>
+            <a href="/empty-legs/london-to-dublin">London → Dublin</a>
+            <a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a>
+            <a href="/empty-legs/london-to-athens">London → Athens</a>
+            <a href="/empty-legs/nice-to-london">Nice → London</a>
+            <a href="/empty-legs/paris-to-london">Paris → London</a>
+            <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
+            <a href="/empty-legs/geneva-to-london">Geneva → London</a>
+            </div>
+            <a class="eln-all" href="/#listings">Every listing, live <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="eln-promo">
+            <h5>Empty legs find you</h5>
+            <p>Pick a route and we email you the moment an operator publishes a leg on it.</p>
+            <a href="/#alerts">Set up an alert</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="eln-item">
+        <button class="eln-trig" type="button" aria-expanded="false">Aircraft <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="eln-mega">
+          <div>
+            <h4>Types on the list</h4>
+            <div class="eln-grid">
+            <a href="/aircraft/citation-mustang">Citation Mustang</a>
+            <a href="/aircraft/citation-m2">Citation M2</a>
+            <a href="/aircraft/citation-xls">Citation XLS</a>
+            <a href="/aircraft/citation-latitude">Citation Latitude</a>
+            <a href="/aircraft/citation-longitude">Citation Longitude</a>
+            <a href="/aircraft/citation-cj2">Citation CJ2</a>
+            <a href="/aircraft/challenger-350">Challenger 350</a>
+            <a href="/aircraft/challenger-604">Challenger 604</a>
+            <a href="/aircraft/legacy-500">Legacy 500</a>
+            <a href="/aircraft/legacy-650">Legacy 650</a>
+            <a href="/aircraft/praetor-600">Praetor 600</a>
+            <a href="/aircraft/falcon-7x">Falcon 7X</a>
+            <a href="/aircraft/gulfstream-g550">Gulfstream G550</a>
+            <a href="/aircraft/global-6000">Global 6000</a>
+            </div>
+            <a class="eln-all" href="/aircraft/">All aircraft types <span aria-hidden="true">→</span></a>
+          </div>
+          <div>
+            <h4>Working out what you need</h4>
+            <div class="eln-grid one">
+              <a href="/aircraft/">Compare cabins and range</a>
+              <a href="/about">How empty legs work</a>
+              <a href="/contact">Ask us a question</a>
+              <a href="/media">Media kit and partnerships</a>
+            </div>
+          </div>
+          <div class="eln-promo">
+            <h5>Whole aircraft, one price</h5>
+            <p>Every price on the list is the operator's own figure for the whole aircraft, never per seat.</p>
+            <a href="/#listings">See what is live</a>
+          </div>
+        </div>
+      </div>
+
+      <a class="eln-link" href="/for-operators">For operators</a>
+      <a class="eln-link" href="/account">My account</a>
+      <a class="eln-cta" href="/#alerts">Get empty leg alerts</a>
+    </nav>
+
+    <button class="eln-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="eln-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="eln-scrim"></div>
+<aside class="eln-drawer" id="eln-drawer" aria-label="Menu">
+  <div class="eln-drawer-in">
+    <div class="eln-dtop">
+      <img src="/brand/logo-lockup-dark.png" alt="Empty Leg List" width="720" height="224">
+      <button class="eln-dclose" type="button" aria-label="Close menu">&times;</button>
+    </div>
+
+    <div class="eln-accs">
+    <div class="eln-acc">
+      <button type="button" aria-expanded="false">Empty legs by city <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="eln-panel"><div><div>
+        <a href="/empty-legs/london">London</a>
+        <a href="/empty-legs/paris">Paris</a>
+        <a href="/empty-legs/nice">Nice</a>
+        <a href="/empty-legs/cannes">Cannes</a>
+        <a href="/empty-legs/naples">Naples</a>
+        <a href="/empty-legs/bari">Bari</a>
+        <a href="/empty-legs/milan">Milan</a>
+        <a href="/empty-legs/bologna">Bologna</a>
+        <a href="/empty-legs/ibiza">Ibiza</a>
+        <a href="/empty-legs/palma">Palma</a>
+        <a href="/empty-legs/malaga">Malaga</a>
+        <a href="/empty-legs/madrid">Madrid</a>
+        <a href="/empty-legs/barcelona">Barcelona</a>
+        <a href="/empty-legs/alicante">Alicante</a>
+        <a href="/empty-legs/girona">Girona</a>
+        <a href="/empty-legs/athens">Athens</a>
+        <a href="/empty-legs/thessaloniki">Thessaloniki</a>
+        <a href="/empty-legs/olbia">Olbia</a>
+        <a href="/empty-legs/larnaca">Larnaca</a>
+        <a href="/empty-legs/istanbul">Istanbul</a>
+        <a href="/empty-legs/amsterdam">Amsterdam</a>
+        <a href="/empty-legs/rotterdam">Rotterdam</a>
+        <a href="/empty-legs/brussels">Brussels</a>
+        <a href="/empty-legs/antwerp">Antwerp</a>
+        <a href="/empty-legs/wevelgem">Wevelgem</a>
+        <a href="/empty-legs/vienna">Vienna</a>
+        <a href="/empty-legs/salzburg">Salzburg</a>
+        <a href="/empty-legs/berlin">Berlin</a>
+        <a href="/empty-legs/zurich">Zurich</a>
+        <a href="/empty-legs/geneva">Geneva</a>
+        <a href="/empty-legs/sion">Sion</a>
+        <a href="/empty-legs/montpellier">Montpellier</a>
+        <a href="/empty-legs/toulon">Toulon</a>
+        <a href="/empty-legs/birmingham">Birmingham</a>
+        <a href="/empty-legs/oxford">Oxford</a>
+        <a href="/empty-legs/belfast">Belfast</a>
+        <a href="/empty-legs/dublin">Dublin</a>
+        <a href="/empty-legs/edinburgh">Edinburgh</a>
+        <a href="/empty-legs/bergen">Bergen</a>
+        <a href="/empty-legs/miami">Miami</a>
+        <a href="/empty-legs/fort-lauderdale">Fort Lauderdale</a>
+        <a href="/empty-legs/las-vegas">Las Vegas</a>
+        <a href="/empty-legs/scottsdale">Scottsdale</a>
+        <a href="/empty-legs/teterboro">Teterboro</a>
+        <a href="/empty-legs/washington">Washington</a>
+        <a href="/empty-legs/milwaukee">Milwaukee</a>
+        <a href="/empty-legs/waukesha">Waukesha</a>
+        <a href="/empty-legs/fort-worth">Fort Worth</a>
+        <a href="/empty-legs/dallas">Dallas</a>
+        <a href="/empty-legs/austin">Austin</a>
+        <a href="/empty-legs/aspen">Aspen</a>
+        <a href="/empty-legs/carlsbad">Carlsbad</a>
+        <a href="/empty-legs/toronto">Toronto</a>
+        <a href="/empty-legs/montreal">Montreal</a>
+        <a href="/empty-legs/calgary">Calgary</a>
+        <a href="/empty-legs/sault-ste-marie">Sault Ste Marie</a>
+        <a href="/empty-legs/cape-town">Cape Town</a>
+        <a href="/empty-legs/johannesburg">Johannesburg</a>
+        <a href="/empty-legs/maun">Maun</a>
+        <a href="/empty-legs/liege">Liege</a>
+        <a href="/empty-legs/farnborough">Farnborough</a>
+        <a href="/empty-legs/munich">Munich</a>
+        <a href="/empty-legs/linz">Linz</a>
+        <a href="/empty-legs/pisa">Pisa</a>
+        <a href="/empty-legs/bodrum">Bodrum</a>
+        <a href="/empty-legs/verona">Verona</a>
+        <a href="/empty-legs/bolzano">Bolzano</a>
+        <a href="/empty-legs/dusseldorf">Dusseldorf</a>
+        <a href="/empty-legs/cagliari">Cagliari</a>
+        <a href="/empty-legs/van-nuys">Van Nuys</a>
+        <a href="/empty-legs/houston">Houston</a>
+        <a href="/empty-legs/chicago">Chicago</a>
+        <a href="/empty-legs/oakland">Oakland</a>
+        <a href="/empty-legs/monterey">Monterey</a>
+      </div></div></div>
+    </div>
+    <div class="eln-acc">
+      <button type="button" aria-expanded="false">Popular routes <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="eln-panel"><div><div>
+        <a href="/empty-legs/london-to-nice">London → Nice</a>
+        <a href="/empty-legs/london-to-paris">London → Paris</a>
+        <a href="/empty-legs/london-to-ibiza">London → Ibiza</a>
+        <a href="/empty-legs/london-to-dublin">London → Dublin</a>
+        <a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a>
+        <a href="/empty-legs/london-to-athens">London → Athens</a>
+        <a href="/empty-legs/nice-to-london">Nice → London</a>
+        <a href="/empty-legs/paris-to-london">Paris → London</a>
+        <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
+        <a href="/empty-legs/geneva-to-london">Geneva → London</a>
+      </div></div></div>
+    </div>
+    <div class="eln-acc">
+      <button type="button" aria-expanded="false">Aircraft types <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="eln-panel"><div><div>
+        <a href="/aircraft/citation-mustang">Citation Mustang</a>
+        <a href="/aircraft/citation-m2">Citation M2</a>
+        <a href="/aircraft/citation-xls">Citation XLS</a>
+        <a href="/aircraft/citation-latitude">Citation Latitude</a>
+        <a href="/aircraft/citation-longitude">Citation Longitude</a>
+        <a href="/aircraft/citation-cj2">Citation CJ2</a>
+        <a href="/aircraft/challenger-350">Challenger 350</a>
+        <a href="/aircraft/challenger-604">Challenger 604</a>
+        <a href="/aircraft/legacy-500">Legacy 500</a>
+        <a href="/aircraft/legacy-650">Legacy 650</a>
+        <a href="/aircraft/praetor-600">Praetor 600</a>
+        <a href="/aircraft/falcon-7x">Falcon 7X</a>
+        <a href="/aircraft/gulfstream-g550">Gulfstream G550</a>
+        <a href="/aircraft/global-6000">Global 6000</a>
+        <a href="/aircraft/">All aircraft types</a>
+      </div></div></div>
+    </div>
+    </div>
+
+    <div class="eln-dlinks">
+      <a href="/#listings">Every listing, live</a>
+      <a href="/#alerts">Get route alerts</a>
+      <a href="/for-operators">For operators</a>
+      <a href="/about">How it works</a>
+      <a href="/account">My account</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a class="eln-dcta" href="/#alerts">Get empty leg alerts</a>
+  </div>
+</aside>
 
 <div class="wrap">
 
@@ -424,6 +736,29 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:v
 <div class="scroll"><table>
 <thead><tr><th>From</th><th>ICAO</th><th>To</th><th>ICAO</th><th>Aircraft</th><th>Seats</th><th>Air time</th><th>Price</th></tr></thead>
 <tbody><tr><td>Dallas, Texas, United States</td><td class='c'>KDAL</td><td>Las Vegas, Nevada, United States</td><td class='c'>KHND</td><td>Cessna Citation Ultra</td><td class='n'>7</td><td class='n'>02:48</td><td class='money'>15,000.00 USD</td></tr><tr><td>Dallas, Texas, United States</td><td class='c'>KDAL</td><td>San José del Cabo, Baja California Sur, Mexico</td><td class='c'>MMSD</td><td>Cessna Citation Encore</td><td class='n'>7</td><td class='n'>02:48</td><td class='money'>19,000.00 USD</td></tr><tr><td>Dallas, Texas, United States</td><td class='c'>KDAL</td><td>Cancún, Quintana Roo, Mexico</td><td class='c'>MMUN</td><td>Cessna Citation Ultra</td><td class='n'>7</td><td class='n'>02:36</td><td class='money'>21,000.00 USD</td></tr><tr><td>Dubai, Dubai Emirate, United Arab Emirates</td><td class='c'>OMDB</td><td>Malé, Malé Capital, Maldives</td><td class='c'>VRMM</td><td>Mid Size Jet</td><td class='n'>10</td><td class='n'>04:12</td><td class='money'>44,000.00 USD</td></tr><tr><td>Dubai, Dubai Emirate, United Arab Emirates</td><td class='c'>OMDB</td><td>Malé, Malé Capital, Maldives</td><td class='c'>VRMM</td><td>Gulfstream G V</td><td class='n'>13</td><td class='n'>03:42</td><td class='money'>170,000.00 USD</td></tr></tbody>
+</table></div>
+
+
+<h2>Do we already have these?</h2>
+<p>Compared corridor by corridor against every ICAO pair in <code>empty_legs_staging</code>. The answer is mostly no, and that is the honest argument for the source, so here it is with the numbers.</p>
+<div class="stats">
+  <div class="stat"><b>19</b><span>corridors we already have</span></div>
+  <div class="stat"><b>5</b><span>we have in reverse only</span></div>
+  <div class="stat"><b>261</b><span>corridors new to us</span></div>
+  <div class="stat"><b>27</b><span>of 353 legs on corridors we cover</span></div>
+  <div class="stat"><b>102</b><span>airports new to us, of 196</span></div>
+</div>
+<p>So it is not a duplicate of what we hold. Of 285 corridors, 261 are ones we have never recorded, and 102 of the 196 airports in the feed do not appear anywhere in our data. The overlap is only 27 legs out of 353.</p>
+<div class="note">
+  <p><b>But the feed names no operator. Not once.</b> We searched it for every operator we already scrape and for the word "operator" itself: zero hits. Every card ends with "Contact Icarus Jet". So even if we took the data, we could not say whose aircraft it is, and our listings are built on naming the operator and sending the enquiry to them.</p>
+  <p>That is the trade in one line: 261 new corridors and 102 new airports, with no price and no operator behind any of them.</p>
+</div>
+
+<h2>The corridors we already cover</h2>
+<p>These 19 are the only ones where the feed overlaps what we hold.</p>
+<div class="scroll"><table style="min-width:420px">
+<thead><tr><th>Corridor</th><th>Legs in the feed</th></tr></thead>
+<tbody><tr><td class='c'>KDAL to KAUS</td><td class='n'>4</td></tr><tr><td class='c'>KEGE to KSDL</td><td class='n'>2</td></tr><tr><td class='c'>KSBA to KSDL</td><td class='n'>2</td></tr><tr><td class='c'>KSNA to KSDL</td><td class='n'>2</td></tr><tr><td class='c'>KTEB to CYYZ</td><td class='n'>2</td></tr><tr><td class='c'>CYYZ to KTEB</td><td class='n'>2</td></tr><tr><td class='c'>CYYZ to KFOK</td><td class='n'>1</td></tr><tr><td class='c'>CYYZ to KAPF</td><td class='n'>1</td></tr><tr><td class='c'>KSAN to KSDL</td><td class='n'>1</td></tr><tr><td class='c'>KSDL to KSBA</td><td class='n'>1</td></tr><tr><td class='c'>KSDL to KBZN</td><td class='n'>1</td></tr><tr><td class='c'>KSDL to KSAN</td><td class='n'>1</td></tr><tr><td class='c'>KBFI to KSDL</td><td class='n'>1</td></tr><tr><td class='c'>KDFW to CYYZ</td><td class='n'>1</td></tr><tr><td class='c'>KSDL to KMRY</td><td class='n'>1</td></tr><tr><td class='c'>MMSD to KSDL</td><td class='n'>1</td></tr><tr><td class='c'>KSDL to MMSD</td><td class='n'>1</td></tr><tr><td class='c'>KSAF to KAPA</td><td class='n'>1</td></tr><tr><td class='c'>CYYZ to KFXE</td><td class='n'>1</td></tr></tbody>
 </table></div>
 
 <h2>Aircraft classes in the feed</h2>
