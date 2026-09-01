@@ -189,6 +189,59 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   .hero::after{background:linear-gradient(180deg,rgba(9,22,40,.55) 0%,rgba(9,22,40,.85) 100%)}
 }
 
+/* --- city hero and landmark cards, cityhero.py --- */
+.hero img{display:block;height:min(58vw,560px)}
+.hero .tag{color:#fff;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  font-size:clamp(12px,1.7vw,17px);margin:0 0 14px;opacity:.92}
+.hero .cta{display:inline-block;background:var(--gold);color:#12233b;text-decoration:none;
+  font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:13px;
+  padding:13px 26px;border-radius:2px;width:fit-content;margin-top:4px;
+  transition:background .18s ease}
+.hero .cta:hover,.hero .cta:focus-visible{background:#d9b463}
+/* the live counter was sitting on the button */
+.hero .live{margin-top:16px}
+/* thin white dividers: between the hero and the band, and between the three
+   cards. Without them the photographs run into each other. */
+.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;padding-top:2px;background:#fff}
+.spot{position:relative;isolation:isolate;min-height:min(34vw,330px);display:flex;
+  align-items:flex-end;overflow:hidden}
+.spot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+/* starts higher and lands darker than it first did: on the bright photographs,
+   Malaga's sky and Barcelona's beach, the gold label was washing out */
+.spot::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(9,22,40,0) 20%,rgba(9,22,40,.45) 52%,rgba(9,22,40,.93) 100%)}
+.spot .in{padding:22px 24px 24px;color:#fff;width:100%}
+.spot .k{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:10.5px;
+  font-weight:600;margin-bottom:7px}
+.spot h3{font-family:"Playfair Display",Georgia,serif;font-weight:500;font-size:clamp(17px,2vw,21px);
+  letter-spacing:.03em;text-transform:uppercase;margin:0 0 7px;color:#fff}
+.spot p{margin:0;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.82);max-width:34ch}
+.spot .arw{margin-top:12px;color:var(--gold);font-size:19px;line-height:1}
+@media(max-width:860px){
+  .spots{grid-template-columns:1fr}
+  .spot{min-height:290px}
+  /* the gradient has to start higher on a phone: the text block is taller
+     relative to the card and the gold label was landing on bright sky */
+  .spot::after{background:linear-gradient(180deg,rgba(9,22,40,0) 8%,rgba(9,22,40,.55) 42%,rgba(9,22,40,.92) 100%)}
+  /* and the hero text does not fit in 58vw, so the picture gets more room */
+  .hero img{height:min(150vw,600px)}
+  .hero::after{background:linear-gradient(180deg,rgba(9,22,40,.55) 0%,rgba(9,22,40,.75) 55%,rgba(9,22,40,.92) 100%)}
+  .hero .txt{justify-content:flex-end;padding-bottom:26px}
+  .hero .cta{margin-bottom:4px}
+  /* on a phone the three landmark cards go BELOW the flights: someone who
+     opened the page on their phone wants the legs first, not the scenery.
+     Body becomes a flex column purely so the band can be reordered; every
+     sibling gets an explicit order so nothing else moves. */
+  body{display:flex;flex-direction:column}
+  .eln-scrim,.eln-drawer{order:0}
+  header.elnav{order:1}
+  .hero{order:2}
+  .shell{order:3}
+  .spots{order:4;padding-top:0;margin-top:2px}
+  .trust{order:5}
+  .prose{order:6}
+  #bigfoot{order:7}
+}
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:rgba(255,255,255,.75);margin-top:56px;padding:0;font-size:14px;line-height:1.65;font-weight:300}
 #bigfoot .bf-in{box-sizing:border-box;max-width:1680px;margin:0 auto;padding:56px 44px 34px;display:grid;grid-template-columns:1.2fr 1.75fr 1.15fr .95fr .95fr;gap:44px;text-align:left}
@@ -214,6 +267,151 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:1000px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:32px}#bigfoot .bf-brand{grid-column:1/-1}#bigfoot .bf-wide{grid-column:1/-1}}
 @media(max-width:560px){#bigfoot .bf-in{grid-template-columns:1fr 1fr;gap:26px}}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/salzburg-empty-legs-private-jet.jpg",
+   "name": "Salzburg empty leg flights",
+   "description": "Salzburg at sunset, the domes and spires of the old town along the Salzach with the fortress on the hill above",
+   "width": 1509,
+   "height": 654,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Salzburg, Austria",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Salzburg",
+     "addressCountry": "AT"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 47.8095,
+     "longitude": 13.055
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/salzburg-getreidegasse.jpg",
+   "name": "Salzburg empty leg flights",
+   "description": "A shopping street in the old town of Salzburg, Austrian flags on the facades and the fortress above the roofs",
+   "width": 392,
+   "height": 336,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Salzburg, Austria",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Salzburg",
+     "addressCountry": "AT"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 47.8095,
+     "longitude": 13.055
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/salzburg-salzach.jpg",
+   "name": "Salzburg empty leg flights",
+   "description": "The Salzach running past the old town of Salzburg, church towers and the mountains behind",
+   "width": 429,
+   "height": 368,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Salzburg, Austria",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Salzburg",
+     "addressCountry": "AT"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 47.8095,
+     "longitude": 13.055
+    }
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "contentUrl": "https://emptylegslist.com/brand/heroes/salzburg-arcades.jpg",
+   "name": "Salzburg empty leg flights",
+   "description": "A stone arcade looking out over the domes of Salzburg and the fortress on its hill",
+   "width": 429,
+   "height": 368,
+   "encodingFormat": "image/jpeg",
+   "creditText": "Empty Leg List",
+   "copyrightNotice": "(c) 2026 Publishing Office SRL",
+   "creator": {
+    "@type": "Organization",
+    "name": "Publishing Office SRL"
+   },
+   "license": "https://emptylegslist.com/terms",
+   "acquireLicensePage": "https://emptylegslist.com/contact",
+   "contentLocation": {
+    "@type": "Place",
+    "name": "Salzburg, Austria",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Salzburg",
+     "addressCountry": "AT"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 47.8095,
+     "longitude": 13.055
+    }
+   }
+  },
+  {
+   "@type": "WebPage",
+   "name": "Salzburg Empty Legs",
+   "url": "https://emptylegslist.com/empty-legs/salzburg",
+   "about": {
+    "@type": "Place",
+    "name": "Salzburg",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Salzburg",
+     "addressCountry": "AT"
+    }
+   }
+  }
+ ]
+}
+</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
@@ -582,16 +780,45 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 </aside>
 
 <section class="hero">
-  <img src="/brand/heroes/salzburg-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="Salzburg under snow with the Hohensalzburg fortress on the ridge above the city">
+  <img src="/brand/heroes/salzburg-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="Salzburg at sunset, the domes and spires of the old town along the Salzach with the fortress on the hill above">
   <div class="txt">
-    <div class="sub">Empty legs</div>
+    <div class="sub">Empty legs Salzburg, Austria</div>
     <h1>Salzburg</h1>
-    <p>Live empty leg flights to and from Salzburg, straight from the charter operators that fly them.</p>
+    <p class="tag">The fortress, the river and the Alps</p>
+    <p>Thirty-two recorded legs in the Austrian Alps, and a winter as well as a summer destination. Paris, Olbia and Wevelgem are its most frequent partners.</p>
+    <a class="cta" href="#listings">See the flights</a>
     <span class="live"><span class="dot"></span><span id="hero-live">Checking live availability&hellip;</span></span>
   </div>
 </section>
-
-<div class="shell">
+<section class="spots">
+  <article class="spot">
+    <img src="/brand/heroes/salzburg-getreidegasse.jpg" loading="lazy" decoding="async" alt="A shopping street in the old town of Salzburg, Austrian flags on the facades and the fortress above the roofs">
+    <div class="in">
+      <div class="k">In the old town</div>
+      <h3>The shopping streets</h3>
+      <p>Narrow lanes under the fortress, flags on the facades.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+  <article class="spot">
+    <img src="/brand/heroes/salzburg-salzach.jpg" loading="lazy" decoding="async" alt="The Salzach running past the old town of Salzburg, church towers and the mountains behind">
+    <div class="in">
+      <div class="k">On the water</div>
+      <h3>The Salzach</h3>
+      <p>The river the city is built on, and the mountains behind it.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+  <article class="spot">
+    <img src="/brand/heroes/salzburg-arcades.jpg" loading="lazy" decoding="async" alt="A stone arcade looking out over the domes of Salzburg and the fortress on its hill">
+    <div class="in">
+      <div class="k">From above</div>
+      <h3>The arcades</h3>
+      <p>Stone arches looking out over the domes and the fortress.</p>
+      <div class="arw">&rarr;</div>
+    </div>
+  </article>
+</section><div class="shell">
 
   <!-- filters -->
   <aside class="panel">
