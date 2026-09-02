@@ -234,12 +234,29 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   #bigfoot .bf-alert-in{padding:20px}
   #bigfoot .bf-alert strong{font-size:19px}
 }
+
+.recorded{width:100%;border-collapse:collapse;margin:14px 0 10px;font-size:14.5px}
+.recorded th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600;border-bottom:1px solid var(--line);padding:0 10px 8px 0}
+.recorded td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.recorded tr td:last-child{color:var(--mute);font-size:13.5px}
+@media(max-width:640px){.recorded,.recorded tbody,.recorded tr,.recorded td{display:block;width:100%}
+.recorded thead{display:none}
+.recorded tr{border-bottom:1px solid var(--line);padding:12px 0}
+.recorded td{border:0;padding:2px 0;text-align:left}
+.recorded td:first-child{font-weight:600;font-size:15px}
+.recorded td:nth-child(2){color:var(--ink)}
+/* the header row is hidden on a phone, so each cell carries its own label */
+.recorded td[data-l]::before{content:attr(data-l) ": ";color:var(--mute);font-size:13px}
+.recorded tr td:last-child{font-size:13.5px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Empty Leg List","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Manassas to Miami empty legs","item":"https://emptylegslist.com/empty-legs/manassas-to-miami"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the Manassas to Miami route produce empty leg flights?","acceptedAnswer":{"@type":"Answer","text":"Manassas appears on eight legs on our board and seven of them involve Miami. From the Miami end, Manassas is the busiest of the 82 partners Miami has, ahead of San Juan and Sarasota."}},{"@type":"Question","name":"When do empty legs from Manassas to Miami usually appear?","acceptedAnswer":{"@type":"Answer","text":"In a cluster and then a long gap. Three of the five legs departed inside four days at the end of August and the other two are forward dated to November, with nothing in between."}}]}]}</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
+<script src="/place-index.js" defer></script>
+<script>function elDisp(s){var t=String(s||"").trim();if(window.EL_PLACE&&EL_PLACE.codeCity){var d=EL_PLACE.codeCity(t);if(d)return d;}return t;}</script>
+
 </head>
 <body>
 <header class="elnav">
@@ -780,7 +797,7 @@ var seats=x.seats?(" &middot; up to "+esc(x.seats)+" seats"):"";
 var time=x.est_flight_time?(" &middot; "+esc(x.est_flight_time)):"";
 var price=x.price_note?esc(String(x.price_note).replace(" listed","")):"Price on enquiry";
 var legtext=(x.from_airport||"")+" to "+(x.to_airport||"")+", "+d(x.departure_date)+(x.aircraft_type?(", "+x.aircraft_type):"");
-return '<div class="row"><div class="route">'+esc(x.from_airport)+(x.from_iata?'<span class="iata">'+esc(x.from_iata)+'</span>':"")+' &rarr; '+esc(x.to_airport)+(x.to_iata?'<span class="iata">'+esc(x.to_iata)+'</span>':"")+'</div>'
+return '<div class="row"><div class="route">'+esc(elDisp(x.from_airport))+(x.from_iata?'<span class="iata">'+esc(x.from_iata)+'</span>':"")+' &rarr; '+esc(elDisp(x.to_airport))+(x.to_iata?'<span class="iata">'+esc(x.to_iata)+'</span>':"")+'</div>'
 +'<div class="meta">'+d(x.departure_date)+' &middot; '+ac+seats+time+'</div>'
 +'<div class="price">'+price+'</div>'
 +'<div class="cta"><a class="btn" href="/enquire?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'&leg='+encodeURIComponent(x.id||"")+'&legtext='+encodeURIComponent(legtext)+'">Enquire</a><span class="meta">As listed by the operator</span></div></div>';
@@ -793,7 +810,7 @@ else{
 hist.innerHTML='<table><thead><tr><th>Date</th><th>Route</th><th>Aircraft</th><th>Price</th></tr></thead><tbody>'+corridor.map(function(x){
 var price=x.price_note?esc(String(x.price_note).replace(" listed","")):"On enquiry";
 var ac=x.aircraft_type?esc(x.aircraft_type):"On enquiry";
-return '<tr><td style="white-space:nowrap">'+d(x.departure_date)+'</td><td>'+esc(x.from_airport)+' &rarr; '+esc(x.to_airport)+'</td><td>'+ac+(x.seats?' &middot; '+esc(x.seats)+' seats':"")+'</td><td style="white-space:nowrap">'+price+'</td></tr>';
+return '<tr><td style="white-space:nowrap">'+d(x.departure_date)+'</td><td>'+esc(elDisp(x.from_airport))+' &rarr; '+esc(elDisp(x.to_airport))+'</td><td>'+ac+(x.seats?' &middot; '+esc(x.seats)+' seats':"")+'</td><td style="white-space:nowrap">'+price+'</td></tr>';
 }).join("")+'</tbody></table>';
 }
 });
