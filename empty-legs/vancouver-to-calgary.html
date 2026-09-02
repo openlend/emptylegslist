@@ -173,6 +173,25 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 .mapinner iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .mapnote{font-size:12.5px;color:var(--mute);margin:8px 2px 0}
 
+/* --- route city pair, routepair.py --- */
+.rpair{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#fff}
+.rpair a{position:relative;isolation:isolate;display:block;text-decoration:none;
+  min-height:min(26vw,240px);overflow:hidden}
+.rpair img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 45%;transition:transform .5s ease}
+.rpair a:hover img,.rpair a:focus-visible img{transform:scale(1.04)}
+.rpair .rp-veil{position:absolute;inset:0;background:linear-gradient(180deg,
+  rgba(9,22,40,.10) 0%,rgba(9,22,40,.42) 58%,rgba(9,22,40,.86) 100%)}
+.rpair .rp-txt{position:relative;z-index:1;height:100%;display:flex;
+  flex-direction:column;justify-content:flex-end;padding:18px 20px}
+.rpair .rp-k{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;
+  font-size:11px;font-weight:600;margin-bottom:5px}
+.rpair .rp-h{color:#fff;font-family:"Playfair Display",Georgia,serif;
+  font-weight:400;font-size:clamp(19px,2.6vw,27px);line-height:1.12}
+@media(max-width:640px){
+  .rpair a{min-height:150px}
+  .rpair .rp-txt{padding:13px 14px}
+}
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
 #bigfoot *{box-sizing:border-box}   /* index.html is content-box, which made its footer column 56px wider than everywhere else */
@@ -234,6 +253,20 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   #bigfoot .bf-alert-in{padding:20px}
   #bigfoot .bf-alert strong{font-size:19px}
 }
+
+.recorded{width:100%;border-collapse:collapse;margin:14px 0 10px;font-size:14.5px}
+.recorded th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600;border-bottom:1px solid var(--line);padding:0 10px 8px 0}
+.recorded td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.recorded tr td:last-child{color:var(--mute);font-size:13.5px}
+@media(max-width:640px){.recorded,.recorded tbody,.recorded tr,.recorded td{display:block;width:100%}
+.recorded thead{display:none}
+.recorded tr{border-bottom:1px solid var(--line);padding:12px 0}
+.recorded td{border:0;padding:2px 0;text-align:left}
+.recorded td:first-child{font-weight:600;font-size:15px}
+.recorded td:nth-child(2){color:var(--ink)}
+/* the header row is hidden on a phone, so each cell carries its own label */
+.recorded td[data-l]::before{content:attr(data-l) ": ";color:var(--mute);font-size:13px}
+.recorded tr td:last-child{font-size:13.5px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Empty Leg List","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Vancouver to Calgary empty legs","item":"https://emptylegslist.com/empty-legs/vancouver-to-calgary"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does the Vancouver to Calgary route produce empty leg flights?","acceptedAnswer":{"@type":"Answer","text":"Vancouver and Calgary are the two business centres of western Canada, an hour apart. Corporate aircraft cross constantly and the return crossing is often empty."}},{"@type":"Question","name":"When do empty legs from Vancouver to Calgary usually appear?","acceptedAnswer":{"@type":"Answer","text":"In clusters rather than a steady drip. Every leg we recorded departed in the first three weeks of August."}}]}]}</script>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
@@ -565,6 +598,21 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <img src="/brand/heroes/calgary-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="Calgary with the Rockies behind it, the arrival city on the Vancouver to Calgary empty leg route">
   <div class="rin"><div class="rk">The Vancouver to Calgary corridor</div></div>
 </section>
+
+<!-- route city pair, routepair.py -->
+<section class="rpair">
+  <a href="/empty-legs/vancouver">
+    <img src="/brand/heroes/vancouver-empty-legs-private-jet.jpg" width="2400" height="1040" loading="lazy" decoding="async" alt="Vancouver, the departure city on the Vancouver to Calgary empty leg route">
+    <span class="rp-veil"></span>
+    <span class="rp-txt"><span class="rp-k">Departure</span><span class="rp-h">Vancouver</span></span>
+  </a>
+  <a href="/empty-legs/calgary">
+    <img src="/brand/heroes/calgary-empty-legs-private-jet.jpg" width="2400" height="1040" loading="lazy" decoding="async" alt="Calgary, the arrival city on the Vancouver to Calgary empty leg route">
+    <span class="rp-veil"></span>
+    <span class="rp-txt"><span class="rp-k">Arrival</span><span class="rp-h">Calgary</span></span>
+  </a>
+</section>
+<!-- /route city pair -->
 <div class="wrap">
 <h1>Empty legs from Vancouver to Calgary</h1>
 <p class="lede">One way empty legs between Vancouver and Calgary, exactly as the operators list them. Prices are the operator's own, not a marked up quote.</p>
