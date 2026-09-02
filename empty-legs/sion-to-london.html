@@ -173,6 +173,25 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 .mapinner iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .mapnote{font-size:12.5px;color:var(--mute);margin:8px 2px 0}
 
+/* --- route city pair, routepair.py --- */
+.rpair{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#fff}
+.rpair a{position:relative;isolation:isolate;display:block;text-decoration:none;
+  min-height:min(26vw,240px);overflow:hidden}
+.rpair img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 45%;transition:transform .5s ease}
+.rpair a:hover img,.rpair a:focus-visible img{transform:scale(1.04)}
+.rpair .rp-veil{position:absolute;inset:0;background:linear-gradient(180deg,
+  rgba(9,22,40,.10) 0%,rgba(9,22,40,.42) 58%,rgba(9,22,40,.86) 100%)}
+.rpair .rp-txt{position:relative;z-index:1;height:100%;display:flex;
+  flex-direction:column;justify-content:flex-end;padding:18px 20px}
+.rpair .rp-k{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;
+  font-size:11px;font-weight:600;margin-bottom:5px}
+.rpair .rp-h{color:#fff;font-family:"Playfair Display",Georgia,serif;
+  font-weight:400;font-size:clamp(19px,2.6vw,27px);line-height:1.12}
+@media(max-width:640px){
+  .rpair a{min-height:150px}
+  .rpair .rp-txt{padding:13px 14px}
+}
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
 #bigfoot *{box-sizing:border-box}   /* index.html is content-box, which made its footer column 56px wider than everywhere else */
@@ -565,6 +584,21 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <img src="/brand/routes/sion-to-london-empty-legs.jpg" width="1600" height="694" fetchpriority="high" decoding="async" alt="the Thames and the London skyline at dusk, on the Sion to London empty leg route">
   <div class="rin"><div class="rk">Empty leg flights, Sion to London</div></div>
 </section>
+
+<!-- route city pair, routepair.py -->
+<section class="rpair">
+  <a href="/empty-legs/sion">
+    <img src="/brand/heroes/sion-empty-legs-private-jet.jpg" width="2400" height="1040" loading="lazy" decoding="async" alt="Sion, the departure city on the Sion to London empty leg route">
+    <span class="rp-veil"></span>
+    <span class="rp-txt"><span class="rp-k">Departure</span><span class="rp-h">Sion</span></span>
+  </a>
+  <a href="/empty-legs/london">
+    <img src="/brand/heroes/london-empty-legs-private-jet.jpg" width="2400" height="1040" loading="lazy" decoding="async" alt="London, the arrival city on the Sion to London empty leg route">
+    <span class="rp-veil"></span>
+    <span class="rp-txt"><span class="rp-k">Arrival</span><span class="rp-h">London</span></span>
+  </a>
+</section>
+<!-- /route city pair -->
 <div class="wrap">
 <h1>Empty legs from Sion to London</h1>
 <p class="lede">One way empty legs between Sion and London, exactly as the operators list them. Prices are the operator's own, not a marked up quote. Send an enquiry on a flight and we take it to the operator that listed it.</p>
