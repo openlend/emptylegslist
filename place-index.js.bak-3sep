@@ -257,19 +257,7 @@
     "pullman moscow": "Pullman", "grantley adams": "Bridgetown",
     "san jose del cabo": "San Jose del Cabo", "biggin hill": "London Biggin Hill",
     "firenze": "Florence", "genova": "Genoa",
-    "beziers": "B\u00e9ziers", "pecs-pogany": "P\u00e9cs", "hradec kralove": "Hradec Kr\u00e1lov\u00e9",
-    /* 3 September 2026: a new source writes the airport's full name. Same rows
-       are in public.place_alias, so the database and the page agree. */
-    "nice cote d'azur": "Nice", "nice cote d\u2019azur": "Nice", "naples capodichino": "Naples",
-    "venice marco polo": "Venice", "catania-fontanarossa": "Catania", "catania fontanarossa": "Catania",
-    "florence peretola": "Florence", "paris-le bourget": "Paris", "paris le bourget": "Paris",
-    "las vegas harry reid": "Las Vegas", "louis armstrong new orleans": "New Orleans",
-    "phoenix sky harbor": "Phoenix", "metropolitan oakland": "Oakland", "chicago midway": "Chicago",
-    "norman y. mineta san jose": "San Jose", "norman y mineta san jose": "San Jose",
-    "sir grantley adams": "Bridgetown", "lynden pindling": "Nassau", "bern belp": "Bern",
-    "new york area": "New York", "moffett federal afld": "Moffett Field",
-    "condon state pauling": "Condon", "bandon state": "Bandon", "glacier park": "Kalispell",
-    "mc call": "McCall", "mccall": "McCall", "windsor locks": "Hartford", "palma": "Palma de Mallorca"
+    "beziers": "B\u00e9ziers", "pecs-pogany": "P\u00e9cs", "hradec kralove": "Hradec Kr\u00e1lov\u00e9"
   };
 
   function fold(t) {

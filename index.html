@@ -554,6 +554,9 @@
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
+<!-- siteld.py -->
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"}]}]}</script>
+<!-- /siteld.py -->
 </head>
 <body>
 <script>try{if(!localStorage.getItem("el_cur"))localStorage.setItem("el_cur","EUR");}catch(e){}</script>
@@ -1349,18 +1352,28 @@
     var ms=document.getElementById("f-month");
     Object.keys(months).sort().forEach(function(m){ var o=document.createElement("option"); o.value=m;
       o.textContent=MONFULL[Number(m.slice(5,7))-1]+" "+m.slice(0,4)+" ("+months[m]+")"; ms.appendChild(o); });
-    function dl(id,obj){ var d=document.getElementById(id); Object.keys(obj).sort().forEach(function(c){ var o=document.createElement("option"); o.value=c; d.appendChild(o); }); }
+    /* Suggestions: busiest first, with the count, and never a bare airport code.
+       3 September 2026: the list opened on "9TE2" and on the one-flight countries,
+       because cities were alphabetical and countries were inserted one at a time
+       at the top, which reversed their order. */
+    function isCode(c){ return /^[A-Z0-9]{3,4}$/.test(c); }
+    function dl(id,obj){ var d=document.getElementById(id);
+      Object.keys(obj).filter(function(c){return !isCode(c);})
+        .sort(function(a,b){return obj[b]-obj[a]||a.localeCompare(b);})
+        .forEach(function(c){ var o=document.createElement("option"); o.value=c; o.label=obj[c]+" flight"+(obj[c]===1?"":"s"); d.appendChild(o); }); }
     dl("dl-from",froms); dl("dl-to",tos);
     /* countries first in the list, labelled, so it is obvious you can type one */
     (function(){
       var P=window.EL_PLACE; if(!P) return;
       [["dl-from","from_airport"],["dl-to","to_airport"]].forEach(function(pair){
         var d=document.getElementById(pair[0]); if(!d) return;
-        P.countriesPresent(ALL,pair[1]).forEach(function(c){
+        var frag=document.createDocumentFragment();
+        P.countriesPresent(ALL,pair[1]).slice().sort(function(a,b){return b.n-a.n||a.name.localeCompare(b.name);}).forEach(function(c){
           var o=document.createElement("option");
           o.value=c.name; o.label="Country \u00b7 "+c.n+" flight"+(c.n===1?"":"s");
-          d.insertBefore(o,d.firstChild);
+          frag.appendChild(o);
         });
+        d.insertBefore(frag,d.firstChild);
       });
     })();
     if(newest){ var h=Math.round((Date.now()-new Date(newest).getTime())/3600000);
