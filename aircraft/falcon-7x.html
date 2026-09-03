@@ -119,7 +119,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
 <script src="/place-index.js" defer></script>
-<script>function elDisp(s){var t=String(s||"").trim();if(window.EL_PLACE&&EL_PLACE.codeCity){var d=EL_PLACE.codeCity(t);if(d)return d;}return t;}</script>
+<script>function elDisp(s){if(window.EL_PLACE&&EL_PLACE.canon){var c=EL_PLACE.canon(s);if(c)return c;}return String(s||"").trim();}</script>
 
 </head>
 <body>

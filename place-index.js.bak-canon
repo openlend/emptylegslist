@@ -130,13 +130,9 @@
     if (!q) return true;
     var cc = BY_ALIAS[q];
     if (cc) return countryOf(airport) === cc;
-    // not a country: match the written name, the code, and the tidied name, so
-    // typing "Boise" finds "Gowen Field Intl (BOI), Idaho" and typing "Madrid"
-    // finds the row that only says "MAD".
-    var needle = String(query).trim().toLowerCase();
-    var hay = (String(airport || "") + " " + String(iata || "") + " " + canon(airport)).toLowerCase();
-    if (hay.indexOf(needle) !== -1) return true;
-    return fold(hay).indexOf(fold(needle)) !== -1;
+    // not a country: the old behaviour, city name or airport code, unchanged
+    return (String(airport || "") + " " + String(iata || "")).toLowerCase()
+      .indexOf(String(query).trim().toLowerCase()) !== -1;
   }
 
   /* Country names to offer in the From/To suggestion lists, for the countries
@@ -163,7 +159,7 @@
   var CODE = {
     // IATA, from ProAir Aviation
     "MAD": "Madrid", "BCN": "Barcelona", "DUS": "Dusseldorf",
-    "FMO": "M\u00fcnster", "HAJ": "Hannover", "HAM": "Hamburg", "TXL": "Berlin",
+    "FMO": "Munster", "HAJ": "Hannover", "HAM": "Hamburg", "TXL": "Berlin",
     "STR": "Stuttgart", "NUE": "Nuremberg", "LEJ": "Leipzig", "BRE": "Bremen",
     "CGN": "Cologne", "FRA": "Frankfurt", "MUC": "Munich", "ZRH": "Zurich",
     "GVA": "Geneva", "VIE": "Vienna", "LIS": "Lisbon", "OPO": "Porto",
@@ -185,116 +181,5 @@
     return /^[A-Z0-9]{3,4}$/.test(t) ? (CODE[t] || "") : "";
   }
 
-  /* ---------- one name per place ----------
-     Radu, 2 September 2026: the From and To lists were a mess. 527 distinct
-     airport strings on the board, and the same place written several ways.
-     "Teterboro" and "Teterboro, NJ" split 113 flights in two. Ibiza appeared
-     three times. Alongside them sat "9TE2", "Albenga (SV)" and
-     "Augusta Rgnl At Bush Fld (AGS)".
-
-     canon() gives one printable name per place. The order matters:
-
-       1. a bare code becomes its city, if we know it
-       2. anything in brackets goes
-       3. a trailing ", XX" goes, and so does a country that adds nothing
-       4. the first half of a slashed pair wins
-       5. the name is cut at the first generic airport word
-       6. a short table fixes what no rule can
-
-     Step 3 is where the care is. "San Jose, CA" and "San Jose, Costa Rica" are
-     two different cities, so only two letter suffixes and a short list of
-     redundant country names are dropped. Anything else stays and keeps the two
-     apart. */
-
-  var DROP_SUFFIX = (function () {
-    var d = {};
-    // countries that add nothing after a city we already name
-    // Costa Rica is deliberately absent. "San Jose, CA" and "San Jose, Costa
-    // Rica" are two cities and the country is the only thing keeping them apart.
-    ["us", "usa", "united states", "canada", "uk", "gb", "great britain",
-     "united kingdom", "turks and caicos islands", "mexico", "jamaica",
-     "puerto rico", "sint maarten", "bvi", "bahamas", "british virgin islands"
-    ].forEach(function (k) { d[k] = 1; });
-    // one operator writes the state out in full: "Gowen Field Intl (BOI), Idaho"
-    ("alabama alaska arizona arkansas california colorado connecticut delaware florida georgia " +
-     "hawaii idaho illinois indiana iowa kansas kentucky louisiana maine maryland massachusetts " +
-     "michigan minnesota mississippi missouri montana nebraska nevada new hampshire new jersey " +
-     "new mexico new york north carolina north dakota ohio oklahoma oregon pennsylvania " +
-     "rhode island south carolina south dakota tennessee texas utah vermont virginia washington " +
-     "west virginia wisconsin wyoming").split(/(?=\b(?:new|north|south|west|rhode)\b)|\s+/)
-      .forEach(function (k) { k = k.trim(); if (k) d[k] = 1; });
-    ["new hampshire", "new jersey", "new mexico", "new york", "north carolina", "north dakota",
-     "rhode island", "south carolina", "south dakota", "west virginia",
-     "alberta", "british columbia", "ontario", "quebec"].forEach(function (k) { d[k] = 1; });
-    return d;
-  })();
-
-  var GENERIC = {
-    "international": 1, "intl": 1, "regional": 1, "rgnl": 1, "municipal": 1,
-    "muni": 1, "airport": 1, "executive": 1, "memorial": 1, "national": 1,
-    "natl": 1, "county": 1, "field": 1, "fld": 1
-  };
-
-  /* Names no rule reaches. Keys are accent folded and lower case. */
-  var SAME_PLACE = {
-    "amsterdam schiphol": "Amsterdam", "olbia costa smeralda": "Olbia",
-    "venezia tessera marco polo": "Venice", "rome ciampino g b pastine": "Rome",
-    "tenerife south": "Tenerife", "santorini island": "Santorini",
-    "santorini": "Santorini", "liverpool john lennon": "Liverpool",
-    "paris le bourget": "Paris", "frankfurt am main": "Frankfurt",
-    "dubrovnik cilipi": "Dubrovnik", "figari sud corse": "Figari",
-    "figari sud-corse": "Figari", "kortrijk-wevelgem": "Wevelgem",
-    "kortrijk": "Wevelgem", "larnarca": "Larnaca", "zaventem": "Brussels",
-    "providenciales island": "Providenciales", "turks and caicos": "Turks and Caicos",
-    "dallas love": "Dallas", "dallas-fort worth": "Dallas",
-    "st louis lambert": "St Louis", "detroit metropolitan": "Detroit",
-    "aspen pitkin co": "Aspen", "chicago executive": "Chicago",
-    "gowen field": "Boise", "gowen field intl": "Boise",
-    "mykonos island": "Mykonos", "kerkyra island": "Corfu",
-    "florida keys marathon": "Marathon", "new york stewart": "New York",
-    "malaga": "M\u00e1laga", "munster": "M\u00fcnster", "montreal": "Montr\u00e9al",
-    "northeast florida": "St Augustine", "dannelly field": "Montgomery",
-    "pullman moscow": "Pullman", "grantley adams": "Bridgetown",
-    "san jose del cabo": "San Jose del Cabo", "biggin hill": "London Biggin Hill",
-    "firenze": "Florence", "genova": "Genoa",
-    "beziers": "B\u00e9ziers", "pecs-pogany": "P\u00e9cs", "hradec kralove": "Hradec Kr\u00e1lov\u00e9"
-  };
-
-  function fold(t) {
-    t = String(t == null ? "" : t);
-    if (t.normalize) t = t.normalize("NFD").replace(/[̀-ͯ]/g, "");
-    return t.toLowerCase().trim();
-  }
-
-  function canon(raw) {
-    var t = String(raw == null ? "" : raw).trim();
-    if (!t) return "";
-    var up = t.toUpperCase();
-    if (/^[A-Z0-9]{3,4}$/.test(up)) return CODE[up] || t;
-
-    t = t.replace(/\s*\([^)]*\)/g, "").trim().replace(/,+$/, "").trim();
-
-    var m;
-    while ((m = t.match(/^(.*),\s*([^,]+)$/))) {
-      var suf = m[2].trim();
-      if (suf.length === 2 || DROP_SUFFIX[fold(suf)]) t = m[1].trim();
-      else break;
-    }
-
-    t = t.split(/\s*\/\s*/)[0].trim();
-
-    if (SAME_PLACE[fold(t)]) return SAME_PLACE[fold(t)];
-
-    var w = t.split(/\s+/);
-    for (var i = 0; i < w.length; i++) {
-      if (GENERIC[fold(w[i]).replace(/\.$/, "")]) { if (i) t = w.slice(0, i).join(" "); break; }
-    }
-    t = t.trim();
-    return SAME_PLACE[fold(t)] || t;
-  }
-
-  /* The key two spellings of one place share. Use it to group, print canon(). */
-  function canonKey(raw) { return fold(canon(raw)); }
-
-  w.EL_PLACE = { match: match, slug: slug, countryOf: countryOf, countriesPresent: countriesPresent, COUNTRY: COUNTRY, codeCity: codeCity, canon: canon, canonKey: canonKey };
+  w.EL_PLACE = { match: match, slug: slug, countryOf: countryOf, countriesPresent: countriesPresent, COUNTRY: COUNTRY, codeCity: codeCity };
 })(window);

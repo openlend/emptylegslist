@@ -1092,7 +1092,7 @@
   try { TOKEN = localStorage.getItem("el_token") || ""; } catch (e) { TOKEN = ""; }
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
-  function city(n){ if(!n) return ""; var i=n.lastIndexOf(", "); return i>0?n.slice(0,i):n; }
+  function city(n){ if(!n) return ""; if(window.EL_PLACE&&EL_PLACE.canon){var c=EL_PLACE.canon(n);if(c)return c;} var i=n.lastIndexOf(", "); return i>0?n.slice(0,i):n; }
   function pval(note){ if(!note) return null; var m=note.replace(/,/g,"").match(/(\d+(?:\.\d+)?)/); return m?Number(m[1]):null; }
   /* ---------- approximate currency conversion ----------
      Rates come from the ECB reference set via Frankfurter and are cached for 12h.
