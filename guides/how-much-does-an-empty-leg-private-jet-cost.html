@@ -79,6 +79,10 @@ table.gtab td.lead{font-weight:500;color:var(--navy)}
 details.gmeth{background:#fff;border-radius:14px;padding:4px 20px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:26px 0 0}
 details.gmeth summary{cursor:pointer;padding:16px 0;font-weight:600;font-size:14.5px}
 details.gmeth pre{overflow-x:auto;background:#f4f6f9;border-radius:10px;padding:14px;font-size:12.5px;line-height:1.6}
+p.gtip{background:#fff;border-left:3px solid var(--gold);border-radius:0 14px 14px 0;
+  padding:18px 22px;margin:24px 0;font-size:15px;line-height:1.75;color:#31404e;
+  box-shadow:0 1px 3px rgba(14,35,56,.07)}
+p.gtip b{color:var(--navy)}
 figure.gfig{margin:26px 0;padding:0}
 figure.gfig img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
 figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
@@ -523,6 +527,8 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <p>So the honest version of the headline is this: <b>an empty leg turns a private jet into something a group of eight or nine can split.</b> That is the whole trick, and it is why the maths only ever works for people travelling together.</p>
 <p>Two more things the number does not include. Operators quote the flight, and what sits on top of it, landing fees, handling, catering, sometimes a passenger tax, varies by airport and by operator. And an empty leg goes where the aircraft was already going, on the date it was already going, which is the price you actually pay for the discount.</p>
 
+<p class="gtip"><b>One thing to be careful about.</b> An empty leg is one way. There is no return, and there is no such thing as a return seat: the aircraft is repositioning, and where it goes next is the operator's business, not yours. Of the 1,091 flights on our board today, only 204 had anything at all listed going back the other way inside the following week, and even those are separate flights, often from a different operator, that can sell or vanish on their own. Plan the way back as a scheduled flight, or as a second empty leg you find later, and treat it as a bonus if the timing ever lines up.</p>
+
 <figure class="gfig">
   <img src="/brand/guides/empty-leg-jet-cabin-interior.jpg" width="1600" height="900" alt="Leather seats facing each other in the cabin of a light business jet" loading="lazy">
   <figcaption>Nine of these is what turns 3,900 euros into 433. Eight of them have to be filled.</figcaption>
@@ -562,28 +568,9 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <p style="margin-top:26px"><a class="btn" href="/">See what is flying today</a></p>
 
 <details class="gmeth">
-<summary>How these figures were produced</summary>
-<p>Read on 3 September 2026 against <code>public.empty_legs</code> for the board and <code>public.empty_legs_staging</code> for the history. No figure here is estimated, converted or rounded upwards. Prices are parsed from the operator's own note, which is stored as text in the form <code>EUR 5,400 listed</code>.</p>
-<p>Per seat is the listed price divided by the listed seat count, on the 219 upcoming legs that carry both. Medians rather than averages, because one 130,000 dollar Global would drag an average anywhere.</p>
-<pre>-- price per seat, by currency
-with p as (
-  select substring(price_note from '^[A-Z]{3}') as cur,
-         replace(substring(price_note from '[0-9][0-9,.]*'), ',', '')::numeric as amt,
-         seats
-  from public.empty_legs
-  where price_note is not null and seats > 0
-    and departure_date &gt;= current_date)
-select cur, count(*),
-       percentile_cont(0.5) within group (order by amt) as aircraft,
-       percentile_cont(0.5) within group (order by amt/seats) as per_seat
-from p group by cur;
-
--- how long a leg lasts before it disappears
-select percentile_cont(0.5) within group (order by
-         extract(epoch from (gone_at - first_seen_at))/86400.0)
-from public.empty_legs_staging
-where gone_at is not null and gone_at &lt; departure_date::timestamptz;</pre>
-<p>The live table above reads the same table through our public REST endpoint, so it moves when the board moves. The prose figures are fixed to the date at the top of the page and will be restated, not quietly edited, when we next rerun them.</p>
+<summary>Where these figures come from</summary>
+<p>Every number on this page was read on 3 September 2026 from our own record of what charter operators published, not from an industry estimate. Prices are the operator's own figure for the whole aircraft, and per seat is that figure divided by the seat count the operator listed, across the 219 upcoming flights that carry both.</p>
+<p>We use medians rather than averages, because a single 130,000 dollar Global would drag an average anywhere. The live table above reads the same listings as they stand right now. The written figures are fixed to the date at the top of the page, and when we rerun them they will be restated with a new date rather than quietly edited.</p>
 </details>
 
 <h2>Related</h2>
@@ -687,6 +674,8 @@ where gone_at is not null and gone_at &lt; departure_date::timestamptz;</pre>
   "acceptedAnswer":{"@type":"Answer","text":"No. Operators sell the whole aircraft. The per seat figure is the listed price divided by the listed seat count, so it only holds if the cabin is full."}},
  {"@type":"Question","name":"Do all empty legs show a price?",
   "acceptedAnswer":{"@type":"Answer","text":"No. Of the 1,091 upcoming legs recorded on 3 September 2026, 243 carried a published price and 848 said price on enquiry."}},
+ {"@type":"Question","name":"Can you book a return on an empty leg?",
+  "acceptedAnswer":{"@type":"Answer","text":"No. An empty leg is a one way repositioning flight and there is no return, nor any such thing as a return seat. Of the 1,091 upcoming legs recorded on 3 September 2026, only 204 had any flight listed in the opposite direction within the following week, and those are separate flights that can be sold or withdrawn on their own."}},
  {"@type":"Question","name":"How far in advance are empty legs published?",
   "acceptedAnswer":{"@type":"Answer","text":"Across 3,928 legs with timestamps, the median appeared 8.7 days before departure and 1,780 of them appeared within the last week before the flight."}}]}
 </script>
