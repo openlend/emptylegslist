@@ -15,6 +15,11 @@
 
 header.elnav {
   position: sticky; top: 0; z-index: 200;
+  /* display set on purpose: account.html and a few root pages carry a bare
+     `header{display:flex;justify-content:space-between}` rule from before this
+     menu existed, which shrank the bar and put the logo and burger in the
+     middle of the screen (Radu, 3 September 2026). */
+  display: block;
   /* solid, the same navy as the phone drawer, so opening the menu changes
      nothing above the fold except the button (Radu, 3 September 2026) */
   background: var(--eln-navy);
