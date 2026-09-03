@@ -177,7 +177,9 @@ table.ctab td.lead{font-weight:500;color:var(--navy)}
             </div>
             <h4>By country</h4>
             <div class="eln-ctry">
-            <a href="/empty-legs/united-states">United States</a>
+            <a href="/empty-legs/europe">Europe</a>
+            <a href="/empty-legs/europe">Europe</a>
+        <a href="/empty-legs/united-states">United States</a>
             <a href="/empty-legs/united-kingdom">United Kingdom</a>
             <a href="/empty-legs/belgium">Belgium</a>
             <a href="/empty-legs/france">France</a>
@@ -534,6 +536,7 @@ table.ctab td.lead{font-weight:500;color:var(--navy)}
 
 <div class="cpull">Six London airports are 128 of the 184 British airport appearances on the board. Birmingham and Belfast are 34 more. Everything else in the country is a rounding error.</div>
 
+
 <div class="ccols">
   <div>
     <h2>Cities on the board</h2>
@@ -615,6 +618,7 @@ table.ctab td.lead{font-weight:500;color:var(--navy)}
 
 <h2>Other countries</h2>
 <div class="chips">
+    <a href="/empty-legs/europe">Europe</a>
     <a href="/empty-legs/united-states">United States</a>
     <a href="/empty-legs/belgium">Belgium</a>
     <a href="/empty-legs/france">France</a>
@@ -631,13 +635,13 @@ table.ctab td.lead{font-weight:500;color:var(--navy)}
 <script>
 (function(){
   var BASE="https://wscowiseslaovmmfuzyv.supabase.co", KEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
-  var CC="GB", body=document.getElementById("clivebody");
+  var FILT="from_country.eq.GB,to_country.eq.GB", body=document.getElementById("clivebody");
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
   function place(r,w){var v=r[w+"_city"];if(v)return v;var raw=r[w+"_airport"]||"";if(window.EL_PLACE&&EL_PLACE.canon){var c=EL_PLACE.canon(raw);if(c)return c;}return raw;}
   function when(d){if(!d)return "";var p=String(d).slice(0,10).split("-");var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];return Number(p[2])+" "+M[Number(p[1])-1]+" "+p[0];}
   var today=new Date().toISOString().slice(0,10);
   fetch(BASE+"/rest/v1/empty_legs?select=from_city,to_city,from_airport,to_airport,aircraft_type,seats,departure_date,price_note"
-      +"&or=(from_country.eq."+CC+",to_country.eq."+CC+")&departure_date=gte."+today+"&order=departure_date.asc&limit=40",
+      +"&or=("+FILT+")&departure_date=gte."+today+"&order=departure_date.asc&limit=40",
       {headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
     .then(function(r){return r.ok?r.json():[];})
     .then(function(d){
@@ -694,6 +698,7 @@ table.ctab td.lead{font-weight:500;color:var(--navy)}
     <details class="bf-col" open>
       <summary><h4>Destinations</h4></summary>
       <nav>
+        <a href="/empty-legs/europe">Europe</a>
         <a href="/empty-legs/united-states">United States</a>
         <a href="/empty-legs/united-kingdom">United Kingdom</a>
         <a href="/empty-legs/belgium">Belgium</a>
