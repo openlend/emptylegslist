@@ -329,7 +329,7 @@
   .rhead h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 400; margin: 0; }
   .rhead p { margin: 3px 0 0 0; font-size: 13px; font-weight: 300; color: var(--mute); }
   .rgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .rcard { position: relative; display: block; aspect-ratio: 23/30; border-radius: 12px; overflow: hidden; background: linear-gradient(150deg, #1b3552 0%, #0d1f36 100%); cursor: pointer; border: none; padding: 0; font-family: Raleway, sans-serif; text-align: left; transition: transform .2s cubic-bezier(.2,.8,.3,1), box-shadow .2s; }
+  .rcard { position: relative; display: block; aspect-ratio: 23/30; text-decoration: none; color: inherit; border-radius: 12px; overflow: hidden; background: linear-gradient(150deg, #1b3552 0%, #0d1f36 100%); cursor: pointer; border: none; padding: 0; font-family: Raleway, sans-serif; text-align: left; transition: transform .2s cubic-bezier(.2,.8,.3,1), box-shadow .2s; }
   .rcard:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(13,31,54,0.22); }
   .rcard img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .rcard .rveil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,31,54,0) 26%, rgba(13,31,54,0.34) 48%, rgba(13,31,54,0.74) 70%, rgba(13,31,54,0.96) 100%); }
@@ -1731,10 +1731,25 @@
     }).sort(function(a,b){ return b.n-a.n || a.city.localeCompare(b.city); });
   }
 
+  /* The city page for a name, if the site has one: "Cape Town" -> cape-town.
+     EL_CITY_PAGES and EL_CITY_HERO are written into the page by sitelinks.py. */
+  function citySlug(name){
+    return String(name||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  }
+  function cityPage(name){
+    var sl=citySlug(name), pages=window.EL_CITY_PAGES||[];
+    return pages.indexOf(sl)>-1 ? sl : "";
+  }
+  function hasHero(name){ return (window.EL_CITY_HERO||[]).indexOf(citySlug(name))>-1; }
+
   function routeCard(item, dir){
     var pic=CITY_PIC[item.city];
-    var b=document.createElement("button");
-    b.type="button"; b.className="rcard";
+    var page=cityPage(item.city);
+    /* a city with its own page gets a real link to it; the rest keep the
+       in-page filter (Radu, 3 September 2026) */
+    var b=document.createElement(page?"a":"button");
+    if(page){ b.href="/empty-legs/"+page; } else { b.type="button"; }
+    b.className="rcard";
     b.setAttribute("aria-label", item.label ||
       (item.n+" empty legs "+(dir==="from"?"from ":"to ")+item.city));
     var sub = item.airports>1 ? (item.airports+" airports") : "";
@@ -1747,6 +1762,7 @@
         '<span class="rsub">'+esc(sub)+'</span>'+
         '<span class="rcount"><b>'+item.n+'</b> available</span>'+
       '</span>';
+    if(page) return b;
     b.addEventListener("click",function(){
       document.getElementById(dir==="from"?"f-from":"f-to").value=item.city;
       document.getElementById(dir==="from"?"f-to":"f-from").value="";
@@ -1774,7 +1790,8 @@
     var list=Object.keys(n).map(function(c){
       return { city:c, n:n[c], airports:air[c]||0,
                label:n[c]+" empty legs to or from "+c };
-    }).sort(function(x,y){ return y.n-x.n || x.city.localeCompare(y.city); }).slice(0,4);
+    }).filter(function(x){ return !!cityPage(x.city); })
+      .sort(function(x,y){ return (hasHero(y.city)-hasHero(x.city)) || y.n-x.n || x.city.localeCompare(y.city); }).slice(0,8);
     host.innerHTML="";
     list.forEach(function(it){ host.appendChild(routeCard(it,"to")); });
     var note=document.getElementById("rallsub");
@@ -2429,6 +2446,9 @@ setTimeout(boot,900);setTimeout(boot,2500);setTimeout(boot,5000);
     }, true);
   })();
   </script>
+<!-- city pages, sitelinks.py -->
+<script>window.EL_CITY_PAGES=["alicante","amsterdam","antwerp","aspen","athens","austin","barcelona","bari","belfast","bergen","berlin","birmingham","bodrum","boise","bologna","bolzano","brussels","cagliari","calgary","cannes","cape-town","carlsbad","chicago","dallas","dublin","dusseldorf","edinburgh","farnborough","fort-lauderdale","fort-worth","geneva","girona","houston","ibiza","istanbul","johannesburg","larnaca","las-vegas","liege","linz","london","madrid","malaga","maun","miami","milan","milwaukee","monterey","montpellier","montreal","munich","mykonos","naples","new-york","nice","oakland","olbia","oxford","palma","paris","pisa","preveza","rotterdam","salzburg","sault-ste-marie","scottsdale","sion","teterboro","thessaloniki","toronto","toulon","turks-and-caicos","van-nuys","verona","vienna","washington","waukesha","wevelgem","zurich"];window.EL_CITY_HERO=["alicante","athens","barcelona","bolzano","cannes","dallas","dusseldorf","girona","houston","istanbul","liege","linz","london","malaga","milan","monterey","munich","mykonos","new-york","nice","paris","preveza","salzburg","van-nuys","zurich"];</script>
+<!-- /city pages -->
 <script src="/place-index.js" defer></script>
 <script src="/nav-intent.js" defer></script>
 </main>
