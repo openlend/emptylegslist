@@ -577,6 +577,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/italy</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/johannesburg-to-cape-town</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>daily</changefreq>
@@ -1028,6 +1034,24 @@
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/sion</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/south-africa</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/spain</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/switzerland</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
