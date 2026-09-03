@@ -2226,7 +2226,7 @@ setTimeout(go,700);setTimeout(go,2200);
 @media(max-width:640px){#herolead{font-size:15.5px;margin-top:12px}#herolead #fcpop{max-width:none;right:0}
 /* the live text is three lines on a phone, the build-time one two: hold the
    height so the search box does not move when the live count arrives */
-#herolead .lead-t{display:block;min-height:79px}}
+#herolead{min-height:110px}#herolead .lead-t{display:block;min-height:79px}}
 
 /* --- latest guides on the home page, homeguides.py --- */
 #guides{max-width:1120px;margin:0 auto;padding:8px 20px 34px}
@@ -2338,6 +2338,11 @@ function compose(){
 var host=document.getElementById("herostats");if(!host)return;
 var c=readCounts();if(!c)return;
 if(!c.some(function(n){return n>0;})){c=[BAKED];}
+/* while the list is still filling, the count reads "0 of N" for a moment and
+   the hero grew a line, which on a phone rescaled the background photo
+   (Radu's recording, 3 September 2026). Hold the build-time text until real
+   numbers are in. */
+else if(c.length>1&&c[0]===0){c=[BAKED];}
 var lead=document.getElementById("herolead");
 if(!lead){lead=document.createElement("p");lead.id="herolead";host.appendChild(lead);}
 var shown=c[0],total=c.length>1?c[1]:c[0],rest=total-shown;
