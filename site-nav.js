@@ -73,15 +73,45 @@
     var drawer = document.querySelector(".eln-drawer");
     var scrim = document.querySelector(".eln-scrim");
     var body = document.body;
+    var savedY = 0, opener = null, inerted = [];
+    var FOCUSABLE = "a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex='-1'])";
 
-    function shut() {
+    function focusables() {
+      return [].slice.call(drawer.querySelectorAll(FOCUSABLE)).filter(function (el) {
+        /* a link inside a closed accordion is hidden, and must not take focus */
+        if (el.offsetParent === null) return false;
+        var acc = el.closest(".eln-panel") && el.closest(".eln-acc");
+        return !acc || acc.classList.contains("open");
+      });
+    }
+
+    function shut(opts) {
       if (!body.classList.contains("eln-open")) return;
-      body.classList.remove("eln-open", "eln-lock");
+      body.classList.remove("eln-open");
+      /* scroll lock off first, then the page goes back exactly where it was */
+      body.classList.remove("eln-lock");
+      body.style.top = "";
+      window.scrollTo(0, savedY);
+      inerted.forEach(function (el) { el.removeAttribute("inert"); });
+      inerted = [];
       if (burger) burger.setAttribute("aria-expanded", "false");
+      if (opener && (!opts || !opts.noFocus) && typeof opener.focus === "function") opener.focus({ preventScroll: true });
+      opener = null;
     }
     function show() {
+      if (body.classList.contains("eln-open")) return;
+      opener = document.activeElement || burger;
+      savedY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      body.style.top = (-savedY) + "px";
       body.classList.add("eln-open", "eln-lock");
       if (burger) burger.setAttribute("aria-expanded", "true");
+      /* everything behind the drawer stops taking keyboard focus */
+      [].slice.call(body.children).forEach(function (el) {
+        if (el === drawer || el === scrim || el.tagName === "SCRIPT") return;
+        if (!el.hasAttribute("inert")) { el.setAttribute("inert", ""); inerted.push(el); }
+      });
+      var first = drawer.querySelector(".eln-dclose") || focusables()[0];
+      if (first) first.focus({ preventScroll: true });
     }
 
     if (burger) {
@@ -89,30 +119,44 @@
         if (body.classList.contains("eln-open")) shut(); else show();
       });
     }
-    if (scrim) scrim.addEventListener("click", shut);
+    if (scrim) scrim.addEventListener("click", function () { shut(); });
     var dclose = drawer && drawer.querySelector(".eln-dclose");
-    if (dclose) dclose.addEventListener("click", shut);
+    if (dclose) dclose.addEventListener("click", function () { shut(); });
     if (drawer) {
       drawer.addEventListener("click", function (e) {
         var a = e.target.closest("a");
         /* A link to another page navigates anyway; one to an anchor on this
            page would otherwise leave the drawer sitting over the target. */
-        if (a && a.getAttribute("href")) shut();
+        if (a && a.getAttribute("href")) shut({ noFocus: true });
+      });
+      /* keyboard stays inside the open drawer */
+      drawer.addEventListener("keydown", function (e) {
+        if (e.key !== "Tab") return;
+        var f = focusables(); if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
       });
       [].slice.call(drawer.querySelectorAll(".eln-acc > button")).forEach(function (b) {
         b.addEventListener("click", function () {
           var acc = b.parentElement;
           var was = acc.classList.contains("open");
           [].slice.call(drawer.querySelectorAll(".eln-acc")).forEach(function (o) {
+            if (!o.classList.contains("open")) return;
+            /* if focus is in the section that is closing, put it on its toggle */
+            var ob = o.querySelector("button");
+            if (o.contains(document.activeElement) && document.activeElement !== ob && ob) ob.focus();
             o.classList.remove("open");
-            var ob = o.querySelector("button"); if (ob) ob.setAttribute("aria-expanded", "false");
+            if (ob) ob.setAttribute("aria-expanded", "false");
           });
           if (!was) { acc.classList.add("open"); b.setAttribute("aria-expanded", "true"); }
         });
       });
     }
+    var rt;
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 1080) shut();
+      clearTimeout(rt);
+      rt = setTimeout(function () { if (window.innerWidth > 1080) shut({ noFocus: true }); }, 80);
     });
 
     /* Mark the page we are on, so the header says where you are. */
