@@ -286,3 +286,11 @@ body.eln-lock { overflow: hidden; }
 .eln-ctry{display:flex;flex-direction:column;gap:2px;margin-bottom:12px}
 .eln-ctry a{display:block;padding:6px 10px;border-radius:8px;font-size:13.5px;color:var(--navy,#0D1F36);text-decoration:none}
 .eln-ctry a:hover{background:rgba(13,31,54,.06)}
+
+/* 3 September 2026. Pages built from the about.html shell (About, Contact,
+   the guide, the country pages) carry a generic `button{margin-top:16px;
+   padding:14px 26px}` rule for their forms. It leaked into the menu triggers
+   and pushed Destinations and Aircraft 8px below the other links, with a
+   stray band under them. The menu resets what it owns. */
+header.elnav button, header.elnav .eln-trig, .eln-drawer button, .eln-burger { margin: 0; box-shadow: none; }
+header.elnav .eln-reg { margin: 0; }
