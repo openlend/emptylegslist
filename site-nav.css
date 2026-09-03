@@ -202,27 +202,28 @@ body.eln-open .eln-scrim { opacity: 1; visibility: visible; transition: opacity 
   padding-top: env(safe-area-inset-top, 0px);
 }
 body.eln-open .eln-drawer { transform: translateX(0); visibility: visible; transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s; }
-.eln-drawer-in { padding: 16px 26px calc(26px + env(safe-area-inset-bottom, 0px)); }
-.eln-dtop { position: sticky; top: 0; z-index: 2; background: var(--eln-navy); display: flex; align-items: center; justify-content: space-between; height: 62px; margin: 0 -26px 22px; padding: 0 26px; }
+.eln-drawer-in { padding: 0 22px calc(28px + env(safe-area-inset-bottom, 0px)); }
+/* same bar as the page header: 68px tall, 22px in, logo 38px, button 46px, so the logo does not move when the drawer opens */
+.eln-dtop { position: sticky; top: 0; z-index: 2; background: var(--eln-navy); display: flex; align-items: center; justify-content: space-between; height: 68px; margin: 0 -22px 14px; padding: 0 22px; }
 .eln-dlogo { display: block; line-height: 0; }
-.eln-dtop img { height: 40px; width: auto; display: block; }
-.eln-dclose { width: 44px; height: 44px; border: 1.5px solid var(--eln-gold); border-radius: 10px; background: none; color: var(--eln-gold); font-size: 26px; line-height: 1; cursor: pointer; }
+.eln-dtop img { height: 38px; width: auto; display: block; }
+.eln-dclose { width: 46px; height: 46px; border: 1px solid rgba(201, 162, 76, .7); border-radius: 12px; background: none; color: var(--eln-gold); font-size: 24px; line-height: 1; cursor: pointer; }
 .eln-dclose:focus-visible, .eln-drawer a:focus-visible, .eln-acc > button:focus-visible { outline: 2px solid var(--eln-gold); outline-offset: 3px; }
 
 /* Phone drawer, restyled 3 September 2026 from Radu's mockup: gold section
    labels, a "Browse all" line with an arrow, three accordions, a two column
    grid of the smaller links, the gold pill, and the social row from the footer. */
-.eln-dlab { margin: 0 0 4px; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; color: var(--eln-gold); }
-.eln-dbrowse { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0 16px; font-size: 21px; font-weight: 500; color: #fff; border-bottom: 1px solid rgba(255,255,255,.14); }
-.eln-dbrowse svg { color: var(--eln-gold); flex: 0 0 auto; }
-.eln-accs { margin-bottom: 26px; }
-.eln-accs > .eln-acc { border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+.eln-dlab { margin: 0 0 2px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; color: rgba(201, 162, 76, .85); }
+.eln-dbrowse { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0 14px; font-size: 18px; font-weight: 500; color: #fff; border-bottom: 1px solid rgba(255,255,255,.12); }
+.eln-dbrowse svg { color: var(--eln-gold); flex: 0 0 auto; width: 20px; height: 20px; }
+.eln-accs { margin-bottom: 22px; }
+.eln-accs > .eln-acc { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
 .eln-acc > button {
   width: 100%; display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 0; background: none; border: 0; color: #fff; cursor: pointer;
-  font-family: inherit; font-size: 21px; font-weight: 500; text-align: left;
+  padding: 14px 0; background: none; border: 0; color: #fff; cursor: pointer;
+  font-family: inherit; font-size: 18px; font-weight: 500; text-align: left;
 }
-.eln-acc > button svg { width: 16px; height: 16px; transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1); opacity: .9; }
+.eln-acc > button svg { width: 14px; height: 14px; transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1); opacity: .9; }
 .eln-acc.open > button svg { transform: rotate(180deg); }
 .eln-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 200ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 200ms; visibility: hidden; }
 .eln-acc.open .eln-panel { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows 200ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s; }
@@ -234,20 +235,20 @@ body.eln-open .eln-drawer { transform: translateX(0); visibility: visible; trans
 .eln-panel > div > div { padding-bottom: 12px; }
 .eln-dsub { margin: 8px 0 2px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,.45); }
 .eln-dgrid { display: grid; grid-template-columns: 1fr 1fr; margin-top: 6px; }
-.eln-dgrid a { padding: 15px 0; font-size: 18px; font-weight: 400; color: #fff; border-bottom: 1px solid rgba(255,255,255,.14); }
-.eln-dgrid a:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.14); padding-right: 12px; }
+.eln-dgrid a { padding: 13px 0; font-size: 16px; font-weight: 400; color: rgba(255,255,255,.88); border-bottom: 1px solid rgba(255,255,255,.12); }
+.eln-dgrid a:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.12); padding-right: 12px; }
 .eln-dgrid a:nth-child(even) { padding-left: 18px; }
 .eln-dgrid a:nth-last-child(-n+2) { border-bottom: 0; }
 .eln-drawer .eln-dcta {
   display: block; margin: 26px 0 0; text-align: center;
   background: var(--eln-gold); color: var(--eln-navy);
-  padding: 16px 22px; border-radius: 999px; font-size: 18px; font-weight: 600;
+  padding: 15px 22px; border-radius: 999px; font-size: 16px; font-weight: 600;
 }
 .eln-drawer .eln-dcta { transition: transform 140ms cubic-bezier(0.22, 1, 0.36, 1); }
 .eln-drawer .eln-dcta:active { transform: scale(0.98); transition-duration: 100ms; }
 .eln-dsocial { display: flex; justify-content: space-between; align-items: center; margin: 22px -8px 0; }
 .eln-dsocial a { color: var(--eln-gold); display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; line-height: 0; }
-.eln-dsocial svg { fill: currentColor; display: block; }
+.eln-dsocial svg { fill: currentColor; display: block; width: 20px; height: 20px; opacity: .9; }
 
 /* Contents settle in behind the panel: the four main lines fade up 8px one
    after another from 70ms, the rest as one group from 100ms. Transitions, not
@@ -266,7 +267,7 @@ body.eln-lock { position: fixed; width: 100%; overflow: hidden; }
 body.eln-lock { overflow: hidden; }
 
 @media (min-width: 600px) { .eln-drawer { width: min(420px, 88vw); } }
-@media (max-width: 345px) { .eln-dgrid a { font-size: 16px; } .eln-acc > button, .eln-dbrowse { font-size: 19px; } }
+@media (max-width: 345px) { .eln-dgrid a { font-size: 15px; } .eln-acc > button, .eln-dbrowse { font-size: 17px; } }
 @media (max-width: 1080px) {
   .eln-bar { padding: 0 22px; }
   .eln-links { display: none; }
