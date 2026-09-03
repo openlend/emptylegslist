@@ -200,7 +200,7 @@ body.eln-open .eln-scrim { opacity: 1; visibility: visible; transition: opacity 
   box-shadow: -20px 0 60px rgba(0, 0, 0, .35);
 }
 body.eln-open .eln-drawer { transform: translateX(0); }
-.eln-drawer-in { padding: 22px 24px 40px; }
+.eln-drawer-in { padding: 18px 24px calc(28px + env(safe-area-inset-bottom, 0px)); }
 .eln-dtop { display: flex; align-items: center; justify-content: space-between; height: calc(var(--eln-h) - 22px); margin-bottom: 10px; }
 .eln-dtop img { height: 38px; width: auto; display: block; }
 .eln-dclose { width: 42px; height: 42px; border: 0; border-radius: 12px; background: rgba(255,255,255,.09); color: #fff; font-size: 22px; line-height: 1; cursor: pointer; }
@@ -209,7 +209,7 @@ body.eln-open .eln-drawer { transform: translateX(0); }
 .eln-accs > .eln-acc:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 .eln-acc > button {
   width: 100%; display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 2px; background: none; border: 0; color: #fff; cursor: pointer;
+  padding: 15px 2px; background: none; border: 0; color: #fff; cursor: pointer;
   font-family: inherit; font-size: 16.5px; font-weight: 500; text-align: left;
 }
 .eln-acc > button svg { transition: transform 240ms var(--eln-out); opacity: .7; }
@@ -222,12 +222,12 @@ body.eln-open .eln-drawer { transform: translateX(0); }
   color: rgba(255, 255, 255, 0.78);
 }
 .eln-panel > div > div { padding-bottom: 12px; }
-.eln-dlinks { display: flex; flex-direction: column; gap: 2px; margin-top: 18px; }
-.eln-dlinks a { padding: 13px 2px; font-size: 16px; font-weight: 500; line-height: 1.35; color: rgba(255, 255, 255, 0.92); }
+.eln-dlinks { display: flex; flex-direction: column; gap: 0; margin-top: 12px; }
+.eln-dlinks a { padding: 10px 2px; font-size: 16px; font-weight: 500; line-height: 1.35; color: rgba(255, 255, 255, 0.92); }
 .eln-drawer .eln-dcta {
-  display: block; margin: 20px 0 0; text-align: center;
+  display: block; margin: 16px 0 0; text-align: center;
   background: var(--eln-gold); color: var(--eln-navy);
-  padding: 15px 22px; border-radius: 999px; font-size: 16px; font-weight: 600;
+  padding: 14px 22px; border-radius: 999px; font-size: 16px; font-weight: 600;
 }
 .eln-drawer .eln-dcta:active { transform: scale(0.98); }
 
