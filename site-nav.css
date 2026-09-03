@@ -293,4 +293,7 @@ body.eln-lock { overflow: hidden; }
    and pushed Destinations and Aircraft 8px below the other links, with a
    stray band under them. The menu resets what it owns. */
 header.elnav button, header.elnav .eln-trig, .eln-drawer button, .eln-burger { margin: 0; box-shadow: none; }
+/* the reset above also caught the burger and lost its margin-left:auto, which
+   put it in the middle of the phone header (Radu, 3 September 2026) */
+header.elnav .eln-burger { margin: 0 0 0 auto; }
 header.elnav .eln-reg { margin: 0; }
