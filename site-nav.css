@@ -45,7 +45,11 @@ header.elnav a { text-decoration: none; }
 
 .eln-bar {
   position: relative;
-  max-width: 1680px; margin: 0 auto; padding: 0 44px;
+  /* 3 September 2026: 1680 sat far outside every content column on a wide
+     screen. 1380 with 24px padding is the city and route page container, the
+     widest column on the site, so the logo lines up with the content there and
+     stays centred over the narrower home, guide and about columns. */
+  max-width: 1380px; margin: 0 auto; padding: 0 24px;
   height: var(--eln-h); display: flex; align-items: center; gap: 8px;
 }
 .eln-logo { flex: 0 0 auto; line-height: 0; margin-right: 22px; }
@@ -276,3 +280,9 @@ body.eln-lock { overflow: hidden; }
 @media(max-width:1000px){
   .eln-mega .eln-pan{grid-template-columns:1fr 1fr}
 }
+
+/* By country, in the Destinations mega menu (nav.py, 3 September 2026) */
+.eln-col-reg h4 + .eln-ctry{margin-top:2px}
+.eln-ctry{display:flex;flex-direction:column;gap:2px;margin-bottom:12px}
+.eln-ctry a{display:block;padding:6px 10px;border-radius:8px;font-size:13.5px;color:var(--navy,#0D1F36);text-decoration:none}
+.eln-ctry a:hover{background:rgba(13,31,54,.06)}
