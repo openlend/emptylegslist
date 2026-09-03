@@ -470,22 +470,23 @@
   #curwrap > span { font-size: 12px; color: #8a97a5; }
   #f-cur { font-size: 12.5px; padding: 6px 8px; }
   #lupd { order: 5; flex: 1 1 100%; text-align: left; font-size: 11.5px; margin: 0; }
-  /* hero image: keep the subject visible on a narrow screen */
-  #hbg { background-position: 30% center; background-size: cover; }
 }
 #nofree { background: #fff; border: 1px solid #eef2f6; border-radius: 12px; padding: 18px 20px; margin: 0 0 18px 0; font-size: 14px; font-weight: 300; color: #46525f; line-height: 1.7; }
 #nofree button { display: block; margin-top: 10px; background: var(--gold); border: none; border-radius: 8px; padding: 11px 20px; font: inherit; font-weight: 500; color: #241d00; cursor: pointer; }
 @media (max-width: 640px) { #nofree { border-radius: 0; border-left: none; border-right: none; font-size: 13.5px; } }
 /* SPEED: serve a phone sized hero instead of the 1916px original */
 @media (max-width: 640px) {
-  #hbg { background-image: url('/_vercel/image?url=%2Fbrand%2Fhome-hero-empty-leg-private-jet.jpg&w=828&q=70'); background-position: 72% center; }
+  #hbg { background-image: url('/_vercel/image?url=%2Fbrand%2Fhome-hero-empty-leg-private-jet.jpg&w=828&q=70'); background-size: cover; background-position: 100% top; }
+  /* On a phone the headline spans the full width, so it lands on the picture
+     whatever the crop. A soft top-to-bottom veil keeps it readable without
+     hiding the subject, who now sits at the right edge, clear of most of it. */
+  #hveil { background: linear-gradient(180deg, rgba(13,31,54,.62) 0%, rgba(13,31,54,.40) 45%, rgba(13,31,54,.30) 75%, rgba(13,31,54,.72) 100%); }
 }
 @media (min-width: 641px) and (max-width: 1200px) {
   #hbg { background-image: url('/_vercel/image?url=%2Fbrand%2Fhome-hero-empty-leg-private-jet.jpg&w=1200&q=72'); }
 }
 /* MOBILE: search first, filters row, city carousel, hero focal point */
 @media (max-width: 640px) {
-  #hbg { background-position: 30% center; }
   #filters .mrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; margin-top: 12px; }
   #filters .mrow #fmore { margin: 0; }
   #filters .mrow #fcwrap { margin: 0; width: auto; justify-content: flex-end; }
@@ -544,8 +545,10 @@
 @media (max-width: 1000px) {
   #nav { position: fixed; top: 0; left: 0; right: 0; z-index: 60; background: rgba(13,31,54,.97); padding: 10px 18px; box-shadow: 0 2px 16px rgba(0,0,0,.28); }
   #hin { padding-top: 100px; }
-  #hbg { background-size: auto 130%; background-position: 45% 40px; background-repeat: no-repeat; }
+  #hbg { background-size: cover; background-position: 72% top; background-repeat: no-repeat; }
 }
+/* the phone crop has to come after the tablet rule above, or the tablet rule wins */
+@media (max-width: 640px) { #hbg { background-position: 100% top; } }
 </style>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
