@@ -2222,7 +2222,10 @@ setTimeout(go,700);setTimeout(go,2200);
 #herolead #freecta{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--gold);text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap}
 #herolead #fchelp{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;width:20px;height:20px;line-height:1;border-radius:50%;font-size:11px;font-weight:600;margin-left:8px;padding:0;cursor:pointer;vertical-align:middle;display:inline-flex;align-items:center;justify-content:center}
 #herolead #fcpop{position:absolute;left:0;top:100%;margin-top:8px;z-index:40;max-width:420px}
-@media(max-width:640px){#herolead{font-size:15.5px;margin-top:12px}#herolead #fcpop{max-width:none;right:0}}
+@media(max-width:640px){#herolead{font-size:15.5px;margin-top:12px}#herolead #fcpop{max-width:none;right:0}
+/* the live text is three lines on a phone, the build-time one two: hold the
+   height so the search box does not move when the live count arrives */
+#herolead .lead-t{display:block;min-height:79px}}
 
 /* --- latest guides on the home page, homeguides.py --- */
 #guides{max-width:1120px;margin:0 auto;padding:8px 20px 34px}

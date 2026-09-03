@@ -15,14 +15,15 @@
 
 header.elnav {
   position: sticky; top: 0; z-index: 200;
-  background: rgba(13, 31, 54, 0.94);
+  /* solid, the same navy as the phone drawer, so opening the menu changes
+     nothing above the fold except the button (Radu, 3 September 2026) */
+  background: var(--eln-navy);
   color: #fff;
   padding: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-family: Raleway, system-ui, sans-serif;
 }
 @supports (backdrop-filter: blur(12px)) {
-  header.elnav { background: rgba(13, 31, 54, 0.86); backdrop-filter: blur(14px); }
 }
 /* Over a photographic hero the bar is a darker navy and lets a little of the
    picture through. Only there: at this alpha over a pale page it reads muddy,
@@ -152,14 +153,14 @@ header.elnav .eln-all {
      falling out of the header. Namespacing the selectors is not enough when the
      page rule sets a property this file never mentions. */
   display: none; margin: 0 0 0 auto; padding: 0;
-  width: 46px; height: 46px; border: 0; border-radius: 12px;
-  background: rgba(255, 255, 255, 0.09); cursor: pointer;
+  width: 46px; height: 46px; border: 1px solid rgba(201, 162, 76, .7); border-radius: 12px;
+  background: none; cursor: pointer;
   position: relative; flex: 0 0 auto;
   transition: background-color 150ms ease;
 }
 .eln-burger span {
   position: absolute; left: 13px; width: 20px; height: 2px; border-radius: 2px;
-  background: #fff;
+  background: var(--eln-gold);
   transition: transform 180ms var(--eln-out), opacity 120ms ease;
 }
 .eln-burger span:nth-child(1) { top: 17px; }
