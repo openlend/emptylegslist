@@ -870,8 +870,10 @@ function nword(n){return n<NUM.length?NUM[n]:String(n);}
 function dayList(ds){
   var d=ds.map(function(x){return fdate(x);});
   var sameMonth=d.every(function(x){return x.m===d[0].m;});
-  var days=d.map(function(x){return x.d;});
-  if(days.length===1) return days[0]+" "+d[0].m;
+  /* 3 Sep 2026: when the dates crossed a month the month was dropped
+     altogether ("on 11, 13, 28 and 01"); now each day carries its month */
+  var days=d.map(function(x){return sameMonth?x.d:x.d+" "+x.m;});
+  if(days.length===1) return days[0]+(sameMonth?" "+d[0].m:"");
   var last=days.pop();
   return days.join(", ")+" and "+last+(sameMonth?" "+d[0].m:"");
 }

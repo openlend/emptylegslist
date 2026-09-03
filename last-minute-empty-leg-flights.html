@@ -467,7 +467,7 @@ p.gtip b{color:var(--navy)}
 </table>
 </div>
 <a class="gmore" id="lmmore" href="/" hidden>See every leg on the live list</a>
-<p class="gnote">Sorted by departure date. "Deals" keeps only the legs with a published price, sorted by that price divided by the seats the operator listed. Price on enquiry means the operator did not publish a figure and will quote when you ask.</p>
+<p class="gnote">Sorted by departure date. "Deals" keeps only the legs with a published price, in the operator's own currency, with the price divided by the listed seats where the operator gave a seat count. Price on enquiry means the operator did not publish a figure and will quote when you ask.</p>
 
 <h2>Why last minute is where empty legs live</h2>
 <p>An empty leg exists because another client's charter created it, and that charter is usually booked days, not months, ahead. So the empty sector is published late. Across 3,928 legs we hold timestamps for, the median appeared 8.7 days before departure, and 1,780 of them, close to half, appeared inside the final week.</p>
@@ -476,7 +476,7 @@ p.gtip b{color:var(--navy)}
 <p class="gtip"><b>One thing to be careful about.</b> A last minute empty leg is still one way. There is no return and no such thing as a return seat: the aircraft is repositioning and where it goes next is the operator's business. Only 208 of the 1,097 upcoming legs on our board had anything at all going the other way inside a week. Plan the way back as a scheduled flight, or as a second empty leg you find later. <a href="/guides/one-way-private-jet-flights">One way private jet flights</a> goes through it.</p>
 
 <h2>What cheap means on this page</h2>
-<p>We do not estimate, discount or convert. A price appears here only when the operator wrote it on their own page, and it is the operator's figure for the whole aircraft. The per seat number in the deals view is that figure divided by the seats the operator listed, which only holds if a group fills the cabin. On 3 September 2026 the cheapest seat on the whole board was 433 euros, Toulon to Nancy on a nine seat Citation, 3,900 euros for the aircraft.</p>
+<p>We do not estimate, discount or convert. A price appears here only when the operator wrote it on their own page, and it is the operator's figure for the whole aircraft. The per seat number in the deals view is that figure divided by the seats the operator listed, where a seat count was given, and it only holds if a group fills the cabin. On 3 September 2026 the cheapest seat on the whole board was 433 euros, Toulon to Nancy on a nine seat Citation, 3,900 euros for the aircraft.</p>
 <p>Most last minute legs carry no price at all: 69 of the 341 departing inside a week did. The rest say price on enquiry, and the figure comes with the operator's reply. <a href="/guides/how-much-does-an-empty-leg-private-jet-cost">How much an empty leg private jet costs</a> has the full table by aircraft type.</p>
 
 <h2>How to catch one</h2>
@@ -530,8 +530,9 @@ p.gtip b{color:var(--navy)}
   function draw(){
     var rows = all.slice();
     if (mode === "deals"){
-      rows = rows.filter(function(r){ return r.p && r.seats; });
-      rows.sort(function(x, y){ return (x.p.amt / x.seats) - (y.p.amt / y.seats); });
+      /* priced legs only, still in departure order: the board mixes currencies,
+         so sorting them by a number would put dollars against euros */
+      rows = rows.filter(function(r){ return r.p; });
     }
     if (!rows.length){ body.innerHTML = '<tr><td colspan="5" style="color:var(--mute)">' + (mode === "deals" ? "No leg departing inside seven days carries a published price right now." : "No leg departing inside seven days on the board right now.") + '</td></tr>'; return; }
     var shown = rows.slice(0, 60);
@@ -549,7 +550,7 @@ p.gtip b{color:var(--navy)}
     more.textContent = "See all " + rows.length + " on the live list";
   }
   function buttons(){
-    var n = all.length, d = all.filter(function(r){ return r.p && r.seats; }).length;
+    var n = all.length, d = all.filter(function(r){ return r.p; }).length;
     bar.innerHTML = '<button type="button" data-m="all" aria-pressed="' + (mode === "all") + '">Next 7 days (' + n + ')</button>'
                   + '<button type="button" data-m="deals" aria-pressed="' + (mode === "deals") + '">Deals, priced only (' + d + ')</button>';
     Array.prototype.forEach.call(bar.querySelectorAll("button"), function(b){
