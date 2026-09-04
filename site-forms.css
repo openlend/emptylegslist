@@ -28,7 +28,7 @@
 /* the floating label */
 .mf > .mf-l {
   position: absolute; left: 9px; top: 22px; transform: translateY(-50%);
-  margin: 0; padding: 0 4px; background: #fff; border-radius: 3px;
+  margin: 0; padding: 0 4px; background: transparent; border-radius: 3px;
   font-family: Raleway, sans-serif; font-size: 14.5px; font-weight: 400; line-height: 1.2; color: #7c8894;
   pointer-events: none; white-space: nowrap; max-width: calc(100% - 26px); overflow: hidden; text-overflow: ellipsis;
   transition: top .2s cubic-bezier(0,0,.2,1), font-size .2s cubic-bezier(0,0,.2,1), color .2s;
@@ -38,8 +38,8 @@
 .mf:focus-within > .mf-l,
 .mf > input:not(:placeholder-shown) ~ .mf-l,
 .mf > textarea:not(:placeholder-shown) ~ .mf-l,
-.mf.mf-up > .mf-l { top: 0; font-size: 11.5px; color: #5f6d7b; }
-.mf > input:-webkit-autofill ~ .mf-l { top: 0; font-size: 11.5px; color: #5f6d7b; }
+.mf.mf-up > .mf-l { top: 0; font-size: 11.5px; color: #5f6d7b; background: var(--mf-bg, #fff); }
+.mf > input:-webkit-autofill ~ .mf-l { top: 0; font-size: 11.5px; color: #5f6d7b; background: var(--mf-bg, #fff); }
 .mf:focus-within > .mf-l { color: #7d5e1a; }
 .mf.mf-err > .mf-l { color: #c0392b; }
 /* the old block label above the field is retired by the script */

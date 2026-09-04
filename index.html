@@ -694,6 +694,26 @@
   #main #pgnote { margin: 0; font-size: 12px; color: #5f6d7b; }
   #main #pgnote::before { content: "\00b7"; margin-right: 8px; color: #c4ccd4; }
 }
+/* The sign-up gate wears the same dark panel as the alerts block, so the two
+   places where we ask for an email look like one thing (4 September 2026). */
+#gate { background: linear-gradient(135deg, #0e2338 0%, #16304c 100%); border-top: none; color: #fff; }
+#gate .glock { background: rgba(201,162,76,0.16); }
+#gate h2 { color: #fff; }
+#gate h2 b { color: var(--gold); font-weight: 500; }
+#gate .gsub { color: rgba(255,255,255,0.72); }
+#gate .gfoot { color: rgba(255,255,255,0.45); }
+#gate .gcons { color: rgba(255,255,255,0.68); }
+#gate .gcons a { color: var(--gold); border-bottom-color: rgba(201,162,76,0.5); }
+#gate .gcons input { accent-color: var(--gold); }
+#gate #g-msg { color: #ffd7d2; }
+#gate .mf > input { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.16); color: #fff; }
+#gate .mf > input:hover { border-color: rgba(255,255,255,0.32); }
+#gate .mf:focus-within > input { background: rgba(255,255,255,0.09); border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+#gate .mf > input::placeholder { color: transparent; }
+#gate .mf:focus-within > input::placeholder { color: rgba(255,255,255,0.42); }
+#gate .mf > .mf-l { color: rgba(255,255,255,0.6); }
+#gate .mf > input:not(:placeholder-shown) ~ .mf-l { color: rgba(255,255,255,0.72); }
+#gate .mf:focus-within > .mf-l { color: var(--gold); }
 /* SPEED: serve a phone sized hero instead of the 1916px original */
 @media (max-width: 640px) {
   #hbg { background-image: url('/_vercel/image?url=%2Fbrand%2Fhome-hero-empty-leg-private-jet.jpg&w=828&q=70'); background-size: cover; background-position: 100% top; }
@@ -1694,9 +1714,9 @@
     var show = GATED && TOTAL > ALL.length;
     help.style.display = show ? "inline-flex" : "none";
     if(!show){ pop.hidden=true; help.setAttribute("aria-expanded","false"); return; }
-    document.getElementById("fcpop-free").textContent = ALL.length;
-    document.getElementById("fcpop-n").textContent = denom;
-    document.getElementById("fcpop-n2").textContent = denom;
+    document.getElementById("fcpop-free").textContent = group(ALL.length);
+    document.getElementById("fcpop-n").textContent = group(denom);
+    document.getElementById("fcpop-n2").textContent = group(denom);
   }
 
   function closeCounterHelp(){
@@ -1734,7 +1754,7 @@
       u.style.display="none";
       g.style.display="block";
       document.getElementById("gate-h").innerHTML =
-        "You are seeing <b>"+ALL.length+"</b> of <b>"+TOTAL+"</b> empty legs";
+        "You are seeing <b>"+group(ALL.length)+"</b> of <b>"+group(TOTAL)+"</b> empty legs";
     } else {
       g.style.display="none";
       u.style.display="flex";

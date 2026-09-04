@@ -70,7 +70,7 @@
     /* a field on a tinted panel needs the label to match, or the notch shows */
     try {
       var bg = getComputedStyle(el).backgroundColor;
-      if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") l.style.background = bg;
+      if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") l.style.setProperty("--mf-bg", bg);
     } catch (e) {}
   }
   function scan(root) {
