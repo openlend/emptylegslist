@@ -23,7 +23,9 @@
   function skip(el) {
     if (el.closest(".mf") || el.closest("[data-nomf]") || el.hasAttribute("data-nomf")) return true;
     if (el.type === "hidden" || el.tabIndex === -1 || el.getAttribute("aria-hidden") === "true") return true;
-    if (el.classList.contains("hp") || el.closest("#lhead") || el.closest("header, nav, footer")) return true;
+    if (el.classList.contains("hp") || el.closest("header, nav, footer")) return true;
+    /* the list header controls (sort, currency) are inline text, not form fields */
+    if (el.closest("#lhead, .tabsrow, #lsortw, #curwrap")) return true;
     if (el.tagName === "SELECT" && !labelOf(el)) return true;   // bare selects inside tables and lists stay as they are
     return false;
   }

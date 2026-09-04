@@ -502,6 +502,9 @@
 .actm { display: none; }
 @media (min-width: 641px) { #rows .row .mmeta, #rows .row .mdet, #rows .row .mchev { display: none !important; } #rows .row .c-date { display: block; } }
 #ltitle .lt-d, #ltitle .lt-f { display: none; }
+.prq .pxd, .acsub .nos { display: none; }
+.acm { font-size: 12px; font-weight: 300; color: #96a2ae; margin-top: 2px; }
+#lalerts { display: none; }
 @media (min-width: 761px) { #ltitle .lt-d, #ltitle .lt-f { display: inline; } }
 @media (min-width: 761px) {
   #main #filters { display: grid; grid-template-columns: minmax(0,1fr) auto auto; grid-template-areas: "fields more go" "reset reset reset"; align-items: end; column-gap: 12px; row-gap: 0; padding: 22px 26px 16px 26px; }
@@ -516,66 +519,97 @@
   #main #go { grid-area: go; height: 44px; padding: 0 26px; margin: 0; }
   #main #clr { grid-area: reset; justify-self: start; margin: 12px 0 0 0; padding: 0; font-size: 13px; }
   #main #fcwrap { grid-column: 1 / -1; margin-top: 10px; }
-  /* header above the chips: serif title, count, currency, sort */
-  #main #lhead { padding: 30px 0 4px 0; align-items: baseline; gap: 10px 14px; }
-  #main #ltitle { display: inline-flex; align-items: baseline; gap: 0 4px; font-family: "Playfair Display", Georgia, serif; font-size: 27px; font-weight: 400; color: var(--navy); }
-  #main #ltitle .lt-d { margin-right: 10px; }
+  /* title row: name, count pill, route alerts on the right */
+  #main #lhead { padding: 30px 0 0 0; align-items: center; gap: 10px 14px; }
+  #main #ltitle { display: inline-flex; align-items: center; gap: 0 14px; font-family: "Playfair Display", Georgia, serif; font-size: 30px; font-weight: 400; color: var(--navy); letter-spacing: -0.2px; }
   #main #ltitle .lt-m { display: none; }
-  #main #ltitle b, #main #ltitle .lt-f { font-family: Raleway, sans-serif; font-size: 14px; font-weight: 400; color: #6b7885; }
-  #main #ltitle #lgated { margin-left: 8px; align-self: center; }
-  #main #lsort { display: none; }
-  #main #lsortw { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; font-size: 13.5px; font-weight: 400; color: #46525f; }
-  #main #lsortw select { padding: 2px 0; border: none; background: transparent; font-family: Raleway, sans-serif; font-size: 13.5px; font-weight: 500; color: var(--navy); cursor: pointer; }
-  #main #lsortw select:focus { outline: none; }
-  #main #curwrap { order: 0; font-size: 13.5px; font-weight: 400; color: #46525f; gap: 4px; }
-  #main #curwrap select { padding: 2px 0; border: none; background: transparent; font-size: 13.5px; font-weight: 500; color: var(--navy); }
-  #main #curwrap select:focus { outline: none; border: none; }
-  #main #lupd { margin-left: 0; order: 1; }
-  #main #continents { margin: 8px 0 0 0; }
+  #main #ltitle .lt-n { display: inline-flex; align-items: baseline; gap: 4px; padding: 5px 12px; border-radius: 999px; background: #eef1f5; font-family: Raleway, sans-serif; font-size: 13px; font-weight: 400; color: #5f6d7b; }
+  #main #ltitle #lgated { align-self: center; }
+  #main #lalerts { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; font-size: 13.5px; font-weight: 500; color: #46525f; text-decoration: none; }
+  #main #lalerts:hover { color: var(--gold-ink); }
+  #main #lalerts svg { color: var(--gold); }
+  /* tabs row: regions on the left, sort and currency on the right */
+  #main .tabsrow { display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; margin: 18px 0 0 0; border-bottom: 1px solid #e6ebf1; }
+  #main .tabsright { display: flex; align-items: center; gap: 14px; margin-left: auto; padding-bottom: 12px; }
+  #main .tabsright::before { content: ""; }
+  #main #continents { display: flex; gap: 26px; flex-wrap: wrap; margin: 0; }
+  #main #continents .cont { background: none; border: none; border-radius: 0; padding: 0 0 12px 0; font-size: 14.5px; font-weight: 400; color: #6b7885; border-bottom: 2px solid transparent; margin-bottom: -1px; }
   #main #continents .cont .cn { display: none; }
+  #main #continents .cont:hover { color: var(--navy); border-bottom-color: #e0e6ec; }
+  #main #continents .cont.on { background: none; color: var(--navy); font-weight: 500; border-bottom-color: var(--gold); }
   #main #pills { display: none; }
-  #main #continents { margin-bottom: 16px; }
-  /* the table: one line per flight, chevron at the end, the whole row opens the enquiry */
-  #main .thead { padding: 13px 26px; border-top: none; background: #fff; gap: 16px; }
-  #main .thead .c-date { flex: 0 0 76px; text-align: left; }
-  #main .thead .c-ac { flex: 1 1 190px; min-width: 0; }
-  #main .thead .c-seats { flex: 0 0 70px; }
+  #main #lsort { display: none; }
+  #main #lsortw, #main #curwrap { display: inline-flex; align-items: center; gap: 4px; margin: 0; font-size: 13.5px; font-weight: 400; color: #6b7885; }
+  #main #lsortw > span, #main #curwrap > span { display: none; }
+  #main #lsortw select, #main #curwrap select { padding: 2px 18px 2px 0; border: none; background: transparent; font-family: Raleway, sans-serif; font-size: 13.5px; font-weight: 400; color: var(--navy); cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2346525f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right center; background-size: 14px; }
+  #main #lsortw select:focus, #main #curwrap select:focus { outline: none; }
+  #main #curwrap { padding-left: 14px; border-left: 1px solid #e0e6ec; }
+  #main #lupd { display: none; }
+  /* the table: one line per flight, departure and arrival in their own columns */
+  #main #listings + .thead { margin-top: 22px; }
+  #main .card { border: 1px solid #e6ebf1; box-shadow: 0 1px 2px rgba(14,35,56,.04); }
+  #main .thead { padding: 14px 24px; border-top: none; border-bottom: 1px solid #eef2f6; background: #fff; gap: 16px; font-size: 10.5px; letter-spacing: 1.2px; color: #97a3af; }
+  #main .thead .c-date { flex: 0 0 58px; text-align: left; }
+  #main .thead .c-dep { flex: 1 1 170px; min-width: 0; }
+  #main .thead .c-arw { flex: 0 0 34px; }
+  #main .thead .c-arr { flex: 1 1 170px; min-width: 0; }
+  #main .thead .c-ac { flex: 1 1 165px; min-width: 0; }
+  #main .thead .c-seats { flex: 0 0 56px; }
   #main .thead .c-time, #main #rows .row .c-time { display: none; }
-  #main .thead .c-price { flex: 0 0 180px; text-align: right; }
-  #main .thead .c-cta { flex: 0 0 22px; font-size: 0; }
-  #main #rows .row { padding: 15px 26px; gap: 16px; cursor: pointer; }
-  #main #rows .row .c-date { flex: 0 0 76px; text-align: left; }
-  #main #rows .row .c-date .dnum { display: inline-flex; align-items: baseline; gap: 5px; }
-  #main #rows .row .c-date .day { font-size: 15px; font-weight: 500; color: var(--ink); }
-  #main #rows .row .c-date .mon { font-size: 12px; font-weight: 500; color: var(--ink); letter-spacing: .3px; }
+  #main .thead .c-price { flex: 0 0 130px; text-align: right; }
+  #main .thead .c-cta { flex: 0 0 20px; font-size: 0; }
+  #main #rows .row { padding: 17px 24px; gap: 16px; cursor: pointer; border-bottom: 1px solid #f1f4f7; }
+  #main #rows .row:last-child { border-bottom: none; }
+  #main #rows .row:hover { background: #fafbfd; }
+  /* date, day over month */
+  #main #rows .row .c-date { flex: 0 0 58px; text-align: left; }
+  #main #rows .row .c-date .dnum { display: block; }
+  #main #rows .row .c-date .day { display: block; font-size: 17px; font-weight: 600; line-height: 1.1; color: var(--ink); }
+  #main #rows .row .c-date .mon { display: block; font-size: 10.5px; font-weight: 500; letter-spacing: .8px; color: #8a97a5; }
   #main #rows .row .c-date .dow { display: none; }
-  #main #rows .row .c-date { position: relative; }
-  #main #rows .row.fresh .c-date .dnum::after { position: absolute; left: 50px; top: 50%; transform: translateY(-50%); content: "New"; font-size: 10px; font-weight: 600; letter-spacing: .3px; color: #7d5e1a; background: rgba(201,162,76,.16); border-radius: 999px; padding: 2px 6px; margin-left: 2px; }
-  #main #rows .row .c-route { flex: 1 1 280px; gap: 8px; }
-  #main #rows .row .c-route > div { flex: 0 1 auto !important; display: flex; align-items: baseline; gap: 6px; min-width: 0; }
-  #main #rows .row .c-route .city { font-size: 15.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  #main #rows .row .c-route .iata { font-size: 11px; margin: 0; }
-  #main #rows .row .c-route .arrow { flex: 0 0 auto; }
+  /* departure, arrow, arrival */
+  #main #rows .row .c-route { display: contents; }
+  #main #rows .row .c-route > div { flex: 1 1 170px !important; min-width: 0; }
+  #main #rows .row .c-route > div:last-of-type { flex: 1 1 170px !important; }
+  #main #rows .row .c-route .city { display: block; font-size: 15.5px; font-weight: 600; color: var(--ink); line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #main #rows .row .c-route .iata { display: block; margin: 2px 0 0 0; font-size: 10.5px; font-weight: 500; letter-spacing: .7px; color: #97a3af; }
+  #main #rows .row .c-route .arrow { flex: 0 0 34px; color: var(--gold); width: 18px; height: 18px; }
+  #main #rows .row.fresh .c-route > div:first-of-type .city::after { content: "New"; display: inline-block; margin-left: 8px; vertical-align: 2px; padding: 2px 7px; border-radius: 999px; background: rgba(201,162,76,.18); font-size: 10px; font-weight: 600; letter-spacing: .3px; color: #7d5e1a; }
+  /* aircraft: model over make */
   #main #rows .row .c-ac { display: contents; }
-  #main #rows .row .acw { flex: 1 1 190px; min-width: 0; display: flex; align-items: baseline; gap: 10px; }
-  #main #rows .row .ac { font-size: 14px; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #main #rows .row .acw { flex: 1 1 165px; min-width: 0; }
+  #main #rows .row .ac { font-size: 14px; font-weight: 400; color: var(--ink); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #main #rows .row .ac a { text-decoration: none !important; border-bottom: none; color: inherit; }
   #main #rows .row .ac a:hover { color: var(--gold-ink); }
-  #main #rows .row .actm { display: inline; flex: 0 0 auto; font-size: 11.5px; font-weight: 300; color: #96a2ae; margin: 0; }
-  #main #rows .row .acsub { flex: 0 0 70px; margin-top: 0; font-size: 14px; font-weight: 400; color: var(--ink); white-space: nowrap; }
-  #main #rows .row .acsub .sx { display: none; }
-  #main #rows .row .c-price { flex: 0 0 180px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; column-gap: 8px; text-align: right; }
-  #main #rows .row .c-price .pr { font-size: 14.5px; font-weight: 500; }
-  #main #rows .row .c-price .prq { font-size: 14px; font-weight: 400; color: var(--ink); }
-  #main #rows .row .c-price .prq br { display: none; }
-  #main #rows .row .c-price .prs { margin: 0; font-size: 11.5px; }
-  #main #rows .row .c-price .pwas { margin: 0; flex-basis: 100%; }
-  #main #rows .row .c-price .pexact { flex-basis: 100%; margin: 2px 0 0 0; }
-  #main #rows .row .c-cta { flex: 0 0 22px; text-align: right; }
-  #main #rows .row .c-cta .btn { display: none; }
-  #main #rows .row .c-cta .listed { display: none; }
-  #main #rows .row .c-cta::after { content: ""; display: inline-block; width: 16px; height: 16px; vertical-align: middle; background: #46525f; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat; }
+  #main #rows .row .acm { font-size: 12px; font-weight: 300; color: #97a3af; margin-top: 2px; }
+  #main #rows .row .actm { display: none; }
+  #main #rows .row .acsub { flex: 0 0 56px; margin-top: 0; font-size: 14px; font-weight: 400; color: var(--ink); white-space: nowrap; }
+  #main #rows .row .acsub .sx { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  #main #rows .row .acsub .nos { color: #b3bdc7; }
+  /* price */
+  #main #rows .row .c-price { flex: 0 0 130px; display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+  #main #rows .row .c-price .pr { font-size: 15px; font-weight: 600; }
+  #main #rows .row .c-price .prq { font-size: 14px; font-weight: 400; color: #5f6d7b; }
+  #main #rows .row .c-price .prq .pxs { display: none; }
+  #main #rows .row .c-price .prq .pxd { display: inline; }
+  #main #rows .row .acsub .nos { display: inline; }
+  #main #rows .row .c-price .prs { margin: 2px 0 0 0; font-size: 11.5px; }
+  #main #rows .row .c-price .pwas { margin: 2px 0 0 0; }
+  #main #rows .row .c-price .pexact { margin: 2px 0 0 0; }
+  /* chevron */
+  #main #rows .row .c-cta { flex: 0 0 20px; text-align: right; }
+  #main #rows .row .c-cta .btn, #main #rows .row .c-cta .listed { display: none; }
+  #main #rows .row .c-cta::after { content: ""; display: inline-block; width: 16px; height: 16px; vertical-align: middle; background: #b3bdc7; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat; }
   #main #rows .row:hover .c-cta::after { background: var(--gold); }
+  /* footer of the table: legend on the left, pages on the right */
+  #main #pager { justify-content: space-between; gap: 14px; padding: 16px 24px; border-top: 1px solid #eef2f6; }
+  #main #pager .pgleg { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 300; color: #8a97a5; }
+  #main #pager .pgleg b { font-weight: 600; color: #b3bdc7; }
+  #main #pager .pgs { display: flex; align-items: center; gap: 6px; }
+  #main #pgnote { margin-left: 0; font-size: 12px; color: #8a97a5; }
+  #main #pgnote::before { content: "\00b7"; margin-right: 8px; color: #c4ccd4; }
+  #main .pg { min-width: 34px; height: 34px; border-color: #e6ebf1; }
 }
 /* SPEED: serve a phone sized hero instead of the 1916px original */
 @media (max-width: 640px) {
@@ -1004,7 +1038,8 @@
 
   <div class="card">
     <div id="lhead">
-      <span id="ltitle"><span class="lt-d">Available empty legs</span><b>0</b><span class="lt-m"> available empty legs</span><span class="lt-f"> flights</span></span>
+      <span id="ltitle"><span class="lt-d">Available empty legs</span><span class="lt-n"><b>0</b><span class="lt-f"> flights</span></span><span class="lt-m"> available empty legs</span></span>
+      <a id="lalerts" href="#alerts"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2 7.5-2 7.5h16s-2-1.5-2-7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 20a2 2 0 0 1-3.4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Get route alerts</a>
       <button id="lsort" type="button">Soonest departure first</button>
       <label id="lsortw" for="f-sort"><span>Sort:</span>
         <select id="f-sort">
@@ -1027,7 +1062,7 @@
     </div>
     <div id="listings"></div>
     <div class="thead">
-      <span class="c-date">DATE</span><span class="c-route">ROUTE</span><span class="c-ac">AIRCRAFT</span><span class="c-seats">SEATS</span><span class="c-time">FLIGHT TIME</span><span class="c-price">PRICE</span><span class="c-cta">ENQUIRE</span>
+      <span class="c-date">DATE</span><span class="c-dep">DEPARTURE</span><span class="c-arw" aria-hidden="true"></span><span class="c-arr">ARRIVAL</span><span class="c-ac">AIRCRAFT</span><span class="c-seats">SEATS</span><span class="c-time">FLIGHT TIME</span><span class="c-price">PRICE</span><span class="c-cta">ENQUIRE</span>
     </div>
     <div id="rows"></div>
     <div id="pager"></div>
@@ -1268,6 +1303,22 @@
     var d=Math.round(h/24); return "Listed "+d+"d ago"; }
 
   function csym(cur){ return { USD: "$", EUR: "€", GBP: "£", CAD: "C$", CHF: "CHF " }[cur] || (cur + " "); }
+  /* The operator writes the make in front of the model. On a wide screen the two
+     sit on separate lines, model first, so the column scans down the models. */
+  var MAKERS = ["Bombardier","Gulfstream","Dassault","Embraer","Cessna","Textron","Beechcraft","Pilatus","Airbus","Boeing","Hawker","Learjet","Honda","Piaggio","Cirrus","Nextant","Eclipse","Fokker","Saab","ATR","de Havilland","Britten-Norman","Agusta","Leonardo","Sikorsky","Robinson","Bell","Airbus Helicopters"];
+  function acSplit(t){
+    t = String(t || "").trim();
+    if(!t) return ["", ""];
+    for(var i=0;i<MAKERS.length;i++){
+      var m = MAKERS[i];
+      if(t.toLowerCase().indexOf(m.toLowerCase()+" ")===0){
+        var rest = t.slice(m.length+1).trim();
+        /* a remainder that is only a number reads badly on its own, keep one line */
+        if(rest && !/^[0-9]/.test(rest)) return [rest, m];
+      }
+    }
+    return [t, ""];
+  }
   function row(l){
     var el=document.createElement("div"); el.className="row";
     var dp=(l.departure_date||"").split("-");
@@ -1279,7 +1330,7 @@
 
     var ph;
     if(!l.price_note){
-      ph = '<div class="prq">Price on <br>request</div>';
+      ph = '<div class="prq"><span class="pxs">Price on request</span><span class="pxd">On request</span></div>';
     } else {
       var listedCur=pcur(l.price_note), listedAmt=pamt(l.price_note);
       var conv = CUR ? convert(numFrom(l.price_note), listedCur, CUR) : null;
@@ -1305,6 +1356,7 @@
       }
     }
 
+    var ac2 = acSplit(l.aircraft_type);
     var th = l.est_flight_time
       ? '<div class="tm"><svg viewBox="0 0 24 24" width="14" height="14" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" fill="none" stroke="#b3bdc7" stroke-width="1.8"/><path d="M 12 7 L 12 12 L 15.5 14" fill="none" stroke="#b3bdc7" stroke-width="1.8" stroke-linecap="round"/></svg>'+esc(l.est_flight_time)+'</div>'
       : '<div class="tmsub">Time on request</div>';
@@ -1316,7 +1368,7 @@
         '<svg class="arrow" viewBox="0 0 24 24" width="15" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
         '<div style="flex:1 1 0;min-width:0;"><div class="city">'+esc(city(l.to_airport))+'</div><div class="iata">'+esc(l.to_iata||"")+'</div></div>'+
       '</div>'+
-      '<div class="c-ac"><div class="acw"><div class="ac">'+esc(l.aircraft_type||"Aircraft on request")+'</div>'+(l.est_flight_time?'<div class="actm">'+esc(l.est_flight_time)+' flight time</div>':'')+'</div><div class="acsub">'+(l.seats?('<span class="sx">Up to </span>'+l.seats+'<span class="sx"> seats</span>'):'<span class="sx">Seats </span>on request')+'</div></div>'+
+      '<div class="c-ac"><div class="acw"><div class="ac">'+esc(ac2[0]||"On request")+'</div>'+(ac2[1]?'<div class="acm">'+esc(ac2[1])+'</div>':'')+(l.est_flight_time?'<div class="actm">'+esc(l.est_flight_time)+' flight time</div>':'')+'</div><div class="acsub">'+(l.seats?('<span class="sx">Up to </span>'+l.seats+'<span class="sx"> seats</span>'):'<span class="sx">Seats on request</span><span class="nos" aria-hidden="true">-</span>')+'</div></div>'+
       '<div class="c-time">'+th+'</div>'+
       '<div class="c-price">'+ph+'</div>'+
       '<div class="c-cta"><a class="btn" href="'+QUOTE+'?from='+encodeURIComponent(l.from_iata||city(l.from_airport))+'&to='+encodeURIComponent(l.to_iata||city(l.to_airport))+'">Enquire <svg viewBox="0 0 24 24" width="13" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="listed">'+esc(ago(l.published_at))+'</div></div>';
@@ -1378,7 +1430,7 @@
 
     VIEW = out;
     var locked = GATED && TOTAL > ALL.length ? TOTAL - ALL.length : 0;
-    document.getElementById("ltitle").innerHTML='<span class="lt-d">Available empty legs</span><b>'+out.length+'</b><span class="lt-m"> available empty leg'+(out.length===1?"":"s")+'</span><span class="lt-f"> flight'+(out.length===1?"":"s")+'</span>'+(locked?' <span id="lgated">+'+locked+' locked</span>':"");
+    document.getElementById("ltitle").innerHTML='<span class="lt-d">Available empty legs</span><span class="lt-n"><b>'+out.length+'</b><span class="lt-f"> flight'+(out.length===1?"":"s")+'</span></span><span class="lt-m"> available empty leg'+(out.length===1?"":"s")+'</span>'+(locked?' <span id="lgated">+'+locked+' locked</span>':"");
     // Denominator is the true upcoming total, not the capped set we were handed,
     // so a gated visitor sees "50 of 501" rather than a misleading "50 of 50".
     var denom = (GATED && TOTAL > ALL.length) ? TOTAL : ALL.length;
@@ -1406,14 +1458,18 @@
   function drawPager(pages,start){
     var p=document.getElementById("pager"); p.innerHTML="";
     if(!VIEW.length){ return; }
+    var leg=document.createElement("span"); leg.className="pgleg";
+    leg.innerHTML='<b aria-hidden="true">-</b> Not supplied by the operator';
+    p.appendChild(leg);
+    var pgs=document.createElement("span"); pgs.className="pgs"; p.appendChild(pgs);
     function btn(label,target,opts){
       var b=document.createElement("button"); b.type="button"; b.className="pg"+(opts&&opts.on?" on":"");
       b.innerHTML=label;
       if(opts&&opts.disabled) b.disabled=true;
       else b.addEventListener("click",function(){ PAGE=target; paint(true); });
-      p.appendChild(b);
+      (document.querySelector("#pager .pgs")||p).appendChild(b);
     }
-    function dots(){ var s=document.createElement("span"); s.className="pgdots"; s.textContent="..."; p.appendChild(s); }
+    function dots(){ var s=document.createElement("span"); s.className="pgdots"; s.textContent="..."; (document.querySelector("#pager .pgs")||p).appendChild(s); }
 
     if(pages>1){
       btn("Prev",PAGE-1,{disabled:PAGE===1});
@@ -1431,7 +1487,7 @@
     }
     var note=document.createElement("span"); note.id="pgnote";
     note.textContent="Showing "+(start+1)+" to "+Math.min(start+PER,VIEW.length)+" of "+VIEW.length;
-    p.appendChild(note);
+    (p.querySelector(".pgleg")||p).appendChild(note);
   }
 
   function buildOptions(){
@@ -2053,7 +2109,8 @@
   function build(row){
     if (row.querySelector('.mmeta')) return;
     var date = row.querySelector('.c-date');
-    var acTxt = txt(row.querySelector('.c-ac .ac'));
+    var acm = txt(row.querySelector('.c-ac .acm'));
+    var acTxt = (acm ? acm + ' ' : '') + txt(row.querySelector('.c-ac .ac'));
     var seatTxt = txt(row.querySelector('.c-ac .acsub'));
     var timeTxt = txt(row.querySelector('.c-time'));
     var listed = txt(row.querySelector('.c-cta .listed'));
@@ -2168,10 +2225,32 @@
 (function(){
   var mq = window.matchMedia('(min-width: 761px)');
   function place(){
-    var h=document.getElementById('lhead'), c=document.getElementById('continents'), card=document.querySelector('#listings');
+    var h=document.getElementById('lhead'), c=document.getElementById('continents'),
+        card=document.getElementById('listings'), sortw=document.getElementById('lsortw'),
+        cur=document.getElementById('curwrap');
     if(!h||!c||!card) return;
-    if(mq.matches){ if(h.nextElementSibling!==c) c.parentNode.insertBefore(h,c); }
-    else { if(card.previousElementSibling!==h) card.parentNode.insertBefore(h,card); }
+    if(mq.matches){
+      var row=document.querySelector('.tabsrow');
+      if(!row){
+        row=document.createElement('div'); row.className='tabsrow';
+        c.parentNode.insertBefore(row,c); row.appendChild(c);
+        var right=document.createElement('div'); right.className='tabsright';
+        row.appendChild(right);
+        if(sortw) right.appendChild(sortw);
+        if(cur) right.appendChild(cur);
+      }
+      if(h.nextElementSibling!==row) row.parentNode.insertBefore(h,row);
+    } else {
+      var row2=document.querySelector('.tabsrow');
+      if(row2){
+        row2.parentNode.insertBefore(c,row2);
+        if(sortw) h.appendChild(sortw);
+        if(cur) h.appendChild(cur);
+        var upd=document.getElementById('lupd'); if(upd) h.appendChild(upd);
+        row2.parentNode.removeChild(row2);
+      }
+      if(card.previousElementSibling!==h) card.parentNode.insertBefore(h,card);
+    }
   }
   place(); mq.addEventListener('change', place);
 })();
