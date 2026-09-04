@@ -455,18 +455,6 @@
   #hin { padding-top: 20px; }
   h1 { margin-top: 26px; }
 }
-/* MOBILE ACCORDION: preview shows date, seats and time; tap to reveal the rest */
-@media (max-width: 640px) {
-  .row { cursor: pointer; grid-template-areas: "route route" "meta chev" "price cta" "det det"; }
-  .row .mmeta { grid-area: meta; display: flex; align-items: center; flex-wrap: wrap; gap: 7px; min-width: 0; }
-  .row .mchip { font-size: 12px; font-weight: 300; color: #5d6b79; background: #f4f6f9; border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
-  .c-time { display: none; }
-  .row .mchev { grid-area: chev; justify-self: end; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: #b3bdc7; font-size: 10px; transition: transform .18s ease; }
-  .row.open .mchev { transform: rotate(180deg); }
-  .row .mdet { grid-area: det; display: none; border-top: 1px solid #eef2f6; margin-top: 2px; padding-top: 10px; font-size: 12.5px; font-weight: 300; color: #6b7885; line-height: 1.8; }
-  .row.open .mdet { display: block; }
-  .row .mdet b { font-weight: 500; color: #16222e; }
-}
 /* FREE VIEW CLARITY */
 #freeline { margin: 8px 0 0 0; text-align: right; font-size: 13px; font-weight: 300; color: #6b7885; }
 #freeline button { background: none; border: none; padding: 0 0 1px 0; margin-left: 5px; font: inherit; font-weight: 500; color: var(--gold); border-bottom: 1px solid rgba(201,164,76,0.5); cursor: pointer; }
@@ -500,12 +488,11 @@
    Seats column of its own. Everything below 761px is untouched. */
 #lsortw { display: none; }
 .actm { display: none; }
-@media (min-width: 641px) { #rows .row .mmeta, #rows .row .mdet, #rows .row .mchev { display: none !important; } #rows .row .c-date { display: block; } }
-#ltitle .lt-d, #ltitle .lt-f { display: none; }
-.prq .pxd, .acsub .nos { display: none; }
+#ltitle .lt-m { display: none; }
+.prq .pxs, .acsub .nos { display: none; }
 .acm { font-size: 12px; font-weight: 300; color: #96a2ae; margin-top: 2px; }
 #lalerts { display: none; }
-@media (min-width: 761px) { #ltitle .lt-d, #ltitle .lt-f { display: inline; } }
+#lalerts .la-s { display: none; }
 @media (min-width: 761px) {
   #main #filters { display: grid; grid-template-columns: minmax(0,1fr) auto auto; grid-template-areas: "fields more go" "reset reset reset"; align-items: end; column-gap: 12px; row-gap: 0; padding: 22px 26px 16px 26px; }
   #main #filters .fgrid { grid-area: fields; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
@@ -522,11 +509,11 @@
   /* title row: name, count pill, route alerts on the right */
   #main #lhead { padding: 30px 0 0 0; align-items: center; gap: 10px 14px; }
   #main #ltitle { display: inline-flex; align-items: center; gap: 0 14px; font-family: "Playfair Display", Georgia, serif; font-size: 30px; font-weight: 400; color: var(--navy); letter-spacing: -0.2px; }
-  #main #ltitle .lt-m { display: none; }
   #main #ltitle .lt-n { display: inline-flex; align-items: baseline; gap: 4px; padding: 5px 12px; border-radius: 999px; background: #eef1f5; font-family: Raleway, sans-serif; font-size: 13px; font-weight: 400; color: #5f6d7b; }
   #main #ltitle #lgated { align-self: center; }
   #main #lalerts { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; font-size: 13.5px; font-weight: 500; color: #46525f; text-decoration: none; }
   #main #lalerts:hover { color: var(--gold-ink); }
+  #main #lalerts .la-s { display: none; }
   #main #lalerts svg { color: var(--gold); }
   /* tabs row: regions on the left, sort and currency on the right */
   #main .tabsrow { display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; margin: 18px 0 24px 0; border-bottom: 1px solid #e6ebf1; }
@@ -585,14 +572,12 @@
   #main #rows .row .acm { font-size: 12px; font-weight: 400; color: #5f6d7b; margin-top: 2px; }
   #main #rows .row .actm { display: none; }
   #main #rows .row .acsub { flex: 0 0 56px; margin-top: 0; font-size: 14px; font-weight: 400; color: var(--ink); white-space: nowrap; }
-  #main #rows .row .acsub .sx { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  #main #rows .row .acsub .sxu, #main #rows .row .acsub .sxs { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
   #main #rows .row .acsub .nos { color: #8a97a5; }
   /* price */
   #main #rows .row .c-price { flex: 0 0 130px; display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
   #main #rows .row .c-price .pr { font-size: 15px; font-weight: 600; }
   #main #rows .row .c-price .prq { font-size: 14px; font-weight: 400; color: #5f6d7b; }
-  #main #rows .row .c-price .prq .pxs { display: none; }
-  #main #rows .row .c-price .prq .pxd { display: inline; }
   #main #rows .row .acsub .nos { display: inline; }
   #main #rows .row .c-price .prs { margin: 2px 0 0 0; font-size: 11.5px; }
   #main #rows .row .c-price .pwas { margin: 2px 0 0 0; }
@@ -610,6 +595,92 @@
   #main #pgnote { margin-left: 0; font-size: 12px; color: #5f6d7b; }
   #main #pgnote::before { content: "\00b7"; margin-right: 8px; color: #c4ccd4; }
   #main .pg { min-width: 34px; height: 34px; border-color: #e6ebf1; }
+}
+
+/* PHONE CARDS, 4 September 2026, after Radu's mockup: one card per flight, four
+   short lines, no chips and no accordion. Everything above 760px is the table. */
+@media (max-width: 760px) {
+  #main #lhead { display: grid; grid-template-columns: minmax(0,1fr) auto; grid-template-areas: "title alerts" "upd upd"; align-items: start; gap: 0 10px; background: none; margin: 0; padding: 22px 16px 0 16px; }
+  #main #ltitle { grid-area: title; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 6px; font-family: "Playfair Display", Georgia, serif; font-size: 25px; font-weight: 400; line-height: 1.2; color: var(--navy); }
+  #main #ltitle .lt-d { flex: 1 1 100%; }
+  #main #ltitle .lt-n { margin-top: 7px; font-family: Raleway, sans-serif; font-size: 13.5px; font-weight: 400; color: #5f6d7b; }
+  #main #ltitle .lt-n b { font-weight: 500; }
+  #main #ltitle #lgated { margin: 7px 0 0 0; }
+  #main #lalerts { grid-area: alerts; display: inline-flex; align-items: center; gap: 7px; margin-top: 5px; font-size: 14px; font-weight: 500; color: #46525f; text-decoration: none; white-space: nowrap; }
+  #main #lalerts .la-l { display: none; }
+  #main #lalerts .la-s { display: inline; }
+  #main #lalerts svg { color: var(--gold); }
+  #main #lupd { grid-area: upd; margin: 7px 0 0 0; text-align: left; font-size: 12px; color: #5f6d7b; }
+  #main .tabsrow { display: block; margin: 14px 0 0 0; border-bottom: none; }
+  #main #continents { display: flex; gap: 22px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; margin: 0; padding: 0 16px; border-bottom: 1px solid #e6ebf1; }
+  #main #continents::-webkit-scrollbar { display: none; }
+  #main #continents .cont { flex: 0 0 auto; background: none; border: none; border-radius: 0; padding: 0 0 10px 0; font-size: 14.5px; font-weight: 400; color: #5f6d7b; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  #main #continents .cont .cn { display: none; }
+  #main #continents .cont.on { background: none; color: var(--navy); font-weight: 500; border-bottom-color: var(--gold); }
+  #main .tabsright { display: flex; align-items: center; gap: 12px; margin: 14px 0 0 0; padding: 0 16px; }
+  #main #lsortw, #main #curwrap { display: inline-flex; align-items: center; gap: 4px; margin: 0; width: auto; font-size: 14px; color: #46525f; }
+  #main #lsortw > span, #main #curwrap > span { display: none; }
+  #main #lsortw select, #main #curwrap select { padding: 2px 18px 2px 0; border: none; background: transparent; font-family: Raleway, sans-serif; font-size: 14px; font-weight: 500; color: var(--navy);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2346525f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right center; background-size: 15px; }
+  #main #lsortw select:focus, #main #curwrap select:focus { outline: none; }
+  #main #curwrap { padding-left: 12px; border-left: 1px solid #e0e6ec; }
+  #main #lsort, #main #pills { display: none; }
+  /* the cards */
+  #main .card { margin-top: 16px; border: 1px solid #e6ebf1; border-radius: 14px; box-shadow: 0 1px 2px rgba(14,35,56,.04); overflow: hidden; }
+  #main .thead { display: none; }
+  #main #rows { display: block; }
+  #main #rows .row {
+    display: grid; grid-template-columns: minmax(0,1fr) auto;
+    grid-template-areas: "date price" "route route" "ac cta";
+    align-items: center; gap: 12px 12px;
+    margin: 0; padding: 18px 18px; background: #fff; border: none;
+    border-bottom: 1px solid #eef2f6; border-radius: 0; box-shadow: none; cursor: default;
+  }
+  #main #rows .row:last-child { border-bottom: none; }
+  /* line 1: date on the left, price on the right */
+  #main #rows .row .c-date { grid-area: date; justify-self: start; background: none; border-radius: 0; padding: 0; text-align: left; font-size: 13.5px; color: #5f6d7b; }
+  #main #rows .row .c-date .dnum { display: inline; }
+  #main #rows .row .c-date .day { font-size: 13.5px; font-weight: 500; color: #5f6d7b; }
+  #main #rows .row .c-date .mon { display: inline-block; font-size: 13.5px; font-weight: 400; text-transform: lowercase; margin-left: 3px; }
+  #main #rows .row .c-date .mon::first-letter { text-transform: uppercase; }
+  #main #rows .row .c-date .dow { display: inline-block; font-size: 13.5px; text-transform: lowercase; }
+  #main #rows .row .c-date .dow::first-letter { text-transform: uppercase; }
+  #main #rows .row .c-date .mon::after { content: "\00b7"; margin: 0 5px 0 7px; color: #b3bdc7; }
+  #main #rows .row .c-price { grid-area: price; justify-self: end; text-align: right; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: baseline; gap: 0 6px; }
+  #main #rows .row .c-price .pr { font-size: 17px; font-weight: 600; }
+  #main #rows .row .c-price .prq { font-size: 14px; font-weight: 400; color: #5f6d7b; }
+  #main #rows .row .c-price .prs { display: none; }
+  #main #rows .row .c-price .pwas { flex-basis: 100%; margin: 2px 0 0 0; }
+  #main #rows .row .c-price .pexact { flex-basis: 100%; margin: 2px 0 0 0; text-align: right; }
+  /* line 2: the route */
+  #main #rows .row .c-route { grid-area: route; display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 10px; min-width: 0; }
+  #main #rows .row .c-route > div { flex: 0 1 auto !important; display: block; min-width: 0; }
+  #main #rows .row .c-route .city { display: inline; font-size: 20px; font-weight: 600; line-height: 1.25; color: var(--navy); white-space: normal; }
+  #main #rows .row .c-route .iata { display: block; margin: 3px 0 0 0; font-size: 11.5px; font-weight: 500; letter-spacing: .6px; color: #5f6d7b; }
+  #main #rows .row .c-route .arrow { flex: 0 0 auto; width: 17px; height: 17px; color: var(--gold); align-self: center; }
+  /* line 3: aircraft and seats, then the enquiry link */
+  #main #rows .row .c-ac { grid-area: ac; display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 6px; min-width: 0; font-size: 14px; color: #5f6d7b; }
+  #main #rows .row .acw { display: inline-flex; align-items: baseline; gap: 5px; min-width: 0; }
+  #main #rows .row .ac { display: inline; font-size: 14px; font-weight: 400; color: #5f6d7b; }
+  #main #rows .row .ac a { color: inherit; text-decoration: none !important; }
+  #main #rows .row .acm { order: -1; display: inline; font-size: 14px; font-weight: 400; color: #5f6d7b; margin: 0; }
+  #main #rows .row .actm, #main #rows .row .c-time { display: none; }
+  #main #rows .row .acsub { display: inline; margin: 0; font-size: 14px; font-weight: 400; color: #5f6d7b; }
+  #main #rows .row .acsub.noseats { display: none; }
+  #main #rows .row .acsub .sxu { display: none; }
+  #main #rows .row .acsub::before { content: "\00b7"; margin: 0 6px 0 0; color: #b3bdc7; }
+  #main #rows .row .c-cta { grid-area: cta; justify-self: end; display: block; margin: 0; text-align: right; }
+  #main #rows .row .c-cta .btn { display: inline-flex; align-items: center; gap: 7px; min-height: 0; padding: 0; background: none; border: none; box-shadow: none; font-size: 14.5px; font-weight: 600; color: var(--navy); }
+  #main #rows .row .c-cta .btn svg { color: var(--gold); width: 15px; height: 15px; }
+  #main #rows .row .c-cta .listed { display: none; }
+  #main #rows .row .c-cta::after { content: none; }
+  /* the footer under the cards */
+  #main #pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 16px 18px; border-top: 1px solid #eef2f6; }
+  #main #pager .pgleg { display: flex; align-items: center; gap: 8px; flex: 1 1 100%; font-size: 12px; color: #5f6d7b; }
+  #main #pager .pgleg b { font-weight: 600; color: #8a97a5; }
+  #main #pager .pgs { display: flex; align-items: center; gap: 6px; margin: 0 auto; }
+  #main #pgnote { margin: 0; font-size: 12px; color: #5f6d7b; }
+  #main #pgnote::before { content: "\00b7"; margin-right: 8px; color: #c4ccd4; }
 }
 /* SPEED: serve a phone sized hero instead of the 1916px original */
 @media (max-width: 640px) {
@@ -1039,7 +1110,7 @@
   <div class="card">
     <div id="lhead">
       <span id="ltitle"><span class="lt-d">Available empty legs</span><span class="lt-n"><b>0</b><span class="lt-f"> flights</span></span><span class="lt-m"> available empty legs</span></span>
-      <a id="lalerts" href="#alerts"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2 7.5-2 7.5h16s-2-1.5-2-7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 20a2 2 0 0 1-3.4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Get route alerts</a>
+      <a id="lalerts" href="#alerts"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2 7.5-2 7.5h16s-2-1.5-2-7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 20a2 2 0 0 1-3.4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="la-l">Get route alerts</span><span class="la-s">Alerts</span></a>
       <button id="lsort" type="button">Soonest departure first</button>
       <label id="lsortw" for="f-sort"><span>Sort:</span>
         <select id="f-sort">
@@ -1368,7 +1439,7 @@
         '<svg class="arrow" viewBox="0 0 24 24" width="15" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
         '<div style="flex:1 1 0;min-width:0;"><div class="city">'+esc(city(l.to_airport))+'</div><div class="iata">'+esc(l.to_iata||"")+'</div></div>'+
       '</div>'+
-      '<div class="c-ac"><div class="acw"><div class="ac">'+esc(ac2[0]||"On request")+'</div>'+(ac2[1]?'<div class="acm">'+esc(ac2[1])+'</div>':'')+(l.est_flight_time?'<div class="actm">'+esc(l.est_flight_time)+' flight time</div>':'')+'</div><div class="acsub">'+(l.seats?('<span class="sx">Up to </span>'+l.seats+'<span class="sx"> seats</span>'):'<span class="sx">Seats on request</span><span class="nos" aria-hidden="true">-</span>')+'</div></div>'+
+      '<div class="c-ac"><div class="acw"><div class="ac">'+esc(ac2[0]||"On request")+'</div>'+(ac2[1]?'<div class="acm">'+esc(ac2[1])+'</div>':'')+(l.est_flight_time?'<div class="actm">'+esc(l.est_flight_time)+' flight time</div>':'')+'</div><div class="acsub'+(l.seats?'':' noseats')+'">'+(l.seats?('<span class="sxu">Up to </span>'+l.seats+'<span class="sxs"> seats</span>'):'<span class="sxu">Seats on request</span><span class="nos" aria-hidden="true">-</span>')+'</div></div>'+
       '<div class="c-time">'+th+'</div>'+
       '<div class="c-price">'+ph+'</div>'+
       '<div class="c-cta"><a class="btn" href="'+QUOTE+'?from='+encodeURIComponent(l.from_iata||city(l.from_airport))+'&to='+encodeURIComponent(l.to_iata||city(l.to_airport))+'">Enquire <svg viewBox="0 0 24 24" width="13" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="listed">'+esc(ago(l.published_at))+'</div></div>';
@@ -2102,62 +2173,17 @@
 </script>
 <script>
 (function(){
-  var mq = window.matchMedia('(max-width: 640px)');
-  function txt(el){ return el ? el.innerText.replace(/\s+/g,' ').trim() : ''; }
-  function real(s){ return s && !/on (enquiry|request)/i.test(s); }
-  function chip(t){ var s=document.createElement('span'); s.className='mchip'; s.textContent=t; return s; }
-  function build(row){
-    if (row.querySelector('.mmeta')) return;
-    var date = row.querySelector('.c-date');
-    var acm = txt(row.querySelector('.c-ac .acm'));
-    var acTxt = (acm ? acm + ' ' : '') + txt(row.querySelector('.c-ac .ac'));
-    var seatTxt = txt(row.querySelector('.c-ac .acsub'));
-    var timeTxt = txt(row.querySelector('.c-time'));
-    var listed = txt(row.querySelector('.c-cta .listed'));
-    var wrap = document.createElement('div');
-    wrap.className = 'mmeta';
-    if (date) wrap.appendChild(date);
-    var m = seatTxt.match(/(\d+)\s*seat/i);
-    if (m) wrap.appendChild(chip(m[1] + ' seats'));
-    if (real(timeTxt)) wrap.appendChild(chip(timeTxt));
-    row.appendChild(wrap);
-    var bits = [];
-    if (real(acTxt)) bits.push('Aircraft <b>' + acTxt + '</b>');
-    if (m) bits.push('Up to <b>' + m[1] + ' seats</b>');
-    if (real(timeTxt)) bits.push('Flight time <b>' + timeTxt + '</b>');
-    if (listed) bits.push(listed);
-    if (bits.length) {
-      var d = document.createElement('div');
-      d.className = 'mdet';
-      d.innerHTML = bits.join('<br>');
-      row.appendChild(d);
-      var ch = document.createElement('span');
-      ch.className = 'mchev';
-      ch.setAttribute('aria-hidden','true');
-      ch.textContent = '\u25BC';
-      row.appendChild(ch);
-    }
-  }
-  function scan(){ if(!mq.matches) return; var rows=document.querySelectorAll('#rows .row'); for (var i=0;i<rows.length;i++) build(rows[i]); }
-  scan();
+  /* Every field is on the phone card now, so there are no chips and no accordion.
+     What is left here is the desktop behaviour: a click anywhere on a table row
+     opens that flight's enquiry, through the row's own link. */
   var box = document.getElementById('rows');
-  if (box) {
-    new MutationObserver(function(){ scan(); }).observe(box, {childList:true, subtree:false});
-    box.addEventListener('click', function(e){
-      if (!mq.matches) {
-        if (window.innerWidth <= 760) return;
-        if (e.target.closest('a, button, select, input')) return;
-        var r = e.target.closest('.row'); var a = r && r.querySelector('.c-cta a.btn');
-        if (a) a.click();
-        return;
-      }
-      if (e.target.closest('a, button, select, input')) return;
-      var row = e.target.closest('.row');
-      if (!row || !row.querySelector('.mdet')) return;
-      row.classList.toggle('open');
-    });
-  }
-  mq.addEventListener('change', scan);
+  if (!box) return;
+  box.addEventListener('click', function(e){
+    if (window.innerWidth <= 760) return;
+    if (e.target.closest('a, button, select, input')) return;
+    var r = e.target.closest('.row'); var a = r && r.querySelector('.c-cta a.btn');
+    if (a) a.click();
+  });
 })();
 </script>
 <script>
@@ -2226,31 +2252,18 @@
   var mq = window.matchMedia('(min-width: 761px)');
   function place(){
     var h=document.getElementById('lhead'), c=document.getElementById('continents'),
-        card=document.getElementById('listings'), sortw=document.getElementById('lsortw'),
-        cur=document.getElementById('curwrap');
-    if(!h||!c||!card) return;
-    if(mq.matches){
-      var row=document.querySelector('.tabsrow');
-      if(!row){
-        row=document.createElement('div'); row.className='tabsrow';
-        c.parentNode.insertBefore(row,c); row.appendChild(c);
-        var right=document.createElement('div'); right.className='tabsright';
-        row.appendChild(right);
-        if(sortw) right.appendChild(sortw);
-        if(cur) right.appendChild(cur);
-      }
-      if(h.nextElementSibling!==row) row.parentNode.insertBefore(h,row);
-    } else {
-      var row2=document.querySelector('.tabsrow');
-      if(row2){
-        row2.parentNode.insertBefore(c,row2);
-        if(sortw) h.appendChild(sortw);
-        if(cur) h.appendChild(cur);
-        var upd=document.getElementById('lupd'); if(upd) h.appendChild(upd);
-        row2.parentNode.removeChild(row2);
-      }
-      if(card.previousElementSibling!==h) card.parentNode.insertBefore(h,card);
+        sortw=document.getElementById('lsortw'), cur=document.getElementById('curwrap');
+    if(!h||!c) return;
+    var row=document.querySelector('.tabsrow');
+    if(!row){
+      row=document.createElement('div'); row.className='tabsrow';
+      c.parentNode.insertBefore(row,c); row.appendChild(c);
+      var right=document.createElement('div'); right.className='tabsright';
+      row.appendChild(right);
+      if(sortw) right.appendChild(sortw);
+      if(cur) right.appendChild(cur);
     }
+    if(h.nextElementSibling!==row) row.parentNode.insertBefore(h,row);
   }
   place(); mq.addEventListener('change', place);
 })();
