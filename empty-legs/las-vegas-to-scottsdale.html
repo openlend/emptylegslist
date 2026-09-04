@@ -22,7 +22,21 @@
 @font-face{font-family:'Raleway';font-style:normal;font-weight:300;font-display:swap;src:url(/brand/fonts/raleway-latin-300-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Raleway';font-style:normal;font-weight:400;font-display:swap;src:url(/brand/fonts/raleway-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Raleway';font-style:normal;font-weight:500;font-display:swap;src:url(/brand/fonts/raleway-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Raleway';font-style:normal;font-weight:600;font-display:swap;src:url(/brand/fonts/raleway-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+@font-face{font-family:'Raleway';font-style:normal;font-weight:600;font-display:swap;src:url(/brand/fonts/raleway-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+.recorded{width:100%;border-collapse:collapse;margin:14px 0 10px;font-size:14.5px}
+.recorded th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600;border-bottom:1px solid var(--line);padding:0 10px 8px 0}
+.recorded td{padding:11px 10px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.recorded tr td:last-child{color:var(--mute);font-size:13.5px}
+@media(max-width:640px){.recorded,.recorded tbody,.recorded tr,.recorded td{display:block;width:100%}
+.recorded thead{display:none}
+.recorded tr{border-bottom:1px solid var(--line);padding:12px 0}
+.recorded td{border:0;padding:2px 0;text-align:left}
+.recorded td:first-child{font-weight:600;font-size:15px}
+.recorded td:nth-child(2){color:var(--ink)}
+/* the header row is hidden on a phone, so each cell carries its own label */
+.recorded td[data-l]::before{content:attr(data-l) ": ";color:var(--mute);font-size:13px}
+.recorded tr td:last-child{font-size:13.5px}}
+</style>
 <!-- /fonts.py -->
 <style>
 header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:60}
@@ -250,7 +264,6 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <script src="/site-nav.js" defer></script>
 <script src="/place-index.js" defer></script>
 <script>function elDisp(s){if(window.EL_PLACE&&EL_PLACE.canon){var c=EL_PLACE.canon(s);if(c)return c;}return String(s||"").trim();}</script>
-
 <!-- siteld.py -->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Empty legs by city","item":"https://emptylegslist.com/empty-legs/"},{"@type":"ListItem","position":3,"name":"Empty legs from Las Vegas to Scottsdale","item":"https://emptylegslist.com/empty-legs/las-vegas-to-scottsdale"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/empty-legs/las-vegas-to-scottsdale","url":"https://emptylegslist.com/empty-legs/las-vegas-to-scottsdale","name":"Las Vegas to Scottsdale empty legs","description":"Empty leg flights from Las Vegas to Scottsdale, exactly as the charter operators list them. Live availability and every leg we have on record.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/scottsdale-empty-legs-private-jet.jpg"}}]}</script>
 <!-- /siteld.py -->
