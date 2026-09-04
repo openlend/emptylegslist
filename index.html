@@ -626,6 +626,8 @@
   #main #lsortw select:focus, #main #curwrap select:focus { outline: none; }
   #main #curwrap { order: 0; padding-left: 12px; border-left: 1px solid #e0e6ec; }
   #main #lsort, #main #pills { display: none; }
+  #main #wrap { margin-top: 0; }
+  #main #h { padding-bottom: 26px; }
   /* the filter panel folds away behind the Filters button */
   #main #fbtn { order: 1; display: inline-flex; align-items: center; gap: 8px; margin-left: auto; padding: 0 14px; height: 40px; background: #fff; border: 1px solid #d5dde5; border-radius: 10px; font-family: Raleway, sans-serif; font-size: 14px; font-weight: 500; color: #46525f; cursor: pointer; white-space: nowrap; }
   #main #fbtn svg { color: #5f6d7b; }
@@ -1510,7 +1512,7 @@
 
     VIEW = out;
     var locked = GATED && TOTAL > ALL.length ? TOTAL - ALL.length : 0;
-    document.getElementById("ltitle").innerHTML='<span class="lt-d">Available empty legs</span><span class="lt-n"><b>'+out.length+'</b><span class="lt-f"> flight'+(out.length===1?"":"s")+'</span></span><span class="lt-m"> available empty leg'+(out.length===1?"":"s")+'</span>'+(locked?' <span id="lgated">+'+locked+' locked</span>':"");
+    document.getElementById("ltitle").innerHTML='<span class="lt-d">Available empty legs</span><span class="lt-n"><b>'+group(out.length)+'</b><span class="lt-f"> flight'+(out.length===1?"":"s")+'</span></span><span class="lt-m"> available empty leg'+(out.length===1?"":"s")+'</span>'+(locked?' <span id="lgated">+'+group(locked)+' locked</span>':"");
     // Denominator is the true upcoming total, not the capped set we were handed,
     // so a gated visitor sees "50 of 501" rather than a misleading "50 of 50".
     var denom = (GATED && TOTAL > ALL.length) ? TOTAL : ALL.length;
@@ -1566,7 +1568,7 @@
       btn("Next",PAGE+1,{disabled:PAGE===pages});
     }
     var note=document.createElement("span"); note.id="pgnote";
-    note.textContent="Showing "+(start+1)+" to "+Math.min(start+PER,VIEW.length)+" of "+VIEW.length;
+    note.textContent="Showing "+(start+1)+" to "+Math.min(start+PER,VIEW.length)+" of "+group(VIEW.length);
     (p.querySelector(".pgleg")||p).appendChild(note);
   }
 
@@ -2208,6 +2210,7 @@
     var total = m ? m[2] : (n2 ? (n2.textContent||'').trim() : '');
     return { free: free ? (free.textContent||'50').trim() : '50', total: total };
   }
+  function grp(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   function paint(){
     var t = totals();
     if (!t.total || t.total === '0') return;
@@ -2222,7 +2225,7 @@
     var rest = Number(t.total) - Number(t.free);
     if (rest <= 0) { line.style.display = "none"; return; }
     line.style.display = "";
-    var html = 'The free view shows the ' + t.free + ' flights with a published price, of ' + t.total + ' listed. The other ' + rest + ' are free too, no card needed.<button type="button" id="freecta">See all ' + t.total + ' free</button>';
+    var html = 'The free view shows the ' + grp(t.free) + ' flights with a published price, of ' + grp(t.total) + ' listed. The other ' + grp(rest) + ' are free too, no card needed.<button type="button" id="freecta">See all ' + grp(t.total) + ' free</button>';
     if (line.getAttribute('data-html') !== html) {
       line.innerHTML = html;
       line.setAttribute('data-html', html);
@@ -2230,7 +2233,7 @@
       if (b) b.addEventListener('click', function(){ var cta=document.getElementById('fcpop-cta'); if(cta){cta.click();return;} var h=document.getElementById('fchelp'); if(h) h.click(); });
     }
     document.querySelectorAll('#lhead span, #lhead b').forEach(function(el){
-      if (/^\+\d+\s+locked$/i.test((el.textContent||'').trim())) {
+      if (/^\+[\d,]+\s+locked$/i.test((el.textContent||'').trim())) {
         el.textContent = el.textContent.replace(/locked/i, 'more, free');
       }
     });
@@ -2245,7 +2248,7 @@
     if (old) return;
     var d = document.createElement('div');
     d.id = 'nofree';
-    d.innerHTML = 'No match among the ' + t.free + ' flights in the free view. The full list has ' + t.total + ' flights and it is free to open.<button type="button" id="nofreecta">See all ' + t.total + ' free</button>';
+    d.innerHTML = 'No match among the ' + grp(t.free) + ' flights in the free view. The full list has ' + grp(t.total) + ' flights and it is free to open.<button type="button" id="nofreecta">See all ' + grp(t.total) + ' free</button>';
     if (box && box.parentNode) box.parentNode.insertBefore(d, box.nextSibling);
     var b = document.getElementById('nofreecta');
     if (b) b.addEventListener('click', function(){ var cta=document.getElementById('fcpop-cta'); if(cta){cta.click();return;} var h=document.getElementById('fchelp'); if(h) h.click(); });
@@ -2287,15 +2290,16 @@
       });
       right.appendChild(fb);
     }
+    if(h.nextElementSibling!==row) row.parentNode.insertBefore(h,row);
     /* the panel sits under the controls row on a phone, above the title on a wide screen */
     var f=document.getElementById('filters');
     if(f){
       if(window.innerWidth<=760){ if(row.nextElementSibling!==f) row.parentNode.insertBefore(f,row.nextSibling); }
-      else if(h.nextElementSibling!==row || f.nextElementSibling!==h){ h.parentNode.insertBefore(f,h); }
+      else if(f.nextElementSibling!==h) h.parentNode.insertBefore(f,h);
     }
-    if(h.nextElementSibling!==row) row.parentNode.insertBefore(h,row);
   }
   place(); mq.addEventListener('change', place);
+  window.addEventListener('resize', place);
 })();
 (function(){
   if (!window.matchMedia('(max-width: 640px)').matches) return;
