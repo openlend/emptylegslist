@@ -493,6 +493,7 @@
 .acm { font-size: 12px; font-weight: 300; color: #96a2ae; margin-top: 2px; }
 #lalerts { display: none; }
 #lalerts .la-s { display: none; }
+#fbtn { display: none; }
 @media (min-width: 761px) {
   #main #filters { display: grid; grid-template-columns: minmax(0,1fr) auto auto; grid-template-areas: "fields more go" "reset reset reset"; align-items: end; column-gap: 12px; row-gap: 0; padding: 22px 26px 16px 26px; }
   #main #filters .fgrid { grid-area: fields; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
@@ -623,8 +624,16 @@
   #main #lsortw select, #main #curwrap select { padding: 2px 18px 2px 0; border: none; background: transparent; font-family: Raleway, sans-serif; font-size: 14px; font-weight: 500; color: var(--navy);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2346525f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right center; background-size: 15px; }
   #main #lsortw select:focus, #main #curwrap select:focus { outline: none; }
-  #main #curwrap { padding-left: 12px; border-left: 1px solid #e0e6ec; }
+  #main #curwrap { order: 0; padding-left: 12px; border-left: 1px solid #e0e6ec; }
   #main #lsort, #main #pills { display: none; }
+  /* the filter panel folds away behind the Filters button */
+  #main #fbtn { order: 1; display: inline-flex; align-items: center; gap: 8px; margin-left: auto; padding: 0 14px; height: 40px; background: #fff; border: 1px solid #d5dde5; border-radius: 10px; font-family: Raleway, sans-serif; font-size: 14px; font-weight: 500; color: #46525f; cursor: pointer; white-space: nowrap; }
+  #main #fbtn svg { color: #5f6d7b; }
+  #main #fbtn #fbtnn { display: none; min-width: 18px; padding: 1px 6px; border-radius: 999px; background: var(--gold); color: #241d00; font-size: 11.5px; font-weight: 600; text-align: center; }
+  #main #fbtn #fbtnn.on { display: inline-block; }
+  #main #filters { margin: 14px 16px 0 16px; border-radius: 14px; }
+  #main #filters:not(.open) { display: none; }
+  #main #filters.open .fgrid .f { display: block; }
   /* the cards */
   #main .card { margin-top: 16px; border: 1px solid #e6ebf1; border-radius: 14px; box-shadow: 0 1px 2px rgba(14,35,56,.04); overflow: hidden; }
   #main .thead { display: none; }
@@ -1848,11 +1857,13 @@
       var c=0;
       hidden.forEach(function(id){ if(id==="f-when" && window.innerWidth>760) return; var el=document.getElementById(id); if(el&&el.value) c++; });
       if(n){ n.textContent=c||""; n.classList.toggle("on", c>0); }
+      var n2=document.getElementById("fbtnn"); if(n2){ n2.textContent=c||""; n2.classList.toggle("on", c>0); }
     }
     b.addEventListener("click",function(){
       var open=f.classList.toggle("open");
       b.setAttribute("aria-expanded", open?"true":"false");
-      if(lbl) lbl.textContent = open ? "Fewer filters" : "More filters";
+      /* on a phone the panel is all or nothing, so the button says what it does */
+      if(lbl) lbl.textContent = window.innerWidth<=760 ? (open ? "Close filters" : "Filters") : (open ? "Fewer filters" : "More filters");
     });
     hidden.forEach(function(id){
       var el=document.getElementById(id);
@@ -1860,6 +1871,7 @@
     });
     count();
     window.setInterval(count, 1200);   // also catches programmatic changes from the chips
+    window.addEventListener("resize", count);
   })();
 
   /* ---------- nav toggle ---------- */
@@ -2262,6 +2274,24 @@
       row.appendChild(right);
       if(sortw) right.appendChild(sortw);
       if(cur) right.appendChild(cur);
+      /* On a phone the eight field panel is folded away and this opens it. It
+         clicks the panel's own button, so there is only one piece of state. */
+      var fb=document.createElement('button');
+      fb.type='button'; fb.id='fbtn';
+      fb.innerHTML='<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 4v6M8 14v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Filters</span><span id="fbtnn"></span>';
+      fb.addEventListener('click', function(){
+        var m=document.getElementById('fmore'); if(!m) return;
+        m.click();
+        var f=document.getElementById('filters');
+        if(f && f.classList.contains('open')) f.scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
+      right.appendChild(fb);
+    }
+    /* the panel sits under the controls row on a phone, above the title on a wide screen */
+    var f=document.getElementById('filters');
+    if(f){
+      if(window.innerWidth<=760){ if(row.nextElementSibling!==f) row.parentNode.insertBefore(f,row.nextSibling); }
+      else if(h.nextElementSibling!==row || f.nextElementSibling!==h){ h.parentNode.insertBefore(f,h); }
     }
     if(h.nextElementSibling!==row) row.parentNode.insertBefore(h,row);
   }
