@@ -478,10 +478,14 @@
   .cont, .p { flex: 0 0 auto; font-size: 12.5px; padding: 8px 13px; }
   #lhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 14px 16px 13px 16px; }
   #ltitle { font-size: 16.5px; }
+  /* the "+N more, free" badge goes under the count so the sort control keeps the first row */
+  #ltitle #lgated { display: block; width: max-content; margin: 6px 0 0 0; }
+  #lhead { align-items: flex-start; }
+  #lsort { margin-top: 3px; flex: 0 0 auto; }
   /* sort sits on the count row, pushed right, with a small sort glyph in front of the label */
   #lsort { order: 2; margin-left: auto; display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; white-space: nowrap; }
   #lsort::before { content: ""; width: 13px; height: 13px; flex: 0 0 13px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13V3M5 3 2.5 5.5M5 3l2.5 2.5M11 3v10M11 13l-2.5-2.5M11 13l2.5-2.5'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23000' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13V3M5 3 2.5 5.5M5 3l2.5 2.5M11 3v10M11 13l-2.5-2.5M11 13l2.5-2.5'/%3E%3C/svg%3E") center / contain no-repeat; }
-  #curwrap { order: 4; margin: 0; width: auto; justify-content: flex-start; }
+  #curwrap { order: 4; margin: 0; width: auto; flex: 1 1 55%; justify-content: flex-start; }
   #curwrap > span { font-size: 12px; color: #8a97a5; }
   #f-cur { font-size: 12.5px; padding: 6px 8px; }
   #lupd { order: 5; flex: 0 0 auto; margin-left: auto; text-align: right; font-size: 11.5px; }
@@ -489,6 +493,44 @@
 #nofree { background: #fff; border: 1px solid #eef2f6; border-radius: 12px; padding: 18px 20px; margin: 0 0 18px 0; font-size: 14px; font-weight: 300; color: #46525f; line-height: 1.7; }
 #nofree button { display: block; margin-top: 10px; background: var(--gold); border: none; border-radius: 8px; padding: 11px 20px; font: inherit; font-weight: 500; color: #241d00; cursor: pointer; }
 @media (max-width: 640px) { #nofree { border-radius: 0; border-left: none; border-right: none; font-size: 13.5px; } }
+
+/* DESKTOP LAYOUT, 4 September 2026, after Radu's mockup: three fields and the
+   Search button on one row, the other five fields behind More filters, Reset
+   under the row, four region chips without counts, a Sort dropdown, and a
+   Seats column of its own. Everything below 761px is untouched. */
+#lsortw { display: none; }
+.actm { display: none; }
+@media (min-width: 761px) {
+  #main #filters { display: grid; grid-template-columns: minmax(0,1fr) auto auto; grid-template-areas: "fields more go" "reset reset reset"; align-items: end; column-gap: 12px; row-gap: 0; padding: 22px 26px 16px 26px; }
+  #main #filters .fgrid { grid-area: fields; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+  #main #filters:not(.open) .fgrid .f:nth-child(n+4) { display: none; }
+  #main #filters.open .fgrid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  #main #fbar { display: contents; }
+  #main #fmore { grid-area: more; display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 0 16px; height: 43px; background: #fff; border: 1px solid #e3e9ef; border-radius: 9px; font-size: 13px; font-weight: 500; color: #46525f; cursor: pointer; font-family: Raleway, sans-serif; white-space: nowrap; }
+  #main #fmore:hover { border-color: var(--gold); color: var(--navy); }
+  #main #fmoren { display: none; min-width: 18px; padding: 1px 6px; border-radius: 999px; background: var(--gold); color: #241d00; font-size: 11.5px; font-weight: 600; text-align: center; }
+  #main #fmoren.on { display: inline-block; }
+  #main #go { grid-area: go; height: 43px; padding: 0 26px; margin: 0; }
+  #main #clr { grid-area: reset; justify-self: start; margin: 12px 0 0 0; padding: 0; font-size: 13px; }
+  #main #fcwrap { grid-column: 1 / -1; margin-top: 10px; }
+  #main #continents { margin: 18px 0 0 0; }
+  #main #continents .cont .cn { display: none; }
+  #main #pills { margin: 14px 0 20px 0; }
+  #main #lhead { align-items: center; gap: 12px 14px; }
+  #main #lsort { display: none; }
+  #main #lsortw { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; font-size: 12px; font-weight: 300; color: #8a97a5; }
+  #main #lsortw select { padding: 6px 9px; border: 1px solid #e3e9ef; border-radius: 8px; background: #fff; font-family: Raleway, sans-serif; font-size: 12.5px; color: #46525f; cursor: pointer; }
+  #main #lsortw select:focus { outline: none; border-color: var(--gold); }
+  #main #lupd { margin-left: 0; }
+  #main .thead .c-ac { flex: 1 1 150px; min-width: 0; }
+  #main .thead .c-seats { flex: 0 0 82px; }
+  #main .thead .c-time, #main #rows .row .c-time { display: none; }
+  #main #rows .row .c-ac { display: contents; }
+  #main #rows .row .acw { flex: 1 1 150px; min-width: 0; }
+  #main #rows .row .actm { display: block; font-size: 12px; font-weight: 300; color: #96a2ae; margin-top: 3px; }
+  #main #rows .row .acsub { flex: 0 0 82px; margin-top: 0; font-size: 13.5px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+  #main #rows .row .acsub .sx { display: none; }
+}
 /* SPEED: serve a phone sized hero instead of the 1916px original */
 @media (max-width: 640px) {
   #hbg { background-image: url('/_vercel/image?url=%2Fbrand%2Fhome-hero-empty-leg-private-jet.jpg&w=828&q=70'); background-size: cover; background-position: 100% top; }
@@ -913,8 +955,15 @@
 
   <div class="card">
     <div id="lhead">
-      <span id="ltitle"><b>0</b> empty leg flights</span>
+      <span id="ltitle"><b>0</b> available empty legs</span>
       <button id="lsort" type="button">Soonest departure first</button>
+      <label id="lsortw" for="f-sort"><span>Sort</span>
+        <select id="f-sort">
+          <option value="date" selected>Soonest departure</option>
+          <option value="added">Most recently listed</option>
+          <option value="price">Lowest price</option>
+        </select>
+      </label>
       <label id="curwrap" for="f-cur"><span>Show prices in</span>
         <select id="f-cur">
           <option value="">As listed</option>
@@ -929,7 +978,7 @@
     </div>
     <div id="listings"></div>
     <div class="thead">
-      <span class="c-date">DATE</span><span class="c-route">ROUTE</span><span class="c-ac">AIRCRAFT / SEATS</span><span class="c-time">FLIGHT TIME</span><span class="c-price">PRICE</span><span class="c-cta">ENQUIRE</span>
+      <span class="c-date">DATE</span><span class="c-route">ROUTE</span><span class="c-ac">AIRCRAFT</span><span class="c-seats">SEATS</span><span class="c-time">FLIGHT TIME</span><span class="c-price">PRICE</span><span class="c-cta">ENQUIRE</span>
     </div>
     <div id="rows"></div>
     <div id="pager"></div>
@@ -1180,7 +1229,7 @@
 
     var ph;
     if(!l.price_note){
-      ph = '<div class="prq">Price on<br>enquiry</div>';
+      ph = '<div class="prq">Price on<br>request</div>';
     } else {
       var listedCur=pcur(l.price_note), listedAmt=pamt(l.price_note);
       var conv = CUR ? convert(numFrom(l.price_note), listedCur, CUR) : null;
@@ -1208,7 +1257,7 @@
 
     var th = l.est_flight_time
       ? '<div class="tm"><svg viewBox="0 0 24 24" width="14" height="14" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" fill="none" stroke="#b3bdc7" stroke-width="1.8"/><path d="M 12 7 L 12 12 L 15.5 14" fill="none" stroke="#b3bdc7" stroke-width="1.8" stroke-linecap="round"/></svg>'+esc(l.est_flight_time)+'</div>'
-      : '<div class="tmsub">Time on enquiry</div>';
+      : '<div class="tmsub">Time on request</div>';
 
     el.innerHTML =
       '<div class="c-date">'+dh+'</div>'+
@@ -1217,7 +1266,7 @@
         '<svg class="arrow" viewBox="0 0 24 24" width="15" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
         '<div style="flex:1 1 0;min-width:0;"><div class="city">'+esc(city(l.to_airport))+'</div><div class="iata">'+esc(l.to_iata||"")+'</div></div>'+
       '</div>'+
-      '<div class="c-ac"><div class="ac">'+esc(l.aircraft_type||"Aircraft on enquiry")+'</div><div class="acsub">'+(l.seats?("Up to "+l.seats+" seats"):"Seats on enquiry")+'</div></div>'+
+      '<div class="c-ac"><div class="acw"><div class="ac">'+esc(l.aircraft_type||"Aircraft on request")+'</div>'+(l.est_flight_time?'<div class="actm">'+esc(l.est_flight_time)+' flight time</div>':'')+'</div><div class="acsub">'+(l.seats?('<span class="sx">Up to </span>'+l.seats+'<span class="sx"> seats</span>'):'<span class="sx">Seats </span>on request')+'</div></div>'+
       '<div class="c-time">'+th+'</div>'+
       '<div class="c-price">'+ph+'</div>'+
       '<div class="c-cta"><a class="btn" href="'+QUOTE+'?from='+encodeURIComponent(l.from_iata||city(l.from_airport))+'&to='+encodeURIComponent(l.to_iata||city(l.to_airport))+'">Enquire <svg viewBox="0 0 24 24" width="13" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><div class="listed">'+esc(ago(l.published_at))+'</div></div>';
@@ -1250,7 +1299,7 @@
       if(d && l.departure_date && l.departure_date < d) return false;
       if(ac && (l.aircraft_type||"") !== ac) return false;
       if(seats && !(l.seats && l.seats>=seats)) return false;
-      if(rg && (l.region||"")!==rg) return false;
+      if(rg){ if(rg==="__rest"){ if(/^(Europe|North America)$/.test(l.region||"")) return false; } else if((l.region||"")!==rg) return false; }
       if(mo && String(l.departure_date||"").slice(0,7)!==mo) return false;
       if(pr){
         var v=pval(l.price_note);
@@ -1273,7 +1322,7 @@
 
     VIEW = out;
     var locked = GATED && TOTAL > ALL.length ? TOTAL - ALL.length : 0;
-    document.getElementById("ltitle").innerHTML="<b>"+out.length+"</b> empty leg flight"+(out.length===1?"":"s")+(locked?' <span id="lgated">+'+locked+' locked</span>':"");
+    document.getElementById("ltitle").innerHTML="<b>"+out.length+"</b> available empty leg"+(out.length===1?"":"s")+(locked?' <span id="lgated">+'+locked+' locked</span>':"");
     // Denominator is the true upcoming total, not the capped set we were handed,
     // so a gated visitor sees "50 of 501" rather than a misleading "50 of 50".
     var denom = (GATED && TOTAL > ALL.length) ? TOTAL : ALL.length;
@@ -1343,6 +1392,7 @@
     Object.keys(acs).sort().forEach(function(a){ var o=document.createElement("option"); o.value=a; o.textContent=a+" ("+acs[a]+")"; sel.appendChild(o); });
     var rs=document.getElementById("f-region");
     Object.keys(regions).sort(function(a,b){return regions[b]-regions[a];}).forEach(function(r){ var o=document.createElement("option"); o.value=r; o.textContent=r+" ("+regions[r]+")"; rs.appendChild(o); });
+    (function(){ var rest=0; Object.keys(regions).forEach(function(r){ if(r!=="Europe"&&r!=="North America") rest+=regions[r]; }); if(rest){ var o=document.createElement("option"); o.value="__rest"; o.textContent="Rest of world ("+rest+")"; rs.appendChild(o); } })();
     var ms=document.getElementById("f-month");
     Object.keys(months).sort().forEach(function(m){ var o=document.createElement("option"); o.value=m;
       o.textContent=MONFULL[Number(m.slice(5,7))-1]+" "+m.slice(0,4)+" ("+months[m]+")"; ms.appendChild(o); });
@@ -1407,16 +1457,19 @@
   document.getElementById("go").addEventListener("click",apply);
   document.getElementById("clr").addEventListener("click",function(){
     ["f-from","f-to","f-date","f-ac","f-seats","f-region","f-month","f-price"].forEach(function(id){document.getElementById(id).value="";});
-    PRESET=""; SORT="date";
-    document.getElementById("lsort").textContent="Soonest departure first";
+    PRESET=""; SORT="date"; syncSort(); if(typeof syncContinents==="function") syncContinents();
     document.querySelectorAll("#pills .p").forEach(function(x){x.classList.remove("on");});
     apply();
   });
+  function syncSort(){
+    document.getElementById("lsort").textContent = SORT==="date" ? "Soonest departure first" : (SORT==="added" ? "Most recently listed" : "Lowest price first");
+    var fs=document.getElementById("f-sort"); if(fs) fs.value=SORT;
+  }
   document.getElementById("lsort").addEventListener("click",function(){
     SORT = SORT==="date" ? "added" : (SORT==="added" ? "price" : "date");
-    this.textContent = SORT==="date" ? "Soonest departure first" : (SORT==="added" ? "Most recently listed" : "Lowest price first");
-    apply();
+    syncSort(); apply();
   });
+  (function(){ var fs=document.getElementById("f-sort"); if(fs) fs.addEventListener("change",function(){ SORT=this.value||"date"; syncSort(); PAGE=1; apply(); }); })();
 
   document.getElementById("af").addEventListener("submit",function(e){
     e.preventDefault();
@@ -1608,7 +1661,7 @@
     var hidden=["f-date","f-ac","f-seats","f-region","f-month","f-price"];
     function count(){
       var c=0;
-      hidden.forEach(function(id){ var el=document.getElementById(id); if(el&&el.value) c++; });
+      hidden.forEach(function(id){ if(id==="f-date" && window.innerWidth>760) return; var el=document.getElementById(id); if(el&&el.value) c++; });
       if(n){ n.textContent=c||""; n.classList.toggle("on", c>0); }
     }
     b.addEventListener("click",function(){
@@ -1870,24 +1923,34 @@
     var counts={};
     if(AGG && AGG.regions){ counts=AGG.regions; }
     else { for(var i=0;i<ALL.length;i++){ var r=ALL[i].region; if(r) counts[r]=(counts[r]||0)+1; } }
-    var order=Object.keys(counts).sort(function(a,b){ return counts[b]-counts[a]; });
+    /* Four chips, the same on every width: all, the two big regions, and the rest
+       together. Every region is still in the Region select behind More filters. */
+    var rest=0, total=0;
+    Object.keys(counts).forEach(function(r){ total+=counts[r]; if(r!=="Europe"&&r!=="North America") rest+=counts[r]; });
+    var chips=[{v:"",t:"All regions",n:total}];
+    if(counts["Europe"]) chips.push({v:"Europe",t:"Europe",n:counts["Europe"]});
+    if(counts["North America"]) chips.push({v:"North America",t:"North America",n:counts["North America"]});
+    if(rest) chips.push({v:"__rest",t:"Rest of world",n:rest});
     host.innerHTML="";
-    order.forEach(function(r){
-      if(counts[r]<3) return;              // skip near-empty regions
+    chips.forEach(function(c){
       var b=document.createElement("button");
-      b.type="button"; b.className="cont";
-      b.innerHTML=esc(r)+' <span class="cn">'+counts[r]+'</span>';
+      b.type="button"; b.className="cont"; b.setAttribute("data-region",c.v);
+      b.innerHTML=esc(c.t)+' <span class="cn">'+c.n+'</span>';
       b.addEventListener("click",function(){
-        var on=b.classList.contains("on");
-        host.querySelectorAll(".cont").forEach(function(x){x.classList.remove("on");});
-        document.getElementById("f-region").value = on ? "" : r;
-        if(!on) b.classList.add("on");
+        document.getElementById("f-region").value = c.v;
+        syncContinents();
         PAGE=1; apply();
         var el=document.getElementById("listings");
         if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
       });
       host.appendChild(b);
     });
+    syncContinents();
+    document.getElementById("f-region").addEventListener("change", syncContinents);
+  }
+  function syncContinents(){
+    var v=document.getElementById("f-region").value||"";
+    document.querySelectorAll("#continents .cont").forEach(function(x){ x.classList.toggle("on", x.getAttribute("data-region")===v); });
   }
 
   // The data load is async and its code may change; poll for it rather than
@@ -1927,7 +1990,7 @@
 (function(){
   var mq = window.matchMedia('(max-width: 640px)');
   function txt(el){ return el ? el.innerText.replace(/\s+/g,' ').trim() : ''; }
-  function real(s){ return s && !/on enquiry/i.test(s); }
+  function real(s){ return s && !/on (enquiry|request)/i.test(s); }
   function chip(t){ var s=document.createElement('span'); s.className='mchip'; s.textContent=t; return s; }
   function build(row){
     if (row.querySelector('.mmeta')) return;
