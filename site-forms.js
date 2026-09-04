@@ -58,6 +58,13 @@
     } catch (e) {}
     el.parentNode.insertBefore(box, el);
     box.appendChild(el);
+    /* the floated label rises above the field, so stacked fields must not touch.
+     * Grid and flex parents that already set a row gap are left alone. */
+    try {
+      var pcs = getComputedStyle(box.parentNode);
+      var gapped = /grid|flex/.test(pcs.display) && parseFloat(pcs.rowGap) > 0;
+      if (!gapped && !box.style.marginTop && box.previousElementSibling) box.style.marginTop = "14px";
+    } catch (e) {}
     if (el.tagName !== "SELECT") {
       el.setAttribute("data-hint", hint);
       el.setAttribute("placeholder", hint || " ");   /* a placeholder must exist for :placeholder-shown */
@@ -67,10 +74,17 @@
     if (el.id) l.htmlFor = el.id;
     l.textContent = lab;
     box.appendChild(l);
-    /* a field on a tinted panel needs the label to match, or the notch shows */
+    /* The floated label sits on the field's top border, so its background has to
+     * be whatever is behind the field, not the field itself. Walk up until an
+     * ancestor paints a solid colour. */
     try {
-      var bg = getComputedStyle(el).backgroundColor;
-      if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") l.style.setProperty("--mf-bg", bg);
+      var p = box.parentNode, bg = "";
+      while (p && p.nodeType === 1) {
+        var c = getComputedStyle(p).backgroundColor;
+        if (c && c !== "rgba(0, 0, 0, 0)" && c !== "transparent") { bg = c; break; }
+        p = p.parentNode;
+      }
+      if (bg) l.style.setProperty("--mf-bg", bg);
     } catch (e) {}
   }
   function scan(root) {
