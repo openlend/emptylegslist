@@ -714,6 +714,19 @@
 #gate .mf > .mf-l { color: rgba(255,255,255,0.6); }
 #gate .mf > input:not(:placeholder-shown) ~ .mf-l { color: rgba(255,255,255,0.72); }
 #gate .mf:focus-within > .mf-l { color: var(--gold); }
+/* The alerts form uses the same fields as the rest of the site. The panel is
+   dark, so the field is a tint of it and the label lights up when it floats. */
+#alerts .ai { display: block; position: static; }
+#alerts .mf > input { padding: 15px 15px; min-height: 52px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 10px; font-size: 14.5px; color: #fff; }
+#alerts .mf > input:hover { border-color: rgba(255,255,255,0.32); }
+#alerts .mf:focus-within > input { background: rgba(255,255,255,0.09); border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+#alerts .mf > input::placeholder { color: transparent; }
+#alerts .mf:focus-within > input::placeholder { color: rgba(255,255,255,0.42); }
+#alerts .mf > .mf-l { left: 11px; top: 26px; font-size: 14.5px; color: rgba(255,255,255,0.6); }
+#alerts .mf:focus-within > .mf-l,
+#alerts .mf > input:not(:placeholder-shown) ~ .mf-l { top: 0; font-size: 11.5px; color: rgba(255,255,255,0.72); }
+#alerts .mf:focus-within > .mf-l { color: var(--gold); }
+@media (max-width: 860px) { #alerts { gap: 28px; } }
 /* SPEED: serve a phone sized hero instead of the 1916px original */
 @media (max-width: 640px) {
   #hbg { background-image: url('/_vercel/image?url=%2Fbrand%2Fhome-hero-empty-leg-private-jet.jpg&w=828&q=70'); background-size: cover; background-position: 100% top; }
@@ -1263,9 +1276,9 @@
       <p class="afoot">No spam. Unsubscribe any time.</p>
     </div>
     <form id="af">
-      <div class="ai"><svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M 12 2 C 8.5 2 6 4.6 6 8 C 6 12.5 12 21 12 21 C 12 21 18 12.5 18 8 C 18 4.6 15.5 2 12 2 Z" fill="none" stroke="#c9a227" stroke-width="1.5"/><circle cx="12" cy="8" r="2.2" fill="none" stroke="#c9a227" stroke-width="1.5"/></svg><input type="text" id="a-from" placeholder="From (optional)"></div>
-      <div class="ai"><svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M 12 2 C 8.5 2 6 4.6 6 8 C 6 12.5 12 21 12 21 C 12 21 18 12.5 18 8 C 18 4.6 15.5 2 12 2 Z" fill="none" stroke="#c9a227" stroke-width="1.5"/><circle cx="12" cy="8" r="2.2" fill="none" stroke="#c9a227" stroke-width="1.5"/></svg><input type="text" id="a-to" placeholder="To (optional)"></div>
-      <div class="ai wide"><svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="5" width="18" height="14" rx="2.4" fill="none" stroke="#c9a227" stroke-width="1.5"/><path d="M 4 7 L 12 13 L 20 7" fill="none" stroke="#c9a227" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><input type="email" id="a-email" required placeholder="you@email.com"></div>
+      <div class="ai"><label class="ai-l" for="a-from">From &middot; optional</label><input type="text" id="a-from" placeholder="Any departure"></div>
+      <div class="ai"><label class="ai-l" for="a-to">To &middot; optional</label><input type="text" id="a-to" placeholder="Any destination"></div>
+      <div class="ai wide"><label class="ai-l" for="a-email">Email address</label><input type="email" id="a-email" required placeholder="you@email.com"></div>
       <div id="afreq">
         <span class="afreq-l">How often?</span>
         <div class="afreq-opts">
