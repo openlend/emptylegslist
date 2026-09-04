@@ -500,11 +500,13 @@
    Seats column of its own. Everything below 761px is untouched. */
 #lsortw { display: none; }
 .actm { display: none; }
+#ltitle .lt-d, #ltitle .lt-f { display: none; }
+@media (min-width: 761px) { #ltitle .lt-d, #ltitle .lt-f { display: inline; } }
 @media (min-width: 761px) {
   #main #filters { display: grid; grid-template-columns: minmax(0,1fr) auto auto; grid-template-areas: "fields more go" "reset reset reset"; align-items: end; column-gap: 12px; row-gap: 0; padding: 22px 26px 16px 26px; }
   #main #filters .fgrid { grid-area: fields; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
   #main #filters:not(.open) .fgrid .f:nth-child(n+4) { display: none; }
-  #main #filters.open .fgrid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  #main #filters.open .fgrid { grid-template-columns: repeat(3, minmax(0,1fr)); }
   #main #fbar { display: contents; }
   #main #fmore { grid-area: more; display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 0 16px; height: 43px; background: #fff; border: 1px solid #e3e9ef; border-radius: 9px; font-size: 13px; font-weight: 500; color: #46525f; cursor: pointer; font-family: Raleway, sans-serif; white-space: nowrap; }
   #main #fmore:hover { border-color: var(--gold); color: var(--navy); }
@@ -513,23 +515,64 @@
   #main #go { grid-area: go; height: 43px; padding: 0 26px; margin: 0; }
   #main #clr { grid-area: reset; justify-self: start; margin: 12px 0 0 0; padding: 0; font-size: 13px; }
   #main #fcwrap { grid-column: 1 / -1; margin-top: 10px; }
-  #main #continents { margin: 18px 0 0 0; }
-  #main #continents .cont .cn { display: none; }
-  #main #pills { margin: 14px 0 20px 0; }
-  #main #lhead { align-items: center; gap: 12px 14px; }
+  /* header above the chips: serif title, count, currency, sort */
+  #main #lhead { padding: 30px 0 4px 0; align-items: baseline; gap: 10px 14px; }
+  #main #ltitle { display: inline-flex; align-items: baseline; gap: 0 4px; font-family: "Playfair Display", Georgia, serif; font-size: 27px; font-weight: 400; color: var(--navy); }
+  #main #ltitle .lt-d { margin-right: 10px; }
+  #main #ltitle .lt-m { display: none; }
+  #main #ltitle b, #main #ltitle .lt-f { font-family: Raleway, sans-serif; font-size: 14px; font-weight: 400; color: #6b7885; }
+  #main #ltitle #lgated { margin-left: 8px; align-self: center; }
   #main #lsort { display: none; }
-  #main #lsortw { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; font-size: 12px; font-weight: 300; color: #8a97a5; }
-  #main #lsortw select { padding: 6px 9px; border: 1px solid #e3e9ef; border-radius: 8px; background: #fff; font-family: Raleway, sans-serif; font-size: 12.5px; color: #46525f; cursor: pointer; }
-  #main #lsortw select:focus { outline: none; border-color: var(--gold); }
-  #main #lupd { margin-left: 0; }
-  #main .thead .c-ac { flex: 1 1 150px; min-width: 0; }
-  #main .thead .c-seats { flex: 0 0 82px; }
+  #main #lsortw { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; font-size: 13.5px; font-weight: 400; color: #46525f; }
+  #main #lsortw select { padding: 2px 0; border: none; background: transparent; font-family: Raleway, sans-serif; font-size: 13.5px; font-weight: 500; color: var(--navy); cursor: pointer; }
+  #main #lsortw select:focus { outline: none; }
+  #main #curwrap { order: 0; font-size: 12px; }
+  #main #curwrap select { padding: 4px 8px; }
+  #main #lupd { margin-left: 0; order: 1; }
+  #main #continents { margin: 8px 0 0 0; }
+  #main #continents .cont .cn { display: none; }
+  #main #pills { margin: 14px 0 18px 0; }
+  /* the table: one line per flight, chevron at the end, the whole row opens the enquiry */
+  #main .thead { padding: 13px 26px; border-top: none; background: #fff; gap: 16px; }
+  #main .thead .c-date { flex: 0 0 76px; text-align: left; }
+  #main .thead .c-ac { flex: 1 1 190px; min-width: 0; }
+  #main .thead .c-seats { flex: 0 0 70px; }
   #main .thead .c-time, #main #rows .row .c-time { display: none; }
+  #main .thead .c-price { flex: 0 0 180px; }
+  #main .thead .c-cta { flex: 0 0 22px; font-size: 0; }
+  #main #rows .row { padding: 15px 26px; gap: 16px; cursor: pointer; }
+  #main #rows .row .c-date { flex: 0 0 76px; text-align: left; }
+  #main #rows .row .c-date .dnum { display: inline-flex; align-items: baseline; gap: 5px; }
+  #main #rows .row .c-date .day { font-size: 15px; font-weight: 500; color: var(--ink); }
+  #main #rows .row .c-date .mon { font-size: 12px; font-weight: 500; color: var(--ink); letter-spacing: .3px; }
+  #main #rows .row .c-date .dow { display: none; }
+  #main #rows .row .c-date { position: relative; }
+  #main #rows .row.fresh .c-date .dnum::after { position: absolute; left: 50px; top: 50%; transform: translateY(-50%); content: "New"; font-size: 10px; font-weight: 600; letter-spacing: .3px; color: #7d5e1a; background: rgba(201,162,76,.16); border-radius: 999px; padding: 2px 6px; margin-left: 2px; }
+  #main #rows .row .c-route { flex: 1 1 280px; gap: 8px; }
+  #main #rows .row .c-route > div { flex: 0 1 auto !important; display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+  #main #rows .row .c-route .city { font-size: 15.5px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #main #rows .row .c-route .iata { font-size: 11px; margin: 0; }
+  #main #rows .row .c-route .arrow { flex: 0 0 auto; }
   #main #rows .row .c-ac { display: contents; }
-  #main #rows .row .acw { flex: 1 1 150px; min-width: 0; }
-  #main #rows .row .actm { display: block; font-size: 12px; font-weight: 300; color: #96a2ae; margin-top: 3px; }
-  #main #rows .row .acsub { flex: 0 0 82px; margin-top: 0; font-size: 13.5px; font-weight: 500; color: var(--ink); white-space: nowrap; }
+  #main #rows .row .acw { flex: 1 1 190px; min-width: 0; display: flex; align-items: baseline; gap: 10px; }
+  #main #rows .row .ac { font-size: 14px; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #main #rows .row .ac a { text-decoration: none !important; border-bottom: none; color: inherit; }
+  #main #rows .row .ac a:hover { color: var(--gold-ink); }
+  #main #rows .row .actm { display: inline; flex: 0 0 auto; font-size: 11.5px; font-weight: 300; color: #96a2ae; margin: 0; }
+  #main #rows .row .acsub { flex: 0 0 70px; margin-top: 0; font-size: 14px; font-weight: 400; color: var(--ink); white-space: nowrap; }
   #main #rows .row .acsub .sx { display: none; }
+  #main #rows .row .c-price { flex: 0 0 180px; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; }
+  #main #rows .row .c-price .pr { font-size: 14.5px; font-weight: 500; }
+  #main #rows .row .c-price .prq { font-size: 14px; font-weight: 400; color: var(--ink); }
+  #main #rows .row .c-price .prq br { display: none; }
+  #main #rows .row .c-price .prs { margin: 0; font-size: 11.5px; }
+  #main #rows .row .c-price .pwas { margin: 0; flex-basis: 100%; }
+  #main #rows .row .c-price .pexact { flex-basis: 100%; margin: 2px 0 0 0; }
+  #main #rows .row .c-cta { flex: 0 0 22px; text-align: right; }
+  #main #rows .row .c-cta .btn { display: none; }
+  #main #rows .row .c-cta .listed { display: none; }
+  #main #rows .row .c-cta::after { content: ""; display: inline-block; width: 16px; height: 16px; vertical-align: middle; background: #46525f; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat; }
+  #main #rows .row:hover .c-cta::after { background: var(--gold); }
 }
 /* SPEED: serve a phone sized hero instead of the 1916px original */
 @media (max-width: 640px) {
@@ -923,11 +966,12 @@
     <div class="fgrid">
       <div class="f"><label for="f-from">From</label><input type="text" id="f-from" list="dl-from" placeholder="City, country or code" autocomplete="off"><datalist id="dl-from"></datalist></div>
       <div class="f"><label for="f-to">To</label><input type="text" id="f-to" list="dl-to" placeholder="City, country or code" autocomplete="off"><datalist id="dl-to"></datalist></div>
-      <div class="f"><label for="f-date">Earliest date</label><input type="date" id="f-date"></div>
+      <div class="f"><label for="f-when">Departing</label><select id="f-when"><option value="">Any time</option><option value="0">Today</option><option value="1">Tomorrow</option><option value="7">Next 7 days</option><option value="30">Next 30 days</option></select></div>
       <div class="f"><label for="f-ac">Aircraft</label><select id="f-ac"><option value="">Any aircraft</option></select></div>
       <div class="f"><label for="f-seats">Seats</label><select id="f-seats"><option value="">Any</option><option value="4">4 or more</option><option value="6">6 or more</option><option value="8">8 or more</option><option value="9">9 or more</option><option value="12">12 or more</option></select></div>
-      <div class="f"><label for="f-region">Region</label><select id="f-region"><option value="">Any region</option></select></div>
       <div class="f"><label for="f-month">Month</label><select id="f-month"><option value="">Any month</option></select></div>
+      <div class="f"><label for="f-date">Earliest date</label><input type="date" id="f-date"></div>
+      <div class="f"><label for="f-region">Region</label><select id="f-region"><option value="">Any region</option></select></div>
       <div class="f"><label for="f-price">Price</label><select id="f-price"><option value="">Any</option><option value="has">Published price only</option><option value="lt5">Under 5,000</option><option value="5to10">5,000 to 10,000</option><option value="gt10">Over 10,000</option></select></div>
     </div>
     <button id="fmore" type="button" aria-expanded="false">
@@ -955,9 +999,9 @@
 
   <div class="card">
     <div id="lhead">
-      <span id="ltitle"><b>0</b> available empty legs</span>
+      <span id="ltitle"><span class="lt-d">Available empty legs</span><b>0</b><span class="lt-m"> available empty legs</span><span class="lt-f"> flights</span></span>
       <button id="lsort" type="button">Soonest departure first</button>
-      <label id="lsortw" for="f-sort"><span>Sort</span>
+      <label id="lsortw" for="f-sort"><span>Sort:</span>
         <select id="f-sort">
           <option value="date" selected>Soonest departure</option>
           <option value="added">Most recently listed</option>
@@ -1224,8 +1268,9 @@
     var dp=(l.departure_date||"").split("-");
     var dh="";
     if(dp.length===3){ var dt=new Date(+dp[0],+dp[1]-1,+dp[2]);
-      dh='<div class="dnum"><span class="day">'+ (+dp[2]) +'</span><span class="mon">'+MON[+dp[1]-1]+'</span></div><div class="dow">'+DOW[dt.getDay()]+'</div>'; }
+      dh='<div class="dnum"><span class="day">'+ ("0"+(+dp[2])).slice(-2) +'</span><span class="mon">'+MON[+dp[1]-1]+'</span></div><div class="dow">'+DOW[dt.getDay()]+'</div>'; }
     else dh='<div class="dow">TBC</div>';
+    if(l.published_at && (Date.now()-new Date(l.published_at).getTime()) < 86400000) el.className+=" fresh";
 
     var ph;
     if(!l.price_note){
@@ -1281,6 +1326,11 @@
     var seats=Number(document.getElementById("f-seats").value||0);
     var rg=document.getElementById("f-region").value;
     var mo=document.getElementById("f-month").value;
+    /* Departing window: today, tomorrow, next 7 or 30 days, in the visitor's local date */
+    var wn=document.getElementById("f-when").value, wFrom="", wTo="";
+    if(wn!==""){ var n=new Date(); function ymd(d){ return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); }
+      var a=new Date(n.getFullYear(),n.getMonth(),n.getDate()+(wn==="1"?1:0)), b=new Date(n.getFullYear(),n.getMonth(),n.getDate()+(wn==="1"?1:+wn));
+      wFrom=ymd(a); wTo=ymd(b); }
     var pr=document.getElementById("f-price").value;
 
     var out=ALL.filter(function(l){
@@ -1297,6 +1347,7 @@
         else if(((l.to_airport||"")+" "+(l.to_iata||"")).toLowerCase().indexOf(t)===-1) return false;
       }
       if(d && l.departure_date && l.departure_date < d) return false;
+      if(wFrom && (!l.departure_date || l.departure_date < wFrom || l.departure_date > wTo)) return false;
       if(ac && (l.aircraft_type||"") !== ac) return false;
       if(seats && !(l.seats && l.seats>=seats)) return false;
       if(rg){ if(rg==="__rest"){ if(/^(Europe|North America)$/.test(l.region||"")) return false; } else if((l.region||"")!==rg) return false; }
@@ -1322,7 +1373,7 @@
 
     VIEW = out;
     var locked = GATED && TOTAL > ALL.length ? TOTAL - ALL.length : 0;
-    document.getElementById("ltitle").innerHTML="<b>"+out.length+"</b> available empty leg"+(out.length===1?"":"s")+(locked?' <span id="lgated">+'+locked+' locked</span>':"");
+    document.getElementById("ltitle").innerHTML='<span class="lt-d">Available empty legs</span><b>'+out.length+'</b><span class="lt-m"> available empty leg'+(out.length===1?"":"s")+'</span><span class="lt-f"> flight'+(out.length===1?"":"s")+'</span>'+(locked?' <span id="lgated">+'+locked+' locked</span>':"");
     // Denominator is the true upcoming total, not the capped set we were handed,
     // so a gated visitor sees "50 of 501" rather than a misleading "50 of 50".
     var denom = (GATED && TOTAL > ALL.length) ? TOTAL : ALL.length;
@@ -1396,6 +1447,7 @@
     var ms=document.getElementById("f-month");
     Object.keys(months).sort().forEach(function(m){ var o=document.createElement("option"); o.value=m;
       o.textContent=MONFULL[Number(m.slice(5,7))-1]+" "+m.slice(0,4)+" ("+months[m]+")"; ms.appendChild(o); });
+
     /* Suggestions: busiest first, with the count, and never a bare airport code.
        3 September 2026: the list opened on "9TE2" and on the one-flight countries,
        because cities were alphabetical and countries were inserted one at a time
@@ -1450,13 +1502,13 @@
     });
   }
 
-  ["f-from","f-to","f-date","f-ac","f-seats","f-region","f-month","f-price"].forEach(function(id){
+  ["f-from","f-to","f-date","f-ac","f-seats","f-region","f-month","f-price","f-when"].forEach(function(id){
     document.getElementById(id).addEventListener("input",apply);
     document.getElementById(id).addEventListener("change",apply);
   });
   document.getElementById("go").addEventListener("click",apply);
   document.getElementById("clr").addEventListener("click",function(){
-    ["f-from","f-to","f-date","f-ac","f-seats","f-region","f-month","f-price"].forEach(function(id){document.getElementById(id).value="";});
+    ["f-from","f-to","f-date","f-ac","f-seats","f-region","f-month","f-price","f-when"].forEach(function(id){document.getElementById(id).value="";});
     PRESET=""; SORT="date"; syncSort(); if(typeof syncContinents==="function") syncContinents();
     document.querySelectorAll("#pills .p").forEach(function(x){x.classList.remove("on");});
     apply();
@@ -1658,10 +1710,11 @@
     var f=document.getElementById("filters"), b=document.getElementById("fmore");
     if(!f||!b) return;
     var lbl=document.getElementById("fmorelbl"), n=document.getElementById("fmoren");
-    var hidden=["f-date","f-ac","f-seats","f-region","f-month","f-price"];
+    var hidden=["f-date","f-ac","f-seats","f-region","f-month","f-price","f-when"];
+    /* on wide screens Departing sits in the open row, so it never counts there */
     function count(){
       var c=0;
-      hidden.forEach(function(id){ if(id==="f-date" && window.innerWidth>760) return; var el=document.getElementById(id); if(el&&el.value) c++; });
+      hidden.forEach(function(id){ if(id==="f-when" && window.innerWidth>760) return; var el=document.getElementById(id); if(el&&el.value) c++; });
       if(n){ n.textContent=c||""; n.classList.toggle("on", c>0); }
     }
     b.addEventListener("click",function(){
@@ -2029,7 +2082,13 @@
   if (box) {
     new MutationObserver(function(){ scan(); }).observe(box, {childList:true, subtree:false});
     box.addEventListener('click', function(e){
-      if (!mq.matches) return;
+      if (!mq.matches) {
+        if (window.innerWidth <= 760) return;
+        if (e.target.closest('a, button, select, input')) return;
+        var r = e.target.closest('.row'); var a = r && r.querySelector('.c-cta a.btn');
+        if (a) a.click();
+        return;
+      }
       if (e.target.closest('a, button, select, input')) return;
       var row = e.target.closest('.row');
       if (!row || !row.querySelector('.mdet')) return;
@@ -2098,6 +2157,19 @@
   setTimeout(paint, 1500); setTimeout(paint, 4000);
 })();
 </script><script>
+/* Desktop, 4 September 2026: the list header (title, count, sort) goes above the
+   region chips, outside the white card, as in Radu's mockup. Back inside the card
+   below 761px. */
+(function(){
+  var mq = window.matchMedia('(min-width: 761px)');
+  function place(){
+    var h=document.getElementById('lhead'), c=document.getElementById('continents'), card=document.querySelector('#listings');
+    if(!h||!c||!card) return;
+    if(mq.matches){ if(h.nextElementSibling!==c) c.parentNode.insertBefore(h,c); }
+    else { if(card.previousElementSibling!==h) card.parentNode.insertBefore(h,card); }
+  }
+  place(); mq.addEventListener('change', place);
+})();
 (function(){
   if (!window.matchMedia('(max-width: 640px)').matches) return;
   var lab = document.querySelector('#curwrap > span');
