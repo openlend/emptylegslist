@@ -500,6 +500,7 @@
    Seats column of its own. Everything below 761px is untouched. */
 #lsortw { display: none; }
 .actm { display: none; }
+@media (min-width: 641px) { #rows .row .mmeta, #rows .row .mdet, #rows .row .mchev { display: none !important; } #rows .row .c-date { display: block; } }
 #ltitle .lt-d, #ltitle .lt-f { display: none; }
 @media (min-width: 761px) { #ltitle .lt-d, #ltitle .lt-f { display: inline; } }
 @media (min-width: 761px) {
@@ -508,11 +509,11 @@
   #main #filters:not(.open) .fgrid .f:nth-child(n+4) { display: none; }
   #main #filters.open .fgrid { grid-template-columns: repeat(3, minmax(0,1fr)); }
   #main #fbar { display: contents; }
-  #main #fmore { grid-area: more; display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 0 16px; height: 43px; background: #fff; border: 1px solid #e3e9ef; border-radius: 9px; font-size: 13px; font-weight: 500; color: #46525f; cursor: pointer; font-family: Raleway, sans-serif; white-space: nowrap; }
+  #main #fmore { grid-area: more; display: inline-flex; align-items: center; gap: 8px; margin: 0; padding: 0 16px; height: 44px; background: #fff; border: 1px solid #d5dde5; border-radius: 9px; font-size: 13px; font-weight: 500; color: #46525f; cursor: pointer; font-family: Raleway, sans-serif; white-space: nowrap; }
   #main #fmore:hover { border-color: var(--gold); color: var(--navy); }
   #main #fmoren { display: none; min-width: 18px; padding: 1px 6px; border-radius: 999px; background: var(--gold); color: #241d00; font-size: 11.5px; font-weight: 600; text-align: center; }
   #main #fmoren.on { display: inline-block; }
-  #main #go { grid-area: go; height: 43px; padding: 0 26px; margin: 0; }
+  #main #go { grid-area: go; height: 44px; padding: 0 26px; margin: 0; }
   #main #clr { grid-area: reset; justify-self: start; margin: 12px 0 0 0; padding: 0; font-size: 13px; }
   #main #fcwrap { grid-column: 1 / -1; margin-top: 10px; }
   /* header above the chips: serif title, count, currency, sort */
@@ -526,12 +527,14 @@
   #main #lsortw { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; font-size: 13.5px; font-weight: 400; color: #46525f; }
   #main #lsortw select { padding: 2px 0; border: none; background: transparent; font-family: Raleway, sans-serif; font-size: 13.5px; font-weight: 500; color: var(--navy); cursor: pointer; }
   #main #lsortw select:focus { outline: none; }
-  #main #curwrap { order: 0; font-size: 12px; }
-  #main #curwrap select { padding: 4px 8px; }
+  #main #curwrap { order: 0; font-size: 13.5px; font-weight: 400; color: #46525f; gap: 4px; }
+  #main #curwrap select { padding: 2px 0; border: none; background: transparent; font-size: 13.5px; font-weight: 500; color: var(--navy); }
+  #main #curwrap select:focus { outline: none; border: none; }
   #main #lupd { margin-left: 0; order: 1; }
   #main #continents { margin: 8px 0 0 0; }
   #main #continents .cont .cn { display: none; }
-  #main #pills { margin: 14px 0 18px 0; }
+  #main #pills { display: none; }
+  #main #continents { margin-bottom: 16px; }
   /* the table: one line per flight, chevron at the end, the whole row opens the enquiry */
   #main .thead { padding: 13px 26px; border-top: none; background: #fff; gap: 16px; }
   #main .thead .c-date { flex: 0 0 76px; text-align: left; }
@@ -638,8 +641,8 @@
      half of it, so the subject was never on screen. Run it up under the sticky
      bar, which is translucent on this page, and give it room underneath the
      text before the card starts. */
-  #h { margin-top: calc(var(--eln-h, 74px) * -1); padding-top: var(--eln-h, 74px); padding-bottom: 340px; }
-  #hin { padding-top: 56px; }
+  #h { margin-top: calc(var(--eln-h, 74px) * -1); padding-top: var(--eln-h, 74px); padding-bottom: 200px; }
+  #hin { padding-top: 44px; }
 }
 /* sticky mobile nav */
 @media (max-width: 1000px) {
@@ -653,6 +656,8 @@
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
+  <link rel="stylesheet" href="/site-forms.css">
+  <script src="/site-forms.js" defer></script>
   <script src="/site-nav.js" defer></script>
 <!-- siteld.py -->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"}]}]}</script>
@@ -1274,7 +1279,7 @@
 
     var ph;
     if(!l.price_note){
-      ph = '<div class="prq">Price on<br>request</div>';
+      ph = '<div class="prq">Price on <br>request</div>';
     } else {
       var listedCur=pcur(l.price_note), listedAmt=pamt(l.price_note);
       var conv = CUR ? convert(numFrom(l.price_note), listedCur, CUR) : null;
@@ -2032,8 +2037,8 @@
   function setPh(){
     var small = window.matchMedia('(max-width: 640px)').matches;
     var f = document.getElementById('f-from'), t = document.getElementById('f-to');
-    if (f) f.placeholder = small ? 'From: any departure' : 'Any departure';
-    if (t) t.placeholder = small ? 'To: any destination' : 'Any destination';
+    if (f) f.placeholder = 'Any departure';
+    if (t) t.placeholder = 'Any destination';
   }
   setPh();
   window.addEventListener('resize', setPh);
@@ -2252,6 +2257,7 @@
     var cw = document.getElementById('fcwrap');
     if (!filters || !bar || !more || !cw) return;
     if (document.querySelector('#filters .mrow')) return;
+    if (more.parentNode !== filters) return;   /* already grouped into the search bar by the desktop script */
     /* Search bar goes right under the fields, above the secondary row */
     filters.insertBefore(bar, more);
     var row = document.createElement('div');

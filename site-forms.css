@@ -1,0 +1,49 @@
+/* Text fields in the Material outlined style, site wide (4 September 2026).
+ * site-forms.js wraps every text input, textarea and labelled select in a
+ * .mf box and gives it a floating label: the label sits inside the field
+ * until you click or type, then rises into a notch on the border and the
+ * placeholder hint appears underneath. Selects and date fields keep the
+ * label up, because they always show a value. */
+.mf { position: relative; display: block; margin: 0; min-width: 0; }
+.mf > input, .mf > textarea, .mf > select {
+  display: block; width: 100%; box-sizing: border-box; margin: 0;
+  padding: 12px 13px; min-height: 44px;
+  border: 1px solid #d5dde5; border-radius: 9px; background: #fff;
+  font-family: Raleway, sans-serif; font-size: 14.5px; font-weight: 400; color: #16222e;
+  outline: none; box-shadow: none; -webkit-appearance: none; appearance: none;
+  transition: border-color .2s cubic-bezier(0,0,.2,1), box-shadow .2s cubic-bezier(0,0,.2,1);
+}
+.mf > textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+.mf > select { padding-right: 34px; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235f6d7b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 11px center; background-size: 16px; }
+.mf > input[type="date"] { min-height: 44px; }
+.mf > input[list]::-webkit-calendar-picker-indicator { display: none !important; }
+.mf > :is(input, textarea, select):hover { border-color: #8a97a5; }
+.mf:focus-within > :is(input, textarea, select) { border-color: #C9A24C; box-shadow: inset 0 0 0 1px #C9A24C; }
+.mf.mf-err > :is(input, textarea, select) { border-color: #c0392b; }
+/* the hint only appears once the label has moved up */
+.mf > input::placeholder, .mf > textarea::placeholder { color: transparent; transition: color .15s; }
+.mf:focus-within > input::placeholder, .mf:focus-within > textarea::placeholder { color: #a9b4bf; }
+/* the floating label */
+.mf > .mf-l {
+  position: absolute; left: 9px; top: 22px; transform: translateY(-50%);
+  margin: 0; padding: 0 4px; background: #fff; border-radius: 3px;
+  font-family: Raleway, sans-serif; font-size: 14.5px; font-weight: 400; line-height: 1.2; color: #7c8894;
+  pointer-events: none; white-space: nowrap; max-width: calc(100% - 26px); overflow: hidden; text-overflow: ellipsis;
+  transition: top .2s cubic-bezier(0,0,.2,1), font-size .2s cubic-bezier(0,0,.2,1), color .2s;
+  display: block !important;
+}
+.mf.mf-ta > .mf-l { top: 21px; }
+.mf:focus-within > .mf-l,
+.mf > input:not(:placeholder-shown) ~ .mf-l,
+.mf > textarea:not(:placeholder-shown) ~ .mf-l,
+.mf.mf-up > .mf-l { top: 0; font-size: 11.5px; color: #5f6d7b; }
+.mf > input:-webkit-autofill ~ .mf-l { top: 0; font-size: 11.5px; color: #5f6d7b; }
+.mf:focus-within > .mf-l { color: #7d5e1a; }
+.mf.mf-err > .mf-l { color: #c0392b; }
+/* the old block label above the field is retired by the script */
+.mf-hid { display: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .mf > input, .mf > textarea, .mf > select, .mf > .mf-l, .mf > input::placeholder, .mf > textarea::placeholder { transition: none; }
+}
