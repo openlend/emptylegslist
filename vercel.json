@@ -6,6 +6,11 @@
     "formats": ["image/webp"],
     "minimumCacheTTL": 86400
   },
+  "rewrites": [
+    { "source": "/flight/:id", "destination": "/flight" },
+    { "source": "/feed/empty-legs.json", "destination": "https://wscowiseslaovmmfuzyv.supabase.co/functions/v1/public-feed" },
+    { "source": "/feed/empty-legs.csv", "destination": "https://wscowiseslaovmmfuzyv.supabase.co/functions/v1/public-feed?format=csv" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
