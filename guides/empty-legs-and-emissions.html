@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Live map of empty leg flights | Empty Leg List</title>
+<title>Empty legs and emissions: what can honestly be said | Empty Leg List</title>
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://emptylegslist.com/map">
-<meta name="description" content="Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.">
-<meta property="og:title" content="Live map of empty leg flights">
-<meta property="og:description" content="Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.">
+<link rel="canonical" href="https://emptylegslist.com/guides/empty-legs-and-emissions">
+<meta name="description" content="Why buying an empty leg does not add a flight, why it is still not zero emissions, and which claims about empty legs and CO2 do not hold up.">
+<meta property="og:title" content="Empty legs and emissions">
+<meta property="og:description" content="Why buying an empty leg does not add a flight, why it is still not zero emissions, and which claims about empty legs and CO2 do not hold up.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://emptylegslist.com/map">
+<meta property="og:url" content="https://emptylegslist.com/guides/empty-legs-and-emissions">
 <meta property="og:image" content="https://emptylegslist.com/brand/og-default.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -90,20 +90,12 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.map{max-width:1180px}
-#elmap{width:100%;height:min(72vh,720px);border-radius:14px;background:#0D1F36;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:8px 0 10px}
-.leaflet-popup-content{font:14px/1.5 Raleway,sans-serif;color:#16222e;margin:12px 14px}
-.leaflet-popup-content b{color:#0D1F36}
-.leaflet-popup-content a{color:#0D1F36}
-.mapbar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:4px 0 10px}
-.mapbar .gcur{margin:0}
-.mapbar .cnt{font-size:13.5px;color:var(--mute);margin-left:auto}
-.mapwrap{position:relative}
-.maplock{position:absolute;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:rgba(13,31,54,.18);border-radius:14px;cursor:pointer}
-.maplock span{background:#fff;color:#0D1F36;font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
-.maplegend{position:absolute;left:12px;bottom:12px;z-index:400;background:rgba(13,31,54,.82);color:#e8edf3;font-size:12px;line-height:1.7;padding:7px 11px;border-radius:9px;pointer-events:none}
-.maplegend i{display:inline-block;width:18px;height:0;border-top:2px solid #C9A24C;vertical-align:middle;margin-right:7px}
-.maplegend i.w{border-top:1px solid rgba(255,255,255,.75)}
+.wrap.em{max-width:820px}
+.wrap.em h2{margin-top:34px}
+.claim{background:#fff;border-radius:14px;padding:18px 22px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:14px 0}
+.claim b{display:block;color:var(--navy);margin-bottom:6px}
+.claim.no{border-left:3px solid #b3261e}
+.claim.yes{border-left:3px solid #1c7a4a}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -460,27 +452,33 @@ p.gtip b{color:var(--navy)}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap map">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Live map</p>
-<h1>Where the empty legs are today</h1>
-<p class="lede">Every empty leg on the board, drawn from where it starts to where it lands. Gold lines carry a published price, white ones say price on enquiry. Tap or click a line for the flight; use the buttons to thin the picture.</p>
-<div class="mapbar">
-  <div class="gcur" id="mapreg"><button aria-pressed="true" data-v="">All regions</button><button data-v="Europe">Europe</button><button data-v="North America">North America</button><button data-v="__rest">Rest of world</button></div>
-  <div class="gcur" id="mapdays"><button data-v="3">Next 3 days</button><button aria-pressed="true" data-v="7">Next 7 days</button><button data-v="30">Next 30 days</button><button data-v="">All dates</button></div>
-  <div class="gcur" id="mapprice"><button aria-pressed="true" data-v="">All legs</button><button data-v="1">With a price</button></div>
-  <span class="cnt" id="mapcnt">Reading the board.</span>
+<div class="wrap em">
+<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Guide</p>
+<h1>Empty legs and emissions: what can honestly be said</h1>
+<p class="lede">Empty legs are often sold as the greener way to fly private. Some of that is true by definition, some of it is marketing, and the line between the two is worth drawing carefully. This guide keeps to what follows from how empty legs work, and says plainly where we have no figures.</p>
+
+<h2>What an empty leg is</h2>
+<p>A charter aircraft flies where its customers pay it to go. After a drop off, or before a pick up, it has to move to its next job or back to base, and that flight is scheduled by the operator whether or not anyone buys a seat on it. That repositioning flight, published for sale at a reduced price, is the empty leg. It exists because of the previous or the next charter, not because of you.</p>
+
+<h2>What follows from that</h2>
+<div class="claim yes"><b>Buying an empty leg does not add a flight.</b> The aircraft was going to fly that sector anyway. This is the one solid claim, and it holds exactly as long as the flight really was going to happen: the same date, the same airports, the same aircraft, as published. If an operator changes the routing to suit you, the sector is no longer the one that was already scheduled, and the claim weakens with every change.</div>
+<div class="claim yes"><b>Passengers add weight, and weight adds fuel burn.</b> An aircraft flying with people and bags on board burns more fuel than the same aircraft flying empty on the same sector. The difference depends on the aircraft and the load; it is not zero. So "zero emissions" is wrong even for a perfect empty leg; "no additional flight" is right.</div>
+<div class="claim yes"><b>The alternative matters.</b> If the empty leg replaces a charter you would otherwise have booked, one flight has replaced two aircraft movements: yours, and the operator's empty repositioning. If it replaces a scheduled airline seat you would otherwise have taken, the airline flight still departs and the comparison is different. Which case you are in is something only you know.</div>
+
+<h2>What cannot honestly be said</h2>
+<div class="claim no"><b>"This flight is carbon neutral" or "zero emissions".</b> A jet burning fuel is neither. Offsetting is a separate transaction with its own evidence; an empty leg on its own is not an offset.</div>
+<div class="claim no"><b>"You saved X tonnes of CO2".</b> That figure would need the fuel burn of the sector, the marginal burn from your weight, and an assumption about what you would have done instead. We do not compute it and we do not publish one. If an operator gives you a number, ask what it assumes.</div>
+<div class="claim no"><b>"Empty legs make private flying sustainable".</b> Empty legs are a by-product of charter demand. Filling them uses a flight better; it does not change how many flights the charter market generates.</div>
+
+<h2>A caution from our own record</h2>
+<p>An empty leg is only an "already happening" flight until the operator's plans change. Since 30 July 2026 we have recorded <b data-stat="recorded_legs">&nbsp;</b> published legs, and <b data-stat="withdrawn_before_departure">&nbsp;</b> of them left the board before their departure date. Some were sold; some were withdrawn because the aircraft was no longer going that way. We cannot tell which from the outside, and neither can a buyer. It is one more reason to treat the "no additional flight" claim as true for the flight you actually take, on the day, and not as a general property of the category.</p>
+
+<h2>What we do on this site</h2>
+<p>We list empty legs as the operators publish them, with the operator's own price where there is one, and we do not attach an emissions figure to any leg. If we ever do, it will come with the method and the assumptions on the same page. Until then, the honest summary is short: an empty leg is a flight that was scheduled anyway, you add a little weight to it, and what you would have done instead is the part that decides whether it was the better choice.</p>
+<p><a href="/">Back to the live list</a> &nbsp;&middot;&nbsp; <a href="/guides/">All guides</a></p>
 </div>
-<div class="mapwrap"><div id="elmap"></div><div class="maplegend"><i></i>published price<br><i class="w"></i>price on enquiry</div><div class="maplock" id="maplock" hidden><span>Tap to move the map</span></div></div>
-<p class="gnote">A line starts at the departure airport the operator named, or at an airport in the departure city when only the city was given, and ends the same way at the destination. Legs the operator described by city alone are drawn at city level. Prices are the operator's own figure for the whole aircraft.</p>
-
-<h2>How to read it</h2>
-<p>The lines are one way: an empty leg is an aircraft repositioning, and the operator sells that single flight, not a return. Clusters mean an operator is busy in that area; Teterboro, Van Nuys, Nice and London are where most lines start or end. A single line across an ocean is usually a long range jet going home.</p>
-<p>The map refreshes with the board, several times a day. To be told when a leg appears on a route you care about, <a href="/#alerts">set a route alert</a>. To see the same data as a table, use the <a href="/">live list</a>, or take it as a file from <a href="/open-data">open data</a>.</p>
-</div>
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
 <script>
 (function(){
 
@@ -492,59 +490,9 @@ function api(path){ return fetch(BASE+"/rest/v1/"+path, {headers:{apikey:KEY, Au
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
 function flightUrl(id){ return "/flight/"+id; }
 
-  var touch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
-  var map = L.map("elmap", { worldCopyJump: true, minZoom: 2, preferCanvas: true, scrollWheelZoom: false, dragging: !touch, tap: !touch, zoomControl: true }).setView([38, -10], 3);
-  /* The page must scroll past the map with one finger: on touch devices the
-     map starts locked and a tap unlocks dragging; two fingers always zoom. */
-  var lock = document.getElementById("maplock");
-  if (touch) { lock.hidden = false; lock.addEventListener("click", function(){ lock.hidden = true; map.dragging.enable(); }); map.on("blur", function(){}); document.addEventListener("touchstart", function(e){ if (!lock.hidden) return; if (!document.getElementById("elmap").contains(e.target)) { lock.hidden = false; map.dragging.disable(); } }, { passive: true }); }
-  else { map.on("click focus", function(){ map.scrollWheelZoom.enable(); }); map.on("mouseout", function(){ map.scrollWheelZoom.disable(); }); }
-  function arc(a, b){ /* a few points along the great circle so long legs bend instead of cutting straight across */
-    var n = 24, out = [], rad = Math.PI / 180, la1 = a[0] * rad, lo1 = a[1] * rad, la2 = b[0] * rad, lo2 = b[1] * rad;
-    var d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((la1 - la2) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin((lo1 - lo2) / 2), 2)));
-    if (!d || d < 0.02) return [a, b];
-    for (var i = 0; i <= n; i++) { var f = i / n, A = Math.sin((1 - f) * d) / Math.sin(d), B = Math.sin(f * d) / Math.sin(d);
-      var x = A * Math.cos(la1) * Math.cos(lo1) + B * Math.cos(la2) * Math.cos(lo2), y = A * Math.cos(la1) * Math.sin(lo1) + B * Math.cos(la2) * Math.sin(lo2), z = A * Math.sin(la1) + B * Math.sin(la2);
-      out.push([Math.atan2(z, Math.sqrt(x * x + y * y)) / rad, Math.atan2(y, x) / rad]); }
-    return out;
-  }
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", { maxZoom: 12, subdomains: "abcd",
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' }).addTo(map);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", { maxZoom: 12, subdomains: "abcd", pane: "overlayPane", opacity: 0.85 }).addTo(map);
-  var layer = L.layerGroup().addTo(map), all = [], first = true, f = { reg: "", days: "7", price: "" };
-
-  function bar(id, key){ var b = document.getElementById(id); b.addEventListener("click", function(e){ var btn = e.target.closest("button"); if(!btn) return;
-    Array.prototype.forEach.call(b.querySelectorAll("button"), function(x){ x.setAttribute("aria-pressed", x===btn ? "true" : "false"); }); f[key] = btn.getAttribute("data-v"); draw(); }); }
-  bar("mapreg","reg"); bar("mapdays","days"); bar("mapprice","price");
-  /* On a phone the full board is a tangle: start with priced legs only, one tap widens it. */
-  if (window.innerWidth < 700) { f.price = "1"; Array.prototype.forEach.call(document.querySelectorAll("#mapprice button"), function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-v") === "1" ? "true" : "false"); }); }
-
-  function keep(l){
-    if (f.reg === "__rest" && /^(Europe|North America)$/.test(l.region||"")) return false;
-    if (f.reg && f.reg !== "__rest" && l.region !== f.reg) return false;
-    if (f.price && !l.price_note) return false;
-    if (f.days) { var lim = new Date(); lim.setDate(lim.getDate() + parseInt(f.days,10)); if (l.departure_date > lim.toISOString().slice(0,10)) return false; }
-    return true;
-  }
-  function draw(){
-    layer.clearLayers(); var n = 0, shown = 0, bounds = [];
-    all.forEach(function(l){
-      if (!keep(l)) return; n++;
-      if (l.from_lat==null || l.to_lat==null) return; shown++;
-      var priced = !!l.price_note;
-      var line = L.polyline(arc([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]), { color: priced ? "#C9A24C" : "#ffffff", weight: priced ? 1.8 : 0.9, opacity: priced ? 0.85 : 0.32, smoothFactor: 1.5 });
-      line.bindPopup('<b>'+esc(l.from_label)+' to '+esc(l.to_label)+'</b><br>'+esc(fmtDate(l.departure_date))+(l.aircraft_type?' &middot; '+esc(l.aircraft_type):'')+(l.seats?' &middot; up to '+l.seats+' seats':'')+'<br>'+(l.price_note?esc(l.price_note.replace(" listed","")):'Price on enquiry')+'<br><a href="'+flightUrl(l.id)+'">Open this flight</a>');
-      line.on("mouseover", function(){ this.setStyle({ weight: 4, opacity: 1 }); }).on("mouseout", function(){ this.setStyle({ weight: priced ? 1.8 : 0.9, opacity: priced ? 0.85 : 0.32 }); });
-      layer.addLayer(line);
-      L.circleMarker([l.from_lat, l.from_lon], { radius: priced ? 2.4 : 1.6, color: priced ? "#C9A24C" : "#ffffff", fillColor: priced ? "#C9A24C" : "#ffffff", fillOpacity: priced ? 1 : 0.6, weight: 0 }).addTo(layer);
-      bounds.push([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]);
-    });
-    document.getElementById("mapcnt").textContent = n + " legs" + (shown < n ? ", " + shown + " with a known position" : "") + (all.length ? " of " + all.length + " on the board" : "");
-    if (bounds.length && (f.reg || first)) map.fitBounds(bounds, { padding: [20, 20], maxZoom: 5 }); first = false;
-  }
-  api("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date&limit=5000")
-    .then(function(rows){ all = rows; draw(); })
-    .catch(function(){ document.getElementById("mapcnt").textContent = "The board did not load. Refresh, or use the live list."; });
+  api("board_stats?select=recorded_legs,withdrawn_before_departure").then(function(r){ var s = r[0]; if(!s) return;
+    Object.keys(s).forEach(function(k){ Array.prototype.forEach.call(document.querySelectorAll("[data-stat=" + k + "]"), function(el){ el.textContent = Number(s[k]).toLocaleString("en-GB"); }); });
+  }).catch(function(){ Array.prototype.forEach.call(document.querySelectorAll("[data-stat]"), function(el){ el.textContent = "many"; }); });
 })();
 </script>
 

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Live map of empty leg flights | Empty Leg List</title>
+<title>Empty Legs: Leerflüge von Charterbetreibern, live | Empty Leg List</title>
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://emptylegslist.com/map">
-<meta name="description" content="Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.">
-<meta property="og:title" content="Live map of empty leg flights">
-<meta property="og:description" content="Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.">
+<link rel="canonical" href="https://emptylegslist.com/de/index">
+<meta name="description" content="Empty Legs (Leerflüge) von Privatjet-Betreibern in Europa, mehrmals täglich aktualisiert, mit dem Preis des Betreibers, wo er einen nennt. Anfrage direkt an den Betreiber.">
+<meta property="og:title" content="Empty Legs: Leerflüge, live">
+<meta property="og:description" content="Empty Legs (Leerflüge) von Privatjet-Betreibern in Europa, mehrmals täglich aktualisiert, mit dem Preis des Betreibers, wo er einen nennt. Anfrage direkt an den Betreiber.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://emptylegslist.com/map">
+<meta property="og:url" content="https://emptylegslist.com/de/index">
 <meta property="og:image" content="https://emptylegslist.com/brand/og-default.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -90,20 +90,13 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.map{max-width:1180px}
-#elmap{width:100%;height:min(72vh,720px);border-radius:14px;background:#0D1F36;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:8px 0 10px}
-.leaflet-popup-content{font:14px/1.5 Raleway,sans-serif;color:#16222e;margin:12px 14px}
-.leaflet-popup-content b{color:#0D1F36}
-.leaflet-popup-content a{color:#0D1F36}
-.mapbar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:4px 0 10px}
-.mapbar .gcur{margin:0}
-.mapbar .cnt{font-size:13.5px;color:var(--mute);margin-left:auto}
-.mapwrap{position:relative}
-.maplock{position:absolute;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:rgba(13,31,54,.18);border-radius:14px;cursor:pointer}
-.maplock span{background:#fff;color:#0D1F36;font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
-.maplegend{position:absolute;left:12px;bottom:12px;z-index:400;background:rgba(13,31,54,.82);color:#e8edf3;font-size:12px;line-height:1.7;padding:7px 11px;border-radius:9px;pointer-events:none}
-.maplegend i{display:inline-block;width:18px;height:0;border-top:2px solid #C9A24C;vertical-align:middle;margin-right:7px}
-.maplegend i.w{border-top:1px solid rgba(255,255,255,.75)}
+.wrap.de{max-width:1080px}
+.def{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 16px}
+.def input{font:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);width:100%;box-sizing:border-box}
+.def input:focus{outline:none;border-color:var(--navy)}
+.gtab td a.enq{display:inline-block;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.faq h3{font-size:16px;margin:18px 0 4px;color:var(--navy)}
+@media(max-width:640px){.def{grid-template-columns:1fr}}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -460,27 +453,35 @@ p.gtip b{color:var(--navy)}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap map">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Live map</p>
-<h1>Where the empty legs are today</h1>
-<p class="lede">Every empty leg on the board, drawn from where it starts to where it lands. Gold lines carry a published price, white ones say price on enquiry. Tap or click a line for the flight; use the buttons to thin the picture.</p>
-<div class="mapbar">
-  <div class="gcur" id="mapreg"><button aria-pressed="true" data-v="">All regions</button><button data-v="Europe">Europe</button><button data-v="North America">North America</button><button data-v="__rest">Rest of world</button></div>
-  <div class="gcur" id="mapdays"><button data-v="3">Next 3 days</button><button aria-pressed="true" data-v="7">Next 7 days</button><button data-v="30">Next 30 days</button><button data-v="">All dates</button></div>
-  <div class="gcur" id="mapprice"><button aria-pressed="true" data-v="">All legs</button><button data-v="1">With a price</button></div>
-  <span class="cnt" id="mapcnt">Reading the board.</span>
+<div class="wrap de">
+<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Deutsch</p>
+<h1>Empty Legs: Leerflüge von Charterbetreibern, live</h1>
+<p class="lede">Ein Empty Leg ist ein Leerflug: Ein Privatjet muss ohne Passagiere zu seinem nächsten Auftrag oder zurück zur Basis und der Betreiber verkauft diesen Flug zu einem reduzierten Preis. Diese Liste zeigt die Empty Legs, die die Betreiber selbst veröffentlichen, mehrmals täglich aktualisiert, mit dem Preis des Betreibers, wo er einen nennt.</p>
+<div class="gstats"><div><b id="d_live">&nbsp;</b><span>Empty Legs in Europa auf der Liste</span></div><div><b id="d_priced">&nbsp;</b><span>davon mit veröffentlichtem Preis</span></div><div><b id="d_de">&nbsp;</b><span>mit Start oder Ziel in Deutschland, Österreich oder der Schweiz</span></div><div><b id="d_all">&nbsp;</b><span>Empty Legs weltweit</span></div></div>
+
+<h2>Die Liste</h2>
+<div class="def"><input id="d_from" placeholder="Von (Stadt oder Flughafencode, z. B. München oder MUC)"><input id="d_to" placeholder="Nach (z. B. Nizza oder NCE)"></div>
+<div class="gcur" id="dwhen"><button aria-pressed="true" data-v="30">Nächste 30 Tage</button><button data-v="7">Nächste 7 Tage</button><button data-v="">Alle Termine</button><button data-v="dach">Nur DACH</button></div>
+<div class="gscroll"><table class="gtab"><thead><tr><th>Datum</th><th>Strecke</th><th>Flugzeug</th><th class="num">Sitze</th><th class="num">Preis</th><th></th></tr></thead><tbody id="drows"><tr><td colspan="6" class="gnote">Liste wird geladen.</td></tr></tbody></table></div>
+<p class="gnote">Preise sind die Angaben der Betreiber für das ganze Flugzeug, unverändert übernommen. "Auf Anfrage" heißt, der Betreiber nennt keinen Preis. Die Anfrage geht direkt an den Betreiber; wir sind kein Broker und keine Fluggesellschaft.</p>
+
+<h2>So funktioniert es</h2>
+<div class="faq">
+<h3>Woher kommen die Flüge?</h3>
+<p>Von den Websites und Systemen der Charterbetreiber, die ihre Leerflüge öffentlich anbieten. Wir lesen sie mehrmals am Tag, speichern seit dem 30. Juli 2026 jeden Flug mit dem Zeitpunkt, an dem er erschienen und wieder verschwunden ist, und zeigen nur, was der Betreiber selbst veröffentlicht hat. Keine Schätzungen, keine erfundenen Preise.</p>
+<h3>Was kostet ein Empty Leg?</h3>
+<p>Das entscheidet der Betreiber. Etwa ein Viertel der Flüge auf der Liste trägt einen veröffentlichten Preis; bei den anderen fragt man an. Der Preis gilt für das ganze Flugzeug, nicht pro Sitz, und der Flug ist nur in eine Richtung, an einem festen Datum.</p>
+<h3>Was ist der Haken?</h3>
+<p>Ein Empty Leg kann jederzeit verschwinden: verkauft, oder der Betreiber hat umgeplant. Nach unseren Aufzeichnungen wird etwa die Hälfte der Flüge erst in der letzten Woche vor dem Abflug veröffentlicht, und manche sind innerhalb von 24 Stunden wieder weg. Wer flexibel ist, findet etwas; wer ein festes Datum hat, sollte früh anfragen.</p>
+<h3>Wie fragt man an?</h3>
+<p>Über den Knopf "Anfragen" neben dem Flug. Das Formular ist auf Englisch, die Anfrage geht direkt an den Betreiber, der Ihnen selbst antwortet. Wir verlangen dafür nichts.</p>
+<h3>Gibt es Benachrichtigungen?</h3>
+<p>Ja, kostenlos per E-Mail für eine Strecke oder eine Stadt: <a href="/#alerts">Route Alert einrichten</a> (auf Englisch).</p>
 </div>
-<div class="mapwrap"><div id="elmap"></div><div class="maplegend"><i></i>published price<br><i class="w"></i>price on enquiry</div><div class="maplock" id="maplock" hidden><span>Tap to move the map</span></div></div>
-<p class="gnote">A line starts at the departure airport the operator named, or at an airport in the departure city when only the city was given, and ends the same way at the destination. Legs the operator described by city alone are drawn at city level. Prices are the operator's own figure for the whole aircraft.</p>
-
-<h2>How to read it</h2>
-<p>The lines are one way: an empty leg is an aircraft repositioning, and the operator sells that single flight, not a return. Clusters mean an operator is busy in that area; Teterboro, Van Nuys, Nice and London are where most lines start or end. A single line across an ocean is usually a long range jet going home.</p>
-<p>The map refreshes with the board, several times a day. To be told when a leg appears on a route you care about, <a href="/#alerts">set a route alert</a>. To see the same data as a table, use the <a href="/">live list</a>, or take it as a file from <a href="/open-data">open data</a>.</p>
+<p class="gnote">Diese Seite ist der Anfang der deutschen Ausgabe. Navigation, Anfrageformular und die übrigen Seiten sind noch auf Englisch: <a href="/">zur englischen Liste</a>.</p>
 </div>
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
 <script>
 (function(){
 
@@ -492,59 +493,38 @@ function api(path){ return fetch(BASE+"/rest/v1/"+path, {headers:{apikey:KEY, Au
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
 function flightUrl(id){ return "/flight/"+id; }
 
-  var touch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
-  var map = L.map("elmap", { worldCopyJump: true, minZoom: 2, preferCanvas: true, scrollWheelZoom: false, dragging: !touch, tap: !touch, zoomControl: true }).setView([38, -10], 3);
-  /* The page must scroll past the map with one finger: on touch devices the
-     map starts locked and a tap unlocks dragging; two fingers always zoom. */
-  var lock = document.getElementById("maplock");
-  if (touch) { lock.hidden = false; lock.addEventListener("click", function(){ lock.hidden = true; map.dragging.enable(); }); map.on("blur", function(){}); document.addEventListener("touchstart", function(e){ if (!lock.hidden) return; if (!document.getElementById("elmap").contains(e.target)) { lock.hidden = false; map.dragging.disable(); } }, { passive: true }); }
-  else { map.on("click focus", function(){ map.scrollWheelZoom.enable(); }); map.on("mouseout", function(){ map.scrollWheelZoom.disable(); }); }
-  function arc(a, b){ /* a few points along the great circle so long legs bend instead of cutting straight across */
-    var n = 24, out = [], rad = Math.PI / 180, la1 = a[0] * rad, lo1 = a[1] * rad, la2 = b[0] * rad, lo2 = b[1] * rad;
-    var d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((la1 - la2) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin((lo1 - lo2) / 2), 2)));
-    if (!d || d < 0.02) return [a, b];
-    for (var i = 0; i <= n; i++) { var f = i / n, A = Math.sin((1 - f) * d) / Math.sin(d), B = Math.sin(f * d) / Math.sin(d);
-      var x = A * Math.cos(la1) * Math.cos(lo1) + B * Math.cos(la2) * Math.cos(lo2), y = A * Math.cos(la1) * Math.sin(lo1) + B * Math.cos(la2) * Math.sin(lo2), z = A * Math.sin(la1) + B * Math.sin(la2);
-      out.push([Math.atan2(z, Math.sqrt(x * x + y * y)) / rad, Math.atan2(y, x) / rad]); }
-    return out;
-  }
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", { maxZoom: 12, subdomains: "abcd",
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' }).addTo(map);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", { maxZoom: 12, subdomains: "abcd", pane: "overlayPane", opacity: 0.85 }).addTo(map);
-  var layer = L.layerGroup().addTo(map), all = [], first = true, f = { reg: "", days: "7", price: "" };
-
-  function bar(id, key){ var b = document.getElementById(id); b.addEventListener("click", function(e){ var btn = e.target.closest("button"); if(!btn) return;
-    Array.prototype.forEach.call(b.querySelectorAll("button"), function(x){ x.setAttribute("aria-pressed", x===btn ? "true" : "false"); }); f[key] = btn.getAttribute("data-v"); draw(); }); }
-  bar("mapreg","reg"); bar("mapdays","days"); bar("mapprice","price");
-  /* On a phone the full board is a tangle: start with priced legs only, one tap widens it. */
-  if (window.innerWidth < 700) { f.price = "1"; Array.prototype.forEach.call(document.querySelectorAll("#mapprice button"), function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-v") === "1" ? "true" : "false"); }); }
-
-  function keep(l){
-    if (f.reg === "__rest" && /^(Europe|North America)$/.test(l.region||"")) return false;
-    if (f.reg && f.reg !== "__rest" && l.region !== f.reg) return false;
-    if (f.price && !l.price_note) return false;
-    if (f.days) { var lim = new Date(); lim.setDate(lim.getDate() + parseInt(f.days,10)); if (l.departure_date > lim.toISOString().slice(0,10)) return false; }
-    return true;
-  }
+  var all = [], f = { when: "30" }, DACH = { DE: 1, AT: 1, CH: 1 };
+  var b = document.getElementById("dwhen"); b.addEventListener("click", function(e){ var btn = e.target.closest("button"); if(!btn) return;
+    Array.prototype.forEach.call(b.querySelectorAll("button"), function(x){ x.setAttribute("aria-pressed", x===btn ? "true" : "false"); }); f.when = btn.getAttribute("data-v"); draw(); });
+  ["d_from", "d_to"].forEach(function(id){ document.getElementById(id).addEventListener("input", draw); });
+  function norm(s){ return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+  var DE = { "munchen": "munich", "koln": "cologne", "nurnberg": "nuremberg", "wien": "vienna", "zurich": "zurich", "genf": "geneva", "nizza": "nice", "mailand": "milan", "venedig": "venice", "rom": "rome", "florenz": "florence", "neapel": "naples", "lissabon": "lisbon", "brussel": "brussels", "kopenhagen": "copenhagen", "warschau": "warsaw", "prag": "prague", "athen": "athens", "mallorca": "palma", "moskau": "moscow", "london": "london", "paris": "paris" };
+  function hit(needle, label, iata, city){ needle = norm(needle).trim(); if (!needle) return true; var n2 = DE[needle] || needle; var hay = norm(label) + " " + norm(iata) + " " + norm(city); return hay.indexOf(needle) > -1 || hay.indexOf(n2) > -1; }
+  function fmtDe(d){ var p = d.slice(0,10).split("-"); var m = ["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sept.","Okt.","Nov.","Dez."]; return parseInt(p[2],10) + ". " + m[parseInt(p[1],10)-1] + " " + p[0]; }
   function draw(){
-    layer.clearLayers(); var n = 0, shown = 0, bounds = [];
-    all.forEach(function(l){
-      if (!keep(l)) return; n++;
-      if (l.from_lat==null || l.to_lat==null) return; shown++;
-      var priced = !!l.price_note;
-      var line = L.polyline(arc([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]), { color: priced ? "#C9A24C" : "#ffffff", weight: priced ? 1.8 : 0.9, opacity: priced ? 0.85 : 0.32, smoothFactor: 1.5 });
-      line.bindPopup('<b>'+esc(l.from_label)+' to '+esc(l.to_label)+'</b><br>'+esc(fmtDate(l.departure_date))+(l.aircraft_type?' &middot; '+esc(l.aircraft_type):'')+(l.seats?' &middot; up to '+l.seats+' seats':'')+'<br>'+(l.price_note?esc(l.price_note.replace(" listed","")):'Price on enquiry')+'<br><a href="'+flightUrl(l.id)+'">Open this flight</a>');
-      line.on("mouseover", function(){ this.setStyle({ weight: 4, opacity: 1 }); }).on("mouseout", function(){ this.setStyle({ weight: priced ? 1.8 : 0.9, opacity: priced ? 0.85 : 0.32 }); });
-      layer.addLayer(line);
-      L.circleMarker([l.from_lat, l.from_lon], { radius: priced ? 2.4 : 1.6, color: priced ? "#C9A24C" : "#ffffff", fillColor: priced ? "#C9A24C" : "#ffffff", fillOpacity: priced ? 1 : 0.6, weight: 0 }).addTo(layer);
-      bounds.push([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]);
-    });
-    document.getElementById("mapcnt").textContent = n + " legs" + (shown < n ? ", " + shown + " with a known position" : "") + (all.length ? " of " + all.length + " on the board" : "");
-    if (bounds.length && (f.reg || first)) map.fitBounds(bounds, { padding: [20, 20], maxZoom: 5 }); first = false;
+    var from = document.getElementById("d_from").value, to = document.getElementById("d_to").value, lim = "";
+    if (f.when === "7" || f.when === "30") { var d = new Date(); d.setDate(d.getDate() + parseInt(f.when, 10)); lim = d.toISOString().slice(0,10); }
+    var rows = all.filter(function(l){
+      if (lim && l.departure_date > lim) return false;
+      if (f.when === "dach" && !(DACH[l.from_country] || DACH[l.to_country])) return false;
+      return hit(from, l.from_label, l.from_iata, l.from_city) && hit(to, l.to_label, l.to_iata, l.to_city);
+    }).slice(0, 150);
+    document.getElementById("drows").innerHTML = rows.map(function(l){
+      var q = "/enquire?fromcity=" + encodeURIComponent(l.from_label) + "&tocity=" + encodeURIComponent(l.to_label) + "&date=" + l.departure_date + (l.aircraft_type ? "&aircraft=" + encodeURIComponent(l.aircraft_type) : "") + (l.seats ? "&seats=" + l.seats : "") + "&leg=" + l.id;
+      return '<tr><td class="num">' + esc(fmtDe(l.departure_date)) + '</td><td class="lead">' + esc(l.from_label) + ' nach ' + esc(l.to_label) + '<div style="font-size:12px;color:var(--mute)">' + esc((l.from_iata || l.from_country || "") + (l.to_iata || l.to_country ? " · " + (l.to_iata || l.to_country) : "")) + '</div></td><td>' + esc(l.aircraft_type || "auf Anfrage") + '</td><td class="num">' + (l.seats || "") + '</td><td class="num">' + (l.price_note ? esc(l.price_note.replace(" listed", "")) : '<span style="color:var(--mute)">auf Anfrage</span>') + '</td><td><a class="enq" href="' + q + '">Anfragen</a> <a href="' + flightUrl(l.id) + '" style="font-size:12.5px;margin-left:6px">Details</a></td></tr>';
+    }).join("") || '<tr><td colspan="6" class="gnote">Kein Empty Leg passt zu dieser Auswahl. <a href="/#alerts">Route Alert einrichten</a>, dann melden wir uns, sobald einer erscheint.</td></tr>';
   }
-  api("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date&limit=5000")
-    .then(function(rows){ all = rows; draw(); })
-    .catch(function(){ document.getElementById("mapcnt").textContent = "The board did not load. Refresh, or use the live list."; });
+  Promise.all([
+    api("leg_geo?select=id,from_label,from_iata,from_city,from_country,to_label,to_iata,to_city,to_country,departure_date,aircraft_type,seats,price_note&region=eq.Europe&order=departure_date&limit=3000"),
+    api("board_stats?select=live_legs")
+  ]).then(function(res){
+    all = res[0];
+    document.getElementById("d_live").textContent = all.length.toLocaleString("de-DE");
+    document.getElementById("d_priced").textContent = all.filter(function(l){ return l.price_note; }).length.toLocaleString("de-DE");
+    document.getElementById("d_de").textContent = all.filter(function(l){ return DACH[l.from_country] || DACH[l.to_country]; }).length.toLocaleString("de-DE");
+    document.getElementById("d_all").textContent = (res[1][0] ? res[1][0].live_legs : 0).toLocaleString("de-DE");
+    draw();
+  }).catch(function(){ document.getElementById("drows").innerHTML = '<tr><td colspan="6" class="gnote">Die Liste konnte nicht geladen werden. Bitte neu laden oder <a href="/">die englische Liste</a> öffnen.</td></tr>'; });
 })();
 </script>
 

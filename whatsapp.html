@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Live map of empty leg flights | Empty Leg List</title>
+<title>Empty leg alerts on WhatsApp, in preparation | Empty Leg List</title>
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://emptylegslist.com/map">
-<meta name="description" content="Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.">
-<meta property="og:title" content="Live map of empty leg flights">
-<meta property="og:description" content="Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.">
+<link rel="canonical" href="https://emptylegslist.com/whatsapp">
+<meta name="description" content="Route alerts on WhatsApp within minutes of a leg appearing, instead of a daily email. In preparation; leave your number.">
+<meta property="og:title" content="Empty leg alerts on WhatsApp">
+<meta property="og:description" content="Route alerts on WhatsApp within minutes of a leg appearing, instead of a daily email. In preparation; leave your number.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://emptylegslist.com/map">
+<meta property="og:url" content="https://emptylegslist.com/whatsapp">
 <meta property="og:image" content="https://emptylegslist.com/brand/og-default.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -90,20 +90,24 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.map{max-width:1180px}
-#elmap{width:100%;height:min(72vh,720px);border-radius:14px;background:#0D1F36;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:8px 0 10px}
-.leaflet-popup-content{font:14px/1.5 Raleway,sans-serif;color:#16222e;margin:12px 14px}
-.leaflet-popup-content b{color:#0D1F36}
-.leaflet-popup-content a{color:#0D1F36}
-.mapbar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:4px 0 10px}
-.mapbar .gcur{margin:0}
-.mapbar .cnt{font-size:13.5px;color:var(--mute);margin-left:auto}
-.mapwrap{position:relative}
-.maplock{position:absolute;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:rgba(13,31,54,.18);border-radius:14px;cursor:pointer}
-.maplock span{background:#fff;color:#0D1F36;font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
-.maplegend{position:absolute;left:12px;bottom:12px;z-index:400;background:rgba(13,31,54,.82);color:#e8edf3;font-size:12px;line-height:1.7;padding:7px 11px;border-radius:9px;pointer-events:none}
-.maplegend i{display:inline-block;width:18px;height:0;border-top:2px solid #C9A24C;vertical-align:middle;margin-right:7px}
-.maplegend i.w{border-top:1px solid rgba(255,255,255,.75)}
+.wrap.pr{max-width:900px}
+.prep{display:inline-block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:999px;background:#fff3d6;color:#7a5a00;font-weight:600;margin:34px 0 0}
+.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0 26px}
+.steps li{position:relative;padding:0 0 14px 44px;font-size:15.5px;line-height:1.65}
+.steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:2px;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.iform{background:#fff;border-radius:14px;padding:22px 24px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:8px 0 26px}
+.iform h2{margin-top:0}
+.iform label{display:block;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:600;margin:14px 0 6px}
+.iform input,.iform select,.iform textarea{width:100%;box-sizing:border-box;font:inherit;font-size:15px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#fbfcfd;color:var(--ink)}
+.iform textarea{min-height:90px;resize:vertical}
+.iform .row{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.iform button{margin-top:18px;background:var(--navy);color:#fff;border:0;border-radius:999px;padding:13px 26px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+.iform button[disabled]{opacity:.6;cursor:default}
+.iform .hp{position:absolute;left:-9999px;top:-9999px}
+.iform .done{font-size:15.5px;color:#1c7a4a;font-weight:500}
+.iform .err{font-size:13.5px;color:#b3261e;margin-top:10px}
+.iform .small{font-size:12.5px;color:var(--mute);margin:12px 0 0}
+@media(max-width:640px){.iform .row{grid-template-columns:1fr}}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -460,27 +464,50 @@ p.gtip b{color:var(--navy)}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap map">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Live map</p>
-<h1>Where the empty legs are today</h1>
-<p class="lede">Every empty leg on the board, drawn from where it starts to where it lands. Gold lines carry a published price, white ones say price on enquiry. Tap or click a line for the flight; use the buttons to thin the picture.</p>
-<div class="mapbar">
-  <div class="gcur" id="mapreg"><button aria-pressed="true" data-v="">All regions</button><button data-v="Europe">Europe</button><button data-v="North America">North America</button><button data-v="__rest">Rest of world</button></div>
-  <div class="gcur" id="mapdays"><button data-v="3">Next 3 days</button><button aria-pressed="true" data-v="7">Next 7 days</button><button data-v="30">Next 30 days</button><button data-v="">All dates</button></div>
-  <div class="gcur" id="mapprice"><button aria-pressed="true" data-v="">All legs</button><button data-v="1">With a price</button></div>
-  <span class="cnt" id="mapcnt">Reading the board.</span>
+<div class="wrap pr">
+<span class="prep">In preparation</span>
+<h1>Empty leg alerts on WhatsApp</h1>
+<p class="lede">Our route alerts are email, sent on a schedule. Some legs do not wait for the schedule. A WhatsApp alert would reach you within minutes of a leg appearing on your route, with the date, the aircraft, the price if there is one, and a link to enquire. Nothing here is running yet; WhatsApp requires a business account and an approved template before we can send a single message. This page asks who wants it.</p>
+
+<h2>What the record says</h2>
+<div class="gstats"><div><b data-stat="gone_within_24h">&nbsp;</b><span>recorded legs were gone within 24 hours of appearing</span></div><div><b><span style="display:inline" data-pct="published_within_7_days/recorded_legs">&nbsp;</span>%</b><span>of recorded legs were published a week or less before departure</span></div><div><b data-stat="live_legs">&nbsp;</b><span>legs on the board now</span></div><div><b data-stat="recorded_legs">&nbsp;</b><span>legs recorded since 30 July 2026</span></div></div>
+<p class="gnote">Read live from our record. A leg that lasts a day is gone before a daily email arrives.</p>
+
+<h2>How it would work</h2>
+<ol class="steps">
+<li>You give us a route, or a departure city, and a WhatsApp number. You confirm the number once from your phone.</li>
+<li>Each time the board refreshes and a new leg matches, you get one message: route, date, aircraft, price or "price on enquiry", link. Nothing else, ever; no marketing.</li>
+<li>Reply STOP and it stops. The number is used for alerts and for nothing else.</li>
+</ol>
+
+<h2>What it costs</h2>
+<p>We do not know yet. WhatsApp charges per conversation, so a free tier with a cap and a paid tier for heavy users is the likely shape. Email alerts stay free whatever happens.</p>
+<div class="iform" id="iform">
+<h2>Leave your details</h2>
+<p style="margin-top:0">No commitment, no payment, no newsletter. We write to you once, when this exists, and once more if we need a tester. <a href="/privacy">Privacy</a>.</p>
+<form id="interest" novalidate>
+<div class="row">
+<div><label for="i_name">Name</label><input id="i_name" name="name" autocomplete="name"></div>
+<div><label for="i_email">Email</label><input id="i_email" name="email" type="email" required autocomplete="email"></div>
 </div>
-<div class="mapwrap"><div id="elmap"></div><div class="maplegend"><i></i>published price<br><i class="w"></i>price on enquiry</div><div class="maplock" id="maplock" hidden><span>Tap to move the map</span></div></div>
-<p class="gnote">A line starts at the departure airport the operator named, or at an airport in the departure city when only the city was given, and ends the same way at the destination. Legs the operator described by city alone are drawn at city level. Prices are the operator's own figure for the whole aircraft.</p>
+<div class="row">
+<div><label for="i_role">You are</label><select id="i_role" name="role"><option value="traveller">A traveller</option><option value="broker">A broker</option><option value="operator">An operator</option><option value="other">Something else</option></select></div>
+<div><label for="i_company">Company, if any</label><input id="i_company" name="company" autocomplete="organization"></div>
+</div>
+<div class="row"><div><label for="i_route">The route or city to watch</label><input id="i_route" data-meta="route" placeholder="e.g. Geneva to London, or anything from Miami"></div><div><label for="i_phone">WhatsApp number, optional</label><input id="i_phone" data-meta="phone" type="tel" placeholder="+44 ..." autocomplete="tel"></div></div>
+<label for="i_message">Anything else</label><textarea id="i_message" name="message" placeholder="The route you fly most, how often, what would make this useful."></textarea>
+<div class="hp"><label for="i_web">Website</label><input id="i_web" name="website" tabindex="-1" autocomplete="off"></div>
+<button type="submit" id="i_send">Count me in</button>
+<div class="err" id="i_err" hidden></div>
+<p class="small">Stored in our own database, product "whatsapp", nothing else. Not shared with operators or anyone.</p>
+</form>
+<p class="done" id="i_done" hidden>Noted. Thank you. We write when there is something to show.</p>
+</div>
 
-<h2>How to read it</h2>
-<p>The lines are one way: an empty leg is an aircraft repositioning, and the operator sells that single flight, not a return. Clusters mean an operator is busy in that area; Teterboro, Van Nuys, Nice and London are where most lines start or end. A single line across an ocean is usually a long range jet going home.</p>
-<p>The map refreshes with the board, several times a day. To be told when a leg appears on a route you care about, <a href="/#alerts">set a route alert</a>. To see the same data as a table, use the <a href="/">live list</a>, or take it as a file from <a href="/open-data">open data</a>.</p>
+<p><a href="/#alerts">Email alerts, available now</a> &nbsp;&middot;&nbsp; <a href="/">Back to the live list</a></p>
 </div>
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
 <script>
 (function(){
 
@@ -492,59 +519,26 @@ function api(path){ return fetch(BASE+"/rest/v1/"+path, {headers:{apikey:KEY, Au
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
 function flightUrl(id){ return "/flight/"+id; }
 
-  var touch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
-  var map = L.map("elmap", { worldCopyJump: true, minZoom: 2, preferCanvas: true, scrollWheelZoom: false, dragging: !touch, tap: !touch, zoomControl: true }).setView([38, -10], 3);
-  /* The page must scroll past the map with one finger: on touch devices the
-     map starts locked and a tap unlocks dragging; two fingers always zoom. */
-  var lock = document.getElementById("maplock");
-  if (touch) { lock.hidden = false; lock.addEventListener("click", function(){ lock.hidden = true; map.dragging.enable(); }); map.on("blur", function(){}); document.addEventListener("touchstart", function(e){ if (!lock.hidden) return; if (!document.getElementById("elmap").contains(e.target)) { lock.hidden = false; map.dragging.disable(); } }, { passive: true }); }
-  else { map.on("click focus", function(){ map.scrollWheelZoom.enable(); }); map.on("mouseout", function(){ map.scrollWheelZoom.disable(); }); }
-  function arc(a, b){ /* a few points along the great circle so long legs bend instead of cutting straight across */
-    var n = 24, out = [], rad = Math.PI / 180, la1 = a[0] * rad, lo1 = a[1] * rad, la2 = b[0] * rad, lo2 = b[1] * rad;
-    var d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((la1 - la2) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin((lo1 - lo2) / 2), 2)));
-    if (!d || d < 0.02) return [a, b];
-    for (var i = 0; i <= n; i++) { var f = i / n, A = Math.sin((1 - f) * d) / Math.sin(d), B = Math.sin(f * d) / Math.sin(d);
-      var x = A * Math.cos(la1) * Math.cos(lo1) + B * Math.cos(la2) * Math.cos(lo2), y = A * Math.cos(la1) * Math.sin(lo1) + B * Math.cos(la2) * Math.sin(lo2), z = A * Math.sin(la1) + B * Math.sin(la2);
-      out.push([Math.atan2(z, Math.sqrt(x * x + y * y)) / rad, Math.atan2(y, x) / rad]); }
-    return out;
-  }
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", { maxZoom: 12, subdomains: "abcd",
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' }).addTo(map);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", { maxZoom: 12, subdomains: "abcd", pane: "overlayPane", opacity: 0.85 }).addTo(map);
-  var layer = L.layerGroup().addTo(map), all = [], first = true, f = { reg: "", days: "7", price: "" };
-
-  function bar(id, key){ var b = document.getElementById(id); b.addEventListener("click", function(e){ var btn = e.target.closest("button"); if(!btn) return;
-    Array.prototype.forEach.call(b.querySelectorAll("button"), function(x){ x.setAttribute("aria-pressed", x===btn ? "true" : "false"); }); f[key] = btn.getAttribute("data-v"); draw(); }); }
-  bar("mapreg","reg"); bar("mapdays","days"); bar("mapprice","price");
-  /* On a phone the full board is a tangle: start with priced legs only, one tap widens it. */
-  if (window.innerWidth < 700) { f.price = "1"; Array.prototype.forEach.call(document.querySelectorAll("#mapprice button"), function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-v") === "1" ? "true" : "false"); }); }
-
-  function keep(l){
-    if (f.reg === "__rest" && /^(Europe|North America)$/.test(l.region||"")) return false;
-    if (f.reg && f.reg !== "__rest" && l.region !== f.reg) return false;
-    if (f.price && !l.price_note) return false;
-    if (f.days) { var lim = new Date(); lim.setDate(lim.getDate() + parseInt(f.days,10)); if (l.departure_date > lim.toISOString().slice(0,10)) return false; }
-    return true;
-  }
-  function draw(){
-    layer.clearLayers(); var n = 0, shown = 0, bounds = [];
-    all.forEach(function(l){
-      if (!keep(l)) return; n++;
-      if (l.from_lat==null || l.to_lat==null) return; shown++;
-      var priced = !!l.price_note;
-      var line = L.polyline(arc([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]), { color: priced ? "#C9A24C" : "#ffffff", weight: priced ? 1.8 : 0.9, opacity: priced ? 0.85 : 0.32, smoothFactor: 1.5 });
-      line.bindPopup('<b>'+esc(l.from_label)+' to '+esc(l.to_label)+'</b><br>'+esc(fmtDate(l.departure_date))+(l.aircraft_type?' &middot; '+esc(l.aircraft_type):'')+(l.seats?' &middot; up to '+l.seats+' seats':'')+'<br>'+(l.price_note?esc(l.price_note.replace(" listed","")):'Price on enquiry')+'<br><a href="'+flightUrl(l.id)+'">Open this flight</a>');
-      line.on("mouseover", function(){ this.setStyle({ weight: 4, opacity: 1 }); }).on("mouseout", function(){ this.setStyle({ weight: priced ? 1.8 : 0.9, opacity: priced ? 0.85 : 0.32 }); });
-      layer.addLayer(line);
-      L.circleMarker([l.from_lat, l.from_lon], { radius: priced ? 2.4 : 1.6, color: priced ? "#C9A24C" : "#ffffff", fillColor: priced ? "#C9A24C" : "#ffffff", fillOpacity: priced ? 1 : 0.6, weight: 0 }).addTo(layer);
-      bounds.push([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]);
-    });
-    document.getElementById("mapcnt").textContent = n + " legs" + (shown < n ? ", " + shown + " with a known position" : "") + (all.length ? " of " + all.length + " on the board" : "");
-    if (bounds.length && (f.reg || first)) map.fitBounds(bounds, { padding: [20, 20], maxZoom: 5 }); first = false;
-  }
-  api("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date&limit=5000")
-    .then(function(rows){ all = rows; draw(); })
-    .catch(function(){ document.getElementById("mapcnt").textContent = "The board did not load. Refresh, or use the live list."; });
+  var PRODUCT = "whatsapp";
+  api("board_stats?select=*").then(function(r){ var s = r[0]; if(!s) return;
+    Object.keys(s).forEach(function(k){ Array.prototype.forEach.call(document.querySelectorAll("[data-stat=" + k + "]"), function(el){ el.textContent = typeof s[k] === "number" ? s[k].toLocaleString("en-GB") : s[k]; }); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pct]"), function(el){ var p = el.getAttribute("data-pct").split("/"); if (s[p[1]]) el.textContent = Math.round(100 * s[p[0]] / s[p[1]]); });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-days=avg_hours_listed_past]"), function(el){ el.textContent = (s.avg_hours_listed_past / 24).toFixed(1); });
+  }).catch(function(){});
+  var f = document.getElementById("interest");
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    var err = document.getElementById("i_err"), btn = document.getElementById("i_send");
+    var email = f.email.value.trim();
+    if (f.website.value) return;
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = "That email does not look complete."; err.hidden = false; return; }
+    err.hidden = true; btn.disabled = true; btn.textContent = "Sending";
+    var meta = {}; Array.prototype.forEach.call(f.querySelectorAll("[data-meta]"), function(el){ if (el.value) meta[el.getAttribute("data-meta")] = el.value; });
+    fetch(BASE + "/rest/v1/interest", { method: "POST", headers: { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+      body: JSON.stringify({ product: PRODUCT, email: email, name: f.name.value.trim() || null, company: f.company.value.trim() || null, role: f.role.value, message: f.message.value.trim() || null, meta: Object.keys(meta).length ? meta : null, page: location.pathname, user_agent: navigator.userAgent.slice(0, 200) }) })
+    .then(function(r){ if (!r.ok) throw new Error(r.status); f.hidden = true; document.getElementById("i_done").hidden = false; })
+    .catch(function(){ btn.disabled = false; btn.textContent = "Count me in"; err.textContent = "That did not go through. Try again, or write to us from the contact page."; err.hidden = false; });
+  });
 })();
 </script>
 
