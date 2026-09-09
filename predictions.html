@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Where the next empty leg is likely to appear | Empty Leg List</title>
+<title>Where will the next empty leg appear? | Empty Leg List</title>
 <link rel="canonical" href="https://emptylegslist.com/predictions">
-<meta name="description" content="Empty Leg List writes down which routes it expects to carry an empty leg each week, before the week starts, and publishes how often it was right.">
-<meta property="og:title" content="Where the next empty leg is likely to appear">
-<meta property="og:description" content="Empty Leg List writes down which routes it expects to carry an empty leg each week, before the week starts, and publishes how often it was right.">
+<meta name="description" content="Weekly empty leg route predictions from Empty Leg List, published in advance and checked against what actually happens.">
+<meta property="og:title" content="Where will the next empty leg appear?">
+<meta property="og:description" content="Weekly empty leg route predictions from Empty Leg List, published in advance and checked against what actually happens.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emptylegslist.com/predictions">
 <meta property="og:image" content="https://emptylegslist.com/brand/og-default.jpg">
@@ -89,15 +89,77 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.pd{max-width:1000px}
-.bar{position:relative;height:7px;background:#eef1f5;border-radius:4px;overflow:hidden;min-width:90px}
-.bar i{position:absolute;top:0;bottom:0;background:#A8843C;border-radius:4px}
-.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--navy);opacity:.55}
+.wrap.fc{max-width:1000px}
+.crumb{font-size:12.5px;color:var(--mute);margin:26px 0 18px}
+.crumb a{color:var(--mute);text-decoration:none}
+.crumb a:hover{color:var(--navy)}
+.fchead{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start}
+.fceyebrow{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);font-weight:600;margin:0 0 8px}
+.wrap.fc h1{margin:0 0 8px;font-size:clamp(28px,4.6vw,40px);line-height:1.12}
+.fcsub{font-size:16px;color:#46525f;margin:0;max-width:56ch}
+.wkpick{min-width:250px}
+.wkpick select{width:100%;font:inherit;font-size:13.5px;font-weight:500;color:var(--navy);background:#fff;
+  border:1px solid var(--line);border-radius:12px;padding:11px 14px;cursor:pointer;box-shadow:0 1px 3px rgba(14,35,56,.05)}
+.wkpick p{font-size:12px;color:var(--mute);margin:9px 2px 0;line-height:1.5}
+
+.tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:30px 0 0}
+.tabs button{position:relative;background:none;border:0;border-radius:0;box-shadow:none;padding:0 0 13px;margin:0;
+  font:inherit;font-size:14.5px;font-weight:500;color:var(--mute);cursor:pointer;line-height:1.4}
+.tabs button::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:transparent}
+.tabs button[aria-selected=true]{color:var(--navy)}
+.tabs button[aria-selected=true]::after{background:var(--gold)}
+.pane[hidden]{display:none}
+
+.note{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;background:#fdf8ec;
+  border:1px solid #f0e3c6;border-radius:14px;padding:18px 22px;margin:26px 0 0}
+.note .ic{width:44px;height:44px;border-radius:50%;background:#f3e6c8;display:flex;align-items:center;justify-content:center;flex:none}
+.note b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:19px;color:var(--navy);margin-bottom:3px}
+.note span{font-size:13.5px;color:#5a6673}
+.note .rt{border-left:1px solid #ecdfc2;padding-left:20px;font-size:12.5px;color:#6b7885;line-height:1.6;text-align:left}
+@media(max-width:760px){.note{grid-template-columns:auto 1fr}.note .rt{grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid #ecdfc2;padding-top:12px}}
+
+.bar{position:relative;height:7px;background:#eef1f5;border-radius:4px;width:112px;flex:none}
+.bar i{position:absolute;top:0;bottom:0;background:#C9A24C;border-radius:4px}
+.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--navy);opacity:.6}
 .rate{display:flex;align-items:center;gap:10px;white-space:nowrap}
-.rate b{font-variant-numeric:tabular-nums;color:var(--navy);font-weight:600;font-size:13.5px;min-width:38px;text-align:right}
-.rate span{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
-.sb{background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:18px 0 8px}
-.sb b{font-family:"Playfair Display",Georgia,serif;font-size:26px;color:var(--navy);display:block;margin-bottom:6px}
+.rate .pc{font-variant-numeric:tabular-nums;color:var(--navy);font-weight:600;font-size:14px;min-width:38px}
+.rate .rg{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+.day{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;background:#f1f4f8;color:#46525f;font-weight:500}
+.arw{color:var(--mute);margin:0 7px}
+table.gtab tr.top td{background:#fdf8ec}
+.bell{display:inline-flex;color:var(--mute);text-decoration:none}
+.bell:hover{color:var(--gold)}
+
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 14px;align-items:center}
+.tools input,.tools select{font:inherit;font-size:13.5px;padding:10px 13px;border:1px solid var(--line);
+  border-radius:11px;background:#fff;color:var(--ink)}
+.tools input{flex:1;min-width:210px}
+.tools .sp{flex:1}
+.tools input:focus,.tools select:focus{outline:none;border-color:var(--navy)}
+
+.tfoot{display:flex;justify-content:space-between;gap:18px;align-items:baseline;margin:10px 2px 0;flex-wrap:wrap}
+.tfoot p{font-size:12.5px;color:var(--mute);margin:0}
+.tfoot a{font-size:13.5px;color:var(--gold);font-weight:600;text-decoration:none}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin:44px 0 0}
+@media(max-width:860px){.grid2{grid-template-columns:1fr;gap:26px}.fchead{grid-template-columns:1fr}}
+.steps{list-style:none;margin:18px 0 0;padding:0}
+.steps li{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:0 0 22px;position:relative}
+.steps li:last-child{padding-bottom:0}
+.steps li::after{content:"";position:absolute;left:19px;top:40px;bottom:4px;width:1px;background:var(--line)}
+.steps li:last-child::after{display:none}
+.steps .n{width:38px;height:38px;border-radius:50%;background:#fdf8ec;border:1px solid #f0e3c6;color:#9a7730;
+  font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.steps b{display:block;color:var(--navy);font-weight:600;font-size:15px;margin-bottom:3px}
+.steps span{font-size:14px;color:#46525f;line-height:1.6}
+.side{background:#fff;border-radius:16px;padding:24px 26px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
+.side h3{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:21px;color:var(--navy);margin:0 0 10px}
+.side p{font-size:14.5px;color:#46525f;line-height:1.65;margin:0 0 18px}
+.side .lnk{border-top:1px solid var(--line);padding-top:16px;margin-top:4px}
+.side .lnk a{display:block;color:var(--gold);font-weight:600;font-size:14.5px;text-decoration:none}
+.side .lnk small{display:block;color:var(--mute);font-size:13px;margin:3px 0 16px}
+.side .lnk div:last-child small{margin-bottom:0}
+.moreb{display:inline-block;margin-top:18px;color:var(--gold);font-weight:600;font-size:14px;text-decoration:none}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -165,8 +227,10 @@ p.gtip b{color:var(--navy)}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
+  <link rel="stylesheet" href="/site-forms.css">
+  <script src="/site-forms.js" defer></script>
 <!-- siteld.py -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Where the next empty leg is likely to appear","item":"https://emptylegslist.com/predictions"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/predictions","url":"https://emptylegslist.com/predictions","name":"Where the next empty leg is likely to appear","description":"Empty Leg List writes down which routes it expects to carry an empty leg each week, before the week starts, and publishes how often it was right.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Where will the next empty leg appear?","item":"https://emptylegslist.com/predictions"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/predictions","url":"https://emptylegslist.com/predictions","name":"Where will the next empty leg appear?","description":"Weekly empty leg route predictions from Empty Leg List, published in advance and checked against what actually happens.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
 <!-- /siteld.py -->
 </head>
 <body>
@@ -457,29 +521,80 @@ p.gtip b{color:var(--navy)}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap pd">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Forecast</p>
-<h1>Where the next empty leg is likely to appear</h1>
-<p class="lede">Every Monday this site writes down which routes it expects to carry an empty leg in the coming week, before that week starts. The following Monday it records what actually happened. Both are below, and neither can be edited afterwards.</p>
+<div class="wrap fc">
+<p class="crumb"><a href="/">Home</a> / Forecast</p>
 
-<p class="gtip"><b>Read the score before you read the forecast.</b> A prediction nobody checks is worth nothing. The scoreboard is the honest measure of whether these numbers mean anything, and while it is thin, they do not.</p>
+<div class="fchead">
+  <div>
+    <p class="fceyebrow">Forecast <span id="wklabel"></span></p>
+    <h1>Where will the next empty leg appear?</h1>
+    <p class="fcsub">Weekly route predictions, published in advance. Checked against what actually happens.</p>
+  </div>
+  <div class="wkpick">
+    <select id="wk" aria-label="Choose a week"><option>Reading the record</option></select>
+    <p>Predictions are published every Monday and cannot be edited afterwards.</p>
+  </div>
+</div>
 
-<h2>The score so far</h2>
-<div id="sbwrap"><p class="gnote">Reading the record.</p></div>
-<p class="gnote">Each row groups the predictions by how many weeks that route had already appeared in when we made the call. "We said" is the average rate we published; "actually happened" is how often a leg really turned up. When those two columns are close, the numbers are calibrated. When they are far apart, they are not, and this page will say so rather than quietly adjust.</p>
+<div class="tabs" role="tablist">
+  <button role="tab" aria-selected="true" data-p="p1">Weekly forecast</button>
+  <button role="tab" aria-selected="false" data-p="p2">Track record</button>
+  <button role="tab" aria-selected="false" data-p="p3">How it works</button>
+</div>
 
-<h2>The forecast for the coming week</h2>
-<div class="gscroll"><table class="gtab"><thead><tr><th>Route</th><th>Weekday</th><th>Seen</th><th>Expected rate</th><th class="num">Legs recorded</th><th class="num">Priced</th></tr></thead><tbody id="fc"><tr><td colspan="6" class="gnote">Reading the record.</td></tr></tbody></table></div>
-<p class="gnote">The bar shows the range the record supports, and the dark line is the middle of it. A route seen in every week of the record still shows a range, because six weeks is six observations and no amount of arithmetic turns that into certainty. Rates are for the route in that direction, on that weekday.</p>
+<div class="pane" id="p1">
+  <div id="banner"></div>
 
-<h2>How the number is worked out</h2>
-<p>It counts. For each route and weekday it takes the number of complete weeks in the record and the number of those weeks that carried a leg, then puts a 90 per cent Wilson interval around the result. That is the standard interval for a proportion and it is deliberately the whole method.</p>
-<p>A larger model was tried first and rejected. Fitting one across all routes assumes routes differ from each other in a stable way, and the record says they do not: the spread between routes measures 0.0020 where random chance alone would produce 0.0240, because 2,768 of the 2,885 route and weekday combinations appeared exactly once. Most empty legs are one-offs, not a weekly service. The model was pulling a route seen six weeks out of six down to a 24 per cent chance, which is a model overruling its data, so it went.</p>
-<p>The interval will narrow on its own as the record grows. When the scoreboard has enough scored weeks it replaces this arithmetic with a measured hit rate, which needs no assumptions at all.</p>
+  <h2>This week's route forecast</h2>
+  <p class="gnote" style="margin:0 0 4px">Patterns from the past six weeks. Estimates, not confirmed availability.</p>
 
-<h2>What this is not</h2>
-<p>It is not availability. A route with a high rate can carry nothing next week, and a route that has never appeared can carry a leg tomorrow. It is not a schedule: operators publish empty legs because of the paid charters around them, and those change.</p>
-<p>If you want a specific pair, a <a href="/#alerts">route alert</a> tells you the hour a leg appears on it, which beats any forecast. The <a href="/likely">history page</a> shows what has already happened, and the <a href="/">live board</a> shows what is open now.</p>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Search routes, for example Ibiza or Las Vegas" aria-label="Search routes">
+    <select id="reg" aria-label="Region"><option value="">All regions</option></select>
+    <select id="dow" aria-label="Weekday"><option value="">Any weekday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option><option value="7">Sunday</option></select>
+    <select id="srt" aria-label="Sort"><option value="rate">Sort: expected rate</option><option value="seen">Sort: weeks seen</option><option value="legs">Sort: legs recorded</option><option value="route">Sort: route name</option></select>
+  </div>
+
+  <div class="gscroll"><table class="gtab"><thead><tr><th>Route</th><th>Day</th><th>Seen</th><th>Expected rate</th><th class="num">Recorded</th><th class="num">Priced</th><th>Alert</th></tr></thead><tbody id="rows"><tr><td colspan="7" class="gnote">Reading the record.</td></tr></tbody></table></div>
+  <div class="tfoot"><p>Gold bars show the range the data supports. More history means narrower ranges.</p><a href="#" id="showall">View all routes</a></div>
+</div>
+
+<div class="pane" id="p2" hidden>
+  <h2>Track record</h2>
+  <p class="gnote" style="margin:0 0 4px">Every prediction, next to what actually happened. Written before the week, scored after it.</p>
+  <div id="score"><p class="gnote">Reading the record.</p></div>
+  <p class="gnote">Rows group the predictions by how many weeks that route had already appeared in when the call was made. When "we said" and "actually happened" are close, the numbers are calibrated. When they are far apart, they are not, and this page will show that rather than quietly adjust.</p>
+</div>
+
+<div class="pane" id="p3" hidden>
+  <h2>How the forecast works</h2>
+  <p>It counts. For each route and weekday it takes the number of complete weeks in the record and the number of those weeks that carried a leg, then puts a 90 per cent Wilson interval around the result. That is the standard interval for a proportion, and it is deliberately the whole method.</p>
+  <p>A larger model was tried first and rejected. Fitting one across all routes assumes routes differ from each other in a stable way, and the record says they do not: the spread between routes measures 0.0020 where random chance alone would produce 0.0240, because 2,768 of the 2,885 route and weekday combinations appeared exactly once. Most empty legs are one-offs, not a weekly service. The model was pulling a route seen six weeks out of six down to a 24 per cent chance, which is a model overruling its data, so it went.</p>
+  <p>The interval narrows on its own as the record grows. Once the track record holds enough scored weeks it replaces this arithmetic with a measured hit rate, which needs no assumptions at all.</p>
+  <h2>What this is not</h2>
+  <p>It is not availability. A route with a high rate can carry nothing next week, and a route that has never appeared can carry a leg tomorrow. It is not a schedule either: operators publish empty legs because of the paid charters around them, and those change.</p>
+  <p>If you want a specific pair, a <a href="/#alerts">route alert</a> tells you the hour a leg appears on it, which beats any forecast.</p>
+</div>
+
+<div class="grid2">
+  <div>
+    <h2 style="margin-top:0">How the forecast works</h2>
+    <ul class="steps">
+      <li><span class="n">01</span><span><b>Observe</b><span>Count how often a route appeared on each weekday.</span></span></li>
+      <li><span class="n">02</span><span><b>Estimate</b><span>Show the expected rate and a 90 per cent Wilson interval.</span></span></li>
+      <li><span class="n">03</span><span><b>Check</b><span>Compare the forecast with the following week's results.</span></span></li>
+    </ul>
+    <a class="moreb" href="#" id="tomethod">Read the full methodology</a>
+  </div>
+  <div class="side">
+    <h3>A forecast, not a flight schedule</h3>
+    <p>Empty legs depend on charter plans that change. A high estimate does not guarantee a flight.</p>
+    <div class="lnk">
+      <div><a href="/">See live availability</a><small>Check what is open right now.</small></div>
+      <div><a href="/likely">Explore route history</a><small>See what has already happened on each route.</small></div>
+    </div>
+  </div>
+</div>
 </div>
 
 
@@ -513,46 +628,106 @@ function flightUrl(x){
 }
 
   var DAY = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  var MON = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var ALL = [], LIMIT = 12;
+
   function pct(x){ return Math.round(x * 100) + "%"; }
+  function d(s){ return new Date(String(s) + "T00:00:00Z"); }
+  function weekLabel(startISO){
+    var a = d(startISO), b = new Date(a.getTime() + 6 * 86400000);
+    var am = MON[a.getUTCMonth()], bm = MON[b.getUTCMonth()];
+    return "Week of " + a.getUTCDate() + (am === bm ? "" : " " + am) + " to " + b.getUTCDate() + " " + bm + " " + b.getUTCFullYear();
+  }
 
+  /* tabs */
+  var tabs = document.querySelector(".tabs");
+  function show(id){
+    Array.prototype.forEach.call(tabs.querySelectorAll("button"), function(b){ b.setAttribute("aria-selected", b.getAttribute("data-p") === id ? "true" : "false"); });
+    ["p1","p2","p3"].forEach(function(x){ document.getElementById(x).hidden = (x !== id); });
+  }
+  tabs.addEventListener("click", function(e){ var b = e.target.closest("button"); if (b) show(b.getAttribute("data-p")); });
+  document.getElementById("tomethod").addEventListener("click", function(e){ e.preventDefault(); show("p3"); window.scrollTo({top: 0, behavior: "smooth"}); });
+  document.getElementById("showall").addEventListener("click", function(e){ e.preventDefault(); LIMIT = 1e6; this.style.display = "none"; draw(); });
+
+  /* the week picker and the banner */
+  apiAll("forecast_log?select=target_week_start,made_on,outcome&order=target_week_start.desc").then(function(rows){
+    var weeks = {}, scored = 0, made = null;
+    rows.forEach(function(r){ weeks[r.target_week_start] = (weeks[r.target_week_start] || 0) + 1;
+      if (r.outcome !== null) scored++; if (!made || r.made_on < made) made = r.made_on; });
+    var keys = Object.keys(weeks).sort().reverse();
+    var sel = document.getElementById("wk");
+    sel.innerHTML = keys.map(function(k){ return '<option value="' + k + '">' + esc(weekLabel(k)) + "</option>"; }).join("") ||
+      "<option>No week published yet</option>";
+    if (keys.length){
+      document.getElementById("wklabel").textContent = "· " + weekLabel(keys[0]).toUpperCase();
+      var first = d(keys[keys.length - 1]); first.setUTCDate(first.getUTCDate() + 7);
+      document.getElementById("banner").innerHTML = scored ? "" :
+        '<div class="note"><span class="ic">' +
+        '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#9a7730" stroke-width="1.7" stroke-linecap="round">' +
+        '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>' +
+        '<span><b>Track record is building</b><span>No weeks scored yet. First results: ' +
+        esc(fmtDate(first.toISOString().slice(0,10))) + '.</span></span>' +
+        '<span class="rt">Published ' + esc(fmtDate(made)) + '<br>Predictions locked before the week begins.</span></div>';
+    }
+  }).catch(function(){});
+
+  /* the track record */
   api("forecast_scoreboard?select=*").then(function(rows){
-    var el = document.getElementById("sbwrap");
-    if (!rows.length){
-      el.innerHTML = '<div class="sb"><b>No weeks scored yet</b>' +
-        'The first predictions were written on 9 September 2026, for the week beginning 14 September. ' +
-        'They can only be scored once that week is over, so the first row of the scoreboard appears on ' +
-        '<b style="font-family:inherit;font-size:inherit;display:inline">Monday 21 September 2026</b>. ' +
-        'Until then this page is a forecast with nothing behind it, which is exactly how it should be read.</div>';
-      return; }
+    var el = document.getElementById("score");
+    if (!rows.length){ el.innerHTML = '<p class="gnote">Nothing has been scored yet. The first week closes on 21 September 2026 and this table fills in then.</p>'; return; }
     el.innerHTML = '<div class="gscroll"><table class="gtab"><thead><tr><th>Weeks seen when we called it</th>' +
-      '<th class="num">Predictions scored</th><th class="num">We said</th><th class="num">Actually happened</th>' +
-      '<th>Weeks covered</th></tr></thead><tbody>' +
-      rows.map(function(r){
-        return '<tr><td class="lead">' + esc(r.weeks_with_leg) + ' of the record</td>' +
-          '<td class="num">' + r.predictions_scored + '</td>' +
-          '<td class="num">' + pct(r.we_said) + '</td>' +
-          '<td class="num">' + pct(r.actually_happened) + '</td>' +
-          '<td>' + esc(fmtDate(r.first_week)) + ' to ' + esc(fmtDate(r.last_week)) + '</td></tr>'; }).join("") +
+      '<th class="num">Predictions scored</th><th class="num">We said</th><th class="num">Actually happened</th><th>Weeks covered</th></tr></thead><tbody>' +
+      rows.map(function(r){ return '<tr><td class="lead">' + esc(r.weeks_with_leg) + ' of the record</td>' +
+        '<td class="num">' + r.predictions_scored + '</td><td class="num">' + pct(r.we_said) + '</td>' +
+        '<td class="num">' + pct(r.actually_happened) + '</td><td>' + esc(fmtDate(r.first_week)) + ' to ' + esc(fmtDate(r.last_week)) + '</td></tr>'; }).join("") +
       '</tbody></table></div>';
-  }).catch(function(){ document.getElementById("sbwrap").innerHTML = '<p class="gnote">The scoreboard did not load.</p>'; });
+  }).catch(function(){ document.getElementById("score").innerHTML = '<p class="gnote">The track record did not load.</p>'; });
 
-  apiAll("route_forecast?select=from_city,to_city,weekday,weeks_with_leg,weeks_observed,rate_centre,rate_low,rate_high,legs_recorded,legs_priced&weeks_with_leg=gte.2&order=rate_centre.desc,legs_recorded.desc")
+  /* the forecast table */
+  function draw(){
+    var q = document.getElementById("q").value.trim().toLowerCase(),
+        rg = document.getElementById("reg").value, dw = document.getElementById("dow").value,
+        srt = document.getElementById("srt").value;
+    var rows = ALL.filter(function(r){
+      if (rg && r.region !== rg) return false;
+      if (dw && String(r.weekday) !== dw) return false;
+      if (q && (r.from_city + " " + r.to_city).toLowerCase().indexOf(q) === -1) return false;
+      return true; });
+    rows.sort(function(a, b){
+      if (srt === "seen") return b.weeks_with_leg - a.weeks_with_leg || b.legs_recorded - a.legs_recorded;
+      if (srt === "legs") return b.legs_recorded - a.legs_recorded;
+      if (srt === "route") return (a.from_city + a.to_city).localeCompare(b.from_city + b.to_city);
+      return b.rate_centre - a.rate_centre || b.legs_recorded - a.legs_recorded; });
+    var link = document.getElementById("showall");
+    link.style.display = rows.length > LIMIT ? "" : "none";
+    link.textContent = "View all " + rows.length + " routes";
+    document.getElementById("rows").innerHTML = rows.slice(0, LIMIT).map(function(r, i){
+      var lo = r.rate_low * 100, hi = r.rate_high * 100, mid = r.rate_centre * 100;
+      return '<tr' + (i === 0 ? ' class="top"' : '') + '><td class="lead">' + esc(r.from_city) +
+        '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</td>' +
+        '<td><span class="day">' + DAY[r.weekday] + '</span></td>' +
+        '<td>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</td>' +
+        '<td><span class="rate"><span class="pc">' + Math.round(mid) + '%</span>' +
+          '<span class="bar"><i style="left:' + lo + '%;width:' + Math.max(1.5, hi - lo) + '%"></i>' +
+          '<u style="left:' + Math.min(99, mid) + '%"></u></span>' +
+          '<span class="rg">' + Math.round(lo) + ' to ' + Math.round(hi) + '%</span></span></td>' +
+        '<td class="num">' + r.legs_recorded + '</td><td class="num">' + r.legs_priced + '</td>' +
+        '<td><a class="bell" href="/#alerts" title="Set an alert for this route" aria-label="Set an alert for this route">' +
+        '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
+        '<path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></a></td></tr>';
+    }).join("") || '<tr><td colspan="7" class="gnote">No route matches that. Clear the filters, or set a <a href="/#alerts">route alert</a> for the pair you want.</td></tr>';
+  }
+
+  apiAll("route_forecast?select=from_city,to_city,region,weekday,weeks_with_leg,weeks_observed,rate_centre,rate_low,rate_high,legs_recorded,legs_priced&weeks_with_leg=gte.2&order=rate_centre.desc,legs_recorded.desc")
     .then(function(rows){
-      document.getElementById("fc").innerHTML = rows.slice(0, 120).map(function(r){
-        var lo = r.rate_low * 100, hi = r.rate_high * 100, mid = r.rate_centre * 100;
-        return '<tr><td class="lead">' + esc(r.from_city) + ' to ' + esc(r.to_city) + '</td>' +
-          '<td>' + DAY[r.weekday] + '</td>' +
-          '<td>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</td>' +
-          '<td><span class="rate"><b>' + Math.round(mid) + '%</b>' +
-            '<span class="bar" title="' + Math.round(lo) + ' to ' + Math.round(hi) + ' per cent">' +
-            '<i style="left:' + lo + '%;width:' + Math.max(1, hi - lo) + '%"></i>' +
-            '<u style="left:' + mid + '%"></u></span>' +
-            '<span>' + Math.round(lo) + ' to ' + Math.round(hi) + '</span></span></td>' +
-          '<td class="num">' + r.legs_recorded + '</td>' +
-          '<td class="num">' + r.legs_priced + '</td></tr>'; }).join("") ||
-        '<tr><td colspan="6" class="gnote">Nothing in the record has repeated often enough to forecast yet.</td></tr>';
+      ALL = rows;
+      var regs = {}; rows.forEach(function(r){ if (r.region) regs[r.region] = 1; });
+      var sel = document.getElementById("reg");
+      Object.keys(regs).sort().forEach(function(x){ var o = document.createElement("option"); o.value = x; o.textContent = x; sel.appendChild(o); });
+      ["q","reg","dow","srt"].forEach(function(id){ document.getElementById(id).addEventListener("input", draw); });
+      draw();
     }).catch(function(){
-      document.getElementById("fc").innerHTML = '<tr><td colspan="6" class="gnote">The forecast did not load. Refresh the page.</td></tr>';
+      document.getElementById("rows").innerHTML = '<tr><td colspan="7" class="gnote">The forecast did not load. Refresh, or use the <a href="/">live list</a>.</td></tr>';
     });
 })();
 </script>
