@@ -674,9 +674,107 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <p>Where an operator publishes a price it is shown exactly as listed, as a whole-aircraft figure rather than a per-seat fare. Where none is published the card says so rather than estimating.</p>
   <p>Midwest sectors here are one to two hours; the runs to the coasts and the mountain west are three to four. Common types include the <a href="/aircraft/citation-xls">Citation XLS</a>, the <a href="/aircraft/challenger-350">Challenger 350</a> and the <a href="/aircraft/legacy-500">Legacy 500</a>. You can also <a href="/aircraft/">browse the whole list by aircraft type</a>.</p>
   <h2>Waukesha empty legs, by the numbers</h2>
-  <p>Between 31 July and 27 August 2026 we recorded <b>63 empty leg flights</b> touching Waukesha: 29 departing, 34 arriving, across 42 partner airports. The airports that came up most were Heber (4), Nantucket (4), Austin (3), Miami (3). Every leg with an aircraft named was the Citation CJ4 (63).</p>
-  <p>Sixty-three legs, forty-two destinations, one aircraft type. Wisconsin does more flying than Wisconsin gets credit for.</p>
-  <p style="font-size:14px;opacity:.8">These are counts from our own board over that window, so they reflect the operators we read rather than the whole market, and they are a record of what was listed, not a forecast. New legs appear with days of notice, which is what the route alert is for.</p>
+<!-- livestats.py -->
+  <p id="lsp">Reading the record.</p>
+  <p style="font-size:14px;opacity:.8">These are counts from our own board, read when you opened this page, so they reflect the operators we read rather than the whole market, and they are a record of what was listed, not a forecast. New legs appear with days of notice, which is what the route alert is for.</p>
+<script>
+(function(){
+  var MODE = "city", A = ["waukesha", "ues"], B = [], FROM = "", TO = "", NAME = "Waukesha";
+  var BASE = "https://wscowiseslaovmmfuzyv.supabase.co", KEY = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
+  var SEL = "id,from_label,to_label,from_city,to_city,departure_date,aircraft_type,seats,price_note,is_live,first_seen_at,est_flight_time";
+  var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var out = document.getElementById("lsp");
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function nrm(s){ return String(s == null ? "" : s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+  function word(v, t){ var s = nrm(v), n = nrm(t); if (!n) return false; var i = s.indexOf(n);
+    while (i !== -1){ if (i === 0 || !/[a-z0-9]/.test(s.charAt(i - 1))) return true; i = s.indexOf(n, i + 1); } return false; }
+  function end(l, side, list){ var v = side === "from" ? [l.from_city, l.from_label] : [l.to_city, l.to_label];
+    return list.some(function(k){ return v.some(function(x){ return word(x, k); }); }); }
+  function fdate(d){ if (!d) return ""; var p = String(d).slice(0,10).split("-");
+    return parseInt(p[2],10) + " " + MON[parseInt(p[1],10)-1] + " " + p[0]; }
+  function n(x){ return Number(x).toLocaleString("en-GB"); }
+  function money(s){ var m = String(s||"").replace(/,/g,"").match(/([A-Z]{3})\s*([0-9][0-9.]*)/); return m ? {cur:m[1], val:parseFloat(m[2])} : null; }
+  function fmt(cur, v){ return cur + " " + Math.round(v).toLocaleString("en-GB"); }
+  function list(a){ return a.length === 1 ? a[0] : a.slice(0,-1).join(", ") + " and " + a[a.length-1]; }
+
+  function read(){ var acc = [], terms = [];
+    A.concat(B).forEach(function(k){ var e = encodeURIComponent(k);
+      ["from_city","to_city","from_label","to_label"].forEach(function(c){ terms.push(c + ".ilike.*" + e + "*"); }); });
+    var path = "flight_public?select=" + SEL + "&or=(" + terms.join(",") + ")";
+    function page(off){ return fetch(BASE + "/rest/v1/" + path + "&order=departure_date.asc,id.asc&limit=1000&offset=" + off,
+        {headers:{apikey:KEY, Authorization:"Bearer " + KEY}})
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(rows){ acc = acc.concat(rows); return (rows.length < 1000 || acc.length >= 12000) ? acc : page(off + 1000); }); }
+    return page(0);
+  }
+
+  function city(rows){
+    var legs = rows.filter(function(l){ return end(l,"from",A) || end(l,"to",A); });
+    if (!legs.length){ out.innerHTML = "We have no record of an empty leg touching " + esc(NAME) + " yet. The board changes daily, so this page will fill in."; return; }
+    var dep = 0, arr = 0, live = 0, partners = {}, types = {}, since = null;
+    legs.forEach(function(l){
+      var f = end(l,"from",A), t = end(l,"to",A);
+      if (f) dep++; if (t) arr++; if (l.is_live) live++;
+      if (l.first_seen_at && (since === null || l.first_seen_at < since)) since = l.first_seen_at;
+      if (f !== t){ var p = (f ? (l.to_label || l.to_city) : (l.from_label || l.from_city)); if (p) partners[p] = (partners[p]||0) + 1; }
+      if (l.aircraft_type) types[l.aircraft_type] = (types[l.aircraft_type]||0) + 1;
+    });
+    function top(o, k){ return Object.keys(o).sort(function(a,b){ return o[b]-o[a]; }).slice(0,k)
+      .map(function(x){ return esc(x) + " (" + o[x] + ")"; }); }
+    var np = Object.keys(partners).length, nt = Object.keys(types).length;
+    var s = "Since " + esc(fdate(since)) + " we have recorded <b>" + n(legs.length) + " empty leg flight" + (legs.length===1?"":"s") +
+      "</b> touching " + esc(NAME) + ": " + n(dep) + " departing, " + n(arr) + " arriving, across " + n(np) +
+      " partner airport" + (np===1?"":"s") + ".";
+    if (np) s += " The airports that came up most were " + top(partners,4).join(", ") + ".";
+    if (nt) s += " " + n(nt) + " different aircraft type" + (nt===1?"":"s") + " appeared, most often the " + top(types,3).join(", the ") + ".";
+    s += " " + (live ? "<b>" + n(live) + "</b> of them " + (live===1?"is":"are") + " on the board right now." : "None of them is on the board right now.");
+    out.innerHTML = s;
+  }
+
+  function route(rows){
+    var legs = rows.filter(function(l){ return end(l,"from",A) && end(l,"to",B); });
+    var body = document.getElementById("lstb");
+    if (!legs.length){
+      out.innerHTML = "We have no record of an empty leg from " + esc(FROM) + " to " + esc(TO) + " yet. The board changes daily, so this page will fill in.";
+      if (body) body.innerHTML = '<tr><td colspan="5">Nothing recorded on this corridor yet.</td></tr>';
+      return; }
+    legs.sort(function(a,b){ return a.departure_date < b.departure_date ? -1 : 1; });
+    var priced = [], types = {}, since = null, mins = {}, maxs = {};
+    legs.forEach(function(l){
+      if (l.first_seen_at && (since === null || l.first_seen_at < since)) since = l.first_seen_at;
+      if (l.aircraft_type) types[l.aircraft_type] = 1;
+      var m = money(l.price_note); if (m){ priced.push(m);
+        if (!(m.cur in mins) || m.val < mins[m.cur]) mins[m.cur] = m.val;
+        if (!(m.cur in maxs) || m.val > maxs[m.cur]) maxs[m.cur] = m.val; }
+    });
+    var curs = Object.keys(mins);
+    var s = "Since " + esc(fdate(since)) + " we have recorded <b>" + n(legs.length) + " empty leg" + (legs.length===1?"":"s") +
+      "</b> from " + esc(FROM) + " to " + esc(TO) + ".";
+    if (!priced.length) s += " None of them carried a published price: every operator on this corridor asks for an enquiry.";
+    else if (curs.length > 1) s += " " + n(priced.length) + " of them carried a published price, in more than one currency, so we do not give a range.";
+    else { var c = curs[0];
+      s += " " + n(priced.length) + " of them carried a published price, " +
+        (mins[c] === maxs[c] ? "at " + fmt(c, mins[c]) : "from " + fmt(c, mins[c]) + " to " + fmt(c, maxs[c])) + " for the whole aircraft."; }
+    var tl = Object.keys(types);
+    if (tl.length) s += " The aircraft were " + list(tl.map(esc)) + ".";
+    out.innerHTML = s;
+    var today = new Date().toISOString().slice(0,10);
+    if (body) body.innerHTML = legs.map(function(l){
+      var st = l.is_live ? "On the board now" : (String(l.departure_date) < today ? "Already flown" : "No longer listed");
+      return '<tr><td>' + esc(fdate(l.departure_date)) + '</td><td>' + esc(l.aircraft_type || "On enquiry") +
+        '</td><td data-l="Seats">' + (l.seats || "") + '</td><td data-l="Price">' + (l.price_note ? esc(l.price_note.replace(" listed","")) : "On request") +
+        '</td><td data-l="Status">' + st + '</td></tr>'; }).join("");
+  }
+
+  read().then(function(rows){ if (MODE === "city") city(rows); else route(rows); })
+    .catch(function(){ out.textContent = "The record did not load. Refresh the page."; });
+})();
+</script>
+<!-- /livestats.py -->
+
+
+
+
 
   <h2>What to know before you enquire</h2>
   <p>An empty leg exists because of the paid charter around it, so it can be sold or moved without notice. Every listing here is recorded from what the operator published, with the date we last saw it. Treat it as a strong indication rather than a guarantee, and confirm with the operator before planning around it.</p>
