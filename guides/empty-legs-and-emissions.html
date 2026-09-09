@@ -4,14 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Empty legs and emissions: what can honestly be said | Empty Leg List</title>
-<meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://emptylegslist.com/guides/empty-legs-and-emissions">
 <meta name="description" content="Why buying an empty leg does not add a flight, why it is still not zero emissions, and which claims about empty legs and CO2 do not hold up.">
 <meta property="og:title" content="Empty legs and emissions">
 <meta property="og:description" content="Why buying an empty leg does not add a flight, why it is still not zero emissions, and which claims about empty legs and CO2 do not hold up.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emptylegslist.com/guides/empty-legs-and-emissions">
-<meta property="og:image" content="https://emptylegslist.com/brand/og-default.jpg">
+<meta property="og:image" content="https://emptylegslist.com/brand/guides/empty-leg-jet-engine-detail-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -163,9 +162,6 @@ p.gtip b{color:var(--navy)}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
-<!-- siteld.py -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://emptylegslist.com/guides/"},{"@type":"ListItem","position":3,"name":"Empty legs and emissions: what can honestly be said","item":"https://emptylegslist.com/guides/empty-legs-and-emissions"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/guides/empty-legs-and-emissions","url":"https://emptylegslist.com/guides/empty-legs-and-emissions","name":"Empty legs and emissions","description":"Why buying an empty leg does not add a flight, why it is still not zero emissions, and which claims about empty legs and CO2 do not hold up.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
-<!-- /siteld.py -->
 </head>
 <body>
 <header class="elnav">
@@ -500,7 +496,16 @@ function apiAll(path, cap){ cap = cap || 20000; var out = [];
     out = out.concat(rows); if (rows.length < 1000 || out.length >= cap) return out; return page(off + 1000); }); }
   return page(0); }
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
-function flightUrl(id){ return "/flight/"+id; }
+function slugPart(s){ return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40); }
+/* A flight link carries its route and date in front of the id, so a link
+   pasted into WhatsApp says what it is. The id stays on the end and is what
+   the page reads; a bare /flight/<id> still works. */
+function flightUrl(x){
+  if (!x) return "/flight/";
+  if (typeof x === "string") return "/flight/" + x;
+  var bits = [slugPart(x.from_label || x.from_city), "to", slugPart(x.to_label || x.to_city), String(x.departure_date || "").slice(0,10)].filter(Boolean);
+  return "/flight/" + (bits.length > 2 ? bits.join("-") + "-" : "") + x.id;
+}
 
   api("board_stats?select=recorded_legs,withdrawn_before_departure").then(function(r){ var s = r[0]; if(!s) return;
     Object.keys(s).forEach(function(k){ Array.prototype.forEach.call(document.querySelectorAll("[data-stat=" + k + "]"), function(el){ el.textContent = Number(s[k]).toLocaleString("en-GB"); }); });
