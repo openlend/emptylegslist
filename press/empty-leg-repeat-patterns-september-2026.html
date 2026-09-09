@@ -89,32 +89,84 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.pr{max-width:820px}
-.wrap.pri{max-width:900px}
-.prmeta{font-size:13px;color:var(--mute);margin:0 0 22px}
-.wrap.pr h2{margin-top:32px}
-.prnotes{background:#fff;border-radius:14px;padding:8px 24px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:26px 0 0}
-.prnotes h3{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:20px 0 10px}
-.prnotes ul{margin:0;padding-left:20px}
-.prnotes li{margin:0 0 8px;font-size:14.5px;line-height:1.6}
-.prnotes p{font-size:14.5px}
-.prlist{list-style:none;margin:22px 0 0;padding:0}
-.prlist li{background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:0 0 14px}
-.prlist .d{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600;margin:0 0 7px}
-.prlist h2{font-family:"Playfair Display",Georgia,serif;font-size:21px;line-height:1.3;margin:0 0 8px}
+/* ---- press release: a reading column, with room for figures and pictures ---- */
+.wrap.pr{max-width:1040px}
+.pr .col{max-width:680px;margin:0 auto}
+.pr .wide{max-width:1000px;margin-left:auto;margin-right:auto}
+
+.pr .eyebrow{display:flex;align-items:center;gap:12px;margin:38px 0 14px;font-size:11.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.pr .eyebrow::before{content:"";width:34px;height:2px;background:var(--gold);flex:none}
+.pr h1{max-width:20ch;font-size:clamp(30px,5.2vw,46px);line-height:1.1;margin:0 0 14px;letter-spacing:-.005em}
+.prmeta{font-size:13.5px;color:var(--mute);margin:0 0 8px}
+.pr .lede{font-size:19px;line-height:1.62;color:#31404e;max-width:100%;margin:22px 0 0}
+
+/* numbered sections: the numeral sits in the margin on a wide screen */
+.pr h2{position:relative;margin:46px 0 10px;font-size:24px;line-height:1.25}
+.pr h2 .n{display:inline-block;font-family:Raleway,sans-serif;font-weight:600;font-size:12px;
+  letter-spacing:.1em;color:var(--gold);vertical-align:middle;margin-right:10px}
+@media(min-width:960px){
+  .pr h2 .n{position:absolute;left:-58px;top:.55em;margin:0;width:44px;text-align:right;font-size:12px}
+}
+.pr p{max-width:100%}
+
+/* a figure worth stopping on */
+.pr .pull{margin:30px 0;padding:2px 0 2px 20px;border-left:3px solid var(--gold);background:none;box-shadow:none;border-radius:0}
+.pr .pull b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;
+  font-size:clamp(34px,6vw,46px);line-height:1;color:var(--navy);letter-spacing:-.01em}
+.pr .pull span{display:block;margin-top:8px;font-size:14px;line-height:1.55;color:#46525f;max-width:44ch}
+
+/* pictures break out of the reading column, the chart stays with the text */
+figure.prfig{margin:34px 0 34px}
+figure.prfig img{width:100%;height:auto;display:block;border-radius:16px}
+figure.prfig figcaption{font-size:12.5px;color:var(--mute);margin-top:10px;line-height:1.55;max-width:60ch}
+figure.prchart{margin:30px 0;background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(14,35,56,.07);padding:22px 24px 18px}
+figure.prchart svg{width:100%;height:auto;display:block}
+figure.prchart figcaption{font-size:12.5px;color:var(--mute);margin-top:14px;line-height:1.6}
+figure.prchart .ct{font-family:"Playfair Display",Georgia,serif;font-size:19px;color:var(--navy);margin:0 0 6px}
+
+/* notes to editors: reference material, not prose */
+.prnotes{background:#fff;border-radius:16px;padding:10px 26px 22px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:44px 0 0}
+.prnotes h3{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);
+  font-weight:600;margin:24px 0 12px;padding-top:18px;border-top:1px solid var(--line)}
+.prnotes h3:first-child{border-top:none;padding-top:0}
+.prnotes ul{margin:0;padding:0;list-style:none}
+.prnotes li{margin:0 0 12px;font-size:13.5px;line-height:1.6;color:#31404e;padding-left:18px;position:relative}
+.prnotes li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--line)}
+.prnotes li a{color:var(--navy)}
+
+.prabout{margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line)}
+.prabout h2{font-size:20px;margin:0 0 10px}
+.prabout p{font-size:14.5px;line-height:1.7;color:#46525f}
+
+/* the index */
+.wrap.pri{max-width:940px}
+.prlist{list-style:none;margin:26px 0 0;padding:0}
+.prlist li{background:#fff;border-radius:16px;padding:22px 26px;box-shadow:0 1px 3px rgba(14,35,56,.07);
+  margin:0 0 16px;display:grid;grid-template-columns:220px 1fr;gap:24px;align-items:start}
+.prlist li img{width:100%;height:auto;display:block;border-radius:12px}
+.prlist .d{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);font-weight:600;margin:0 0 8px}
+.prlist h2{font-family:"Playfair Display",Georgia,serif;font-size:22px;line-height:1.28;margin:0 0 10px}
 .prlist h2 a{color:var(--navy);text-decoration:none}
 .prlist h2 a:hover{text-decoration:underline}
-.prlist p{margin:0;font-size:15px;color:#31404e}
-.prlist li{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:start}
-.prlist li img{width:100%;height:auto;display:block;border-radius:10px}
-@media(max-width:640px){.prlist li{grid-template-columns:1fr}}
-figure.prfig{margin:24px 0 26px}
-figure.prfig img{width:100%;height:auto;display:block;border-radius:16px}
-figure.prfig figcaption{font-size:12.5px;color:var(--mute);margin-top:9px;line-height:1.5}
-figure.prchart{margin:26px 0;background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(14,35,56,.07);padding:20px 22px 16px}
-figure.prchart svg{width:100%;height:auto;display:block}
-figure.prchart figcaption{font-size:12.5px;color:var(--mute);margin-top:12px;line-height:1.55}
-figure.prchart .ct{font-family:"Playfair Display",Georgia,serif;font-size:18px;color:var(--navy);margin:0 0 4px}
+.prlist p{margin:0;font-size:14.5px;line-height:1.65;color:#46525f}
+@media(max-width:700px){.prlist li{grid-template-columns:1fr}}
+
+@media(max-width:640px){
+  .pr .lede{font-size:17px}
+  .pr h2{font-size:21px;margin-top:38px}
+  .prnotes{padding:8px 18px 18px}
+}
+
+@media print{
+  header,nav,footer,#bigfoot,.bf-cta,#nav-drawer{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  .wrap.pr,.pr .col{max-width:100%}
+  figure.prfig{break-inside:avoid;margin:16px 0}
+  figure.prchart,.prnotes{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+  .pr h2{break-after:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#555}
+}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -474,26 +526,26 @@ figure.prchart .ct{font-family:"Playfair Display",Georgia,serif;font-size:18px;c
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap pr"><p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Press release &middot; 9 September 2026</p>
+<div class="wrap pr"><div class="col"><p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Press release &middot; 9 September 2026</p>
 <h1>Built with AI, five weeks, 5,737 empty legs: the market gets a public record</h1>
 <p class="prmeta">Bucharest, 9 September 2026. Every figure below was read on that date.</p>
 <figure class="prfig"><img src="/brand/guides/empty-leg-jets-on-the-apron.jpg" width="1900" height="820" alt="Business jets parked on an airport apron seen from above, with yellow taxiway markings running across the concrete" loading="eager" decoding="async"><figcaption>Aircraft between charters. Each one has to reach its next job, and that sector is the empty leg.</figcaption></figure>
 
 <p class="lede">Empty Leg List has read 5,737 empty leg flights since 30 July 2026 and published what they show. The site was built with AI in five weeks. This is what it has found, what it cannot do yet, and how anyone can check.</p>
 
-<h2>1. What an empty leg is</h2>
+<h2><span class="n">1</span>What an empty leg is</h2>
 <p>A charter jet flies where its customer pays it to go. Then it has to get to its next job. That flight happens with nobody on board, and operators sell it cheap.</p>
 <p>The problem was never the flights. It was finding them. They sit on dozens of separate operator websites, they appear with days of notice, and they vanish when they sell.</p>
 
-<h2>2. What was built</h2>
+<h2><span class="n">2</span>What was built</h2>
 <p>One person and an AI, five weeks, 144 commits. The site reads operator websites three times a day and puts every empty leg in one place, with the operator's own price.</p>
 <p>It is a listing service. Not a broker, not an operator, no commission. Enquiries go straight to the operator.</p>
 
-<h2>3. How much it has read</h2>
-<p><b>5,737 flights</b> since 30 July 2026. <b>1,635</b> are live right now. New ones arrive at <b>133 a day</b>.</p>
+<h2><span class="n">3</span>How much it has read</h2>
+<p class="pull"><b>5,737</b><span>empty leg flights read since 30 July 2026. 1,635 are live right now, and new ones arrive at 133 a day.</span></p>
 <p>At that rate the record passes <b>20,000 flights by the end of December</b>. Triple the sources and it passes 50,000. Both of those are arithmetic, not a promise.</p>
 
-<h2>4. What the record already shows</h2>
+<h2><span class="n">4</span>What the record already shows</h2>
 <p>Some routes come back on the same weekday, week after week.</p>
 <p>Antwerp to Ibiza on a Friday appeared in <b>all six</b> recorded weeks. So did the return. Fifteen flights in total, and not one carried a published price.</p>
 <p>Across the whole record, 2,885 route and weekday combinations. 117 came back in two or more weeks. Only 14 in three or more.</p>
@@ -502,43 +554,44 @@ figure.prchart .ct{font-family:"Playfair Display",Georgia,serif;font-size:18px;c
 
 <figure class="prfig"><img src="/brand/heroes/ibiza-empty-legs-private-jet.jpg" width="2400" height="1040" alt="Sailing yachts anchored in a turquoise Mediterranean cove, with a rocky pine covered headland on the left and a swimmer in the shallows" loading="lazy" decoding="async"><figcaption>Ibiza, the far end of the most consistent pattern in the record.</figcaption></figure>
 
-<h2>5. How fast they disappear</h2>
+<h2><span class="n">5</span>How fast they disappear</h2>
 <p>Half of all recorded flights were published <b>less than a week</b> before departure.</p>
-<p><b>982</b> of 5,737 stopped appearing before the day they were meant to fly. <b>288</b> of those lasted under 24 hours.</p>
+<p class="pull"><b>982</b><span>flights stopped appearing before the day they were meant to fly. 288 of those lasted under 24 hours.</span></p>
 <p>Some sold. Some were withdrawn. From the outside we cannot tell which, and we do not claim to.</p>
 
-<h2>6. We tried to predict, and the test failed</h2>
+<h2><span class="n">6</span>We tried to predict, and the test failed</h2>
 <p>The obvious next step is to say how likely a route is to repeat. So we built the standard model for it and checked whether the data supports it.</p>
 <p>It does not. Across 2,885 combinations the spread between routes measures <b>0.0020</b>, while random chance alone would produce <b>0.0240</b>. The gap is negative, which means the model was inventing structure that is not there. It pulled a route seen six weeks out of six down to a 24 per cent chance.</p>
 <p>The reason is simple: 2,768 of the 2,885 combinations appeared exactly once. Most empty legs are one-offs, not a weekly service. Six weeks cannot tell the two apart.</p>
 <p>So we removed the model. Each route now shows its own rate and how uncertain it is. Antwerp to Ibiza on a Friday reads six out of six, somewhere between 69 and 100 per cent. Toronto to Montréal on a Tuesday reads three out of six, somewhere between 22 and 78 per cent. Wide, and honestly so.</p>
 
-<h2>7. So we started keeping score</h2>
-<p>On 9 September 2026 the site wrote down <b>117 predictions</b> for the week beginning 14 September, before that week began. Every following Monday it records what actually happened and writes down the next set.</p>
+<h2><span class="n">7</span>So we started keeping score</h2>
+<p class="pull"><b>117</b><span>predictions written down on 9 September 2026 for the week beginning 14 September, before that week began.</span></p>
+<p>Every following Monday the site records what actually happened, then writes down the next set.</p>
 <p>After a couple of months that table is a measured hit rate rather than an assumption, and it is public. That is the point at which the word "predicts" will be earned, and not before.</p>
 
-<h2>8. What it should answer next</h2>
+<h2><span class="n">8</span>What it should answer next</h2>
 <p>Two questions the record is built to answer once it is large enough.</p>
 <p><b>When a new aircraft appears on a route.</b> Every leg carries its aircraft type. A type showing up on a corridor it has never flown is a signal that an operator has moved a jet, and it is visible in the record before it is visible anywhere else.</p>
 <p><b>What happens around a dated event.</b> Aircraft arrive for a show and leave a few days later, and the empty legs cluster on both sides. The first of these pages covers the <a href="/events/monaco-yacht-show-2026">Monaco Yacht Show, 23 to 26 September 2026</a>, reading the Nice and Cannes airports live.</p>
 
 <figure class="prfig"><img src="/brand/heroes/cannes-empty-legs-private-jet.jpg" width="2400" height="1040" alt="The Mediterranean coast at Cannes, with the bay and the hills behind it" loading="lazy" decoding="async"><figcaption>Monaco has no runway. Aircraft arriving for the show land at Nice or Cannes, and leave again a few days later.</figcaption></figure>
 
-<h2>9. Why nobody published this before</h2>
+<h2><span class="n">9</span>Why nobody published this before</h2>
 <p>Private jet charter is forecast to pass 25 billion dollars by 2031, according to a Research and Markets report from 3 February 2026. Its empty legs have had no public record.</p>
 <p>Not because it is hard, but because it cannot be done retroactively. A flight that was listed on 12 August and gone by 14 August leaves no trace to scrape. The record only exists if somebody was reading and writing it down at the time.</p>
 
-<h2>10. All of it is free to check</h2>
+<h2><span class="n">10</span>All of it is free to check</h2>
 <p>The live board is published as an open data feed, in JSON and CSV, free and without a key. Every figure in this release can be checked against it. Operator names are not in the feed and are not on the site.</p>
 
 <div class="prnotes"><h3>Notes to editors</h3><ul><li>All figures were read from the Empty Leg List database on 9 September 2026 and are fixed at that date. The live pages recompute on every visit.</li><li>The record covers 30 July 2026 onwards. Six complete weeks had finished when this was written.</li><li>5,737 flights recorded. 1,635 live on 9 September, 389 of them with a published price, across 420 cities and 41 departure countries.</li><li>Rate of new flights: 133 a day, averaged over the 29 days from 10 August to 8 September 2026. The 20,000 by year end figure applies that rate to the days remaining in 2026 and adds the current total. It is arithmetic on the current rate, not a forecast of demand.</li><li>Sources: 64 operator sources are configured and 60 were reporting when this release was written. The other 4 have stopped returning rows; their older flights stay on the board and are simply not refreshed.</li><li>2,885 route and weekday combinations recorded. 117 with a flight in two or more separate weeks, 14 in three or more. 2,768 appeared in exactly one week.</li><li>Antwerp to Ibiza, Friday: 8 flights, 6 weeks out of 6, published on average 13 days ahead, none priced. Ibiza to Antwerp, Friday: 7 flights, 6 weeks out of 6, 14 days ahead, none priced.</li><li>The rejected model: a Beta-Binomial fitted across routes by the method of moments. Observed variance of the per-route rate is 0.0020; binomial sampling alone predicts 0.0240; between-route variance is therefore negative, which means the model is misspecified for this data. Replaced by a per-route Wilson interval, which assumes nothing about other routes.</li><li>The scoreboard: 117 predictions were written for the week beginning 14 September 2026, before that week started. Scoring runs every Monday and is stored with the prediction, so it cannot be revised after the fact.</li><li>982 of 5,737 flights stopped appearing before their departure date, 288 of them within 24 hours of being listed. 2,818 were published with fewer than seven days to departure.</li><li>"Stopped appearing" is not the same as "sold". Empty Leg List cannot tell from outside which flights sold and which were withdrawn, and does not claim to.</li><li>Built with AI: the repository's first commit is dated 5 August 2026 and it holds 144 commits across 669 files. 47 commit messages carry an AI co-author line.</li><li>Market size: Research and Markets, "Private Jet Charter Services Industry Report 2026", distributed by GlobeNewswire on 3 February 2026, forecasts the private jet charter services market above 25 billion dollars by 2031. That is a third party forecast, not an Empty Leg List figure.</li><li>Empty Leg List does not publish operator names.</li></ul><h3>Links</h3><ul><li><a href="https://emptylegslist.com/likely">The routes that repeat</a></li><li><a href="https://emptylegslist.com/events/monaco-yacht-show-2026">The Monaco Yacht Show page</a></li><li><a href="https://emptylegslist.com/">The live board</a></li><li><a href="https://emptylegslist.com/open-data">Open data feed and licence</a></li><li><a href="https://emptylegslist.com/media">Media kit and brand assets</a></li></ul></div>
-
+<div class="prabout">
 <h2>About Empty Leg List</h2>
 <p>Empty Leg List reads the empty leg flights that charter operators publish on their own websites, three times a day, and puts them in one place with the operator's own price attached. It is a listing service: not a broker, not an operator, not a party to any booking, and it takes no commission. An enquiry goes to the operator that published the flight. Operator names are not published on the site and are not readable through its public data feed.</p>
 <p>Empty Leg List is operated by Publishing Office SRL, registered in Romania, VAT RO37770955, part of the group led by The Flying Engineer.</p>
 <p><b>Press contact:</b> <a href="mailto:open@emptylegslist.com">open@emptylegslist.com</a></p>
 <p><a href="/media">Media kit and brand assets</a> &nbsp;&middot;&nbsp; <a href="/press/">All releases</a> &nbsp;&middot;&nbsp; <a href="/open-data">Open data feed</a></p>
-</div>
+</div></div></div>
 
 <footer id="bigfoot">
   <div class="bf-alert">
@@ -576,6 +629,7 @@ figure.prchart .ct{font-family:"Playfair Display",Georgia,serif;font-size:18px;c
         <a href="/guides/how-much-does-an-empty-leg-private-jet-cost">What an empty leg costs</a>
         <a href="/last-minute-empty-leg-flights">Last minute empty legs</a>
         <a href="/events/">Empty legs around events</a>
+        <a href="/predictions">Where the next leg appears</a>
         <a href="/guides/how-to-find-empty-leg-flights">How to find empty legs</a>
         <a href="/guides/">All guides</a>
         <a href="/#alerts">Get empty leg alerts</a>
