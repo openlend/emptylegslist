@@ -697,6 +697,61 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   <h2>Where the aircraft actually go</h2>
   <div class="citymap" data-city="Geneva"></div>
 
+<!-- nearby, nearby.py -->
+<style>
+.nb{background:#fff;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.07);overflow:hidden;margin:6px 0 10px}
+.nb .nbh{display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid #e6eaf0}
+.nb .nbh button{background:#fff;color:#16222e;border:1px solid #e6eaf0;border-radius:999px;padding:6px 13px;font:inherit;font-size:13px;font-weight:500;cursor:pointer;margin:0}
+.nb .nbh button[aria-pressed=true]{background:#0D1F36;color:#fff;border-color:#0D1F36}
+.nb .nbr{display:grid;grid-template-columns:92px 1fr auto;gap:4px 14px;align-items:center;padding:11px 16px;border-bottom:1px solid #e6eaf0;font-size:14px;text-decoration:none;color:inherit}
+.nb .nbr:last-child{border-bottom:none}
+.nb .nbr:hover{background:#f7f8fa}
+.nb .nbd{color:#8a97a5;font-size:13px;white-space:nowrap}
+.nb .nbt{font-weight:500;color:#0D1F36}
+.nb .nbs{color:#8a97a5;font-size:12.5px;display:block}
+.nb .nbp{text-align:right;white-space:nowrap;font-size:13.5px}
+.nb .nbp b{color:#0D1F36;font-weight:600}
+.nb .nbn{padding:14px 16px;color:#8a97a5;font-size:13.5px}
+@media(max-width:640px){.nb .nbr{grid-template-columns:1fr auto}.nb .nbd{grid-column:1/-1}}
+</style>
+  <h2 hidden id="nearbyh">Empty legs within 150 km of Geneva</h2>
+  <p hidden id="nearbyp">Live legs leaving from, or landing at, other airports within 150 km of GVA. A leg from an airport an hour's drive away can be the one that fits; the distance shown is from GVA to the airport the leg uses, in a straight line.</p>
+  <div class="nb" id="nearby" hidden>
+    <div class="nbh"><button aria-pressed="true" data-v="from">Leaving nearby</button><button data-v="to">Arriving nearby</button></div>
+    <div id="nbrows"><div class="nbn">Reading the board.</div></div>
+  </div>
+<script>
+(function(){
+  if(document.getElementById("nearby").hidden){ if(!/[?&#]nearby\b/.test(location.search+location.hash)) return;
+    ["nearby","nearbyh","nearbyp"].forEach(function(id){ var e=document.getElementById(id); if(e) e.hidden=false; }); }
+  var LAT=46.2381, LON=6.109, R=150, KEYS=["geneva", "gen\u00e8ve", "gva"];
+  var BASE="https://wscowiseslaovmmfuzyv.supabase.co", KEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
+  var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"], all=[], mode="from";
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+  function km(a,b,c,d){var p=Math.PI/180,x=(c-a)*p,y=(d-b)*p,h=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*p)*Math.cos(c*p)*Math.sin(y/2)*Math.sin(y/2);return 6371*2*Math.atan2(Math.sqrt(h),Math.sqrt(1-h));}
+  function own(s){s=String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");return KEYS.some(function(k){return s.indexOf(k)>-1;});}
+  function fd(d){var p=d.split("-");return parseInt(p[2],10)+" "+MON[parseInt(p[1],10)-1];}
+  function draw(){
+    var rows=all.filter(function(l){return l.side===mode;}).sort(function(a,b){return a.departure_date<b.departure_date?-1:a.departure_date>b.departure_date?1:a.km-b.km;}).slice(0,10);
+    document.getElementById("nbrows").innerHTML=rows.map(function(l){
+      return '<a class="nbr" href="/flight/'+l.id+'"><span class="nbd">'+esc(fd(l.departure_date))+'</span><span><span class="nbt">'+esc(l.from_label)+' to '+esc(l.to_label)+'</span><span class="nbs">'+esc(l.aircraft_type||"Aircraft on enquiry")+(l.seats?' &middot; up to '+l.seats+' seats':'')+' &middot; '+Math.round(l.km)+' km from GVA</span></span><span class="nbp">'+(l.price_note?'<b>'+esc(l.price_note.replace(" listed",""))+'</b>':'<span class="nbs">price on enquiry</span>')+'</span></a>';
+    }).join("")||'<div class="nbn">Nothing '+(mode==="from"?"leaving from":"arriving at")+' another airport within '+R+' km right now. <a href="/#alerts">Set a route alert</a> and we tell you when one appears.</div>';
+  }
+  document.querySelector("#nearby .nbh").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;Array.prototype.forEach.call(this.querySelectorAll("button"),function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});mode=b.getAttribute("data-v");draw();});
+  var dl=R/111+0.05, dn=R/(111*Math.max(0.2,Math.cos(LAT*Math.PI/180)))+0.05;
+  var box=function(p){return "and("+p+"_lat.gte."+(LAT-dl).toFixed(3)+","+p+"_lat.lte."+(LAT+dl).toFixed(3)+","+p+"_lon.gte."+(LON-dn).toFixed(3)+","+p+"_lon.lte."+(LON+dn).toFixed(3)+")";};
+  fetch(BASE+"/rest/v1/leg_geo?select=id,from_label,to_label,from_city,to_city,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note&or=("+box("from")+","+box("to")+")&order=departure_date&limit=1000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
+    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(function(rows){
+      rows.forEach(function(l){
+        if(l.from_lat!=null&&!own(l.from_city)&&!own(l.from_label)){var d=km(LAT,LON,l.from_lat,l.from_lon);if(d>=1&&d<=R)all.push(Object.assign({side:"from",km:d},l));}
+        if(l.to_lat!=null&&!own(l.to_city)&&!own(l.to_label)){var e=km(LAT,LON,l.to_lat,l.to_lon);if(e>=1&&e<=R)all.push(Object.assign({side:"to",km:e},l));}
+      });
+      draw();
+    }).catch(function(){document.getElementById("nbrows").innerHTML='<div class="nbn">The board did not load. Refresh, or use the live list above.</div>';});
+})();
+</script>
+<!-- /nearby -->
 <!-- city routes, sitelinks.py -->
   <h2>Routes from and to Geneva</h2>
   <p>Every corridor touching Geneva that has its own page, with the legs we have recorded on it. Every empty leg touching the country is on <a href="/empty-legs/switzerland">empty legs in Switzerland</a>.</p>

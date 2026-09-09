@@ -171,6 +171,9 @@ p.gtip b{color:var(--navy)}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
+<!-- siteld.py -->
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Where the empty legs are today","item":"https://emptylegslist.com/map"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/map","url":"https://emptylegslist.com/map","name":"Live map of empty leg flights","description":"Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
+<!-- /siteld.py -->
 </head>
 <body>
 <header class="elnav">
@@ -489,6 +492,15 @@ function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){retur
 function fmtDate(d){ if(!d) return ""; var p=d.slice(0,10).split("-"); var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; return parseInt(p[2],10)+" "+m[parseInt(p[1],10)-1]+" "+p[0]; }
 function fmtWhen(iso){ if(!iso) return ""; var t=new Date(iso), ms=Date.now()-t.getTime(), h=Math.round(ms/36e5); if(h<1) return "under an hour ago"; if(h<48) return h+" hours ago"; return Math.round(h/24)+" days ago"; }
 function api(path){ return fetch(BASE+"/rest/v1/"+path, {headers:{apikey:KEY, Authorization:"Bearer "+KEY}}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }); }
+/* PostgREST returns at most 1000 rows whatever limit we ask for, so anything
+   that can exceed 1000 has to be paged or the page silently shows part of the
+   board. apiAll walks the pages until a short one comes back. */
+function apiAll(path, cap){ cap = cap || 20000; var out = [];
+  path = path.replace(/[?&](limit|offset)=\d+/g, "");
+  if (path.indexOf("?") === -1 && path.indexOf("&") > -1) path = path.replace("&", "?");
+  function page(off){ return api(path + (path.indexOf("?") > -1 ? "&" : "?") + "limit=1000&offset=" + off).then(function(rows){
+    out = out.concat(rows); if (rows.length < 1000 || out.length >= cap) return out; return page(off + 1000); }); }
+  return page(0); }
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
 function flightUrl(id){ return "/flight/"+id; }
 
@@ -542,7 +554,7 @@ function flightUrl(id){ return "/flight/"+id; }
     document.getElementById("mapcnt").textContent = n + " legs" + (shown < n ? ", " + shown + " with a known position" : "") + (all.length ? " of " + all.length + " on the board" : "");
     if (bounds.length && (f.reg || first)) map.fitBounds(bounds, { padding: [20, 20], maxZoom: 5 }); first = false;
   }
-  api("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date&limit=5000")
+  apiAll("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date,id")
     .then(function(rows){ all = rows; draw(); })
     .catch(function(){ document.getElementById("mapcnt").textContent = "The board did not load. Refresh, or use the live list."; });
 })();

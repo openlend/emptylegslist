@@ -1191,7 +1191,7 @@
     /* route: what is left */
     t = t.replace(/\b(empty legs?|flights?|flight|jet|jets|private|a|an|the|please|looking for|i want|i need|we want|we need|want|need|show me|find|me|anything|any|leg|legs|seats?|available|going|fly|flying|and|with|of|by|on|at|,)\b/g, " ").replace(/\b(in|into)\s+(in|into)\b/g, " $2").replace(/^\s*(in|into|on|at)\s*$/, "").replace(/\s+/g, " ").trim().replace(/^,|,$/g, "").trim();
     var r;
-    if ((r = t.match(/^(?:from\s+)?(.+?)\s+(?:to|->|→|-|–|—)\s+(.+)$/))) { set("f-from", clean(r[1])); set("f-to", clean(r[2])); got.push("from " + clean(r[1])); got.push("to " + clean(r[2])); t = ""; }
+    if ((r = t.match(/^(?:from\s+)?(.+?)\s+(?:to|->|\u2192|-|\u2013|\u2014)\s+(.+)$/))) { set("f-from", clean(r[1])); set("f-to", clean(r[2])); got.push("from " + clean(r[1])); got.push("to " + clean(r[2])); t = ""; }
     else if ((r = t.match(/^to\s+(.+)$/))) { set("f-to", clean(r[1])); got.push("to " + clean(r[1])); t = ""; }
     else if ((r = t.match(/^(?:from|out of|leaving|departing)\s+(.+)$/))) { set("f-from", clean(r[1])); got.push("from " + clean(r[1])); t = ""; }
     else if ((r = t.match(/^(?:in|into|arriving|arriving in|towards)\s+(.+)$/))) { set("f-to", clean(r[1])); got.push("to " + clean(r[1])); t = ""; }
@@ -2746,7 +2746,7 @@ function fmt(n){try{return n.toLocaleString("en-GB");}catch(e){return String(n);
    "0 empty leg flights". Now it opens on the count from the last build and,
    when the live figure arrives, counts up to it over about a second (Radu,
    3 September 2026). BAKED is rewritten by herocount.py at build time. */
-var BAKED=1131,shownN=0,animT=null;
+var BAKED=1637,shownN=0,animT=null;
 function countTo(el,to){
   if(!el)return;var from=shownN>0?shownN:Math.round(to*0.9);if(from===to){el.textContent=fmt(to);shownN=to;return;}
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;

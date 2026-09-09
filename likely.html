@@ -163,6 +163,9 @@ p.gtip b{color:var(--navy)}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
+<!-- siteld.py -->
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Routes where empty legs keep coming back","item":"https://emptylegslist.com/likely"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/likely","url":"https://emptylegslist.com/likely","name":"Routes where empty legs keep coming back","description":"Routes that carried an empty leg on the same weekday in two or more recorded weeks since 30 July 2026, shown for the coming week as history, with the live board checked for each date.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
+<!-- /siteld.py -->
 </head>
 <body>
 <header class="elnav">
@@ -479,6 +482,15 @@ function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){retur
 function fmtDate(d){ if(!d) return ""; var p=d.slice(0,10).split("-"); var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]; return parseInt(p[2],10)+" "+m[parseInt(p[1],10)-1]+" "+p[0]; }
 function fmtWhen(iso){ if(!iso) return ""; var t=new Date(iso), ms=Date.now()-t.getTime(), h=Math.round(ms/36e5); if(h<1) return "under an hour ago"; if(h<48) return h+" hours ago"; return Math.round(h/24)+" days ago"; }
 function api(path){ return fetch(BASE+"/rest/v1/"+path, {headers:{apikey:KEY, Authorization:"Bearer "+KEY}}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }); }
+/* PostgREST returns at most 1000 rows whatever limit we ask for, so anything
+   that can exceed 1000 has to be paged or the page silently shows part of the
+   board. apiAll walks the pages until a short one comes back. */
+function apiAll(path, cap){ cap = cap || 20000; var out = [];
+  path = path.replace(/[?&](limit|offset)=\d+/g, "");
+  if (path.indexOf("?") === -1 && path.indexOf("&") > -1) path = path.replace("&", "?");
+  function page(off){ return api(path + (path.indexOf("?") > -1 ? "&" : "?") + "limit=1000&offset=" + off).then(function(rows){
+    out = out.concat(rows); if (rows.length < 1000 || out.length >= cap) return out; return page(off + 1000); }); }
+  return page(0); }
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
 function flightUrl(id){ return "/flight/"+id; }
 
@@ -519,9 +531,9 @@ function flightUrl(id){ return "/flight/"+id; }
   }
   var today = iso(new Date()), week = new Date(); week.setDate(week.getDate() + 8);
   Promise.all([
-    api("route_history?select=*&limit=10000"),
-    api("leg_geo?select=id,from_label,to_label,from_city,to_city,departure_date&departure_date=gt." + today + "&departure_date=lt." + iso(week) + "&limit=5000"),
-    api("route_history_route?select=*&legs=gte.4&limit=2000")
+    apiAll("route_history?select=*&order=from_city,from_country,to_city,to_country,weekday"),
+    apiAll("leg_geo?select=id,from_label,to_label,from_city,to_city,departure_date&departure_date=gt." + today + "&departure_date=lt." + iso(week) + "&order=departure_date,id"),
+    apiAll("route_history_route?select=*&legs=gte.4&order=from_city,from_country,to_city,to_country")
   ]).then(function(res){
     hist = res[0]; live = res[1];
     /* same buckets as the view: Monday-based weeks from 30 Jul 2026 to yesterday */
