@@ -1125,114 +1125,7 @@
 
 <div id="wrap">
 
-  <!-- nlsearch.py -->
-<style>
-#nls{margin:14px 16px 0 16px;padding:16px 18px 14px}
-@media(min-width:900px){#nls{padding:18px 26px 14px}}
-#nls .row{display:flex;gap:8px}
-#nls input{flex:1;font:inherit;font-size:15.5px;padding:13px 16px;border:1px solid #d9dee5;border-radius:12px;background:#fbfcfd;color:#16222e;min-width:0}
-#nls input:focus{outline:none;border-color:#0D1F36;box-shadow:0 0 0 3px rgba(13,31,54,.08)}
-#nls button{font:inherit;font-size:14.5px;font-weight:600;padding:12px 22px;line-height:1.2;border:0;border-radius:12px;background:#0D1F36;color:#fff;cursor:pointer;white-space:nowrap}
-#nls .out{font-size:13px;color:#5a6673;margin:8px 2px 0;min-height:18px}
-#nls .out b{color:#0D1F36;font-weight:600}
-#nls .out .skip{color:#b3261e}
-#nls .lab{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#8a97a5;font-weight:600;margin:0 0 7px}
-@media(max-width:560px){#nls button{padding:0 14px}}
-</style>
-<div id="nls" class="card" data-nomf>
-  <div class="lab">Say it in words</div>
-  <div class="row"><input id="nls-q" type="text" autocomplete="off" placeholder="Nice to London next week, 6 seats, under 10,000" aria-label="Describe the flight you want"><button id="nls-go" type="button">Find</button></div>
-  <div class="out" id="nls-out"></div>
-</div>
-<script>
-(function(){
-  var box = document.getElementById("nls"), q = document.getElementById("nls-q"), out = document.getElementById("nls-out");
-  if (box.hidden && (/[?&#]ask\b/.test(location.search + location.hash))) box.hidden = false;
-  /* sit exactly where the filter card sits, whatever the breakpoint */
-  function align(){ var fc = document.getElementById("filters"); if (!fc) return; var cs = getComputedStyle(fc); box.style.marginLeft = cs.marginLeft; box.style.marginRight = cs.marginRight; box.style.borderRadius = cs.borderRadius; }
-  align(); window.addEventListener("resize", align);
-  var MONTHS = ["january","february","march","april","may","june","july","august","september","october","november","december"];
-  var REGIONS = [[/\b(europe|european|eu)\b/, "Europe"], [/\b(north america|usa|u\.s\.|us|united states|america|canada|canadian|american)\b/, "North America"], [/\b(middle east|gulf|uae)\b/, "Middle East"], [/\basia\b/, "Asia"], [/\bafrica\b/, "Africa"], [/\bsouth america\b/, "South America"], [/\b(oceania|australia)\b/, "Oceania"]];
-  function pad(n){ return (n < 10 ? "0" : "") + n; }
-  function ymd(d){ return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
-  function set(id, v){ var el = document.getElementById(id); if (!el) return false; if (el.tagName === "SELECT") { var ok = Array.prototype.some.call(el.options, function(o){ return o.value === v; }); if (!ok) return false; } el.value = v; return true; }
-  function money(s){ s = s.replace(/[,\s]/g, ""); var m = s.match(/^(\d+(?:\.\d+)?)(k)?$/i); if (!m) return null; return Math.round(parseFloat(m[1]) * (m[2] ? 1000 : 1)); }
-  function parse(text){
-    var t = " " + text.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, " ").trim() + " ", got = [], m, i;
-    ["f-from","f-to","f-date","f-ac","f-seats","f-region","f-month","f-price","f-when"].forEach(function(id){ var el = document.getElementById(id); if (el) el.value = ""; });
-    /* price */
-    if ((m = t.match(/\b(?:under|below|max|maximum|up to|less than|cheaper than|budget(?: of)?|for|around|about)\s+(?:€|\$|£|eur|usd|gbp)?\s?(\d[\d,\.]*\s?k?)\b/))) { var v = money(m[1]); if (v !== null) { if (v <= 5000) { set("f-price", "lt5"); got.push("under 5,000"); } else { set("f-price", "has"); if (set("f-sort", "price")) { var so = document.getElementById("f-sort"); so.dispatchEvent(new Event("change", { bubbles: true })); } got.push("published prices, cheapest first (up to " + v.toLocaleString("en-GB") + ")"); } t = t.replace(m[0], " "); } }
-    else if ((m = t.match(/\b(?:over|above|more than|at least)\s+(?:€|\$|£|eur|usd|gbp)?\s?(\d[\d,\.]*\s?k?)\b/))) { var v2 = money(m[1]); if (v2 !== null && v2 >= 10000) { set("f-price", "gt10"); got.push("price over 10,000"); t = t.replace(m[0], " "); } }
-    else if (/\b(with a price|priced|price(d)? only|published price|has a price)\b/.test(t)) { set("f-price", "has"); got.push("published price only"); t = t.replace(/\b(with a price|priced|price(d)? only|published price|has a price)\b/, " "); }
-    if (/\b(cheap|cheapest|deal|deals|bargain)\b/.test(t)) { if (!document.getElementById("f-price").value) { set("f-price", "lt5"); got.push("under 5,000"); } t = t.replace(/\b(cheap|cheapest|deal|deals|bargain)\b/g, " "); }
-    /* seats */
-    if ((m = t.match(/\b(\d{1,2})\s*(?:seats?|people|persons?|pax|passengers?|of us|adults?|guests?|travellers?|travelers?)\b/)) || (m = t.match(/\b(?:for|party of|group of)\s+(\d{1,2})\b/))) { var n = parseInt(m[1], 10); var opts = [12, 9, 8, 6, 4], pick = ""; for (i = 0; i < opts.length; i++) if (n >= opts[i]) { pick = String(opts[i]); break; } if (pick) set("f-seats", pick); got.push(n + " seat" + (n === 1 ? "" : "s")); t = t.replace(m[0], " "); }
-    else if ((m = t.match(/\b(two|three|four|five|six|seven|eight|nine|ten|twelve) (?:seats?|people|persons?|pax|passengers?|of us)\b/))) { var words = { two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, twelve: 12 }; var n2 = words[m[1]]; var o2 = [12, 9, 8, 6, 4], p2 = ""; for (i = 0; i < o2.length; i++) if (n2 >= o2[i]) { p2 = String(o2[i]); break; } if (p2) set("f-seats", p2); got.push(n2 + " seats"); t = t.replace(m[0], " "); }
-    /* when */
-    var now = new Date();
-    /* A window with a number in it: "next 2 weeks", "in 10 days", "within a
-       month". The filter only offers today, tomorrow, 7 and 30 days, so the
-       nearest one is used and the reply says which. */
-    var UNIT = { day: 1, days: 1, week: 7, weeks: 7, fortnight: 14, month: 30, months: 30 };
-    var WORDNUM = { a: 1, an: 1, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, twelve: 12 };
-    var NUMWIN = /\b(?:(?:in|within|over|during|for)\s+)?(?:the\s+)?(?:next|coming|following)\s+(\d{1,2}|a|an|one|two|three|four|five|six|seven|eight|nine|ten|twelve)\s*(days?|weeks?|months?|fortnight)\b/;
-    var NUMWIN2 = /\b(?:in|within)\s+(\d{1,2}|a|an|one|two|three|four|five|six|seven|eight|nine|ten|twelve)\s*(days?|weeks?|months?|fortnight)(?:\s+time)?\b/;
-    if ((m = t.match(NUMWIN)) || (m = t.match(NUMWIN2))) {
-      var qty = /^\d+$/.test(m[1]) ? parseInt(m[1], 10) : (WORDNUM[m[1]] || 1);
-      var days = qty * (UNIT[m[2]] || 1);
-      var pick = days <= 1 ? "1" : (days <= 7 ? "7" : (days <= 30 ? "30" : ""));
-      set("f-when", pick);
-      var said = days + (days === 1 ? " day" : " days");
-      if (pick === "") got.push(said + ", wider than our widest window, so dates are left open");
-      else if ((pick === "7" && days === 7) || (pick === "30" && days === 30) || (pick === "1" && days === 1)) got.push("next " + said);
-      else got.push(said + ", using the nearest window we have (" + (pick === "1" ? "tomorrow" : "next " + pick + " days") + ")");
-      t = t.replace(m[0], " ");
-    }
-    if (/\btoday\b/.test(t)) { set("f-when", "0"); got.push("today"); t = t.replace(/\btoday\b/, " "); }
-    else if (/\btomorrow\b/.test(t)) { set("f-when", "1"); got.push("tomorrow"); t = t.replace(/\btomorrow\b/, " "); }
-    else if (/\b(this week|next week|next 7 days|coming week|within a week|in the next week|this weekend|weekend|next few days|soon|asap)\b/.test(t)) { set("f-when", "7"); got.push("next 7 days"); t = t.replace(/\b(this week|next week|next 7 days|coming week|within a week|in the next week|this weekend|weekend|next few days|soon|asap)\b/, " "); }
-    else if (/\b(this month|next 30 days|next month|within a month|in the next month|coming weeks|next weeks)\b/.test(t)) { set("f-when", "30"); got.push("next 30 days"); t = t.replace(/\b(this month|next 30 days|next month|within a month|in the next month|coming weeks|next weeks)\b/, " "); }
-    /* explicit date: 12 sep, sep 12, 12/09, 2026-09-12 */
-    var dm;
-    if ((dm = t.match(/\b(\d{4})-(\d{2})-(\d{2})\b/))) { set("f-date", dm[0]); got.push("from " + dm[0]); t = t.replace(dm[0], " "); }
-    else if ((dm = t.match(/\b(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\b/)) || (dm = t.match(/\b(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\s+(\d{1,2})(?:st|nd|rd|th)?\b/))) {
-      var day = parseInt(/^\d/.test(dm[1]) ? dm[1] : dm[2], 10), mon = (/^\d/.test(dm[1]) ? dm[2] : dm[1]).slice(0, 3); var mi = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"].indexOf(mon); if (mon === "sep") mi = 8;
-      if (mi > -1 && day >= 1 && day <= 31) { var y = now.getFullYear(); var d = new Date(y, mi, day); if (d < new Date(now.getFullYear(), now.getMonth(), now.getDate())) d = new Date(y + 1, mi, day); set("f-date", ymd(d)); got.push("from " + ymd(d)); t = t.replace(dm[0], " "); }
-    }
-    else if ((dm = t.match(/\b(\d{1,2})[\/\.](\d{1,2})(?:[\/\.](\d{2,4}))?\b/))) { var dd = parseInt(dm[1], 10), mm = parseInt(dm[2], 10) - 1; if (dd >= 1 && dd <= 31 && mm >= 0 && mm <= 11) { var yy = dm[3] ? (dm[3].length === 2 ? 2000 + parseInt(dm[3], 10) : parseInt(dm[3], 10)) : now.getFullYear(); var d2 = new Date(yy, mm, dd); if (!dm[3] && d2 < now) d2 = new Date(yy + 1, mm, dd); set("f-date", ymd(d2)); got.push("from " + ymd(d2)); t = t.replace(dm[0], " "); } }
-    /* month name on its own */
-    for (i = 0; i < 12; i++) { var re = new RegExp("\\b(?:in |during |for )?" + MONTHS[i] + "\\b"); if (re.test(t) && !document.getElementById("f-date").value) { var yr = now.getFullYear(); if (i < now.getMonth()) yr++; var mv = yr + "-" + pad(i + 1); if (set("f-month", mv)) got.push(MONTHS[i].charAt(0).toUpperCase() + MONTHS[i].slice(1) + " " + yr); else got.push("no legs listed for " + MONTHS[i] + " yet"); t = t.replace(re, " "); break; } }
-    /* region */
-    for (i = 0; i < REGIONS.length; i++) { if (REGIONS[i][0].test(t) && !/\b(from|to)\s+[a-z]/.test(t)) { if (set("f-region", REGIONS[i][1])) got.push(REGIONS[i][1]); t = t.replace(REGIONS[i][0], " "); break; } }
-    /* aircraft: match against the options the board has */
-    var sel = document.getElementById("f-ac"); if (sel) { var best = null, bestLen = 0; Array.prototype.forEach.call(sel.options, function(o){ if (!o.value) return; var words = o.value.toLowerCase().replace(/[()]/g, "").split(/\s+/).filter(function(w){ return w.length > 2 && !/^(cessna|bombardier|embraer|gulfstream|dassault|hawker|beechcraft|pilatus|jet)$/.test(w); }); var hit = words.length && words.every(function(w){ return t.indexOf(" " + w + " ") > -1 || t.indexOf(" " + w + ",") > -1; }); if (hit && words.join(" ").length > bestLen) { best = o.value; bestLen = words.join(" ").length; } }); if (best) { set("f-ac", best); got.push(best); best.toLowerCase().split(/\s+/).forEach(function(w){ t = t.replace(new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b"), " "); }); } }
-    /* route: what is left */
-    t = t.replace(/\b(empty legs?|flights?|flight|jet|jets|private|a|an|the|please|looking for|i want|i need|we want|we need|want|need|show me|find|me|anything|any|anywhere|somewhere|leg|legs|seats?|available|going|fly|flying|and|with|of|by|on|at|in|within|over|next|coming|following|day|days|week|weeks|month|months|fortnight|time|,)\b/g, " ")
-      .replace(/\b\d+\b/g, " ").replace(/\b(in|into)\s+(in|into)\b/g, " $2").replace(/^\s*(in|into|on|at)\s*$/, "").replace(/\s+/g, " ").trim().replace(/^,|,$/g, "").trim();
-    var r;
-    if ((r = t.match(/^(?:from\s+)?(.+?)\s+(?:to|->|\u2192|-|\u2013|\u2014)\s+(.+)$/))) { set("f-from", clean(r[1])); set("f-to", clean(r[2])); got.push("from " + clean(r[1])); got.push("to " + clean(r[2])); t = ""; }
-    else if ((r = t.match(/^to\s+(.+)$/))) { set("f-to", clean(r[1])); got.push("to " + clean(r[1])); t = ""; }
-    else if ((r = t.match(/^(?:from|out of|leaving|departing)\s+(.+)$/))) { set("f-from", clean(r[1])); got.push("from " + clean(r[1])); t = ""; }
-    else if ((r = t.match(/^(?:in|into|arriving|arriving in|towards)\s+(.+)$/))) { set("f-to", clean(r[1])); got.push("to " + clean(r[1])); t = ""; }
-    else if (t && /^[a-z][a-z .'-]{2,40}$/.test(t) && !/^(in|into|on|at|from|to)$/.test(t)) { set("f-from", clean(t)); got.push("from " + clean(t) + " (say \"to " + clean(t) + "\" for arrivals)"); t = ""; }
-    return { got: got, left: t.trim() };
-  }
-  function clean(s){ return s.replace(/\b(from|to|in|on|at)\s*$/, "").replace(/[^a-z0-9 .'-]/g, " ").replace(/\s+/g, " ").trim().replace(/\b[a-z]/g, function(c){ return c.toUpperCase(); }); }
-  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
-  function go(){
-    var text = q.value.trim(); if (!text) { out.textContent = ""; return; }
-    var res = parse(text);
-    var f = document.getElementById("f-from"); f.dispatchEvent(new Event("change", { bubbles: true }));
-    out.innerHTML = (res.got.length ? "Understood: <b>" + res.got.map(esc).join("</b>, <b>") + "</b>." : "Nothing recognised in that; try \"Nice to London next week\".") + (res.left ? ' <span class="skip">Not used: "' + esc(res.left) + '"</span>' : "");
-    var list = document.getElementById("lhead") || document.getElementById("ltitle"); if (list && window.innerWidth < 700) list.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-  document.getElementById("nls-go").addEventListener("click", go);
-  q.addEventListener("keydown", function(e){ if (e.key === "Enter") { e.preventDefault(); go(); } });
-  var pre = (location.search.match(/[?&]ask=([^&]+)/) || [])[1]; if (pre) { try { q.value = decodeURIComponent(pre.replace(/\+/g, " ")); } catch (e) {} if (q.value) setTimeout(go, 1500); }
-})();
-</script>
-<!-- /nlsearch.py -->
-<div id="filters" class="card">
+  <div id="filters" class="card">
     <div class="fgrid">
       <div class="f"><label for="f-from">From</label><input type="text" id="f-from" list="dl-from" placeholder="City, country or code" autocomplete="off"><datalist id="dl-from"></datalist></div>
       <div class="f"><label for="f-to">To</label><input type="text" id="f-to" list="dl-to" placeholder="City, country or code" autocomplete="off"><datalist id="dl-to"></datalist></div>
@@ -2968,6 +2861,7 @@ setTimeout(boot,900);setTimeout(boot,2500);setTimeout(boot,5000);
         <a href="/about">About us</a>
         <a href="/for-operators">For operators</a>
         <a href="/media">Media kit</a>
+        <a href="/press/">Press releases</a>
         <a href="/contact">Contact</a>
       </nav>
     </details>
