@@ -644,9 +644,9 @@ table.dbt td.lead{font-weight:500;color:#0D1F36}
 .dbn{font-size:12.5px;color:#8a97a5;margin:8px 0 0}
 @media(max-width:700px){.dbs{grid-template-columns:repeat(2,1fr)}table.dbt{font-size:13px}table.dbt td,table.dbt th{padding:9px 8px}}
 </style>
-  <h2 hidden id="dbh">Carlsbad to Truckee in the record</h2>
-  <p hidden id="dbp">Every leg we have recorded between Carlsbad and Truckee, in either direction, since 30 July 2026, whether it is still on the board or not. A leg leaves the board when the operator stops publishing it, and we cannot tell from outside whether it was sold or withdrawn, so these are counts of what was listed, not of what flew.</p>
-  <div class="db" id="db" hidden>
+  <h2 id="dbh">Carlsbad to Truckee in the record</h2>
+  <p id="dbp">Every leg we have recorded between Carlsbad and Truckee, in either direction, since 30 July 2026, whether it is still on the board or not. A leg leaves the board when the operator stops publishing it, and we cannot tell from outside whether it was sold or withdrawn, so these are counts of what was listed, not of what flew.</p>
+  <div class="db" id="db">
     <div class="dbs">
       <div><b id="db_rec">&nbsp;</b><span>legs recorded since 30 July 2026</span></div>
       <div><b id="db_live">&nbsp;</b><span>of them on the board right now</span></div>
@@ -903,7 +903,7 @@ function esc(s){var d=document.createElement("div");d.textContent=(s==null?"":St
 function d(x){try{var p=String(x).split("-");return p[2]+" "+MON[Number(p[1])-1]+" "+p[0];}catch(e){return x;}}
 function elN(s){return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}function elW(v,t){var s=elN(v),n=elN(t);if(!n)return false;var i=s.indexOf(n);while(i!==-1){if(i===0||!/[a-z0-9]/.test(s.charAt(i-1)))return true;i=s.indexOf(n,i+1);}return false;}function hit(v,list){for(var i=0;i<list.length;i++){if(elW(v,list[i]))return true;}return false;}
 /* boardall.py: PostgREST replies with at most 1000 rows, so the board is read a page at a time. */
-(function(){var _all=[];function _page(off){return fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc,id.asc&limit=1000&offset="+off,{headers:{apikey:KEY,Authorization:"Bearer "+KEY}}).then(function(r){return r.ok?r.json():[];}).then(function(rows){_all=_all.concat(rows);return (rows.length<1000||_all.length>=20000)?_all:_page(off+1000);});}return _page(0);})()
+(function(){var _all=[];function _page(off){return fetch(BASE+"/rest/v1/empty_legs?select=id,published_at,from_airport,from_iata,from_city,from_country,to_airport,to_iata,to_city,to_country,departure_date,aircraft_type,seats,est_flight_time,price_note,prev_price_note,price_changed_at,notes,region&order=departure_date.asc,id.asc&limit=1000&offset="+off,{headers:{apikey:KEY,Authorization:"Bearer "+KEY}}).then(function(r){return r.ok?r.json():[];}).then(function(rows){_all=_all.concat(rows);return (rows.length<1000||_all.length>=20000)?_all:_page(off+1000);});}return _page(0);})()
 .then(function(all){
 var today=new Date().toISOString().slice(0,10);
 all=all.filter(function(x){return String(x.departure_date||"")>=today;});

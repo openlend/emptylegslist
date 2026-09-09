@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Empty legs to the Mediterranean in summer | Empty Leg List</title>
-<meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://emptylegslist.com/season/mediterranean-summer">
 <meta name="description" content="Empty leg private jet flights into and out of Nice, Ibiza, Palma, Olbia, Mykonos, Athens, Málaga and the other Mediterranean airports, from the live board and the record kept since 30 July 2026.">
 <meta property="og:title" content="Empty legs to the Mediterranean, summer">
@@ -508,7 +507,16 @@ function apiAll(path, cap){ cap = cap || 20000; var out = [];
     out = out.concat(rows); if (rows.length < 1000 || out.length >= cap) return out; return page(off + 1000); }); }
   return page(0); }
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
-function flightUrl(id){ return "/flight/"+id; }
+function slugPart(s){ return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40); }
+/* A flight link carries its route and date in front of the id, so a link
+   pasted into WhatsApp says what it is. The id stays on the end and is what
+   the page reads; a bare /flight/<id> still works. */
+function flightUrl(x){
+  if (!x) return "/flight/";
+  if (typeof x === "string") return "/flight/" + x;
+  var bits = [slugPart(x.from_label || x.from_city), "to", slugPart(x.to_label || x.to_city), String(x.departure_date || "").slice(0,10)].filter(Boolean);
+  return "/flight/" + (bits.length > 2 ? bits.join("-") + "-" : "") + x.id;
+}
 
   var SEASON = "med", MONTHS = [6, 7, 8, 9];
   var all = [], f = { dir: "" };

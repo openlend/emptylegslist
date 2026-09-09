@@ -798,9 +798,9 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 .nb .nbn{padding:14px 16px;color:#8a97a5;font-size:13.5px}
 @media(max-width:640px){.nb .nbr{grid-template-columns:1fr auto}.nb .nbd{grid-column:1/-1}}
 </style>
-  <h2 hidden id="nearbyh">Empty legs within 150 km of Nice</h2>
-  <p hidden id="nearbyp">Live legs leaving from, or landing at, other airports within 150 km of NCE. A leg from an airport an hour's drive away can be the one that fits; the distance shown is from NCE to the airport the leg uses, in a straight line.</p>
-  <div class="nb" id="nearby" hidden>
+  <h2 id="nearbyh">Empty legs within 150 km of Nice</h2>
+  <p id="nearbyp">Live legs leaving from, or landing at, other airports within 150 km of NCE. A leg from an airport an hour's drive away can be the one that fits; the distance shown is from NCE to the airport the leg uses, in a straight line.</p>
+  <div class="nb" id="nearby">
     <div class="nbh"><button aria-pressed="true" data-v="from">Leaving nearby</button><button data-v="to">Arriving nearby</button></div>
     <div id="nbrows"><div class="nbn">Reading the board.</div></div>
   </div>
@@ -860,9 +860,9 @@ table.dbt td.lead{font-weight:500;color:#0D1F36}
 .dbn{font-size:12.5px;color:#8a97a5;margin:8px 0 0}
 @media(max-width:700px){.dbs{grid-template-columns:repeat(2,1fr)}table.dbt{font-size:13px}table.dbt td,table.dbt th{padding:9px 8px}}
 </style>
-  <h2 hidden id="dbh">Nice in the record</h2>
-  <p hidden id="dbp">Every leg we have recorded with one end at Nice since 30 July 2026, whether it is still on the board or not. A leg leaves the board when the operator stops publishing it, and we cannot tell from outside whether it was sold or withdrawn, so these are counts of what was listed, not of what flew.</p>
-  <div class="db" id="db" hidden>
+  <h2 id="dbh">Nice in the record</h2>
+  <p id="dbp">Every leg we have recorded with one end at Nice since 30 July 2026, whether it is still on the board or not. A leg leaves the board when the operator stops publishing it, and we cannot tell from outside whether it was sold or withdrawn, so these are counts of what was listed, not of what flew.</p>
+  <div class="db" id="db">
     <div class="dbs">
       <div><b id="db_rec">&nbsp;</b><span>legs recorded since 30 July 2026</span></div>
       <div><b id="db_live">&nbsp;</b><span>of them on the board right now</span></div>
@@ -1301,7 +1301,7 @@ document.getElementById("clear").addEventListener("click",function(){
   document.getElementById("f-price").value="any";apply();});
 
 /* boardall.py: PostgREST replies with at most 1000 rows, so the board is read a page at a time. */
-(function(){var _all=[];function _page(off){return fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc,id.asc&limit=1000&offset="+off,{headers:{apikey:KEY,Authorization:"Bearer "+KEY}}).then(function(r){return r.ok?r.json():[];}).then(function(rows){_all=_all.concat(rows);return (rows.length<1000||_all.length>=20000)?_all:_page(off+1000);});}return _page(0);})()
+(function(){var _all=[];function _page(off){return fetch(BASE+"/rest/v1/empty_legs?select=id,published_at,from_airport,from_iata,from_city,from_country,to_airport,to_iata,to_city,to_country,departure_date,aircraft_type,seats,est_flight_time,price_note,prev_price_note,price_changed_at,notes,region&order=departure_date.asc,id.asc&limit=1000&offset="+off,{headers:{apikey:KEY,Authorization:"Bearer "+KEY}}).then(function(r){return r.ok?r.json():[];}).then(function(rows){_all=_all.concat(rows);return (rows.length<1000||_all.length>=20000)?_all:_page(off+1000);});}return _page(0);})()
 .then(function(all){
   var today=new Date().toISOString().slice(0,10);
   ALL=all.filter(function(x){return String(x.departure_date||"")>=today && (hit(x.from_airport)||hit(x.to_airport));});

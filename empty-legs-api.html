@@ -448,7 +448,6 @@ table.f td:first-child{white-space:nowrap;font-family:ui-monospace,SFMono-Regula
 <p>On the live board:</p>
 <div class="tablewrap"><table class="f">
   <tr><th>Field</th><th>What it is</th></tr>
-    <tr><td>operator_name</td><td>The operator that published the leg.</td></tr>
     <tr><td>from_airport, from_iata</td><td>Departure, as the operator writes it, plus the code where we have one.</td></tr>
     <tr><td>to_airport, to_iata</td><td>Arrival, same.</td></tr>
     <tr><td>departure_date</td><td>The date the operator published.</td></tr>
@@ -462,6 +461,7 @@ table.f td:first-child{white-space:nowrap;font-family:ui-monospace,SFMono-Regula
 <p>And on the record, which is the part that is not public:</p>
 <div class="tablewrap"><table class="f">
   <tr><th>Field</th><th>What it is</th></tr>
+    <tr><td>operator_name</td><td>The operator that published the leg. Not on the free board: the public pages never show it and the publishable key cannot read it.</td></tr>
     <tr><td>first_seen_at</td><td>The first time we read this leg from the operator.</td></tr>
     <tr><td>last_seen_at</td><td>The last time it was still there.</td></tr>
     <tr><td>gone_at</td><td>When it stopped appearing. Null while it is still live.</td></tr>
