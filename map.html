@@ -91,7 +91,7 @@ p.gtip b{color:var(--navy)}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
 .wrap.map{max-width:1180px}
-#elmap{width:100%;height:min(72vh,720px);border-radius:14px;background:#0D1F36;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:8px 0 10px}
+#elmap{width:100%;height:min(72vh,720px);border-radius:14px;background:#08131f;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:8px 0 10px}
 .leaflet-popup-content{font:14px/1.5 Raleway,sans-serif;color:#16222e;margin:12px 14px}
 .leaflet-popup-content b{color:#0D1F36}
 .leaflet-popup-content a{color:#0D1F36}
@@ -99,11 +99,10 @@ p.gtip b{color:var(--navy)}
 .mapbar .gcur{margin:0}
 .mapbar .cnt{font-size:13.5px;color:var(--mute);margin-left:auto}
 .mapwrap{position:relative}
-.maplock{position:absolute;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;background:rgba(13,31,54,.18);border-radius:14px;cursor:pointer}
-.maplock span{background:#fff;color:#0D1F36;font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:999px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
 .maplegend{position:absolute;left:12px;bottom:12px;z-index:400;background:rgba(13,31,54,.82);color:#e8edf3;font-size:12px;line-height:1.7;padding:7px 11px;border-radius:9px;pointer-events:none}
-.maplegend i{display:inline-block;width:18px;height:0;border-top:2px solid #C9A24C;vertical-align:middle;margin-right:7px}
+.maplegend i{display:inline-block;width:18px;height:0;border-top:2px solid #E8BE63;vertical-align:middle;margin-right:7px}
 .maplegend i.w{border-top:1px solid rgba(255,255,255,.75)}
+.maphint{font-size:12.5px;color:var(--mute);margin:2px 0 0}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -171,9 +170,6 @@ p.gtip b{color:var(--navy)}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
-<!-- siteld.py -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Where the empty legs are today","item":"https://emptylegslist.com/map"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/map","url":"https://emptylegslist.com/map","name":"Live map of empty leg flights","description":"Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
-<!-- /siteld.py -->
 </head>
 <body>
 <header class="elnav">
@@ -473,7 +469,8 @@ p.gtip b{color:var(--navy)}
   <div class="gcur" id="mapprice"><button aria-pressed="true" data-v="">All legs</button><button data-v="1">With a price</button></div>
   <span class="cnt" id="mapcnt">Reading the board.</span>
 </div>
-<div class="mapwrap"><div id="elmap"></div><div class="maplegend"><i></i>published price<br><i class="w"></i>price on enquiry</div><div class="maplock" id="maplock" hidden><span>Tap to move the map</span></div></div>
+<div class="mapwrap"><div id="elmap"></div><div class="maplegend"><i></i>published price<br><i class="w"></i>price on enquiry</div></div>
+<p class="maphint" id="maphint" hidden>Two fingers to move the map, so the page still scrolls with one.</p>
 <p class="gnote">A line starts at the departure airport the operator named, or at an airport in the departure city when only the city was given, and ends the same way at the destination. Legs the operator described by city alone are drawn at city level. Prices are the operator's own figure for the whole aircraft.</p>
 
 <h2>How to read it</h2>
@@ -504,13 +501,33 @@ function apiAll(path, cap){ cap = cap || 20000; var out = [];
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
 function flightUrl(id){ return "/flight/"+id; }
 
-  var touch = ("ontouchstart" in window) || navigator.maxTouchPoints > 0;
-  var map = L.map("elmap", { worldCopyJump: true, minZoom: 2, preferCanvas: true, scrollWheelZoom: false, dragging: !touch, tap: !touch, zoomControl: true }).setView([38, -10], 3);
-  /* The page must scroll past the map with one finger: on touch devices the
-     map starts locked and a tap unlocks dragging; two fingers always zoom. */
-  var lock = document.getElementById("maplock");
-  if (touch) { lock.hidden = false; lock.addEventListener("click", function(){ lock.hidden = true; map.dragging.enable(); }); map.on("blur", function(){}); document.addEventListener("touchstart", function(e){ if (!lock.hidden) return; if (!document.getElementById("elmap").contains(e.target)) { lock.hidden = false; map.dragging.disable(); } }, { passive: true }); }
-  else { map.on("click focus", function(){ map.scrollWheelZoom.enable(); }); map.on("mouseout", function(){ map.scrollWheelZoom.disable(); }); }
+  /* L.Browser.mobile is a user agent check. Touch capability is not: a laptop
+     with a touchscreen reports touch points and would have been locked out of
+     dragging with a mouse, which is what happened on 9 September 2026. */
+  var mobile = L.Browser.mobile;
+  var map = L.map("elmap", { worldCopyJump: true, minZoom: 2, maxZoom: 6, preferCanvas: true,
+    scrollWheelZoom: false, dragging: !mobile, tap: !mobile, zoomControl: true }).setView([38, -10], 3);
+
+  /* The basemap is ours: country outlines drawn from a local file, no tiles,
+     no provider, no key. */
+  fetch("/brand/world-110m.json").then(function(r){ return r.json(); }).then(function(geo){
+    L.geoJSON(geo, { interactive: false, renderer: L.canvas({ padding: 0.4 }),
+      style: { color: "#33527a", weight: 0.6, opacity: 0.85, fillColor: "#17293f", fillOpacity: 1 } }).addTo(map).bringToBack();
+  }).catch(function(){ /* the legs still draw on the navy background */ });
+  map.attributionControl.addAttribution('Country outlines: <a href="https://www.naturalearthdata.com/">Natural Earth</a>, public domain');
+
+  if (mobile) {
+    /* One finger scrolls the page, two fingers move the map. */
+    var box = map.getContainer(), hint = document.getElementById("maphint");
+    hint.hidden = false;
+    box.addEventListener("touchstart", function(e){
+      if (e.touches.length > 1) { map.dragging.enable(); } else { map.dragging.disable(); }
+    }, { passive: true });
+  } else {
+    map.on("click focus", function(){ map.scrollWheelZoom.enable(); });
+    map.on("mouseout", function(){ map.scrollWheelZoom.disable(); });
+  }
+
   function arc(a, b){ /* a few points along the great circle so long legs bend instead of cutting straight across */
     var n = 24, out = [], rad = Math.PI / 180, la1 = a[0] * rad, lo1 = a[1] * rad, la2 = b[0] * rad, lo2 = b[1] * rad;
     var d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((la1 - la2) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin((lo1 - lo2) / 2), 2)));
@@ -520,9 +537,6 @@ function flightUrl(id){ return "/flight/"+id; }
       out.push([Math.atan2(z, Math.sqrt(x * x + y * y)) / rad, Math.atan2(y, x) / rad]); }
     return out;
   }
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png", { maxZoom: 12, subdomains: "abcd",
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>' }).addTo(map);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png", { maxZoom: 12, subdomains: "abcd", pane: "overlayPane", opacity: 0.85 }).addTo(map);
   var layer = L.layerGroup().addTo(map), all = [], first = true, f = { reg: "", days: "7", price: "" };
 
   function bar(id, key){ var b = document.getElementById(id); b.addEventListener("click", function(e){ var btn = e.target.closest("button"); if(!btn) return;
@@ -544,14 +558,17 @@ function flightUrl(id){ return "/flight/"+id; }
       if (!keep(l)) return; n++;
       if (l.from_lat==null || l.to_lat==null) return; shown++;
       var priced = !!l.price_note;
-      var line = L.polyline(arc([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]), { color: priced ? "#C9A24C" : "#ffffff", weight: priced ? 1.8 : 0.9, opacity: priced ? 0.85 : 0.32, smoothFactor: 1.5 });
+      var line = L.polyline(arc([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]), { color: priced ? "#E8BE63" : "#dce8f7", weight: priced ? 2 : 1, opacity: priced ? 0.95 : 0.5, smoothFactor: 1.5 });
       line.bindPopup('<b>'+esc(l.from_label)+' to '+esc(l.to_label)+'</b><br>'+esc(fmtDate(l.departure_date))+(l.aircraft_type?' &middot; '+esc(l.aircraft_type):'')+(l.seats?' &middot; up to '+l.seats+' seats':'')+'<br>'+(l.price_note?esc(l.price_note.replace(" listed","")):'Price on enquiry')+'<br><a href="'+flightUrl(l.id)+'">Open this flight</a>');
-      line.on("mouseover", function(){ this.setStyle({ weight: 4, opacity: 1 }); }).on("mouseout", function(){ this.setStyle({ weight: priced ? 1.8 : 0.9, opacity: priced ? 0.85 : 0.32 }); });
+      line.on("mouseover", function(){ this.setStyle({ weight: 4, opacity: 1 }); }).on("mouseout", function(){ this.setStyle({ weight: priced ? 2 : 1, opacity: priced ? 0.95 : 0.5 }); });
       layer.addLayer(line);
-      L.circleMarker([l.from_lat, l.from_lon], { radius: priced ? 2.4 : 1.6, color: priced ? "#C9A24C" : "#ffffff", fillColor: priced ? "#C9A24C" : "#ffffff", fillOpacity: priced ? 1 : 0.6, weight: 0 }).addTo(layer);
+      L.circleMarker([l.from_lat, l.from_lon], { radius: priced ? 2.6 : 1.8, color: priced ? "#E8BE63" : "#dce8f7", fillColor: priced ? "#E8BE63" : "#dce8f7", fillOpacity: priced ? 1 : 0.7, weight: 0 }).addTo(layer);
       bounds.push([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]);
     });
-    document.getElementById("mapcnt").textContent = n + " legs" + (shown < n ? ", " + shown + " with a known position" : "") + (all.length ? " of " + all.length + " on the board" : "");
+    var fmt = function(x){ return x.toLocaleString("en-GB"); };
+    document.getElementById("mapcnt").textContent = fmt(n) + " legs match these filters"
+      + (shown < n ? ", " + fmt(shown) + " of them with a position we can draw" : "")
+      + (all.length ? ". " + fmt(all.length) + " on the board." : ".");
     if (bounds.length && (f.reg || first)) map.fitBounds(bounds, { padding: [20, 20], maxZoom: 5 }); first = false;
   }
   apiAll("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date,id")
