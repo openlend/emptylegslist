@@ -133,6 +133,11 @@ p.gtip b{color:var(--navy)}
 .rate .pc{font-variant-numeric:tabular-nums;color:var(--navy);font-weight:600;font-size:16px;min-width:44px}
 .rate .rg{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
 .day{display:inline-block;font-size:12.5px;padding:5px 12px;border-radius:999px;background:#f1f4f8;color:#46525f;font-weight:500}
+.dt{display:block;font-size:12px;color:var(--mute);margin-top:5px;font-variant-numeric:tabular-nums}
+.res{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:4px 11px;border-radius:999px}
+.res.y{background:#e3f4ea;color:#1c7a4a}
+.res.n{background:#f6e6e4;color:#b3261e}
+.res.w{background:#f1f4f8;color:#6b7885}
 .arw{color:var(--mute);margin:0 7px}
 table.gtab tr.top td{background:#fdf8ec}
 .bell{display:inline-flex;color:var(--mute);text-decoration:none}
@@ -582,6 +587,9 @@ table.gtab tr.top td{background:#fdf8ec}
 <div class="pane" id="p2" hidden>
   <h2>Track record</h2>
   <p class="gnote" style="margin:0 0 4px">Every prediction, next to what actually happened. Written before the week, scored after it.</p>
+  <div id="each"><p class="gnote">Reading the record.</p></div>
+
+  <h2>Grouped by how much history there was</h2>
   <div id="score"><p class="gnote">Reading the record.</p></div>
   <p class="gnote">Rows group the predictions by how many weeks that route had already appeared in when the call was made. When "we said" and "actually happened" are close, the numbers are calibrated. When they are far apart, they are not, and this page will show that rather than quietly adjust.</p>
 </div>
@@ -591,6 +599,10 @@ table.gtab tr.top td{background:#fdf8ec}
   <p>It counts. For each route and weekday it takes the number of complete weeks in the record and the number of those weeks that carried a leg, then puts a 90 per cent Wilson interval around the result. That is the standard interval for a proportion, and it is deliberately the whole method.</p>
   <p>A larger model was tried first and rejected. Fitting one across all routes assumes routes differ from each other in a stable way, and the record says they do not: the spread between routes measures 0.0020 where random chance alone would produce 0.0240, because 2,768 of the 2,885 route and weekday combinations appeared exactly once. Most empty legs are one-offs, not a weekly service. The model was pulling a route seen six weeks out of six down to a 24 per cent chance, which is a model overruling its data, so it went.</p>
   <p>The interval narrows on its own as the record grows. Once the track record holds enough scored weeks it replaces this arithmetic with a measured hit rate, which needs no assumptions at all.</p>
+  <h2>Why once a week</h2>
+  <p>The cadence is about locking, not about capability. Each prediction is about one specific date, and it is written into the database before that date arrives and never touched again. Publishing the whole week at once on a Monday means every prediction is locked between five and eleven days before the day it is about, which is the part that makes it worth anything.</p>
+  <p>Predicting a date one day out would be easier and would prove less. If the record grows enough to support it, the same table can be published daily with a longer horizon, and the days ahead column on the track record is there so anyone can see how far in advance each call was actually made.</p>
+
   <h2>What this is not</h2>
   <p>It is not availability. A route with a high rate can carry nothing next week, and a route that has never appeared can carry a leg tomorrow. It is not a schedule either: operators publish empty legs because of the paid charters around them, and those change.</p>
   <p>If you want a specific pair, a <a href="/#alerts">route alert</a> tells you the hour a leg appears on it, which beats any forecast.</p>
@@ -652,6 +664,12 @@ function flightUrl(x){
   var ALL = [], LIMIT = 12;
 
   function pct(x){ return Math.round(x * 100) + "%"; }
+  var WEEKSTART = null;
+  function dateFor(weekday){
+    if (!WEEKSTART) return "";
+    var t = d(WEEKSTART); t.setUTCDate(t.getUTCDate() + (weekday - 1));
+    return fmtDate(t.toISOString().slice(0, 10));
+  }
   function d(s){ return new Date(String(s) + "T00:00:00Z"); }
   function weekLabel(startISO){
     var a = d(startISO), b = new Date(a.getTime() + 6 * 86400000);
@@ -679,6 +697,8 @@ function flightUrl(x){
     sel.innerHTML = keys.map(function(k){ return '<option value="' + k + '">' + esc(weekLabel(k)) + "</option>"; }).join("") ||
       "<option>No week published yet</option>";
     if (keys.length){
+      WEEKSTART = keys[0];
+      document.getElementById("wk").addEventListener("change", function(){ WEEKSTART = this.value; draw(); });
       document.getElementById("wklabel").textContent = "· WEEK OF " + weekLabel(keys[0]).toUpperCase();
       var first = d(keys[keys.length - 1]); first.setUTCDate(first.getUTCDate() + 7);
       document.getElementById("banner").innerHTML = scored ? "" :
@@ -691,7 +711,33 @@ function flightUrl(x){
     }
   }).catch(function(){});
 
-  /* the track record */
+  /* every prediction, one row each, with the date it is about */
+  apiAll("forecast_results?select=target_date,from_city,to_city,predicted_rate,weeks_with_leg,weeks_observed,made_on,days_ahead,outcome&order=target_date.asc,predicted_rate.desc")
+    .then(function(rows){
+      var el = document.getElementById("each");
+      if (!rows.length){ el.innerHTML = '<p class="gnote">No predictions written down yet.</p>'; return; }
+      var done = rows.filter(function(r){ return r.outcome !== null; }),
+          hit = done.filter(function(r){ return r.outcome; }).length,
+          lo = Math.min.apply(null, rows.map(function(r){ return r.days_ahead; }));
+      el.innerHTML =
+        '<p class="gnote" style="margin:0 0 14px">' + rows.length + ' predictions written down so far, each at least ' + lo +
+        ' days before the date it is about. ' + (done.length ? done.length + (done.length === 1 ? ' has' : ' have') + ' been scored, ' + hit + (hit === 1 ? ' was' : ' were') + ' right.'
+          : 'None has been scored yet, because none of the dates has passed.') + '</p>' +
+        '<div class="tcard"><div class="gscroll"><table class="gtab"><thead><tr><th>Date</th><th>Route</th>' +
+        '<th>Seen</th><th class="num">We said</th><th class="num">Days ahead</th><th>Result</th></tr></thead><tbody>' +
+        rows.slice(0, 200).map(function(r){
+          var res = r.outcome === null ? '<span class="res w">Awaiting</span>'
+                  : r.outcome ? '<span class="res y">A leg appeared</span>'
+                              : '<span class="res n">None appeared</span>';
+          return '<tr><td>' + esc(fmtDate(r.target_date)) + '</td>' +
+            '<td class="lead">' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</td>' +
+            '<td>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</td>' +
+            '<td class="num">' + pct(r.predicted_rate) + '</td>' +
+            '<td class="num">' + r.days_ahead + '</td><td>' + res + '</td></tr>'; }).join("") +
+        '</tbody></table></div></div>';
+    }).catch(function(){ document.getElementById("each").innerHTML = '<p class="gnote">The track record did not load.</p>'; });
+
+  /* the same predictions, grouped */
   api("forecast_scoreboard?select=*").then(function(rows){
     var el = document.getElementById("score");
     if (!rows.length){ el.innerHTML = '<p class="gnote">Nothing has been scored yet. The first week closes on 21 September 2026 and this table fills in then.</p>'; return; }
@@ -724,7 +770,7 @@ function flightUrl(x){
       var lo = r.rate_low * 100, hi = r.rate_high * 100, mid = r.rate_centre * 100;
       return '<tr' + (i === 0 ? ' class="top"' : '') + '><td class="lead">' + esc(r.from_city) +
         '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</td>' +
-        '<td><span class="day">' + DAY[r.weekday] + '</span></td>' +
+        '<td><span class="day">' + DAY[r.weekday] + '</span><span class="dt">' + esc(dateFor(r.weekday)) + '</span></td>' +
         '<td>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</td>' +
         '<td><span class="rate"><span class="pc">' + Math.round(mid) + '%</span>' +
           '<span class="bar"><i style="left:' + lo + '%;width:' + Math.max(1.5, hi - lo) + '%"></i>' +
