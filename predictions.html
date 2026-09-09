@@ -89,18 +89,20 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.fc{max-width:1000px}
+.wrap.fc{max-width:1240px}
+.fc .narrow{max-width:760px}
 .crumb{font-size:12.5px;color:var(--mute);margin:26px 0 18px}
 .crumb a{color:var(--mute);text-decoration:none}
 .crumb a:hover{color:var(--navy)}
-.fchead{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start}
+.fchead{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;align-items:end;margin-bottom:6px}
 .fceyebrow{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);font-weight:600;margin:0 0 8px}
-.wrap.fc h1{margin:0 0 8px;font-size:clamp(28px,4.6vw,40px);line-height:1.12}
-.fcsub{font-size:16px;color:#46525f;margin:0;max-width:56ch}
-.wkpick{min-width:250px}
-.wkpick select{width:100%;font:inherit;font-size:13.5px;font-weight:500;color:var(--navy);background:#fff;
-  border:1px solid var(--line);border-radius:12px;padding:11px 14px;cursor:pointer;box-shadow:0 1px 3px rgba(14,35,56,.05)}
-.wkpick p{font-size:12px;color:var(--mute);margin:9px 2px 0;line-height:1.5}
+.wrap.fc h1{margin:0 0 10px;font-size:clamp(30px,4.4vw,46px);line-height:1.08;max-width:15ch}
+.fcsub{font-size:17px;color:#46525f;margin:0;max-width:44ch;line-height:1.6}
+.wkpick{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
+.wkpick label{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600;margin:0 0 8px}
+.wkpick select{width:100%;font:inherit;font-size:14px;font-weight:500;color:var(--navy);background:#fff;
+  border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer}
+.wkpick p{font-size:12px;color:var(--mute);margin:10px 1px 0;line-height:1.5}
 
 .tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:30px 0 0}
 .tabs button{position:relative;background:none;border:0;border-radius:0;box-shadow:none;padding:0 0 13px;margin:0;
@@ -110,21 +112,25 @@ p.gtip b{color:var(--navy)}
 .tabs button[aria-selected=true]::after{background:var(--gold)}
 .pane[hidden]{display:none}
 
-.note{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;background:#fdf8ec;
-  border:1px solid #f0e3c6;border-radius:14px;padding:18px 22px;margin:26px 0 0}
-.note .ic{width:44px;height:44px;border-radius:50%;background:#f3e6c8;display:flex;align-items:center;justify-content:center;flex:none}
-.note b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:19px;color:var(--navy);margin-bottom:3px}
+.note{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;background:#fdf8ec;
+  border:1px solid #f0e3c6;border-radius:16px;padding:24px 28px;margin:30px 0 0}
+.note .ic{width:52px;height:52px;border-radius:50%;background:#f3e6c8;display:flex;align-items:center;justify-content:center;flex:none}
+.note b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:22px;color:var(--navy);margin-bottom:5px}
 .note span{font-size:13.5px;color:#5a6673}
 .note .rt{border-left:1px solid #ecdfc2;padding-left:20px;font-size:12.5px;color:#6b7885;line-height:1.6;text-align:left}
 @media(max-width:760px){.note{grid-template-columns:auto 1fr}.note .rt{grid-column:1/-1;border-left:0;padding-left:0;border-top:1px solid #ecdfc2;padding-top:12px}}
 
-.bar{position:relative;height:7px;background:#eef1f5;border-radius:4px;width:112px;flex:none}
+.fc table.gtab{font-size:15px}
+.fc table.gtab th{font-size:11px;padding:15px 18px}
+.fc table.gtab td{padding:16px 18px}
+.fc table.gtab td.lead{font-size:15.5px}
+.bar{position:relative;height:8px;background:#eef1f5;border-radius:4px;width:170px;flex:none}
 .bar i{position:absolute;top:0;bottom:0;background:#C9A24C;border-radius:4px}
 .bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--navy);opacity:.6}
-.rate{display:flex;align-items:center;gap:10px;white-space:nowrap}
-.rate .pc{font-variant-numeric:tabular-nums;color:var(--navy);font-weight:600;font-size:14px;min-width:38px}
+.rate{display:flex;align-items:center;gap:14px;white-space:nowrap}
+.rate .pc{font-variant-numeric:tabular-nums;color:var(--navy);font-weight:600;font-size:16px;min-width:44px}
 .rate .rg{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
-.day{display:inline-block;font-size:12px;padding:4px 10px;border-radius:999px;background:#f1f4f8;color:#46525f;font-weight:500}
+.day{display:inline-block;font-size:12.5px;padding:5px 12px;border-radius:999px;background:#f1f4f8;color:#46525f;font-weight:500}
 .arw{color:var(--mute);margin:0 7px}
 table.gtab tr.top td{background:#fdf8ec}
 .bell{display:inline-flex;color:var(--mute);text-decoration:none}
@@ -133,7 +139,7 @@ table.gtab tr.top td{background:#fdf8ec}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 14px;align-items:center}
 .tools input,.tools select{font:inherit;font-size:13.5px;padding:10px 13px;border:1px solid var(--line);
   border-radius:11px;background:#fff;color:var(--ink)}
-.tools input{flex:1;min-width:210px}
+.tools input{flex:1;min-width:280px}
 .tools .sp{flex:1}
 .tools input:focus,.tools select:focus{outline:none;border-color:var(--navy)}
 
@@ -141,7 +147,7 @@ table.gtab tr.top td{background:#fdf8ec}
 .tfoot p{font-size:12.5px;color:var(--mute);margin:0}
 .tfoot a{font-size:13.5px;color:var(--gold);font-weight:600;text-decoration:none}
 
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin:44px 0 0}
+.grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;margin:56px 0 0;align-items:start}
 @media(max-width:860px){.grid2{grid-template-columns:1fr;gap:26px}.fchead{grid-template-columns:1fr}}
 .steps{list-style:none;margin:18px 0 0;padding:0}
 .steps li{display:grid;grid-template-columns:auto 1fr;gap:16px;padding:0 0 22px;position:relative}
@@ -152,7 +158,7 @@ table.gtab tr.top td{background:#fdf8ec}
   font-size:12.5px;font-weight:600;display:flex;align-items:center;justify-content:center}
 .steps b{display:block;color:var(--navy);font-weight:600;font-size:15px;margin-bottom:3px}
 .steps span{font-size:14px;color:#46525f;line-height:1.6}
-.side{background:#fff;border-radius:16px;padding:24px 26px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
+.side{background:#fff;border-radius:16px;padding:28px 30px;box-shadow:0 1px 3px rgba(14,35,56,.07);border-top:3px solid var(--gold)}
 .side h3{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:21px;color:var(--navy);margin:0 0 10px}
 .side p{font-size:14.5px;color:#46525f;line-height:1.65;margin:0 0 18px}
 .side .lnk{border-top:1px solid var(--line);padding-top:16px;margin-top:4px}
@@ -531,6 +537,7 @@ table.gtab tr.top td{background:#fdf8ec}
     <p class="fcsub">Weekly route predictions, published in advance. Checked against what actually happens.</p>
   </div>
   <div class="wkpick">
+    <label for="wk">Forecast week</label>
     <select id="wk" aria-label="Choose a week"><option>Reading the record</option></select>
     <p>Predictions are published every Monday and cannot be edited afterwards.</p>
   </div>
@@ -546,7 +553,7 @@ table.gtab tr.top td{background:#fdf8ec}
   <div id="banner"></div>
 
   <h2>This week's route forecast</h2>
-  <p class="gnote" style="margin:0 0 4px">Patterns from the past six weeks. Estimates, not confirmed availability.</p>
+  <p class="gnote narrow" style="margin:0 0 4px">Patterns from the past six weeks. Estimates, not confirmed availability.</p>
 
   <div class="tools">
     <input id="q" type="search" placeholder="Search routes, for example Ibiza or Las Vegas" aria-label="Search routes">
@@ -636,7 +643,7 @@ function flightUrl(x){
   function weekLabel(startISO){
     var a = d(startISO), b = new Date(a.getTime() + 6 * 86400000);
     var am = MON[a.getUTCMonth()], bm = MON[b.getUTCMonth()];
-    return "Week of " + a.getUTCDate() + (am === bm ? "" : " " + am) + " to " + b.getUTCDate() + " " + bm + " " + b.getUTCFullYear();
+    return a.getUTCDate() + (am === bm ? "" : " " + am) + " to " + b.getUTCDate() + " " + bm + " " + b.getUTCFullYear();
   }
 
   /* tabs */
@@ -659,7 +666,7 @@ function flightUrl(x){
     sel.innerHTML = keys.map(function(k){ return '<option value="' + k + '">' + esc(weekLabel(k)) + "</option>"; }).join("") ||
       "<option>No week published yet</option>";
     if (keys.length){
-      document.getElementById("wklabel").textContent = "· " + weekLabel(keys[0]).toUpperCase();
+      document.getElementById("wklabel").textContent = "· WEEK OF " + weekLabel(keys[0]).toUpperCase();
       var first = d(keys[keys.length - 1]); first.setUTCDate(first.getUTCDate() + 7);
       document.getElementById("banner").innerHTML = scored ? "" :
         '<div class="note"><span class="ic">' +
