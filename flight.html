@@ -104,6 +104,13 @@ h1.fl{margin:0}
 .fl-life p{margin:0 0 6px;font-size:14.5px}
 .fl-map{width:100%;height:auto;display:block;border-radius:14px;background:#0D1F36;margin:14px 0 6px}
 .fl-note{font-size:13px;color:var(--mute)}
+.fl-two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0 18px}
+.fl-card{background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
+.fl-card h3{margin:0 0 6px;font-size:16px;color:var(--navy)}
+.fl-card p{margin:0 0 8px;font-size:14.5px;line-height:1.6}
+.fl-card .k{font-size:12.5px;color:var(--mute)}
+.fl-card a.more{display:inline-block;font-size:13.5px;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line)}
+@media(max-width:700px){.fl-two{grid-template-columns:1fr}}
 #fl-err{display:none}
 
 /* ---------- shared site footer (footer.py) ---------- */
@@ -172,9 +179,6 @@ h1.fl{margin:0}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
-<!-- siteld.py -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Empty leg flight | Empty Leg List","item":"https://emptylegslist.com/flight"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/flight","url":"https://emptylegslist.com/flight","name":"Empty leg flight | Empty Leg List","description":"One empty leg flight: route, date, aircraft, seats and the operator's published price, plus when we first and last saw it on the operator's site.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
-<!-- /siteld.py -->
 </head>
 <body>
 <header class="elnav">
@@ -485,10 +489,17 @@ h1.fl{margin:0}
   <div class="gscroll"><table class="gtab"><thead><tr><th>Departs</th><th>Aircraft</th><th class="num">Seats</th><th class="num">Price as listed</th><th></th></tr></thead>
   <tbody id="fl-same"><tr><td colspan="5" style="color:var(--mute)">Looking.</td></tr></tbody></table></div>
   <p class="gnote">Same departure and arrival, any date, live now. Prices are the operator's own figures for the whole aircraft.</p>
+
+  <h2>The aircraft</h2>
+  <div class="fl-card" id="fl-ac"></div>
+
+  <h2>The cities</h2>
+  <div class="fl-two" id="fl-cities"></div>
 </div>
 
 <h2>What this page is</h2>
 <p>Every empty leg on Empty Leg List has its own address, so you can send it to someone or keep it. The facts on it are the ones the operator published on their own website when we read it: route, date, aircraft, seats and price when there is one. We add two things of our own: when we first saw the flight and when we last saw it. A flight that has left the board keeps its page, which then says how long it was on the market. Nothing else is estimated. <a href="/about">How the list is built</a>.</p>
+<p>This page is saved. We record every empty leg we read, from the first time we see it until it disappears, so the address you are on now keeps working after the flight is gone: it becomes the record of what was offered, when it appeared, how long it lasted, and whether the operator moved the price while it was up. If the price changes we keep the old figure and show both, because the change is often the interesting part.</p>
 </div>
 
 
@@ -510,10 +521,51 @@ function apiAll(path, cap){ cap = cap || 20000; var out = [];
     out = out.concat(rows); if (rows.length < 1000 || out.length >= cap) return out; return page(off + 1000); }); }
   return page(0); }
 function priceNum(n){ var m=(n||"").replace(/,/g,"").match(/[0-9][0-9.]*/); return m?parseFloat(m[0]):null; }
-function flightUrl(id){ return "/flight/"+id; }
+function slugPart(s){ return String(s==null?"":s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40); }
+/* A flight link carries its route and date in front of the id, so a link
+   pasted into WhatsApp says what it is. The id stays on the end and is what
+   the page reads; a bare /flight/<id> still works. */
+function flightUrl(x){
+  if (!x) return "/flight/";
+  if (typeof x === "string") return "/flight/" + x;
+  var bits = [slugPart(x.from_label || x.from_city), "to", slugPart(x.to_label || x.to_city), String(x.departure_date || "").slice(0,10)].filter(Boolean);
+  return "/flight/" + (bits.length > 2 ? bits.join("-") + "-" : "") + x.id;
+}
 
-  var id = (location.pathname.match(/\/flight\/([0-9a-f-]{36})/) || [])[1] || new URLSearchParams(location.search).get("id") || "";
+  /* The id is the last thing in the path; whatever comes before it is the
+     readable route and date, and is ignored here. */
+  var id = (location.pathname.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/) || [])[1]
+        || new URLSearchParams(location.search).get("id") || "";
   var $ = function(i){ return document.getElementById(i); };
+  var AIRCRAFT_PAGES = ["challenger-300", "challenger-350", "challenger-3500", "challenger-604", "citation-cj2", "citation-cj4-gen2", "citation-latitude", "citation-longitude", "citation-m2", "citation-mustang", "citation-sovereign", "citation-ultra", "citation-xls", "erj-135", "falcon-2000", "falcon-7x", "falcon-900ex", "global-6000", "gulfstream-g450", "gulfstream-g550", "gulfstream-v", "hawker-900xp", "king-air-200", "king-air-260", "learjet-45xr", "learjet-60xr", "learjet-75", "legacy-450", "legacy-500", "legacy-600", "legacy-650", "nextant-400xt", "pilatus-pc-12-ngx", "praetor-600"], CITY_PAGES = ["alicante", "amsterdam", "antwerp", "aspen", "athens", "austin", "barcelona", "bari", "belfast", "belgium", "bergen", "berlin", "birmingham", "bodrum", "boise", "bologna", "bolzano", "brussels", "bucharest", "cagliari", "calgary", "canada", "cannes", "cape-town", "carlsbad", "chicago", "cluj-napoca", "dallas", "dublin", "dusseldorf", "edinburgh", "europe", "farnborough", "fort-lauderdale", "fort-worth", "france", "geneva", "girona", "houston", "ibiza", "innsbruck", "istanbul", "italy", "johannesburg", "larnaca", "las-vegas", "liege", "linz", "london", "madrid", "malaga", "maun", "miami", "milan", "milwaukee", "monterey", "montpellier", "montreal", "munich", "mykonos", "naples", "new-york", "nice", "oakland", "olbia", "oxford", "palma", "paris", "pisa", "preveza", "rotterdam", "salzburg", "sault-ste-marie", "scottsdale", "sion", "south-africa", "spain", "switzerland", "teterboro", "thessaloniki", "toronto", "toulon", "turks-and-caicos", "united-kingdom", "united-states", "van-nuys", "verona", "vienna", "washington", "waukesha", "wevelgem", "zurich"];
+  function norm(s){ return String(s == null ? "" : s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+  /* A slug earns the link only when every one of its words is in the name the
+     operator published, so "citation-xls" matches "Cessna Citation XLS+" and
+     "citation-cj4-gen2" politely matches nothing. */
+  function pageFor(list, text, minWords){
+    var t = " " + norm(text).replace(/[^a-z0-9]+/g, " ").trim() + " ", best = "";
+    list.forEach(function(slug){
+      var words = slug.split("-").filter(function(w){ return w.length > 1; });
+      if (words.length < (minWords || 1)) return;
+      if (words.every(function(w){ return t.indexOf(" " + w + " ") > -1; }) && slug.length > best.length) best = slug;
+    });
+    return best;
+  }
+  function cityPageFor(label, city){
+    var cands = [city, label].filter(Boolean);
+    for (var i = 0; i < cands.length; i++) {
+      var sl = norm(cands[i]).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      if (CITY_PAGES.indexOf(sl) > -1) return sl;
+      var first = sl.split("-")[0];
+      if (first.length > 3 && CITY_PAGES.indexOf(first) > -1) return first;
+    }
+    return "";
+  }
+  function countLegs(path, cb){
+    api(path + "&select=id&limit=501").then(function(rows){
+      cb(rows.length > 500 ? "more than 500" : String(rows.length), rows.length);
+    }).catch(function(){ cb("", 0); });
+  }
   function show(el){ $("fl-loading").style.display="none"; $("fl-err").style.display = el==="err" ? "block" : "none"; $("fl").style.display = el==="fl" ? "block" : "none"; }
   if (!/^[0-9a-f-]{36}$/.test(id)) { show("err"); return; }
 
@@ -557,7 +609,9 @@ function flightUrl(id){ return "/flight/"+id; }
     var qs = new URLSearchParams({ fromcity: x.from_label, tocity: x.to_label, from: x.from_iata||"", to: x.to_iata||"", date: x.departure_date, aircraft: x.aircraft_type||"", seats: x.seats||"", price: x.price_note ? x.price_note.replace(" listed","") : "", leg: x.id });
     $("fl-enq").href = "/enquire?" + qs.toString();
     if (!live) { $("fl-enq").textContent = "Ask about this route"; }
-    var url = "https://emptylegslist.com/flight/" + x.id;
+    var path = flightUrl(x), url = "https://emptylegslist.com" + path;
+    if (location.pathname !== path) { try { history.replaceState(null, "", path + location.search); } catch (e) {} }
+    var can = document.querySelector('link[rel=canonical]'); if (can) can.href = url;
     $("fl-wa").href = "https://wa.me/?text=" + encodeURIComponent(label(x) + ", " + fmtDate(x.departure_date) + (x.aircraft_type ? ", " + x.aircraft_type : "") + (x.price_note ? ", " + x.price_note.replace(" listed","") : "") + " " + url);
     $("fl-share").addEventListener("click", function(){ (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function(){ $("fl-share").textContent = "Link copied"; }, function(){ prompt("Copy this link", url); }); });
     var life = $("fl-life");
@@ -576,8 +630,55 @@ function flightUrl(id){ return "/flight/"+id; }
     api("leg_geo?select=id,departure_date,aircraft_type,seats,price_note&from_label=ilike."+f+"&to_label=ilike."+t+"&id=neq."+id+"&order=departure_date&limit=12").then(function(rows){
       var tb = $("fl-same");
       if (!rows.length) { tb.innerHTML = '<tr><td colspan="5" style="color:var(--mute)">No other live leg on this route right now. <a href="/#alerts">Set an alert</a> and we tell you when one appears.</td></tr>'; return; }
-      tb.innerHTML = rows.map(function(r){ return '<tr><td class="lead">'+esc(fmtDate(r.departure_date))+'</td><td>'+esc(r.aircraft_type||"On enquiry")+'</td><td class="num">'+esc(r.seats||"")+'</td><td class="num">'+esc(r.price_note ? r.price_note.replace(" listed","") : "On enquiry")+'</td><td><a href="'+flightUrl(r.id)+'">Open</a></td></tr>'; }).join("");
+      tb.innerHTML = rows.map(function(r){ return '<tr><td class="lead">'+esc(fmtDate(r.departure_date))+'</td><td>'+esc(r.aircraft_type||"On enquiry")+'</td><td class="num">'+esc(r.seats||"")+'</td><td class="num">'+esc(r.price_note ? r.price_note.replace(" listed","") : "On enquiry")+'</td><td><a href="'+flightUrl({id:r.id, from_label:x.from_label, to_label:x.to_label, departure_date:r.departure_date})+'">Open</a></td></tr>'; }).join("");
     }).catch(function(){});
+
+    /* The aircraft, in the operator's own words plus what our board holds. */
+    (function(){
+      var box = $("fl-ac"), type = x.aircraft_type;
+      if (!type) {
+        box.innerHTML = '<p>The operator did not publish an aircraft type for this leg. That is common on smaller listings; ask when you enquire, and ask for the registration if the exact cabin matters.</p>';
+        return;
+      }
+      var slug = pageFor(AIRCRAFT_PAGES, type, 2);
+      var bits = ['<h3>' + esc(type) + '</h3>'];
+      bits.push('<p>' + (x.seats ? 'The operator listed <b>up to ' + x.seats + ' seats</b> on this flight. ' : 'The operator did not publish a seat count for this flight. ')
+        + 'Seats are the figure for this aircraft as its operator gave it, not a specification for the type: the same model flies with different cabins.</p>');
+      bits.push('<p class="k" id="fl-actype">Counting how many are on the board.</p>');
+      if (slug) bits.push('<a class="more" href="/aircraft/' + slug + '">Every empty leg on the ' + esc(type) + '</a>');
+      box.innerHTML = bits.join("");
+      countLegs("leg_geo?aircraft_type=eq." + encodeURIComponent(type), function(txt, n){
+        var el = $("fl-actype"); if (!el) return;
+        el.textContent = n ? (txt + (n === 1 ? " leg on this aircraft type is" : " legs on this aircraft type are") + " on the board right now.")
+                           : "No other leg on this aircraft type is on the board right now.";
+      });
+    })();
+
+    /* Both ends, with the city page where we have one. */
+    (function(){
+      var box = $("fl-cities");
+      var ends = [
+        { role: "Departs", label: x.from_label, city: x.from_city, iata: x.from_iata, icao: x.from_icao, country: x.from_country, col: "from_label" },
+        { role: "Arrives", label: x.to_label, city: x.to_city, iata: x.to_iata, icao: x.to_icao, country: x.to_country, col: "to_label" }
+      ];
+      box.innerHTML = ends.map(function(e, i){
+        var slug = cityPageFor(e.label, e.city);
+        var codes = [e.iata, e.icao].filter(Boolean).join(", ");
+        return '<div class="fl-card"><h3>' + esc(e.label) + '</h3>'
+          + '<p class="k">' + esc(e.role) + (codes ? " &middot; " + esc(codes) : "") + (e.country ? " &middot; " + esc(e.country) : "") + '</p>'
+          + '<p class="k" id="fl-c' + i + '">Counting.</p>'
+          + (slug ? '<a class="more" href="/empty-legs/' + slug + '">Empty legs to and from ' + esc(e.city || e.label) + '</a>' : '')
+          + '</div>';
+      }).join("");
+      ends.forEach(function(e, i){
+        var q = encodeURIComponent(e.label);
+        countLegs("leg_geo?or=(from_label.ilike." + q + ",to_label.ilike." + q + ")", function(txt, n){
+          var el = $("fl-c" + i); if (!el) return;
+          el.textContent = n ? txt + " leg" + (n === 1 ? "" : "s") + " touching " + e.label + " on the board now"
+                             : "Nothing else touching " + e.label + " on the board right now";
+        });
+      });
+    })();
   }).catch(function(){ show("err"); });
 })();
 </script>

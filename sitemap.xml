@@ -397,6 +397,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/bucharest</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/cagliari</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -464,6 +470,12 @@
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/chicago</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/cluj-napoca</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -609,6 +621,12 @@
   <url>
     <loc>https://emptylegslist.com/empty-legs/</loc>
     <lastmod>2026-09-03</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/innsbruck</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1346,19 +1364,25 @@
   </url>
   <url>
     <loc>https://emptylegslist.com/guides/deadhead-flights</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/guides/empty-leg-charter-flights</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/guides/empty-leg-glossary</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/guides/empty-legs-and-emissions</loc>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1370,25 +1394,25 @@
   </url>
   <url>
     <loc>https://emptylegslist.com/guides/how-to-find-empty-leg-flights</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/guides/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/guides/one-way-private-jet-flights</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/guides/what-is-an-empty-leg-flight</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
