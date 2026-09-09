@@ -604,8 +604,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
   function hit(v){v=String(v||"").toLowerCase();var i;for(i=0;i<NOT.length;i++){if(v.indexOf(NOT[i])!==-1)return false;}for(i=0;i<KEYS.length;i++){if(v.indexOf(KEYS[i])!==-1)return true;}return false;}
   function ago(t){var m=Math.round((new Date()-t)/60000);if(m<90)return m+" min ago";if(m<2880)return Math.round(m/60)+" hours ago";return Math.round(m/1440)+" days ago";}
   function city(s){s=String(s||"").split(" ")[0].replace(/[^A-Za-z]/g,"");return s?s.charAt(0).toUpperCase()+s.slice(1).toLowerCase():"";}
-  fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc&limit=2000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
-   .then(function(r){return r.ok?r.json():[];})
+  /* boardall.py: PostgREST replies with at most 1000 rows, so the board is read a page at a time. */
+(function(){var _all=[];function _page(off){return fetch(BASE+"/rest/v1/empty_legs?select=*&order=departure_date.asc,id.asc&limit=1000&offset="+off,{headers:{apikey:KEY,Authorization:"Bearer "+KEY}}).then(function(r){return r.ok?r.json():[];}).then(function(rows){_all=_all.concat(rows);return (rows.length<1000||_all.length>=20000)?_all:_page(off+1000);});}return _page(0);})()
    .then(function(all){
      var today=new Date().toISOString().slice(0,10);
      var mine=all.filter(function(x){return hit(x.aircraft_type)&&String(x.departure_date||"")>=today;});

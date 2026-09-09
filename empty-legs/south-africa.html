@@ -557,6 +557,148 @@ table.ctab td.lead{font-weight:500;color:var(--navy)}
 <p>The board shows legs to the Limpopo Valley, Maun, Tswalo, Hoedspruit and Vilanculo, mostly on a Pilatus PC-12 or a King Air that can use a lodge airstrip. They come and go quickly, which is what the route alert is for.</p>
 </div>
 
+<!-- data block, datablock.py -->
+<style>
+.db{margin:6px 0 10px}
+.db h3{font-size:15.5px;font-weight:600;color:#0D1F36;margin:26px 0 10px}
+.dbs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 4px}
+.dbs div{background:#fff;border-radius:14px;padding:15px 17px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
+.dbs b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:28px;line-height:1;color:#0D1F36;margin-bottom:6px}
+.dbs span{font-size:12.5px;color:#8a97a5;line-height:1.4;display:block}
+.dbm{display:grid;gap:5px;align-items:end;height:150px;margin:20px 0 4px}
+.dbm div{background:#C6A667;border-radius:4px 4px 0 0;position:relative;min-height:2px}
+.dbm div.past{background:#d9dee5}
+.dbm div span{position:absolute;top:-19px;left:0;right:0;text-align:center;font-size:11px;color:#8a97a5}
+.dbml{display:grid;gap:5px;font-size:11px;color:#8a97a5;text-align:center}
+.dbml i{display:block;font-style:normal;font-size:10px;opacity:.75}
+.dbscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px}
+table.dbt{width:100%;border-collapse:collapse;font-size:14px;background:#fff;box-shadow:0 1px 3px rgba(14,35,56,.07);border-radius:14px;overflow:hidden}
+table.dbt th{text-align:left;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8a97a5;font-weight:600;padding:12px 13px;border-bottom:1px solid #e6eaf0;white-space:nowrap}
+table.dbt td{padding:11px 13px;border-bottom:1px solid #e6eaf0}
+table.dbt tr:last-child td{border-bottom:none}
+table.dbt td.num,table.dbt th.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.dbt td.lead{font-weight:500;color:#0D1F36}
+.dbn{font-size:12.5px;color:#8a97a5;margin:8px 0 0}
+@media(max-width:700px){.dbs{grid-template-columns:repeat(2,1fr)}table.dbt{font-size:13px}table.dbt td,table.dbt th{padding:9px 8px}}
+</style>
+  <h2 hidden id="dbh">South Africa in the record</h2>
+  <p hidden id="dbp">Every leg we have recorded with one end in South Africa since 30 July 2026, whether it is still on the board or not. A leg leaves the board when the operator stops publishing it, and we cannot tell from outside whether it was sold or withdrawn, so these are counts of what was listed, not of what flew.</p>
+  <div class="db" id="db" hidden>
+    <div class="dbs">
+      <div><b id="db_rec">&nbsp;</b><span>legs recorded since 30 July 2026</span></div>
+      <div><b id="db_live">&nbsp;</b><span>of them on the board right now</span></div>
+      <div><b id="db_priced">&nbsp;</b><span>published with a price</span></div>
+      <div><b id="db_grp">&nbsp;</b><span>airports in South Africa the record covers</span></div>
+    </div>
+    <h3>Legs by departure month</h3>
+    <div class="dbm" id="dbm"></div>
+    <div class="dbml" id="dbml"></div>
+    <p class="dbn">One bar per calendar month, from the first month in our record to the furthest date an operator has published so far. Grey bars are months already past, gold is this month and the months ahead. A blank month is a month we have no record for, and before August 2026 that means we were not yet recording. The months ahead hold only what operators have published up to now, and most empty legs appear days or weeks before departure, so those bars will keep growing. The shape says how far ahead operators publish, not how busy a month will be.</p>
+    <h3>The airports in South Africa</h3>
+    <div class="dbscroll"><table class="dbt"><thead><tr><th>Airport</th><th class="num">Legs out</th><th class="num">Legs in</th><th class="num">On the board</th><th class="num">Priced</th><th>Last seen</th></tr></thead><tbody id="dbtb"><tr><td colspan="6" class="dbn">Reading the record.</td></tr></tbody></table></div>
+    <p class="dbn">Legs out are legs departing that airport, legs in are legs landing there. A leg between two airports in South Africa counts once in each column. Airports are named as the operator published them.</p>
+  </div>
+<script>
+(function(){
+  var box = document.getElementById("db"); if (!box) return;
+  if (box.hidden){ if (!/[?&#]data\b/.test(location.search + location.hash)) return;
+    ["db","dbh","dbp"].forEach(function(id){ var e = document.getElementById(id); if (e) e.hidden = false; }); }
+  var MODE = "country", A = [], B = [], FILT = "from_country.eq.ZA,to_country.eq.ZA", CODES = ["ZA"];
+  var BASE = "https://wscowiseslaovmmfuzyv.supabase.co", KEY = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
+  var SEL = "id,from_label,to_label,from_city,to_city,from_country,to_country,departure_date,price_note,is_live,last_seen_at";
+  var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function nrm(s){ return String(s == null ? "" : s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
+  function word(v, t){ var s = nrm(v), n = nrm(t); if (!n) return false; var i = s.indexOf(n);
+    while (i !== -1){ if (i === 0 || !/[a-z0-9]/.test(s.charAt(i - 1))) return true; i = s.indexOf(n, i + 1); } return false; }
+  function endHit(l, side, list){ var v = side === "from" ? [l.from_city, l.from_label] : [l.to_city, l.to_label];
+    return list.some(function(k){ return v.some(function(x){ return word(x, k); }); }); }
+  function when(iso){ if (!iso) return ""; var h = Math.round((Date.now() - new Date(iso).getTime()) / 36e5);
+    if (h < 1) return "under an hour ago"; if (h < 48) return h + " hours ago"; return Math.round(h / 24) + " days ago"; }
+  function path(){
+    if (MODE === "country") return "flight_public?select=" + SEL + "&or=(" + FILT + ")";
+    var terms = [];
+    A.concat(B).forEach(function(k){ var e = encodeURIComponent(k);
+      ["from_city","to_city","from_label","to_label"].forEach(function(c){ terms.push(c + ".ilike.*" + e + "*"); }); });
+    return "flight_public?select=" + SEL + "&or=(" + terms.join(",") + ")";
+  }
+  /* PostgREST replies with at most 1000 rows however large a limit we ask for. */
+  function readAll(p){ var out = [];
+    function page(off){ return fetch(BASE + "/rest/v1/" + p + "&order=departure_date.asc,id.asc&limit=1000&offset=" + off,
+        {headers: {apikey: KEY, Authorization: "Bearer " + KEY}})
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(rows){ out = out.concat(rows); return (rows.length < 1000 || out.length >= 12000) ? out : page(off + 1000); }); }
+    return page(0); }
+  function scope(rows){
+    var out = [];
+    rows.forEach(function(l){
+      if (!l.departure_date) return;
+      if (MODE === "country"){ l.out = CODES.indexOf(l.from_country) > -1; l.in = CODES.indexOf(l.to_country) > -1;
+        if (l.out || l.in) out.push(l); return; }
+      if (MODE === "route"){ if ((endHit(l, "from", A) && endHit(l, "to", B)) || (endHit(l, "from", B) && endHit(l, "to", A))) out.push(l); return; }
+      l.out = endHit(l, "from", A); l.in = endHit(l, "to", A);
+      if (l.out || l.in) out.push(l);
+    });
+    return out;
+  }
+  function months(rows){
+    var by = {}, lo = null, hi = null;
+    rows.forEach(function(l){ var k = String(l.departure_date).slice(0, 7); by[k] = (by[k] || 0) + 1;
+      if (lo === null || k < lo) lo = k; if (hi === null || k > hi) hi = k; });
+    if (lo === null) return;
+    var keys = [], y = parseInt(lo.slice(0, 4), 10), m = parseInt(lo.slice(5, 7), 10);
+    for (;;){ var k = y + "-" + (m < 10 ? "0" : "") + m; keys.push(k); if (k === hi || keys.length >= 30) break;
+      m++; if (m > 12){ m = 1; y++; } }
+    var mx = 1; keys.forEach(function(k){ if ((by[k] || 0) > mx) mx = by[k]; });
+    var now = new Date().toISOString().slice(0, 7);
+    var bars = document.getElementById("dbm"), labs = document.getElementById("dbml");
+    bars.style.gridTemplateColumns = "repeat(" + keys.length + ",1fr)";
+    labs.style.gridTemplateColumns = "repeat(" + keys.length + ",1fr)";
+    bars.innerHTML = keys.map(function(k){ var n = by[k] || 0;
+      return '<div class="' + (k < now ? "past" : "") + '" style="height:' + Math.max(2, Math.round(120 * n / mx)) + 'px"><span>' + (n || "") + '</span></div>'; }).join("");
+    labs.innerHTML = keys.map(function(k, i){ var mm = k.slice(5, 7);
+      return '<span>' + MON[parseInt(mm, 10) - 1] + (i === 0 || mm === "01" ? '<i>' + k.slice(0, 4) + '</i>' : '') + '</span>'; }).join("");
+  }
+  var COLS = MODE === "route" ? 5 : 6;
+  function row(g){ return '<tr><td class="lead">' + esc(g.name) + '</td><td class="num">' + g.o +
+      (MODE === "route" ? '' : '</td><td class="num">' + g.i) +
+      '</td><td class="num">' + g.live + '</td><td class="num">' + g.priced + '</td><td>' + esc(when(g.last)) + '</td></tr>'; }
+  function put(rows, empty){
+    var list = Object.keys(rows).map(function(k){ return rows[k]; }).sort(function(a, c){ return (c.o + c.i) - (a.o + a.i); });
+    document.getElementById("db_grp").textContent = list.length;
+    document.getElementById("dbtb").innerHTML = list.slice(0, 60).map(row).join("") ||
+      '<tr><td colspan="' + COLS + '" class="dbn">' + empty + '</td></tr>';
+  }
+  function bag(all, name){ return all[name] || (all[name] = {name: name, o: 0, i: 0, live: 0, priced: 0, last: ""}); }
+  function add(g, l){ if (l.is_live) g.live++; if (l.price_note) g.priced++; if (l.last_seen_at > g.last) g.last = l.last_seen_at; }
+  function table(rows){
+    var all = {};
+    rows.forEach(function(l){
+      if (MODE === "route"){ var g = bag(all, (l.from_label || l.from_city || "?") + " to " + (l.to_label || l.to_city || "?"));
+        g.o++; add(g, l); return; }
+      if (MODE === "country"){
+        if (l.out){ var a = bag(all, l.from_label || l.from_city || "?"); a.o++; add(a, l); }
+        if (l.in){ var b = bag(all, l.to_label || l.to_city || "?"); b.i++; add(b, l); }
+        return; }
+      if (l.out && l.in) return;
+      var c = bag(all, l.out ? (l.to_label || l.to_city || "?") : (l.from_label || l.from_city || "?"));
+      if (l.out) c.o++; else c.i++; add(c, l);
+    });
+    put(all, "Nothing in the record yet.");
+  }
+  readAll(path()).then(function(raw){
+    var rows = scope(raw), live = 0, priced = 0;
+    rows.forEach(function(l){ if (l.is_live) live++; if (l.price_note) priced++; });
+    document.getElementById("db_rec").textContent = rows.length.toLocaleString("en-GB");
+    document.getElementById("db_live").textContent = live.toLocaleString("en-GB");
+    document.getElementById("db_priced").textContent = priced.toLocaleString("en-GB");
+    months(rows); table(rows);
+  }).catch(function(){
+    document.getElementById("dbtb").innerHTML = '<tr><td colspan="6" class="dbn">The record did not load. Refresh the page.</td></tr>';
+  });
+})();
+</script>
+<!-- /data block -->
 <h2>Other countries</h2>
 <div class="chips">
     <a href="/empty-legs/europe">Europe</a>
