@@ -449,6 +449,41 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 </form>
 
 <h2>Company details</h2>
+<!-- contactinfo.py -->
+<style>
+.cbox{background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:16px 0}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.cgrid h3{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8a97a5;font-weight:600;margin:0 0 8px}
+.cgrid p{margin:0;font-size:14.5px;line-height:1.65;color:#31404e}
+.cgrid a{color:#0D1F36}
+.cmap{margin:16px 0 0;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(14,35,56,.07)}
+.cmap button{display:block;width:100%;font:inherit;font-size:14px;font-weight:600;color:#0D1F36;background:#fff;
+  border:0;border-radius:14px;padding:16px;cursor:pointer;margin:0}
+.cmap iframe{display:block;width:100%;height:340px;border:0}
+.cmapnote{font-size:12.5px;color:#8a97a5;margin:8px 2px 0;line-height:1.55}
+@media(max-width:760px){.cgrid{grid-template-columns:1fr;gap:20px}}
+</style>
+<div class="cbox"><div class="cgrid">
+  <div><h3>Registered office</h3><p>Publishing Office SRL<br>Strada Vasile Lupu 84<br>400394 Cluj-Napoca<br>Romania</p></div>
+  <div><h3>Talk to us</h3><p><a href="mailto:open@emptylegslist.com">open@emptylegslist.com</a><br><a href="tel:+40730688360">+40 730 688 360</a><br><a href="https://wa.me/40730688360" target="_blank" rel="noopener">WhatsApp</a></p></div>
+  <div><h3>Company</h3><p>Trading as Empty Leg List<br>VAT / CUI RO37770955<br>Registered in Romania</p></div>
+</div></div>
+
+<div class="cmap"><button type="button" id="cmapgo">Show the map</button></div>
+<p class="cmapnote">The map is a Google embed and it loads only when you press that button, so nothing from Google runs on this page unless you ask for it. <a href="https://www.google.com/maps/search/?api=1&amp;query=Strada+Vasile+Lupu+84%2C+400394+Cluj-Napoca%2C+Romania" target="_blank" rel="noopener">Open in Google Maps</a> or <a href="https://www.openstreetmap.org/search?query=Strada+Vasile+Lupu+84%2C+400394+Cluj-Napoca%2C+Romania" target="_blank" rel="noopener">in OpenStreetMap</a> instead.</p>
+<script>
+(function(){ var b = document.getElementById("cmapgo"); if (!b) return;
+  b.addEventListener("click", function(){
+    var f = document.createElement("iframe");
+    f.src = "https://www.google.com/maps?q=Strada+Vasile+Lupu+84%2C+400394+Cluj-Napoca%2C+Romania&output=embed";
+    f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade";
+    f.title = "Map showing Strada Vasile Lupu 84, Cluj-Napoca";
+    b.parentNode.replaceChild(f, b);
+  });
+})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Empty Leg List","legalName":"Publishing Office SRL","url":"https://emptylegslist.com/","email":"open@emptylegslist.com","telephone":"+40730688360","vatID":"RO37770955","address":{"@type":"PostalAddress","streetAddress":"Strada Vasile Lupu 84","postalCode":"400394","addressLocality":"Cluj-Napoca","addressCountry":"RO"},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"open@emptylegslist.com","telephone":"+40730688360","availableLanguage":["en","ro"]}}</script>
+<!-- /contactinfo.py -->
 <div class="box">
 <p><b>Publishing Office SRL</b><br>
 Registered in Romania &middot; VAT / CUI RO37770955<br>
