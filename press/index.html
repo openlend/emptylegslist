@@ -105,6 +105,16 @@ p.gtip b{color:var(--navy)}
 .prlist h2 a{color:var(--navy);text-decoration:none}
 .prlist h2 a:hover{text-decoration:underline}
 .prlist p{margin:0;font-size:15px;color:#31404e}
+.prlist li{display:grid;grid-template-columns:200px 1fr;gap:22px;align-items:start}
+.prlist li img{width:100%;height:auto;display:block;border-radius:10px}
+@media(max-width:640px){.prlist li{grid-template-columns:1fr}}
+figure.prfig{margin:24px 0 26px}
+figure.prfig img{width:100%;height:auto;display:block;border-radius:16px}
+figure.prfig figcaption{font-size:12.5px;color:var(--mute);margin-top:9px;line-height:1.5}
+figure.prchart{margin:26px 0;background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(14,35,56,.07);padding:20px 22px 16px}
+figure.prchart svg{width:100%;height:auto;display:block}
+figure.prchart figcaption{font-size:12.5px;color:var(--mute);margin-top:12px;line-height:1.55}
+figure.prchart .ct{font-family:"Playfair Display",Georgia,serif;font-size:18px;color:var(--navy);margin:0 0 4px}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -468,7 +478,7 @@ p.gtip b{color:var(--navy)}
 <h1>Press releases</h1>
 <p class="lede">Announcements from Empty Leg List, with the figures behind them. Every release is dated and its numbers are fixed at that date; the live pages are where current numbers are.</p>
 <p class="gtip"><b>Working on a story?</b> Write to <a href="mailto:open@emptylegslist.com">open@emptylegslist.com</a>. The live board is readable as an <a href="/open-data">open data feed</a>, free and without a key, so any figure in a release can be checked. Logos and images are in the <a href="/media">media kit</a>.</p>
-<ul class="prlist"><li><p class="d">9 September 2026</p><h2><a href="/press/empty-leg-repeat-patterns-september-2026">Empty legs in a charter market forecast to pass $25 billion now have a public record</a></h2><p>117 route and weekday combinations came back in two or more separate weeks over the first six weeks of the record. The page is labelled history, not availability.</p></li></ul>
+<ul class="prlist"><li><a href="/press/empty-leg-repeat-patterns-september-2026"><img src="/brand/guides/empty-leg-jets-on-the-apron.jpg" width="600" height="259" alt="" loading="lazy" decoding="async"></a><div><p class="d">9 September 2026</p><h2><a href="/press/empty-leg-repeat-patterns-september-2026">Empty legs in a charter market forecast to pass $25 billion now have a public record</a></h2><p>117 route and weekday combinations came back in two or more separate weeks over the first six weeks of the record. The page is labelled history, not availability.</p></div></li></ul>
 
 <h2>About Empty Leg List</h2>
 <p>Empty Leg List reads the empty leg flights that charter operators publish on their own websites, three times a day, and puts them in one place with the operator's own price attached. It is a listing service: not a broker, not an operator, not a party to any booking, and it takes no commission. An enquiry goes to the operator that published the flight. Operator names are not published on the site and are not readable through its public data feed.</p>
