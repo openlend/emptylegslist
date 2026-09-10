@@ -319,6 +319,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/austin-to-houston</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/barcelona</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -435,6 +441,12 @@
   <url>
     <loc>https://emptylegslist.com/empty-legs/calgary-to-kelowna</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/calgary-to-regina</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -617,6 +629,12 @@
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/houston-to-austin</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/houston-to-dallas</loc>
@@ -1087,6 +1105,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/regina-to-calgary</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/rotterdam</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -1191,6 +1215,12 @@
   <url>
     <loc>https://emptylegslist.com/empty-legs/teterboro-to-toronto</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/teterboro-to-van-nuys</loc>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
