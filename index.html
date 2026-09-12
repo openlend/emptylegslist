@@ -2281,7 +2281,7 @@
     var rest = Number(t.total) - Number(t.free);
     if (rest <= 0) { line.style.display = "none"; return; }
     line.style.display = "";
-    var html = 'The free view shows the ' + grp(t.free) + ' flights with a published price, of ' + grp(t.total) + ' listed. The other ' + grp(rest) + ' are free too, no card needed.<button type="button" id="freecta">See all ' + grp(t.total) + ' free</button>';
+    var html = 'The free view shows the ' + grp(t.free) + ' flights with a published price, of ' + grp(t.total) + ' listed. The other ' + grp(rest) + ' are free too, no card needed.<button type="button" id="freecta">See them all with a free account</button>';
     if (line.getAttribute('data-html') !== html) {
       line.innerHTML = html;
       line.setAttribute('data-html', html);
@@ -2299,7 +2299,7 @@
     if (old) return;
     var d = document.createElement('div');
     d.id = 'nofree';
-    d.innerHTML = 'No match among the ' + grp(t.free) + ' flights in the free view. The full list has ' + grp(t.total) + ' flights and it is free to open.<button type="button" id="nofreecta">See all ' + grp(t.total) + ' free</button>';
+    d.innerHTML = 'No match among the ' + grp(t.free) + ' flights in the free view. The full list has ' + grp(t.total) + ' flights and it is free to open.<button type="button" id="nofreecta">See them all with a free account</button>';
     if (box && box.parentNode) box.parentNode.insertBefore(d, box.nextSibling);
     var b = document.getElementById('nofreecta');
     if (b) b.addEventListener('click', function(){ var cta=document.getElementById('fcpop-cta'); if(cta){cta.click();return;} var h=document.getElementById('fchelp'); if(h) h.click(); });
@@ -2701,16 +2701,29 @@ else if(c.length>1&&c[0]===0){c=[BAKED];}
 var lead=document.getElementById("herolead");
 if(!lead){lead=document.createElement("p");lead.id="herolead";host.appendChild(lead);}
 var shown=c[0],total=c.length>1?c[1]:c[0],rest=total-shown;
-var txt="<b>"+fmt(shown)+"</b> of <b>"+fmt(total)+"</b> empty leg flights, straight from charter operators.";
-if(c.length<2)txt="<b>"+fmt(total)+"</b> empty leg flights, straight from charter operators.";
-if(rest>0)txt+=" The other <b>"+fmt(rest)+"</b> are free to see too. ";else txt+=" ";
+/* Radu, 12 September 2026: one number, not three. The old line said
+   "X of Y ... the other Z are free to see too", which put a filtered count and
+   an unfiltered one in the same sentence and read as a mistake. The count is
+   what is live on the board right now, and the invitation is the link after
+   it. Nothing here says "recorded today", because that is a different and much
+   smaller number. */
+var n='<b class="hnum">'+fmt(shownN>0?shownN:Math.round(total*0.9))+"</b>";
+var txt=n+" empty leg flights live today. ";
 var full=(c.length>1&&rest<=0);
-if(full)txt="<b>"+fmt(total)+"</b> empty leg flights, straight from charter operators. Your member view shows every flight. ";
-txt=txt.replace("<b>"+fmt(total)+"</b>",'<b class="hnum">'+fmt(shownN>0?shownN:Math.round(total*0.9))+"</b>");
+if(full)txt=n+" empty leg flights live today. Your member view shows every one. ";
 var s=lead.querySelector("span.lead-t");
 if(!s){s=document.createElement("span");s.className="lead-t";lead.insertBefore(s,lead.firstChild);}
 if(s.getAttribute("data-txt")!==txt){s.innerHTML=txt;s.setAttribute("data-txt",txt);}
 countTo(s.querySelector("b.hnum"),total);
+if(!document.querySelector("button#freecta")){
+  var _b=document.createElement("button");_b.type="button";_b.id="freecta";
+  _b.textContent="See them all with a free account";
+  _b.addEventListener("click",function(){
+    var c=document.getElementById("fcpop-cta"); if(c){c.click();return;}
+    var h=document.getElementById("fchelp"); if(h) h.click();
+  });
+  lead.appendChild(_b);
+}
 var _all=document.querySelectorAll("button#freecta");for(var _i=0;_i<_all.length-1;_i++){if(_all[_i].parentNode)_all[_i].parentNode.removeChild(_all[_i]);}
 var cta=_all.length?_all[_all.length-1]:null,help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
 if(full){if(cta)cta.style.display="none";if(help)help.style.display="none";if(pop)pop.style.display="none";}else{if(cta){cta.style.display="";lead.appendChild(cta);}if(help){help.style.display="";lead.appendChild(help);}if(pop){pop.style.display="";lead.appendChild(pop);}}
