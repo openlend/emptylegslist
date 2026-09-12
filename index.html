@@ -1148,10 +1148,10 @@
         <span id="fcount"></span>
         <button id="fchelp" type="button" aria-label="Why am I seeing only some of the flights?" aria-expanded="false">i</button>
         <div id="fcpop" role="dialog" aria-labelledby="fcpop-h" hidden>
-          <h4 id="fcpop-h">Why only <span id="fcpop-free">300</span> of <span id="fcpop-n">501</span>?</h4>
+          <h4 id="fcpop-h">Why am I seeing only some of them?</h4>
           <p>The free view shows <b>every flight with a published price</b>. The rest of the list, every route, aircraft and published price, opens with a free account.</p>
           <p>No password to remember, no card, no charge. Just your contact details so operators can reach you back.</p>
-          <button type="button" id="fcpop-cta">Join free to see all <span id="fcpop-n2">501</span> flights</button>
+          <button type="button" id="fcpop-cta">Create a free account to see every flight</button>
         </div>
       </div>
     </div>
@@ -1554,7 +1554,7 @@
 
     VIEW = out;
     var locked = GATED && TOTAL > ALL.length ? TOTAL - ALL.length : 0;
-    document.getElementById("ltitle").innerHTML='<span class="lt-d">Available empty legs</span><span class="lt-n"><b>'+group(out.length)+'</b><span class="lt-f"> flight'+(out.length===1?"":"s")+'</span></span><span class="lt-m"> available empty leg'+(out.length===1?"":"s")+'</span>'+(locked?' <span id="lgated">+'+group(locked)+' locked</span>':"");
+    document.getElementById("ltitle").innerHTML='<span class="lt-d">Available empty legs</span><span class="lt-n"><b>'+group(out.length)+'</b><span class="lt-f"> flight'+(out.length===1?"":"s")+'</span></span><span class="lt-m"> available empty leg'+(out.length===1?"":"s")+'</span>';
     // Denominator is the true upcoming total, not the capped set we were handed,
     // so a gated visitor sees "50 of 501" rather than a misleading "50 of 50".
     var denom = (GATED && TOTAL > ALL.length) ? TOTAL : ALL.length;
@@ -1735,9 +1735,6 @@
     var show = GATED && TOTAL > ALL.length;
     help.style.display = show ? "inline-flex" : "none";
     if(!show){ pop.hidden=true; help.setAttribute("aria-expanded","false"); return; }
-    document.getElementById("fcpop-free").textContent = group(ALL.length);
-    document.getElementById("fcpop-n").textContent = group(denom);
-    document.getElementById("fcpop-n2").textContent = group(denom);
   }
 
   function closeCounterHelp(){
@@ -2256,6 +2253,13 @@
   }
   function grp(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
   function paint(){
+    /* Retired 12 September 2026. This line said "The free view shows the X
+       flights with a published price, of Y listed" directly under a hero that
+       already says "X of Y ... the other Z are free to see too", and under a
+       list header that says the same again with the region filter applied.
+       Three counts, three different denominators, on one screen. The hero
+       keeps the message; this one is off. */
+    if (true) return;
     var t = totals();
     if (!t.total || t.total === '0') return;
     var host = document.getElementById('fcwrap');
@@ -2276,11 +2280,6 @@
       var b = line.querySelector('#freecta');
       if (b) b.addEventListener('click', function(){ var cta=document.getElementById('fcpop-cta'); if(cta){cta.click();return;} var h=document.getElementById('fchelp'); if(h) h.click(); });
     }
-    document.querySelectorAll('#lhead span, #lhead b').forEach(function(el){
-      if (/^\+[\d,]+\s+locked$/i.test((el.textContent||'').trim())) {
-        el.textContent = el.textContent.replace(/locked/i, 'more, free');
-      }
-    });
   }
   function emptyHelp(){
     var t = totals();
