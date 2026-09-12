@@ -1739,13 +1739,21 @@
 
   function closeCounterHelp(){
     document.getElementById("fcpop").hidden = true;
+    var sc=document.getElementById("fcscrim"); if(sc) sc.hidden = true;
     document.getElementById("fchelp").setAttribute("aria-expanded","false");
   }
 
+  function fcScrim(on){
+    var sc=document.getElementById("fcscrim");
+    if(!sc){ sc=document.createElement("div"); sc.id="fcscrim"; sc.hidden=true;
+      sc.addEventListener("click", closeCounterHelp); document.body.appendChild(sc); }
+    sc.hidden = !on;
+  }
   document.getElementById("fchelp").addEventListener("click",function(e){
     e.stopPropagation();
     var pop=document.getElementById("fcpop"), open=!pop.hidden;
     pop.hidden = open;
+    fcScrim(!open);
     this.setAttribute("aria-expanded", String(!open));
   });
   document.addEventListener("click",function(e){
@@ -2556,7 +2564,20 @@ setTimeout(go,700);setTimeout(go,2200);
 #herolead b{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:600}
 #herolead #freecta{background:none;border:0;padding:0;margin:0;font:inherit;color:var(--gold);text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap}
 #herolead #fchelp{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;width:20px;height:20px;line-height:1;border-radius:50%;font-size:11px;font-weight:600;margin-left:8px;padding:0;cursor:pointer;vertical-align:middle;display:inline-flex;align-items:center;justify-content:center}
-#herolead #fcpop{position:absolute;left:0;top:100%;margin-top:8px;z-index:40;max-width:420px}
+#herolead #fcpop{position:absolute;left:0;top:100%;margin-top:8px;z-index:150;max-width:420px}
+/* On a phone the hero is short and the listing card starts right under it, so an
+   absolutely positioned popover ended up behind that card and unreachable
+   (reported 12 September 2026). Below 640px it becomes a centred sheet: it
+   cannot be covered, cannot be clipped by a parent, and cannot fall off the
+   side of the screen. */
+@media (max-width:640px){
+  #herolead #fcpop, #fcwrap #fcpop{position:fixed;left:50%;top:50%;right:auto;
+    transform:translate(-50%,-50%);width:min(340px,calc(100vw - 32px));max-width:none;
+    margin:0;z-index:230;box-shadow:0 18px 50px rgba(14,35,56,.32)}
+  #herolead #fcpop::before, #fcwrap #fcpop::before{display:none}
+  #fcscrim{position:fixed;inset:0;background:rgba(13,31,54,.45);z-index:229}
+  #fcscrim[hidden]{display:none}
+}
 @media(max-width:640px){#herolead{font-size:15.5px;margin-top:12px}#herolead #fcpop{max-width:none;right:0}
 /* the live text is three lines on a phone, the build-time one two: hold the
    height so the search box does not move when the live count arrives */
