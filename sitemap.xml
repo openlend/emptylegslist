@@ -373,6 +373,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/bermuda-to-teterboro</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/birmingham-to-london</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -503,6 +509,12 @@
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/carlsbad-to-las-vegas</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/carlsbad-to-truckee</loc>
@@ -883,6 +895,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/london-to-nice</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/london-to-paris</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -1171,6 +1189,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/san-jose-to-van-nuys</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/san-juan-to-miami</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
@@ -1347,6 +1371,12 @@
   <url>
     <loc>https://emptylegslist.com/empty-legs/van-nuys-to-las-vegas</loc>
     <lastmod>2026-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/van-nuys-to-salt-lake-city</loc>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
