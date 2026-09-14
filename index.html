@@ -28,6 +28,7 @@
 <!-- LCP: the hero is a CSS background, which the browser only finds after the
      stylesheet is parsed. Preloading the same three sizes the CSS asks for
      gets the picture on the wire with the HTML. -->
+<style>#wrap:not(.arranged){visibility:hidden}</style><noscript><style>#wrap{visibility:visible!important}</style></noscript>
 <link rel="preconnect" href="https://wscowiseslaovmmfuzyv.supabase.co" crossorigin>
 <link rel="preload" as="image" fetchpriority="high" href="/_vercel/image?url=%2Fbrand%2Fhome-hero-empty-leg-private-jet.jpg&w=828&q=70" media="(max-width: 640px)">
 <link rel="preload" as="image" fetchpriority="high" href="/_vercel/image?url=%2Fbrand%2Fhome-hero-empty-leg-private-jet.jpg&w=1200&q=72" media="(min-width: 641px) and (max-width: 1200px)">
@@ -1738,6 +1739,65 @@ header.elnav .eln-reg { margin: 0; }
 
 
 </div>
+<!-- arranges the list area (header, chips row, filter panel) before first paint; it used to sit at the
+     end of the page, which became a visible layout shift once the stylesheets stopped blocking render (14 Sep 2026) -->
+<script>
+/* Desktop, 4 September 2026: the list header (title, count, sort) goes above the
+   region chips, outside the white card, as in Radu's mockup. Back inside the card
+   below 761px. */
+(function(){
+  var mq = window.matchMedia('(min-width: 761px)');
+  function place(){
+    var h=document.getElementById('lhead'), c=document.getElementById('continents'),
+        sortw=document.getElementById('lsortw'), cur=document.getElementById('curwrap');
+    if(!h||!c) return;
+    var row=document.querySelector('.tabsrow');
+    if(!row){
+      row=document.createElement('div'); row.className='tabsrow';
+      c.parentNode.insertBefore(row,c); row.appendChild(c);
+      var right=document.createElement('div'); right.className='tabsright';
+      row.appendChild(right);
+      if(sortw) right.appendChild(sortw);
+      if(cur) right.appendChild(cur);
+      /* On a phone the eight field panel is folded away and this opens it. It
+         clicks the panel's own button, so there is only one piece of state. */
+      var fb=document.createElement('button');
+      fb.type='button'; fb.id='fbtn';
+      fb.innerHTML='<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 4v6M8 14v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Filters</span><span id="fbtnn"></span>';
+      fb.addEventListener('click', function(){
+        var m=document.getElementById('fmore'); if(!m) return;
+        m.click();
+        var f=document.getElementById('filters');
+        if(f && f.classList.contains('open')) f.scrollIntoView({behavior:'smooth', block:'nearest'});
+      });
+      right.appendChild(fb);
+    }
+    if(h.nextElementSibling!==row) row.parentNode.insertBefore(h,row);
+    sortLabels();
+    /* the panel sits under the controls row on a phone, above the title on a wide screen */
+    var f=document.getElementById('filters');
+    if(f){
+      if(window.innerWidth<=760){ if(row.nextElementSibling!==f) row.parentNode.insertBefore(f,row.nextSibling); }
+      else if(f.nextElementSibling!==h) h.parentNode.insertBefore(f,h);
+    }
+  }
+  function sortLabels(){
+    var fs=document.getElementById('f-sort'); if(!fs||fs.options.length<3) return;
+    var L = window.innerWidth<=560
+      ? ["Soonest","Newest","Cheapest"]
+      : ["Soonest departure","Most recently listed","Lowest price"];
+    for(var i=0;i<3;i++) if(fs.options[i].textContent!==L[i]) fs.options[i].textContent=L[i];
+  }
+  try{ place(); }finally{ document.getElementById('wrap').className+=' arranged'; }
+  mq.addEventListener('change', place);
+  window.addEventListener('resize', place);
+})();
+(function(){
+  if (!window.matchMedia('(max-width: 640px)').matches) return;
+  var lab = document.querySelector('#curwrap > span');
+  if (lab && /show prices in/i.test(lab.textContent)) lab.textContent = 'Prices in';
+})();
+</script>
 
 <script>
 (function () {
@@ -2290,9 +2350,11 @@ header.elnav .eln-reg { margin: 0; }
     var lbl=document.getElementById("fmorelbl"), n=document.getElementById("fmoren");
     var hidden=["f-date","f-ac","f-seats","f-region","f-month","f-price","f-when"];
     /* on wide screens Departing sits in the open row, so it never counts there */
+    /* matchMedia instead of innerWidth: reading innerWidth after DOM writes forces a reflow (PageSpeed, 14 Sep 2026) */
+    var wideMQ=window.matchMedia("(min-width: 761px)");
     function count(){
       var c=0;
-      var iw=window.innerWidth; hidden.forEach(function(id){ if(id==="f-when" && iw>760) return; var el=document.getElementById(id); if(el&&el.value) c++; });
+      var wide=wideMQ.matches; hidden.forEach(function(id){ if(id==="f-when" && wide) return; var el=document.getElementById(id); if(el&&el.value) c++; });
       if(n){ n.textContent=c||""; n.classList.toggle("on", c>0); }
       var n2=document.getElementById("fbtnn"); if(n2){ n2.textContent=c||""; n2.classList.toggle("on", c>0); }
     }
@@ -2697,61 +2759,6 @@ header.elnav .eln-reg { margin: 0; }
   var box = document.getElementById('rows');
   if (box) new MutationObserver(refresh).observe(box, {childList:true});
   setTimeout(paint, 1500); setTimeout(paint, 4000);
-})();
-</script><script>
-/* Desktop, 4 September 2026: the list header (title, count, sort) goes above the
-   region chips, outside the white card, as in Radu's mockup. Back inside the card
-   below 761px. */
-(function(){
-  var mq = window.matchMedia('(min-width: 761px)');
-  function place(){
-    var h=document.getElementById('lhead'), c=document.getElementById('continents'),
-        sortw=document.getElementById('lsortw'), cur=document.getElementById('curwrap');
-    if(!h||!c) return;
-    var row=document.querySelector('.tabsrow');
-    if(!row){
-      row=document.createElement('div'); row.className='tabsrow';
-      c.parentNode.insertBefore(row,c); row.appendChild(c);
-      var right=document.createElement('div'); right.className='tabsright';
-      row.appendChild(right);
-      if(sortw) right.appendChild(sortw);
-      if(cur) right.appendChild(cur);
-      /* On a phone the eight field panel is folded away and this opens it. It
-         clicks the panel's own button, so there is only one piece of state. */
-      var fb=document.createElement('button');
-      fb.type='button'; fb.id='fbtn';
-      fb.innerHTML='<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h10M18 7h2M4 17h4M12 17h8M16 4v6M8 14v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Filters</span><span id="fbtnn"></span>';
-      fb.addEventListener('click', function(){
-        var m=document.getElementById('fmore'); if(!m) return;
-        m.click();
-        var f=document.getElementById('filters');
-        if(f && f.classList.contains('open')) f.scrollIntoView({behavior:'smooth', block:'nearest'});
-      });
-      right.appendChild(fb);
-    }
-    if(h.nextElementSibling!==row) row.parentNode.insertBefore(h,row);
-    sortLabels();
-    /* the panel sits under the controls row on a phone, above the title on a wide screen */
-    var f=document.getElementById('filters');
-    if(f){
-      if(window.innerWidth<=760){ if(row.nextElementSibling!==f) row.parentNode.insertBefore(f,row.nextSibling); }
-      else if(f.nextElementSibling!==h) h.parentNode.insertBefore(f,h);
-    }
-  }
-  function sortLabels(){
-    var fs=document.getElementById('f-sort'); if(!fs||fs.options.length<3) return;
-    var L = window.innerWidth<=560
-      ? ["Soonest","Newest","Cheapest"]
-      : ["Soonest departure","Most recently listed","Lowest price"];
-    for(var i=0;i<3;i++) if(fs.options[i].textContent!==L[i]) fs.options[i].textContent=L[i];
-  }
-  place(); mq.addEventListener('change', place);
-  window.addEventListener('resize', place);
-})();
-(function(){
-  if (!window.matchMedia('(max-width: 640px)').matches) return;
-  var lab = document.querySelector('#curwrap > span');
-  if (lab && /show prices in/i.test(lab.textContent)) lab.textContent = 'Prices in';
 })();
 </script><script>
 /* Full-list awareness: real city counts and honest search counts across every flight, not just the free view */
