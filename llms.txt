@@ -1,0 +1,37 @@
+# Empty Leg List
+
+> A listing of empty leg private jet flights published by charter operators, collected in one place and shown live at https://emptylegslist.com. Empty Leg List is a listing service operated by Publishing Office SRL. It is not a broker and not an operator; enquiries go to the operator that published the flight.
+
+An empty leg is a one-way repositioning flight that a charter operator has to fly anyway and offers at a reduced price. The board shows each flight as the operator listed it: route, date, aircraft type, seats where given, and the operator's published price or "price on enquiry".
+
+## Live board
+
+- [All empty legs](https://emptylegslist.com/): the live list, filterable by departure, arrival, date, aircraft and region
+- [Last minute empty legs](https://emptylegslist.com/last-minute-empty-leg-flights): flights departing in the next seven days
+- [Live map](https://emptylegslist.com/map): the same flights on a map
+
+## Browse by place and aircraft
+
+- [Empty legs by city](https://emptylegslist.com/empty-legs/): one page per departure city, for example https://emptylegslist.com/empty-legs/london
+- [Empty legs by route](https://emptylegslist.com/empty-legs/): one page per city pair, for example https://emptylegslist.com/empty-legs/london-to-nice
+- [Empty legs by aircraft](https://emptylegslist.com/aircraft/): one page per aircraft type with specifications and a monthly record, for example https://emptylegslist.com/aircraft/challenger-350
+
+## Guides
+
+- [What is an empty leg flight?](https://emptylegslist.com/guides/what-is-an-empty-leg-flight)
+- [How to find empty leg flights](https://emptylegslist.com/guides/how-to-find-empty-leg-flights)
+- [How much does an empty leg private jet cost?](https://emptylegslist.com/guides/how-much-does-an-empty-leg-private-jet-cost)
+- [Empty leg glossary](https://emptylegslist.com/guides/empty-leg-glossary)
+- [All guides](https://emptylegslist.com/guides/)
+
+## Data
+
+- [Open data feed](https://emptylegslist.com/open-data): the flights on the board as free JSON (https://emptylegslist.com/feed/empty-legs.json) or CSV (https://emptylegslist.com/feed/empty-legs.csv), with documented fields and attribution terms
+- [Empty legs API](https://emptylegslist.com/empty-legs-api): read-only REST access to the live board and the historical record, paid
+
+## About
+
+- [About Empty Leg List](https://emptylegslist.com/about): how the list is built and what the service is and is not
+- [For charter operators](https://emptylegslist.com/for-operators): how an operator lists its empty legs
+- [Contact](https://emptylegslist.com/contact)
+- [Terms](https://emptylegslist.com/terms) and [Privacy](https://emptylegslist.com/privacy)
