@@ -593,7 +593,7 @@ function flightUrl(x){
       '<text x="'+B[0]+'" y="'+(B[1]+22)+'" fill="#fff" font-size="14" text-anchor="middle" font-family="Raleway,sans-serif">'+esc(x.to_label)+'</text>';
   }
 
-  api("flight_public?id=eq."+id+"&select=*").then(function(rows){
+  api("flight_public?or=(id.eq."+id+",live_id.eq."+id+")&select=*&limit=1").then(function(rows){
     var x = rows && rows[0]; if (!x) { show("err"); return; }
     var today = new Date().toISOString().slice(0,10);
     var live = x.is_live, departed = x.departure_date < today;
