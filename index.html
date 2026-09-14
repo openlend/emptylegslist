@@ -2293,12 +2293,21 @@ header.elnav .eln-reg { margin: 0; }
     })
     .then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); })
     .then(function(res){
+      if(res.ok&&res.j.returning&&!res.j.token){
+        /* a known address: the key went to that inbox, not to this page (14 Sep 2026) */
+        btn.classList.remove("busy"); lbl.textContent="Unlock all flights";
+        show(res.j.emailed
+          ? "This address already has an account. We have emailed your sign-in link to "+email+". Open it on this device and the full list appears."
+          : "This address had an account that was closed. Write to us and we will reopen it.");
+        return null;
+      }
       if(!res.ok||!res.j.token) throw 0;
       TOKEN=res.j.token;
       try{ localStorage.setItem("el_token",TOKEN); }catch(e){}
       return loadLegs();
     })
-    .then(function(){
+    .then(function(r){
+      if(r===null) return;
       btn.classList.remove("busy"); lbl.textContent="Unlock all flights";
       var top=document.getElementById("lhead");
       if(top) window.scrollTo({top: top.getBoundingClientRect().top + window.pageYOffset - 16, behavior:"smooth"});
