@@ -112,6 +112,28 @@ h1.fl{margin:0}
 .fl-card a.more{display:inline-block;font-size:13.5px;font-weight:600;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--line)}
 @media(max-width:700px){.fl-two{grid-template-columns:1fr}}
 #fl-err{display:none}
+/* enquiry form on the page itself (14 Sep 2026): the separate /enquire page cost a click and a reload */
+#fl-form{display:none;background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:10px 0 18px}
+#fl-form h3{margin:0 0 4px;font-size:18px;color:var(--navy)}
+#fl-form .sub{margin:0 0 14px;font-size:13.5px;color:var(--mute)}
+#fl-form .g{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px}
+#fl-form .full{grid-column:1/-1}
+#fl-form label.l{display:block;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7c8894;margin:0 0 5px}
+#fl-form input,#fl-form select,#fl-form textarea{width:100%;box-sizing:border-box;font:inherit;font-size:14.5px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#fff}
+#fl-form textarea{min-height:76px;resize:vertical}
+#fl-form input:focus,#fl-form select:focus,#fl-form textarea:focus{outline:none;border-color:var(--navy)}
+#fl-form .consent{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:#46525f;line-height:1.5;margin:12px 0 0}
+#fl-form .consent input{width:auto;margin-top:3px}
+#fl-form .consent span{text-transform:none;letter-spacing:0;font-weight:400}
+#fl-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+#fl-form .msg{display:none;font-size:13.5px;margin:10px 0 0;padding:9px 12px;border-radius:8px}
+#fl-form .msg.err{display:block;background:#fbe9e7;color:#b3261e}
+#fl-form .msg.ok{display:block;background:#e3f4ea;color:#1c7a4a}
+#fl-form .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+#fl-form .row .btn{cursor:pointer;border:0;font:inherit;font-weight:600}
+#fl-form .row .cancel{background:none;border:0;font:inherit;font-size:13.5px;color:var(--mute);cursor:pointer;text-decoration:underline}
+#fl-done{display:none;background:#e3f4ea;border-radius:14px;padding:18px 20px;margin:10px 0 18px;color:#1c7a4a;font-size:14.5px;line-height:1.6}
+@media(max-width:560px){#fl-form .g{grid-template-columns:1fr}}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -179,9 +201,6 @@ h1.fl{margin:0}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
-<!-- siteld.py -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Empty leg flight | Empty Leg List","item":"https://emptylegslist.com/flight"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/flight","url":"https://emptylegslist.com/flight","name":"Empty leg flight | Empty Leg List","description":"One empty leg flight: route, date, aircraft, seats and the operator's published price, plus when we first and last saw it on the operator's site.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
-<!-- /siteld.py -->
 </head>
 <body>
 <header class="elnav">
@@ -486,6 +505,23 @@ h1.fl{margin:0}
     <a class="btn2" id="fl-wa" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
     <a class="btn2" id="fl-alert" href="/#alerts">Alert me on this route</a>
   </div>
+  <form id="fl-form" novalidate>
+    <h3 id="fl-form-h">Enquire about this flight</h3>
+    <p class="sub">Goes to the operator holding this aircraft. They reply to you directly. We are not a broker and take no commission.</p>
+    <div class="g">
+      <div class="full"><label class="l" for="fq-email">Email</label><input type="email" id="fq-email" autocomplete="email" placeholder="you@email.com" required></div>
+      <div><label class="l" for="fq-name">Your name</label><input type="text" id="fq-name" autocomplete="name" placeholder="Optional"></div>
+      <div><label class="l" for="fq-phone">Phone</label><input type="tel" id="fq-phone" autocomplete="tel" placeholder="Optional, speeds things up"></div>
+      <div><label class="l" for="fq-pax">Passengers</label><select id="fq-pax"><option value="">Not sure yet</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13+</option></select></div>
+      <div id="fq-datewrap"><label class="l" for="fq-date">Departure date</label><input type="date" id="fq-date"></div>
+      <div class="full"><label class="l" for="fq-notes">Anything the operator should know</label><textarea id="fq-notes" placeholder="Luggage, pets, flexibility on dates, ground transport..."></textarea></div>
+    </div>
+    <div class="hp"><label>Company<input type="text" id="fq-company" tabindex="-1" autocomplete="off"></label></div>
+    <label class="consent"><input type="checkbox" id="fq-consent"><span>I agree that Empty Leg List (Publishing Office SRL) may share this request with charter operators covering the route, including operators outside the EU/EEA who act as independent controllers, so they can reply to me. <a href="/privacy">Privacy Policy</a></span></label>
+    <div class="msg" id="fq-msg"></div>
+    <div class="row"><button class="btn" type="submit" id="fq-btn">Send enquiry &rarr;</button><button type="button" class="cancel" id="fq-cancel">Cancel</button></div>
+  </form>
+  <div id="fl-done"></div>
   <svg class="fl-map" id="fl-map" viewBox="0 0 800 300" role="img" aria-label="Route sketch" hidden></svg>
   <div class="fl-life" id="fl-life"></div>
   <h2>Other empty legs on this route</h2>
@@ -540,7 +576,7 @@ function flightUrl(x){
   var id = (location.pathname.match(/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/) || [])[1]
         || new URLSearchParams(location.search).get("id") || "";
   var $ = function(i){ return document.getElementById(i); };
-  var AIRCRAFT_PAGES = ["challenger-300", "challenger-350", "challenger-3500", "challenger-604", "citation-cj2", "citation-cj4-gen2", "citation-latitude", "citation-longitude", "citation-m2", "citation-mustang", "citation-sovereign", "citation-ultra", "citation-xls", "erj-135", "falcon-2000", "falcon-7x", "falcon-900ex", "global-6000", "gulfstream-g450", "gulfstream-g550", "gulfstream-v", "hawker-900xp", "king-air-200", "king-air-260", "learjet-45xr", "learjet-60xr", "learjet-75", "legacy-450", "legacy-500", "legacy-600", "legacy-650", "nextant-400xt", "pilatus-pc-12-ngx", "praetor-600"], CITY_PAGES = ["alicante", "amsterdam", "antwerp", "aspen", "athens", "austin", "barcelona", "bari", "belfast", "belgium", "bergen", "berlin", "birmingham", "bodrum", "boise", "bologna", "bolzano", "brussels", "bucharest", "cagliari", "calgary", "canada", "cannes", "cape-town", "carlsbad", "chicago", "cluj-napoca", "dallas", "dublin", "dusseldorf", "edinburgh", "europe", "farnborough", "fort-lauderdale", "fort-worth", "france", "geneva", "girona", "houston", "ibiza", "innsbruck", "istanbul", "italy", "johannesburg", "larnaca", "las-vegas", "liege", "linz", "london", "madrid", "malaga", "maun", "miami", "milan", "milwaukee", "monterey", "montpellier", "montreal", "munich", "mykonos", "naples", "new-york", "nice", "oakland", "olbia", "oxford", "palma", "paris", "pisa", "preveza", "rotterdam", "salzburg", "sault-ste-marie", "scottsdale", "sion", "south-africa", "spain", "switzerland", "teterboro", "thessaloniki", "toronto", "toulon", "turks-and-caicos", "united-kingdom", "united-states", "van-nuys", "verona", "vienna", "washington", "waukesha", "wevelgem", "zurich"];
+  var AIRCRAFT_PAGES = ["beechjet-400a", "challenger-300", "challenger-350", "challenger-3500", "challenger-604", "challenger-605", "challenger-650", "citation-bravo", "citation-cj2", "citation-cj3", "citation-cj4-gen2", "citation-cj4", "citation-excel", "citation-latitude", "citation-longitude", "citation-m2", "citation-mustang", "citation-sovereign", "citation-ultra", "citation-v", "citation-x", "citation-xls", "erj-135", "falcon-2000", "falcon-7x", "falcon-900ex", "global-5000", "global-6000", "gulfstream-g200", "gulfstream-g280", "gulfstream-g450", "gulfstream-g550", "gulfstream-g600", "gulfstream-giv-sp", "gulfstream-giv", "gulfstream-v", "hawker-400xp", "hawker-800xp", "hawker-850xp", "hawker-900xp", "king-air-200", "king-air-260", "learjet-40xr", "learjet-45xr", "learjet-60xr", "learjet-75", "legacy-450", "legacy-500", "legacy-600", "legacy-650", "nextant-400xt", "phenom-300", "pilatus-pc-12-ng", "pilatus-pc-12-ngx", "praetor-600"], CITY_PAGES = ["alicante", "amsterdam", "antwerp", "aspen", "athens", "austin", "barcelona", "bari", "belfast", "belgium", "bergen", "berlin", "birmingham", "bodrum", "boise", "bologna", "bolzano", "brussels", "bucharest", "cagliari", "calgary", "canada", "cannes", "cape-town", "carlsbad", "chicago", "cluj-napoca", "dallas", "dublin", "dusseldorf", "edinburgh", "europe", "farnborough", "fort-lauderdale", "fort-worth", "france", "geneva", "girona", "houston", "ibiza", "innsbruck", "istanbul", "italy", "johannesburg", "larnaca", "las-vegas", "liege", "linz", "london", "madrid", "malaga", "maun", "miami", "milan", "milwaukee", "monterey", "montpellier", "montreal", "munich", "mykonos", "naples", "new-york", "nice", "oakland", "olbia", "oxford", "palma", "paris", "pisa", "preveza", "rotterdam", "salzburg", "sault-ste-marie", "scottsdale", "sion", "south-africa", "spain", "switzerland", "teterboro", "thessaloniki", "toronto", "toulon", "turks-and-caicos", "united-kingdom", "united-states", "van-nuys", "verona", "vienna", "washington", "waukesha", "wevelgem", "zurich"];
   function norm(s){ return String(s == null ? "" : s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""); }
   /* A slug earns the link only when every one of its words is in the name the
      operator published, so "citation-xls" matches "Cessna Citation XLS+" and
@@ -593,6 +629,61 @@ function flightUrl(x){
       '<text x="'+B[0]+'" y="'+(B[1]+22)+'" fill="#fff" font-size="14" text-anchor="middle" font-family="Raleway,sans-serif">'+esc(x.to_label)+'</text>';
   }
 
+  /* The enquiry form opens on this page (14 Sep 2026). The /enquire link stays
+     as the fallback for anyone without script. Events go to Vercel Analytics
+     when its script is present. */
+  function track(name, data){ try { if (window.va) window.va("event", { name: name, data: data || {} }); } catch (e) {} }
+  function inlineEnquiry(x, live, qsStr){
+    var enq = $("fl-enq"), form = $("fl-form"), done = $("fl-done"), msg = $("fq-msg"), btn = $("fq-btn");
+    if (!enq || !form) return;
+    var summary = label(x) + " on " + x.departure_date + (x.aircraft_type ? ", " + x.aircraft_type : "") +
+      (x.seats ? ", up to " + x.seats + " seats" : "") + (x.price_note ? ", listed at " + x.price_note.replace(" listed","") : "");
+    $("fl-form-h").textContent = live ? "Enquire about this flight" : "Ask about " + label(x);
+    if (live) { $("fq-date").value = x.departure_date; $("fq-datewrap").style.display = "none"; }
+    enq.addEventListener("click", function(e){
+      e.preventDefault();
+      form.style.display = "block"; done.style.display = "none";
+      track("enquiry_opened", { route: label(x), live: !!live });
+      $("fq-email").focus();
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    $("fq-cancel").addEventListener("click", function(){ form.style.display = "none"; });
+    function fail(t){ msg.textContent = t; msg.className = "msg err"; }
+    form.addEventListener("submit", function(e){
+      e.preventDefault(); msg.className = "msg";
+      var email = $("fq-email").value.trim();
+      if (email.indexOf("@") < 1 || email.length < 6) return fail("That email does not look right.");
+      if (!$("fq-consent").checked) return fail("Please tick the consent box so operators may reply to you.");
+      btn.disabled = true; btn.textContent = "Sending...";
+      var typed = $("fq-notes").value.trim();
+      var payload = {
+        trip_type: live ? "One way" : null,
+        from_location: x.from_label, to_location: x.to_label,
+        departure_date: live ? x.departure_date : ($("fq-date").value || null),
+        passengers: $("fq-pax").value || null,
+        aircraft: x.aircraft_type || null,
+        full_name: $("fq-name").value.trim() || null,
+        email: email,
+        phone: $("fq-phone").value.trim() || null,
+        notes: (typed ? typed + " | " : "") + "Empty leg enquiry: " + summary,
+        consent: true,
+        company: $("fq-company").value || null,
+        leg_ref: x.id || null,
+        leg_summary: summary,
+        source: "emptylegslist.com/flight"
+      };
+      fetch(BASE + "/functions/v1/charter-lead", { method: "POST", headers: { apikey: KEY, "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+        .then(function(r){
+          if (!r.ok) throw new Error("status " + r.status);
+          form.style.display = "none";
+          done.textContent = "Sent. We are passing your request for " + label(x) + " to the operator holding this aircraft. They reply to you directly, usually within a few hours in business time.";
+          done.style.display = "block";
+          track("enquiry_sent", { route: label(x), live: !!live, aircraft: x.aircraft_type || "" });
+        })
+        .catch(function(){ fail("Could not send that just now. Please try again in a moment."); btn.disabled = false; btn.innerHTML = "Send enquiry &rarr;"; });
+    });
+  }
+
   api("flight_public?or=(id.eq."+id+",live_id.eq."+id+")&select=*&limit=1").then(function(rows){
     var x = rows && rows[0]; if (!x) { show("err"); return; }
     var today = new Date().toISOString().slice(0,10);
@@ -612,6 +703,7 @@ function flightUrl(x){
     var qs = new URLSearchParams({ fromcity: x.from_label, tocity: x.to_label, from: x.from_iata||"", to: x.to_iata||"", date: x.departure_date, aircraft: x.aircraft_type||"", seats: x.seats||"", price: x.price_note ? x.price_note.replace(" listed","") : "", leg: x.id });
     $("fl-enq").href = "/enquire?" + qs.toString();
     if (!live) { $("fl-enq").textContent = "Ask about this route"; }
+    inlineEnquiry(x, live, qs.toString());
     var path = flightUrl(x), url = "https://emptylegslist.com" + path;
     if (location.pathname !== path) { try { history.replaceState(null, "", path + location.search); } catch (e) {} }
     var can = document.querySelector('link[rel=canonical]'); if (can) can.href = url;
