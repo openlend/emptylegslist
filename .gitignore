@@ -1,3 +1,6 @@
 
 # scratch: device_bash cannot delete files, so removals are moved here
 _to_delete/
+
+# raw drops before cleaning, never published
+brand/aircraft/incoming/
