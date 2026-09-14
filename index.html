@@ -1816,6 +1816,17 @@ header.elnav .eln-reg { margin: 0; }
   var FN = URLB + "/functions/v1/empty-legs";
   var TOKEN = "", GATED = true, TOTAL = 0, FREECAP = 300, MEMAIL = "";
   try { TOKEN = localStorage.getItem("el_token") || ""; } catch (e) { TOKEN = ""; }
+  /* An alert email carries the member's key (?key=...), so a phone that never
+     signed up here still opens the full list. Store it, then drop it from the
+     address bar so it is not copied on by accident (14 Sep 2026). */
+  try {
+    var _k = new URLSearchParams(location.search).get("key");
+    if (_k && /^[A-Za-z0-9_-]{10,128}$/.test(_k)) {
+      TOKEN = _k; localStorage.setItem("el_token", _k);
+      var _u = new URL(location.href); _u.searchParams.delete("key");
+      history.replaceState(null, "", _u.pathname + _u.search + _u.hash);
+    }
+  } catch (e) {}
 
   function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
   function city(n){ if(!n) return ""; if(window.EL_PLACE&&EL_PLACE.canon){var c=EL_PLACE.canon(n);if(c)return c;} var i=n.lastIndexOf(", "); return i>0?n.slice(0,i):n; }

@@ -18,6 +18,17 @@
   ready(function () {
     var header = document.querySelector("header.elnav");
     if (!header) return;
+    /* "My account" meant nothing to a visitor looking for a way to sign in
+       (Radu, 14 Sep 2026). Without a member key on this device the link says
+       "Sign in"; the page behind it is the same. */
+    try {
+      if (!localStorage.getItem("el_token")) {
+        var accs = document.querySelectorAll('a[href="/account"]');
+        for (var ai = 0; ai < accs.length; ai++) {
+          if (/^\s*My account\s*$/.test(accs[ai].textContent)) accs[ai].textContent = "Sign in";
+        }
+      }
+    } catch (e) {}
     var items = [].slice.call(header.querySelectorAll(".eln-item"));
     var fine = window.matchMedia("(hover: hover) and (pointer: fine)");
 
