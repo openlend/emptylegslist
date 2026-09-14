@@ -53,6 +53,7 @@ h2{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:24px;m
 p{margin:0 0 14px}
 ul{padding-left:20px}li{margin:0 0 6px}
 .more{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.rowsmore{display:block;width:100%;max-width:290px;margin:16px auto 0;text-align:center;border:1px solid var(--line);background:#fff;border-radius:9px;padding:13px;font:inherit;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#46525f;cursor:pointer}.rowsmore:hover{border-color:#c9d2db}
 .more a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:13px;text-decoration:none;color:#46525f}
 .src{font-size:12.5px;color:var(--mute);margin-top:8px}
 .src a{color:#5d6b79}
@@ -633,7 +634,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
      var host=document.getElementById("rows");
      if(!mine.length){host.innerHTML='<div class="empty">No '+esc(TYPE)+' empty leg is listed at this minute. Availability changes daily, so it is worth checking again, or <a href="/">browse the full list</a>.</div>';return;}
-     host.innerHTML=mine.slice(0,40).map(function(x){
+     var PAGE=15, shown=PAGE;
+     function rowHtml(x){
        var seats=x.seats?(" &middot; up to "+esc(x.seats)+" seats"):"";
        var time=x.est_flight_time?(" &middot; "+esc(x.est_flight_time)):"";
        var price=x.price_note?esc(String(x.price_note).replace(" listed","")):"Price on enquiry";
@@ -642,7 +644,14 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
         +'<div class="meta">'+d(x.departure_date)+seats+time+'</div>'
         +'<div class="price">'+price+'</div>'
         +'<div class="cta"><a class="btn" href="/enquire?from='+encodeURIComponent(x.from_airport||"")+'&to='+encodeURIComponent(x.to_airport||"")+'&date='+encodeURIComponent(x.departure_date||"")+'&leg='+encodeURIComponent(x.id||"")+'&legtext='+encodeURIComponent(legtext)+'">Enquire</a><span class="meta">As listed by the operator</span></div></div>';
-     }).join("");
+     }
+     function paint(){
+       host.innerHTML=mine.slice(0,shown).map(rowHtml).join("")
+         +(mine.length>shown?'<button type="button" class="rowsmore" id="rowsmore">View more flights ('+(mine.length-shown)+' more)</button>':"");
+       var b=document.getElementById("rowsmore");
+       if(b)b.addEventListener("click",function(){shown+=PAGE;paint();});
+     }
+     paint();
    })
    .catch(function(){document.getElementById("updnote").textContent="Live availability could not be loaded right now.";});
 })();
