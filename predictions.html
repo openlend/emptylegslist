@@ -817,7 +817,9 @@ function flightUrl(x){
       if (dw && String(r.weekday) !== dw) return false;
       if (q && (r.from_city + " " + r.to_city).toLowerCase().indexOf(q) === -1) return false;
       return true; });
+    function hitOf(r){ return r.outcome === true || (r.outcome === null && r.seen) ? 1 : 0; }
     rows.sort(function(a, b){
+      if (hitOf(b) !== hitOf(a)) return hitOf(b) - hitOf(a);
       if (srt === "seen") return b.weeks_with_leg - a.weeks_with_leg || b.predicted_rate - a.predicted_rate;
       if (srt === "date") return a.target_date < b.target_date ? -1 : a.target_date > b.target_date ? 1 : b.predicted_rate - a.predicted_rate;
       if (srt === "route") return (a.from_city + a.to_city).localeCompare(b.from_city + b.to_city);
