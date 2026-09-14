@@ -196,7 +196,7 @@
   .opbtn:hover { background: var(--gold); color: #241d00; transform: translateY(-2px); }
   .opbtn svg { transition: transform .22s cubic-bezier(.2,.8,.3,1); }
   .opbtn:hover svg { transform: translateX(5px); }
-  #backlink { text-align: center; font-size: 13px; font-weight: 300; color: #6b7885; line-height: 1.7; max-width: 640px; margin: 0 auto 18px auto; }
+  #backlink { text-align: center; font-size: 13px; font-weight: 400; color: #5f6d7b; line-height: 1.7; max-width: 640px; margin: 0 auto 18px auto; }
   #backlink a { color: var(--navy2); border-bottom: 1px solid var(--gold); }
   #legal { display: flex; gap: 22px; align-items: center; justify-content: center; flex-wrap: wrap; background: #fff; border: 1px solid #e7ecf1; border-radius: 12px; padding: 15px 22px; font-size: 12px; font-weight: 300; color: #6b7885; }
   #legal span { display: flex; align-items: center; gap: 9px; }
@@ -367,7 +367,7 @@
   #unlocked { display: none; align-items: center; justify-content: center; gap: 10px; padding: 13px 26px; border-top: 1px solid #edf1f5; font-size: 13px; font-weight: 300; color: #6b7885; }
   #unlocked b { font-weight: 500; color: var(--ink); }
   #signout { background: none; border: none; color: var(--gold); font-size: 13px; font-weight: 500; cursor: pointer; font-family: Raleway, sans-serif; padding: 0; }
-  .lt-of { font-weight: 400; color: #8a97a5; }
+  .lt-of { font-weight: 400; color: #5f6d7b; }
   #lgated { display: inline-block; margin-left: 9px; padding: 3px 9px; border-radius: 999px; background: rgba(201,162,39,0.13); color: #8a6f10; font-size: 11.5px; font-weight: 500; letter-spacing: .03em; vertical-align: middle; }
   @media (max-width: 640px) { #gf { grid-template-columns: 1fr; } #gate h2 { font-size: 22px; } }
 
@@ -1119,6 +1119,7 @@
   <div id="hin">
     
     <h1>Empty Leg Flights</h1>
+<div id="herostats"><p id="herolead"><span class="lead-t"><b class="hnum" data-baked>1,637</b> empty leg flights live today. </span><button type="button" id="freecta">See them all with a free account</button></p></div>
     <p id="sub">One-way empty legs, straight from charter operators. <span class="sublong">The aircraft flies the route anyway, so the operator offers the seats at a reduced price. </span>Updated three times a day.</p>
     
   </div>
@@ -1167,14 +1168,14 @@
       <a id="lalerts" href="#alerts"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M18 8.5a6 6 0 1 0-12 0c0 6-2 7.5-2 7.5h16s-2-1.5-2-7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.7 20a2 2 0 0 1-3.4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="la-l">Get route alerts</span><span class="la-s">Alerts</span></a>
       <button id="lsort" type="button">Soonest departure first</button>
       <label id="lsortw" for="f-sort"><span>Sort:</span>
-        <select id="f-sort">
+        <select id="f-sort" aria-label="Sort flights by">
           <option value="date" selected>Soonest departure</option>
           <option value="added">Most recently listed</option>
           <option value="price">Lowest price</option>
         </select>
       </label>
       <label id="curwrap" for="f-cur"><span>Show prices in</span>
-        <select id="f-cur">
+        <select id="f-cur" aria-label="Show prices in">
           <option value="">As listed</option>
           <option value="EUR" selected>EUR &euro;</option>
           <option value="USD">USD $</option>
@@ -2499,10 +2500,11 @@ var hin=document.getElementById("hin");
 var h1=hin?hin.querySelector("h1"):null;
 var fc=document.getElementById("fcwrap"),fl=document.getElementById("freeline");
 var fb=document.getElementById("fbar"),fm=document.getElementById("fmore");
-if(h1&&fc&&!document.getElementById("herostats")){
-var box=document.createElement("div");box.id="herostats";
-box.appendChild(fc);if(fl)box.appendChild(fl);
-h1.parentNode.insertBefore(box,h1.nextSibling);}
+if(h1&&fc){
+/* the block is in the HTML from the start (CLS fix, 14 September 2026); the count widgets still move into it */
+var box=document.getElementById("herostats");
+if(!box){box=document.createElement("div");box.id="herostats";h1.parentNode.insertBefore(box,h1.nextSibling);}
+if(fc.parentNode!==box)box.appendChild(fc);if(fl&&fl.parentNode!==box)box.appendChild(fl);}
 if(fb&&fm&&fm.parentNode!==fb){fb.appendChild(fm);}
 }
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",go);}else{go();}
@@ -2587,7 +2589,9 @@ setTimeout(go,700);setTimeout(go,2200);
 @media(max-width:640px){#herolead{font-size:15.5px;margin-top:12px}#herolead #fcpop{max-width:none;right:0}
 /* the live text is three lines on a phone, the build-time one two: hold the
    height so the search box does not move when the live count arrives */
-#herolead{min-height:110px}#herolead .lead-t{display:block;min-height:79px}}
+#herolead{min-height:110px}#herolead .lead-t{display:block;min-height:79px}
+/* both strips are filled by script after the data arrives: keep their row height so the list card does not move */
+#continents,#pills{min-height:35px}}
 
 /* --- latest guides on the home page, homeguides.py --- */
 #guides{max-width:1120px;margin:0 auto;padding:8px 20px 34px}
@@ -2721,15 +2725,12 @@ var s=lead.querySelector("span.lead-t");
 if(!s){s=document.createElement("span");s.className="lead-t";lead.insertBefore(s,lead.firstChild);}
 if(s.getAttribute("data-txt")!==txt){s.innerHTML=txt;s.setAttribute("data-txt",txt);}
 countTo(s.querySelector("b.hnum"),total);
-if(!document.querySelector("button#freecta")){
-  var _b=document.createElement("button");_b.type="button";_b.id="freecta";
-  _b.textContent="See them all with a free account";
-  _b.addEventListener("click",function(){
+var _b=document.querySelector("button#freecta");
+if(!_b){_b=document.createElement("button");_b.type="button";_b.id="freecta";_b.textContent="See them all with a free account";lead.appendChild(_b);}
+if(!_b.__wired){_b.__wired=1;_b.addEventListener("click",function(){
     var c=document.getElementById("fcpop-cta"); if(c){c.click();return;}
     var h=document.getElementById("fchelp"); if(h) h.click();
-  });
-  lead.appendChild(_b);
-}
+  });}
 var _all=document.querySelectorAll("button#freecta");for(var _i=0;_i<_all.length-1;_i++){if(_all[_i].parentNode)_all[_i].parentNode.removeChild(_all[_i]);}
 var cta=_all.length?_all[_all.length-1]:null,help=document.getElementById("fchelp"),pop=document.getElementById("fcpop");
 if(full){if(cta)cta.style.display="none";if(help)help.style.display="none";if(pop)pop.style.display="none";}else{if(cta){cta.style.display="";lead.appendChild(cta);}if(help){help.style.display="";lead.appendChild(help);}if(pop){pop.style.display="";lead.appendChild(pop);}}
