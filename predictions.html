@@ -24,7 +24,8 @@
 @font-face{font-family:'Raleway';font-style:normal;font-weight:300;font-display:swap;src:url(/brand/fonts/raleway-latin-300-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Raleway';font-style:normal;font-weight:400;font-display:swap;src:url(/brand/fonts/raleway-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Raleway';font-style:normal;font-weight:500;font-display:swap;src:url(/brand/fonts/raleway-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:'Raleway';font-style:normal;font-weight:600;font-display:swap;src:url(/brand/fonts/raleway-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+@font-face{font-family:'Raleway';font-style:normal;font-weight:600;font-display:swap;src:url(/brand/fonts/raleway-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+</style>
 <!-- /fonts.py -->
 <style>
 :root{--navy:#0D1F36;--gold:#C9A24C;--ink:#16222e;--mute:#8a97a5;--line:#edf1f5}
@@ -89,7 +90,8 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.fc{max-width:1240px}
+.wrap.fc{max-width:1240px}}
+
 .fc .narrow{max-width:760px}
 .crumb{font-size:12.5px;color:var(--mute);margin:26px 0 18px}
 .crumb a{color:var(--mute);text-decoration:none}
@@ -243,6 +245,43 @@ table.gtab tr.top td{background:#fdf8ec}
   #bigfoot .bf-alert-in{padding:20px}
   #bigfoot .bf-alert strong{font-size:19px}
 }
+
+/* green when a leg for that date is already in the record; the official result comes after the week */
+table.gtab tr.hit td{background:#eef7f1}
+table.gtab tr.hit td.lead{color:#1c7a4a}
+.madeon{font-size:12.5px;color:var(--mute);white-space:nowrap}
+.mcards{display:none}
+@media(max-width:640px){
+  .fchead{gap:14px}
+  .fceyebrow{margin-bottom:4px}
+  .fc h1{font-size:26px;line-height:1.15;margin:0 0 6px}
+  .fcsub{font-size:14px;margin:0}
+  .wkpick{width:100%}
+  .wkpick p{display:none}
+  .note .rt{display:none}
+  .note{padding:14px 16px}
+  .tabs{gap:18px;margin-top:18px;overflow-x:auto;scrollbar-width:none}
+  .tabs button{white-space:nowrap;font-size:14px}
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 10px}
+  .tools .sfld{grid-column:1/-1;min-width:0}
+  .tools input,.tools select{width:100%;padding:10px 12px;font-size:14px;min-height:42px;box-sizing:border-box}
+  .tools .push{margin-left:0;grid-column:1/-1}
+  .tcard .gscroll{display:none}
+  .mcards{display:block}
+  .mc{padding:13px 14px;border-top:1px solid var(--line)}
+  .mc:first-child{border-top:0}
+  .mc.hit{background:#eef7f1}
+  .mc .r{font-size:15.5px;font-weight:600;color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .mc.hit .r{color:#1c7a4a}
+  .mc .r .bell{flex:none}
+  .mc .m{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+  .mc .m b{color:var(--navy);font-weight:600}
+  .mc .s{display:flex;align-items:center;gap:10px;margin-top:9px}
+  .mc .s .bar{width:110px}
+  .mc .s .pc{font-weight:600;color:var(--navy);min-width:38px;font-variant-numeric:tabular-nums}
+  .mc .s .res{margin-left:auto}
+  .tfoot{flex-direction:column;gap:8px;align-items:flex-start}
+
 </style>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
@@ -549,11 +588,11 @@ table.gtab tr.top td{background:#fdf8ec}
   <div>
     <p class="fceyebrow">Forecast <span id="wklabel"></span></p>
     <h1>Where will the next empty leg appear?</h1>
-    <p class="fcsub">Weekly route predictions, published in advance. Checked against what actually happens.</p>
+    <p class="fcsub">Route predictions written down before each week, then checked against what happened.</p>
   </div>
   <div class="wkpick">
     <div class="fld"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
-    <select id="wk" aria-label="Choose a week"><option>Reading the record</option></select></div>
+    <select id="wk" aria-label="Choose a week"><option>Loading weeks</option></select></div>
     <p>Predictions are published every Monday and cannot be edited afterwards.</p>
   </div>
 </div>
@@ -567,19 +606,20 @@ table.gtab tr.top td{background:#fdf8ec}
 <div class="pane" id="p1">
   <div id="banner"></div>
 
-  <h2>This week's route forecast</h2>
-  <p class="gnote narrow" style="margin:0 0 4px">Patterns from the past six weeks. Estimates, not confirmed availability.</p>
+  <h2 id="fch">Route predictions</h2>
+  <p class="gnote narrow" id="fcnote" style="margin:0 0 4px">Each row is one route on one date, written down before the week. Green rows already have a leg in the record for that date.</p>
 
   <div class="tools">
     <span class="sfld"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="Search routes, for example Ibiza or Las Vegas" aria-label="Search routes"></span>
     <select id="reg" aria-label="Region"><option value="">All regions</option></select>
     <select id="dow" aria-label="Weekday"><option value="">Any weekday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option><option value="7">Sunday</option></select>
-    <select id="srt" class="push" aria-label="Sort"><option value="rate">Sort: expected rate</option><option value="seen">Sort: weeks seen</option><option value="legs">Sort: legs recorded</option><option value="route">Sort: route name</option></select>
+    <select id="srt" class="push" aria-label="Sort"><option value="rate">Sort: expected rate</option><option value="seen">Sort: weeks seen</option><option value="date">Sort: date</option><option value="route">Sort: route name</option></select>
   </div>
 
   <div class="tcard">
-    <div class="gscroll"><table class="gtab"><thead><tr><th>Route</th><th>Day</th><th>Seen</th><th>Expected rate</th><th class="num">Recorded</th><th class="num">Priced</th><th>Alert</th></tr></thead><tbody id="rows"><tr><td colspan="7" class="gnote">Reading the record.</td></tr></tbody></table></div>
+    <div class="gscroll"><table class="gtab"><thead><tr><th>Route</th><th>Date</th><th>History</th><th>Expected</th><th>Predicted on</th><th>So far</th><th>Alert</th></tr></thead><tbody id="rows"><tr><td colspan="7" class="gnote">Reading the record.</td></tr></tbody></table></div>
+    <div class="mcards" id="mrows"></div>
     <div class="tfoot"><p>Gold bars show the range the data supports. More history means narrower ranges.</p><a href="#" id="showall">View all routes &rarr;</a></div>
   </div>
 </div>
@@ -693,13 +733,8 @@ function flightUrl(x){
     rows.forEach(function(r){ weeks[r.target_week_start] = (weeks[r.target_week_start] || 0) + 1;
       if (r.outcome !== null) scored++; if (!made || r.made_on < made) made = r.made_on; });
     var keys = Object.keys(weeks).sort().reverse();
-    var sel = document.getElementById("wk");
-    sel.innerHTML = keys.map(function(k){ return '<option value="' + k + '">' + esc(weekLabel(k)) + "</option>"; }).join("") ||
-      "<option>No week published yet</option>";
+    /* the week picker itself is filled by the forecast loader below */
     if (keys.length){
-      WEEKSTART = keys[0];
-      document.getElementById("wk").addEventListener("change", function(){ WEEKSTART = this.value; draw(); });
-      document.getElementById("wklabel").textContent = "· WEEK OF " + weekLabel(keys[0]).toUpperCase();
       var first = d(keys[keys.length - 1]); first.setUTCDate(first.getUTCDate() + 7);
       document.getElementById("banner").innerHTML = scored ? "" :
         '<div class="note"><span class="ic">' +
@@ -758,46 +793,80 @@ function flightUrl(x){
       '</tbody></table></div>';
   }).catch(function(){ document.getElementById("score").innerHTML = '<p class="gnote">The track record did not load.</p>'; });
 
-  /* the forecast table */
+  /* the forecast table: the predictions written down for the chosen week */
+  var TODAY = new Date().toISOString().slice(0,10);
+  function status(r){
+    if (r.outcome === true)  return '<span class="res y">A leg appeared</span>';
+    if (r.outcome === false) return '<span class="res n">None appeared</span>';
+    if (r.seen) return '<span class="res y">Leg in the record</span>';
+    if (r.target_date < TODAY) return '<span class="res n">Nothing recorded</span>';
+    return '<span class="res w">Nothing yet</span>';
+  }
+  function bellHtml(){
+    return '<a class="bell" href="/#alerts" title="Set an alert for this route" aria-label="Set an alert for this route">' +
+      '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></a>';
+  }
   function draw(){
     var q = document.getElementById("q").value.trim().toLowerCase(),
         rg = document.getElementById("reg").value, dw = document.getElementById("dow").value,
         srt = document.getElementById("srt").value;
     var rows = ALL.filter(function(r){
+      if (WEEKSTART && r.target_week_start !== WEEKSTART) return false;
       if (rg && r.region !== rg) return false;
       if (dw && String(r.weekday) !== dw) return false;
       if (q && (r.from_city + " " + r.to_city).toLowerCase().indexOf(q) === -1) return false;
       return true; });
     rows.sort(function(a, b){
-      if (srt === "seen") return b.weeks_with_leg - a.weeks_with_leg || b.legs_recorded - a.legs_recorded;
-      if (srt === "legs") return b.legs_recorded - a.legs_recorded;
+      if (srt === "seen") return b.weeks_with_leg - a.weeks_with_leg || b.predicted_rate - a.predicted_rate;
+      if (srt === "date") return a.target_date < b.target_date ? -1 : a.target_date > b.target_date ? 1 : b.predicted_rate - a.predicted_rate;
       if (srt === "route") return (a.from_city + a.to_city).localeCompare(b.from_city + b.to_city);
-      return b.rate_centre - a.rate_centre || b.legs_recorded - a.legs_recorded; });
+      return b.predicted_rate - a.predicted_rate || (a.target_date < b.target_date ? -1 : 1); });
+    var hits = rows.filter(function(r){ return r.outcome === true || (r.outcome === null && r.seen); }).length;
+    var note = document.getElementById("fcnote");
+    if (WEEKSTART) note.textContent = rows.length + " predictions for the week of " + weekLabel(WEEKSTART) + ", written down on " +
+      (rows[0] ? fmtDate(rows[0].made_on) : "") + ". " + hits + (hits === 1 ? " already has" : " already have") +
+      " a leg in the record for the predicted date (green). The official score is written once, after the week.";
     var link = document.getElementById("showall");
-    link.innerHTML = (rows.length > LIMIT ? "View all " + rows.length + " routes" : "View all routes") + " &rarr;";
-    document.getElementById("rows").innerHTML = rows.slice(0, LIMIT).map(function(r, i){
-      var lo = r.rate_low * 100, hi = r.rate_high * 100, mid = r.rate_centre * 100;
-      return '<tr' + (i === 0 ? ' class="top"' : '') + '><td class="lead">' + esc(r.from_city) +
-        '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</td>' +
-        '<td><span class="day">' + DAY[r.weekday] + '</span><span class="dt">' + esc(dateFor(r.weekday)) + '</span></td>' +
+    link.innerHTML = (rows.length > LIMIT ? "View all " + rows.length + " predictions" : "View all") + " &rarr;";
+    var shown = rows.slice(0, LIMIT);
+    function bar(r){
+      var lo = r.predicted_low * 100, hi = r.predicted_high * 100, mid = r.predicted_rate * 100;
+      return '<span class="bar"><i style="left:' + lo + '%;width:' + Math.max(1.5, hi - lo) + '%"></i><u style="left:' + Math.min(99, mid) + '%"></u></span>';
+    }
+    document.getElementById("rows").innerHTML = shown.map(function(r){
+      var hit = r.outcome === true || (r.outcome === null && r.seen);
+      return '<tr' + (hit ? ' class="hit"' : '') + '><td class="lead">' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</td>' +
+        '<td><span class="day">' + DAY[r.weekday] + '</span><span class="dt">' + esc(fmtDate(r.target_date)) + '</span></td>' +
         '<td>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</td>' +
-        '<td><span class="rate"><span class="pc">' + Math.round(mid) + '%</span>' +
-          '<span class="bar"><i style="left:' + lo + '%;width:' + Math.max(1.5, hi - lo) + '%"></i>' +
-          '<u style="left:' + Math.min(99, mid) + '%"></u></span>' +
-          '<span class="rg">' + Math.round(lo) + ' to ' + Math.round(hi) + '%</span></span></td>' +
-        '<td class="num">' + r.legs_recorded + '</td><td class="num">' + r.legs_priced + '</td>' +
-        '<td><a class="bell" href="/#alerts" title="Set an alert for this route" aria-label="Set an alert for this route">' +
-        '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
-        '<path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></a></td></tr>';
-    }).join("") || '<tr><td colspan="7" class="gnote">No route matches that. Clear the filters, or set a <a href="/#alerts">route alert</a> for the pair you want.</td></tr>';
+        '<td><span class="rate"><span class="pc">' + Math.round(r.predicted_rate * 100) + '%</span>' + bar(r) +
+          '<span class="rg">' + Math.round(r.predicted_low * 100) + ' to ' + Math.round(r.predicted_high * 100) + '%</span></span></td>' +
+        '<td><span class="madeon">' + esc(fmtDate(r.made_on)) + '</span></td>' +
+        '<td>' + status(r) + '</td><td>' + bellHtml() + '</td></tr>';
+    }).join("") || '<tr><td colspan="7" class="gnote">No prediction matches that. Clear the filters, or set a <a href="/#alerts">route alert</a> for the pair you want.</td></tr>';
+    document.getElementById("mrows").innerHTML = shown.map(function(r){
+      var hit = r.outcome === true || (r.outcome === null && r.seen);
+      return '<div class="mc' + (hit ? ' hit' : '') + '"><div class="r"><span>' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</span>' + bellHtml() + '</div>' +
+        '<div class="m"><span><b>' + DAY[r.weekday].slice(0,3) + ' ' + esc(fmtDate(r.target_date)) + '</b></span><span>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</span><span>predicted ' + esc(fmtDate(r.made_on)) + '</span></div>' +
+        '<div class="s"><span class="pc">' + Math.round(r.predicted_rate * 100) + '%</span>' + bar(r) + status(r) + '</div></div>';
+    }).join("") || '<div class="mc gnote">No prediction matches that.</div>';
   }
 
-  apiAll("route_forecast?select=from_city,to_city,region,weekday,weeks_with_leg,weeks_observed,rate_centre,rate_low,rate_high,legs_recorded,legs_priced&weeks_with_leg=gte.2&order=rate_centre.desc,legs_recorded.desc")
+  apiAll("forecast_results?select=target_date,target_week_start,weekday,from_city,to_city,region,predicted_rate,predicted_low,predicted_high,weeks_with_leg,weeks_observed,made_on,outcome,seen&order=target_date.asc,predicted_rate.desc")
     .then(function(rows){
       ALL = rows;
       var regs = {}; rows.forEach(function(r){ if (r.region) regs[r.region] = 1; });
       var sel = document.getElementById("reg");
       Object.keys(regs).sort().forEach(function(x){ var o = document.createElement("option"); o.value = x; o.textContent = x; sel.appendChild(o); });
+      /* week picker: the week that contains today first, else the newest */
+      var weeks = {}; rows.forEach(function(r){ weeks[r.target_week_start] = 1; });
+      var keys = Object.keys(weeks).sort().reverse();
+      var cur = keys.filter(function(k){ var e = d(k); e.setUTCDate(e.getUTCDate() + 6); return k <= TODAY && TODAY <= e.toISOString().slice(0,10); })[0] || keys[0];
+      var wk = document.getElementById("wk");
+      wk.innerHTML = keys.map(function(k){ return '<option value="' + k + '"' + (k === cur ? ' selected' : '') + '>' + esc(weekLabel(k)) + '</option>'; }).join("") || "<option>No week published yet</option>";
+      WEEKSTART = cur || null;
+      if (cur) document.getElementById("wklabel").textContent = "· WEEK OF " + weekLabel(cur).toUpperCase();
+      wk.addEventListener("change", function(){ WEEKSTART = this.value; document.getElementById("wklabel").textContent = "· WEEK OF " + weekLabel(WEEKSTART).toUpperCase(); LIMIT = 12; draw(); });
       ["q","reg","dow","srt"].forEach(function(id){ document.getElementById(id).addEventListener("input", draw); });
       draw();
     }).catch(function(){
