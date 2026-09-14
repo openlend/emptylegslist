@@ -712,28 +712,37 @@ function flightUrl(x){
   }).catch(function(){});
 
   /* every prediction, one row each, with the date it is about */
-  apiAll("forecast_results?select=target_date,from_city,to_city,predicted_rate,weeks_with_leg,weeks_observed,made_on,days_ahead,outcome&order=target_date.asc,predicted_rate.desc")
+  apiAll("forecast_results?select=target_date,from_city,to_city,predicted_rate,weeks_with_leg,weeks_observed,made_on,days_ahead,outcome,seen&order=target_date.asc,predicted_rate.desc")
     .then(function(rows){
       var el = document.getElementById("each");
       if (!rows.length){ el.innerHTML = '<p class="gnote">No predictions written down yet.</p>'; return; }
       var done = rows.filter(function(r){ return r.outcome !== null; }),
           hit = done.filter(function(r){ return r.outcome; }).length,
-          lo = Math.min.apply(null, rows.map(function(r){ return r.days_ahead; }));
+          lo = Math.min.apply(null, rows.map(function(r){ return r.days_ahead; })),
+          today = new Date().toISOString().slice(0,10),
+          open = rows.filter(function(r){ return r.outcome === null; }),
+          openSeen = open.filter(function(r){ return r.seen; }).length;
       el.innerHTML =
         '<p class="gnote" style="margin:0 0 14px">' + rows.length + ' predictions written down so far, each at least ' + lo +
         ' days before the date it is about. ' + (done.length ? done.length + (done.length === 1 ? ' has' : ' have') + ' been scored, ' + hit + (hit === 1 ? ' was' : ' were') + ' right.'
-          : 'None has been scored yet, because none of the dates has passed.') + '</p>' +
+          : 'None has been scored yet, because none of the dates has passed.') +
+        (open.length ? ' Of the ' + open.length + ' still open, ' + openSeen + (openSeen === 1 ? ' already has' : ' already have') +
+          ' a leg in the record for the predicted date. That column is live and unofficial; the result column is written once, after the week.' : '') + '</p>' +
         '<div class="tcard"><div class="gscroll"><table class="gtab"><thead><tr><th>Date</th><th>Route</th>' +
-        '<th>Seen</th><th class="num">We said</th><th class="num">Days ahead</th><th>Result</th></tr></thead><tbody>' +
+        '<th>Seen</th><th class="num">We said</th><th class="num">Days ahead</th><th>So far</th><th>Result</th></tr></thead><tbody>' +
         rows.slice(0, 200).map(function(r){
           var res = r.outcome === null ? '<span class="res w">Awaiting</span>'
                   : r.outcome ? '<span class="res y">A leg appeared</span>'
                               : '<span class="res n">None appeared</span>';
+          var sofar = r.outcome !== null ? ''
+                  : r.seen ? '<span class="res y">Leg in the record</span>'
+                  : r.target_date < today ? '<span class="res n">Nothing recorded</span>'
+                  : '<span class="res w">Nothing yet</span>';
           return '<tr><td>' + esc(fmtDate(r.target_date)) + '</td>' +
             '<td class="lead">' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</td>' +
             '<td>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</td>' +
             '<td class="num">' + pct(r.predicted_rate) + '</td>' +
-            '<td class="num">' + r.days_ahead + '</td><td>' + res + '</td></tr>'; }).join("") +
+            '<td class="num">' + r.days_ahead + '</td><td>' + sofar + '</td><td>' + res + '</td></tr>'; }).join("") +
         '</tbody></table></div></div>';
     }).catch(function(){ document.getElementById("each").innerHTML = '<p class="gnote">The track record did not load.</p>'; });
 
