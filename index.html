@@ -1591,6 +1591,8 @@ header.elnav .eln-reg { margin: 0; }
         <form id="gf">
           <input type="text" id="g-name" placeholder="Full name" autocomplete="name" required>
           <input type="tel" id="g-phone" placeholder="Phone (optional)" autocomplete="tel">
+          <!-- honeypot: hidden from people, filled by bots; the gate refuses a signup that carries it (14 Sep 2026) -->
+          <input type="text" id="g-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <input type="email" class="wide" id="g-email" placeholder="you@email.com" autocomplete="email" required>
           <label class="gcons"><input type="checkbox" id="g-consent" required><span id="g-consent-text">Create my free account and email me empty leg alerts from Empty Leg List (Publishing Office SRL). I can unsubscribe at any time. <a href="https://theflyingengineer.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></span></label>
           <button type="submit" id="gsub"><span class="lbl">Unlock all flights</span><svg class="ar" viewBox="0 0 24 24" width="17" height="17" xmlns="http://www.w3.org/2000/svg"><path d="M 4 12 L 20 12 M 14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -2288,7 +2290,7 @@ header.elnav .eln-reg { margin: 0; }
     btn.classList.add("busy"); lbl.textContent="Unlocking...";
     fetch(FN,{method:"POST",
       headers:{"apikey":KEY,"Authorization":"Bearer "+KEY,"Content-Type":"application/json"},
-      body:JSON.stringify({action:"signup",email:email,full_name:name,phone:phone||null,consent:true,
+      body:JSON.stringify({action:"signup",email:email,full_name:name,phone:phone||null,consent:true,website:(document.getElementById("g-website")||{}).value||"",
         consent_text:(document.getElementById("g-consent-text").textContent||"").trim()})
     })
     .then(function(r){ return r.json().then(function(j){ return {ok:r.ok,j:j}; }); })
