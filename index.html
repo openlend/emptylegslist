@@ -1152,6 +1152,14 @@ header.elnav button, header.elnav .eln-trig, .eln-drawer button, .eln-burger { m
    put it in the middle of the phone header (Radu, 3 September 2026) */
 header.elnav .eln-burger { margin: 0 0 0 auto; }
 header.elnav .eln-reg { margin: 0; }
+
+/* Red notice above the header for visitors without a member key (14 Sep 2026).
+   The markup is static in every page; an inline script right after it removes
+   it before first paint when el_token is on the device. */
+#elnote { background: #b3261e; color: #fff; font-size: 14px; line-height: 1.45; text-align: center; padding: 9px 16px; }
+#elnote p { margin: 0 auto; max-width: 1380px; }
+#elnote a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+@media (max-width: 760px) { #elnote { font-size: 13px; padding: 8px 12px; } }
 </style><!-- /inlined:site-nav.css -->
   <!-- inlined:site-forms.css --><style>/* Text fields in the Material outlined style, site wide (4 September 2026).
  * site-forms.js wraps every text input, textarea and labelled select in a
@@ -1208,10 +1216,14 @@ header.elnav .eln-reg { margin: 0; }
 <!-- siteld.py -->
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"}]}]}</script>
 <!-- /siteld.py -->
+  <link rel="stylesheet" href="/site-nav.css">
+  <script src="/site-nav.js" defer></script>
 </head>
 <body>
 <script>try{if(!localStorage.getItem("el_cur"))localStorage.setItem("el_cur","EUR");}catch(e){}</script>
 
+<div id="elnote"><p>To see all flights you need to be signed in. It is free today and takes 1 minute. <a href="/account">Sign in</a> or <a href="/#gate">create a free account</a>.</p></div>
+<script>try{if(localStorage.getItem("el_token")){var _n=document.getElementById("elnote");_n.parentNode.removeChild(_n);}}catch(e){}</script>
 <header class="elnav">
   <div class="eln-bar">
     <a class="eln-logo" href="/" aria-label="Empty Leg List home">
@@ -2235,6 +2247,15 @@ header.elnav .eln-reg { margin: 0; }
     if(g) window.scrollTo({top: g.getBoundingClientRect().top + window.pageYOffset - 24, behavior:"smooth"});
     setTimeout(function(){ var n=document.getElementById("g-name"); if(n) n.focus({preventScroll:true}); }, 520);
   });
+  /* The red notice above the header links to /#gate from every page
+     (14 Sep 2026). The gate only exists once the board has answered, so the
+     jump runs from renderGate and again if the hash changes on this page. */
+  function gateJump(){
+    if(location.hash!=="#gate") return;
+    var g=document.getElementById("gate"); if(!g||g.style.display!=="block") return;
+    var c=document.getElementById("fcpop-cta"); if(c) c.click();
+  }
+  window.addEventListener("hashchange", gateJump);
 
   // ---- access gate -------------------------------------------------------
   // Listing data comes from the empty-legs edge function, never straight from
@@ -2247,6 +2268,7 @@ header.elnav .eln-reg { margin: 0; }
       g.style.display="block";
       document.getElementById("gate-h").innerHTML =
         "You are seeing <b>"+group(ALL.length)+"</b> of <b>"+group(TOTAL)+"</b> empty legs";
+      gateJump();
     } else {
       g.style.display="none";
       u.style.display="flex";
