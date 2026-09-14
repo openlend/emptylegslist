@@ -615,7 +615,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
      var host=document.getElementById("rows");
      if(!mine.length){host.innerHTML='<div class="empty">No '+esc(TYPE)+' empty leg is listed at this minute. Availability changes daily, so it is worth checking again, or <a href="/">browse the full list</a>.</div>';return;}
-     var PAGE=15, shown=PAGE;
+     var PAGE=5, shown=PAGE;
      function rowHtml(x){
        var seats=x.seats?(" &middot; up to "+esc(x.seats)+" seats"):"";
        var time=x.est_flight_time?(" &middot; "+esc(x.est_flight_time)):"";
