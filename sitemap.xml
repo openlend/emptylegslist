@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://emptylegslist.com/aircraft/challenger-350</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -488,7 +488,7 @@
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/calgary</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -611,6 +611,12 @@
     <lastmod>2026-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/edmonton-to-calgary</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/europe</loc>
@@ -1100,7 +1106,7 @@
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/oakland</loc>
-    <lastmod>2026-09-10</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1393,6 +1399,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/van-nuys-to-oakland</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/van-nuys-to-salt-lake-city</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>daily</changefreq>
@@ -1412,7 +1424,7 @@
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/van-nuys</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
