@@ -189,6 +189,75 @@ table.gtab tr.top td{background:#fdf8ec}
 .side .lnk div:last-child small{margin-bottom:0}
 .moreb{display:inline-block;margin-top:18px;color:var(--gold);font-weight:600;font-size:14px;text-decoration:none}
 
+
+/* green when a leg for that date is already in the record; the official result comes after the week */
+table.gtab tr.hit td{background:#eef7f1}
+table.gtab tr.hit td.lead{color:#1c7a4a}
+.madeon{font-size:12.5px;color:var(--mute);white-space:nowrap}
+.mcards{display:none}
+@media(max-width:640px){
+  .fchead{gap:14px}
+  .fceyebrow{margin-bottom:4px}
+  .fc h1{font-size:26px;line-height:1.15;margin:0 0 6px}
+  .fcsub{font-size:14px;margin:0}
+  .wkpick{width:100%}
+  .wkpick p{display:none}
+  .note .rt{display:none}
+  .note{padding:14px 16px}
+  .tabs{gap:18px;margin-top:18px;overflow-x:auto;scrollbar-width:none}
+  .tabs button{white-space:nowrap;font-size:14px}
+  .tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 10px}
+  .tools .sfld{grid-column:1/-1;min-width:0}
+  .tools input,.tools select{width:100%;height:46px;font-size:14.5px;min-width:0}
+  .tools .sfld input{padding-left:44px}
+  .tools .push{margin-left:0;grid-column:1/-1}
+  .tcard .gscroll{display:none}
+  .mcards{display:block}
+  .mc{padding:13px 14px;border-top:1px solid var(--line)}
+  .mc:first-child{border-top:0}
+  .mc.hit{background:#eef7f1}
+  .mc .r{font-size:15.5px;font-weight:600;color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .mc.hit .r{color:#1c7a4a}
+  .mc .r .bell{flex:none}
+  .mc .m{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px;font-size:12.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+  .mc .m b{color:var(--navy);font-weight:600}
+  .mc .s{display:flex;align-items:center;gap:10px;margin-top:9px}
+  .mc .s .bar{width:110px}
+  .mc .s .pc{font-weight:600;color:var(--navy);min-width:38px;font-variant-numeric:tabular-nums}
+  .mc .s .res{margin-left:auto}
+  .tfoot{flex-direction:column;gap:8px;align-items:flex-start}
+}
+.lockline{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin:6px 0 0;font-size:14px;color:var(--navy)}
+.lockline #fcnote{display:inline-flex;align-items:center;gap:8px}
+.lockline a{color:var(--navy);text-decoration:none;font-weight:500;font-size:13.5px}
+.lockline a:hover{color:var(--gold)}
+table.ptab th.thl{text-align:center;padding-bottom:4px;border-bottom:0}
+table.ptab th.thn{text-align:right;font-size:11.5px;letter-spacing:0;text-transform:none;font-weight:500;color:var(--mute);padding-top:0;white-space:nowrap}
+table.ptab td.pmodel .rg,.mc .s .lk .rg{font-size:12px;font-weight:400;color:var(--mute)}
+table.ptab th.thres{text-align:center}
+table.ptab th.thbell{text-align:right}
+table.ptab td.lead .rt{font-size:15.5px;font-weight:600;color:var(--navy)}
+table.ptab td.lead .dt{margin-top:4px;font-size:12.5px}
+table.ptab td.lead .sep{margin:0 4px}
+table.ptab td.pcount,table.ptab td.pmodel{font-size:19px;font-weight:600;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums;vertical-align:middle;width:110px}
+table.ptab td.pmodel .mlp{font-size:19px}
+table.ptab td.tres{text-align:center;vertical-align:middle;white-space:nowrap}
+table.ptab td.tbell{text-align:right;vertical-align:middle}
+table.ptab .bell{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;align-items:center;justify-content:center}
+.infowrap{position:relative;display:inline-flex;align-items:center;gap:5px}
+.info{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:0;border-radius:50%;color:#8a96a3;background:none;cursor:pointer;padding:0;vertical-align:middle}
+.info:hover,.info[aria-expanded="true"]{color:var(--navy)}
+.ipop{position:absolute;top:calc(100% + 10px);right:-8px;z-index:20;width:290px;white-space:normal;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(14,35,56,.14);padding:14px 16px;text-align:left;text-transform:none;letter-spacing:0;font-weight:400;line-height:1.5;font-size:13px;color:var(--ink)}
+.ipop b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:8px 0 3px}
+.ipop b:first-child{margin-top:0}
+.ipop span{display:block}
+@media(max-width:760px){.ipop{right:auto;left:-40px;width:260px}}
+.res.y{background:#e3f4ea;color:#1c7a4a}.res.n{background:#f6e6e4;color:#b3261e}.res.w{background:#f1f4f8;color:#6b7885}
+.mc .s .lk{display:inline-flex;flex-direction:column;line-height:1.15}.mc .s .lk small{font-size:10.5px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}.mc .s .lk b{font-size:17px;color:var(--navy)}
+.mlp{font-weight:600;color:#16222e}.mlp.bt{color:#5f6d7b}.mlp sup{font-size:9px;font-weight:400;margin-left:2px}
+.mlh{font-size:16px;margin:26px 0 6px}.mlgrid{gap:14px}.mlgrid .tcard{margin:0}
+.mls{width:100%;border-collapse:collapse;font-size:13.5px}.mls th,.mls td{padding:8px 10px;border-bottom:1px solid #edf1f5;text-align:left;white-space:nowrap}.mls th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6b7885}
+@media (max-width:760px){.mlgrid{grid-template-columns:1fr}}
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
 #bigfoot *{box-sizing:border-box}   /* index.html is content-box, which made its footer column 56px wider than everywhere else */
