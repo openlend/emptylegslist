@@ -936,7 +936,7 @@ function flightUrl(x){
       ? ' <b>bt</b> marks a backtest: for this week the model was run after the week had begun, with a version of itself that never saw data after the cutoff. From the week of 21 September its calls are written down before the week.'
       : '';
   }
-  apiAll("forecast_results_ml?select=grain,target_week_start,target_date,weekday,from_city,to_city,p,already_listed,in_rule_set,made_on,backtest,outcome,seen&order=p.desc")
+  apiAll("forecast_results_ml?select=grain,target_week_start,target_date,weekday,from_city,to_city,p,already_listed,in_rule_set,made_on,backtest,outcome,seen&order=grain.asc,target_week_start.asc,from_city.asc,to_city.asc,weekday.asc")
     .then(function(rows){
       rows.forEach(function(r){
         if (r.grain === "day") ML[mlKey(r.target_week_start, r.from_city, r.to_city, r.weekday)] = r;
