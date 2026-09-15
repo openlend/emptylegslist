@@ -281,7 +281,11 @@ table.gtab tr.hit td.lead{color:#1c7a4a}
   .mc .s .pc{font-weight:600;color:var(--navy);min-width:38px;font-variant-numeric:tabular-nums}
   .mc .s .res{margin-left:auto}
   .tfoot{flex-direction:column;gap:8px;align-items:flex-start}
-
+}
+.mlp{font-weight:600;color:#16222e}.mlp.bt{color:#5f6d7b}.mlp sup{font-size:9px;font-weight:400;margin-left:2px}
+.mlh{font-size:16px;margin:26px 0 6px}.mlgrid{gap:14px}.mlgrid .tcard{margin:0}
+.mls{width:100%;border-collapse:collapse;font-size:13.5px}.mls th,.mls td{padding:8px 10px;border-bottom:1px solid #edf1f5;text-align:left;white-space:nowrap}.mls th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6b7885}
+@media (max-width:760px){.mlgrid{grid-template-columns:1fr}}
 </style>
   <!-- Vercel Web Analytics: cookieless, no consent banner required. -->
   <script defer src="/_vercel/insights/script.js"></script>
@@ -602,6 +606,7 @@ table.gtab tr.hit td.lead{color:#1c7a4a}
 <div class="tabs" role="tablist">
   <button role="tab" aria-selected="true" data-p="p1">Weekly forecast</button>
   <button role="tab" aria-selected="false" data-p="p2">Track record</button>
+  <button role="tab" aria-selected="false" data-p="p4">Learned model</button>
   <button role="tab" aria-selected="false" data-p="p3">How it works</button>
 </div>
 
@@ -620,7 +625,7 @@ table.gtab tr.hit td.lead{color:#1c7a4a}
   </div>
 
   <div class="tcard">
-    <div class="gscroll"><table class="gtab"><thead><tr><th>Route</th><th>Date</th><th>History</th><th>Expected</th><th>Predicted on</th><th>So far</th><th>Alert</th></tr></thead><tbody id="rows"><tr><td colspan="7" class="gnote">Reading the record.</td></tr></tbody></table></div>
+    <div class="gscroll"><table class="gtab"><thead><tr><th>Route</th><th>Date</th><th>History</th><th>Expected</th><th>Model</th><th>Predicted on</th><th>So far</th><th>Alert</th></tr></thead><tbody id="rows"><tr><td colspan="8" class="gnote">Reading the record.</td></tr></tbody></table></div>
     <div class="mcards" id="mrows"></div>
     <div class="tfoot"><p>Gold bars show the range the data supports. More history means narrower ranges.</p><a href="#" id="showall">View all routes &rarr;</a></div>
   </div>
@@ -636,10 +641,30 @@ table.gtab tr.hit td.lead{color:#1c7a4a}
   <p class="gnote">Rows group the predictions by how many weeks that route had already appeared in when the call was made. When "we said" and "actually happened" are close, the numbers are calibrated. When they are far apart, they are not, and this page will show that rather than quietly adjust.</p>
 </div>
 
+<div class="pane" id="p4" hidden>
+  <h2>The learned model</h2>
+  <p class="gnote narrow" style="margin:0 0 10px">A second forecast, made by a model that learns from the record instead of counting. It is a logistic regression: sixteen numbers per route, such as which of the last six weeks carried a leg, how busy the departure and arrival cities were in the last fortnight, whether a leg for that week is already listed, and the share with a published price. It is trained inside the database every Monday on every complete week, with weights it works out itself, and its calls are written down next to the rule's and scored the same way. Before it went live it was tested on a week it had never seen. Those numbers are below, and they stay.<span id="btnote"></span></p>
+
+  <h3 class="mlh">Model picks for the selected week</h3>
+  <p class="gnote narrow" style="margin:0 0 6px">Two grains. <b>Week</b>: will this route carry an empty leg at any point in the week. <b>Day</b>: on that exact weekday. Routes that already had a leg listed for the week at the cutoff are left out here, because calling those is no achievement. The percentage is the model's own probability; it is meant to be low, because most routes carry nothing in a given week.</p>
+  <div class="grid2 mlgrid">
+    <div class="tcard"><div class="gscroll"><table class="gtab"><thead><tr><th>Route, any day of the week</th><th>Model</th><th>So far</th></tr></thead><tbody id="mlweek"><tr><td colspan="3" class="gnote">Reading the model.</td></tr></tbody></table></div></div>
+    <div class="tcard"><div class="gscroll"><table class="gtab"><thead><tr><th>Route, exact day</th><th>Model</th><th>So far</th></tr></thead><tbody id="mlday"><tr><td colspan="3" class="gnote">Reading the model.</td></tr></tbody></table></div></div>
+  </div>
+
+  <h3 class="mlh">Model against the rule, week by week</h3>
+  <p class="gnote narrow" style="margin:0 0 6px">On the rule's own list of routes, what each method expected and what happened. "Expected" is the sum of the probabilities: a method that says 50% on twenty routes expects ten. A Brier score is the average squared error, lower is better, 0 is perfect.</p>
+  <div id="mlscore"><p class="gnote">Reading the record.</p></div>
+
+  <h3 class="mlh">The test before it went live</h3>
+  <p class="gnote narrow" id="mltest">Reading the model.</p>
+</div>
+
 <div class="pane" id="p3" hidden>
   <h2>How the forecast works</h2>
   <p>It counts. For each route and weekday it takes the number of complete weeks in the record and the number of those weeks that carried a leg, then puts a 90 per cent Wilson interval around the result. That is the standard interval for a proportion, and it is deliberately the whole method.</p>
-  <p>A larger model was tried first and rejected. Fitting one across all routes assumes routes differ from each other in a stable way, and the record says they do not: the spread between routes measures 0.0020 where random chance alone would produce 0.0240, because 2,768 of the 2,885 route and weekday combinations appeared exactly once. Most empty legs are one-offs, not a weekly service. The model was pulling a route seen six weeks out of six down to a 24 per cent chance, which is a model overruling its data, so it went.</p>
+  <p>Since 15 September 2026 a second forecast runs next to the count: a logistic regression trained on the record itself, described under the Learned model tab, with its test result and its weekly score. The two are shown side by side and the record decides which one to trust.</p>
+  <p>An earlier attempt at a model was rejected. Fitting one across all routes assumes routes differ from each other in a stable way, and the record says they do not: the spread between routes measures 0.0020 where random chance alone would produce 0.0240, because 2,768 of the 2,885 route and weekday combinations appeared exactly once. Most empty legs are one-offs, not a weekly service. The model was pulling a route seen six weeks out of six down to a 24 per cent chance, which is a model overruling its data, so it went.</p>
   <p>The interval narrows on its own as the record grows. Once the track record holds enough scored weeks it replaces this arithmetic with a measured hit rate, which needs no assumptions at all.</p>
   <h2>Why once a week</h2>
   <p>The cadence is about locking, not about capability. Each prediction is about one specific date, and it is written into the database before that date arrives and never touched again. Publishing the whole week at once on a Monday means every prediction is locked between five and eleven days before the day it is about, which is the part that makes it worth anything.</p>
@@ -723,7 +748,7 @@ function flightUrl(x){
   var tabs = document.querySelector(".tabs");
   function show(id){
     Array.prototype.forEach.call(tabs.querySelectorAll("button"), function(b){ b.setAttribute("aria-selected", b.getAttribute("data-p") === id ? "true" : "false"); });
-    ["p1","p2","p3"].forEach(function(x){ document.getElementById(x).hidden = (x !== id); });
+    ["p1","p2","p3","p4"].forEach(function(x){ document.getElementById(x).hidden = (x !== id); });
   }
   tabs.addEventListener("click", function(e){ var b = e.target.closest("button"); if (b) show(b.getAttribute("data-p")); });
   document.getElementById("tomethod").addEventListener("click", function(e){ e.preventDefault(); show("p3"); window.scrollTo({top: 0, behavior: "smooth"}); });
@@ -809,6 +834,14 @@ function flightUrl(x){
       '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
       '<path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></a>';
   }
+  /* The learned model's probability for the same route and date (day grain). */
+  var ML = {}, MLW = {};
+  function mlKey(w, f, t, wd){ return w + "|" + f + "|" + t + "|" + wd; }
+  function mlCell(r){
+    var m = ML[mlKey(r.target_week_start, r.from_city, r.to_city, r.weekday)];
+    if (!m) return '<span class="rg">no call</span>';
+    return '<span class="mlp' + (m.backtest ? ' bt' : '') + '" title="' + (m.backtest ? 'Backtest: a model that never saw data after the cutoff, run after the week began' : 'Written down on ' + esc(fmtDate(m.made_on))) + '">' + Math.round(m.p * 100) + '%' + (m.backtest ? '<sup>bt</sup>' : '') + '</span>';
+  }
   function draw(){
     var q = document.getElementById("q").value.trim().toLowerCase(),
         rg = document.getElementById("reg").value, dw = document.getElementById("dow").value,
@@ -845,13 +878,14 @@ function flightUrl(x){
         '<td>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</td>' +
         '<td><span class="rate"><span class="pc">' + Math.round(r.predicted_rate * 100) + '%</span>' + bar(r) +
           '<span class="rg">' + Math.round(r.predicted_low * 100) + ' to ' + Math.round(r.predicted_high * 100) + '%</span></span></td>' +
+        '<td>' + mlCell(r) + '</td>' +
         '<td><span class="madeon">' + esc(fmtDate(r.made_on)) + '</span></td>' +
         '<td>' + status(r) + '</td><td>' + bellHtml() + '</td></tr>';
-    }).join("") || '<tr><td colspan="7" class="gnote">No prediction matches that. Clear the filters, or set a <a href="/#alerts">route alert</a> for the pair you want.</td></tr>';
+    }).join("") || '<tr><td colspan="8" class="gnote">No prediction matches that. Clear the filters, or set a <a href="/#alerts">route alert</a> for the pair you want.</td></tr>';
     document.getElementById("mrows").innerHTML = shown.map(function(r){
       var hit = r.outcome === true || (r.outcome === null && r.seen);
       return '<div class="mc' + (hit ? ' hit' : '') + '"><div class="r"><span>' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</span>' + bellHtml() + '</div>' +
-        '<div class="m"><span><b>' + DAY[r.weekday].slice(0,3) + ' ' + esc(fmtDate(r.target_date)) + '</b></span><span>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</span><span>predicted ' + esc(fmtDate(r.made_on)) + '</span></div>' +
+        '<div class="m"><span><b>' + DAY[r.weekday].slice(0,3) + ' ' + esc(fmtDate(r.target_date)) + '</b></span><span>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</span><span>model ' + mlCell(r) + '</span></div>' +
         '<div class="s"><span class="pc">' + Math.round(r.predicted_rate * 100) + '%</span>' + bar(r) + status(r) + '</div></div>';
     }).join("") || '<div class="mc gnote">No prediction matches that.</div>';
   }
@@ -874,8 +908,53 @@ function flightUrl(x){
       ["q","reg","dow","srt"].forEach(function(id){ document.getElementById(id).addEventListener("input", draw); });
       draw();
     }).catch(function(){
-      document.getElementById("rows").innerHTML = '<tr><td colspan="7" class="gnote">The forecast did not load. Refresh, or use the <a href="/">live list</a>.</td></tr>';
+      document.getElementById("rows").innerHTML = '<tr><td colspan="8" class="gnote">The forecast did not load. Refresh, or use the <a href="/">live list</a>.</td></tr>';
     });
+
+  /* learned model: calls for every week, both grains */
+  function mlStatus(r){
+    if (r.outcome === true)  return '<span class="res y">A leg appeared</span>';
+    if (r.outcome === false) return '<span class="res n">None appeared</span>';
+    if (r.seen) return '<span class="res y">Leg in the record</span>';
+    var end = r.target_date;
+    if (r.grain === "week") { var e = d(r.target_week_start); e.setUTCDate(e.getUTCDate() + 6); end = e.toISOString().slice(0,10); }
+    if (end < TODAY) return '<span class="res n">Nothing recorded</span>';
+    return '<span class="res w">Nothing yet</span>';
+  }
+  function drawML(){
+    var wk = MLW[WEEKSTART] || [];
+    var week = wk.filter(function(r){ return r.grain === "week" && !r.already_listed; }).sort(function(a, b){ return b.p - a.p; }).slice(0, 20);
+    var day  = wk.filter(function(r){ return r.grain === "day" && !r.already_listed; }).sort(function(a, b){ return b.p - a.p; }).slice(0, 20);
+    function row(r){
+      return '<tr' + ((r.outcome === true || (r.outcome === null && r.seen)) ? ' class="hit"' : '') + '><td class="lead">' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) +
+        (r.grain === "day" ? '<span class="dt" style="display:block">' + DAY[r.weekday] + ' ' + esc(fmtDate(r.target_date)) + '</span>' : '') + '</td>' +
+        '<td><span class="mlp' + (r.backtest ? ' bt' : '') + '">' + Math.round(r.p * 100) + '%' + (r.backtest ? '<sup>bt</sup>' : '') + '</span></td><td>' + mlStatus(r) + '</td></tr>';
+    }
+    document.getElementById("mlweek").innerHTML = week.map(row).join("") || '<tr><td colspan="3" class="gnote">No model calls for this week.</td></tr>';
+    document.getElementById("mlday").innerHTML = day.map(row).join("") || '<tr><td colspan="3" class="gnote">No model calls for this week.</td></tr>';
+    document.getElementById("btnote").innerHTML = (wk.length && wk[0].backtest)
+      ? ' <b>bt</b> marks a backtest: for this week the model was run after the week had begun, with a version of itself that never saw data after the cutoff. From the week of 21 September its calls are written down before the week.'
+      : '';
+  }
+  apiAll("forecast_results_ml?select=grain,target_week_start,target_date,weekday,from_city,to_city,p,already_listed,in_rule_set,made_on,backtest,outcome,seen&order=p.desc")
+    .then(function(rows){
+      rows.forEach(function(r){
+        if (r.grain === "day") ML[mlKey(r.target_week_start, r.from_city, r.to_city, r.weekday)] = r;
+        (MLW[r.target_week_start] = MLW[r.target_week_start] || []).push(r);
+      });
+      if (ALL.length) draw();
+      drawML();
+      document.getElementById("wk").addEventListener("change", drawML);
+    }).catch(function(){});
+  api("forecast_ml_scoreboard?select=*&order=target_week_start.desc").then(function(rows){
+    var el = document.getElementById("mlscore");
+    if (!rows.length){ el.innerHTML = '<p class="gnote">No week scored yet. The first head-to-head is written after 20 September 2026.</p>'; return; }
+    el.innerHTML = '<div class="gscroll"><table class="mls"><thead><tr><th>Week</th><th>Grain</th><th>Rule list</th><th>Rule expected</th><th>Model expected</th><th>Happened</th><th>Rule Brier</th><th>Model Brier</th><th>All model calls</th></tr></thead><tbody>' +
+      rows.map(function(r){
+        return '<tr><td>' + esc(weekLabel(r.target_week_start)) + (r.backtest ? ' <span class="rg">backtest</span>' : '') + '</td><td>' + esc(r.grain) + '</td><td>' + (r.rule_set_n || 0) + '</td><td>' + (r.rule_expected == null ? '<span class="rg">no rule at this grain</span>' : r.rule_expected) + '</td><td>' + (r.model_expected_on_rule_set || 0) + '</td><td><b>' + (r.rule_set_hits || 0) + '</b></td><td>' + (r.rule_brier == null ? '<span class="rg">n/a</span>' : r.rule_brier) + '</td><td>' + (r.model_brier_on_rule_set || '') + '</td><td>' + r.scored + ' calls, ' + r.hits + ' happened, ' + r.model_expected + ' expected</td></tr>';
+      }).join("") + '</tbody></table></div>';
+  }).catch(function(){});
+  document.getElementById("mltest").textContent = 'Trained on the weeks of 10 August to 31 August 2026 and tested on the week of 7 to 13 September, which it had never seen. On the rule\'s list of 85 route and day pairs for that week, the rule expected 45 legs and 4 appeared; the model, looking at the same 85, expected 9. On routes not yet listed for the week, the model\'s 85 highest calls produced 8 legs against 13 expected, the rule\'s 85 produced 4. At the week grain, on 240 routes not yet listed, the model\'s top 240 produced 46 legs against 49 expected; the rule\'s 240 produced 32 against 144 expected. The model\'s Brier score across every candidate was 0.010 at the day grain and 0.048 at the week grain, against 0.014 and 0.073 for a forecast that only knows the base rate. It is not a crystal ball: most of its calls are under 15%, and that is the point. It tells the truth about how rare a repeat is.';
 })();
 </script>
 
