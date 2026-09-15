@@ -145,15 +145,20 @@ table.gtab tr.top td{background:#fdf8ec}
 .bell{display:inline-flex;color:var(--mute);text-decoration:none}
 .bell:hover{color:var(--gold)}
 
-.tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 14px;align-items:center}
-.tools input,.tools select{font:inherit;font-size:13.5px;padding:10px 13px;border:1px solid var(--line);
-  border-radius:11px;background:#fff;color:var(--ink)}
+.tools{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 16px;align-items:center}
+.tools input,.tools select{font:inherit;font-size:15px;padding:0 16px;height:48px;border:1px solid #d9e0e7;
+  border-radius:10px;background:#fff;color:var(--ink);box-sizing:border-box;-webkit-appearance:none;appearance:none;text-transform:none}
+.tools select{padding-right:40px;min-width:170px;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316222e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;background-size:16px}
+.tools input::placeholder{color:#8a96a3;text-transform:none;letter-spacing:0}
+.tools input::-webkit-search-decoration,.tools input::-webkit-search-cancel-button{-webkit-appearance:none}
 .tools .sfld{position:relative;flex:1;min-width:280px;display:flex}
-.tools .sfld svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--mute)}
-.tools .sfld input{width:100%;padding-left:42px}
+.tools .sfld svg{position:absolute;left:17px;top:50%;transform:translateY(-50%);pointer-events:none;color:#5f6d7b}
+.tools .sfld input{width:100%;padding-left:46px}
 .tools .push{margin-left:auto}
 .tools .sp{flex:1}
-.tools input:focus,.tools select:focus{outline:none;border-color:var(--navy)}
+.tools input:focus,.tools select:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 3px rgba(13,31,54,.08)}
 
 .tcard{background:#fff;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.07);overflow:hidden}
 .tcard table.gtab{box-shadow:none;border-radius:0}
@@ -264,7 +269,8 @@ table.gtab tr.hit td.lead{color:#1c7a4a}
   .tabs button{white-space:nowrap;font-size:14px}
   .tools{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 10px}
   .tools .sfld{grid-column:1/-1;min-width:0}
-  .tools input,.tools select{width:100%;padding:10px 12px;font-size:14px;min-height:42px;box-sizing:border-box}
+  .tools input,.tools select{width:100%;height:46px;font-size:14.5px;min-width:0}
+  .tools .sfld input{padding-left:44px}
   .tools .push{margin-left:0;grid-column:1/-1}
   .tcard .gscroll{display:none}
   .mcards{display:block}
@@ -299,7 +305,14 @@ table.ptab td.pmodel .mlp{font-size:19px}
 table.ptab td.tres{text-align:center;vertical-align:middle;white-space:nowrap}
 table.ptab td.tbell{text-align:right;vertical-align:middle}
 table.ptab .bell{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;align-items:center;justify-content:center}
-.info{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--mute);color:var(--mute);background:none;font:inherit;font-size:10px;font-weight:600;cursor:pointer;margin-left:4px;vertical-align:middle;padding:0}
+.infowrap{position:relative;display:inline-flex;align-items:center;gap:5px}
+.info{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border:0;border-radius:50%;color:#8a96a3;background:none;cursor:pointer;padding:0;vertical-align:middle}
+.info:hover,.info[aria-expanded="true"]{color:var(--navy)}
+.ipop{position:absolute;top:calc(100% + 10px);right:-8px;z-index:20;width:290px;white-space:normal;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(14,35,56,.14);padding:14px 16px;text-align:left;text-transform:none;letter-spacing:0;font-weight:400;line-height:1.5;font-size:13px;color:var(--ink)}
+.ipop b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:8px 0 3px}
+.ipop b:first-child{margin-top:0}
+.ipop span{display:block}
+@media(max-width:760px){.ipop{right:auto;left:-40px;width:260px}}
 .res.y{background:#e3f4ea;color:#1c7a4a}.res.n{background:#f6e6e4;color:#b3261e}.res.w{background:#f1f4f8;color:#6b7885}
 .mc .s .lk{display:inline-flex;flex-direction:column;line-height:1.15}.mc .s .lk small{font-size:10.5px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}.mc .s .lk b{font-size:17px;color:var(--navy)}
 .mlp{font-weight:600;color:#16222e}.mlp.bt{color:#5f6d7b}.mlp sup{font-size:9px;font-weight:400;margin-left:2px}
@@ -635,16 +648,16 @@ table.ptab .bell{width:38px;height:38px;border:1px solid var(--line);border-radi
 
   <div class="lockline"><span id="fcnote"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Reading the record.</span></span><a href="#" id="tomethod2">How predictions work &#8599;</a></div>
 
-  <div class="tools">
+  <div class="tools" data-nomf>
     <span class="sfld"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-    <input id="q" type="search" placeholder="Search routes, for example Ibiza or Las Vegas" aria-label="Search routes"></span>
+    <input id="q" type="search" placeholder="Search routes..." aria-label="Search routes" autocomplete="off"></span>
     <select id="reg" aria-label="Region"><option value="">All regions</option></select>
     <select id="dow" aria-label="Weekday"><option value="">Any weekday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option><option value="7">Sunday</option></select>
     <select id="srt" class="push" aria-label="Sort"><option value="model">Happened first, then model</option><option value="rate">Happened first, then count</option><option value="date">Date</option><option value="route">Route name</option></select>
   </div>
 
   <div class="tcard">
-    <div class="gscroll"><table class="gtab ptab"><thead><tr><th rowspan="2" class="thr">Route</th><th colspan="2" class="thl">Likelihood</th><th rowspan="2" class="thres">Result</th><th rowspan="2" class="thbell">Alert</th></tr><tr><th class="thn">Count <button type="button" class="info" id="cinfo" aria-label="What Count means" title="Count: how often this route carried a leg on this weekday in the last six weeks, turned into a rate. Model: a probability learned from the whole record.">i</button></th><th class="thn">Model</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="gnote">Reading the record.</td></tr></tbody></table></div>
+    <div class="gscroll"><table class="gtab ptab"><thead><tr><th rowspan="2" class="thr">Route</th><th colspan="2" class="thl">Likelihood</th><th rowspan="2" class="thres">Result</th><th rowspan="2" class="thbell">Alert</th></tr><tr><th class="thn"><span class="infowrap">Count <button type="button" class="info" id="cinfo" aria-expanded="false" aria-controls="cpop" aria-label="What Count and Model mean"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r=".6" fill="currentColor"/></svg></button><span class="ipop" id="cpop" role="tooltip" hidden><b>Count</b><span>How often this route carried an empty leg on this weekday in the last six weeks, as a rate. Three of six Mondays is 50%.</span><b>Model</b><span>A probability learned from the whole record: recent legs on the route, how busy both cities are, whether a leg is already listed. Retrained every Monday.</span></span></span></th><th class="thn">Model</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="gnote">Reading the record.</td></tr></tbody></table></div>
     <div class="mcards" id="mrows"></div>
     <div class="tfoot"><p id="showing"></p><a href="#" id="showall">View all predictions &rarr;</a></div>
   </div>
@@ -774,7 +787,13 @@ function flightUrl(x){
   document.getElementById("tomethod").addEventListener("click", function(e){ e.preventDefault(); show("p3"); window.scrollTo({top: 0, behavior: "smooth"}); });
   document.getElementById("tomethod2").addEventListener("click", function(e){ e.preventDefault(); show("p3"); window.scrollTo({top: 0, behavior: "smooth"}); });
   document.getElementById("showall").addEventListener("click", function(e){ e.preventDefault(); LIMIT = 1e6; draw(); });
-  document.getElementById("cinfo").addEventListener("click", function(){ show("p3"); window.scrollTo({top: 0, behavior: "smooth"}); });
+  (function(){
+    var btn = document.getElementById("cinfo"), pop = document.getElementById("cpop");
+    function set(open){ pop.hidden = !open; btn.setAttribute("aria-expanded", open ? "true" : "false"); }
+    btn.addEventListener("click", function(e){ e.stopPropagation(); set(pop.hidden); });
+    document.addEventListener("click", function(e){ if (!pop.hidden && !pop.contains(e.target)) set(false); });
+    document.addEventListener("keydown", function(e){ if (e.key === "Escape") set(false); });
+  })();
 
   /* the week picker and the banner */
   apiAll("forecast_log?select=target_week_start,made_on,outcome&order=target_week_start.desc").then(function(rows){
