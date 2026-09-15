@@ -176,6 +176,14 @@
   .afreq-opts label:hover span { border-color: var(--gold); color: #fff; }
   .afreq-opts input:checked + span { background: var(--gold); border-color: var(--gold); color: #241d00; font-weight: 500; }
   .afreq-opts input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .afreq-opts span em { font-style: normal; font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; margin-left: 5px; opacity: .8; }
+  .afreq-pred { position: relative; display: inline-flex; align-items: center; gap: 4px; }
+  .pinfo { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border: 0; border-radius: 50%; background: none; color: rgba(255,255,255,0.55); cursor: pointer; padding: 0; }
+  .pinfo:hover, .pinfo[aria-expanded="true"] { color: var(--gold); }
+  .ppop { position: absolute; left: 0; top: calc(100% + 10px); z-index: 30; width: 300px; max-width: calc(100vw - 48px); background: #fff; color: #16222e; border: 1px solid #e3e9ef; border-radius: 12px; box-shadow: 0 12px 34px rgba(14,35,56,0.2); padding: 14px 16px; font-size: 13px; font-weight: 400; line-height: 1.55; text-align: left; }
+  .ppop[hidden] { display: none; }
+  .ppop b { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #6b7885; margin-bottom: 4px; }
+  .ppop a { color: #7d5e1a; }
   .acons { grid-column: 1 / -1; display: flex; gap: 11px; align-items: center; font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.5; margin: 2px 0; }
   .acons input { margin-top: 2px; accent-color: var(--gold); width: 15px; height: 15px; }
   .acons a { color: var(--gold); border-bottom: 1px solid rgba(201,162,39,0.5); }
@@ -1362,6 +1370,15 @@ header.elnav .eln-reg { margin: 0; }
             <a href="/empty-legs/geneva-to-london">Geneva → London</a>
             </div>
             <a class="eln-all" href="/#listings">Every listing, live <span aria-hidden="true">→</span></a>
+            <h4 style="margin-top:18px">Plan ahead</h4>
+            <div class="eln-grid one">
+              <a href="/predictions">Predictions, beta</a>
+              <a href="/events/">Empty legs around events</a>
+              <a href="/likely">Routes that repeat</a>
+              <a href="/last-minute-empty-leg-flights">Last minute</a>
+              <a href="/map">Map</a>
+              <a href="/connections">Two-leg journeys</a>
+            </div>
           </div>
           <div class="eln-promo">
             <h5>Empty legs find you</h5>
@@ -1489,6 +1506,10 @@ header.elnav .eln-reg { margin: 0; }
     <p class="eln-dlab">More</p>
     <div class="eln-dgrid">
       <a href="/#listings">Every listing, live</a>
+      <a href="/predictions">Predictions, beta</a>
+      <a href="/events/">Events</a>
+      <a href="/last-minute-empty-leg-flights">Last minute</a>
+      <a href="/map">Map</a>
       <a href="/guides/">Guides</a>
       <a href="/for-operators">For operators</a>
       <a href="/about">How it works</a>
@@ -1693,10 +1714,11 @@ header.elnav .eln-reg { margin: 0; }
       <div id="afreq">
         <span class="afreq-l">How often?</span>
         <div class="afreq-opts">
+          <span class="afreq-pred"><label><input type="radio" name="freq" value="predict"><span>Predict <em>beta</em></span></label><button type="button" class="pinfo" id="pinfo" aria-expanded="false" aria-controls="ppop" aria-label="What Predict means"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r=".6" fill="currentColor"/></svg></button>
+            <span class="ppop" id="ppop" role="tooltip" hidden><b>Predict, beta</b>We tell you about routes before they go live: every Monday, the routes our model expects on your search the following week, plus the normal alert the moment a leg is listed. Still in training. We watch and log over 7,000 flights, 4,000 routes and world events such as the Monaco Yacht Show, and we score every prediction in public on the <a href="/predictions">predictions page</a>.</span></span>
           <label><input type="radio" name="freq" value="instant"><span>As soon as listed</span></label>
           <label><input type="radio" name="freq" value="daily"><span>Daily</span></label>
           <label><input type="radio" name="freq" value="weekly" checked><span>Weekly</span></label>
-          <label><input type="radio" name="freq" value="monthly"><span>Monthly</span></label>
         </div>
       </div>
       <label class="acons"><input type="checkbox" id="a-consent" required><span>Email me empty leg alerts from Empty Leg List (Publishing Office SRL). <a href="https://theflyingengineer.com/privacy-policy/">Privacy Policy</a></span></label>
@@ -2186,6 +2208,13 @@ header.elnav .eln-reg { margin: 0; }
   });
   (function(){ var fs=document.getElementById("f-sort"); if(fs) fs.addEventListener("change",function(){ SORT=this.value||"date"; syncSort(); PAGE=1; apply(); }); })();
 
+  (function(){
+    var b=document.getElementById("pinfo"), p=document.getElementById("ppop"); if(!b||!p) return;
+    function set(o){ p.hidden=!o; b.setAttribute("aria-expanded", o?"true":"false"); }
+    b.addEventListener("click",function(e){ e.preventDefault(); e.stopPropagation(); set(p.hidden); });
+    document.addEventListener("click",function(e){ if(!p.hidden && !p.contains(e.target)) set(false); });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape") set(false); });
+  })();
   document.getElementById("af").addEventListener("submit",function(e){
     e.preventDefault();
     var msg=document.getElementById("a-msg"), email=document.getElementById("a-email").value.trim();
@@ -2199,7 +2228,8 @@ header.elnav .eln-reg { margin: 0; }
     }).then(function(r){ if(!r.ok) throw 0;
         btn.classList.remove("busy"); btn.classList.add("done"); lbl.textContent="Subscribed";
         var member=false; try{ member=!!localStorage.getItem("el_token"); }catch(e){}
-        show(member ? "You are on the list. We will email you when a matching leg is listed."
+        var fq=(document.querySelector('input[name="freq"]:checked')||{}).value||"weekly";
+        show(member ? (fq==="predict" ? "You are on the list. Predictions arrive on Mondays, and you get an alert the moment a matching leg is listed." : "You are on the list. We will email you when a matching leg is listed.")
                     : "One more step: open the confirmation email we just sent and click Confirm. Alerts start after that.");
         document.getElementById("af").reset();
         var w=document.querySelector('input[name="freq"][value="weekly"]'); if(w) w.checked=true;
@@ -2954,7 +2984,7 @@ setTimeout(go,600);setTimeout(go,2000);
 </script>
 <!-- ACCORDION + FREQ ROW -->
 <style>
-.afreq-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.afreq-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.afreq-pred{grid-column:1/-1}
 .afreq-opts label{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .afreq-opts label{white-space:nowrap;text-align:center;justify-content:center}
 @media(max-width:900px){
