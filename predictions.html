@@ -282,6 +282,26 @@ table.gtab tr.hit td.lead{color:#1c7a4a}
   .mc .s .res{margin-left:auto}
   .tfoot{flex-direction:column;gap:8px;align-items:flex-start}
 }
+.lockline{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin:6px 0 0;font-size:14px;color:var(--navy)}
+.lockline #fcnote{display:inline-flex;align-items:center;gap:8px}
+.lockline a{color:var(--navy);text-decoration:none;font-weight:500;font-size:13.5px}
+.lockline a:hover{color:var(--gold)}
+table.ptab th.thl{text-align:center;padding-bottom:4px;border-bottom:0}
+table.ptab th.thn{text-align:right;font-size:11.5px;letter-spacing:0;text-transform:none;font-weight:500;color:var(--mute);padding-top:0;white-space:nowrap}
+table.ptab td.pmodel .rg,.mc .s .lk .rg{font-size:12px;font-weight:400;color:var(--mute)}
+table.ptab th.thres{text-align:center}
+table.ptab th.thbell{text-align:right}
+table.ptab td.lead .rt{font-size:15.5px;font-weight:600;color:var(--navy)}
+table.ptab td.lead .dt{margin-top:4px;font-size:12.5px}
+table.ptab td.lead .sep{margin:0 4px}
+table.ptab td.pcount,table.ptab td.pmodel{font-size:19px;font-weight:600;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums;vertical-align:middle;width:110px}
+table.ptab td.pmodel .mlp{font-size:19px}
+table.ptab td.tres{text-align:center;vertical-align:middle;white-space:nowrap}
+table.ptab td.tbell{text-align:right;vertical-align:middle}
+table.ptab .bell{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;align-items:center;justify-content:center}
+.info{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--mute);color:var(--mute);background:none;font:inherit;font-size:10px;font-weight:600;cursor:pointer;margin-left:4px;vertical-align:middle;padding:0}
+.res.y{background:#e3f4ea;color:#1c7a4a}.res.n{background:#f6e6e4;color:#b3261e}.res.w{background:#f1f4f8;color:#6b7885}
+.mc .s .lk{display:inline-flex;flex-direction:column;line-height:1.15}.mc .s .lk small{font-size:10.5px;color:var(--mute);letter-spacing:.04em;text-transform:uppercase}.mc .s .lk b{font-size:17px;color:var(--navy)}
 .mlp{font-weight:600;color:#16222e}.mlp.bt{color:#5f6d7b}.mlp sup{font-size:9px;font-weight:400;margin-left:2px}
 .mlh{font-size:16px;margin:26px 0 6px}.mlgrid{gap:14px}.mlgrid .tcard{margin:0}
 .mls{width:100%;border-collapse:collapse;font-size:13.5px}.mls th,.mls td{padding:8px 10px;border-bottom:1px solid #edf1f5;text-align:left;white-space:nowrap}.mls th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#6b7885}
@@ -604,7 +624,7 @@ table.gtab tr.hit td.lead{color:#1c7a4a}
 </div>
 
 <div class="tabs" role="tablist">
-  <button role="tab" aria-selected="true" data-p="p1">Weekly forecast</button>
+  <button role="tab" aria-selected="true" data-p="p1">This week</button>
   <button role="tab" aria-selected="false" data-p="p2">Track record</button>
   <button role="tab" aria-selected="false" data-p="p4">Learned model</button>
   <button role="tab" aria-selected="false" data-p="p3">How it works</button>
@@ -613,22 +633,22 @@ table.gtab tr.hit td.lead{color:#1c7a4a}
 <div class="pane" id="p1">
   <div id="banner"></div>
 
-  <h2 id="fch">Route predictions</h2>
-  <p class="gnote narrow" id="fcnote" style="margin:0 0 4px">Each row is one route on one date, written down before the week. Green rows already have a leg in the record for that date.</p>
+  <div class="lockline"><span id="fcnote"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span>Reading the record.</span></span><a href="#" id="tomethod2">How predictions work &#8599;</a></div>
 
   <div class="tools">
     <span class="sfld"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input id="q" type="search" placeholder="Search routes, for example Ibiza or Las Vegas" aria-label="Search routes"></span>
     <select id="reg" aria-label="Region"><option value="">All regions</option></select>
     <select id="dow" aria-label="Weekday"><option value="">Any weekday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option><option value="7">Sunday</option></select>
-    <select id="srt" class="push" aria-label="Sort"><option value="rate">Sort: expected rate</option><option value="seen">Sort: weeks seen</option><option value="date">Sort: date</option><option value="route">Sort: route name</option></select>
+    <select id="srt" class="push" aria-label="Sort"><option value="model">Happened first, then model</option><option value="rate">Happened first, then count</option><option value="date">Date</option><option value="route">Route name</option></select>
   </div>
 
   <div class="tcard">
-    <div class="gscroll"><table class="gtab"><thead><tr><th>Route</th><th>Date</th><th>History</th><th>Expected</th><th>Model</th><th>Predicted on</th><th>So far</th><th>Alert</th></tr></thead><tbody id="rows"><tr><td colspan="8" class="gnote">Reading the record.</td></tr></tbody></table></div>
+    <div class="gscroll"><table class="gtab ptab"><thead><tr><th rowspan="2" class="thr">Route</th><th colspan="2" class="thl">Likelihood</th><th rowspan="2" class="thres">Result</th><th rowspan="2" class="thbell">Alert</th></tr><tr><th class="thn">Count <button type="button" class="info" id="cinfo" aria-label="What Count means" title="Count: how often this route carried a leg on this weekday in the last six weeks, turned into a rate. Model: a probability learned from the whole record.">i</button></th><th class="thn">Model</th></tr></thead><tbody id="rows"><tr><td colspan="5" class="gnote">Reading the record.</td></tr></tbody></table></div>
     <div class="mcards" id="mrows"></div>
-    <div class="tfoot"><p>Gold bars show the range the data supports. More history means narrower ranges.</p><a href="#" id="showall">View all routes &rarr;</a></div>
+    <div class="tfoot"><p id="showing"></p><a href="#" id="showall">View all predictions &rarr;</a></div>
   </div>
+  <p class="gnote" style="margin:10px 0 0;font-size:12.5px">Count: the historical repeat rate. Model: a learned probability. Happened means a matching leg is in the record, not that the flight has departed.</p>
 </div>
 
 <div class="pane" id="p2" hidden>
@@ -728,7 +748,7 @@ function flightUrl(x){
 
   var DAY = ["", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   var MON = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  var ALL = [], LIMIT = 12;
+  var ALL = [], LIMIT = 10;
 
   function pct(x){ return Math.round(x * 100) + "%"; }
   var WEEKSTART = null;
@@ -752,7 +772,9 @@ function flightUrl(x){
   }
   tabs.addEventListener("click", function(e){ var b = e.target.closest("button"); if (b) show(b.getAttribute("data-p")); });
   document.getElementById("tomethod").addEventListener("click", function(e){ e.preventDefault(); show("p3"); window.scrollTo({top: 0, behavior: "smooth"}); });
+  document.getElementById("tomethod2").addEventListener("click", function(e){ e.preventDefault(); show("p3"); window.scrollTo({top: 0, behavior: "smooth"}); });
   document.getElementById("showall").addEventListener("click", function(e){ e.preventDefault(); LIMIT = 1e6; draw(); });
+  document.getElementById("cinfo").addEventListener("click", function(){ show("p3"); window.scrollTo({top: 0, behavior: "smooth"}); });
 
   /* the week picker and the banner */
   apiAll("forecast_log?select=target_week_start,made_on,outcome&order=target_week_start.desc").then(function(rows){
@@ -822,12 +844,15 @@ function flightUrl(x){
 
   /* the forecast table: the predictions written down for the chosen week */
   var TODAY = new Date().toISOString().slice(0,10);
+  var IC_Y = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg>',
+      IC_N = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg>',
+      IC_W = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
   function status(r){
-    if (r.outcome === true)  return '<span class="res y">A leg appeared</span>';
-    if (r.outcome === false) return '<span class="res n">None appeared</span>';
-    if (r.seen) return '<span class="res y">Leg in the record</span>';
-    if (r.target_date < TODAY) return '<span class="res n">Nothing recorded</span>';
-    return '<span class="res w">Nothing yet</span>';
+    if (r.outcome === true)  return '<span class="res y">' + IC_Y + 'Happened</span>';
+    if (r.outcome === false) return '<span class="res n">' + IC_N + 'Missed</span>';
+    if (r.seen) return '<span class="res y">' + IC_Y + 'Happened</span>';
+    if (r.target_date < TODAY) return '<span class="res n">' + IC_N + 'Missed</span>';
+    return '<span class="res w">' + IC_W + 'Not yet</span>';
   }
   function bellHtml(){
     return '<a class="bell" href="/#alerts" title="Set an alert for this route" aria-label="Set an alert for this route">' +
@@ -842,6 +867,11 @@ function flightUrl(x){
     if (!m) return '<span class="rg">no call</span>';
     return '<span class="mlp' + (m.backtest ? ' bt' : '') + '" title="' + (m.backtest ? 'Backtest: a model that never saw data after the cutoff, run after the week began' : 'Written down on ' + esc(fmtDate(m.made_on))) + '">' + Math.round(m.p * 100) + '%' + (m.backtest ? '<sup>bt</sup>' : '') + '</span>';
   }
+  function mlP(r){ var m = ML[mlKey(r.target_week_start, r.from_city, r.to_city, r.weekday)]; return m ? Number(m.p) : -1; }
+  function histLine(r){
+    var n = r.weeks_observed, k = r.weeks_with_leg;
+    return DAY[r.weekday].slice(0,3) + ' ' + esc(fmtDate(r.target_date).replace(/ \d{4}$/, '')) + ' <span class="sep">&middot;</span> ' + k + ' of the last ' + n + ' ' + DAY[r.weekday] + 's';
+  }
   function draw(){
     var q = document.getElementById("q").value.trim().toLowerCase(),
         rg = document.getElementById("reg").value, dw = document.getElementById("dow").value,
@@ -854,39 +884,32 @@ function flightUrl(x){
       return true; });
     function hitOf(r){ return r.outcome === true || (r.outcome === null && r.seen) ? 1 : 0; }
     rows.sort(function(a, b){
-      if (hitOf(b) !== hitOf(a)) return hitOf(b) - hitOf(a);
-      if (srt === "seen") return b.weeks_with_leg - a.weeks_with_leg || b.predicted_rate - a.predicted_rate;
-      if (srt === "date") return a.target_date < b.target_date ? -1 : a.target_date > b.target_date ? 1 : b.predicted_rate - a.predicted_rate;
+      if (srt !== "date" && srt !== "route" && hitOf(b) !== hitOf(a)) return hitOf(b) - hitOf(a);
+      if (srt === "model") return mlP(b) - mlP(a) || b.predicted_rate - a.predicted_rate || (a.target_date < b.target_date ? -1 : 1);
+      if (srt === "date") return a.target_date < b.target_date ? -1 : a.target_date > b.target_date ? 1 : mlP(b) - mlP(a);
       if (srt === "route") return (a.from_city + a.to_city).localeCompare(b.from_city + b.to_city);
       return b.predicted_rate - a.predicted_rate || (a.target_date < b.target_date ? -1 : 1); });
     var hits = rows.filter(function(r){ return r.outcome === true || (r.outcome === null && r.seen); }).length;
-    var note = document.getElementById("fcnote");
-    if (WEEKSTART) note.textContent = rows.length + " predictions for the week of " + weekLabel(WEEKSTART) + ", written down on " +
-      (rows[0] ? fmtDate(rows[0].made_on) : "") + ". " + hits + (hits === 1 ? " already has" : " already have") +
-      " a leg in the record for the predicted date (green). The official score is written once, after the week.";
-    var link = document.getElementById("showall");
-    link.innerHTML = (rows.length > LIMIT ? "View all " + rows.length + " predictions" : "View all") + " &rarr;";
+    var note = document.getElementById("fcnote").querySelector("span");
+    var all = ALL.filter(function(r){ return !WEEKSTART || r.target_week_start === WEEKSTART; });
+    if (WEEKSTART) note.textContent = all.length + " predictions, locked on " + (all[0] ? fmtDate(all[0].made_on) : "") + (hits ? ". " + hits + " happened so far" : "");
     var shown = rows.slice(0, LIMIT);
+    document.getElementById("showing").textContent = "Showing " + shown.length + " of " + rows.length + " predictions";
+    document.getElementById("showall").style.display = rows.length > LIMIT ? "" : "none";
     function bar(r){
       var lo = r.predicted_low * 100, hi = r.predicted_high * 100, mid = r.predicted_rate * 100;
       return '<span class="bar"><i style="left:' + lo + '%;width:' + Math.max(1.5, hi - lo) + '%"></i><u style="left:' + Math.min(99, mid) + '%"></u></span>';
     }
     document.getElementById("rows").innerHTML = shown.map(function(r){
-      var hit = r.outcome === true || (r.outcome === null && r.seen);
-      return '<tr' + (hit ? ' class="hit"' : '') + '><td class="lead">' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</td>' +
-        '<td><span class="day">' + DAY[r.weekday] + '</span><span class="dt">' + esc(fmtDate(r.target_date)) + '</span></td>' +
-        '<td>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</td>' +
-        '<td><span class="rate"><span class="pc">' + Math.round(r.predicted_rate * 100) + '%</span>' + bar(r) +
-          '<span class="rg">' + Math.round(r.predicted_low * 100) + ' to ' + Math.round(r.predicted_high * 100) + '%</span></span></td>' +
-        '<td>' + mlCell(r) + '</td>' +
-        '<td><span class="madeon">' + esc(fmtDate(r.made_on)) + '</span></td>' +
-        '<td>' + status(r) + '</td><td>' + bellHtml() + '</td></tr>';
-    }).join("") || '<tr><td colspan="8" class="gnote">No prediction matches that. Clear the filters, or set a <a href="/#alerts">route alert</a> for the pair you want.</td></tr>';
+      return '<tr><td class="lead"><span class="rt">' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</span><span class="dt">' + histLine(r) + '</span></td>' +
+        '<td class="num pcount" title="Range the six weeks allow: ' + Math.round(r.predicted_low * 100) + ' to ' + Math.round(r.predicted_high * 100) + '%">' + Math.round(r.predicted_rate * 100) + '%</td>' +
+        '<td class="num pmodel">' + mlCell(r) + '</td>' +
+        '<td class="tres">' + status(r) + '</td><td class="tbell">' + bellHtml() + '</td></tr>';
+    }).join("") || '<tr><td colspan="5" class="gnote">No prediction matches that. Clear the filters, or set a <a href="/#alerts">route alert</a> for the pair you want.</td></tr>';
     document.getElementById("mrows").innerHTML = shown.map(function(r){
-      var hit = r.outcome === true || (r.outcome === null && r.seen);
-      return '<div class="mc' + (hit ? ' hit' : '') + '"><div class="r"><span>' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</span>' + bellHtml() + '</div>' +
-        '<div class="m"><span><b>' + DAY[r.weekday].slice(0,3) + ' ' + esc(fmtDate(r.target_date)) + '</b></span><span>' + r.weeks_with_leg + ' of ' + r.weeks_observed + ' weeks</span><span>model ' + mlCell(r) + '</span></div>' +
-        '<div class="s"><span class="pc">' + Math.round(r.predicted_rate * 100) + '%</span>' + bar(r) + status(r) + '</div></div>';
+      return '<div class="mc"><div class="r"><span>' + esc(r.from_city) + '<span class="arw">&rarr;</span>' + esc(r.to_city) + '</span>' + bellHtml() + '</div>' +
+        '<div class="m"><span>' + histLine(r) + '</span></div>' +
+        '<div class="s"><span class="lk"><small>Count</small><b>' + Math.round(r.predicted_rate * 100) + '%</b></span><span class="lk"><small>Model</small><b>' + mlCell(r) + '</b></span>' + status(r) + '</div></div>';
     }).join("") || '<div class="mc gnote">No prediction matches that.</div>';
   }
 
@@ -904,7 +927,7 @@ function flightUrl(x){
       wk.innerHTML = keys.map(function(k){ return '<option value="' + k + '"' + (k === cur ? ' selected' : '') + '>' + esc(weekLabel(k)) + '</option>'; }).join("") || "<option>No week published yet</option>";
       WEEKSTART = cur || null;
       if (cur) document.getElementById("wklabel").textContent = "· WEEK OF " + weekLabel(cur).toUpperCase();
-      wk.addEventListener("change", function(){ WEEKSTART = this.value; document.getElementById("wklabel").textContent = "· WEEK OF " + weekLabel(WEEKSTART).toUpperCase(); LIMIT = 12; draw(); });
+      wk.addEventListener("change", function(){ WEEKSTART = this.value; document.getElementById("wklabel").textContent = "· WEEK OF " + weekLabel(WEEKSTART).toUpperCase(); LIMIT = 10; draw(); });
       ["q","reg","dow","srt"].forEach(function(id){ document.getElementById(id).addEventListener("input", draw); });
       draw();
     }).catch(function(){
