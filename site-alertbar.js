@@ -26,7 +26,12 @@
         body: JSON.stringify(rows)
       }).then(function (r) {
         if (!r.ok) throw 0;
-        form.innerHTML = '<span class="abar-ok">Done. You get an email the moment a leg is listed' + (from && to ? ' in either direction' : '') + '. One click to stop.</span>';
+        /* Alerts are double opt-in since 15 Sep 2026: a first-time address gets a
+           confirmation email; a member's address is confirmed on the spot. */
+        var member = false; try { member = !!localStorage.getItem("el_token"); } catch (e) {}
+        form.innerHTML = member
+          ? '<span class="abar-ok">Done. You get an email the moment a leg is listed' + (from && to ? ' in either direction' : '') + '. One click to stop.</span>'
+          : '<span class="abar-ok">One more step: open the confirmation email we just sent and click Confirm. Then you get an email the moment a leg is listed' + (from && to ? ' in either direction' : '') + '.</span>';
         if (note) note.style.display = "none";
         track("alert_subscribed", { from: from || "any", to: to || "any", where: "page bar" });
       }).catch(function () {

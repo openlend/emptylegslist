@@ -2198,7 +2198,9 @@ header.elnav .eln-reg { margin: 0; }
       body:JSON.stringify({email:email,from_interest:document.getElementById("a-from").value.trim()||null,to_interest:document.getElementById("a-to").value.trim()||null,frequency:(document.querySelector('input[name="freq"]:checked')||{}).value||"weekly",consent:true})
     }).then(function(r){ if(!r.ok) throw 0;
         btn.classList.remove("busy"); btn.classList.add("done"); lbl.textContent="Subscribed";
-        show("You are on the list. We will email you when a matching leg is listed.");
+        var member=false; try{ member=!!localStorage.getItem("el_token"); }catch(e){}
+        show(member ? "You are on the list. We will email you when a matching leg is listed."
+                    : "One more step: open the confirmation email we just sent and click Confirm. Alerts start after that.");
         document.getElementById("af").reset();
         var w=document.querySelector('input[name="freq"][value="weekly"]'); if(w) w.checked=true;
         setTimeout(function(){ btn.classList.remove("done"); lbl.textContent="Subscribe to alerts"; }, 4000);
