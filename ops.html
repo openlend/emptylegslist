@@ -66,7 +66,11 @@ a{color:var(--navy)}
 <div id="gate" class="gate">
   <h1>Operations</h1>
   <p>Private page. It shows names and email addresses, so it is not linked from anywhere and search engines are told to skip it.</p>
-  <form id="f"><input id="pw" type="password" placeholder="Password" autocomplete="current-password" autofocus>
+  <form id="fm"><input id="em" type="email" placeholder="Your email" autocomplete="email" autofocus>
+  <div style="margin-top:12px"><button type="submit">Send me a sign-in link</button></div></form>
+  <div id="gok" hidden style="margin-top:14px;font-size:13.5px;line-height:1.55;color:#1c7a4a">If that address is on the list, a link is on its way. Open it on whatever device you want signed in. It lasts 60 days.</div>
+  <p style="margin-top:20px"><a href="#" id="usepw" style="font-size:13px;color:var(--mute)">Use the shared password instead</a></p>
+  <form id="f" hidden><input id="pw" type="password" placeholder="Password" autocomplete="current-password">
   <div style="margin-top:12px"><button type="submit">Open</button></div></form>
   <div class="err" id="gerr"></div>
 </div>
@@ -81,7 +85,12 @@ a{color:var(--navy)}
 (function(){
   "use strict";
   var FN = "https://wscowiseslaovmmfuzyv.supabase.co/functions/v1/ops-data";
-  var KEY = "el-ops-pw";      // the password stays in this browser, never in the URL
+  var AUTH = "https://wscowiseslaovmmfuzyv.supabase.co/functions/v1/ops-auth";
+  /* A sign-in link puts a token in this browser. The token is per device, it
+     expires, and it can be revoked from the database. The old shared password
+     still works from the second form until the ops_access row is deleted. */
+  var TKEY = "el-ops-token";
+  var KEY = "el-ops-pw";
   var DATA = null, TAB = "leads";
 
   function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
@@ -93,11 +102,15 @@ a{color:var(--navy)}
     return d.toISOString().slice(0,16).replace("T"," ")+" &middot; "+ago;
   }
   function pw(){ try { return sessionStorage.getItem(KEY) || localStorage.getItem(KEY) || ""; } catch(e){ return ""; } }
+  function tok(){ try { return localStorage.getItem(TKEY) || sessionStorage.getItem(TKEY) || ""; } catch(e){ return ""; } }
+  function auth(){ var t = tok(); return t ? { token: t } : { password: pw() }; }
+  function forget(){ try { localStorage.removeItem(TKEY); sessionStorage.removeItem(TKEY);
+    localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); } catch(e){} }
 
   async function call(extra){
-    var body = Object.assign({ password: pw() }, extra||{});
+    var body = Object.assign(auth(), extra||{});
     var r = await fetch(FN, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body) });
-    if(r.status===401) throw new Error("wrong password");
+    if(r.status===401) throw new Error("that sign-in is not valid any more");
     if(!r.ok) throw new Error("server said "+r.status);
     return r.json();
   }
@@ -205,6 +218,25 @@ a{color:var(--navy)}
     paint();
   }
 
+  document.getElementById("fm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    var v = document.getElementById("em").value.trim();
+    if(!v) return;
+    var b = this.querySelector("button"); b.disabled = true;
+    document.getElementById("gerr").textContent = "";
+    try {
+      await fetch(AUTH, { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ email: v }) });
+      document.getElementById("gok").hidden = false;
+    } catch(err){ document.getElementById("gerr").textContent = "Could not send that just now."; }
+    b.disabled = false;
+  });
+
+  document.getElementById("usepw").addEventListener("click", function(e){
+    e.preventDefault();
+    this.parentNode.hidden = true;
+    var f = document.getElementById("f"); f.hidden = false; document.getElementById("pw").focus();
+  });
+
   document.getElementById("f").addEventListener("submit", async function(e){
     e.preventDefault();
     var v = document.getElementById("pw").value.trim();
@@ -212,14 +244,15 @@ a{color:var(--navy)}
     try { localStorage.setItem(KEY, v); } catch(err){ try { sessionStorage.setItem(KEY, v); } catch(e2){} }
     try { await load(); }
     catch(err){
-      try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); } catch(e3){}
+      forget();
       document.getElementById("gerr").textContent = err.message;
     }
   });
 
-  document.getElementById("out").addEventListener("click", function(e){
+  document.getElementById("out").addEventListener("click", async function(e){
     e.preventDefault();
-    try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); } catch(err){}
+    if(tok()){ try { await call({ action:"signout" }); } catch(err){} }
+    forget();
     location.reload();
   });
 
@@ -235,7 +268,16 @@ a{color:var(--navy)}
     } catch(err){ b.disabled = false; alert(err.message); }
   });
 
-  if(pw()) load().catch(function(){ /* stale password, show the gate */ });
+  /* A link arrives as /ops#t=<token>. Keep it in this browser and take it out
+     of the address bar at once, so it is not in the history or a screenshot. */
+  (function(){
+    var m = (location.hash || "").match(/[#&]t=([A-Za-z0-9_-]{16,128})/);
+    if(!m) return;
+    try { localStorage.setItem(TKEY, m[1]); } catch(e){ try { sessionStorage.setItem(TKEY, m[1]); } catch(e2){} }
+    try { history.replaceState(null, "", location.pathname + location.search); } catch(e3){ location.hash = ""; }
+  })();
+
+  if(tok() || pw()) load().catch(function(){ forget(); /* stale sign-in, show the gate */ });
 })();
 </script>
 </body>
