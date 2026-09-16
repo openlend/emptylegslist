@@ -4,3 +4,12 @@ _to_delete/
 
 # raw drops before cleaning, never published
 brand/aircraft/incoming/
+
+# Backup copies. Vercel serves whatever is in the repo, so a committed
+# *.bak file is a live public URL: on 16 September 2026 /about.html.bak-16sep,
+# /map.html.bak-16sep, /media.html.bak-16sep, /city-map.js.bak-16sep and
+# /account.html.bak all answered 200 with a stale copy of the page. Backups
+# belong beside the repo, not inside it: _backups/ at the project root.
+*.bak
+*.bak-*
+*.bak[0-9]*
