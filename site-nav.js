@@ -8,6 +8,18 @@
  */
 (function () {
   "use strict";
+
+  /* Run once, however many times the file is included.
+   *
+   * On 14 September 2026 the commit that put the red sign-in notice above the
+   * header left index.html with two <script src="/site-nav.js" defer> tags.
+   * Both executed, so the burger got two click listeners: the first opened the
+   * drawer, the second saw body.eln-open and shut it again. One tap, nothing
+   * happened, and the phone menu on the home page had been dead for two days.
+   * The duplicate tag is gone, and this makes the next one harmless. */
+  if (window.__elnavBound) return;
+  window.__elnavBound = true;
+
   var OPEN_DELAY = 60, CLOSE_DELAY = 140;
 
   function ready(fn) {
