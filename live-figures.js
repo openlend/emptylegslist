@@ -46,6 +46,35 @@
     return String(v);
   }
 
+
+  /* A table body marked <tbody data-el-rows="key" data-el-cols="a,b,c"> is
+     rebuilt from the array under that key. The rows written by the build are the
+     fallback, same rule as the spans.
+     This matters most for the cheapest-seats table: it names twelve real flights
+     with departure dates, and one of them read "17 Sep" on 17 September. Baked
+     into HTML it would have gone on recommending an aircraft that had left. */
+  function rows(s) {
+    document.querySelectorAll("[data-el-rows]").forEach(function (tb) {
+      var key = tb.getAttribute("data-el-rows");
+      var cols = (tb.getAttribute("data-el-cols") || "").split(",").map(function (c) { return c.trim(); });
+      var data = s[key];
+      if (!Array.isArray(data) || !data.length || !cols.length || !cols[0]) return;
+      var html = "";
+      data.forEach(function (r) {
+        html += "<tr>";
+        cols.forEach(function (c, i) {
+          var v = r[c];
+          if (typeof v === "number") v = fmt(v);
+          if (v === null || v === undefined) v = "";
+          html += (i === 0 ? '<td class="lead">' : '<td class="num">') + String(v)
+            .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</td>";
+        });
+        html += "</tr>";
+      });
+      tb.innerHTML = html;
+    });
+  }
+
   fetch(BASE + "/rest/v1/rpc/site_stats", {
     method: "POST",
     headers: { apikey: KEY, Authorization: "Bearer " + KEY, "Content-Type": "application/json" },
@@ -59,6 +88,7 @@
         var out = render(key, s[key]);
         if (out !== null && out !== "") el.textContent = out;
       });
+      rows(s);
       /* Anything that only makes sense once the real figures are in, such as a
          line that says the page updates itself, is revealed here. */
       document.querySelectorAll("[data-el-when]").forEach(function (el) { el.hidden = false; });
