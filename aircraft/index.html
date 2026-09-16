@@ -43,6 +43,42 @@ h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(
 .card .cat{display:block;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);margin:4px 0 6px}
 .card .sp{display:block;font-size:13px;color:#5d6b79}
 .card .n{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-top:8px;min-height:20px}
+/* acindex cards (acindex.py) */
+.actools{display:grid;grid-template-columns:minmax(0,1fr) 190px 170px;gap:10px;margin:0 0 14px}
+.acfield{position:relative;display:block}
+.acfield svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--mute);pointer-events:none}
+.actools input,.actools select{width:100%;height:48px;border:1px solid var(--line);border-radius:12px;background:#fff;font:inherit;font-size:14.5px;color:var(--ink);padding:0 16px}
+.actools input{padding-left:44px}
+.actools select{appearance:none;padding-right:38px;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a97a5' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;background-size:17px}
+.actools input:focus,.actools select:focus{outline:2px solid var(--gold);outline-offset:1px}
+.acpills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.acpill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 17px;font:inherit;font-size:13px;font-weight:500;color:#46525f;cursor:pointer;transition:all .15s}
+.acpill:hover{border-color:var(--gold);color:var(--navy)}
+.acpill[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.acbar{display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:18px 0 12px}
+.acbar .acshowing{font-size:13px;color:var(--mute)}
+.acsort{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute)}
+.acsort select{height:36px;border:1px solid var(--line);border-radius:9px;background:#fff;font:inherit;font-size:13.5px;color:var(--ink);padding:0 10px}
+.acgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(282px,1fr));gap:16px}
+.accard{display:flex;flex-direction:column;background:#fff;border-radius:16px;overflow:hidden;text-decoration:none;box-shadow:0 1px 3px rgba(14,35,56,.08);transition:box-shadow .18s ease,transform .18s ease}
+.accard:hover{box-shadow:0 12px 28px rgba(14,35,56,.14);transform:translateY(-2px)}
+.acshot{display:block;width:100%;height:auto;aspect-ratio:1600/756;object-fit:cover;background:#e7edf3}
+.acnoshot{display:flex;align-items:center;justify-content:center;color:#b9c5d1;background:linear-gradient(160deg,#eef2f7,#e3e9f0)}
+.acbody{display:block;padding:15px 18px 0;flex:1}
+.acmake{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.acname{display:block;font-family:"Playfair Display",Georgia,serif;font-size:20px;line-height:1.2;color:var(--navy);margin:3px 0 3px}
+.accls{display:block;font-size:12.5px;color:var(--mute)}
+.acfacts{display:flex;gap:26px;margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}
+.acfact small{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
+.acfact b{font-size:14px;font-weight:600;color:var(--ink)}
+.acfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:12px 18px;border-top:1px solid var(--line);font-size:13px}
+.acn{font-weight:600;color:var(--navy);min-height:19px}
+.acgo{color:var(--gold);font-weight:600;white-space:nowrap}
+.acempty{background:#fff;border-radius:16px;padding:34px 24px;text-align:center;color:#46525f}
+.acempty button{margin-top:12px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 18px;font:inherit;font-size:13px;cursor:pointer}
+@media(max-width:820px){.actools{grid-template-columns:1fr 1fr}.actools .acfield{grid-column:1/-1}}
+@media(max-width:560px){.acgrid{grid-template-columns:1fr}.acfacts{gap:20px}}
+/* /acindex cards */
 h2{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:24px;margin:34px 0 8px}
 p{margin:0 0 14px}
 .btn{display:inline-block;background:var(--gold);color:#241d00;border-radius:9px;padding:12px 24px;font-weight:600;font-size:14px;text-decoration:none}
@@ -433,63 +469,466 @@ footer a{color:rgba(255,255,255,.85)}
 <div class="wrap">
 <h1>Empty legs by aircraft type</h1>
 <p class="lede">All 55 aircraft types we keep a page for, with the number of flights listed on each one right now. Each page shows the flights currently offered on that type, what the operator published for seats and price, and the manufacturer figures for range and cabin.</p>
-<div class="grid">
-  <a class="card" href="/aircraft/beechjet-400a"><b>Beechcraft Beechjet 400A</b><span class="cat">Light jet</span><span class="sp">up to 8 passengers &middot; about 1,519 nm</span><span class="n" id="n-beechjet-400a">&nbsp;</span></a>
-  <a class="card" href="/aircraft/hawker-400xp"><b>Beechcraft Hawker 400XP</b><span class="cat">Light jet</span><span class="sp">up to 8 passengers &middot; about 1,519 nm</span><span class="n" id="n-hawker-400xp">&nbsp;</span></a>
-  <a class="card" href="/aircraft/king-air-200"><b>Beechcraft King Air 200 and B200</b><span class="cat">Twin turboprop</span><span class="sp">up to 6 passengers &middot; about 1,580 nm</span><span class="n" id="n-king-air-200">&nbsp;</span></a>
-  <a class="card" href="/aircraft/king-air-260"><b>Beechcraft King Air 260</b><span class="cat">Twin turboprop</span><span class="sp">up to 9 passengers &middot; about 1,720 nm</span><span class="n" id="n-king-air-260">&nbsp;</span></a>
-  <a class="card" href="/aircraft/challenger-300"><b>Bombardier Challenger 300</b><span class="cat">Super midsize jet</span><span class="sp">up to 10 passengers &middot; about 3,340 nm</span><span class="n" id="n-challenger-300">&nbsp;</span></a>
-  <a class="card" href="/aircraft/challenger-350"><b>Bombardier Challenger 350</b><span class="cat">Super midsize jet</span><span class="sp">up to 10 passengers &middot; about 3,200 nm</span><span class="n" id="n-challenger-350">&nbsp;</span></a>
-  <a class="card" href="/aircraft/challenger-3500"><b>Bombardier Challenger 3500</b><span class="cat">Super midsize jet</span><span class="sp">up to 10 passengers &middot; about 3,400 nm</span><span class="n" id="n-challenger-3500">&nbsp;</span></a>
-  <a class="card" href="/aircraft/challenger-604"><b>Bombardier Challenger 604</b><span class="cat">Heavy jet</span><span class="sp">up to 19 passengers &middot; about 4,119 nm</span><span class="n" id="n-challenger-604">&nbsp;</span></a>
-  <a class="card" href="/aircraft/challenger-605"><b>Bombardier Challenger 605</b><span class="cat">Heavy jet</span><span class="sp">up to 9 passengers &middot; about 4,123 nm</span><span class="n" id="n-challenger-605">&nbsp;</span></a>
-  <a class="card" href="/aircraft/challenger-650"><b>Bombardier Challenger 650</b><span class="cat">Heavy jet</span><span class="sp">up to 12 passengers &middot; about 4,000 nm</span><span class="n" id="n-challenger-650">&nbsp;</span></a>
-  <a class="card" href="/aircraft/global-5000"><b>Bombardier Global 5000</b><span class="cat">Ultra long range heavy jet</span><span class="sp">up to 16 passengers &middot; about 5,200 nm</span><span class="n" id="n-global-5000">&nbsp;</span></a>
-  <a class="card" href="/aircraft/global-6000"><b>Bombardier Global 6000</b><span class="cat">Heavy jet</span><span class="sp">up to 17 passengers &middot; about 6,000 nm</span><span class="n" id="n-global-6000">&nbsp;</span></a>
-  <a class="card" href="/aircraft/learjet-40xr"><b>Bombardier Learjet 40XR</b><span class="cat">Light jet</span><span class="sp">up to 6 passengers &middot; about 1,960 nm</span><span class="n" id="n-learjet-40xr">&nbsp;</span></a>
-  <a class="card" href="/aircraft/learjet-45xr"><b>Bombardier Learjet 45XR</b><span class="cat">Light jet</span><span class="sp">up to 9 passengers &middot; about 2,301 nm</span><span class="n" id="n-learjet-45xr">&nbsp;</span></a>
-  <a class="card" href="/aircraft/learjet-60xr"><b>Bombardier Learjet 60XR</b><span class="cat">Midsize jet</span><span class="sp">up to 7 passengers &middot; about 2,398 nm</span><span class="n" id="n-learjet-60xr">&nbsp;</span></a>
-  <a class="card" href="/aircraft/learjet-75"><b>Bombardier Learjet 75</b><span class="cat">Light to midsize jet, classified differently by different sources</span><span class="sp">up to 8 passengers &middot; about 2,040 nm</span><span class="n" id="n-learjet-75">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-bravo"><b>Cessna Citation Bravo</b><span class="cat">Light jet</span><span class="sp">up to 7 passengers &middot; about 1,720 nm</span><span class="n" id="n-citation-bravo">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-cj2"><b>Cessna Citation CJ2+</b><span class="cat">Light jet</span><span class="sp">up to 6 passengers &middot; about 1,626 nm</span><span class="n" id="n-citation-cj2">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-cj3"><b>Cessna Citation CJ3</b><span class="cat">Light jet</span><span class="sp">up to 7 passengers &middot; about 2,040 nm</span><span class="n" id="n-citation-cj3">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-cj4"><b>Cessna Citation CJ4</b><span class="cat">Light jet</span><span class="sp">up to 10 passengers &middot; about 2,165 nm</span><span class="n" id="n-citation-cj4">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-cj4-gen2"><b>Cessna Citation CJ4 Gen2</b><span class="cat">Light jet</span><span class="sp">up to 8 passengers &middot; about 2,165 nm</span><span class="n" id="n-citation-cj4-gen2">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-excel"><b>Cessna Citation Excel</b><span class="cat">Midsize jet</span><span class="sp">up to 7 passengers &middot; about 1,850 nm</span><span class="n" id="n-citation-excel">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-latitude"><b>Cessna Citation Latitude</b><span class="cat">Midsize jet</span><span class="sp">up to 9 passengers &middot; about 2,700 nm</span><span class="n" id="n-citation-latitude">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-longitude"><b>Cessna Citation Longitude</b><span class="cat">Super-midsize jet</span><span class="sp">up to 12 passengers &middot; about 3,500 nm</span><span class="n" id="n-citation-longitude">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-m2"><b>Cessna Citation M2</b><span class="cat">Light jet</span><span class="sp">up to 7 passengers &middot; about 1,550 nm</span><span class="n" id="n-citation-m2">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-mustang"><b>Cessna Citation Mustang</b><span class="cat">Very light jet</span><span class="sp">up to 4 passengers &middot; about 1,200 nm</span><span class="n" id="n-citation-mustang">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-sovereign"><b>Cessna Citation Sovereign</b><span class="cat">Super midsize jet</span><span class="sp">up to 9 passengers &middot; about 3,010 nm</span><span class="n" id="n-citation-sovereign">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-ultra"><b>Cessna Citation Ultra</b><span class="cat">Light jet</span><span class="sp">up to 8 passengers &middot; about 1,651 nm</span><span class="n" id="n-citation-ultra">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-v"><b>Cessna Citation V</b><span class="cat">Light jet</span><span class="sp">up to 7 passengers &middot; about 1,644 nm</span><span class="n" id="n-citation-v">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-x"><b>Cessna Citation X</b><span class="cat">Super midsize jet</span><span class="sp">up to 8 passengers &middot; about 3,125 nm</span><span class="n" id="n-citation-x">&nbsp;</span></a>
-  <a class="card" href="/aircraft/citation-xls"><b>Cessna Citation XLS and XLS+</b><span class="cat">Midsize jet</span><span class="sp">up to 9 passengers &middot; about 2,100 nm</span><span class="n" id="n-citation-xls">&nbsp;</span></a>
-  <a class="card" href="/aircraft/falcon-2000"><b>Dassault Falcon 2000 and 2000LX</b><span class="cat">Heavy jet</span><span class="sp">up to 8 passengers &middot; about 4,145 nm</span><span class="n" id="n-falcon-2000">&nbsp;</span></a>
-  <a class="card" href="/aircraft/falcon-7x"><b>Dassault Falcon 7X</b><span class="cat">Heavy jet</span><span class="sp">up to 19 passengers &middot; about 5,950 nm</span><span class="n" id="n-falcon-7x">&nbsp;</span></a>
-  <a class="card" href="/aircraft/falcon-900ex"><b>Dassault Falcon 900EX</b><span class="cat">Heavy jet</span><span class="sp">up to 12 passengers &middot; about 4,725 nm</span><span class="n" id="n-falcon-900ex">&nbsp;</span></a>
-  <a class="card" href="/aircraft/erj-135"><b>Embraer ERJ-135</b><span class="cat">Regional jet in executive or shuttle layout</span><span class="sp">up to 16 passengers &middot; about 2,034 nm</span><span class="n" id="n-erj-135">&nbsp;</span></a>
-  <a class="card" href="/aircraft/legacy-450"><b>Embraer Legacy 450</b><span class="cat">Midsize jet</span><span class="sp">up to 9 passengers &middot; about 2,904 nm</span><span class="n" id="n-legacy-450">&nbsp;</span></a>
-  <a class="card" href="/aircraft/legacy-500"><b>Embraer Legacy 500 (EMB-550)</b><span class="cat">Midsize jet</span><span class="sp">up to 12 passengers &middot; about 3,125 nm</span><span class="n" id="n-legacy-500">&nbsp;</span></a>
-  <a class="card" href="/aircraft/legacy-600"><b>Embraer Legacy 600</b><span class="cat">Heavy jet</span><span class="sp">up to 14 passengers &middot; about 3,400 nm</span><span class="n" id="n-legacy-600">&nbsp;</span></a>
-  <a class="card" href="/aircraft/legacy-650"><b>Embraer Legacy 650</b><span class="cat">Heavy jet</span><span class="sp">up to 14 passengers &middot; about 3,900 nm</span><span class="n" id="n-legacy-650">&nbsp;</span></a>
-  <a class="card" href="/aircraft/phenom-300"><b>Embraer Phenom 300</b><span class="cat">Light jet</span><span class="sp">up to 7 passengers &middot; about 2,077 nm</span><span class="n" id="n-phenom-300">&nbsp;</span></a>
-  <a class="card" href="/aircraft/praetor-600"><b>Embraer Praetor 600</b><span class="cat">Super midsize jet</span><span class="sp">up to 12 passengers &middot; about 4,018 nm</span><span class="n" id="n-praetor-600">&nbsp;</span></a>
-  <a class="card" href="/aircraft/gulfstream-g200"><b>Gulfstream G200</b><span class="cat">Super midsize jet</span><span class="sp">up to 8 passengers &middot; about 3,530 nm</span><span class="n" id="n-gulfstream-g200">&nbsp;</span></a>
-  <a class="card" href="/aircraft/gulfstream-g280"><b>Gulfstream G280</b><span class="cat">Super midsize jet</span><span class="sp">up to 10 passengers &middot; about 3,600 nm</span><span class="n" id="n-gulfstream-g280">&nbsp;</span></a>
-  <a class="card" href="/aircraft/gulfstream-g450"><b>Gulfstream G450</b><span class="cat">Heavy jet</span><span class="sp">up to 14 passengers &middot; about 4,350 nm</span><span class="n" id="n-gulfstream-g450">&nbsp;</span></a>
-  <a class="card" href="/aircraft/gulfstream-g550"><b>Gulfstream G550</b><span class="cat">Heavy jet</span><span class="sp">up to 19 passengers &middot; about 6,750 nm</span><span class="n" id="n-gulfstream-g550">&nbsp;</span></a>
-  <a class="card" href="/aircraft/gulfstream-g600"><b>Gulfstream G600</b><span class="cat">Ultra long range heavy jet</span><span class="sp">up to 19 passengers &middot; about 6,500 nm</span><span class="n" id="n-gulfstream-g600">&nbsp;</span></a>
-  <a class="card" href="/aircraft/gulfstream-giv"><b>Gulfstream GIV</b><span class="cat">Heavy jet</span><span class="sp">up to 14 passengers &middot; about 4,200 nm</span><span class="n" id="n-gulfstream-giv">&nbsp;</span></a>
-  <a class="card" href="/aircraft/gulfstream-giv-sp"><b>Gulfstream GIV-SP</b><span class="cat">Heavy jet</span><span class="sp">up to 14 passengers &middot; about 4,166 nm</span><span class="n" id="n-gulfstream-giv-sp">&nbsp;</span></a>
-  <a class="card" href="/aircraft/gulfstream-v"><b>Gulfstream V</b><span class="cat">Ultra-long-range jet</span><span class="sp">up to 16 passengers &middot; about 6,675 nm</span><span class="n" id="n-gulfstream-v">&nbsp;</span></a>
-  <a class="card" href="/aircraft/hawker-800xp"><b>Hawker 800XP</b><span class="cat">Midsize jet</span><span class="sp">up to 8 passengers &middot; about 2,550 nm</span><span class="n" id="n-hawker-800xp">&nbsp;</span></a>
-  <a class="card" href="/aircraft/hawker-850xp"><b>Hawker 850XP</b><span class="cat">Midsize jet</span><span class="sp">up to 13 passengers &middot; about 2,710 nm</span><span class="n" id="n-hawker-850xp">&nbsp;</span></a>
-  <a class="card" href="/aircraft/hawker-900xp"><b>Hawker 900XP</b><span class="cat">Midsize jet</span><span class="sp">up to 8 passengers &middot; about 2,930 nm</span><span class="n" id="n-hawker-900xp">&nbsp;</span></a>
-  <a class="card" href="/aircraft/nextant-400xt"><b>Nextant 400XT</b><span class="cat">Light jet</span><span class="sp">up to 9 passengers &middot; about 2,160 nm</span><span class="n" id="n-nextant-400xt">&nbsp;</span></a>
-  <a class="card" href="/aircraft/pilatus-pc-12-ng"><b>Pilatus PC-12 NG</b><span class="cat">Single engine turboprop</span><span class="sp">up to 7 passengers &middot; about 1,800 nm</span><span class="n" id="n-pilatus-pc-12-ng">&nbsp;</span></a>
-  <a class="card" href="/aircraft/pilatus-pc-12-ngx"><b>Pilatus PC-12 NGX</b><span class="cat">Single engine turboprop</span><span class="sp">up to 7 passengers &middot; about 1,803 nm</span><span class="n" id="n-pilatus-pc-12-ngx">&nbsp;</span></a>
+
+<div class="actools" data-nomf>
+  <label class="acfield"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="acq" type="search" placeholder="Search aircraft or manufacturer..." autocomplete="off" aria-label="Search aircraft or manufacturer"></label>
+  <select id="acmake" aria-label="Manufacturer"><option value="">Any manufacturer</option><option value="beechcraft">Beechcraft</option><option value="bombardier">Bombardier</option><option value="cessna">Cessna</option><option value="dassault">Dassault</option><option value="embraer">Embraer</option><option value="gulfstream">Gulfstream</option><option value="hawker">Hawker</option><option value="nextant">Nextant</option><option value="pilatus">Pilatus</option></select>
+  <select id="acpax" aria-label="Passengers"><option value="0">Any seats</option><option value="4">4 or more</option><option value="6">6 or more</option><option value="8">8 or more</option><option value="12">12 or more</option></select>
 </div>
+
+<div class="acpills" id="acpills"><button type="button" class="acpill" data-cls="all" aria-pressed="true">All aircraft</button><button type="button" class="acpill" data-cls="turboprop" aria-pressed="false">Turboprop</button><button type="button" class="acpill" data-cls="verylight" aria-pressed="false">Very light</button><button type="button" class="acpill" data-cls="ultra" aria-pressed="false">Ultra long range</button><button type="button" class="acpill" data-cls="supermid" aria-pressed="false">Super midsize</button><button type="button" class="acpill" data-cls="midsize" aria-pressed="false">Midsize</button><button type="button" class="acpill" data-cls="heavy" aria-pressed="false">Heavy</button><button type="button" class="acpill" data-cls="light" aria-pressed="false">Light</button></div>
+
+<div class="acbar">
+  <span class="acshowing" id="acshowing">55 aircraft types</span>
+  <span class="acsort"><label for="acsort">Sort</label>
+    <select id="acsort"><option value="name">Name A to Z</option><option value="flights">Most flights listed</option><option value="pax">Most seats</option></select></span>
+</div>
+
+<div class="acgrid" id="acgrid">
+  <a class="accard" href="/aircraft/beechjet-400a" data-cls="light" data-make="beechcraft" data-pax="8" data-name="beechcraft beechjet 400a" data-q="beechcraft beechjet 400a light jet">
+    <img class="acshot" src="/brand/aircraft/beechjet-400a.jpg" alt="Beechcraft Beechjet 400A on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Beechcraft</span><span class="acname">Beechjet 400A</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,519 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-beechjet-400a">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/hawker-400xp" data-cls="light" data-make="beechcraft" data-pax="8" data-name="beechcraft hawker 400xp" data-q="beechcraft hawker 400xp light jet">
+    <img class="acshot" src="/brand/aircraft/hawker-400xp.jpg" alt="Beechcraft Hawker 400XP on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Beechcraft</span><span class="acname">Hawker 400XP</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,519 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-hawker-400xp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/king-air-200" data-cls="turboprop" data-make="beechcraft" data-pax="6" data-name="beechcraft king air 200 and b200" data-q="beechcraft king air 200 and b200 twin turboprop">
+    <img class="acshot" src="/brand/aircraft/king-air-200.jpg" alt="Beechcraft King Air 200 and B200 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Beechcraft</span><span class="acname">King Air 200 and B200</span><span class="accls">Twin turboprop</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,580 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-king-air-200">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/king-air-260" data-cls="turboprop" data-make="beechcraft" data-pax="9" data-name="beechcraft king air 260" data-q="beechcraft king air 260 twin turboprop">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Beechcraft</span><span class="acname">King Air 260</span><span class="accls">Twin turboprop</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>1,720 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-king-air-260">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/challenger-300" data-cls="supermid" data-make="bombardier" data-pax="10" data-name="bombardier challenger 300" data-q="bombardier challenger 300 super midsize jet">
+    <img class="acshot" src="/brand/aircraft/challenger-300.jpg" alt="Bombardier Challenger 300 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Challenger 300</span><span class="accls">Super midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,340 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-challenger-300">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/challenger-350" data-cls="supermid" data-make="bombardier" data-pax="10" data-name="bombardier challenger 350" data-q="bombardier challenger 350 super midsize jet">
+    <img class="acshot" src="/brand/aircraft/challenger-350.jpg" alt="Bombardier Challenger 350 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Challenger 350</span><span class="accls">Super midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,200 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-challenger-350">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/challenger-3500" data-cls="supermid" data-make="bombardier" data-pax="10" data-name="bombardier challenger 3500" data-q="bombardier challenger 3500 super midsize jet">
+    <img class="acshot" src="/brand/aircraft/challenger-3500.jpg" alt="Bombardier Challenger 3500 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Challenger 3500</span><span class="accls">Super midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,400 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-challenger-3500">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/challenger-604" data-cls="heavy" data-make="bombardier" data-pax="19" data-name="bombardier challenger 604" data-q="bombardier challenger 604 heavy jet">
+    <img class="acshot" src="/brand/aircraft/challenger-604.jpg" alt="Bombardier Challenger 604 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Challenger 604</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>4,119 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-challenger-604">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/challenger-605" data-cls="heavy" data-make="bombardier" data-pax="9" data-name="bombardier challenger 605" data-q="bombardier challenger 605 heavy jet">
+    <img class="acshot" src="/brand/aircraft/challenger-605.jpg" alt="Bombardier Challenger 605 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Challenger 605</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>4,123 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-challenger-605">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/challenger-650" data-cls="heavy" data-make="bombardier" data-pax="12" data-name="bombardier challenger 650" data-q="bombardier challenger 650 heavy jet">
+    <img class="acshot" src="/brand/aircraft/challenger-650.jpg" alt="Bombardier Challenger 650 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Challenger 650</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,000 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-challenger-650">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/global-5000" data-cls="ultra" data-make="bombardier" data-pax="16" data-name="bombardier global 5000" data-q="bombardier global 5000 ultra long range heavy jet">
+    <img class="acshot" src="/brand/aircraft/global-5000.jpg" alt="Bombardier Global 5000 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Global 5000</span><span class="accls">Ultra long range heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>5,200 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-global-5000">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/global-6000" data-cls="heavy" data-make="bombardier" data-pax="17" data-name="bombardier global 6000" data-q="bombardier global 6000 heavy jet">
+    <img class="acshot" src="/brand/aircraft/global-6000.jpg" alt="Bombardier Global 6000 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Global 6000</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 17</b></span><span class="acfact"><small>Range</small><b>6,000 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-global-6000">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/learjet-40xr" data-cls="light" data-make="bombardier" data-pax="6" data-name="bombardier learjet 40xr" data-q="bombardier learjet 40xr light jet">
+    <img class="acshot" src="/brand/aircraft/learjet-40xr.jpg" alt="Bombardier Learjet 40XR on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Learjet 40XR</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,960 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-learjet-40xr">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/learjet-45xr" data-cls="light" data-make="bombardier" data-pax="9" data-name="bombardier learjet 45xr" data-q="bombardier learjet 45xr light jet">
+    <img class="acshot" src="/brand/aircraft/learjet-45xr.jpg" alt="Bombardier Learjet 45XR on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Learjet 45XR</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,301 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-learjet-45xr">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/learjet-60xr" data-cls="midsize" data-make="bombardier" data-pax="7" data-name="bombardier learjet 60xr" data-q="bombardier learjet 60xr midsize jet">
+    <img class="acshot" src="/brand/aircraft/learjet-60xr.jpg" alt="Bombardier Learjet 60XR on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Learjet 60XR</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,398 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-learjet-60xr">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/learjet-75" data-cls="midsize" data-make="bombardier" data-pax="8" data-name="bombardier learjet 75" data-q="bombardier learjet 75 light to midsize jet, classified differently by different sources">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Bombardier</span><span class="acname">Learjet 75</span><span class="accls">Light to midsize jet, classified differently by different sources</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,040 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-learjet-75">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-bravo" data-cls="light" data-make="cessna" data-pax="7" data-name="cessna citation bravo" data-q="cessna citation bravo light jet">
+    <img class="acshot" src="/brand/aircraft/citation-bravo.jpg" alt="Cessna Citation Bravo on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation Bravo</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,720 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-bravo">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-cj2" data-cls="light" data-make="cessna" data-pax="6" data-name="cessna citation cj2+" data-q="cessna citation cj2+ light jet">
+    <img class="acshot" src="/brand/aircraft/citation-cj2.jpg" alt="Cessna Citation CJ2+ on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation CJ2+</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,626 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-cj2">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-cj3" data-cls="light" data-make="cessna" data-pax="7" data-name="cessna citation cj3" data-q="cessna citation cj3 light jet">
+    <img class="acshot" src="/brand/aircraft/citation-cj3.jpg" alt="Cessna Citation CJ3 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation CJ3</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,040 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-cj3">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-cj4" data-cls="light" data-make="cessna" data-pax="10" data-name="cessna citation cj4" data-q="cessna citation cj4 light jet">
+    <img class="acshot" src="/brand/aircraft/citation-cj4.jpg" alt="Cessna Citation CJ4 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation CJ4</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>2,165 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-cj4">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-cj4-gen2" data-cls="light" data-make="cessna" data-pax="8" data-name="cessna citation cj4 gen2" data-q="cessna citation cj4 gen2 light jet">
+    <img class="acshot" src="/brand/aircraft/citation-cj4-gen2.jpg" alt="Cessna Citation CJ4 Gen2 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation CJ4 Gen2</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,165 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-cj4-gen2">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-excel" data-cls="midsize" data-make="cessna" data-pax="7" data-name="cessna citation excel" data-q="cessna citation excel midsize jet">
+    <img class="acshot" src="/brand/aircraft/citation-excel.jpg" alt="Cessna Citation Excel on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation Excel</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,850 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-excel">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-latitude" data-cls="midsize" data-make="cessna" data-pax="9" data-name="cessna citation latitude" data-q="cessna citation latitude midsize jet">
+    <img class="acshot" src="/brand/aircraft/citation-latitude.jpg" alt="Cessna Citation Latitude on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation Latitude</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,700 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-latitude">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-longitude" data-cls="midsize" data-make="cessna" data-pax="12" data-name="cessna citation longitude" data-q="cessna citation longitude super-midsize jet">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation Longitude</span><span class="accls">Super-midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>3,500 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-longitude">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-m2" data-cls="light" data-make="cessna" data-pax="7" data-name="cessna citation m2" data-q="cessna citation m2 light jet">
+    <img class="acshot" src="/brand/aircraft/citation-m2.jpg" alt="Cessna Citation M2 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation M2</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,550 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-m2">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-mustang" data-cls="verylight" data-make="cessna" data-pax="4" data-name="cessna citation mustang" data-q="cessna citation mustang very light jet">
+    <img class="acshot" src="/brand/aircraft/citation-mustang.jpg" alt="Cessna Citation Mustang on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation Mustang</span><span class="accls">Very light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 4</b></span><span class="acfact"><small>Range</small><b>1,200 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-mustang">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-sovereign" data-cls="supermid" data-make="cessna" data-pax="9" data-name="cessna citation sovereign" data-q="cessna citation sovereign super midsize jet">
+    <img class="acshot" src="/brand/aircraft/citation-sovereign.jpg" alt="Cessna Citation Sovereign on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation Sovereign</span><span class="accls">Super midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>3,010 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-sovereign">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-ultra" data-cls="light" data-make="cessna" data-pax="8" data-name="cessna citation ultra" data-q="cessna citation ultra light jet">
+    <img class="acshot" src="/brand/aircraft/citation-ultra.jpg" alt="Cessna Citation Ultra on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation Ultra</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,651 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-ultra">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-v" data-cls="light" data-make="cessna" data-pax="7" data-name="cessna citation v" data-q="cessna citation v light jet">
+    <img class="acshot" src="/brand/aircraft/citation-v.jpg" alt="Cessna Citation V on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation V</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,644 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-v">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-x" data-cls="supermid" data-make="cessna" data-pax="8" data-name="cessna citation x" data-q="cessna citation x super midsize jet">
+    <img class="acshot" src="/brand/aircraft/citation-x.jpg" alt="Cessna Citation X on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation X</span><span class="accls">Super midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>3,125 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-x">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/citation-xls" data-cls="midsize" data-make="cessna" data-pax="9" data-name="cessna citation xls and xls+" data-q="cessna citation xls and xls+ midsize jet">
+    <img class="acshot" src="/brand/aircraft/citation-xls.jpg" alt="Cessna Citation XLS and XLS+ on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Cessna</span><span class="acname">Citation XLS and XLS+</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,100 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-citation-xls">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/falcon-2000" data-cls="heavy" data-make="dassault" data-pax="8" data-name="dassault falcon 2000 and 2000lx" data-q="dassault falcon 2000 and 2000lx heavy jet">
+    <img class="acshot" src="/brand/aircraft/falcon-2000.jpg" alt="Dassault Falcon 2000 and 2000LX on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Dassault</span><span class="acname">Falcon 2000 and 2000LX</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>4,145 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-falcon-2000">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/falcon-7x" data-cls="heavy" data-make="dassault" data-pax="19" data-name="dassault falcon 7x" data-q="dassault falcon 7x heavy jet">
+    <img class="acshot" src="/brand/aircraft/falcon-7x.jpg" alt="Dassault Falcon 7X on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Dassault</span><span class="acname">Falcon 7X</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>5,950 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-falcon-7x">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/falcon-900ex" data-cls="heavy" data-make="dassault" data-pax="12" data-name="dassault falcon 900ex" data-q="dassault falcon 900ex heavy jet">
+    <img class="acshot" src="/brand/aircraft/falcon-900ex.jpg" alt="Dassault Falcon 900EX on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Dassault</span><span class="acname">Falcon 900EX</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,725 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-falcon-900ex">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/erj-135" data-cls="other" data-make="embraer" data-pax="16" data-name="embraer erj-135" data-q="embraer erj-135 regional jet in executive or shuttle layout">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Embraer</span><span class="acname">ERJ-135</span><span class="accls">Regional jet in executive or shuttle layout</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>2,034 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-erj-135">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/legacy-450" data-cls="midsize" data-make="embraer" data-pax="9" data-name="embraer legacy 450" data-q="embraer legacy 450 midsize jet">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Embraer</span><span class="acname">Legacy 450</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,904 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-legacy-450">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/legacy-500" data-cls="midsize" data-make="embraer" data-pax="12" data-name="embraer legacy 500 (emb-550)" data-q="embraer legacy 500 (emb-550) midsize jet">
+    <img class="acshot" src="/brand/aircraft/legacy-500.jpg" alt="Embraer Legacy 500 (EMB-550) on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Embraer</span><span class="acname">Legacy 500 (EMB-550)</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>3,125 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-legacy-500">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/legacy-600" data-cls="heavy" data-make="embraer" data-pax="14" data-name="embraer legacy 600" data-q="embraer legacy 600 heavy jet">
+    <img class="acshot" src="/brand/aircraft/legacy-600.jpg" alt="Embraer Legacy 600 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Embraer</span><span class="acname">Legacy 600</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>3,400 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-legacy-600">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/legacy-650" data-cls="heavy" data-make="embraer" data-pax="14" data-name="embraer legacy 650" data-q="embraer legacy 650 heavy jet">
+    <img class="acshot" src="/brand/aircraft/legacy-650.jpg" alt="Embraer Legacy 650 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Embraer</span><span class="acname">Legacy 650</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>3,900 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-legacy-650">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/phenom-300" data-cls="light" data-make="embraer" data-pax="7" data-name="embraer phenom 300" data-q="embraer phenom 300 light jet">
+    <img class="acshot" src="/brand/aircraft/phenom-300.jpg" alt="Embraer Phenom 300 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Embraer</span><span class="acname">Phenom 300</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,077 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-phenom-300">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/praetor-600" data-cls="supermid" data-make="embraer" data-pax="12" data-name="embraer praetor 600" data-q="embraer praetor 600 super midsize jet">
+    <img class="acshot" src="/brand/aircraft/praetor-600.jpg" alt="Embraer Praetor 600 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Embraer</span><span class="acname">Praetor 600</span><span class="accls">Super midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,018 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-praetor-600">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/gulfstream-g200" data-cls="supermid" data-make="gulfstream" data-pax="8" data-name="gulfstream g200" data-q="gulfstream g200 super midsize jet">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Gulfstream</span><span class="acname">G200</span><span class="accls">Super midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>3,530 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-gulfstream-g200">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/gulfstream-g280" data-cls="supermid" data-make="gulfstream" data-pax="10" data-name="gulfstream g280" data-q="gulfstream g280 super midsize jet">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Gulfstream</span><span class="acname">G280</span><span class="accls">Super midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,600 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-gulfstream-g280">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/gulfstream-g450" data-cls="heavy" data-make="gulfstream" data-pax="14" data-name="gulfstream g450" data-q="gulfstream g450 heavy jet">
+    <img class="acshot" src="/brand/aircraft/gulfstream-g450.jpg" alt="Gulfstream G450 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Gulfstream</span><span class="acname">G450</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,350 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-gulfstream-g450">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/gulfstream-g550" data-cls="heavy" data-make="gulfstream" data-pax="19" data-name="gulfstream g550" data-q="gulfstream g550 heavy jet">
+    <img class="acshot" src="/brand/aircraft/gulfstream-g550.jpg" alt="Gulfstream G550 on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Gulfstream</span><span class="acname">G550</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>6,750 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-gulfstream-g550">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/gulfstream-g600" data-cls="ultra" data-make="gulfstream" data-pax="19" data-name="gulfstream g600" data-q="gulfstream g600 ultra long range heavy jet">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Gulfstream</span><span class="acname">G600</span><span class="accls">Ultra long range heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>6,500 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-gulfstream-g600">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/gulfstream-giv" data-cls="heavy" data-make="gulfstream" data-pax="14" data-name="gulfstream giv" data-q="gulfstream giv heavy jet">
+    <img class="acshot" src="/brand/aircraft/gulfstream-giv.jpg" alt="Gulfstream GIV on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Gulfstream</span><span class="acname">GIV</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,200 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-gulfstream-giv">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/gulfstream-giv-sp" data-cls="heavy" data-make="gulfstream" data-pax="14" data-name="gulfstream giv-sp" data-q="gulfstream giv-sp heavy jet">
+    <img class="acshot" src="/brand/aircraft/gulfstream-giv-sp.jpg" alt="Gulfstream GIV-SP on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Gulfstream</span><span class="acname">GIV-SP</span><span class="accls">Heavy jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,166 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-gulfstream-giv-sp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/gulfstream-v" data-cls="other" data-make="gulfstream" data-pax="16" data-name="gulfstream v" data-q="gulfstream v ultra-long-range jet">
+    <img class="acshot" src="/brand/aircraft/gulfstream-v.jpg" alt="Gulfstream V on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Gulfstream</span><span class="acname">V</span><span class="accls">Ultra-long-range jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>6,675 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-gulfstream-v">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/hawker-800xp" data-cls="midsize" data-make="hawker" data-pax="8" data-name="hawker 800xp" data-q="hawker 800xp midsize jet">
+    <img class="acshot" src="/brand/aircraft/hawker-800xp.jpg" alt="Hawker 800XP on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Hawker</span><span class="acname">800XP</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,550 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-hawker-800xp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/hawker-850xp" data-cls="midsize" data-make="hawker" data-pax="13" data-name="hawker 850xp" data-q="hawker 850xp midsize jet">
+    <img class="acshot" src="/brand/aircraft/hawker-850xp.jpg" alt="Hawker 850XP on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Hawker</span><span class="acname">850XP</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 13</b></span><span class="acfact"><small>Range</small><b>2,710 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-hawker-850xp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/hawker-900xp" data-cls="midsize" data-make="hawker" data-pax="8" data-name="hawker 900xp" data-q="hawker 900xp midsize jet">
+    <img class="acshot" src="/brand/aircraft/hawker-900xp.jpg" alt="Hawker 900XP on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Hawker</span><span class="acname">900XP</span><span class="accls">Midsize jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,930 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-hawker-900xp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/nextant-400xt" data-cls="light" data-make="nextant" data-pax="9" data-name="nextant 400xt" data-q="nextant 400xt light jet">
+    <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Nextant</span><span class="acname">400XT</span><span class="accls">Light jet</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,160 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-nextant-400xt">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/pilatus-pc-12-ng" data-cls="turboprop" data-make="pilatus" data-pax="7" data-name="pilatus pc-12 ng" data-q="pilatus pc-12 ng single engine turboprop">
+    <img class="acshot" src="/brand/aircraft/pilatus-pc-12-ng.jpg" alt="Pilatus PC-12 NG on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Pilatus</span><span class="acname">PC-12 NG</span><span class="accls">Single engine turboprop</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,800 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-pilatus-pc-12-ng">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+  <a class="accard" href="/aircraft/pilatus-pc-12-ngx" data-cls="turboprop" data-make="pilatus" data-pax="7" data-name="pilatus pc-12 ngx" data-q="pilatus pc-12 ngx single engine turboprop">
+    <img class="acshot" src="/brand/aircraft/pilatus-pc-12-ngx.jpg" alt="Pilatus PC-12 NGX on an apron" width="1600" height="756" loading="lazy" decoding="async">
+    <span class="acbody">
+      <span class="acmake">Pilatus</span><span class="acname">PC-12 NGX</span><span class="accls">Single engine turboprop</span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,803 nm</b></span></span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-pilatus-pc-12-ngx">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
+  </a>
+</div>
+
+<div class="acempty" id="acempty" hidden>No aircraft match that. <button type="button" id="acreset">Clear the filters</button></div>
 
 <h2>Why the type matters</h2>
 <p>An empty leg is a repositioning flight, so you are taking the aircraft the operator already has moving. That means the cabin, the range and the runway it can use are fixed before you book. A turboprop reaches a short regional strip a jet cannot; a heavy jet gives you thirteen seats for close to midsize money when it happens to be flying your way. Picking by type is the fastest way to filter a list like this.</p>
@@ -609,6 +1048,72 @@ footer a{color:rgba(255,255,255,.85)}
   var KEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
   var KEYS={"beechjet-400a": [["beechcraft beechjet 400a", "beechjet 400a", "beechcraft beechjet 400"], ["hawker", "nextant"]], "challenger-300": [["bombardier challenger 300", "challenger 300", "bombardier challenger 300 super mid size jet"], ["350", "3500"]], "challenger-350": [["bombardier challenger 350", "challenger 350", "bombardier challenger 350 super mid size jet"], ["3500"]], "challenger-3500": [["bombardier challenger 3500", "challenger 3500"], []], "challenger-604": [["bombardier challenger 604", "challenger 604", "bombardier challenger 604 heavy jet"], ["605"]], "challenger-605": [["bombardier challenger 605", "challenger 605", "bombardier challenger 605 heavy jet"], []], "challenger-650": [["bombardier challenger 650", "bombardier challenger 650 heavy jet"], []], "citation-bravo": [["cessna citation bravo", "citation bravo"], []], "citation-cj2": [["cessna c25a cj2+", "cessna citation cj2+", "cessna cj2+", "citation cj2", "citation cj2+"], []], "citation-cj3": [["citation cj3", "cessna citation cj3", "citation cj3+", "cessna citation cj3+"], []], "citation-cj4": [["citation cj4", "cessna citation cj4"], ["gen 2", "gen2"]], "citation-cj4-gen2": [["cessna citation cj4 gen 2"], []], "citation-excel": [["cessna citation excel", "citation excel", "cessna citation excel mid size jet"], ["xls"]], "citation-latitude": [["cessna citation latitude", "citation latitude", "citation latitiude", "citation lattitude"], []], "citation-longitude": [["cessna citation longitude", "citation longitude"], []], "citation-m2": [["cessna citation m2", "citation m2", "m2"], []], "citation-mustang": [["cessna c510 citation mustang", "cessna citation mustang", "citation mustang"], []], "citation-sovereign": [["cessna c680 citation sovereign", "cessna citation sovereign", "cessna citation sovereign+", "citation sovereign", "citation sovereign+"], []], "citation-ultra": [["cessna citation ultra", "cessna citation ultra light jet", "citation ultra"], []], "citation-v": [["cessna citation v"], ["vii", "ultra", "encore"]], "citation-x": [["cessna citation x", "citation x"], ["xls", "xl"]], "citation-xls": [["cessna c560 citation xls - xls+", "cessna citation xls", "cessna citation xls mid size jet", "cessna citation xls+", "cessna citation xl", "citation xls", "citation xls+", "citation xls gen 2"], []], "erj-135": [["embraer erj-135", "embraer erj 135"], []], "falcon-2000": [["dassault falcon 2000", "dassault falcon 2000-ex.", "dassault falcon 2000ex", "dassault falcon 2000ex easy", "dassault falcon 2000lx", "dassault falcon 2000lx heavy jet", "dassault falcon 2000lxs", "dassault falcon 2000lxs heavy jet", "falcon 2000lx"], []], "falcon-7x": [["dassault falcon 7x", "falcon 7x"], []], "falcon-900ex": [["dassault falcon 900-ex.", "dassault falcon 900c", "dassault falcon 900dx", "dassault falcon 900ex", "dassault falcon 900ex easy"], []], "global-5000": [["bombardier global 5000", "global 5000", "bombardier global 5000 ultra long range jet"], ["5500"]], "global-6000": [["bombardier global 6000", "global 6000", "global 600"], ["6500"]], "gulfstream-g200": [["gulfstream g200", "gulfstream 200", "gulfstream g-200"], []], "gulfstream-g280": [["gulfstream g280", "gulfstream 280", "gulfstream g-280"], []], "gulfstream-g450": [["gulfstream g450"], []], "gulfstream-g550": [["gulfstream g550"], []], "gulfstream-g600": [["gulfstream g600(gvii)"], []], "gulfstream-giv": [["g-iv", "gulfstream g-iv", "giv (heavy jet)"], ["ivsp", "iv-sp", "iv sp"]], "gulfstream-giv-sp": [["gulfstream g-ivsp", "gulfstream giv-sp", "gulfstream g iv sp"], []], "gulfstream-v": [["g-v", "gulfstream g v", "gulfstream g-v", "gv (ulr)"], []], "hawker-400xp": [["beechcraft hawker 400xp", "hawker 400xp", "beechcraft hawker 400xpr"], ["beechjet", "nextant"]], "hawker-800xp": [["beechcraft hawker 800xp", "hawker 800xp", "beechcraft hawker 800xpi", "hawker 800xpi"], ["850", "900"]], "hawker-850xp": [["beechcraft hawker 850xp", "hawker 850xp"], []], "hawker-900xp": [["beechcraft hawker 900xp", "hawker 900xp"], []], "king-air-200": [["be20", "beechcraft king air b200", "king air b-200", "king air b200"], ["250", "260", "350"]], "king-air-260": [["beechcraft king air 260", "king air 260"], []], "learjet-40xr": [["bombardier lear 40xr", "bombardier learjet 40xr", "learjet 40", "learjet 40xr"], ["45", "60", "75"]], "learjet-45xr": [["bombardier lear 45", "bombardier learjet 45", "bombardier learjet 45xr", "lear jet 45xr", "learjet 45", "learjet 45xr", "learjet 45xr, light jet"], []], "learjet-60xr": [["bombardier lear 60", "bombardier learjet 60", "bombardier learjet 60xr", "learjet 60", "learjet 60xr"], []], "learjet-75": [["bombardier lear 75", "bombardier learjet 75", "learjet 75"], []], "legacy-450": [["embraer e545 legacy 450", "embraer legacy 450"], []], "legacy-500": [["emb-550 legacy 500", "embraer e550 legacy 500", "embraer legacy 500"], []], "legacy-600": [["embraer legacy 600", "legacy 600"], ["650"]], "legacy-650": [["embraer legacy 650", "legacy 650"], []], "nextant-400xt": [["nextant 400xt", "nextant 400xti", "nextant xt"], []], "phenom-300": [["phenom 300", "embraer phenom 300", "phenom 300e", "embraer phenom 300e"], ["phenom 100"]], "pilatus-pc-12-ng": [["pilatus pc-12 ng", "pilatus pc 12 ng", "pilatus pc-12", "pilatus pc 12", "pilatus pc12", "pilatus pc-12 pro", "pilatus pc-12, light aircraft", "pilatus pc 12 ng turbo prop"], ["ngx"]], "pilatus-pc-12-ngx": [["pilatus pc-12 ngx"], []], "praetor-600": [["embraer praetor 600", "praetor 600"], ["500"]]};
   var today=new Date().toISOString().slice(0,10);
+  var grid=document.getElementById("acgrid");
+  var cards=grid?[].slice.call(grid.querySelectorAll(".accard")):[];
+  var counts={};
+
+  function label(c){ return c?(c+(c===1?" flight listed":" flights listed")):"none listed right now"; }
+
+  function apply(){
+    var q=(document.getElementById("acq").value||"").trim().toLowerCase();
+    var mk=document.getElementById("acmake").value;
+    var px=parseInt(document.getElementById("acpax").value,10)||0;
+    var cls=document.querySelector('.acpill[aria-pressed="true"]');
+    cls=cls?cls.getAttribute("data-cls"):"all";
+    var shown=0;
+    for(var i=0;i<cards.length;i++){
+      var el=cards[i], ok=true;
+      if(q && el.getAttribute("data-q").indexOf(q)===-1) ok=false;
+      if(ok && mk && el.getAttribute("data-make")!==mk) ok=false;
+      if(ok && px && (parseInt(el.getAttribute("data-pax"),10)||0)<px) ok=false;
+      if(ok && cls!=="all" && el.getAttribute("data-cls")!==cls) ok=false;
+      el.hidden=!ok;
+      if(ok) shown++;
+    }
+    document.getElementById("acshowing").textContent =
+      shown===cards.length ? (cards.length+" aircraft types") : (shown+" of "+cards.length+" aircraft types");
+    document.getElementById("acempty").hidden = shown>0;
+  }
+
+  function sort(){
+    var how=document.getElementById("acsort").value;
+    var list=cards.slice();
+    list.sort(function(a,b){
+      if(how==="flights"){
+        var ca=counts[a.id]||0, cb=counts[b.id]||0;
+        if(cb!==ca) return cb-ca;
+      }
+      if(how==="pax"){
+        var pa=parseInt(a.getAttribute("data-pax"),10)||0, pb=parseInt(b.getAttribute("data-pax"),10)||0;
+        if(pb!==pa) return pb-pa;
+      }
+      return a.getAttribute("data-name")<b.getAttribute("data-name")?-1:1;
+    });
+    for(var i=0;i<list.length;i++) grid.appendChild(list[i]);
+  }
+
+  for(var i=0;i<cards.length;i++) cards[i].id="c-"+cards[i].getAttribute("href").split("/").pop();
+
+  document.getElementById("acq").addEventListener("input",apply);
+  document.getElementById("acmake").addEventListener("change",apply);
+  document.getElementById("acpax").addEventListener("change",apply);
+  document.getElementById("acsort").addEventListener("change",sort);
+  document.getElementById("acpills").addEventListener("click",function(e){
+    var b=e.target.closest?e.target.closest(".acpill"):null;
+    if(!b) return;
+    var all=this.querySelectorAll(".acpill");
+    for(var j=0;j<all.length;j++) all[j].setAttribute("aria-pressed", all[j]===b?"true":"false");
+    apply();
+  });
+  document.getElementById("acreset").addEventListener("click",function(){
+    document.getElementById("acq").value="";
+    document.getElementById("acmake").value="";
+    document.getElementById("acpax").value="0";
+    var all=document.querySelectorAll(".acpill");
+    for(var j=0;j<all.length;j++) all[j].setAttribute("aria-pressed", all[j].getAttribute("data-cls")==="all"?"true":"false");
+    apply();
+  });
+
   /* PostgREST returns at most 1,000 rows per call; read in pages. */
   var H={apikey:KEY,Authorization:"Bearer "+KEY};
   function page(off,acc){ return fetch(BASE+"/rest/v1/empty_legs?select=aircraft_type,departure_date&departure_date=gte."+today+"&limit=1000&offset="+off,{headers:H})
@@ -625,9 +1130,11 @@ footer a{color:rgba(255,255,255,.85)}
          if(bad) continue;
          for(j=0;j<ks.length;j++){if(v.indexOf(ks[j])!==-1){c++;break;}}
        }
+       counts["c-"+slug]=c;
        var el=document.getElementById("n-"+slug);
-       if(el)el.textContent=c?(c+(c===1?" flight listed":" flights listed")):"none listed right now";
+       if(el)el.textContent=label(c);
      }
+     if(document.getElementById("acsort").value!=="name") sort();
    })
    .catch(function(){});
 })();
