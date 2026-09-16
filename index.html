@@ -2859,10 +2859,16 @@ header.elnav .eln-reg { margin: 0; }
   function city(s){ return String(s||'').split(',')[0].trim(); }
   function load(cb){
     if (ALLROWS) { cb(ALLROWS); return; }
-    fetch(BASE + '/rest/v1/empty_legs?select=from_airport,to_airport&limit=2000', { headers: HEAD })
-      .then(function(r){ return r.ok ? r.json() : []; })
-      .then(function(j){ ALLROWS = j || []; cb(ALLROWS); })
-      .catch(function(){ cb([]); });
+    /* PostgREST answers with at most 1000 rows, so the chip counts read the
+       board a page at a time (16 Sep 2026). */
+    (function _p(off, acc){
+      return fetch(BASE + '/rest/v1/empty_legs?select=from_airport,to_airport&order=departure_date.asc,id.asc&limit=1000&offset=' + off, { headers: HEAD })
+        .then(function(r){ return r.ok ? r.json() : []; })
+        .then(function(rows){ acc = acc.concat(rows);
+          if (rows.length < 1000 || acc.length >= 20000) { ALLROWS = acc; cb(ALLROWS); return; }
+          return _p(off + 1000, acc); })
+        .catch(function(){ cb([]); });
+    })(0, []);
   }
   /* 1. City chips show how many flights exist in the whole list */
   function fixPills(rows){

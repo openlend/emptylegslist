@@ -165,9 +165,6 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
-<!-- siteld.py -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Guides","item":"https://emptylegslist.com/guides/"},{"@type":"ListItem","position":3,"name":"How much does an empty leg private jet cost?","item":"https://emptylegslist.com/guides/how-much-does-an-empty-leg-private-jet-cost"}]}]}</script>
-<!-- /siteld.py -->
 </head>
 <body>
 <div id="elnote"><p>To see all flights you need to be signed in. It is free today and takes 1 minute. <a href="/account">Sign in</a> or <a href="/#gate">create a free account</a>.</p></div>
@@ -480,7 +477,7 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Guide</p>
 <h1>How much does an empty leg private jet cost?</h1>
 <p class="lede">There are plenty of articles answering this question, so normally there would be no reason to write another one. The difference here is that we are not guessing. We record every empty leg the charter operators publish, thousands of flights a month, which means we can finally show what these flights actually cost: by aircraft type, by route, and by seat.</p>
-<p class="upd">Updated 3 September 2026. Figures read on 3 September 2026 from our own board. Sample sizes are on every number.</p>
+<p class="upd">Updated 16 September 2026. Figures read on 3 September 2026 from our own board. Sample sizes are on every number.</p>
 
 <figure class="gfig">
   <img src="/brand/guides/empty-leg-private-jet-cost.jpg" width="1900" height="820" alt="Rear fuselage, tail and engine of a business jet parked on the apron" loading="eager">
@@ -647,10 +644,20 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   }
 
   var today = new Date().toISOString().slice(0,10);
-  fetch(BASE + "/rest/v1/empty_legs?select=from_city,to_city,from_airport,to_airport,aircraft_type,seats,departure_date,price_note"
-      + "&price_note=not.is.null&seats=not.is.null&departure_date=gte." + today + "&limit=2000",
-      { headers: { apikey: KEY, Authorization: "Bearer " + KEY } })
-    .then(function(r){ return r.ok ? r.json() : []; })
+  /* PostgREST answers with at most 1000 rows whatever limit is asked for, so
+     this reads the priced legs a page at a time. It asked for 2000 in one go
+     until 16 September 2026, which would have silently dropped every priced
+     leg past the first thousand. */
+  function _priced(off, acc){
+    return fetch(BASE + "/rest/v1/empty_legs?select=from_city,to_city,from_airport,to_airport,aircraft_type,seats,departure_date,price_note"
+        + "&price_note=not.is.null&seats=not.is.null&departure_date=gte." + today
+        + "&order=departure_date.asc,id.asc&limit=1000&offset=" + off,
+        { headers: { apikey: KEY, Authorization: "Bearer " + KEY } })
+      .then(function(r){ return r.ok ? r.json() : []; })
+      .then(function(rows){ acc = acc.concat(rows);
+        return (rows.length < 1000 || acc.length >= 20000) ? acc : _priced(off + 1000, acc); });
+  }
+  _priced(0, [])
     .then(function(d){
       (d || []).forEach(function(row){
         var m = /^([A-Z]{3})/.exec(row.price_note || "");
@@ -673,7 +680,7 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 {"@context":"https://schema.org","@type":"Article",
  "headline":"How much does an empty leg private jet cost?",
  "description":"The operator's own price divided by the seats they listed, across 219 empty leg flights recorded on 3 September 2026.",
- "datePublished":"2026-09-03","dateModified":"2026-09-03",
+ "datePublished":"2026-09-03","dateModified":"2026-09-16",
  "mainEntityOfPage":{"@type":"WebPage","@id":"https://emptylegslist.com/guides/how-much-does-an-empty-leg-private-jet-cost"},
  "author":{"@type":"Organization","name":"Empty Leg List"},
  "publisher":{"@type":"Organization","name":"Empty Leg List","url":"https://emptylegslist.com/"},
