@@ -70,9 +70,6 @@
   }
 
   function draw(host, city, origin, partners) {
-    // A previous failed attempt may have hidden this slot. Drawing into it
-    // means it works, so it is shown whatever happened before.
-    host.style.display = "";
     var wrap = document.createElement("div");
     wrap.className = "cm-wrap";
     host.appendChild(wrap);
@@ -152,20 +149,7 @@
 
         if (!jobs.length) return;
         load(function (err) {
-          if (err) {
-            /* Hide only a slot that has nothing in it. start() calls boot()
-               every 900 ms until a map is drawn, so load() is called more than
-               once, and a later call can report an error after an earlier one
-               has already succeeded. That is what happened on the live city
-               pages: the map was built correctly, eighteen corridors and all,
-               inside a div that a second, failing attempt had already set to
-               display:none. Every city page has been shipping an invisible map
-               since. Found 16 September 2026. */
-            jobs.forEach(function (j) {
-              if (!j.host.querySelector(".cm-wrap")) j.host.style.display = "none";
-            });
-            return;
-          }
+          if (err) { jobs.forEach(function (j) { j.host.style.display = "none"; }); return; }
           jobs.forEach(function (j) { draw(j.host, j.city, j.origin, j.partners); });
         });
       })
