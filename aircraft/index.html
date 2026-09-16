@@ -68,9 +68,14 @@ h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(
 .acmake{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 .acname{display:block;font-family:"Playfair Display",Georgia,serif;font-size:20px;line-height:1.2;color:var(--navy);margin:3px 0 3px}
 .accls{display:block;font-size:12.5px;color:var(--mute)}
-.acfacts{display:flex;gap:26px;margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}
+.wrap{max-width:1380px;padding-left:24px;padding-right:24px}
+.wrap > h2,.wrap > p{max-width:760px}
+.acfacts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}
 .acfact small{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:2px}
 .acfact b{font-size:14px;font-weight:600;color:var(--ink)}
+.acroute{display:block;margin-top:11px;font-size:12.5px;color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.acroute b{color:var(--ink);font-weight:600}
+.acnote{font-size:12.5px;color:var(--mute);margin:18px 0 0;max-width:760px}
 .acfoot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;padding:12px 18px;border-top:1px solid var(--line);font-size:13px}
 .acn{font-weight:600;color:var(--navy);min-height:19px}
 .acgo{color:var(--gold);font-weight:600;white-space:nowrap}
@@ -364,7 +369,7 @@ footer a{color:rgba(255,255,255,.85)}
       <a class="eln-link" href="/guides/">Guides</a>
       <a class="eln-link" href="/for-operators">For operators</a>
       <a class="eln-link" href="/account">My account</a>
-      <a class="eln-cta" href="/#alerts">Get empty leg alerts</a>
+      <a class="eln-cta" href="/#alerts">Alerts</a>
     </nav>
 
     <button class="eln-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="eln-drawer">
@@ -490,7 +495,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/beechjet-400a.jpg" alt="Beechcraft Beechjet 400A on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Beechcraft</span><span class="acname">Beechjet 400A</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,519 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,519 nm</b></span></span><span class="acroute">Most listed <b>Opa Locka to Tampa</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-beechjet-400a">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -498,7 +503,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/hawker-400xp.jpg" alt="Beechcraft Hawker 400XP on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Beechcraft</span><span class="acname">Hawker 400XP</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,519 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,519 nm</b></span></span><span class="acroute">Most listed <b>Pittsburgh to Cape Cod Gateway</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-hawker-400xp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -506,7 +511,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/king-air-200.jpg" alt="Beechcraft King Air 200 and B200 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Beechcraft</span><span class="acname">King Air 200 and B200</span><span class="accls">Twin turboprop</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,580 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,580 nm</b></span></span><span class="acroute">Most listed <b>Madrid to Munster</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-king-air-200">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -514,7 +519,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Beechcraft</span><span class="acname">King Air 260</span><span class="accls">Twin turboprop</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>1,720 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>1,720 nm</b></span></span><span class="acroute">Most listed <b>Hoedspruit to Johannesburg</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-king-air-260">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -522,7 +527,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/challenger-300.jpg" alt="Bombardier Challenger 300 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Challenger 300</span><span class="accls">Super midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,340 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,340 nm</b></span><span class="acfact" title="Median of 22 listings that published both a price and a flight time"><small>Per hour</small><b>CAD 8,667</b></span></span><span class="acroute">Most listed <b>Calgary to Regina</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-challenger-300">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -530,7 +535,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/challenger-350.jpg" alt="Bombardier Challenger 350 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Challenger 350</span><span class="accls">Super midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,200 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,200 nm</b></span></span><span class="acroute">Most listed <b>Cape Town to Johannesburg</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-challenger-350">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -538,7 +543,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/challenger-3500.jpg" alt="Bombardier Challenger 3500 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Challenger 3500</span><span class="accls">Super midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,400 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,400 nm</b></span></span><span class="acroute">Most listed <b>Berlin to Nice</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-challenger-3500">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -546,7 +551,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/challenger-604.jpg" alt="Bombardier Challenger 604 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Challenger 604</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>4,119 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>4,119 nm</b></span><span class="acfact" title="Median of 10 listings that published both a price and a flight time"><small>Per hour</small><b>CAD 9,900</b></span></span><span class="acroute">Most listed <b>Quad City to Lehigh Valley</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-challenger-604">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -554,7 +559,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/challenger-605.jpg" alt="Bombardier Challenger 605 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Challenger 605</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>4,123 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>4,123 nm</b></span></span><span class="acroute">Most listed <b>Ottawa to Toronto</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-challenger-605">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -562,7 +567,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/challenger-650.jpg" alt="Bombardier Challenger 650 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Challenger 650</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,000 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,000 nm</b></span></span><span class="acroute">Most listed <b>Montreal to Toronto</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-challenger-650">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -570,7 +575,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/global-5000.jpg" alt="Bombardier Global 5000 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Global 5000</span><span class="accls">Ultra long range heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>5,200 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>5,200 nm</b></span></span><span class="acroute">Most listed <b>Seattle to Regina</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-global-5000">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -578,7 +583,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/global-6000.jpg" alt="Bombardier Global 6000 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Global 6000</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 17</b></span><span class="acfact"><small>Range</small><b>6,000 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 17</b></span><span class="acfact"><small>Range</small><b>6,000 nm</b></span></span><span class="acroute">Most listed <b>Aspen to Chicago</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-global-6000">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -586,7 +591,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/learjet-40xr.jpg" alt="Bombardier Learjet 40XR on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Learjet 40XR</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,960 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,960 nm</b></span></span><span class="acroute">Most listed <b>Atlanta to Cleveland</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-learjet-40xr">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -594,7 +599,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/learjet-45xr.jpg" alt="Bombardier Learjet 45XR on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Learjet 45XR</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,301 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,301 nm</b></span><span class="acfact" title="Median of 17 listings that published both a price and a flight time"><small>Per hour</small><b>CAD 6,875</b></span></span><span class="acroute">Most listed <b>Belfast to London Biggin Hill</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-learjet-45xr">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -602,7 +607,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/learjet-60xr.jpg" alt="Bombardier Learjet 60XR on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Learjet 60XR</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,398 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,398 nm</b></span></span><span class="acroute">Most listed <b>Las Vegas to Van Nuys</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-learjet-60xr">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -610,7 +615,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Bombardier</span><span class="acname">Learjet 75</span><span class="accls">Light to midsize jet, classified differently by different sources</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,040 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,040 nm</b></span></span><span class="acroute">Most listed <b>Austin Bergstrom to Spirit Of St Louis</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-learjet-75">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -618,7 +623,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-bravo.jpg" alt="Cessna Citation Bravo on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation Bravo</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,720 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,720 nm</b></span></span><span class="acroute">Most listed <b>Penn Yan to Alpena</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-bravo">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -626,7 +631,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-cj2.jpg" alt="Cessna Citation CJ2+ on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation CJ2+</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,626 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 6</b></span><span class="acfact"><small>Range</small><b>1,626 nm</b></span></span><span class="acroute">Most listed <b>Antwerp to Toulon</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-cj2">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -634,7 +639,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-cj3.jpg" alt="Cessna Citation CJ3 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation CJ3</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,040 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,040 nm</b></span></span><span class="acroute">Most listed <b>Las Vegas to Los Angeles</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-cj3">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -642,7 +647,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-cj4.jpg" alt="Cessna Citation CJ4 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation CJ4</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>2,165 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>2,165 nm</b></span></span><span class="acroute">Most listed <b>Milwaukee to Eau Claire</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-cj4">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -650,7 +655,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-cj4-gen2.jpg" alt="Cessna Citation CJ4 Gen2 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation CJ4 Gen2</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,165 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,165 nm</b></span><span class="acfact" title="Median of 80 listings that published both a price and a flight time"><small>Per hour</small><b>EUR 3,439</b></span></span><span class="acroute">Most listed <b>Cannes to Wevelgem</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-cj4-gen2">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -658,7 +663,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-excel.jpg" alt="Cessna Citation Excel on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation Excel</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,850 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,850 nm</b></span><span class="acfact" title="Median of 15 listings that published both a price and a flight time"><small>Per hour</small><b>USD 5,000</b></span></span><span class="acroute">Most listed <b>Calgary to Regina</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-excel">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -666,7 +671,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-latitude.jpg" alt="Cessna Citation Latitude on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation Latitude</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,700 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,700 nm</b></span></span><span class="acroute">Most listed <b>London Luton to Dublin</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-latitude">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -674,7 +679,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation Longitude</span><span class="accls">Super-midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>3,500 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>3,500 nm</b></span></span><span class="acroute">Most listed <b>Las Vegas to Aspen</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-longitude">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -682,7 +687,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-m2.jpg" alt="Cessna Citation M2 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation M2</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,550 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,550 nm</b></span><span class="acfact" title="Median of 13 listings that published both a price and a flight time"><small>Per hour</small><b>EUR 3,656</b></span></span><span class="acroute">Most listed <b>Addison to South Arkansas</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-m2">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -690,7 +695,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-mustang.jpg" alt="Cessna Citation Mustang on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation Mustang</span><span class="accls">Very light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 4</b></span><span class="acfact"><small>Range</small><b>1,200 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 4</b></span><span class="acfact"><small>Range</small><b>1,200 nm</b></span></span><span class="acroute">Most listed <b>Bydgoszcz to Antwerp</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-mustang">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -698,7 +703,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-sovereign.jpg" alt="Cessna Citation Sovereign on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation Sovereign</span><span class="accls">Super midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>3,010 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>3,010 nm</b></span></span><span class="acroute">Most listed <b>Las Vegas to Aspen</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-sovereign">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -706,7 +711,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-ultra.jpg" alt="Cessna Citation Ultra on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation Ultra</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,651 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>1,651 nm</b></span><span class="acfact" title="Median of 86 listings that published both a price and a flight time"><small>Per hour</small><b>USD 3,250</b></span></span><span class="acroute">Most listed <b>Sault Ste Marie to Toronto</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-ultra">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -714,7 +719,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-v.jpg" alt="Cessna Citation V on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation V</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,644 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,644 nm</b></span><span class="acfact" title="Median of 27 listings that published both a price and a flight time"><small>Per hour</small><b>USD 3,286</b></span></span><span class="acroute">Most listed <b>Johannesburg to Pemba</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-v">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -722,7 +727,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-x.jpg" alt="Cessna Citation X on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation X</span><span class="accls">Super midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>3,125 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>3,125 nm</b></span></span><span class="acroute">Most listed <b>Camarillo to San Jose</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-x">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -730,7 +735,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/citation-xls.jpg" alt="Cessna Citation XLS and XLS+ on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Cessna</span><span class="acname">Citation XLS and XLS+</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,100 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,100 nm</b></span><span class="acfact" title="Median of 15 listings that published both a price and a flight time"><small>Per hour</small><b>CAD 7,545</b></span></span><span class="acroute">Most listed <b>Paris to Bolzano</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-citation-xls">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -738,7 +743,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/falcon-2000.jpg" alt="Dassault Falcon 2000 and 2000LX on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Dassault</span><span class="acname">Falcon 2000 and 2000LX</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>4,145 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>4,145 nm</b></span></span><span class="acroute">Most listed <b>Vancouver to Calgary</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-falcon-2000">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -746,7 +751,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/falcon-7x.jpg" alt="Dassault Falcon 7X on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Dassault</span><span class="acname">Falcon 7X</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>5,950 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>5,950 nm</b></span><span class="acfact" title="Median of 13 listings that published both a price and a flight time"><small>Per hour</small><b>EUR 14,829</b></span></span><span class="acroute">Most listed <b>Brussels to Paris</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-falcon-7x">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -754,7 +759,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/falcon-900ex.jpg" alt="Dassault Falcon 900EX on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Dassault</span><span class="acname">Falcon 900EX</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,725 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,725 nm</b></span></span><span class="acroute">Most listed <b>Johannesburg to Cape Town</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-falcon-900ex">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -762,7 +767,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Embraer</span><span class="acname">ERJ-135</span><span class="accls">Regional jet in executive or shuttle layout</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>2,034 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>2,034 nm</b></span></span><span class="acroute">Most listed <b>Antwerp to Ibiza</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-erj-135">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -770,7 +775,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Embraer</span><span class="acname">Legacy 450</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,904 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,904 nm</b></span></span><span class="acroute">Most listed <b>Athens to Rotterdam</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-legacy-450">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -778,7 +783,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/legacy-500.jpg" alt="Embraer Legacy 500 (EMB-550) on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Embraer</span><span class="acname">Legacy 500 (EMB-550)</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>3,125 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>3,125 nm</b></span></span><span class="acroute">Most listed <b>Birmingham to London Oxford</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-legacy-500">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -786,7 +791,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/legacy-600.jpg" alt="Embraer Legacy 600 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Embraer</span><span class="acname">Legacy 600</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>3,400 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>3,400 nm</b></span><span class="acfact" title="Median of 15 listings that published both a price and a flight time"><small>Per hour</small><b>GBP 9,474</b></span></span><span class="acroute">Most listed <b>Alton to Teterboro</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-legacy-600">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -794,7 +799,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/legacy-650.jpg" alt="Embraer Legacy 650 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Embraer</span><span class="acname">Legacy 650</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>3,900 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>3,900 nm</b></span><span class="acfact" title="Median of 14 listings that published both a price and a flight time"><small>Per hour</small><b>EUR 7,177</b></span></span><span class="acroute">Most listed <b>London Stansted to London Luton</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-legacy-650">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -802,7 +807,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/phenom-300.jpg" alt="Embraer Phenom 300 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Embraer</span><span class="acname">Phenom 300</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,077 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>2,077 nm</b></span><span class="acfact" title="Median of 12 listings that published both a price and a flight time"><small>Per hour</small><b>USD 5,444</b></span></span><span class="acroute">Most listed <b>Chicago to Naples</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-phenom-300">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -810,7 +815,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/praetor-600.jpg" alt="Embraer Praetor 600 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Embraer</span><span class="acname">Praetor 600</span><span class="accls">Super midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,018 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 12</b></span><span class="acfact"><small>Range</small><b>4,018 nm</b></span><span class="acfact" title="Median of 45 listings that published both a price and a flight time"><small>Per hour</small><b>GBP 5,700</b></span></span><span class="acroute">Most listed <b>Larnaca to London</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-praetor-600">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -818,7 +823,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Gulfstream</span><span class="acname">G200</span><span class="accls">Super midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>3,530 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>3,530 nm</b></span><span class="acfact" title="Median of 11 listings that published both a price and a flight time"><small>Per hour</small><b>EUR 11,700</b></span></span><span class="acroute">Most listed <b>Cologne to Abuja</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-gulfstream-g200">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -826,7 +831,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Gulfstream</span><span class="acname">G280</span><span class="accls">Super midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,600 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 10</b></span><span class="acfact"><small>Range</small><b>3,600 nm</b></span></span><span class="acroute">Most listed <b>Witham to Long Island Mac Arthur</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-gulfstream-g280">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -834,7 +839,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/gulfstream-g450.jpg" alt="Gulfstream G450 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Gulfstream</span><span class="acname">G450</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,350 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,350 nm</b></span></span><span class="acroute">Most listed <b>Teterboro to Washington</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-gulfstream-g450">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -842,7 +847,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/gulfstream-g550.jpg" alt="Gulfstream G550 on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Gulfstream</span><span class="acname">G550</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>6,750 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>6,750 nm</b></span></span><span class="acroute">Most listed <b>Austin to Teterboro</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-gulfstream-g550">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -850,7 +855,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Gulfstream</span><span class="acname">G600</span><span class="accls">Ultra long range heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>6,500 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 19</b></span><span class="acfact"><small>Range</small><b>6,500 nm</b></span></span><span class="acroute">Most listed <b>Van Nuys to Las Vegas</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-gulfstream-g600">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -858,7 +863,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/gulfstream-giv.jpg" alt="Gulfstream GIV on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Gulfstream</span><span class="acname">GIV</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,200 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,200 nm</b></span></span><span class="acroute">Most listed <b>St. Pete Clearwater to Scottsdale</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-gulfstream-giv">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -866,7 +871,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/gulfstream-giv-sp.jpg" alt="Gulfstream GIV-SP on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Gulfstream</span><span class="acname">GIV-SP</span><span class="accls">Heavy jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,166 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 14</b></span><span class="acfact"><small>Range</small><b>4,166 nm</b></span></span><span class="acroute">Most listed <b>Bowling Green to Teterboro</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-gulfstream-giv-sp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -874,7 +879,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/gulfstream-v.jpg" alt="Gulfstream V on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Gulfstream</span><span class="acname">V</span><span class="accls">Ultra-long-range jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>6,675 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 16</b></span><span class="acfact"><small>Range</small><b>6,675 nm</b></span></span><span class="acroute">Most listed <b>Turks and Caicos to Fort Lauderdale</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-gulfstream-v">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -882,7 +887,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/hawker-800xp.jpg" alt="Hawker 800XP on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Hawker</span><span class="acname">800XP</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,550 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,550 nm</b></span></span><span class="acroute">Most listed <b>Athens to Tel Aviv</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-hawker-800xp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -890,7 +895,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/hawker-850xp.jpg" alt="Hawker 850XP on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Hawker</span><span class="acname">850XP</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 13</b></span><span class="acfact"><small>Range</small><b>2,710 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 13</b></span><span class="acfact"><small>Range</small><b>2,710 nm</b></span></span><span class="acroute">Most listed <b>Boise to Carlsbad</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-hawker-850xp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -898,7 +903,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/hawker-900xp.jpg" alt="Hawker 900XP on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Hawker</span><span class="acname">900XP</span><span class="accls">Midsize jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,930 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 8</b></span><span class="acfact"><small>Range</small><b>2,930 nm</b></span></span><span class="acroute">Most listed <b>Republic to Francis S Gabreski</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-hawker-900xp">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -906,7 +911,7 @@ footer a{color:rgba(255,255,255,.85)}
     <span class="acshot acnoshot"><svg viewBox="0 0 64 24" width="44" height="17" aria-hidden="true" focusable="false"><path fill="currentColor" d="M2 13.6l6.6.5 5.2 5.3h3.4l-2.7-5 9.7.8 3.9 3.7h2.6l-1.9-3.4 18.5 1.3c3.3.2 6.6-.3 9.7-1.5l4.7-1.8c1.4-.5 1.4-2.5 0-3l-4.7-1.8c-3.1-1.2-6.4-1.7-9.7-1.5L29.8 8.5l1.9-3.4h-2.6l-3.9 3.7-9.7.8 2.7-5h-3.4L9.6 9.9 3 10.4c-1 .1-1.8.9-1.8 1.9 0 .7.6 1.2 1.3 1.3z"/></svg></span>
     <span class="acbody">
       <span class="acmake">Nextant</span><span class="acname">400XT</span><span class="accls">Light jet</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,160 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 9</b></span><span class="acfact"><small>Range</small><b>2,160 nm</b></span></span><span class="acroute">Most listed <b>Opa Locka to Hammond</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-nextant-400xt">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -914,7 +919,7 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/pilatus-pc-12-ng.jpg" alt="Pilatus PC-12 NG on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Pilatus</span><span class="acname">PC-12 NG</span><span class="accls">Single engine turboprop</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,800 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,800 nm</b></span><span class="acfact" title="Median of 36 listings that published both a price and a flight time"><small>Per hour</small><b>USD 2,000</b></span></span><span class="acroute">Most listed <b>McNary to Boise</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-pilatus-pc-12-ng">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
@@ -922,13 +927,15 @@ footer a{color:rgba(255,255,255,.85)}
     <img class="acshot" src="/brand/aircraft/pilatus-pc-12-ngx.jpg" alt="Pilatus PC-12 NGX on an apron" width="1600" height="756" loading="lazy" decoding="async">
     <span class="acbody">
       <span class="acmake">Pilatus</span><span class="acname">PC-12 NGX</span><span class="accls">Single engine turboprop</span>
-      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,803 nm</b></span></span>
+      <span class="acfacts"><span class="acfact"><small>Passengers</small><b>up to 7</b></span><span class="acfact"><small>Range</small><b>1,803 nm</b></span><span class="acfact" title="Median of 10 listings that published both a price and a flight time"><small>Per hour</small><b>ZAR 38,700</b></span></span><span class="acroute">Most listed <b>Minden Tahoe to Boise</b></span>
     </span>
     <span class="acfoot"><span class="acn" id="n-pilatus-pc-12-ngx">&nbsp;</span><span class="acgo">View aircraft &rarr;</span></span>
   </a>
 </div>
 
 <div class="acempty" id="acempty" hidden>No aircraft match that. <button type="button" id="acreset">Clear the filters</button></div>
+
+<p class="acnote">Per hour is the middle of the prices operators published for that type, divided by the flight time they published, in the currency most of those listings used. Most listed is the city pair that has come up most often. Both read the whole record, not only today's board, and only types with at least ten priced listings show a price.</p>
 
 <h2>Why the type matters</h2>
 <p>An empty leg is a repositioning flight, so you are taking the aircraft the operator already has moving. That means the cabin, the range and the runway it can use are fixed before you book. A turboprop reaches a short regional strip a jet cannot; a heavy jet gives you thirteen seats for close to midsize money when it happens to be flying your way. Picking by type is the fastest way to filter a list like this.</p>
