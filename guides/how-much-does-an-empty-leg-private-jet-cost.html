@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How Much Does an Empty Leg Private Jet Cost? Prices per Flight and per Seat | Empty Leg List</title>
 <link rel="canonical" href="https://emptylegslist.com/guides/how-much-does-an-empty-leg-private-jet-cost">
-<meta name="description" content="Empty leg flight prices from 1,091 flights recorded on our own board, not estimates: the operator's price per flight, and what an empty seat on a private jet works out at. Median seat 622 euros, cheapest 433.">
+<meta name="description" content="Empty leg flight prices from our own board, not estimates: the operator's price per flight, and what an empty seat on a private jet works out at, recalculated from the live board every time the page is opened.">
 <meta property="og:title" content="How much does an empty leg private jet cost? | Empty Leg List">
-<meta property="og:description" content="Empty leg flight prices from 1,091 flights recorded on our own board, not estimates: the operator's price per flight, and what an empty seat on a private jet works out at. Median seat 622 euros, cheapest 433.">
+<meta property="og:description" content="Empty leg flight prices from our own board, not estimates: the operator's price per flight, and what an empty seat on a private jet works out at, recalculated from the live board every time the page is opened.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://emptylegslist.com/guides/how-much-does-an-empty-leg-private-jet-cost">
 <meta property="og:image" content="https://emptylegslist.com/brand/guides/empty-leg-private-jet-cost-og.jpg">
@@ -165,6 +165,7 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
+  <script src="/live-figures.js" defer></script>
 </head>
 <body>
 <div id="elnote"><p>To see all flights you need to be signed in. It is free today and takes 1 minute. <a href="/account">Sign in</a> or <a href="/#gate">create a free account</a>.</p></div>
@@ -478,7 +479,7 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <h1>How much does an empty leg private jet cost?</h1>
 <p class="lede">There are plenty of articles answering this question, so normally there would be no reason to write another one. The difference here is that we are not guessing. We record every empty leg the charter operators publish, thousands of flights a month, which means we can finally show what these flights actually cost: by aircraft type, by route, and by seat.</p>
 <div class="gby"><img src="/brand/sig/radu.jpg" width="52" height="52" alt="Radu Balas" loading="lazy" decoding="async"><div><div class="n">By <a href="https://emptylegslist.com/authors/radu-balas" rel="author">Radu Balas</a></div><div class="r">More than a decade in aviation. Founder of Empty Leg List and of The Flying Engineer, an aviation directory of more than 3,000 companies across 56 countries.</div></div></div>
-<p class="upd">Updated 16 September 2026. Figures read on 3 September 2026 from our own board. Sample sizes are on every number.</p>
+<p class="upd">Updated 16 September 2026. The headline figures are read from the live board as this page loads. Sample sizes are on every number.</p>
 
 <figure class="gfig">
   <img src="/brand/guides/empty-leg-private-jet-cost.jpg" width="1900" height="820" alt="Rear fuselage, tail and engine of a business jet parked on the apron" loading="eager">
@@ -486,16 +487,17 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 </figure>
 
 <div class="gstats">
-  <div><b>622</b><span>euros, the median seat, from 89 priced legs in euros</span></div>
-  <div><b>433</b><span>euros, the cheapest seat on the board today</span></div>
-  <div><b>243</b><span>of 1,091 upcoming legs carry a published price</span></div>
+  <div><b><span data-el="seat_eur_median">780</span></b><span>euros, the median seat across the legs priced in euros</span></div>
+  <div><b><span data-el="seat_eur_lowest">261</span></b><span>euros, the lowest seat on the board right now</span></div>
+  <div><b><span data-el="priced">721</span></b><span>of <span data-el="legs">2,264</span> upcoming legs carry a published price</span></div>
   <div><b>4.5</b><span>days, how long a leg lasts before it goes</span></div>
 </div>
 
 <h2>The short answer</h2>
 <p>We log a few thousand empty legs a month. In the thirty days to 3 September 2026 it was <b>3,052 new flights</b>, every one of them taken from the charter operator that flies it. We do not read brokers, so nothing here is somebody reselling another company's aircraft with a margin on top.</p>
-<p>Out of that flow, <b>1,091 flights were still upcoming</b> on 3 September, departing between that day and 20 September 2027. 243 of them carried a price the operator had published, and 219 carried both a price and a seat count. Those 219 are what the rest of this page is built on.</p>
-<p>Across the 89 priced in euros, the median empty leg costs <b>5,400 euros for the whole aircraft</b>. Divided by the seats the operator listed, that is <b>622 euros a seat</b>. The cheapest seat on the board today is <b>433 euros</b>: a Cessna Citation CJ4 Gen 2 from <a href="/empty-legs/toulon">Toulon</a> to Nancy on 5 September, nine seats, 3,900 euros for the aircraft.</p>
+<p>Out of that flow, <b><span data-el="legs">2,264</span> flights are upcoming right now</b>. <b><span data-el="priced">721</span></b> of them carry a price the operator has published, and those are what the per seat arithmetic below is built on. The rest say price on enquiry.</p>
+<p>Across the legs priced in euros, the median works out at <b><span data-el="seat_eur_median">780</span> euros a seat</b> once the operator's price for the whole aircraft is divided by the seats they listed. The lowest on the board right now is <b><span data-el="seat_eur_lowest">261</span> euros</b>.</p>
+<p>A worked example, from a flight we recorded in early September: a Cessna Citation CJ4 Gen 2 from <a href="/empty-legs/toulon">Toulon</a> to Nancy, nine seats, 3,900 euros for the aircraft. That is 433 euros each if all nine seats are taken, and 3,900 if you fly alone. The flight has long gone, which is the point of the next paragraph.</p>
 
 <div class="gpull">Six hundred euros is a business class fare to somewhere unremarkable. It is also, today, a seat on a Citation.</div>
 
@@ -517,11 +519,11 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <p>The pattern is the one you would expect. A light jet with nine seats puts the seat under 600 euros. A large cabin Falcon or Legacy, with more seats but a far higher block cost, lands somewhere over 1,200. What changes the answer is not the size of the cabin, it is how full you can make it.</p>
 
 <h2>Now the part nobody else prints</h2>
-<p>That 622 is a division, not a fare. The operator sells the aircraft, not the seat. If you fly alone on that Citation you pay 3,900 euros, and your seat cost 3,900 euros. The 433 only exists if nine of you get on.</p>
+<p>That median is a division, not a fare. The operator sells the aircraft, not the seat. In the example above, fly alone on that Citation and you pay 3,900 euros, so your seat cost 3,900 euros. The 433 exists only if nine of you get on.</p>
 <p>So the honest version of the headline is this: <b>an empty leg turns a private jet into something a group of eight or nine can split.</b> That is the whole trick, and it is why the maths only ever works for people travelling together.</p>
 <p>Two more things the number does not include. Operators quote the flight, and what sits on top of it, landing fees, handling, catering, sometimes a passenger tax, varies by airport and by operator. And an empty leg goes where the aircraft was already going, on the date it was already going, which is the price you actually pay for the discount.</p>
 
-<p class="gtip"><b>One thing to be careful about.</b> An empty leg is one way. There is no return, and there is no such thing as a return seat: the aircraft is repositioning, and where it goes next is the operator's business, not yours. Of the 1,091 flights on our board today, only 204 had anything at all listed going back the other way inside the following week, and even those are separate flights, often from a different operator, that can sell or vanish on their own. Plan the way back as a scheduled flight, or as a second empty leg you find later, and treat it as a bonus if the timing ever lines up.</p>
+<p class="gtip"><b>One thing to be careful about.</b> An empty leg is one way. There is no return, and there is no such thing as a return seat: the aircraft is repositioning, and where it goes next is the operator's business, not yours. On any given day only a small minority of the flights on our board have anything at all listed going back the other way inside the following week, and even those are separate flights, often from a different operator, that can sell or vanish on their own. Plan the way back as a scheduled flight, or as a second empty leg you find later, and treat it as a bonus if the timing ever lines up.</p>
 
 <figure class="gfig">
   <img src="/brand/guides/empty-leg-jet-cabin-interior.jpg" width="1600" height="900" alt="Leather seats facing each other in the cabin of a light business jet" loading="lazy">
@@ -529,7 +531,7 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 </figure>
 
 <h2>What we cannot tell you</h2>
-<p>Of the 1,091 upcoming legs, <b>848 carry no published price at all</b>. Their cards say price on enquiry, because that is what the operator published, and we would rather print that than invent a figure.</p>
+<p>Of the <span data-el="legs">2,264</span> upcoming legs, <b><span data-el="unpriced">1,543</span> carry no published price at all</b>. Their cards say price on enquiry, because that is what the operator published, and we would rather print that than invent a figure.</p>
 <p>So every number on this page describes the 22 percent of the board that is priced. Whether the unpriced 78 percent would be cheaper or dearer, we do not know, and anyone who tells you they do is guessing.</p>
 
 <h2>The cheapest seats on the board right now</h2>
@@ -558,19 +560,19 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 
 <h2>So is an empty leg worth it</h2>
 <p>If you are one person with a fixed date and a fixed destination, an empty leg is a bad tool and a scheduled airline is a better one.</p>
-<p>If you are six or eight people who can move a day either way, and you are looking at a route that already has traffic, the arithmetic on this page is real: today it is 433 euros a seat from Toulon, and 567 is the middle of the market on the aircraft type we see most.</p>
+<p>If you are six or eight people who can move a day either way, and you are looking at a route that already has traffic, the arithmetic on this page is real, and the figures above move with the board rather than with the date on this article.</p>
 <p style="margin-top:26px"><a class="btn" href="/">See what is flying today</a></p>
 
 <details class="gmeth">
 <summary>Where these figures come from</summary>
-<p>Every number on this page was read on 3 September 2026 from our own record of what charter operators published, not from an industry estimate. Prices are the operator's own figure for the whole aircraft, and per seat is that figure divided by the seat count the operator listed, across the 219 upcoming flights that carry both.</p>
+<p>Every headline number on this page is read from our own record of what charter operators published, as the page loads, not from an industry estimate and not from a snapshot taken on some earlier date. Prices are the operator's own figure for the whole aircraft, and per seat is that figure divided by the seat count the operator listed, across the upcoming flights that carry both.</p>
 <p>We use medians rather than averages, because a single 130,000 dollar Global would drag an average anywhere. The live table above reads the same listings as they stand right now. The written figures are fixed to the date at the top of the page, and when we rerun them they will be restated with a new date rather than quietly edited.</p>
 </details>
 
 <h2>Questions people ask</h2>
 <div class="gfaq">
 <h3>How much does an empty leg private jet cost?</h3>
-<p>Across the 89 upcoming empty legs priced in euros on our board on 3 September 2026, the median aircraft cost 5,400 euros and the median seat, that price divided by the seats the operator listed, was 622 euros. The cheapest was 433 euros a seat.</p>
+<p>The operator publishes one price for the whole aircraft, one way. Divide it by the seats they listed and you get the per seat figure. The live median and the lowest on the board right now are at the top of this guide, and they move as operators publish.</p>
 <h3>How much are empty leg flights compared with a normal charter?</h3>
 <p>We do not record what the same flight would cost as a full charter, so we cannot give a discount percentage. What we can say is the operator's own published figure: on our board the median priced empty leg in euros is 5,400 for the whole aircraft, one way, and in pounds it is 13,000.</p>
 <h3>Can you buy empty seats on a private jet?</h3>
@@ -578,9 +580,9 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <h3>Can I buy a single seat on an empty leg?</h3>
 <p>No. Operators sell the whole aircraft. The per seat figure is the listed price divided by the listed seat count, so it only holds if the cabin is full.</p>
 <h3>Do all empty legs show a price?</h3>
-<p>No. Of the 1,091 upcoming legs recorded on 3 September 2026, 243 carried a published price and 848 said price on enquiry.</p>
+<p>No. Most of the board says price on enquiry, because that is what the operator published. The live split between priced and on enquiry is at the top of this guide.</p>
 <h3>Can you book a return on an empty leg?</h3>
-<p>No. An empty leg is a one way repositioning flight and there is no return, nor any such thing as a return seat. Of the 1,091 upcoming legs recorded on 3 September 2026, only 204 had any flight listed in the opposite direction within the following week, and those are separate flights that can be sold or withdrawn on their own.</p>
+<p>No. An empty leg is one way and there is no such thing as a return seat. On any given day only a small minority of the board has anything at all listed going back the other way inside the following week, and those are separate flights that can be sold or withdrawn on their own.</p>
 <h3>How far in advance are empty legs published?</h3>
 <p>Across 3,928 legs with timestamps, the median appeared 8.7 days before departure and 1,780 of them appeared within the last week before the flight.</p>
 </div>
@@ -680,16 +682,16 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article",
  "headline":"How much does an empty leg private jet cost?",
- "description":"The operator's own price divided by the seats they listed, across 219 empty leg flights recorded on 3 September 2026.",
+ "description":"The operator's own price divided by the seats they listed, across every priced empty leg on our board.",
  "datePublished":"2026-09-03","dateModified":"2026-09-16",
  "mainEntityOfPage":{"@type":"WebPage","@id":"https://emptylegslist.com/guides/how-much-does-an-empty-leg-private-jet-cost"},
  "author":{"@type":"Person","name":"Radu Balas","url":"https://emptylegslist.com/authors/radu-balas","jobTitle":"Founder, Empty Leg List","sameAs":["https://www.linkedin.com/in/radubalas/","https://theflyingengineer.com/"]},
  "publisher":{"@type":"Organization","name":"Empty Leg List","url":"https://emptylegslist.com/"},
  "image":"https://emptylegslist.com/brand/guides/empty-leg-private-jet-cost-og.jpg",
- "isBasedOn":"Empty Leg List's own record of 1,091 upcoming empty leg flights, read 3 September 2026"}
+ "isBasedOn":"Empty Leg List's own continuous record of the empty legs charter operators publish, read live"}
 </script>
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does an empty leg private jet cost?", "acceptedAnswer": {"@type": "Answer", "text": "Across the 89 upcoming empty legs priced in euros on our board on 3 September 2026, the median aircraft cost 5,400 euros and the median seat, that price divided by the seats the operator listed, was 622 euros. The cheapest was 433 euros a seat."}}, {"@type": "Question", "name": "How much are empty leg flights compared with a normal charter?", "acceptedAnswer": {"@type": "Answer", "text": "We do not record what the same flight would cost as a full charter, so we cannot give a discount percentage. What we can say is the operator's own published figure: on our board the median priced empty leg in euros is 5,400 for the whole aircraft, one way, and in pounds it is 13,000."}}, {"@type": "Question", "name": "Can you buy empty seats on a private jet?", "acceptedAnswer": {"@type": "Answer", "text": "Not on an empty leg. The operator sells the whole aircraft, so an empty seat on a private jet is not sold on its own here. The per seat figures on this page are the listed price divided by the listed seats, which only holds if a group fills the cabin."}}, {"@type": "Question", "name": "Can I buy a single seat on an empty leg?", "acceptedAnswer": {"@type": "Answer", "text": "No. Operators sell the whole aircraft. The per seat figure is the listed price divided by the listed seat count, so it only holds if the cabin is full."}}, {"@type": "Question", "name": "Do all empty legs show a price?", "acceptedAnswer": {"@type": "Answer", "text": "No. Of the 1,091 upcoming legs recorded on 3 September 2026, 243 carried a published price and 848 said price on enquiry."}}, {"@type": "Question", "name": "Can you book a return on an empty leg?", "acceptedAnswer": {"@type": "Answer", "text": "No. An empty leg is a one way repositioning flight and there is no return, nor any such thing as a return seat. Of the 1,091 upcoming legs recorded on 3 September 2026, only 204 had any flight listed in the opposite direction within the following week, and those are separate flights that can be sold or withdrawn on their own."}}, {"@type": "Question", "name": "How far in advance are empty legs published?", "acceptedAnswer": {"@type": "Answer", "text": "Across 3,928 legs with timestamps, the median appeared 8.7 days before departure and 1,780 of them appeared within the last week before the flight."}}]}
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much does an empty leg private jet cost?", "acceptedAnswer": {"@type": "Answer", "text": "The operator publishes one price for the whole aircraft, one way. Divide it by the seats they listed and you get the per seat figure. The live median and the lowest on the board right now are at the top of this guide, and they move as operators publish."}}, {"@type": "Question", "name": "How much are empty leg flights compared with a normal charter?", "acceptedAnswer": {"@type": "Answer", "text": "We do not record what the same flight would cost as a full charter, so we cannot give a discount percentage. What we can say is the operator's own published figure: on our board the median priced empty leg in euros is 5,400 for the whole aircraft, one way, and in pounds it is 13,000."}}, {"@type": "Question", "name": "Can you buy empty seats on a private jet?", "acceptedAnswer": {"@type": "Answer", "text": "Not on an empty leg. The operator sells the whole aircraft, so an empty seat on a private jet is not sold on its own here. The per seat figures on this page are the listed price divided by the listed seats, which only holds if a group fills the cabin."}}, {"@type": "Question", "name": "Can I buy a single seat on an empty leg?", "acceptedAnswer": {"@type": "Answer", "text": "No. Operators sell the whole aircraft. The per seat figure is the listed price divided by the listed seat count, so it only holds if the cabin is full."}}, {"@type": "Question", "name": "Do all empty legs show a price?", "acceptedAnswer": {"@type": "Answer", "text": "No. Most of the board says price on enquiry, because that is what the operator published. The live split between priced and on enquiry is at the top of this guide."}}, {"@type": "Question", "name": "Can you book a return on an empty leg?", "acceptedAnswer": {"@type": "Answer", "text": "No. An empty leg is one way and there is no such thing as a return seat. On any given day only a small minority of the board has anything at all listed going back the other way inside the following week, and those are separate flights that can be sold or withdrawn on their own."}}, {"@type": "Question", "name": "How far in advance are empty legs published?", "acceptedAnswer": {"@type": "Answer", "text": "Across 3,928 legs with timestamps, the median appeared 8.7 days before departure and 1,780 of them appeared within the last week before the flight."}}]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
