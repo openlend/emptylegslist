@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Live map of empty leg flights | Empty Leg List</title>
+<title>Find an empty leg on the map | Empty Leg List</title>
 <link rel="canonical" href="https://emptylegslist.com/map">
-<meta name="description" content="Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.">
-<meta property="og:title" content="Live map of empty leg flights">
-<meta property="og:description" content="Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.">
+<meta name="description" content="Every empty leg private jet flight on the board, on a map and in a list side by side. Search a route, filter by date, aircraft and seats, and go straight to the operator.">
+<meta property="og:title" content="Find an empty leg on the map">
+<meta property="og:description" content="Every empty leg private jet flight on the board, on a map and in a list side by side. Search a route, filter by date, aircraft and seats, and go straight to the operator.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://emptylegslist.com/map">
 <meta property="og:image" content="https://emptylegslist.com/brand/og-default.jpg">
@@ -89,19 +89,110 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.map{max-width:1180px}
-#elmap{width:100%;height:min(72vh,720px);border-radius:14px;background:#08131f;box-shadow:0 1px 3px rgba(14,35,56,.07);margin:8px 0 10px}
-.leaflet-popup-content{font:14px/1.5 Raleway,sans-serif;color:#16222e;margin:12px 14px}
-.leaflet-popup-content b{color:#0D1F36}
-.leaflet-popup-content a{color:#0D1F36}
-.mapbar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:4px 0 10px}
-.mapbar .gcur{margin:0}
-.mapbar .cnt{font-size:13.5px;color:var(--mute);margin-left:auto}
-.mapwrap{position:relative}
-.maplegend{position:absolute;left:12px;bottom:12px;z-index:400;background:rgba(13,31,54,.82);color:#e8edf3;font-size:12px;line-height:1.7;padding:7px 11px;border-radius:9px;pointer-events:none}
-.maplegend i{display:inline-block;width:18px;height:0;border-top:2px solid #E8BE63;vertical-align:middle;margin-right:7px}
-.maplegend i.w{border-top:1px solid rgba(255,255,255,.75)}
-.maphint{font-size:12.5px;color:var(--mute);margin:2px 0 0}
+.wrap.mapx{max-width:1240px}
+.mx-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin:30px 0 18px}
+.mx-head h1{margin:0 0 6px}
+.mx-head .k{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+.mx-head .lede{margin:0;font-size:16px}
+.mx-alert{display:inline-flex;align-items:center;gap:9px;flex:0 0 auto;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:11px 18px;font-size:14px;font-weight:600;color:var(--navy);text-decoration:none}
+.mx-alert:hover{border-color:var(--gold)}
+.mx-alert svg{color:var(--gold)}
+
+.mx-panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 16px;
+  box-shadow:0 1px 3px rgba(14,35,56,.06)}
+.mx-search{display:grid;grid-template-columns:1fr 42px 1fr 1fr 1fr auto;gap:12px;align-items:end}
+.mx-f{display:block;min-width:0}
+.mx-f small{display:block;font-size:12px;color:var(--mute);margin:0 0 5px}
+.mx-in{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:10px;padding:10px 13px;background:#fff}
+.mx-in:focus-within{border-color:var(--gold)}
+.mx-in svg{flex:0 0 auto;color:rgba(13,31,54,.4)}
+.mx-in input,.mx-in select{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:14px;color:var(--navy)}
+.mx-swap{align-self:end;height:44px;width:42px;border:1px solid var(--line);background:#fff;border-radius:10px;
+  color:var(--navy);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.mx-swap:hover{border-color:var(--gold)}
+.mx-go{align-self:end;height:44px;padding:0 26px;border:0;border-radius:10px;background:var(--navy);color:#fff;
+  font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.mx-go:hover{background:#16304f}
+.mx-filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:14px 0 0;
+  padding:14px 0 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--mute)}
+.mx-filters select{border:1px solid var(--line);border-radius:999px;padding:7px 13px;font:inherit;font-size:13.5px;
+  color:var(--navy);background:#fff}
+.mx-chk{display:inline-flex;align-items:center;gap:8px;color:var(--navy);cursor:pointer}
+.mx-clear{border:0;background:none;font:inherit;font-size:13.5px;color:var(--navy);text-decoration:underline;cursor:pointer;padding:0}
+.mx-view{margin-left:auto;display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mx-view button{border:0;background:#fff;font:inherit;font-size:13.5px;padding:9px 20px;color:#46525f;cursor:pointer}
+.mx-view button.on{background:var(--navy);color:#fff}
+
+.mx-body{display:grid;grid-template-columns:420px 1fr;gap:16px;align-items:start}
+.mx-body[data-view=list]{grid-template-columns:1fr}
+.mx-body[data-view=list] .mx-mapwrap{display:none}
+.mx-body[data-view=map]{grid-template-columns:1fr}
+.mx-body[data-view=map] .mx-list{display:none}
+.mx-list{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;min-width:0}
+.mx-lh{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:0 0 6px}
+.mx-lh h2{margin:0;font-size:22px}
+.mx-lh p{margin:4px 0 0;font-size:12.5px;color:var(--mute)}
+.mx-lh select{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font:inherit;font-size:13px;background:#fff}
+.mx-row{display:flex;align-items:flex-start;gap:12px;padding:15px 12px;border-bottom:1px solid var(--line);
+  border-left:3px solid transparent;cursor:pointer;border-radius:0 8px 8px 0}
+.mx-row:hover{background:#f7f9fc}
+.mx-row.on{background:#fbf8f1;border-left-color:var(--gold)}
+.mx-row .r{flex:1;min-width:0}
+.mx-row b{display:block;font-size:15.5px;color:var(--navy);font-weight:600;line-height:1.35}
+.mx-row small{display:block;font-size:12.5px;color:var(--mute);margin-top:3px}
+.mx-row .go{display:inline-block;margin-top:7px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none}
+.mx-row .go:hover{color:#8a6d2c}
+.mx-row .p{flex:0 0 auto;text-align:right}
+.mx-row .p b{font-size:15.5px}
+.mx-row .p small{margin-top:2px}
+.mx-page{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0;font-size:13px;color:var(--mute)}
+.mx-page button{border:1px solid var(--line);background:#fff;border-radius:8px;min-width:34px;height:34px;
+  font:inherit;font-size:13px;color:var(--navy);cursor:pointer;margin-right:5px}
+.mx-page button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+
+.mx-mapwrap{position:relative;min-width:0}
+#elmap{width:100%;height:min(74vh,700px);border-radius:14px;background:#0b1b2b}
+.mx-mapwrap.full{position:fixed;inset:0;z-index:9000;background:#0b1b2b;padding:10px}
+.mx-mapwrap.full #elmap{height:100%;border-radius:10px}
+.mx-area,.mx-full{position:absolute;z-index:500;background:#fff;border:1px solid var(--line);border-radius:10px;
+  font:inherit;font-size:13.5px;font-weight:600;color:var(--navy);cursor:pointer;box-shadow:0 2px 10px rgba(8,19,31,.25)}
+.mx-area{top:14px;left:50%;transform:translateX(-50%);padding:9px 16px;display:inline-flex;align-items:center;gap:8px}
+.mx-full{top:110px;right:14px;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center}
+.maplegend{position:absolute;left:14px;bottom:14px;z-index:500;background:rgba(13,31,54,.86);color:#e8edf3;
+  font-size:12px;line-height:1.8;padding:9px 13px;border-radius:10px;pointer-events:none}
+.maplegend i{display:inline-block;width:20px;height:0;border-top:2px solid #E8BE63;vertical-align:middle;margin-right:8px}
+.maplegend i.w{border-top:2px dashed rgba(255,255,255,.7)}
+.mx-all{position:absolute;right:14px;bottom:14px;z-index:500;display:inline-flex;align-items:center;gap:10px;
+  background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:13px;color:var(--navy);cursor:pointer}
+.mx-note{font-size:12.5px;color:var(--mute);margin:10px 2px 0}
+.mx-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fbf8f1;
+  border:1px solid rgba(201,162,76,.28);border-radius:14px;padding:16px 20px;margin:20px 0 0}
+.mx-cta p{margin:0;display:flex;align-items:center;gap:12px;font-size:15px;color:var(--navy)}
+.mx-cta p svg{color:var(--gold)}
+.mx-cta a{background:var(--gold);color:#132335;border-radius:999px;padding:11px 22px;font-size:14px;
+  font-weight:600;text-decoration:none;white-space:nowrap}
+.mx-cta a:hover{background:#b8912f}
+.leaflet-popup-content{font:14px/1.55 Raleway,sans-serif;color:#16222e;margin:13px 15px}
+.leaflet-popup-content b{color:#0D1F36;font-size:15px}
+.leaflet-popup-content a{color:#0D1F36;font-weight:600}
+.maphint{font-size:12.5px;color:var(--mute);margin:8px 0 0}
+/* The site's form stylesheet puts text-transform:uppercase on every label.
+   That is right for the small field captions above the inputs, and wrong for
+   a sentence beside a checkbox, which came out as PUBLISHED PRICES ONLY over
+   three lines. Also: the swap icon is a flex item and was being squashed to
+   zero width. */
+.mx-chk,.mx-all,.mx-all span{text-transform:none;letter-spacing:0;white-space:nowrap}
+.mx-swap svg,.mx-cta p svg,.mx-alert svg,.mx-area svg,.mx-full svg{flex:0 0 auto}
+.mx-chk input,.mx-all input{flex:0 0 auto;margin:0;width:16px;height:16px;min-width:0;padding:0;accent-color:var(--gold,#C9A24C)}
+.mx-chk,.mx-all{flex:0 0 auto}
+.mx-filters>span{flex:0 0 auto}
+@media(max-width:1080px){
+  .mx-search{grid-template-columns:1fr 42px 1fr;gap:10px}
+  .mx-go{grid-column:1/-1}
+  .mx-body{grid-template-columns:1fr}
+  .mx-view{margin-left:0}
+}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -169,9 +260,7 @@ p.gtip b{color:var(--navy)}
   <script defer src="/_vercel/insights/script.js"></script>
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
-<!-- siteld.py -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Where the empty legs are today","item":"https://emptylegslist.com/map"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/map","url":"https://emptylegslist.com/map","name":"Live map of empty leg flights","description":"Every empty leg private jet flight on the board drawn on a map, refreshed several times a day, with the operator's published price where there is one.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
-<!-- /siteld.py -->
+  <script src="/live-figures.js" defer></script>
 </head>
 <body>
 <div id="elnote"><p>To see all flights you need to be signed in. It is free today and takes 1 minute. <a href="/account">Sign in</a> or <a href="/#gate">create a free account</a>.</p></div>
@@ -429,23 +518,80 @@ p.gtip b{color:var(--navy)}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap map">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Live map</p>
-<h1>Where the empty legs are today</h1>
-<p class="lede">Every empty leg on the board, drawn from where it starts to where it lands. Gold lines carry a published price, white ones say price on enquiry. Tap or click a line for the flight; use the buttons to thin the picture.</p>
-<div class="mapbar">
-  <div class="gcur" id="mapreg"><button aria-pressed="true" data-v="">All regions</button><button data-v="Europe">Europe</button><button data-v="North America">North America</button><button data-v="__rest">Rest of world</button></div>
-  <div class="gcur" id="mapdays"><button data-v="3">Next 3 days</button><button aria-pressed="true" data-v="7">Next 7 days</button><button data-v="30">Next 30 days</button><button data-v="">All dates</button></div>
-  <div class="gcur" id="mapprice"><button aria-pressed="true" data-v="">All legs</button><button data-v="1">With a price</button></div>
-  <span class="cnt" id="mapcnt">Reading the board.</span>
+<div class="wrap mapx">
+<div class="mx-head">
+  <div>
+    <p class="k">Live map</p>
+    <h1>Find an empty leg on the map</h1>
+    <p class="lede">Explore routes, compare published prices and go straight to the operator.</p>
+  </div>
+  <a class="mx-alert" href="/#alerts"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.4 9a5.4 5.4 0 1 0-10.8 0c0 6-2.4 7.8-2.4 7.8h15.6S17.4 15 17.4 9z"/><path d="M13.6 20.4a1.8 1.8 0 0 1-3.2 0"/></svg> Create route alert</a>
 </div>
-<div class="mapwrap"><div id="elmap"></div><div class="maplegend"><i></i>published price<br><i class="w"></i>price on enquiry</div></div>
+
+<div class="mx-panel" data-nofloat>
+  <div class="mx-search">
+    <label class="mx-f"><small>From</small><span class="mx-in"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 13.8 3 11.4l1.2-1.2 3 .6 3-3L3 4.8 4.8 3l9.6 3 3.6-3.6a2.1 2.1 0 0 1 3 3L17.4 9l3 9.6-1.8 1.8-3-7.2-3 3 .6 3-1.2 1.2z"/></svg><input id="mxfrom" list="mxplaces" placeholder="City or airport" autocomplete="off"></span></label>
+    <button class="mx-swap" id="mxswap" type="button" aria-label="Swap from and to"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 4 7l3 3M4 7h13M17 20l3-3-3-3M20 17H7"/></svg></button>
+    <label class="mx-f"><small>To</small><span class="mx-in"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 13.8 3 11.4l1.2-1.2 3 .6 3-3L3 4.8 4.8 3l9.6 3 3.6-3.6a2.1 2.1 0 0 1 3 3L17.4 9l3 9.6-1.8 1.8-3-7.2-3 3 .6 3-1.2 1.2z"/></svg><input id="mxto" list="mxplaces" placeholder="Anywhere" autocomplete="off"></span></label>
+    <label class="mx-f"><small>Dates</small><span class="mx-in"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg><select id="mxdays">
+      <option value="3">Next 3 days</option>
+      <option value="7" selected>Next 7 days</option>
+      <option value="14">Next 14 days</option>
+      <option value="30">Next 30 days</option>
+      <option value="">Any date</option></select></span></label>
+    <label class="mx-f"><small>Passengers</small><span class="mx-in"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20.2a7.6 7.6 0 0 1 14.4 0"/></svg><select id="mxpax">
+      <option value="0">Any</option><option value="2">2 or more</option><option value="4">4 or more</option>
+      <option value="6">6 or more</option><option value="8">8 or more</option><option value="12">12 or more</option>
+      </select></span></label>
+    <button class="mx-go" id="mxgo" type="button">Search</button>
+  </div>
+  <div class="mx-filters">
+    <span>Region:</span>
+    <select id="mxreg"><option value="">Anywhere</option><option>Europe</option><option>North America</option><option>Middle East</option><option>Africa</option><option value="__rest">Rest of world</option></select>
+    <span>Aircraft:</span>
+    <select id="mxac"><option value="">Any</option></select>
+    <label class="mx-chk"><input type="checkbox" id="mxpriced"> Published prices only</label>
+    <button class="mx-clear" id="mxclear" type="button">Clear filters</button>
+    <div class="mx-view" role="group" aria-label="How to show the results">
+      <button type="button" data-v="list">List</button>
+      <button type="button" data-v="split" class="on">Split</button>
+      <button type="button" data-v="map">Map</button>
+    </div>
+  </div>
+</div>
+
+<datalist id="mxplaces"></datalist>
+
+<div class="mx-body" data-view="split">
+  <section class="mx-list">
+    <div class="mx-lh" data-nofloat>
+      <div><h2>Flights on the board</h2><p>Prices are for the whole aircraft.</p></div>
+      <select id="mxsort" aria-label="Sort"><option value="soon">Soonest first</option><option value="cheap">Cheapest first</option><option value="late">Furthest out</option></select>
+    </div>
+    <div id="mxrows"></div>
+    <div class="mx-page"><div id="mxpager"></div><span id="mxcount"></span></div>
+  </section>
+
+  <div class="mx-mapwrap" id="mxmapwrap">
+    <div id="elmap"></div>
+    <button class="mx-area" id="mxarea" type="button" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6.4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg> Search this area</button>
+    <button class="mx-full" id="mxfull" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5h-5v5M15.5 3.5h5v5M20.5 15.5v5h-5M3.5 15.5v5h5"/></svg></button>
+    <div class="maplegend"><i></i>Published price<br><i class="w"></i>Price on enquiry</div>
+    <label class="mx-all"><span>Show every route</span><input type="checkbox" id="mxall"></label>
+  </div>
+</div>
+<p class="mx-note" id="mxnote"></p>
 <p class="maphint" id="maphint" hidden>Two fingers to move the map, so the page still scrolls with one.</p>
-<p class="gnote">A line starts at the departure airport the operator named, or at an airport in the departure city when only the city was given, and ends the same way at the destination. Legs the operator described by city alone are drawn at city level. Prices are the operator's own figure for the whole aircraft.</p>
+
+<div class="mx-cta">
+  <p><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.4 9a5.4 5.4 0 1 0-10.8 0c0 6-2.4 7.8-2.4 7.8h15.6S17.4 15 17.4 9z"/><path d="M13.6 20.4a1.8 1.8 0 0 1-3.2 0"/></svg> Nothing that fits? Get an alert when your route appears.</p>
+  <a href="/#alerts">Create an alert &rarr;</a>
+</div>
 
 <h2>How to read it</h2>
-<p>The lines are one way: an empty leg is an aircraft repositioning, and the operator sells that single flight, not a return. Clusters mean an operator is busy in that area; Teterboro, Van Nuys, Nice and London are where most lines start or end. A single line across an ocean is usually a long range jet going home.</p>
-<p>The map refreshes with the board, several times a day. To be told when a leg appears on a route you care about, <a href="/#alerts">set a route alert</a>. To see the same data as a table, use the <a href="/">live list</a>, or take it as a file from <a href="/open-data">open data</a>.</p>
+<p>Each line is one empty leg, drawn from the airport it leaves to the airport it lands at. Gold means the operator published a price for the whole aircraft; a dashed white line means the listing says price on enquiry. The lines are one way, because an empty leg is an aircraft repositioning and the operator sells that single flight, not a return.</p>
+<p>Clusters mean an operator is busy in that area. Teterboro, Van Nuys, Miami, Nice and London are where most lines start or end. A single line across an ocean is usually a long range jet going home.</p>
+<p>Click a city dot for the flights touching it and the page we keep for that city. The map refreshes with the board, several times a day. To hear about a route rather than watch for it, <a href="/#alerts">set a route alert</a>. The same data as a table is on the <a href="/">live list</a>, and as a file on <a href="/open-data">open data</a>.</p>
 </div>
 
 
@@ -480,113 +626,277 @@ function flightUrl(x){
   return "/flight/" + (bits.length > 2 ? bits.join("-") + "-" : "") + x.id;
 }
 
-  /* L.Browser.mobile is a user agent check. Touch capability is not: a laptop
-     with a touchscreen reports touch points and would have been locked out of
-     dragging with a mouse, which is what happened on 9 September 2026. */
-  var mobile = L.Browser.mobile;
-  var map = L.map("elmap", { worldCopyJump: true, minZoom: 2, maxZoom: 6, preferCanvas: true,
-    scrollWheelZoom: false, dragging: !mobile, tap: !mobile, zoomControl: true }).setView([38, -10], 3);
+  var CITYKEYS = {"alicante":["alicante","alc"],"amsterdam":["amsterdam","schiphol"],"antwerp":["antwerp"],"aspen":["aspen","ase"],"athens":["athens"],"austin":["austin","aus"],"barcelona":["barcelona","bcn"],"bari":["bari","bri"],"belfast":["belfast"],"bergen":["bergen","bgo"],"berlin":["berlin","ber"],"birmingham":["birmingham international","birmingham, gb"],"bodrum":["bodrum","bjv"],"boise":["boise","gowen field","boi","kboi"],"bologna":["bologna","blq"],"bolzano":["bolzano","bozen","bzo"],"brussels":["brussels","zaventem"],"bucharest":["bucharest","bucuresti","baneasa","aurel vlaicu","otopeni","bbu","otp","lrbs","lrop"],"cagliari":["cagliari","cag"],"calgary":["calgary","yyc","ybw"],"cannes":["cannes","mandelieu"],"cape-town":["cape town"],"carlsbad":["carlsbad","crq"],"chicago":["chicago","mdw","ord","pwk","dpa"],"cluj-napoca":["cluj","cluj-napoca","cluj napoca","avram iancu","clj","lrcl"],"dallas":["dallas","dal","dfw"],"dublin":["dublin","dub"],"dusseldorf":["dusseldorf","d\u00fcsseldorf","dus"],"edinburgh":["edinburgh","edi"],"farnborough":["farnborough","fab"],"fort-lauderdale":["fort lauderdale","ft lauderdale","fll","fxe"],"fort-worth":["fort worth","ftw","afw"],"geneva":["geneva","gen\u00e8ve","gva"],"girona":["girona","gro"],"houston":["houston","hou","iah","efd"],"ibiza":["ibiza","eivissa"],"innsbruck":["innsbruck","inn","lowi","kranebitten"],"istanbul":["istanbul","ist","saw"],"johannesburg":["johannesburg","lanseria"],"larnaca":["larnaca","larnarca"],"las-vegas":["las vegas"],"liege":["liege","li\u00e8ge","lgg"],"linz":["linz","lnz"],"london":["london","luton","stansted","biggin hill","farnborough","oxford"],"madrid":["madrid","mad"],"malaga":["malaga","m\u00e1laga"],"maun":["maun","mub"],"miami":["miami"],"milan":["milan","milano","lin","mxp","bgy"],"milwaukee":["milwaukee","mke"],"monterey":["monterey","mry"],"montpellier":["montpellier","mpl"],"montreal":["montreal","montr\u00e9al","yul"],"munich":["munich","m\u00fcnchen","muc"],"mykonos":["mykonos","mykonos island","jmk","lgmk"],"naples":["naples","napoli","nap"],"new-york":["new york","teterboro","white plains","westchester","teb","hpn","jfk","lga","ewr","newark","stewart"],"nice":["nice","monaco"],"oakland":["oakland","oak"],"olbia":["olbia"],"oxford":["oxford","kidlington","oxf"],"palma":["palma"],"paris":["paris","bourget"],"pisa":["pisa","psa"],"preveza":["preveza","aktion","pvk","lgpz"],"rotterdam":["rotterdam","rtm"],"salzburg":["salzburg"],"sault-ste-marie":["sault ste marie","sault","yam"],"scottsdale":["scottsdale","sdl"],"sion":["sion","sir"],"teterboro":["teterboro","teb"],"thessaloniki":["thessaloniki","skg"],"toronto":["toronto"],"toulon":["toulon","hyeres","hy\u00e8res","palyvestre"],"turks-and-caicos":["turks and caicos","providenciales","pls","mbpv"],"van-nuys":["van nuys","vny"],"verbier":["verbier"],"verona":["verona","vrn"],"vienna":["vienna"],"washington":["washington","iad","dca"],"waukesha":["waukesha","ues"],"wevelgem":["wevelgem","kortrijk"],"zurich":["zurich","z\u00fcrich","zrh"]};          /* slug -> the words that mean that city */
 
-  /* The basemap is ours: country outlines drawn from a local file, no tiles,
-     no provider, no key. */
+  /* ---------- state ------------------------------------------------- */
+  var ALL = [], VIEW = [], page = 0, PER = 12, sel = null, bboxOnly = null;
+  var f = { from:"", to:"", days:"7", pax:0, reg:"", ac:"", priced:false, sort:"soon", all:false };
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(t){ return String(t==null?"":t).replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  /* ---------- map ---------------------------------------------------- */
+  var mobile = L.Browser.mobile;
+  var map = L.map("elmap", { worldCopyJump:true, minZoom:2, maxZoom:9, preferCanvas:true,
+    scrollWheelZoom:false, dragging:!mobile, tap:!mobile, zoomControl:true }).setView([40,-25], 3);
+
+  /* The basemap is ours: country outlines from a local file, no tiles, no
+     provider, no key. CARTO started demanding one in September 2026. */
   fetch("/brand/world-110m.json").then(function(r){ return r.json(); }).then(function(geo){
-    L.geoJSON(geo, { interactive: false, renderer: L.canvas({ padding: 0.4 }),
-      /* Land was #17293f against a #0d1f36 sea, nine points of lightness apart,
-         so at world zoom the continents barely read and the whole picture looked
-         like lines on nothing. Lifted, with a brighter coastline over it. */
-      style: { color: "#4a7099", weight: 0.7, opacity: 0.95, fillColor: "#21374f", fillOpacity: 1 } }).addTo(map).bringToBack();
-  }).catch(function(){ /* the legs still draw on the navy background */ });
+    L.geoJSON(geo, { interactive:false, renderer:L.canvas({padding:0.4}),
+      style:{ color:"#2f4e74", weight:0.6, opacity:0.9, fillColor:"#13263c", fillOpacity:1 } })
+      .addTo(map).bringToBack();
+  }).catch(function(){});
   map.attributionControl.addAttribution('Country outlines: <a href="https://www.naturalearthdata.com/">Natural Earth</a>, public domain');
 
   if (mobile) {
-    /* One finger scrolls the page, two fingers move the map. */
-    var box = map.getContainer(), hint = document.getElementById("maphint");
-    hint.hidden = false;
+    var box = map.getContainer(); $("maphint").hidden = false;
     box.addEventListener("touchstart", function(e){
-      if (e.touches.length > 1) { map.dragging.enable(); } else { map.dragging.disable(); }
-    }, { passive: true });
+      if (e.touches.length > 1) map.dragging.enable(); else map.dragging.disable();
+    }, { passive:true });
   } else {
     map.on("click focus", function(){ map.scrollWheelZoom.enable(); });
     map.on("mouseout", function(){ map.scrollWheelZoom.disable(); });
   }
 
-  /* Longitudes come out of atan2 wrapped into -180..180. A path that crosses the
-     date line therefore jumps from +179 to -179 between two points, and Leaflet
-     joins them with a straight line back across the entire map. That is the long
-     horizontal streak along the bottom of the world view: a flight that does not
-     exist, drawn over one that does. Each point is unwrapped against the one
-     before it so the path keeps going past 180 instead of snapping back. Leaflet
-     is happy with longitudes outside the range. Found 16 September 2026. */
-  function unwrap(lon, prev){
-    if (prev === null) return lon;
-    while (lon - prev > 180) lon -= 360;
-    while (prev - lon > 180) lon += 360;
-    return lon;
-  }
-  function arc(a, b){ /* a few points along the great circle so long legs bend instead of cutting straight across */
-    var n = 24, out = [], rad = Math.PI / 180, la1 = a[0] * rad, lo1 = a[1] * rad, la2 = b[0] * rad, lo2 = b[1] * rad;
-    var d = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin((la1 - la2) / 2), 2) + Math.cos(la1) * Math.cos(la2) * Math.pow(Math.sin((lo1 - lo2) / 2), 2)));
-    if (!d || d < 0.02) return [a, [b[0], unwrap(b[1], a[1])]];
-    var prev = null;
-    for (var i = 0; i <= n; i++) { var f = i / n, A = Math.sin((1 - f) * d) / Math.sin(d), B = Math.sin(f * d) / Math.sin(d);
-      var x = A * Math.cos(la1) * Math.cos(lo1) + B * Math.cos(la2) * Math.cos(lo2), y = A * Math.cos(la1) * Math.sin(lo1) + B * Math.cos(la2) * Math.sin(lo2), z = A * Math.sin(la1) + B * Math.sin(la2);
-      var lon = unwrap(Math.atan2(y, x) / rad, prev); prev = lon;
-      out.push([Math.atan2(z, Math.sqrt(x * x + y * y)) / rad, lon]); }
+  function arc(a, b){
+    var n = 24, out = [], rad = Math.PI/180;
+    var la1=a[0]*rad, lo1=a[1]*rad, la2=b[0]*rad, lo2=b[1]*rad;
+    var d = 2*Math.asin(Math.sqrt(Math.pow(Math.sin((la1-la2)/2),2) +
+            Math.cos(la1)*Math.cos(la2)*Math.pow(Math.sin((lo1-lo2)/2),2)));
+    if (!d || d < 0.02) return [a, b];
+    for (var i=0;i<=n;i++){ var t=i/n, A=Math.sin((1-t)*d)/Math.sin(d), B=Math.sin(t*d)/Math.sin(d);
+      var x=A*Math.cos(la1)*Math.cos(lo1)+B*Math.cos(la2)*Math.cos(lo2),
+          y=A*Math.cos(la1)*Math.sin(lo1)+B*Math.cos(la2)*Math.sin(lo2),
+          z=A*Math.sin(la1)+B*Math.sin(la2);
+      out.push([Math.atan2(z,Math.sqrt(x*x+y*y))/rad, Math.atan2(y,x)/rad]); }
     return out;
   }
-  var layer = L.layerGroup().addTo(map), all = [], first = true, f = { reg: "", days: "7", price: "" };
 
-  function bar(id, key){ var b = document.getElementById(id); b.addEventListener("click", function(e){ var btn = e.target.closest("button"); if(!btn) return;
-    Array.prototype.forEach.call(b.querySelectorAll("button"), function(x){ x.setAttribute("aria-pressed", x===btn ? "true" : "false"); }); f[key] = btn.getAttribute("data-v"); draw(); }); }
-  bar("mapreg","reg"); bar("mapdays","days"); bar("mapprice","price");
-  /* On a phone the full board is a tangle: start with priced legs only, one tap widens it. */
-  if (window.innerWidth < 700) { f.price = "1"; Array.prototype.forEach.call(document.querySelectorAll("#mapprice button"), function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-v") === "1" ? "true" : "false"); }); }
+  var lines = L.layerGroup().addTo(map), dots = L.layerGroup().addTo(map);
 
-  function keep(l){
-    if (f.reg === "__rest" && /^(Europe|North America)$/.test(l.region||"")) return false;
+  /* ---------- helpers ------------------------------------------------ */
+  function money(p){
+    if (!p) return null;
+    var m = String(p).match(/^([A-Z]{3})\s*([\d,]+)/);
+    return m ? { cur:m[1], n:parseInt(m[2].replace(/,/g,""),10) } : null;
+  }
+  function fmtPrice(p){ var m = money(p); return m ? (m.cur + " " + m.n.toLocaleString("en-GB")) : "Price on enquiry"; }
+  function fmtDate(d){
+    var t = new Date(d + "T00:00:00Z");
+    return t.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][t.getUTCMonth()];
+  }
+  function short(lab){ return String(lab||"").split(/\s*[(,]/)[0].trim(); }
+  function citySlug(label){
+    var t = " " + String(label||"").toLowerCase() + " ";
+    for (var slug in CITYKEYS){
+      var ks = CITYKEYS[slug];
+      for (var i=0;i<ks.length;i++){
+        var k = ks[i];
+        if (k.length > 4 ? t.indexOf(k) > -1 : t.indexOf(" "+k+" ") > -1) return slug;
+      }
+    }
+    return null;
+  }
+
+  /* ---------- filtering ---------------------------------------------- */
+  function matches(l){
+    if (f.priced && !l.price_note) return false;
+    if (f.pax && (!l.seats || l.seats < f.pax)) return false;
+    if (f.ac && l.aircraft_type !== f.ac) return false;
+    if (f.reg === "__rest" && /^(Europe|North America|Middle East|Africa)$/.test(l.region||"")) return false;
     if (f.reg && f.reg !== "__rest" && l.region !== f.reg) return false;
-    if (f.price && !l.price_note) return false;
-    if (f.days) { var lim = new Date(); lim.setDate(lim.getDate() + parseInt(f.days,10)); if (l.departure_date > lim.toISOString().slice(0,10)) return false; }
+    if (f.days){ var lim = new Date(); lim.setDate(lim.getDate() + parseInt(f.days,10));
+      if (l.departure_date > lim.toISOString().slice(0,10)) return false; }
+    if (f.from && (" "+String(l.from_label||"").toLowerCase()).indexOf(f.from.toLowerCase()) < 0) return false;
+    if (f.to   && (" "+String(l.to_label  ||"").toLowerCase()).indexOf(f.to.toLowerCase())   < 0) return false;
+    if (bboxOnly && l.from_lat != null && l.to_lat != null){
+      var a = L.latLng(l.from_lat, l.from_lon), b = L.latLng(l.to_lat, l.to_lon);
+      if (!bboxOnly.contains(a) && !bboxOnly.contains(b)) return false;
+    }
     return true;
   }
-  function draw(){
-    layer.clearLayers(); var n = 0, shown = 0, bounds = [];
-    all.forEach(function(l){
-      if (!keep(l)) return; n++;
-      if (l.from_lat==null || l.to_lat==null) return; shown++;
-      var priced = !!l.price_note;
-      var line = L.polyline(arc([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]), { color: priced ? "#E8BE63" : "#9fb6d0", weight: priced ? 2 : 0.8, opacity: priced ? 0.95 : 0.32, smoothFactor: 1.5 });
-      line.bindPopup('<b>'+esc(l.from_label)+' to '+esc(l.to_label)+'</b><br>'+esc(fmtDate(l.departure_date))+(l.aircraft_type?' &middot; '+esc(l.aircraft_type):'')+(l.seats?' &middot; up to '+l.seats+' seats':'')+'<br>'+(l.price_note?esc(l.price_note.replace(" listed","")):'Price on enquiry')+'<br><a href="'+flightUrl(l.id)+'">Open this flight</a>');
-      line.on("mouseover", function(){ this.setStyle({ weight: 4, opacity: 1 }); }).on("mouseout", function(){ this.setStyle({ weight: priced ? 2 : 0.8, opacity: priced ? 0.95 : 0.32 }); });
-      layer.addLayer(line);
-      L.circleMarker([l.from_lat, l.from_lon], { radius: priced ? 2.6 : 1.8, color: priced ? "#E8BE63" : "#dce8f7", fillColor: priced ? "#E8BE63" : "#dce8f7", fillOpacity: priced ? 1 : 0.7, weight: 0 }).addTo(layer);
-      bounds.push([l.from_lat, l.from_lon], [l.to_lat, l.to_lon]);
-    });
-    var fmt = function(x){ return x.toLocaleString("en-GB"); };
-    document.getElementById("mapcnt").textContent = fmt(n) + " legs match these filters"
-      + (shown < n ? ", " + fmt(shown) + " of them with a position we can draw" : "")
-      + (all.length ? ". " + fmt(all.length) + " on the board." : ".");
-    /* The first view used to fit every drawn point, so one leg to Johannesburg
-       and one to Asia pulled the frame out to the whole globe: two thirds ocean,
-       and the six hundred legs that matter squeezed into a knot over the
-       Atlantic. The frame is now set by the middle ninety per cent of positions
-       in each direction, so a single outlier cannot decide it. The outliers are
-       still drawn, they simply run off the edge, and zooming out shows them. */
-    if (bounds.length && (f.reg || first)) {
-      var lats = bounds.map(function(p){ return p[0]; }).sort(function(a,b){ return a-b; });
-      var lons = bounds.map(function(p){ return p[1]; }).sort(function(a,b){ return a-b; });
-      var at = function(arr, q){ return arr[Math.min(arr.length - 1, Math.max(0, Math.round((arr.length - 1) * q)))]; };
-      var s0 = at(lats, 0.05), n0 = at(lats, 0.95), w0 = at(lons, 0.05), e0 = at(lons, 0.95);
-      // Never frame something smaller than a few hundred miles across.
-      if (n0 - s0 < 4) { var mid = (n0 + s0) / 2; s0 = mid - 2; n0 = mid + 2; }
-      if (e0 - w0 < 4) { var midl = (e0 + w0) / 2; w0 = midl - 2; e0 = midl + 2; }
-      map.fitBounds([[s0, w0], [n0, e0]], { padding: [20, 20], maxZoom: 5 });
+  function sortView(){
+    if (f.sort === "cheap"){
+      VIEW.sort(function(a,b){
+        var x = money(a.price_note), y = money(b.price_note);
+        if (x && y) return x.n - y.n; if (x) return -1; if (y) return 1;
+        return a.departure_date < b.departure_date ? -1 : 1; });
+    } else if (f.sort === "late"){
+      VIEW.sort(function(a,b){ return a.departure_date < b.departure_date ? 1 : -1; });
+    } else {
+      VIEW.sort(function(a,b){ return a.departure_date < b.departure_date ? -1 : 1; });
     }
-    first = false;
   }
+
+  /* ---------- drawing ------------------------------------------------ */
+  var CAP = 700;   /* beyond this the picture is a smear, not a map */
+  function drawMap(){
+    lines.clearLayers(); dots.clearLayers();
+    var placed = VIEW.filter(function(l){ return l.from_lat != null && l.to_lat != null; });
+    var use = (f.all || placed.length <= CAP) ? placed : placed.slice(0, CAP);
+    var byCity = {}, bounds = [];
+    use.forEach(function(l){
+      var priced = !!l.price_note;
+      var line = L.polyline(arc([l.from_lat,l.from_lon],[l.to_lat,l.to_lon]), {
+        color: priced ? "#E8BE63" : "#cfe0f2", weight: priced ? 2 : 1.2,
+        opacity: priced ? 0.95 : 0.42, dashArray: priced ? null : "4 5", smoothFactor: 1.5 });
+      line.on("click", function(){ select(l.id, false); });
+      line._legId = l.id;
+      lines.addLayer(line);
+      [[l.from_label, l.from_lat, l.from_lon], [l.to_label, l.to_lat, l.to_lon]].forEach(function(p){
+        var key = p[1].toFixed(2) + "," + p[2].toFixed(2);
+        if (!byCity[key]) byCity[key] = { lab:short(p[0]), lat:p[1], lon:p[2], n:0 };
+        byCity[key].n++;
+      });
+      bounds.push([l.from_lat,l.from_lon],[l.to_lat,l.to_lon]);
+    });
+    Object.keys(byCity).forEach(function(k){
+      var c = byCity[k];
+      var r = Math.min(3 + Math.sqrt(c.n) * 1.5, 11);
+      var m = L.circleMarker([c.lat,c.lon], { radius:r, color:"#fff", weight:1.2,
+        fillColor:"#E8BE63", fillOpacity:0.9 });
+      var slug = citySlug(c.lab);
+      m.bindPopup('<b>' + esc(c.lab) + '</b><br>' + c.n + (c.n===1?' leg':' legs') + ' here in this view'
+        + (slug ? '<br><a href="/empty-legs/' + slug + '">Empty legs to and from ' + esc(c.lab) + ' &rarr;</a>' : ''));
+      dots.addLayer(m);
+    });
+    $("mxnote").textContent = note(placed.length, use.length);
+    if (bounds.length && !bboxOnly) map.fitBounds(bounds, { padding:[24,24], maxZoom:6 });
+  }
+  function note(placed, drawn){
+    var n = VIEW.length, out = [];
+    if (n - placed > 0) out.push((n - placed) + " of these have no map location. They are still in the list.");
+    if (drawn < placed) out.push("Showing the first " + drawn + " routes; tick Show every route for all " + placed + ".");
+    return out.join(" ");
+  }
+
+  /* ---------- list ---------------------------------------------------- */
+  function drawList(){
+    var start = page * PER, rows = VIEW.slice(start, start + PER);
+    $("mxrows").innerHTML = rows.map(function(l){
+      var m = money(l.price_note);
+      return '<div class="mx-row' + (l.id===sel ? ' on' : '') + '" data-id="' + esc(l.id) + '">'
+        + '<div class="r"><b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b>'
+        + '<small>' + esc(fmtDate(l.departure_date))
+        + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
+        + (l.seats ? ' &middot; ' + l.seats + ' seats' : '') + '</small>'
+        + '<a class="go" href="/flight?id=' + encodeURIComponent(l.id) + '">View flight &rarr;</a></div>'
+        + '<div class="p"><b>' + (m ? esc(fmtPrice(l.price_note)) : 'On enquiry') + '</b>'
+        + '<small>' + (m ? 'Whole aircraft' : 'Ask the operator') + '</small></div></div>';
+    }).join("") || '<p style="color:var(--mute);padding:18px 2px">Nothing matches those filters. Widen the dates, or set an alert and let it come to you.</p>';
+
+    var pages = Math.ceil(VIEW.length / PER), out = "";
+    for (var i = 0; i < Math.min(pages, 5); i++)
+      out += '<button type="button" data-p="' + i + '"' + (i===page?' class="on"':'') + '>' + (i+1) + '</button>';
+    if (pages > 1) out += '<button type="button" data-p="' + Math.min(page+1, pages-1) + '">&rarr;</button>';
+    $("mxpager").innerHTML = pages > 1 ? out : "";
+    $("mxcount").textContent = VIEW.length.toLocaleString("en-GB") + " of "
+      + ALL.length.toLocaleString("en-GB") + " on the board";
+  }
+
+  function select(id, scroll){
+    sel = id; drawList();
+    lines.eachLayer(function(ln){
+      var on = ln._legId === id;
+      ln.setStyle({ weight: on ? 3.4 : (ln.options.dashArray ? 1.2 : 2),
+                    opacity: on ? 1 : (ln.options.dashArray ? 0.42 : 0.95),
+                    color: on ? "#E8BE63" : ln.options.color });
+      if (on){ ln.bringToFront(); var l = byId(id);
+        if (l) L.popup({ closeButton:true })
+          .setLatLng([(l.from_lat+l.to_lat)/2, (l.from_lon+l.to_lon)/2])
+          .setContent('<b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b><br>'
+            + esc(fmtDate(l.departure_date)) + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
+            + '<br>' + esc(fmtPrice(l.price_note)) + (l.price_note ? ' &middot; whole aircraft' : '')
+            + '<br><a href="/flight?id=' + encodeURIComponent(l.id) + '">View flight &rarr;</a>')
+          .openOn(map);
+      }
+    });
+    if (scroll){ var l = byId(id); if (l && l.from_lat != null)
+      map.panTo([(l.from_lat+l.to_lat)/2, (l.from_lon+l.to_lon)/2]); }
+  }
+  function byId(id){ for (var i=0;i<ALL.length;i++) if (ALL[i].id===id) return ALL[i]; return null; }
+
+  function apply(resetPage){
+    VIEW = ALL.filter(matches); sortView();
+    if (resetPage !== false) page = 0;
+    drawList(); drawMap();
+  }
+
+  /* ---------- wiring --------------------------------------------------- */
+  ["mxdays","mxpax","mxreg","mxac","mxsort"].forEach(function(id){
+    $(id).addEventListener("change", function(){
+      f.days = $("mxdays").value; f.pax = parseInt($("mxpax").value,10) || 0;
+      f.reg = $("mxreg").value; f.ac = $("mxac").value; f.sort = $("mxsort").value;
+      apply();
+    });
+  });
+  $("mxpriced").addEventListener("change", function(){ f.priced = this.checked; apply(); });
+  $("mxall").addEventListener("change", function(){ f.all = this.checked; drawMap(); });
+  $("mxgo").addEventListener("click", function(){
+    f.from = $("mxfrom").value.trim(); f.to = $("mxto").value.trim(); bboxOnly = null;
+    $("mxarea").hidden = true; apply();
+  });
+  ["mxfrom","mxto"].forEach(function(id){
+    $(id).addEventListener("keydown", function(e){ if (e.key === "Enter") $("mxgo").click(); });
+  });
+  $("mxswap").addEventListener("click", function(){
+    var a = $("mxfrom").value; $("mxfrom").value = $("mxto").value; $("mxto").value = a; $("mxgo").click();
+  });
+  $("mxclear").addEventListener("click", function(){
+    $("mxfrom").value = ""; $("mxto").value = ""; $("mxdays").value = "7"; $("mxpax").value = "0";
+    $("mxreg").value = ""; $("mxac").value = ""; $("mxpriced").checked = false; $("mxsort").value = "soon";
+    f = { from:"", to:"", days:"7", pax:0, reg:"", ac:"", priced:false, sort:"soon", all:f.all };
+    bboxOnly = null; $("mxarea").hidden = true; sel = null; apply();
+  });
+  $("mxrows").addEventListener("click", function(e){
+    var row = e.target.closest(".mx-row"); if (!row) return;
+    if (e.target.closest("a")) return;          /* View flight is a real link */
+    select(row.getAttribute("data-id"), true);
+  });
+  $("mxpager").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if (!b) return;
+    page = parseInt(b.getAttribute("data-p"),10); drawList();
+    $("mxrows").scrollIntoView({ block:"nearest" });
+  });
+  document.querySelector(".mx-view").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if (!b) return;
+    Array.prototype.forEach.call(this.querySelectorAll("button"), function(x){ x.classList.toggle("on", x===b); });
+    document.querySelector(".mx-body").setAttribute("data-view", b.getAttribute("data-v"));
+    setTimeout(function(){ map.invalidateSize(); }, 60);
+  });
+  $("mxfull").addEventListener("click", function(){
+    $("mxmapwrap").classList.toggle("full");
+    document.body.style.overflow = $("mxmapwrap").classList.contains("full") ? "hidden" : "";
+    setTimeout(function(){ map.invalidateSize(); }, 60);
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && $("mxmapwrap").classList.contains("full")) $("mxfull").click();
+  });
+  map.on("moveend", function(){ if (ALL.length) $("mxarea").hidden = false; });
+  $("mxarea").addEventListener("click", function(){
+    bboxOnly = map.getBounds(); this.hidden = true; apply();
+  });
+
+  /* ---------- load ------------------------------------------------------ */
   apiAll("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date,id")
-    .then(function(rows){ all = rows; draw(); })
-    .catch(function(){ document.getElementById("mapcnt").textContent = "The board did not load. Refresh, or use the live list."; });
+    .then(function(rows){
+      ALL = rows;
+      var places = {}, types = {};
+      rows.forEach(function(l){
+        [l.from_label, l.to_label].forEach(function(x){ if (x) places[short(x)] = 1; });
+        if (l.aircraft_type) types[l.aircraft_type] = (types[l.aircraft_type]||0) + 1;
+      });
+      $("mxplaces").innerHTML = Object.keys(places).sort().map(function(p){
+        return '<option value="' + esc(p) + '">'; }).join("");
+      $("mxac").innerHTML = '<option value="">Any</option>' + Object.keys(types)
+        .sort(function(a,b){ return types[b]-types[a] || a.localeCompare(b); })
+        .map(function(t){ return '<option value="' + esc(t) + '">' + esc(t) + ' (' + types[t] + ')</option>'; }).join("");
+      apply();
+    })
+    .catch(function(){
+      $("mxrows").innerHTML = '<p style="color:var(--mute);padding:18px 2px">The board did not load. Refresh the page, or use the <a href="/">live list</a>.</p>';
+    });
 })();
 </script>
 
