@@ -134,18 +134,23 @@ body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
 .mx-lh h2{margin:0;font-size:22px}
 .mx-lh p{margin:4px 0 0;font-size:12.5px;color:var(--mute)}
 .mx-lh select{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font:inherit;font-size:13px;background:#fff}
-.mx-row{display:flex;align-items:flex-start;gap:12px;padding:15px 12px;border-bottom:1px solid var(--line);
+.mx-row{display:flex;align-items:center;gap:12px;min-height:84px;padding:14px 12px;border-bottom:1px solid var(--line);
   border-left:3px solid transparent;cursor:pointer;border-radius:0 8px 8px 0}
 .mx-row:hover{background:#f7f9fc}
 .mx-row.on{background:#fbf8f1;border-left-color:var(--gold)}
 .mx-row .r{flex:1;min-width:0}
-.mx-row b{display:block;font-size:15.5px;color:var(--navy);font-weight:600;line-height:1.35}
-.mx-row small{display:block;font-size:12.5px;color:var(--mute);margin-top:3px}
+.mx-row b{display:block;font-size:15.5px;color:var(--navy);font-weight:600;line-height:1.35;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-row .p b{white-space:nowrap;overflow:visible}
+.mx-row small{display:block;font-size:12.5px;color:var(--mute);margin-top:3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mx-row .p small{white-space:nowrap;overflow:visible}
 .mx-row .go{display:inline-block;margin-top:7px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none}
 .mx-row .go:hover{color:#8a6d2c}
 .mx-row .p{flex:0 0 auto;text-align:right}
 .mx-row .p b{font-size:15.5px}
 .mx-row .p small{margin-top:2px}
+.mx-row .p small.nomap{color:rgba(13,31,54,.38);font-style:italic;margin-top:5px}
 .mx-page{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0;font-size:13px;color:var(--mute);flex-wrap:nowrap}
 #mxpager{display:flex;gap:5px;flex:0 0 auto}
 #mxcount{text-align:right;line-height:1.4}
@@ -157,12 +162,16 @@ body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
 #elmap{width:100%;height:min(74vh,700px);border-radius:14px;background:#0b1b2b}
 .mx-mapwrap.full{position:fixed;inset:0;z-index:9000;background:#0b1b2b;padding:10px}
 .mx-mapwrap.full #elmap{height:100%;border-radius:10px}
-.mx-area,.mx-full{position:absolute;z-index:500;background:#fff;border:1px solid var(--line);border-radius:10px;
+.mx-area,.mx-full,.mx-back{position:absolute;z-index:500;background:#fff;border:1px solid var(--line);border-radius:10px;
   font:inherit;font-size:13.5px;font-weight:600;color:var(--navy);cursor:pointer;box-shadow:0 2px 10px rgba(8,19,31,.25)}
 .mx-area{top:14px;left:50%;transform:translateX(-50%);padding:9px 16px;display:inline-flex;align-items:center;gap:8px}
 .mx-back{top:14px;left:58px;padding:9px 16px}
+.mx-empty{position:absolute;inset:0;z-index:450;display:flex;align-items:center;justify-content:center;
+  padding:40px;pointer-events:none}
+.mx-empty p{margin:0;max-width:380px;text-align:center;background:rgba(13,31,54,.9);color:#e8edf3;
+  font-size:14px;line-height:1.6;padding:16px 20px;border-radius:12px}
 .mx-full{top:110px;right:14px;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center}
-.maplegend{position:absolute;left:14px;bottom:14px;z-index:500;background:rgba(13,31,54,.86);color:#e8edf3;
+.maplegend{position:absolute;left:14px;bottom:36px;z-index:500;background:rgba(13,31,54,.86);color:#e8edf3;
   font-size:12px;line-height:1.8;padding:9px 13px;border-radius:10px;pointer-events:none}
 .maplegend i{display:inline-block;width:20px;height:0;border-top:2px solid #E8BE63;vertical-align:middle;margin-right:8px}
 .maplegend i.w{border-top:2px dashed rgba(255,255,255,.7)}
@@ -579,6 +588,7 @@ body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
     <div id="elmap"></div>
     <button class="mx-area" id="mxarea" type="button" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6.4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg> Search this area</button>
     <button class="mx-back" id="mxback" type="button" hidden>&larr; Back to all flights</button>
+    <div class="mx-empty" id="mxempty" hidden><p></p></div>
     <button class="mx-full" id="mxfull" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5h-5v5M15.5 3.5h5v5M20.5 15.5v5h-5M3.5 15.5v5h5"/></svg></button>
     <div class="maplegend"><i></i>Published price<br><i class="w"></i>Price on enquiry</div>
     <label class="mx-all"><span>Show every route</span><input type="checkbox" id="mxall"></label>
@@ -768,7 +778,15 @@ function flightUrl(x){
         + (slug ? '<br><a href="/empty-legs/' + slug + '">Empty legs to and from ' + esc(c.lab) + ' &rarr;</a>' : ''));
       dots.addLayer(m);
     });
-    $("mxnote").textContent = note(placed.length, use.length);
+    var msg = note(placed.length, use.length);
+    $("mxnote").textContent = msg;
+    var empty = $("mxempty");
+    if (!use.length){
+      empty.firstChild.textContent = sel
+        ? "This listing has no map location, so there is nothing to draw. Everything the operator published about it is in the list."
+        : "Nothing on the map for these filters. Widen the dates, or clear the filters.";
+      empty.hidden = false;
+    } else { empty.hidden = true; }
     if (bounds.length && !bboxOnly) map.fitBounds(bounds, { padding:[24,24], maxZoom:6 });
   }
   function note(placed, drawn){
@@ -793,10 +811,13 @@ function flightUrl(x){
         + '<div class="r"><b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b>'
         + '<small>' + esc(fmtDate(l.departure_date))
         + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
-        + (l.seats ? ' &middot; ' + l.seats + ' seats' : '') + '</small>'
+        + (l.seats ? ' &middot; ' + l.seats + ' seats' : '')
+        + '</small>'
         + '<a class="go" href="/flight?id=' + encodeURIComponent(l.id) + '">View flight &rarr;</a></div>'
         + '<div class="p"><b>' + (m ? esc(fmtPrice(l.price_note)) : 'On enquiry') + '</b>'
-        + '<small>' + (m ? 'Whole aircraft' : 'Ask the operator') + '</small></div></div>';
+        + '<small>' + (m ? 'Whole aircraft' : 'Ask the operator') + '</small>'
+        + (l.from_lat == null || l.to_lat == null ? '<small class="nomap">Not on the map</small>' : '')
+        + '</div></div>';
     }).join("") || '<p style="color:var(--mute);padding:18px 2px">Nothing matches those filters. Widen the dates, or set an alert and let it come to you.</p>';
 
     var pages = Math.ceil(VIEW.length / PER), out = "";
@@ -809,12 +830,13 @@ function flightUrl(x){
   }
 
   function select(id, fromList){
+    map.closePopup();
     sel = (sel === id) ? null : id;      /* click it again to go back to all */
     drawList(); drawMap();
     $("mxback").hidden = !sel;
     var l = sel ? byId(sel) : null;
     if (!l || l.from_lat == null) return;
-    map.fitBounds([[l.from_lat,l.from_lon],[l.to_lat,l.to_lon]], { padding:[60,60], maxZoom:7 });
+    map.fitBounds([[l.from_lat,l.from_lon],[l.to_lat,l.to_lon]], { padding:[90,90], maxZoom:5 });
     L.popup({ closeButton:true })
       .setLatLng([(l.from_lat+l.to_lat)/2, (l.from_lon+l.to_lon)/2])
       .setContent('<b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b><br>'
