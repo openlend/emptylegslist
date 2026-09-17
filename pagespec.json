@@ -657,6 +657,13 @@
   ]
  },
  {
+  "slug": "verbier",
+  "kind": "city",
+  "keys": [
+   "verbier"
+  ]
+ },
+ {
   "slug": "verona",
   "kind": "city",
   "keys": [

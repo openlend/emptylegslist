@@ -340,7 +340,7 @@ header.elnav .eln-reg { margin: 0; }
    The live count beside a city or country is drawn with a CSS ::after from a
    data attribute, never written into the link, so the anchor text a crawler
    reads stays "London".                                                  */
-.eln-mega.mega-dest{display:block;padding:0;width:min(1180px,calc(100vw - 48px));max-height:min(86vh,760px);overflow:auto}
+.eln-mega.mega-dest{display:block;padding:0;width:min(1240px,calc(100vw - 48px));max-height:min(86vh,760px);overflow:auto}
 .eld-top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 28px 16px}
 .eld-h{margin:0;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:22px;color:var(--navy,#0D1F36)}
 header.elnav .eln-mega .eld-top h4{font-size:22px;letter-spacing:0;text-transform:none;color:var(--navy,#0D1F36)}
