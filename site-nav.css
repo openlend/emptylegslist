@@ -368,7 +368,8 @@ header.elnav .eln-mega .eln-ctry a[data-live="0"]{color:rgba(13,31,54,.55)}
    the bottom of the screen, so the last row of cities could not be reached.
    It scrolls inside the panel instead. */
 .eln-col-city{display:flex;flex-direction:column;min-height:0}
-.eln-col-city .eln-pan{overflow-y:auto;max-height:min(52vh,420px);
+.eln-col-city .eln-pan{overflow-y:auto;overflow-x:hidden;max-height:min(52vh,420px);
   scrollbar-width:thin;padding-right:4px}
 .eln-mega.mega-dest{max-height:min(80vh,720px);overflow:hidden}
-.eln-col-route{overflow-y:auto;max-height:min(70vh,640px);scrollbar-width:thin}
+.eln-col-city,.eln-col-route,.eln-col-reg{min-width:0}
+.eln-col-route{overflow-y:auto;overflow-x:hidden;max-height:min(70vh,640px);scrollbar-width:thin}
