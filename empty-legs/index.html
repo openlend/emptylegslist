@@ -60,6 +60,7 @@ h1{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(
 .acsort{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute)}
 .acsort select{height:36px;border:1px solid var(--line);border-radius:9px;background:#fff;font:inherit;font-size:13.5px;color:var(--ink);padding:0 10px}
 .acgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(282px,1fr));gap:16px}
+.accard[hidden]{display:none}
 .accard{display:flex;flex-direction:column;background:#fff;border-radius:16px;overflow:hidden;text-decoration:none;box-shadow:0 1px 3px rgba(14,35,56,.08);transition:box-shadow .18s ease,transform .18s ease}
 .accard:hover{box-shadow:0 12px 28px rgba(14,35,56,.14);transform:translateY(-2px)}
 .acshot{display:block;width:100%;height:auto;aspect-ratio:1600/756;object-fit:cover;background:#e7edf3}
@@ -473,103 +474,979 @@ footer a{color:rgba(255,255,255,.85)}
 <!-- /eln-drawer -->
 <div class="wrap">
 <h1>Every empty leg destination</h1>
-<p class="lede">The 80 cities we keep a page for, grouped by region, with the number of flights on the board for each one right now. Each page lists what the operator published for that city: the route, the date, the aircraft, and the price where there is one.</p>
-<p class="lede">A count of none means nothing is listed for that city today, not that it never appears. Empty legs are published days ahead, so a route alert is more use than a daily check.</p>
-<h2 id="europe">Europe</h2>
-<div class="grid">
-  <a class="card" href="/empty-legs/london"><b>London</b><span class="cat">United Kingdom</span><span class="n" id="n-london">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/paris"><b>Paris</b><span class="cat">France</span><span class="n" id="n-paris">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/nice"><b>Nice</b><span class="cat">France</span><span class="n" id="n-nice">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/cannes"><b>Cannes</b><span class="cat">France</span><span class="n" id="n-cannes">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/milan"><b>Milan</b><span class="cat">Italy</span><span class="n" id="n-milan">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/bologna"><b>Bologna</b><span class="cat">Italy</span><span class="n" id="n-bologna">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/bari"><b>Bari</b><span class="cat">Italy</span><span class="n" id="n-bari">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/pisa"><b>Pisa</b><span class="cat">Italy</span><span class="n" id="n-pisa">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/verona"><b>Verona</b><span class="cat">Italy</span><span class="n" id="n-verona">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/bolzano"><b>Bolzano</b><span class="cat">Italy</span><span class="n" id="n-bolzano">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/cagliari"><b>Cagliari</b><span class="cat">Italy</span><span class="n" id="n-cagliari">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/olbia"><b>Olbia</b><span class="cat">Italy</span><span class="n" id="n-olbia">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/ibiza"><b>Ibiza</b><span class="cat">Spain</span><span class="n" id="n-ibiza">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/palma"><b>Palma</b><span class="cat">Spain</span><span class="n" id="n-palma">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/malaga"><b>Malaga</b><span class="cat">Spain</span><span class="n" id="n-malaga">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/madrid"><b>Madrid</b><span class="cat">Spain</span><span class="n" id="n-madrid">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/barcelona"><b>Barcelona</b><span class="cat">Spain</span><span class="n" id="n-barcelona">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/alicante"><b>Alicante</b><span class="cat">Spain</span><span class="n" id="n-alicante">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/girona"><b>Girona</b><span class="cat">Spain</span><span class="n" id="n-girona">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/athens"><b>Athens</b><span class="cat">Greece</span><span class="n" id="n-athens">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/thessaloniki"><b>Thessaloniki</b><span class="cat">Greece</span><span class="n" id="n-thessaloniki">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/amsterdam"><b>Amsterdam</b><span class="cat">Netherlands</span><span class="n" id="n-amsterdam">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/rotterdam"><b>Rotterdam</b><span class="cat">Netherlands</span><span class="n" id="n-rotterdam">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/brussels"><b>Brussels</b><span class="cat">Belgium</span><span class="n" id="n-brussels">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/antwerp"><b>Antwerp</b><span class="cat">Belgium</span><span class="n" id="n-antwerp">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/wevelgem"><b>Wevelgem</b><span class="cat">Belgium</span><span class="n" id="n-wevelgem">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/liege"><b>Liege</b><span class="cat">Belgium</span><span class="n" id="n-liege">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/vienna"><b>Vienna</b><span class="cat">Austria</span><span class="n" id="n-vienna">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/salzburg"><b>Salzburg</b><span class="cat">Austria</span><span class="n" id="n-salzburg">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/linz"><b>Linz</b><span class="cat">Austria</span><span class="n" id="n-linz">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/berlin"><b>Berlin</b><span class="cat">Germany</span><span class="n" id="n-berlin">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/munich"><b>Munich</b><span class="cat">Germany</span><span class="n" id="n-munich">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/dusseldorf"><b>Dusseldorf</b><span class="cat">Germany</span><span class="n" id="n-dusseldorf">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/zurich"><b>Zurich</b><span class="cat">Switzerland</span><span class="n" id="n-zurich">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/geneva"><b>Geneva</b><span class="cat">Switzerland</span><span class="n" id="n-geneva">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/sion"><b>Sion</b><span class="cat">Switzerland</span><span class="n" id="n-sion">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/verbier"><b>Verbier</b><span class="cat">Switzerland</span><span class="n" id="n-verbier">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/montpellier"><b>Montpellier</b><span class="cat">France</span><span class="n" id="n-montpellier">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/toulon"><b>Toulon</b><span class="cat">France</span><span class="n" id="n-toulon">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/birmingham"><b>Birmingham</b><span class="cat">United Kingdom</span><span class="n" id="n-birmingham">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/oxford"><b>Oxford</b><span class="cat">United Kingdom</span><span class="n" id="n-oxford">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/farnborough"><b>Farnborough</b><span class="cat">United Kingdom</span><span class="n" id="n-farnborough">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/belfast"><b>Belfast</b><span class="cat">United Kingdom</span><span class="n" id="n-belfast">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/dublin"><b>Dublin</b><span class="cat">Ireland</span><span class="n" id="n-dublin">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/edinburgh"><b>Edinburgh</b><span class="cat">United Kingdom</span><span class="n" id="n-edinburgh">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/bergen"><b>Bergen</b><span class="cat">Norway</span><span class="n" id="n-bergen">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/preveza"><b>Preveza</b><span class="cat">Greece</span><span class="n" id="n-preveza">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/mykonos"><b>Mykonos</b><span class="cat">Europe</span><span class="n" id="n-mykonos">&nbsp;</span></a>
+<p class="lede">The 80 cities we keep a page for, each with the number of flights on the board right now, the cheapest published price and the next departure. Each page lists what the operator published for that city: the route, the date, the aircraft, and the price where there is one.</p>
+<div class="actools" data-nomf>
+  <label class="acfield"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="dq" type="search" placeholder="Search a city or country..." autocomplete="off" aria-label="Search a city or country"></label>
+  <select id="dhas" aria-label="Availability"><option value="">Anything listed</option><option value="1">With flights today</option></select>
+  <select id="dsort" aria-label="Sort"><option value="name">Name A to Z</option><option value="flights">Most flights listed</option></select>
 </div>
-
-<h2 id="north-america">North America</h2>
-<div class="grid">
-  <a class="card" href="/empty-legs/boise"><b>Boise</b><span class="cat">North America</span><span class="n" id="n-boise">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/new-york"><b>New York</b><span class="cat">United States</span><span class="n" id="n-new-york">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/teterboro"><b>Teterboro</b><span class="cat">United States</span><span class="n" id="n-teterboro">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/washington"><b>Washington</b><span class="cat">United States</span><span class="n" id="n-washington">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/miami"><b>Miami</b><span class="cat">United States</span><span class="n" id="n-miami">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/fort-lauderdale"><b>Fort Lauderdale</b><span class="cat">United States</span><span class="n" id="n-fort-lauderdale">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/naples"><b>Naples</b><span class="cat">United States</span><span class="n" id="n-naples">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/chicago"><b>Chicago</b><span class="cat">United States</span><span class="n" id="n-chicago">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/milwaukee"><b>Milwaukee</b><span class="cat">United States</span><span class="n" id="n-milwaukee">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/waukesha"><b>Waukesha</b><span class="cat">United States</span><span class="n" id="n-waukesha">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/dallas"><b>Dallas</b><span class="cat">United States</span><span class="n" id="n-dallas">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/fort-worth"><b>Fort Worth</b><span class="cat">United States</span><span class="n" id="n-fort-worth">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/austin"><b>Austin</b><span class="cat">United States</span><span class="n" id="n-austin">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/houston"><b>Houston</b><span class="cat">United States</span><span class="n" id="n-houston">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/las-vegas"><b>Las Vegas</b><span class="cat">United States</span><span class="n" id="n-las-vegas">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/scottsdale"><b>Scottsdale</b><span class="cat">United States</span><span class="n" id="n-scottsdale">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/aspen"><b>Aspen</b><span class="cat">United States</span><span class="n" id="n-aspen">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/van-nuys"><b>Van Nuys</b><span class="cat">United States</span><span class="n" id="n-van-nuys">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/carlsbad"><b>Carlsbad</b><span class="cat">United States</span><span class="n" id="n-carlsbad">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/monterey"><b>Monterey</b><span class="cat">United States</span><span class="n" id="n-monterey">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/oakland"><b>Oakland</b><span class="cat">United States</span><span class="n" id="n-oakland">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/toronto"><b>Toronto</b><span class="cat">Canada</span><span class="n" id="n-toronto">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/montreal"><b>Montreal</b><span class="cat">Canada</span><span class="n" id="n-montreal">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/calgary"><b>Calgary</b><span class="cat">Canada</span><span class="n" id="n-calgary">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/sault-ste-marie"><b>Sault Ste Marie</b><span class="cat">Canada</span><span class="n" id="n-sault-ste-marie">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/turks-and-caicos"><b>Turks And Caicos</b><span class="cat">Turks and Caicos</span><span class="n" id="n-turks-and-caicos">&nbsp;</span></a>
+<div class="acpills" id="dpills"><button class="acpill" type="button" data-reg="" aria-pressed="true">All destinations</button><button class="acpill" type="button" data-reg="europe" aria-pressed="false">Europe</button><button class="acpill" type="button" data-reg="north-america" aria-pressed="false">North America</button><button class="acpill" type="button" data-reg="middle-east" aria-pressed="false">Middle East</button><button class="acpill" type="button" data-reg="africa" aria-pressed="false">Africa</button></div>
+<div class="acbar"><span class="acshowing" id="dshowing">80 destinations</span></div>
+<div class="acgrid" id="dgrid">
+  <a class="accard" href="/empty-legs/london" data-reg="europe" data-slug="london" data-name="london" data-q="london united kingdom europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/london-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from London">
+    <span class="acbody">
+      <span class="acmake">United Kingdom</span><span class="acname">London</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-london">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-london">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-london">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-london">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/paris" data-reg="europe" data-slug="paris" data-name="paris" data-q="paris france europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/paris-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Paris">
+    <span class="acbody">
+      <span class="acmake">France</span><span class="acname">Paris</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-paris">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-paris">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-paris">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-paris">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/nice" data-reg="europe" data-slug="nice" data-name="nice" data-q="nice france europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/nice-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Nice">
+    <span class="acbody">
+      <span class="acmake">France</span><span class="acname">Nice</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-nice">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-nice">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-nice">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-nice">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/cannes" data-reg="europe" data-slug="cannes" data-name="cannes" data-q="cannes france europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/cannes-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Cannes">
+    <span class="acbody">
+      <span class="acmake">France</span><span class="acname">Cannes</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-cannes">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-cannes">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-cannes">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-cannes">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/milan" data-reg="europe" data-slug="milan" data-name="milan" data-q="milan italy europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/milan-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Milan">
+    <span class="acbody">
+      <span class="acmake">Italy</span><span class="acname">Milan</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-milan">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-milan">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-milan">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-milan">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/bologna" data-reg="europe" data-slug="bologna" data-name="bologna" data-q="bologna italy europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/bologna-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Bologna">
+    <span class="acbody">
+      <span class="acmake">Italy</span><span class="acname">Bologna</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-bologna">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-bologna">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-bologna">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-bologna">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/bari" data-reg="europe" data-slug="bari" data-name="bari" data-q="bari italy europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/bari-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Bari">
+    <span class="acbody">
+      <span class="acmake">Italy</span><span class="acname">Bari</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-bari">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-bari">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-bari">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-bari">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/pisa" data-reg="europe" data-slug="pisa" data-name="pisa" data-q="pisa italy europe" data-n="0">
+    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Italy</span><span class="acname">Pisa</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-pisa">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-pisa">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-pisa">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-pisa">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/verona" data-reg="europe" data-slug="verona" data-name="verona" data-q="verona italy europe" data-n="0">
+    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Italy</span><span class="acname">Verona</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-verona">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-verona">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-verona">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-verona">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/bolzano" data-reg="europe" data-slug="bolzano" data-name="bolzano" data-q="bolzano italy europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/bolzano-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Bolzano">
+    <span class="acbody">
+      <span class="acmake">Italy</span><span class="acname">Bolzano</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-bolzano">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-bolzano">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-bolzano">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-bolzano">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/cagliari" data-reg="europe" data-slug="cagliari" data-name="cagliari" data-q="cagliari italy europe" data-n="0">
+    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Italy</span><span class="acname">Cagliari</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-cagliari">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-cagliari">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-cagliari">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-cagliari">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/olbia" data-reg="europe" data-slug="olbia" data-name="olbia" data-q="olbia italy europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/olbia-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Olbia">
+    <span class="acbody">
+      <span class="acmake">Italy</span><span class="acname">Olbia</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-olbia">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-olbia">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-olbia">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-olbia">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/ibiza" data-reg="europe" data-slug="ibiza" data-name="ibiza" data-q="ibiza spain europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/ibiza-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Ibiza">
+    <span class="acbody">
+      <span class="acmake">Spain</span><span class="acname">Ibiza</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-ibiza">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-ibiza">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-ibiza">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-ibiza">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/palma" data-reg="europe" data-slug="palma" data-name="palma" data-q="palma spain europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/palma-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Palma">
+    <span class="acbody">
+      <span class="acmake">Spain</span><span class="acname">Palma</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-palma">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-palma">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-palma">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-palma">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/malaga" data-reg="europe" data-slug="malaga" data-name="malaga" data-q="malaga spain europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/malaga-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Malaga">
+    <span class="acbody">
+      <span class="acmake">Spain</span><span class="acname">Malaga</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-malaga">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-malaga">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-malaga">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-malaga">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/madrid" data-reg="europe" data-slug="madrid" data-name="madrid" data-q="madrid spain europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/madrid-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Madrid">
+    <span class="acbody">
+      <span class="acmake">Spain</span><span class="acname">Madrid</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-madrid">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-madrid">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-madrid">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-madrid">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/barcelona" data-reg="europe" data-slug="barcelona" data-name="barcelona" data-q="barcelona spain europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/barcelona-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Barcelona">
+    <span class="acbody">
+      <span class="acmake">Spain</span><span class="acname">Barcelona</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-barcelona">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-barcelona">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-barcelona">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-barcelona">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/alicante" data-reg="europe" data-slug="alicante" data-name="alicante" data-q="alicante spain europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/alicante-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Alicante">
+    <span class="acbody">
+      <span class="acmake">Spain</span><span class="acname">Alicante</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-alicante">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-alicante">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-alicante">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-alicante">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/girona" data-reg="europe" data-slug="girona" data-name="girona" data-q="girona spain europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/girona-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Girona">
+    <span class="acbody">
+      <span class="acmake">Spain</span><span class="acname">Girona</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-girona">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-girona">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-girona">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-girona">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/athens" data-reg="europe" data-slug="athens" data-name="athens" data-q="athens greece europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/athens-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Athens">
+    <span class="acbody">
+      <span class="acmake">Greece</span><span class="acname">Athens</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-athens">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-athens">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-athens">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-athens">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/thessaloniki" data-reg="europe" data-slug="thessaloniki" data-name="thessaloniki" data-q="thessaloniki greece europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/thessaloniki-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Thessaloniki">
+    <span class="acbody">
+      <span class="acmake">Greece</span><span class="acname">Thessaloniki</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-thessaloniki">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-thessaloniki">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-thessaloniki">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-thessaloniki">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/amsterdam" data-reg="europe" data-slug="amsterdam" data-name="amsterdam" data-q="amsterdam netherlands europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/amsterdam-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Amsterdam">
+    <span class="acbody">
+      <span class="acmake">Netherlands</span><span class="acname">Amsterdam</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-amsterdam">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-amsterdam">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-amsterdam">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-amsterdam">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/rotterdam" data-reg="europe" data-slug="rotterdam" data-name="rotterdam" data-q="rotterdam netherlands europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/rotterdam-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Rotterdam">
+    <span class="acbody">
+      <span class="acmake">Netherlands</span><span class="acname">Rotterdam</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-rotterdam">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-rotterdam">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-rotterdam">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-rotterdam">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/brussels" data-reg="europe" data-slug="brussels" data-name="brussels" data-q="brussels belgium europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/brussels-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Brussels">
+    <span class="acbody">
+      <span class="acmake">Belgium</span><span class="acname">Brussels</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-brussels">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-brussels">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-brussels">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-brussels">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/antwerp" data-reg="europe" data-slug="antwerp" data-name="antwerp" data-q="antwerp belgium europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/antwerp-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Antwerp">
+    <span class="acbody">
+      <span class="acmake">Belgium</span><span class="acname">Antwerp</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-antwerp">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-antwerp">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-antwerp">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-antwerp">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/wevelgem" data-reg="europe" data-slug="wevelgem" data-name="wevelgem" data-q="wevelgem belgium europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/wevelgem-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Wevelgem">
+    <span class="acbody">
+      <span class="acmake">Belgium</span><span class="acname">Wevelgem</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-wevelgem">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-wevelgem">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-wevelgem">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-wevelgem">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/liege" data-reg="europe" data-slug="liege" data-name="liege" data-q="liege belgium europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/liege-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Liege">
+    <span class="acbody">
+      <span class="acmake">Belgium</span><span class="acname">Liege</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-liege">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-liege">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-liege">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-liege">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/vienna" data-reg="europe" data-slug="vienna" data-name="vienna" data-q="vienna austria europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/vienna-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Vienna">
+    <span class="acbody">
+      <span class="acmake">Austria</span><span class="acname">Vienna</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-vienna">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-vienna">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-vienna">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-vienna">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/salzburg" data-reg="europe" data-slug="salzburg" data-name="salzburg" data-q="salzburg austria europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/salzburg-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Salzburg">
+    <span class="acbody">
+      <span class="acmake">Austria</span><span class="acname">Salzburg</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-salzburg">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-salzburg">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-salzburg">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-salzburg">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/linz" data-reg="europe" data-slug="linz" data-name="linz" data-q="linz austria europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/linz-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Linz">
+    <span class="acbody">
+      <span class="acmake">Austria</span><span class="acname">Linz</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-linz">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-linz">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-linz">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-linz">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/berlin" data-reg="europe" data-slug="berlin" data-name="berlin" data-q="berlin germany europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/berlin-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Berlin">
+    <span class="acbody">
+      <span class="acmake">Germany</span><span class="acname">Berlin</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-berlin">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-berlin">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-berlin">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-berlin">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/munich" data-reg="europe" data-slug="munich" data-name="munich" data-q="munich germany europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/munich-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Munich">
+    <span class="acbody">
+      <span class="acmake">Germany</span><span class="acname">Munich</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-munich">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-munich">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-munich">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-munich">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/dusseldorf" data-reg="europe" data-slug="dusseldorf" data-name="dusseldorf" data-q="dusseldorf germany europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/dusseldorf-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Dusseldorf">
+    <span class="acbody">
+      <span class="acmake">Germany</span><span class="acname">Dusseldorf</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-dusseldorf">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-dusseldorf">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-dusseldorf">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-dusseldorf">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/zurich" data-reg="europe" data-slug="zurich" data-name="zurich" data-q="zurich switzerland europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/zurich-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Zurich">
+    <span class="acbody">
+      <span class="acmake">Switzerland</span><span class="acname">Zurich</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-zurich">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-zurich">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-zurich">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-zurich">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/geneva" data-reg="europe" data-slug="geneva" data-name="geneva" data-q="geneva switzerland europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/geneva-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Geneva">
+    <span class="acbody">
+      <span class="acmake">Switzerland</span><span class="acname">Geneva</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-geneva">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-geneva">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-geneva">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-geneva">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/sion" data-reg="europe" data-slug="sion" data-name="sion" data-q="sion switzerland europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/sion-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Sion">
+    <span class="acbody">
+      <span class="acmake">Switzerland</span><span class="acname">Sion</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-sion">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-sion">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-sion">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-sion">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/verbier" data-reg="europe" data-slug="verbier" data-name="verbier" data-q="verbier switzerland europe" data-n="0">
+    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">Switzerland</span><span class="acname">Verbier</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-verbier">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-verbier">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-verbier">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-verbier">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/montpellier" data-reg="europe" data-slug="montpellier" data-name="montpellier" data-q="montpellier france europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/montpellier-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Montpellier">
+    <span class="acbody">
+      <span class="acmake">France</span><span class="acname">Montpellier</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-montpellier">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-montpellier">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-montpellier">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-montpellier">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/toulon" data-reg="europe" data-slug="toulon" data-name="toulon" data-q="toulon france europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/toulon-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Toulon">
+    <span class="acbody">
+      <span class="acmake">France</span><span class="acname">Toulon</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-toulon">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-toulon">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-toulon">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-toulon">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/birmingham" data-reg="europe" data-slug="birmingham" data-name="birmingham" data-q="birmingham united kingdom europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/birmingham-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Birmingham">
+    <span class="acbody">
+      <span class="acmake">United Kingdom</span><span class="acname">Birmingham</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-birmingham">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-birmingham">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-birmingham">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-birmingham">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/oxford" data-reg="europe" data-slug="oxford" data-name="oxford" data-q="oxford united kingdom europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/oxford-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Oxford">
+    <span class="acbody">
+      <span class="acmake">United Kingdom</span><span class="acname">Oxford</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-oxford">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-oxford">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-oxford">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-oxford">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/farnborough" data-reg="europe" data-slug="farnborough" data-name="farnborough" data-q="farnborough united kingdom europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/farnborough-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Farnborough">
+    <span class="acbody">
+      <span class="acmake">United Kingdom</span><span class="acname">Farnborough</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-farnborough">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-farnborough">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-farnborough">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-farnborough">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/belfast" data-reg="europe" data-slug="belfast" data-name="belfast" data-q="belfast united kingdom europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/belfast-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Belfast">
+    <span class="acbody">
+      <span class="acmake">United Kingdom</span><span class="acname">Belfast</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-belfast">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-belfast">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-belfast">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-belfast">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/dublin" data-reg="europe" data-slug="dublin" data-name="dublin" data-q="dublin ireland europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/dublin-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Dublin">
+    <span class="acbody">
+      <span class="acmake">Ireland</span><span class="acname">Dublin</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-dublin">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-dublin">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-dublin">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-dublin">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/edinburgh" data-reg="europe" data-slug="edinburgh" data-name="edinburgh" data-q="edinburgh united kingdom europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/edinburgh-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Edinburgh">
+    <span class="acbody">
+      <span class="acmake">United Kingdom</span><span class="acname">Edinburgh</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-edinburgh">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-edinburgh">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-edinburgh">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-edinburgh">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/bergen" data-reg="europe" data-slug="bergen" data-name="bergen" data-q="bergen norway europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/bergen-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Bergen">
+    <span class="acbody">
+      <span class="acmake">Norway</span><span class="acname">Bergen</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-bergen">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-bergen">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-bergen">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-bergen">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/preveza" data-reg="europe" data-slug="preveza" data-name="preveza" data-q="preveza greece europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/preveza-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Preveza">
+    <span class="acbody">
+      <span class="acmake">Greece</span><span class="acname">Preveza</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-preveza">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-preveza">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-preveza">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-preveza">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/mykonos" data-reg="europe" data-slug="mykonos" data-name="mykonos" data-q="mykonos europe europe" data-n="0">
+    <img class="acshot" src="/brand/heroes/mykonos-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Mykonos">
+    <span class="acbody">
+      <span class="acmake">Europe</span><span class="acname">Mykonos</span><span class="accls">Europe</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-mykonos">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-mykonos">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-mykonos">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-mykonos">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/boise" data-reg="north-america" data-slug="boise" data-name="boise" data-q="boise north america north america" data-n="0">
+    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">North America</span><span class="acname">Boise</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-boise">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-boise">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-boise">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-boise">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/new-york" data-reg="north-america" data-slug="new-york" data-name="new york" data-q="new york united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/new-york-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from New York">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">New York</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-new-york">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-new-york">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-new-york">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-new-york">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/teterboro" data-reg="north-america" data-slug="teterboro" data-name="teterboro" data-q="teterboro united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/teterboro-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Teterboro">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Teterboro</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-teterboro">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-teterboro">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-teterboro">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-teterboro">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/washington" data-reg="north-america" data-slug="washington" data-name="washington" data-q="washington united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/washington-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Washington">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Washington</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-washington">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-washington">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-washington">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-washington">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/miami" data-reg="north-america" data-slug="miami" data-name="miami" data-q="miami united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/miami-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Miami">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Miami</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-miami">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-miami">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-miami">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-miami">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/fort-lauderdale" data-reg="north-america" data-slug="fort-lauderdale" data-name="fort lauderdale" data-q="fort lauderdale united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/fort-lauderdale-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Fort Lauderdale">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Fort Lauderdale</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-fort-lauderdale">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-fort-lauderdale">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-fort-lauderdale">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-fort-lauderdale">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/naples" data-reg="north-america" data-slug="naples" data-name="naples" data-q="naples united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/naples-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Naples">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Naples</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-naples">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-naples">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-naples">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-naples">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/chicago" data-reg="north-america" data-slug="chicago" data-name="chicago" data-q="chicago united states north america" data-n="0">
+    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Chicago</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-chicago">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-chicago">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-chicago">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-chicago">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/milwaukee" data-reg="north-america" data-slug="milwaukee" data-name="milwaukee" data-q="milwaukee united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/milwaukee-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Milwaukee">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Milwaukee</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-milwaukee">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-milwaukee">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-milwaukee">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-milwaukee">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/waukesha" data-reg="north-america" data-slug="waukesha" data-name="waukesha" data-q="waukesha united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/waukesha-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Waukesha">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Waukesha</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-waukesha">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-waukesha">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-waukesha">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-waukesha">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/dallas" data-reg="north-america" data-slug="dallas" data-name="dallas" data-q="dallas united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/dallas-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Dallas">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Dallas</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-dallas">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-dallas">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-dallas">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-dallas">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/fort-worth" data-reg="north-america" data-slug="fort-worth" data-name="fort worth" data-q="fort worth united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/fort-worth-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Fort Worth">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Fort Worth</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-fort-worth">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-fort-worth">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-fort-worth">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-fort-worth">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/austin" data-reg="north-america" data-slug="austin" data-name="austin" data-q="austin united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/austin-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Austin">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Austin</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-austin">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-austin">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-austin">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-austin">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/houston" data-reg="north-america" data-slug="houston" data-name="houston" data-q="houston united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/houston-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Houston">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Houston</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-houston">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-houston">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-houston">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-houston">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/las-vegas" data-reg="north-america" data-slug="las-vegas" data-name="las vegas" data-q="las vegas united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/las-vegas-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Las Vegas">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Las Vegas</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-las-vegas">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-las-vegas">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-las-vegas">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-las-vegas">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/scottsdale" data-reg="north-america" data-slug="scottsdale" data-name="scottsdale" data-q="scottsdale united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/scottsdale-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Scottsdale">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Scottsdale</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-scottsdale">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-scottsdale">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-scottsdale">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-scottsdale">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/aspen" data-reg="north-america" data-slug="aspen" data-name="aspen" data-q="aspen united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/aspen-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Aspen">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Aspen</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-aspen">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-aspen">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-aspen">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-aspen">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/van-nuys" data-reg="north-america" data-slug="van-nuys" data-name="van nuys" data-q="van nuys united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/van-nuys-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Van Nuys">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Van Nuys</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-van-nuys">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-van-nuys">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-van-nuys">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-van-nuys">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/carlsbad" data-reg="north-america" data-slug="carlsbad" data-name="carlsbad" data-q="carlsbad united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/carlsbad-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Carlsbad">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Carlsbad</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-carlsbad">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-carlsbad">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-carlsbad">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-carlsbad">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/monterey" data-reg="north-america" data-slug="monterey" data-name="monterey" data-q="monterey united states north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/monterey-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Monterey">
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Monterey</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-monterey">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-monterey">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-monterey">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-monterey">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/oakland" data-reg="north-america" data-slug="oakland" data-name="oakland" data-q="oakland united states north america" data-n="0">
+    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">United States</span><span class="acname">Oakland</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-oakland">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-oakland">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-oakland">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-oakland">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/toronto" data-reg="north-america" data-slug="toronto" data-name="toronto" data-q="toronto canada north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/toronto-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Toronto">
+    <span class="acbody">
+      <span class="acmake">Canada</span><span class="acname">Toronto</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-toronto">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-toronto">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-toronto">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-toronto">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/montreal" data-reg="north-america" data-slug="montreal" data-name="montreal" data-q="montreal canada north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/montreal-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Montreal">
+    <span class="acbody">
+      <span class="acmake">Canada</span><span class="acname">Montreal</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-montreal">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-montreal">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-montreal">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-montreal">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/calgary" data-reg="north-america" data-slug="calgary" data-name="calgary" data-q="calgary canada north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/calgary-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Calgary">
+    <span class="acbody">
+      <span class="acmake">Canada</span><span class="acname">Calgary</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-calgary">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-calgary">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-calgary">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-calgary">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/sault-ste-marie" data-reg="north-america" data-slug="sault-ste-marie" data-name="sault ste marie" data-q="sault ste marie canada north america" data-n="0">
+    <img class="acshot" src="/brand/heroes/sault-ste-marie-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Sault Ste Marie">
+    <span class="acbody">
+      <span class="acmake">Canada</span><span class="acname">Sault Ste Marie</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-sault-ste-marie">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-sault-ste-marie">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-sault-ste-marie">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-sault-ste-marie">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/turks-and-caicos" data-reg="north-america" data-slug="turks-and-caicos" data-name="turks and caicos" data-q="turks and caicos turks and caicos north america" data-n="0">
+    <img class="acshot" src="/brand/cities/turks-and-caicos.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Turks And Caicos">
+    <span class="acbody">
+      <span class="acmake">Turks and Caicos</span><span class="acname">Turks And Caicos</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-turks-and-caicos">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-turks-and-caicos">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-turks-and-caicos">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-turks-and-caicos">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/larnaca" data-reg="middle-east" data-slug="larnaca" data-name="larnaca" data-q="larnaca cyprus middle east" data-n="0">
+    <img class="acshot" src="/brand/heroes/larnaca-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Larnaca">
+    <span class="acbody">
+      <span class="acmake">Cyprus</span><span class="acname">Larnaca</span><span class="accls">Middle East</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-larnaca">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-larnaca">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-larnaca">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-larnaca">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/istanbul" data-reg="middle-east" data-slug="istanbul" data-name="istanbul" data-q="istanbul turkey middle east" data-n="0">
+    <img class="acshot" src="/brand/heroes/istanbul-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Istanbul">
+    <span class="acbody">
+      <span class="acmake">Turkey</span><span class="acname">Istanbul</span><span class="accls">Middle East</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-istanbul">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-istanbul">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-istanbul">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-istanbul">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/bodrum" data-reg="middle-east" data-slug="bodrum" data-name="bodrum" data-q="bodrum turkey middle east" data-n="0">
+    <img class="acshot" src="/brand/cities/bodrum.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Bodrum">
+    <span class="acbody">
+      <span class="acmake">Turkey</span><span class="acname">Bodrum</span><span class="accls">Middle East</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-bodrum">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-bodrum">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-bodrum">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-bodrum">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/cape-town" data-reg="africa" data-slug="cape-town" data-name="cape town" data-q="cape town south africa africa" data-n="0">
+    <img class="acshot" src="/brand/heroes/cape-town-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Cape Town">
+    <span class="acbody">
+      <span class="acmake">South Africa</span><span class="acname">Cape Town</span><span class="accls">Africa</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-cape-town">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-cape-town">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-cape-town">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-cape-town">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/johannesburg" data-reg="africa" data-slug="johannesburg" data-name="johannesburg" data-q="johannesburg south africa africa" data-n="0">
+    <img class="acshot" src="/brand/heroes/johannesburg-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Johannesburg">
+    <span class="acbody">
+      <span class="acmake">South Africa</span><span class="acname">Johannesburg</span><span class="accls">Africa</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-johannesburg">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-johannesburg">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-johannesburg">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-johannesburg">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/maun" data-reg="africa" data-slug="maun" data-name="maun" data-q="maun botswana africa" data-n="0">
+    <img class="acshot" src="/brand/heroes/maun-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Maun">
+    <span class="acbody">
+      <span class="acmake">Botswana</span><span class="acname">Maun</span><span class="accls">Africa</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-maun">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-maun">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-maun">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-maun">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
 </div>
-
-<h2 id="middle-east">Middle East</h2>
-<div class="grid">
-  <a class="card" href="/empty-legs/larnaca"><b>Larnaca</b><span class="cat">Cyprus</span><span class="n" id="n-larnaca">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/istanbul"><b>Istanbul</b><span class="cat">Turkey</span><span class="n" id="n-istanbul">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/bodrum"><b>Bodrum</b><span class="cat">Turkey</span><span class="n" id="n-bodrum">&nbsp;</span></a>
-</div>
-
-<h2 id="africa">Africa</h2>
-<div class="grid">
-  <a class="card" href="/empty-legs/cape-town"><b>Cape Town</b><span class="cat">South Africa</span><span class="n" id="n-cape-town">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/johannesburg"><b>Johannesburg</b><span class="cat">South Africa</span><span class="n" id="n-johannesburg">&nbsp;</span></a>
-  <a class="card" href="/empty-legs/maun"><b>Maun</b><span class="cat">Botswana</span><span class="n" id="n-maun">&nbsp;</span></a>
-</div>
+<div class="acempty" id="dempty" hidden>No destination matches that. <button type="button" id="dreset">Clear the filters</button></div>
+<p class="acnote">Flights, cheapest and next departure are read from the board as this page loads, counted the same way the city page counts them, so the two can never disagree. A city with none listed is not one that never appears: empty legs are published days ahead, so a route alert is more use than a daily check.</p>
 <h2>How to use this</h2>
 <p>If your city is here, start on its page. If it is not, the board still carries flights to airports we have no page for, so search the <a href="/#listings">full list</a> by departure and arrival instead.</p>
 <p>Empty Leg List is a listing service. We are not a broker, not an operator, and not a party to any booking. Your enquiry goes to the operator covering the route, who confirms availability and the final price with you directly.</p>
@@ -685,29 +1562,84 @@ footer a{color:rgba(255,255,255,.85)}
   </div>
 </footer>
 
-<script src="/place-index.js"></script>
 <script>
 (function(){
-  if(!window.EL_PLACE) return;
+  "use strict";
+  /* Counts come from public.page_counts, the function the city pages
+     themselves count with, called with each city's own KEYS array. Until
+     17 September this page read empty_legs directly with limit=4000.
+     PostgREST answers with at most 1000 rows whatever the limit says, so it
+     was counting the first 1000 legs of 2,264 and London showed 13 flights
+     against the 152 its own page showed. */
   var BASE="https://wscowiseslaovmmfuzyv.supabase.co";
   var KEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
-  var today=new Date().toISOString().slice(0,10);
-  fetch(BASE+"/rest/v1/empty_legs?select=from_airport,to_airport,departure_date&limit=4000",{headers:{apikey:KEY,Authorization:"Bearer "+KEY}})
-   .then(function(r){return r.ok?r.json():[];})
-   .then(function(all){
-     var n={},i,s;
-     function bump(a){ s=EL_PLACE.slug(a); if(s) n[s]=(n[s]||0)+1; }
-     for(i=0;i<all.length;i++){
-       if(String(all[i].departure_date||"")<today) continue;
-       bump(all[i].from_airport); bump(all[i].to_airport);
-     }
-     var cards=document.querySelectorAll(".card .n");
-     for(i=0;i<cards.length;i++){
-       var slug=cards[i].id.slice(2), c=n[slug]||0;
-       cards[i].textContent=c?(c+(c===1?" flight listed":" flights listed")):"none listed right now";
-     }
+  var SPEC=[{"slug":"london","kind":"city","keys":["london","luton","stansted","biggin hill","farnborough","oxford"]},{"slug":"paris","kind":"city","keys":["paris","bourget"]},{"slug":"nice","kind":"city","keys":["nice","monaco"]},{"slug":"cannes","kind":"city","keys":["cannes","mandelieu"]},{"slug":"milan","kind":"city","keys":["milan","milano","lin","mxp","bgy"]},{"slug":"bologna","kind":"city","keys":["bologna","blq"]},{"slug":"bari","kind":"city","keys":["bari","bri"]},{"slug":"pisa","kind":"city","keys":["pisa","psa"]},{"slug":"verona","kind":"city","keys":["verona","vrn"]},{"slug":"bolzano","kind":"city","keys":["bolzano","bozen","bzo"]},{"slug":"cagliari","kind":"city","keys":["cagliari","cag"]},{"slug":"olbia","kind":"city","keys":["olbia"]},{"slug":"ibiza","kind":"city","keys":["ibiza","eivissa"]},{"slug":"palma","kind":"city","keys":["palma"]},{"slug":"malaga","kind":"city","keys":["malaga","málaga"]},{"slug":"madrid","kind":"city","keys":["madrid","mad"]},{"slug":"barcelona","kind":"city","keys":["barcelona","bcn"]},{"slug":"alicante","kind":"city","keys":["alicante","alc"]},{"slug":"girona","kind":"city","keys":["girona","gro"]},{"slug":"athens","kind":"city","keys":["athens"]},{"slug":"thessaloniki","kind":"city","keys":["thessaloniki","skg"]},{"slug":"amsterdam","kind":"city","keys":["amsterdam","schiphol"]},{"slug":"rotterdam","kind":"city","keys":["rotterdam","rtm"]},{"slug":"brussels","kind":"city","keys":["brussels","zaventem"]},{"slug":"antwerp","kind":"city","keys":["antwerp"]},{"slug":"wevelgem","kind":"city","keys":["wevelgem","kortrijk"]},{"slug":"liege","kind":"city","keys":["liege","liège","lgg"]},{"slug":"vienna","kind":"city","keys":["vienna"]},{"slug":"salzburg","kind":"city","keys":["salzburg"]},{"slug":"linz","kind":"city","keys":["linz","lnz"]},{"slug":"berlin","kind":"city","keys":["berlin","ber"]},{"slug":"munich","kind":"city","keys":["munich","münchen","muc"]},{"slug":"dusseldorf","kind":"city","keys":["dusseldorf","düsseldorf","dus"]},{"slug":"zurich","kind":"city","keys":["zurich","zürich","zrh"]},{"slug":"geneva","kind":"city","keys":["geneva","genève","gva"]},{"slug":"sion","kind":"city","keys":["sion","sir"]},{"slug":"verbier","kind":"city","keys":["sion","sir","verbier"]},{"slug":"montpellier","kind":"city","keys":["montpellier","mpl"]},{"slug":"toulon","kind":"city","keys":["toulon","hyeres","hyères","palyvestre"]},{"slug":"birmingham","kind":"city","keys":["birmingham international","birmingham, gb"]},{"slug":"oxford","kind":"city","keys":["oxford","kidlington","oxf"]},{"slug":"farnborough","kind":"city","keys":["farnborough","fab"]},{"slug":"belfast","kind":"city","keys":["belfast"]},{"slug":"dublin","kind":"city","keys":["dublin","dub"]},{"slug":"edinburgh","kind":"city","keys":["edinburgh","edi"]},{"slug":"bergen","kind":"city","keys":["bergen","bgo"]},{"slug":"preveza","kind":"city","keys":["preveza","aktion","pvk","lgpz"]},{"slug":"mykonos","kind":"city","keys":["mykonos","mykonos island","jmk","lgmk"]},{"slug":"boise","kind":"city","keys":["boise","gowen field","boi","kboi"]},{"slug":"new-york","kind":"city","keys":["new york","teterboro","white plains","westchester","teb","hpn","jfk","lga","ewr","newark","stewart"]},{"slug":"teterboro","kind":"city","keys":["teterboro","teb"]},{"slug":"washington","kind":"city","keys":["washington","iad","dca"]},{"slug":"miami","kind":"city","keys":["miami"]},{"slug":"fort-lauderdale","kind":"city","keys":["fort lauderdale","ft lauderdale","fll","fxe"]},{"slug":"naples","kind":"city","keys":["naples","napoli","nap"]},{"slug":"chicago","kind":"city","keys":["chicago","mdw","ord","pwk","dpa"]},{"slug":"milwaukee","kind":"city","keys":["milwaukee","mke"]},{"slug":"waukesha","kind":"city","keys":["waukesha","ues"]},{"slug":"dallas","kind":"city","keys":["dallas","dal","dfw"]},{"slug":"fort-worth","kind":"city","keys":["fort worth","ftw","afw"]},{"slug":"austin","kind":"city","keys":["austin","aus"]},{"slug":"houston","kind":"city","keys":["houston","hou","iah","efd"]},{"slug":"las-vegas","kind":"city","keys":["las vegas"]},{"slug":"scottsdale","kind":"city","keys":["scottsdale","sdl"]},{"slug":"aspen","kind":"city","keys":["aspen","ase"]},{"slug":"van-nuys","kind":"city","keys":["van nuys","vny"]},{"slug":"carlsbad","kind":"city","keys":["carlsbad","crq"]},{"slug":"monterey","kind":"city","keys":["monterey","mry"]},{"slug":"oakland","kind":"city","keys":["oakland","oak"]},{"slug":"toronto","kind":"city","keys":["toronto"]},{"slug":"montreal","kind":"city","keys":["montreal","montréal","yul"]},{"slug":"calgary","kind":"city","keys":["calgary","yyc","ybw"]},{"slug":"sault-ste-marie","kind":"city","keys":["sault ste marie","sault","yam"]},{"slug":"turks-and-caicos","kind":"city","keys":["turks and caicos","providenciales","pls","mbpv"]},{"slug":"larnaca","kind":"city","keys":["larnaca","larnarca"]},{"slug":"istanbul","kind":"city","keys":["istanbul","ist","saw"]},{"slug":"bodrum","kind":"city","keys":["bodrum","bjv"]},{"slug":"cape-town","kind":"city","keys":["cape town"]},{"slug":"johannesburg","kind":"city","keys":["johannesburg","lanseria"]},{"slug":"maun","kind":"city","keys":["maun","mub"]}];
+  var grid=document.getElementById("dgrid");
+  var cards=[].slice.call(grid.querySelectorAll(".accard"));
+  var q=document.getElementById("dq"), has=document.getElementById("dhas"),
+      sort=document.getElementById("dsort"), showing=document.getElementById("dshowing"),
+      empty=document.getElementById("dempty"), pills=document.getElementById("dpills"),
+      reset=document.getElementById("dreset");
+  var reg="";
+  function apply(){
+    var t=(q.value||"").trim().toLowerCase(), want=has.value, n=0;
+    cards.forEach(function(c){
+      var ok=(!reg||c.getAttribute("data-reg")===reg)
+        && (!t||c.getAttribute("data-q").indexOf(t)>=0)
+        && (!want||parseInt(c.getAttribute("data-n"),10)>0);
+      c.hidden=!ok; if(ok) n++;
+    });
+    showing.textContent=n+(n===1?" destination":" destinations");
+    empty.hidden=n>0;
+  }
+  function order(){
+    var by=sort.value;
+    cards.slice().sort(function(a,b){
+      if(by==="flights"){
+        var d=parseInt(b.getAttribute("data-n"),10)-parseInt(a.getAttribute("data-n"),10);
+        if(d) return d;
+      }
+      return a.getAttribute("data-name")<b.getAttribute("data-name")?-1:1;
+    }).forEach(function(c){ grid.appendChild(c); });
+  }
+  q.addEventListener("input", apply);
+  has.addEventListener("change", apply);
+  sort.addEventListener("change", order);
+  pills.addEventListener("click", function(e){
+    var b=e.target.closest(".acpill"); if(!b) return;
+    reg=b.getAttribute("data-reg");
+    [].forEach.call(pills.querySelectorAll(".acpill"), function(x){
+      x.setAttribute("aria-pressed", x===b?"true":"false"); });
+    apply();
+  });
+  reset.addEventListener("click", function(){
+    q.value=""; has.value=""; reg="";
+    [].forEach.call(pills.querySelectorAll(".acpill"), function(x){
+      x.setAttribute("aria-pressed", x.getAttribute("data-reg")===""?"true":"false"); });
+    apply();
+  });
+  function set(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; }
+  fetch(BASE+"/rest/v1/rpc/page_counts",{method:"POST",
+    headers:{apikey:KEY,Authorization:"Bearer "+KEY,"Content-Type":"application/json"},
+    body:JSON.stringify({spec:SPEC})})
+   .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+   .then(function(d){
+     cards.forEach(function(c){
+       var s=c.getAttribute("data-slug"), o=d[s]||{}, n=o.live||0;
+       c.setAttribute("data-n", n);
+       set("f-"+s, n||"None");
+       set("c-"+s, o.cheapest||"On enquiry");
+       set("d-"+s, o.soonest?new Date(o.soonest+"T12:00:00")
+         .toLocaleDateString("en-GB",{day:"numeric",month:"short"}):"—");
+       set("n-"+s, n?(n+(n===1?" flight listed":" flights listed")):"none listed right now");
+     });
+     apply();
    })
-   .catch(function(){});
+   .catch(function(){
+     cards.forEach(function(c){ var s=c.getAttribute("data-slug");
+       set("f-"+s,"—"); set("c-"+s,"—"); set("d-"+s,"—");
+       set("n-"+s,"See the page"); });
+   });
 })();
 </script>
 </body>
