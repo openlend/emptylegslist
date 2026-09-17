@@ -192,6 +192,9 @@ body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
 .mx-empty p{margin:0;max-width:380px;text-align:center;background:rgba(13,31,54,.9);color:#e8edf3;
   font-size:14px;line-height:1.6;padding:16px 20px;border-radius:12px}
 .mx-full{top:14px;right:14px;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center}
+.leaflet-tooltip.mx-dotlab{background:none;background-color:transparent;border:0;box-shadow:none;padding:0;color:#fff;font-family:Raleway,sans-serif;
+  font-size:13px;font-weight:600;text-shadow:0 1px 3px rgba(4,12,22,.95),0 0 10px rgba(4,12,22,.8);white-space:nowrap}
+.leaflet-tooltip.mx-dotlab::before,.leaflet-tooltip.mx-dotlab::after{display:none;border:0}
 .maplegend{position:absolute;left:14px;bottom:36px;z-index:500;background:rgba(13,31,54,.86);color:#e8edf3;
   font-size:12px;line-height:1.8;padding:9px 13px;border-radius:10px;pointer-events:none}
 .maplegend i{display:inline-block;width:20px;height:0;border-top:2px solid #E8BE63;vertical-align:middle;margin-right:8px}
@@ -784,7 +787,8 @@ function flightUrl(x){
       });
       bounds.push([l.from_lat,l.from_lon],[l.to_lat,l.to_lon]);
     });
-    Object.keys(byCity).forEach(function(k){
+    var keys = Object.keys(byCity);
+    keys.forEach(function(k){
       var c = byCity[k];
       var r = Math.min(3 + Math.sqrt(c.n) * 1.5, 11);
       var m = L.circleMarker([c.lat,c.lon], { radius:r, color:"#fff", weight:1.2,
@@ -792,6 +796,11 @@ function flightUrl(x){
       var slug = citySlug(c.lab);
       m.bindPopup('<b>' + esc(c.lab) + '</b><br>' + c.n + (c.n===1?' leg':' legs') + ' here in this view'
         + (slug ? '<br><a href="/empty-legs/' + slug + '">Empty legs to and from ' + esc(c.lab) + ' &rarr;</a>' : ''));
+      // The name beside the dot, the way the layout shows it. Only while there
+      // are few enough for the labels to be readable, which is every time one
+      // flight is picked and never when the whole board is on screen.
+      if (keys.length <= 30) m.bindTooltip(c.lab, { permanent:true, direction:"right",
+        offset:[r + 3, 0], className:"mx-dotlab" });
       dots.addLayer(m);
     });
     var msg = note(placed.length, use.length);
