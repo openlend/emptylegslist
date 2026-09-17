@@ -162,7 +162,7 @@ footer a{color:rgba(255,255,255,.85)}
   <link rel="stylesheet" href="/site-nav.css">
   <script src="/site-nav.js" defer></script>
 <!-- siteld.py -->
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Empty legs by city","item":"https://emptylegslist.com/empty-legs/"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/empty-legs/","url":"https://emptylegslist.com/empty-legs/","name":"All empty leg destinations","description":"Every city we list empty leg flights for, grouped by region, with the number of flights on the board for each one right now.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Aircraft types","item":"https://emptylegslist.com/aircraft/"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/aircraft/","url":"https://emptylegslist.com/aircraft/","name":"Empty legs by aircraft type","description":"Browse live empty leg flights by aircraft type. Seats, range and current availability for every jet and turboprop on the list.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/og-default.jpg"}}]}</script>
 <!-- /siteld.py -->
 </head>
 <body>
@@ -188,135 +188,141 @@ footer a{color:rgba(255,255,255,.85)}
             </div>
             <h4>By country</h4>
             <div class="eln-ctry">
-            <a href="/empty-legs/europe">Europe</a>
-            <a href="/empty-legs/europe">Europe</a>
-        <a href="/empty-legs/united-states">United States</a>
-            <a href="/empty-legs/united-kingdom">United Kingdom</a>
-            <a href="/empty-legs/belgium">Belgium</a>
-            <a href="/empty-legs/france">France</a>
-            <a href="/empty-legs/canada">Canada</a>
-            <a href="/empty-legs/south-africa">South Africa</a>
-            <a href="/empty-legs/spain">Spain</a>
-            <a href="/empty-legs/italy">Italy</a>
-            <a href="/empty-legs/switzerland">Switzerland</a>
-        <a href="/empty-legs/germany">Germany</a>
-            <a href="/empty-legs/germany">Germany</a>
+            <a href="/empty-legs/united-states" data-elc="united-states">United States</a>
+            <a href="/empty-legs/united-kingdom" data-elc="united-kingdom">United Kingdom</a>
+            <a href="/empty-legs/canada" data-elc="canada">Canada</a>
+            <a href="/empty-legs/france" data-elc="france">France</a>
+            <a href="/empty-legs/belgium" data-elc="belgium">Belgium</a>
+            <a href="/empty-legs/spain" data-elc="spain">Spain</a>
+            <a href="/empty-legs/italy" data-elc="italy">Italy</a>
+            <a href="/empty-legs/switzerland" data-elc="switzerland">Switzerland</a>
+            <a href="/empty-legs/germany" data-elc="germany">Germany</a>
+            <a href="/empty-legs/south-africa" data-elc="south-africa">South Africa</a>
+            <a href="/empty-legs/europe" data-elc="europe">Europe</a>
             </div>
-            <a class="eln-all" href="/empty-legs/">All destinations <span aria-hidden="true">→</span></a>
+            <a class="eln-all" href="/empty-legs/">All 80 destinations <span aria-hidden="true">→</span></a>
           </div>
           <div class="eln-col-city">
-            <h4>Cities</h4>
+            <div class="eln-find">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input type="search" class="eln-find-in" placeholder="Search a city or country" aria-label="Search destinations" autocomplete="off">
+            </div>
             <div class="eln-pan on" data-region="0">
-              <a href="/empty-legs/london">London</a>
-              <a href="/empty-legs/paris">Paris</a>
-              <a href="/empty-legs/nice">Nice</a>
-              <a href="/empty-legs/cannes">Cannes</a>
-              <a href="/empty-legs/milan">Milan</a>
-              <a href="/empty-legs/bologna">Bologna</a>
-              <a href="/empty-legs/bari">Bari</a>
-              <a href="/empty-legs/pisa">Pisa</a>
-              <a href="/empty-legs/verona">Verona</a>
-              <a href="/empty-legs/bolzano">Bolzano</a>
-              <a href="/empty-legs/cagliari">Cagliari</a>
-              <a href="/empty-legs/olbia">Olbia</a>
-              <a href="/empty-legs/ibiza">Ibiza</a>
-              <a href="/empty-legs/palma">Palma</a>
-              <a href="/empty-legs/malaga">Malaga</a>
-              <a href="/empty-legs/madrid">Madrid</a>
-              <a href="/empty-legs/barcelona">Barcelona</a>
-              <a href="/empty-legs/alicante">Alicante</a>
-              <a href="/empty-legs/girona">Girona</a>
-              <a href="/empty-legs/athens">Athens</a>
-              <a href="/empty-legs/thessaloniki">Thessaloniki</a>
-              <a href="/empty-legs/amsterdam">Amsterdam</a>
-              <a href="/empty-legs/rotterdam">Rotterdam</a>
-              <a href="/empty-legs/brussels">Brussels</a>
-              <a href="/empty-legs/antwerp">Antwerp</a>
-              <a href="/empty-legs/wevelgem">Wevelgem</a>
-              <a href="/empty-legs/liege">Liege</a>
-              <a href="/empty-legs/vienna">Vienna</a>
-              <a href="/empty-legs/salzburg">Salzburg</a>
-              <a href="/empty-legs/linz">Linz</a>
-              <a href="/empty-legs/berlin">Berlin</a>
-              <a href="/empty-legs/munich">Munich</a>
-              <a href="/empty-legs/dusseldorf">Dusseldorf</a>
-              <a href="/empty-legs/zurich">Zurich</a>
-              <a href="/empty-legs/geneva">Geneva</a>
-              <a href="/empty-legs/sion">Sion</a>
-              <a href="/empty-legs/verbier">Verbier</a>
-              <a href="/empty-legs/montpellier">Montpellier</a>
-              <a href="/empty-legs/toulon">Toulon</a>
-              <a href="/empty-legs/birmingham">Birmingham</a>
-              <a href="/empty-legs/oxford">Oxford</a>
-              <a href="/empty-legs/farnborough">Farnborough</a>
-              <a href="/empty-legs/belfast">Belfast</a>
-              <a href="/empty-legs/dublin">Dublin</a>
-              <a href="/empty-legs/edinburgh">Edinburgh</a>
-              <a href="/empty-legs/bergen">Bergen</a>
-              <a href="/empty-legs/preveza">Preveza</a>
-              <a href="/empty-legs/mykonos">Mykonos</a>
+              <a href="/empty-legs/london" data-elc="london">London</a>
+              <a href="/empty-legs/paris" data-elc="paris">Paris</a>
+              <a href="/empty-legs/nice" data-elc="nice">Nice</a>
+              <a href="/empty-legs/cannes" data-elc="cannes">Cannes</a>
+              <a href="/empty-legs/milan" data-elc="milan">Milan</a>
+              <a href="/empty-legs/bologna" data-elc="bologna">Bologna</a>
+              <a href="/empty-legs/bari" data-elc="bari">Bari</a>
+              <a href="/empty-legs/pisa" data-elc="pisa">Pisa</a>
+              <a href="/empty-legs/verona" data-elc="verona">Verona</a>
+              <a href="/empty-legs/bolzano" data-elc="bolzano">Bolzano</a>
+              <a href="/empty-legs/cagliari" data-elc="cagliari">Cagliari</a>
+              <a href="/empty-legs/olbia" data-elc="olbia">Olbia</a>
+              <a href="/empty-legs/ibiza" data-elc="ibiza">Ibiza</a>
+              <a href="/empty-legs/palma" data-elc="palma">Palma</a>
+              <a href="/empty-legs/malaga" data-elc="malaga">Malaga</a>
+              <a href="/empty-legs/madrid" data-elc="madrid">Madrid</a>
+              <a href="/empty-legs/barcelona" data-elc="barcelona">Barcelona</a>
+              <a href="/empty-legs/alicante" data-elc="alicante">Alicante</a>
+              <a href="/empty-legs/girona" data-elc="girona">Girona</a>
+              <a href="/empty-legs/athens" data-elc="athens">Athens</a>
+              <a href="/empty-legs/thessaloniki" data-elc="thessaloniki">Thessaloniki</a>
+              <a href="/empty-legs/amsterdam" data-elc="amsterdam">Amsterdam</a>
+              <a href="/empty-legs/rotterdam" data-elc="rotterdam">Rotterdam</a>
+              <a href="/empty-legs/brussels" data-elc="brussels">Brussels</a>
+              <a href="/empty-legs/antwerp" data-elc="antwerp">Antwerp</a>
+              <a href="/empty-legs/wevelgem" data-elc="wevelgem">Wevelgem</a>
+              <a href="/empty-legs/liege" data-elc="liege">Liege</a>
+              <a href="/empty-legs/vienna" data-elc="vienna">Vienna</a>
+              <a href="/empty-legs/salzburg" data-elc="salzburg">Salzburg</a>
+              <a href="/empty-legs/linz" data-elc="linz">Linz</a>
+              <a href="/empty-legs/berlin" data-elc="berlin">Berlin</a>
+              <a href="/empty-legs/munich" data-elc="munich">Munich</a>
+              <a href="/empty-legs/dusseldorf" data-elc="dusseldorf">Dusseldorf</a>
+              <a href="/empty-legs/zurich" data-elc="zurich">Zurich</a>
+              <a href="/empty-legs/geneva" data-elc="geneva">Geneva</a>
+              <a href="/empty-legs/sion" data-elc="sion">Sion</a>
+              <a href="/empty-legs/verbier" data-elc="verbier">Verbier</a>
+              <a href="/empty-legs/montpellier" data-elc="montpellier">Montpellier</a>
+              <a href="/empty-legs/toulon" data-elc="toulon">Toulon</a>
+              <a href="/empty-legs/birmingham" data-elc="birmingham">Birmingham</a>
+              <a href="/empty-legs/oxford" data-elc="oxford">Oxford</a>
+              <a href="/empty-legs/farnborough" data-elc="farnborough">Farnborough</a>
+              <a href="/empty-legs/belfast" data-elc="belfast">Belfast</a>
+              <a href="/empty-legs/dublin" data-elc="dublin">Dublin</a>
+              <a href="/empty-legs/edinburgh" data-elc="edinburgh">Edinburgh</a>
+              <a href="/empty-legs/bergen" data-elc="bergen">Bergen</a>
+              <a href="/empty-legs/preveza" data-elc="preveza">Preveza</a>
+              <a href="/empty-legs/mykonos" data-elc="mykonos">Mykonos</a>
             </div>
             <div class="eln-pan" data-region="1" hidden>
-              <a href="/empty-legs/boise">Boise</a>
-              <a href="/empty-legs/teterboro">Teterboro</a>
-              <a href="/empty-legs/washington">Washington</a>
-              <a href="/empty-legs/miami">Miami</a>
-              <a href="/empty-legs/fort-lauderdale">Fort Lauderdale</a>
-              <a href="/empty-legs/naples">Naples</a>
-              <a href="/empty-legs/chicago">Chicago</a>
-              <a href="/empty-legs/milwaukee">Milwaukee</a>
-              <a href="/empty-legs/waukesha">Waukesha</a>
-              <a href="/empty-legs/dallas">Dallas</a>
-              <a href="/empty-legs/fort-worth">Fort Worth</a>
-              <a href="/empty-legs/austin">Austin</a>
-              <a href="/empty-legs/houston">Houston</a>
-              <a href="/empty-legs/las-vegas">Las Vegas</a>
-              <a href="/empty-legs/scottsdale">Scottsdale</a>
-              <a href="/empty-legs/aspen">Aspen</a>
-              <a href="/empty-legs/van-nuys">Van Nuys</a>
-              <a href="/empty-legs/carlsbad">Carlsbad</a>
-              <a href="/empty-legs/monterey">Monterey</a>
-              <a href="/empty-legs/oakland">Oakland</a>
-              <a href="/empty-legs/toronto">Toronto</a>
-              <a href="/empty-legs/montreal">Montreal</a>
-              <a href="/empty-legs/calgary">Calgary</a>
-              <a href="/empty-legs/sault-ste-marie">Sault Ste Marie</a>
-              <a href="/empty-legs/turks-and-caicos">Turks And Caicos</a>
+              <a href="/empty-legs/new-york" data-elc="new-york">New York</a>
+              <a href="/empty-legs/boise" data-elc="boise">Boise</a>
+              <a href="/empty-legs/teterboro" data-elc="teterboro">Teterboro</a>
+              <a href="/empty-legs/washington" data-elc="washington">Washington</a>
+              <a href="/empty-legs/miami" data-elc="miami">Miami</a>
+              <a href="/empty-legs/fort-lauderdale" data-elc="fort-lauderdale">Fort Lauderdale</a>
+              <a href="/empty-legs/naples" data-elc="naples">Naples</a>
+              <a href="/empty-legs/chicago" data-elc="chicago">Chicago</a>
+              <a href="/empty-legs/milwaukee" data-elc="milwaukee">Milwaukee</a>
+              <a href="/empty-legs/waukesha" data-elc="waukesha">Waukesha</a>
+              <a href="/empty-legs/dallas" data-elc="dallas">Dallas</a>
+              <a href="/empty-legs/fort-worth" data-elc="fort-worth">Fort Worth</a>
+              <a href="/empty-legs/austin" data-elc="austin">Austin</a>
+              <a href="/empty-legs/houston" data-elc="houston">Houston</a>
+              <a href="/empty-legs/las-vegas" data-elc="las-vegas">Las Vegas</a>
+              <a href="/empty-legs/scottsdale" data-elc="scottsdale">Scottsdale</a>
+              <a href="/empty-legs/aspen" data-elc="aspen">Aspen</a>
+              <a href="/empty-legs/van-nuys" data-elc="van-nuys">Van Nuys</a>
+              <a href="/empty-legs/carlsbad" data-elc="carlsbad">Carlsbad</a>
+              <a href="/empty-legs/monterey" data-elc="monterey">Monterey</a>
+              <a href="/empty-legs/oakland" data-elc="oakland">Oakland</a>
+              <a href="/empty-legs/toronto" data-elc="toronto">Toronto</a>
+              <a href="/empty-legs/montreal" data-elc="montreal">Montreal</a>
+              <a href="/empty-legs/calgary" data-elc="calgary">Calgary</a>
+              <a href="/empty-legs/sault-ste-marie" data-elc="sault-ste-marie">Sault Ste Marie</a>
+              <a href="/empty-legs/turks-and-caicos" data-elc="turks-and-caicos">Turks And Caicos</a>
             </div>
             <div class="eln-pan" data-region="2" hidden>
-              <a href="/empty-legs/larnaca">Larnaca</a>
-              <a href="/empty-legs/istanbul">Istanbul</a>
-              <a href="/empty-legs/bodrum">Bodrum</a>
+              <a href="/empty-legs/larnaca" data-elc="larnaca">Larnaca</a>
+              <a href="/empty-legs/istanbul" data-elc="istanbul">Istanbul</a>
+              <a href="/empty-legs/bodrum" data-elc="bodrum">Bodrum</a>
             </div>
             <div class="eln-pan" data-region="3" hidden>
-              <a href="/empty-legs/cape-town">Cape Town</a>
-              <a href="/empty-legs/johannesburg">Johannesburg</a>
-              <a href="/empty-legs/maun">Maun</a>
+              <a href="/empty-legs/cape-town" data-elc="cape-town">Cape Town</a>
+              <a href="/empty-legs/johannesburg" data-elc="johannesburg">Johannesburg</a>
+              <a href="/empty-legs/maun" data-elc="maun">Maun</a>
             </div>
+            <p class="eln-find-none" hidden>No page for that one yet. <a href="/#listings">Search the whole board by airport <span aria-hidden="true">→</span></a></p>
+            <p class="eln-find-note">Flights are counted live, the same way each destination page counts them.</p>
           </div>
           <div class="eln-col-route">
             <h4>Popular routes</h4>
             <div class="eln-grid">
-            <a href="/empty-legs/london-to-nice">London → Nice</a>
-            <a href="/empty-legs/london-to-paris">London → Paris</a>
-            <a href="/empty-legs/london-to-ibiza">London → Ibiza</a>
-            <a href="/empty-legs/london-to-dublin">London → Dublin</a>
-            <a href="/empty-legs/london-to-amsterdam">London → Amsterdam</a>
-            <a href="/empty-legs/london-to-athens">London → Athens</a>
-            <a href="/empty-legs/nice-to-london">Nice → London</a>
-            <a href="/empty-legs/paris-to-london">Paris → London</a>
-            <a href="/empty-legs/birmingham-to-london">Birmingham → London</a>
-            <a href="/empty-legs/geneva-to-london">Geneva → London</a>
+            <a href="/empty-legs/london-to-nice">London to Nice empty legs</a>
+            <a href="/empty-legs/london-to-paris">London to Paris empty legs</a>
+            <a href="/empty-legs/london-to-ibiza">London to Ibiza empty legs</a>
+            <a href="/empty-legs/london-to-dublin">London to Dublin empty legs</a>
+            <a href="/empty-legs/london-to-amsterdam">London to Amsterdam empty legs</a>
+            <a href="/empty-legs/london-to-athens">London to Athens empty legs</a>
+            <a href="/empty-legs/nice-to-london">Nice to London empty legs</a>
+            <a href="/empty-legs/paris-to-london">Paris to London empty legs</a>
+            <a href="/empty-legs/birmingham-to-london">Birmingham to London empty legs</a>
+            <a href="/empty-legs/geneva-to-london">Geneva to London empty legs</a>
             </div>
-            <a class="eln-all" href="/#listings">Every listing, live <span aria-hidden="true">→</span></a>
+            <a class="eln-all" href="/#listings">Every empty leg on the board <span aria-hidden="true">→</span></a>
             <h4 style="margin-top:18px">Plan ahead</h4>
             <div class="eln-grid one">
-              <a href="/predictions">Predictions, beta</a>
+              <a href="/predictions">Where the next leg appears</a>
               <a href="/events/">Empty legs around events</a>
               <a href="/likely">Routes that repeat</a>
-              <a href="/last-minute-empty-leg-flights">Last minute</a>
-              <a href="/map">Map</a>
+              <a href="/last-minute-empty-leg-flights">Last minute empty legs</a>
+              <a href="/map">Empty legs on the map</a>
               <a href="/connections">Two-leg journeys</a>
+              <a href="/guides/what-is-an-empty-leg-flight">What an empty leg is</a>
+              <a href="/guides/how-much-does-an-empty-leg-private-jet-cost">What an empty leg costs</a>
             </div>
           </div>
           <div class="eln-promo">
@@ -421,10 +427,10 @@ footer a{color:rgba(255,255,255,.85)}
     <div class="eln-acc eln-dm">
       <button type="button" aria-expanded="false" aria-controls="eln-dp-routes">Popular routes <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <div class="eln-panel" id="eln-dp-routes"><div><div>
-        <a href="/empty-legs/london-to-nice">London → Nice</a>
-        <a href="/empty-legs/london-to-paris">London → Paris</a>
-        <a href="/empty-legs/london-to-ibiza">London → Ibiza</a>
-        <a href="/empty-legs/london-to-dublin">London → Dublin</a>
+        <a href="/empty-legs/london-to-nice">London to Nice empty legs</a>
+        <a href="/empty-legs/london-to-paris">London to Paris empty legs</a>
+        <a href="/empty-legs/london-to-ibiza">London to Ibiza empty legs</a>
+        <a href="/empty-legs/london-to-dublin">London to Dublin empty legs</a>
         <a href="/#routes">All routes</a>
       </div></div></div>
     </div>
@@ -1060,18 +1066,6 @@ footer a{color:rgba(255,255,255,.85)}
     </span>
     <span class="acfoot"><span class="acn" id="n-mykonos">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
   </a>
-  <a class="accard" href="/empty-legs/boise" data-reg="north-america" data-slug="boise" data-name="boise" data-q="boise north america north america" data-n="0">
-    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-    <span class="acbody">
-      <span class="acmake">North America</span><span class="acname">Boise</span><span class="accls">North America</span>
-      <span class="acfacts">
-        <span class="acfact"><small>Flights</small><b id="f-boise">&nbsp;</b></span>
-        <span class="acfact"><small>Cheapest</small><b id="c-boise">&nbsp;</b></span>
-        <span class="acfact"><small>Next</small><b id="d-boise">&nbsp;</b></span>
-      </span>
-    </span>
-    <span class="acfoot"><span class="acn" id="n-boise">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
-  </a>
   <a class="accard" href="/empty-legs/new-york" data-reg="north-america" data-slug="new-york" data-name="new york" data-q="new york united states north america" data-n="0">
     <img class="acshot" src="/brand/heroes/new-york-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from New York">
     <span class="acbody">
@@ -1083,6 +1077,18 @@ footer a{color:rgba(255,255,255,.85)}
       </span>
     </span>
     <span class="acfoot"><span class="acn" id="n-new-york">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
+  </a>
+  <a class="accard" href="/empty-legs/boise" data-reg="north-america" data-slug="boise" data-name="boise" data-q="boise north america north america" data-n="0">
+    <span class="acshot acnoshot" aria-hidden="true"><svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+    <span class="acbody">
+      <span class="acmake">North America</span><span class="acname">Boise</span><span class="accls">North America</span>
+      <span class="acfacts">
+        <span class="acfact"><small>Flights</small><b id="f-boise">&nbsp;</b></span>
+        <span class="acfact"><small>Cheapest</small><b id="c-boise">&nbsp;</b></span>
+        <span class="acfact"><small>Next</small><b id="d-boise">&nbsp;</b></span>
+      </span>
+    </span>
+    <span class="acfoot"><span class="acn" id="n-boise">&nbsp;</span><span class="acgo">View destination &rarr;</span></span>
   </a>
   <a class="accard" href="/empty-legs/teterboro" data-reg="north-america" data-slug="teterboro" data-name="teterboro" data-q="teterboro united states north america" data-n="0">
     <img class="acshot" src="/brand/heroes/teterboro-empty-legs-private-jet.jpg" width="1600" height="756" loading="lazy" decoding="async" alt="Empty leg flights to and from Teterboro">
@@ -1511,15 +1517,15 @@ footer a{color:rgba(255,255,255,.85)}
         <a href="/empty-legs/italy">Italy</a>
         <a href="/empty-legs/switzerland">Switzerland</a>
         <a href="/empty-legs/germany">Germany</a>
-        <a href="/empty-legs/london">London</a>
-        <a href="/empty-legs/paris">Paris</a>
-        <a href="/empty-legs/nice">Nice</a>
-        <a href="/empty-legs/ibiza">Ibiza</a>
-        <a href="/empty-legs/milan">Milan</a>
+        <a href="/empty-legs/new-york">New York</a>
+        <a href="/empty-legs/teterboro">Teterboro</a>
         <a href="/empty-legs/miami">Miami</a>
+        <a href="/empty-legs/london">London</a>
         <a href="/empty-legs/las-vegas">Las Vegas</a>
         <a href="/empty-legs/toronto">Toronto</a>
-        <a class="bf-more" href="/empty-legs/">All 74 destinations &rarr;</a>
+        <a href="/empty-legs/scottsdale">Scottsdale</a>
+        <a href="/empty-legs/houston">Houston</a>
+        <a class="bf-more" href="/empty-legs/">All 80 destinations &rarr;</a>
       </nav>
     </details>
 
@@ -1573,7 +1579,7 @@ footer a{color:rgba(255,255,255,.85)}
      against the 152 its own page showed. */
   var BASE="https://wscowiseslaovmmfuzyv.supabase.co";
   var KEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
-  var SPEC=[{"slug":"london","kind":"city","keys":["london","luton","stansted","biggin hill","farnborough","oxford"]},{"slug":"paris","kind":"city","keys":["paris","bourget"]},{"slug":"nice","kind":"city","keys":["nice","monaco"]},{"slug":"cannes","kind":"city","keys":["cannes","mandelieu"]},{"slug":"milan","kind":"city","keys":["milan","milano","lin","mxp","bgy"]},{"slug":"bologna","kind":"city","keys":["bologna","blq"]},{"slug":"bari","kind":"city","keys":["bari","bri"]},{"slug":"pisa","kind":"city","keys":["pisa","psa"]},{"slug":"verona","kind":"city","keys":["verona","vrn"]},{"slug":"bolzano","kind":"city","keys":["bolzano","bozen","bzo"]},{"slug":"cagliari","kind":"city","keys":["cagliari","cag"]},{"slug":"olbia","kind":"city","keys":["olbia"]},{"slug":"ibiza","kind":"city","keys":["ibiza","eivissa"]},{"slug":"palma","kind":"city","keys":["palma"]},{"slug":"malaga","kind":"city","keys":["malaga","málaga"]},{"slug":"madrid","kind":"city","keys":["madrid","mad"]},{"slug":"barcelona","kind":"city","keys":["barcelona","bcn"]},{"slug":"alicante","kind":"city","keys":["alicante","alc"]},{"slug":"girona","kind":"city","keys":["girona","gro"]},{"slug":"athens","kind":"city","keys":["athens"]},{"slug":"thessaloniki","kind":"city","keys":["thessaloniki","skg"]},{"slug":"amsterdam","kind":"city","keys":["amsterdam","schiphol"]},{"slug":"rotterdam","kind":"city","keys":["rotterdam","rtm"]},{"slug":"brussels","kind":"city","keys":["brussels","zaventem"]},{"slug":"antwerp","kind":"city","keys":["antwerp"]},{"slug":"wevelgem","kind":"city","keys":["wevelgem","kortrijk"]},{"slug":"liege","kind":"city","keys":["liege","liège","lgg"]},{"slug":"vienna","kind":"city","keys":["vienna"]},{"slug":"salzburg","kind":"city","keys":["salzburg"]},{"slug":"linz","kind":"city","keys":["linz","lnz"]},{"slug":"berlin","kind":"city","keys":["berlin","ber"]},{"slug":"munich","kind":"city","keys":["munich","münchen","muc"]},{"slug":"dusseldorf","kind":"city","keys":["dusseldorf","düsseldorf","dus"]},{"slug":"zurich","kind":"city","keys":["zurich","zürich","zrh"]},{"slug":"geneva","kind":"city","keys":["geneva","genève","gva"]},{"slug":"sion","kind":"city","keys":["sion","sir"]},{"slug":"verbier","kind":"city","keys":["sion","sir","verbier"]},{"slug":"montpellier","kind":"city","keys":["montpellier","mpl"]},{"slug":"toulon","kind":"city","keys":["toulon","hyeres","hyères","palyvestre"]},{"slug":"birmingham","kind":"city","keys":["birmingham international","birmingham, gb"]},{"slug":"oxford","kind":"city","keys":["oxford","kidlington","oxf"]},{"slug":"farnborough","kind":"city","keys":["farnborough","fab"]},{"slug":"belfast","kind":"city","keys":["belfast"]},{"slug":"dublin","kind":"city","keys":["dublin","dub"]},{"slug":"edinburgh","kind":"city","keys":["edinburgh","edi"]},{"slug":"bergen","kind":"city","keys":["bergen","bgo"]},{"slug":"preveza","kind":"city","keys":["preveza","aktion","pvk","lgpz"]},{"slug":"mykonos","kind":"city","keys":["mykonos","mykonos island","jmk","lgmk"]},{"slug":"boise","kind":"city","keys":["boise","gowen field","boi","kboi"]},{"slug":"new-york","kind":"city","keys":["new york","teterboro","white plains","westchester","teb","hpn","jfk","lga","ewr","newark","stewart"]},{"slug":"teterboro","kind":"city","keys":["teterboro","teb"]},{"slug":"washington","kind":"city","keys":["washington","iad","dca"]},{"slug":"miami","kind":"city","keys":["miami"]},{"slug":"fort-lauderdale","kind":"city","keys":["fort lauderdale","ft lauderdale","fll","fxe"]},{"slug":"naples","kind":"city","keys":["naples","napoli","nap"]},{"slug":"chicago","kind":"city","keys":["chicago","mdw","ord","pwk","dpa"]},{"slug":"milwaukee","kind":"city","keys":["milwaukee","mke"]},{"slug":"waukesha","kind":"city","keys":["waukesha","ues"]},{"slug":"dallas","kind":"city","keys":["dallas","dal","dfw"]},{"slug":"fort-worth","kind":"city","keys":["fort worth","ftw","afw"]},{"slug":"austin","kind":"city","keys":["austin","aus"]},{"slug":"houston","kind":"city","keys":["houston","hou","iah","efd"]},{"slug":"las-vegas","kind":"city","keys":["las vegas"]},{"slug":"scottsdale","kind":"city","keys":["scottsdale","sdl"]},{"slug":"aspen","kind":"city","keys":["aspen","ase"]},{"slug":"van-nuys","kind":"city","keys":["van nuys","vny"]},{"slug":"carlsbad","kind":"city","keys":["carlsbad","crq"]},{"slug":"monterey","kind":"city","keys":["monterey","mry"]},{"slug":"oakland","kind":"city","keys":["oakland","oak"]},{"slug":"toronto","kind":"city","keys":["toronto"]},{"slug":"montreal","kind":"city","keys":["montreal","montréal","yul"]},{"slug":"calgary","kind":"city","keys":["calgary","yyc","ybw"]},{"slug":"sault-ste-marie","kind":"city","keys":["sault ste marie","sault","yam"]},{"slug":"turks-and-caicos","kind":"city","keys":["turks and caicos","providenciales","pls","mbpv"]},{"slug":"larnaca","kind":"city","keys":["larnaca","larnarca"]},{"slug":"istanbul","kind":"city","keys":["istanbul","ist","saw"]},{"slug":"bodrum","kind":"city","keys":["bodrum","bjv"]},{"slug":"cape-town","kind":"city","keys":["cape town"]},{"slug":"johannesburg","kind":"city","keys":["johannesburg","lanseria"]},{"slug":"maun","kind":"city","keys":["maun","mub"]}];
+  var SPEC=[{"slug":"london","kind":"city","keys":["london","luton","stansted","biggin hill","farnborough","oxford"]},{"slug":"paris","kind":"city","keys":["paris","bourget"]},{"slug":"nice","kind":"city","keys":["nice","monaco"]},{"slug":"cannes","kind":"city","keys":["cannes","mandelieu"]},{"slug":"milan","kind":"city","keys":["milan","milano","lin","mxp","bgy"]},{"slug":"bologna","kind":"city","keys":["bologna","blq"]},{"slug":"bari","kind":"city","keys":["bari","bri"]},{"slug":"pisa","kind":"city","keys":["pisa","psa"]},{"slug":"verona","kind":"city","keys":["verona","vrn"]},{"slug":"bolzano","kind":"city","keys":["bolzano","bozen","bzo"]},{"slug":"cagliari","kind":"city","keys":["cagliari","cag"]},{"slug":"olbia","kind":"city","keys":["olbia"]},{"slug":"ibiza","kind":"city","keys":["ibiza","eivissa"]},{"slug":"palma","kind":"city","keys":["palma"]},{"slug":"malaga","kind":"city","keys":["malaga","málaga"]},{"slug":"madrid","kind":"city","keys":["madrid","mad"]},{"slug":"barcelona","kind":"city","keys":["barcelona","bcn"]},{"slug":"alicante","kind":"city","keys":["alicante","alc"]},{"slug":"girona","kind":"city","keys":["girona","gro"]},{"slug":"athens","kind":"city","keys":["athens"]},{"slug":"thessaloniki","kind":"city","keys":["thessaloniki","skg"]},{"slug":"amsterdam","kind":"city","keys":["amsterdam","schiphol"]},{"slug":"rotterdam","kind":"city","keys":["rotterdam","rtm"]},{"slug":"brussels","kind":"city","keys":["brussels","zaventem"]},{"slug":"antwerp","kind":"city","keys":["antwerp"]},{"slug":"wevelgem","kind":"city","keys":["wevelgem","kortrijk"]},{"slug":"liege","kind":"city","keys":["liege","liège","lgg"]},{"slug":"vienna","kind":"city","keys":["vienna"]},{"slug":"salzburg","kind":"city","keys":["salzburg"]},{"slug":"linz","kind":"city","keys":["linz","lnz"]},{"slug":"berlin","kind":"city","keys":["berlin","ber"]},{"slug":"munich","kind":"city","keys":["munich","münchen","muc"]},{"slug":"dusseldorf","kind":"city","keys":["dusseldorf","düsseldorf","dus"]},{"slug":"zurich","kind":"city","keys":["zurich","zürich","zrh"]},{"slug":"geneva","kind":"city","keys":["geneva","genève","gva"]},{"slug":"sion","kind":"city","keys":["sion","sir"]},{"slug":"verbier","kind":"city","keys":["sion","sir","verbier"]},{"slug":"montpellier","kind":"city","keys":["montpellier","mpl"]},{"slug":"toulon","kind":"city","keys":["toulon","hyeres","hyères","palyvestre"]},{"slug":"birmingham","kind":"city","keys":["birmingham international","birmingham, gb"]},{"slug":"oxford","kind":"city","keys":["oxford","kidlington","oxf"]},{"slug":"farnborough","kind":"city","keys":["farnborough","fab"]},{"slug":"belfast","kind":"city","keys":["belfast"]},{"slug":"dublin","kind":"city","keys":["dublin","dub"]},{"slug":"edinburgh","kind":"city","keys":["edinburgh","edi"]},{"slug":"bergen","kind":"city","keys":["bergen","bgo"]},{"slug":"preveza","kind":"city","keys":["preveza","aktion","pvk","lgpz"]},{"slug":"mykonos","kind":"city","keys":["mykonos","mykonos island","jmk","lgmk"]},{"slug":"new-york","kind":"city","keys":["new york","teterboro","white plains","westchester","teb","hpn","jfk","lga","ewr","newark","stewart"]},{"slug":"boise","kind":"city","keys":["boise","gowen field","boi","kboi"]},{"slug":"teterboro","kind":"city","keys":["teterboro","teb"]},{"slug":"washington","kind":"city","keys":["washington","iad","dca"]},{"slug":"miami","kind":"city","keys":["miami"]},{"slug":"fort-lauderdale","kind":"city","keys":["fort lauderdale","ft lauderdale","fll","fxe"]},{"slug":"naples","kind":"city","keys":["naples","napoli","nap"]},{"slug":"chicago","kind":"city","keys":["chicago","mdw","ord","pwk","dpa"]},{"slug":"milwaukee","kind":"city","keys":["milwaukee","mke"]},{"slug":"waukesha","kind":"city","keys":["waukesha","ues"]},{"slug":"dallas","kind":"city","keys":["dallas","dal","dfw"]},{"slug":"fort-worth","kind":"city","keys":["fort worth","ftw","afw"]},{"slug":"austin","kind":"city","keys":["austin","aus"]},{"slug":"houston","kind":"city","keys":["houston","hou","iah","efd"]},{"slug":"las-vegas","kind":"city","keys":["las vegas"]},{"slug":"scottsdale","kind":"city","keys":["scottsdale","sdl"]},{"slug":"aspen","kind":"city","keys":["aspen","ase"]},{"slug":"van-nuys","kind":"city","keys":["van nuys","vny"]},{"slug":"carlsbad","kind":"city","keys":["carlsbad","crq"]},{"slug":"monterey","kind":"city","keys":["monterey","mry"]},{"slug":"oakland","kind":"city","keys":["oakland","oak"]},{"slug":"toronto","kind":"city","keys":["toronto"]},{"slug":"montreal","kind":"city","keys":["montreal","montréal","yul"]},{"slug":"calgary","kind":"city","keys":["calgary","yyc","ybw"]},{"slug":"sault-ste-marie","kind":"city","keys":["sault ste marie","sault","yam"]},{"slug":"turks-and-caicos","kind":"city","keys":["turks and caicos","providenciales","pls","mbpv"]},{"slug":"larnaca","kind":"city","keys":["larnaca","larnarca"]},{"slug":"istanbul","kind":"city","keys":["istanbul","ist","saw"]},{"slug":"bodrum","kind":"city","keys":["bodrum","bjv"]},{"slug":"cape-town","kind":"city","keys":["cape town"]},{"slug":"johannesburg","kind":"city","keys":["johannesburg","lanseria"]},{"slug":"maun","kind":"city","keys":["maun","mub"]}];
   var grid=document.getElementById("dgrid");
   var cards=[].slice.call(grid.querySelectorAll(".accard"));
   var q=document.getElementById("dq"), has=document.getElementById("dhas"),

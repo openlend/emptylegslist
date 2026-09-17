@@ -1,0 +1,763 @@
+[
+ {
+  "slug": "alicante",
+  "kind": "city",
+  "keys": [
+   "alicante",
+   "alc"
+  ]
+ },
+ {
+  "slug": "amsterdam",
+  "kind": "city",
+  "keys": [
+   "amsterdam",
+   "schiphol"
+  ]
+ },
+ {
+  "slug": "antwerp",
+  "kind": "city",
+  "keys": [
+   "antwerp"
+  ]
+ },
+ {
+  "slug": "aspen",
+  "kind": "city",
+  "keys": [
+   "aspen",
+   "ase"
+  ]
+ },
+ {
+  "slug": "athens",
+  "kind": "city",
+  "keys": [
+   "athens"
+  ]
+ },
+ {
+  "slug": "austin",
+  "kind": "city",
+  "keys": [
+   "austin",
+   "aus"
+  ]
+ },
+ {
+  "slug": "barcelona",
+  "kind": "city",
+  "keys": [
+   "barcelona",
+   "bcn"
+  ]
+ },
+ {
+  "slug": "bari",
+  "kind": "city",
+  "keys": [
+   "bari",
+   "bri"
+  ]
+ },
+ {
+  "slug": "belfast",
+  "kind": "city",
+  "keys": [
+   "belfast"
+  ]
+ },
+ {
+  "slug": "bergen",
+  "kind": "city",
+  "keys": [
+   "bergen",
+   "bgo"
+  ]
+ },
+ {
+  "slug": "berlin",
+  "kind": "city",
+  "keys": [
+   "berlin",
+   "ber"
+  ]
+ },
+ {
+  "slug": "birmingham",
+  "kind": "city",
+  "keys": [
+   "birmingham international",
+   "birmingham, gb"
+  ]
+ },
+ {
+  "slug": "bodrum",
+  "kind": "city",
+  "keys": [
+   "bodrum",
+   "bjv"
+  ]
+ },
+ {
+  "slug": "boise",
+  "kind": "city",
+  "keys": [
+   "boise",
+   "gowen field",
+   "boi",
+   "kboi"
+  ]
+ },
+ {
+  "slug": "bologna",
+  "kind": "city",
+  "keys": [
+   "bologna",
+   "blq"
+  ]
+ },
+ {
+  "slug": "bolzano",
+  "kind": "city",
+  "keys": [
+   "bolzano",
+   "bozen",
+   "bzo"
+  ]
+ },
+ {
+  "slug": "brussels",
+  "kind": "city",
+  "keys": [
+   "brussels",
+   "zaventem"
+  ]
+ },
+ {
+  "slug": "bucharest",
+  "kind": "city",
+  "keys": [
+   "bucharest",
+   "bucuresti",
+   "baneasa",
+   "aurel vlaicu",
+   "otopeni",
+   "bbu",
+   "otp",
+   "lrbs",
+   "lrop"
+  ]
+ },
+ {
+  "slug": "cagliari",
+  "kind": "city",
+  "keys": [
+   "cagliari",
+   "cag"
+  ]
+ },
+ {
+  "slug": "calgary",
+  "kind": "city",
+  "keys": [
+   "calgary",
+   "yyc",
+   "ybw"
+  ]
+ },
+ {
+  "slug": "cannes",
+  "kind": "city",
+  "keys": [
+   "cannes",
+   "mandelieu"
+  ]
+ },
+ {
+  "slug": "cape-town",
+  "kind": "city",
+  "keys": [
+   "cape town"
+  ]
+ },
+ {
+  "slug": "carlsbad",
+  "kind": "city",
+  "keys": [
+   "carlsbad",
+   "crq"
+  ]
+ },
+ {
+  "slug": "chicago",
+  "kind": "city",
+  "keys": [
+   "chicago",
+   "mdw",
+   "ord",
+   "pwk",
+   "dpa"
+  ]
+ },
+ {
+  "slug": "cluj-napoca",
+  "kind": "city",
+  "keys": [
+   "cluj",
+   "cluj-napoca",
+   "cluj napoca",
+   "avram iancu",
+   "clj",
+   "lrcl"
+  ]
+ },
+ {
+  "slug": "dallas",
+  "kind": "city",
+  "keys": [
+   "dallas",
+   "dal",
+   "dfw"
+  ]
+ },
+ {
+  "slug": "dublin",
+  "kind": "city",
+  "keys": [
+   "dublin",
+   "dub"
+  ]
+ },
+ {
+  "slug": "dusseldorf",
+  "kind": "city",
+  "keys": [
+   "dusseldorf",
+   "d\u00fcsseldorf",
+   "dus"
+  ]
+ },
+ {
+  "slug": "edinburgh",
+  "kind": "city",
+  "keys": [
+   "edinburgh",
+   "edi"
+  ]
+ },
+ {
+  "slug": "farnborough",
+  "kind": "city",
+  "keys": [
+   "farnborough",
+   "fab"
+  ]
+ },
+ {
+  "slug": "fort-lauderdale",
+  "kind": "city",
+  "keys": [
+   "fort lauderdale",
+   "ft lauderdale",
+   "fll",
+   "fxe"
+  ]
+ },
+ {
+  "slug": "fort-worth",
+  "kind": "city",
+  "keys": [
+   "fort worth",
+   "ftw",
+   "afw"
+  ]
+ },
+ {
+  "slug": "geneva",
+  "kind": "city",
+  "keys": [
+   "geneva",
+   "gen\u00e8ve",
+   "gva"
+  ]
+ },
+ {
+  "slug": "girona",
+  "kind": "city",
+  "keys": [
+   "girona",
+   "gro"
+  ]
+ },
+ {
+  "slug": "houston",
+  "kind": "city",
+  "keys": [
+   "houston",
+   "hou",
+   "iah",
+   "efd"
+  ]
+ },
+ {
+  "slug": "ibiza",
+  "kind": "city",
+  "keys": [
+   "ibiza",
+   "eivissa"
+  ]
+ },
+ {
+  "slug": "innsbruck",
+  "kind": "city",
+  "keys": [
+   "innsbruck",
+   "inn",
+   "lowi",
+   "kranebitten"
+  ]
+ },
+ {
+  "slug": "istanbul",
+  "kind": "city",
+  "keys": [
+   "istanbul",
+   "ist",
+   "saw"
+  ]
+ },
+ {
+  "slug": "johannesburg",
+  "kind": "city",
+  "keys": [
+   "johannesburg",
+   "lanseria"
+  ]
+ },
+ {
+  "slug": "larnaca",
+  "kind": "city",
+  "keys": [
+   "larnaca",
+   "larnarca"
+  ]
+ },
+ {
+  "slug": "las-vegas",
+  "kind": "city",
+  "keys": [
+   "las vegas"
+  ]
+ },
+ {
+  "slug": "liege",
+  "kind": "city",
+  "keys": [
+   "liege",
+   "li\u00e8ge",
+   "lgg"
+  ]
+ },
+ {
+  "slug": "linz",
+  "kind": "city",
+  "keys": [
+   "linz",
+   "lnz"
+  ]
+ },
+ {
+  "slug": "london",
+  "kind": "city",
+  "keys": [
+   "london",
+   "luton",
+   "stansted",
+   "biggin hill",
+   "farnborough",
+   "oxford"
+  ]
+ },
+ {
+  "slug": "madrid",
+  "kind": "city",
+  "keys": [
+   "madrid",
+   "mad"
+  ]
+ },
+ {
+  "slug": "malaga",
+  "kind": "city",
+  "keys": [
+   "malaga",
+   "m\u00e1laga"
+  ]
+ },
+ {
+  "slug": "maun",
+  "kind": "city",
+  "keys": [
+   "maun",
+   "mub"
+  ]
+ },
+ {
+  "slug": "miami",
+  "kind": "city",
+  "keys": [
+   "miami"
+  ]
+ },
+ {
+  "slug": "milan",
+  "kind": "city",
+  "keys": [
+   "milan",
+   "milano",
+   "lin",
+   "mxp",
+   "bgy"
+  ]
+ },
+ {
+  "slug": "milwaukee",
+  "kind": "city",
+  "keys": [
+   "milwaukee",
+   "mke"
+  ]
+ },
+ {
+  "slug": "monterey",
+  "kind": "city",
+  "keys": [
+   "monterey",
+   "mry"
+  ]
+ },
+ {
+  "slug": "montpellier",
+  "kind": "city",
+  "keys": [
+   "montpellier",
+   "mpl"
+  ]
+ },
+ {
+  "slug": "montreal",
+  "kind": "city",
+  "keys": [
+   "montreal",
+   "montr\u00e9al",
+   "yul"
+  ]
+ },
+ {
+  "slug": "munich",
+  "kind": "city",
+  "keys": [
+   "munich",
+   "m\u00fcnchen",
+   "muc"
+  ]
+ },
+ {
+  "slug": "mykonos",
+  "kind": "city",
+  "keys": [
+   "mykonos",
+   "mykonos island",
+   "jmk",
+   "lgmk"
+  ]
+ },
+ {
+  "slug": "naples",
+  "kind": "city",
+  "keys": [
+   "naples",
+   "napoli",
+   "nap"
+  ]
+ },
+ {
+  "slug": "new-york",
+  "kind": "city",
+  "keys": [
+   "new york",
+   "teterboro",
+   "white plains",
+   "westchester",
+   "teb",
+   "hpn",
+   "jfk",
+   "lga",
+   "ewr",
+   "newark",
+   "stewart"
+  ]
+ },
+ {
+  "slug": "nice",
+  "kind": "city",
+  "keys": [
+   "nice",
+   "monaco"
+  ]
+ },
+ {
+  "slug": "oakland",
+  "kind": "city",
+  "keys": [
+   "oakland",
+   "oak"
+  ]
+ },
+ {
+  "slug": "olbia",
+  "kind": "city",
+  "keys": [
+   "olbia"
+  ]
+ },
+ {
+  "slug": "oxford",
+  "kind": "city",
+  "keys": [
+   "oxford",
+   "kidlington",
+   "oxf"
+  ]
+ },
+ {
+  "slug": "palma",
+  "kind": "city",
+  "keys": [
+   "palma"
+  ]
+ },
+ {
+  "slug": "paris",
+  "kind": "city",
+  "keys": [
+   "paris",
+   "bourget"
+  ]
+ },
+ {
+  "slug": "pisa",
+  "kind": "city",
+  "keys": [
+   "pisa",
+   "psa"
+  ]
+ },
+ {
+  "slug": "preveza",
+  "kind": "city",
+  "keys": [
+   "preveza",
+   "aktion",
+   "pvk",
+   "lgpz"
+  ]
+ },
+ {
+  "slug": "rotterdam",
+  "kind": "city",
+  "keys": [
+   "rotterdam",
+   "rtm"
+  ]
+ },
+ {
+  "slug": "salzburg",
+  "kind": "city",
+  "keys": [
+   "salzburg"
+  ]
+ },
+ {
+  "slug": "sault-ste-marie",
+  "kind": "city",
+  "keys": [
+   "sault ste marie",
+   "sault",
+   "yam"
+  ]
+ },
+ {
+  "slug": "scottsdale",
+  "kind": "city",
+  "keys": [
+   "scottsdale",
+   "sdl"
+  ]
+ },
+ {
+  "slug": "sion",
+  "kind": "city",
+  "keys": [
+   "sion",
+   "sir"
+  ]
+ },
+ {
+  "slug": "teterboro",
+  "kind": "city",
+  "keys": [
+   "teterboro",
+   "teb"
+  ]
+ },
+ {
+  "slug": "thessaloniki",
+  "kind": "city",
+  "keys": [
+   "thessaloniki",
+   "skg"
+  ]
+ },
+ {
+  "slug": "toronto",
+  "kind": "city",
+  "keys": [
+   "toronto"
+  ]
+ },
+ {
+  "slug": "toulon",
+  "kind": "city",
+  "keys": [
+   "toulon",
+   "hyeres",
+   "hy\u00e8res",
+   "palyvestre"
+  ]
+ },
+ {
+  "slug": "turks-and-caicos",
+  "kind": "city",
+  "keys": [
+   "turks and caicos",
+   "providenciales",
+   "pls",
+   "mbpv"
+  ]
+ },
+ {
+  "slug": "van-nuys",
+  "kind": "city",
+  "keys": [
+   "van nuys",
+   "vny"
+  ]
+ },
+ {
+  "slug": "verona",
+  "kind": "city",
+  "keys": [
+   "verona",
+   "vrn"
+  ]
+ },
+ {
+  "slug": "vienna",
+  "kind": "city",
+  "keys": [
+   "vienna"
+  ]
+ },
+ {
+  "slug": "washington",
+  "kind": "city",
+  "keys": [
+   "washington",
+   "iad",
+   "dca"
+  ]
+ },
+ {
+  "slug": "waukesha",
+  "kind": "city",
+  "keys": [
+   "waukesha",
+   "ues"
+  ]
+ },
+ {
+  "slug": "wevelgem",
+  "kind": "city",
+  "keys": [
+   "wevelgem",
+   "kortrijk"
+  ]
+ },
+ {
+  "slug": "zurich",
+  "kind": "city",
+  "keys": [
+   "zurich",
+   "z\u00fcrich",
+   "zrh"
+  ]
+ },
+ {
+  "slug": "belgium",
+  "kind": "country",
+  "cc": "BE"
+ },
+ {
+  "slug": "canada",
+  "kind": "country",
+  "cc": "CA"
+ },
+ {
+  "slug": "europe",
+  "kind": "country",
+  "cc": "EU"
+ },
+ {
+  "slug": "france",
+  "kind": "country",
+  "cc": "FR"
+ },
+ {
+  "slug": "germany",
+  "kind": "country",
+  "cc": "DE"
+ },
+ {
+  "slug": "italy",
+  "kind": "country",
+  "cc": "IT"
+ },
+ {
+  "slug": "south-africa",
+  "kind": "country",
+  "cc": "ZA"
+ },
+ {
+  "slug": "spain",
+  "kind": "country",
+  "cc": "ES"
+ },
+ {
+  "slug": "switzerland",
+  "kind": "country",
+  "cc": "CH"
+ },
+ {
+  "slug": "united-kingdom",
+  "kind": "country",
+  "cc": "GB"
+ },
+ {
+  "slug": "united-states",
+  "kind": "country",
+  "cc": "US"
+ }
+]

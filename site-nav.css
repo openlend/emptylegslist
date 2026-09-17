@@ -337,3 +337,38 @@ header.elnav .eln-reg { margin: 0; }
 #elnote p { margin: 0 auto; max-width: 1380px; color: #fff; }
 #elnote a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
 @media (max-width: 760px) { #elnote { font-size: 13px; padding: 8px 12px; } }
+
+/* Destinations mega menu: search box, live counts.
+   The count is drawn with a CSS ::after from data-n rather than written into
+   the link, so the anchor text a crawler reads stays "London". */
+.eln-find{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:8px 11px;
+  border:1px solid rgba(13,31,54,.16);border-radius:10px;background:#fff;color:rgba(13,31,54,.5)}
+.eln-find:focus-within{border-color:var(--eln-gold,#C9A24C);color:var(--navy,#0D1F36)}
+.eln-find-in{flex:1;min-width:0;border:0;outline:0;background:transparent;
+  font:inherit;font-size:13.5px;color:var(--navy,#0D1F36)}
+.eln-find-in::-webkit-search-cancel-button{cursor:pointer}
+.eln-find-none{margin:10px 2px 0;font-size:13px;color:rgba(13,31,54,.62)}
+.eln-find-none a{color:var(--navy,#0D1F36)}
+.eln-find-note{margin:12px 2px 0;font-size:11.5px;line-height:1.45;color:rgba(13,31,54,.45)}
+.mega-dest.finding .eln-find-note{display:none}
+
+header.elnav .eln-mega .eln-pan a,
+header.elnav .eln-mega .eln-ctry a{display:flex;align-items:baseline;gap:6px}
+header.elnav .eln-mega .eln-pan a[data-n]::after,
+header.elnav .eln-mega .eln-ctry a[data-n]::after{
+  content:attr(data-n);margin-left:auto;font-size:11px;font-weight:600;
+  font-variant-numeric:tabular-nums;color:var(--eln-gold,#C9A24C)}
+header.elnav .eln-mega .eln-pan a[data-live="0"]::after,
+header.elnav .eln-mega .eln-ctry a[data-live="0"]::after{content:"\2013";color:rgba(13,31,54,.3)}
+header.elnav .eln-mega .eln-pan a[data-live="0"],
+header.elnav .eln-mega .eln-ctry a[data-live="0"]{color:rgba(13,31,54,.55)}
+.eln-pan a[hidden],.eln-ctry a[hidden]{display:none}
+
+/* The city list is 80 names in three columns and on a 900px laptop it ran off
+   the bottom of the screen, so the last row of cities could not be reached.
+   It scrolls inside the panel instead. */
+.eln-col-city{display:flex;flex-direction:column;min-height:0}
+.eln-col-city .eln-pan{overflow-y:auto;max-height:min(52vh,420px);
+  scrollbar-width:thin;padding-right:4px}
+.eln-mega.mega-dest{max-height:min(80vh,720px);overflow:hidden}
+.eln-col-route{overflow-y:auto;max-height:min(70vh,640px);scrollbar-width:thin}

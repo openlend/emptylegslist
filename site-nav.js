@@ -235,3 +235,141 @@
   else fold();
   var t; window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fold, 200); });
 })();
+
+/* Live counts and search inside the Destinations mega menu.
+   ---------------------------------------------------------------------------
+   The menu used to be a static list. Every other surface on the site shows what
+   is on the board right now, so the navigation was the one place that could be
+   confidently wrong: it offered Cannes and Geneva as "popular" while Nice sat
+   at none and New York, the busiest place on the board, had no link at all.
+
+   One POST to public.page_counts fills the whole panel: every city, every
+   country, and the four region totals. It is the same function the destination
+   pages count with, so the menu and the page can never disagree.
+
+   Nothing is fetched until the menu is opened for the first time, and the
+   answer is kept in sessionStorage for ten minutes, so opening it again on the
+   next page costs nothing. The number is written to a data attribute and drawn
+   by CSS, never into the link text: the anchor text stays "London", which is
+   what a crawler should read. If the fetch fails the menu is exactly what it
+   was before, a list of links. */
+(function () {
+  var BASE = "https://wscowiseslaovmmfuzyv.supabase.co";
+  var KEY  = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
+  var CACHE = "el_navcounts_v1";
+  var TTL = 10 * 60 * 1000;
+  var pending = null;
+
+  function cached() {
+    try {
+      var raw = sessionStorage.getItem(CACHE);
+      if (!raw) return null;
+      var o = JSON.parse(raw);
+      if (!o || (Date.now() - o.t) > TTL) return null;
+      return o.c;
+    } catch (e) { return null; }
+  }
+  function keep(c) {
+    try { sessionStorage.setItem(CACHE, JSON.stringify({ t: Date.now(), c: c })); } catch (e) {}
+  }
+
+  function counts() {
+    if (pending) return pending;
+    var have = cached();
+    if (have) { pending = Promise.resolve(have); return pending; }
+    pending = fetch("/pagespec.json", { cache: "force-cache" })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (spec) {
+        return fetch(BASE + "/rest/v1/rpc/page_counts", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", apikey: KEY, Authorization: "Bearer " + KEY },
+          body: JSON.stringify({ spec: spec })
+        });
+      })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (c) { keep(c); return c; });
+    return pending;
+  }
+
+  function paint(root, c) {
+    Array.prototype.forEach.call(root.querySelectorAll("[data-elc]"), function (a) {
+      var row = c[a.getAttribute("data-elc")];
+      var n = row && row.live ? row.live : 0;
+      a.setAttribute("data-n", n ? String(n) : "0");
+      a.setAttribute("data-live", n ? "1" : "0");
+    });
+  }
+
+  function search(root) {
+    var box = root.querySelector(".eln-find-in");
+    if (!box) return;
+    var none = root.querySelector(".eln-find-none");
+    var pans = root.querySelectorAll(".eln-pan");
+    var regs = root.querySelectorAll(".eln-regs button");
+    var ctry = root.querySelectorAll(".eln-ctry a");
+
+    function run() {
+      var q = box.value.trim().toLowerCase();
+      root.classList.toggle("finding", !!q);
+      var hits = 0;
+      Array.prototype.forEach.call(pans, function (pn) {
+        var shown = 0;
+        Array.prototype.forEach.call(pn.querySelectorAll("a"), function (a) {
+          var on = !q || a.textContent.toLowerCase().indexOf(q) > -1;
+          a.hidden = !on;
+          if (on) shown++;
+        });
+        hits += shown;
+        // While searching, every region is open at once: somebody typing
+        // "Houston" should not have to know it sits under North America.
+        if (q) { pn.hidden = shown === 0; pn.classList.toggle("on", shown > 0); }
+      });
+      Array.prototype.forEach.call(ctry, function (a) {
+        var on = !q || a.textContent.toLowerCase().indexOf(q) > -1;
+        a.hidden = !on;
+        if (on && q) hits++;
+      });
+      if (none) none.hidden = hits !== 0;
+      if (!q) {
+        // Back to the region the tabs say is selected.
+        var want = "0";
+        Array.prototype.forEach.call(regs, function (b) {
+          if (b.classList.contains("on")) want = b.getAttribute("data-region");
+        });
+        Array.prototype.forEach.call(pans, function (pn) {
+          var on = pn.getAttribute("data-region") === want;
+          pn.hidden = !on;
+          pn.classList.toggle("on", on);
+        });
+      }
+    }
+    box.addEventListener("input", run);
+    box.addEventListener("search", run);
+    // Escape clears the box before it closes the menu.
+    box.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && box.value) { e.stopPropagation(); box.value = ""; run(); }
+    });
+  }
+
+  function init() {
+    var roots = document.querySelectorAll(".mega-dest");
+    if (!roots.length) return;
+    Array.prototype.forEach.call(roots, search);
+    var done = false;
+    function load() {
+      if (done) return;
+      done = true;
+      counts().then(function (c) {
+        Array.prototype.forEach.call(roots, function (r) { paint(r, c); });
+      }).catch(function () { done = false; });
+    }
+    Array.prototype.forEach.call(roots, function (r) {
+      var item = r.parentNode;
+      ["mouseenter", "focusin", "click", "touchstart"].forEach(function (ev) {
+        item.addEventListener(ev, load, { passive: true });
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
