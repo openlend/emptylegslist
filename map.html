@@ -563,9 +563,9 @@ body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
 
 <div class="mx-panel" data-nofloat>
   <div class="mx-search">
-    <div class="mf"><input id="mxfrom" list="mxplaces" placeholder="City or airport" autocomplete="off"><label class="mf-l" for="mxfrom">From</label></div>
+    <div class="mf"><input id="mxfrom" list="mxplaces" placeholder="City, country or code" autocomplete="off"><label class="mf-l" for="mxfrom">From</label></div>
     <button class="mx-swap" id="mxswap" type="button" aria-label="Swap from and to"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 4 7l3 3M4 7h13M17 20l3-3-3-3M20 17H7"/></svg></button>
-    <div class="mf"><input id="mxto" list="mxplaces" placeholder="Anywhere" autocomplete="off"><label class="mf-l" for="mxto">To</label></div>
+    <div class="mf"><input id="mxto" list="mxplaces" placeholder="City, country or code" autocomplete="off"><label class="mf-l" for="mxto">To</label></div>
     <div class="mf mf-up"><select id="mxdays">
       <option value="3">Next 3 days</option>
       <option value="7" selected>Next 7 days</option>
@@ -628,6 +628,7 @@ body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
 
 <link rel="stylesheet" href="/site-forms.css">
 <script src="/site-forms.js" defer></script>
+<script src="/place-index.js" defer></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" crossorigin="">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin=""></script>
 <script>
@@ -741,8 +742,17 @@ function flightUrl(x){
     if (f.reg && f.reg !== "__rest" && l.region !== f.reg) return false;
     if (f.days){ var lim = new Date(); lim.setDate(lim.getDate() + parseInt(f.days,10));
       if (l.departure_date > lim.toISOString().slice(0,10)) return false; }
-    if (f.from && (" "+String(l.from_label||"").toLowerCase()).indexOf(f.from.toLowerCase()) < 0) return false;
-    if (f.to   && (" "+String(l.to_label  ||"").toLowerCase()).indexOf(f.to.toLowerCase())   < 0) return false;
+    var P = window.EL_PLACE;
+    if (f.from) {
+      var okF = P ? P.match(f.from, l.from_label, l.from_iata)
+                  : (" " + String(l.from_label||"").toLowerCase()).indexOf(f.from.toLowerCase()) > -1;
+      if (!okF) return false;
+    }
+    if (f.to) {
+      var okT = P ? P.match(f.to, l.to_label, l.to_iata)
+                  : (" " + String(l.to_label||"").toLowerCase()).indexOf(f.to.toLowerCase()) > -1;
+      if (!okT) return false;
+    }
     if (bboxOnly && l.from_lat != null && l.to_lat != null){
       var a = L.latLng(l.from_lat, l.from_lon), b = L.latLng(l.to_lat, l.to_lon);
       if (!bboxOnly.contains(a) && !bboxOnly.contains(b)) return false;
@@ -934,7 +944,7 @@ function flightUrl(x){
   });
 
   /* ---------- load ------------------------------------------------------ */
-  apiAll("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date,id")
+  apiAll("leg_geo?select=id,from_label,to_label,from_iata,to_iata,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date,id")
     .then(function(rows){
       ALL = rows;
       var places = {}, types = {};
