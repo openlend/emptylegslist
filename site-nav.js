@@ -317,7 +317,7 @@
     var box = root.querySelector(".eln-find-in");
     if (!box) return;
     var none = root.querySelector(".eln-find-none");
-    var pans = root.querySelectorAll(".eld-pan");
+    var pans = root.querySelectorAll(".eld-pan, [data-search]");
     var regs = root.querySelectorAll(".eld-tabs button");
 
     function run() {
@@ -334,7 +334,7 @@
         hits += shown;
         // While searching every region is open at once: somebody typing
         // "Houston" should not have to know it sits under North America.
-        if (q) { pn.hidden = shown === 0; }
+        if (q && pn.hasAttribute("data-region")) { pn.hidden = shown === 0; }
       });
       if (none) none.hidden = hits !== 0;
       if (!q) restore(root, regs, pans);
@@ -345,7 +345,7 @@
         if (b.classList.contains("on")) want = b.getAttribute("data-region");
       });
       Array.prototype.forEach.call(pans, function (pn) {
-        pn.hidden = pn.getAttribute("data-region") !== want;
+        if (pn.hasAttribute("data-region")) pn.hidden = pn.getAttribute("data-region") !== want;
       });
       Array.prototype.forEach.call(root.querySelectorAll(".eld-cities"), trim);
     }
@@ -363,6 +363,7 @@
   }
 
   function init() {
+    Array.prototype.forEach.call(document.querySelectorAll(".mega-ac"), search);
     var roots = document.querySelectorAll(".mega-dest");
     if (!roots.length) return;
     Array.prototype.forEach.call(roots, function (r) {

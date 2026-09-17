@@ -340,7 +340,7 @@ header.elnav .eln-reg { margin: 0; }
    The live count beside a city or country is drawn with a CSS ::after from a
    data attribute, never written into the link, so the anchor text a crawler
    reads stays "London".                                                  */
-.eln-mega.mega-dest{display:block;padding:0;width:min(1240px,calc(100vw - 48px));max-height:min(86vh,760px);overflow:auto}
+.eln-mega.mega-dest,.eln-mega.mega-ac{display:block;padding:0;width:min(1240px,calc(100vw - 48px));max-height:min(86vh,760px);overflow:auto}
 .eld-top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 28px 16px}
 .eld-h{margin:0;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:22px;color:var(--navy,#0D1F36)}
 header.elnav .eln-mega .eld-top h4{font-size:22px;letter-spacing:0;text-transform:none;color:var(--navy,#0D1F36)}
@@ -419,3 +419,35 @@ header.elnav .eln-mega .eld-bar a:hover{background:#b8912f}
   .eld-grid{grid-template-columns:1fr 1fr;grid-template-areas:"ctry city" "side side" "routes routes"}
   .eld-side{border-left:0;padding-left:0;margin-top:18px;border-top:1px solid rgba(13,31,54,.09);padding-top:16px}
 }
+
+/* ----- Aircraft panel, same furniture as Destinations ------------------ */
+.eld-grid.ac{grid-template-columns:1fr 1.5fr 1fr;grid-template-areas:"ctry city side";padding-bottom:26px}
+.eld-cls{display:flex;flex-direction:column;gap:1px}
+header.elnav .eln-mega .eld-cls a{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px 8px;border-radius:8px;font-size:14px;color:var(--navy,#0D1F36);text-decoration:none}
+.eld-chev{color:rgba(13,31,54,.3);flex:0 0 auto}
+header.elnav .eln-mega .eld-cls a:hover .eld-chev{color:var(--eln-gold,#C9A24C)}
+
+.eld-models{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,auto);gap:1px 20px}
+header.elnav .eln-mega .eld-models a{display:block;padding:7px 8px;border-radius:8px;font-size:14px;
+  color:var(--navy,#0D1F36);text-decoration:none;line-height:1.35}
+@media(hover:hover){header.elnav .eln-mega .eld-models a:hover,
+  header.elnav .eln-mega .eld-cls a:hover{background:#f4f7fa}}
+
+.eld-help{display:flex;flex-direction:column;gap:4px}
+header.elnav .eln-mega .eld-help a{display:flex;align-items:center;gap:13px;padding:9px 8px;
+  border-radius:10px;text-decoration:none;color:var(--navy,#0D1F36)}
+@media(hover:hover){header.elnav .eln-mega .eld-help a:hover{background:#f4f7fa}}
+.eld-help i{flex:0 0 auto;width:38px;height:38px;border-radius:999px;display:inline-flex;
+  align-items:center;justify-content:center;border:1px solid rgba(201,162,76,.45);color:var(--eln-gold,#C9A24C)}
+.eld-help span{display:block;min-width:0}
+.eld-help b{display:block;font-size:14px;font-weight:600;line-height:1.35}
+.eld-help span{font-size:12.5px;color:#46525f;line-height:1.45}
+.eld-said{margin-top:18px;padding-top:16px;border-top:1px solid rgba(13,31,54,.09)}
+.eld-said b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:19px;
+  color:var(--navy,#0D1F36);margin-bottom:6px}
+.eld-said p{margin:0;font-size:13px;line-height:1.55;color:#46525f}
+
+.mega-ac.finding .eld-side,.mega-ac.finding .eld-said{display:none}
+.mega-ac.finding .eld-grid.ac{grid-template-columns:1fr 1.5fr;grid-template-areas:"ctry city"}
+@media(max-width:1080px){.eld-grid.ac{grid-template-columns:1fr 1fr;grid-template-areas:"ctry city" "side side"}}

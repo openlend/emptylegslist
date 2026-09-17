@@ -256,11 +256,34 @@ figure.seahero figcaption{font-size:12.5px;color:var(--mute);margin-top:9px;line
 
       <div class="eln-item">
         <button class="eln-trig" type="button" aria-expanded="false">Aircraft <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M 5 9 L 12 16 L 19 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <div class="eln-mega">
-          <div>
-            <h4>Types on the list</h4>
-            <div class="eln-grid">
-            <a href="/aircraft/citation-mustang">Citation Mustang</a>
+        <div class="eln-mega mega-ac">
+          <div class="eld-top">
+            <h4 class="eld-h">Explore aircraft</h4>
+            <div class="eln-find">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <input type="search" class="eln-find-in" placeholder="Search aircraft or manufacturer" aria-label="Search aircraft" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="eld-grid ac">
+            <div class="eld-col eld-ctry">
+              <h5>By aircraft class</h5>
+              <div class="eld-cls" data-search>
+              <a href="/aircraft/#class-turboprop">Turboprop<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" class="eld-chev"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="/aircraft/#class-verylight">Very light jet<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" class="eld-chev"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="/aircraft/#class-light">Light jet<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" class="eld-chev"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="/aircraft/#class-midsize">Midsize jet<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" class="eld-chev"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="/aircraft/#class-supermid">Super midsize jet<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" class="eld-chev"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="/aircraft/#class-heavy">Heavy jet<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" class="eld-chev"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="/aircraft/#class-ultra">Ultra long range<svg viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" class="eld-chev"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </div>
+              <a class="eln-all" href="/aircraft/">All aircraft types <span aria-hidden="true">→</span></a>
+            </div>
+
+            <div class="eld-col eld-city">
+              <h5>Explore models</h5>
+              <div class="eld-models" data-search>
+              <a href="/aircraft/citation-mustang">Citation Mustang</a>
             <a href="/aircraft/citation-m2">Citation M2</a>
             <a href="/aircraft/citation-xls">Citation XLS</a>
             <a href="/aircraft/citation-latitude">Citation Latitude</a>
@@ -274,23 +297,28 @@ figure.seahero figcaption{font-size:12.5px;color:var(--mute);margin-top:9px;line
             <a href="/aircraft/falcon-7x">Falcon 7X</a>
             <a href="/aircraft/gulfstream-g550">Gulfstream G550</a>
             <a href="/aircraft/global-6000">Global 6000</a>
+              </div>
             </div>
-            <a class="eln-all" href="/aircraft/">All aircraft types <span aria-hidden="true">→</span></a>
-          </div>
-          <div>
-            <h4>Working out what you need</h4>
-            <div class="eln-grid one">
-              <a href="/aircraft/">Compare cabins and range</a>
-              <a href="/about">How empty legs work</a>
-              <a href="/contact">Ask us a question</a>
-              <a href="/media">Media kit and partnerships</a>
+
+            <div class="eld-col eld-side">
+              <h5>Help me choose</h5>
+              <div class="eld-help">
+                <a href="/aircraft/"><i><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M7 8h10M7 8 4 15h6zM17 8l-3 7h6z"/><path d="M4 15a3 3 0 0 0 6 0M14 15a3 3 0 0 0 6 0"/></svg></i><span><b>Compare cabins and range</b>Every type we keep a page for</span></a>
+                <a href="/guides/what-is-an-empty-leg-flight"><i><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a1.5 1.5 0 0 0-1.5 1.5v15A1.5 1.5 0 0 0 7 21h10a1.5 1.5 0 0 0 1.5-1.5V7.5z"/><path d="M14 3v4.5h4.5M9 12h6M9 16h4"/></svg></i><span><b>How empty legs work</b>What you are actually buying</span></a>
+                <a href="/contact"><i><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A1.5 1.5 0 0 1 18.5 16H8l-4 3.5v-14A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5z"/></svg></i><span><b>Ask a question</b>We answer the ones we can</span></a>
+              </div>
+              <div class="eld-said">
+                <b>Whole aircraft, one price</b>
+                <p>Every published price is the operator’s own figure for the whole aircraft, never per seat.</p>
+              </div>
             </div>
           </div>
-          <div class="eln-promo">
-            <h5>Whole aircraft, one price</h5>
-            <p>Every price on the list is the operator's own figure for the whole aircraft, never per seat.</p>
-            <a href="/#listings">See what is live</a>
+
+          <div class="eld-bar">
+            <p><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 13.8 3 11.4l1.2-1.2 3 .6 3-3L3 4.8 4.8 3l9.6 3 3.6-3.6a2.1 2.1 0 0 1 3 3L17.4 9l3 9.6-1.8 1.8-3-7.2-3 3 .6 3-1.2 1.2z"/></svg> Find the aircraft that fits your trip.</p>
+            <a href="/aircraft/">Browse all 55 aircraft <span aria-hidden="true">→</span></a>
           </div>
+          <p class="eln-find-none" hidden>No page for that one yet. <a href="/aircraft/">See every aircraft type <span aria-hidden="true">→</span></a></p>
         </div>
       </div>
 
