@@ -136,6 +136,16 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
   padding:16px 0 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--mute)}
 .mx-filters .mf{flex:0 0 auto;width:190px;height:44px}
 .mx-filters .mf > select{height:44px;min-height:44px}
+/* Radu's design has Region and Aircraft as a caption and a small pill, not
+   two boxes the size of the search fields. */
+.mx-pill{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;font-size:13.5px;color:var(--mute)}
+/* the site puts uppercase and letter spacing on every label; this one is a
+   caption in a sentence, not a field name above a box */
+.mx-pill label{text-transform:none;letter-spacing:0;font-size:13.5px;color:var(--mute)}
+.mx-pill select{height:36px;margin:0;border:1px solid var(--line);border-radius:9px;background:#fff;
+  font:inherit;font-size:13.5px;font-weight:600;color:var(--navy);padding:0 10px;cursor:pointer;
+  max-width:190px}
+.mx-pill select:hover{border-color:var(--gold)}
 
 .mx-chk{display:inline-flex;align-items:center;gap:9px;height:44px;color:var(--navy);cursor:pointer}
 .mx-clear{border:0;background:none;font:inherit;font-size:13.5px;color:var(--navy);
@@ -146,7 +156,7 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
   color:#46525f;cursor:pointer;display:inline-flex;align-items:center}
 .mx-view button.on{background:var(--navy);color:#fff}
 
-.mx-body{display:grid;grid-template-columns:420px 1fr;gap:16px;align-items:start}
+.mx-body{display:grid;grid-template-columns:460px 1fr;gap:16px;align-items:start}
 .mx-body[data-view=list]{grid-template-columns:1fr}
 .mx-body[data-view=list] .mx-mapwrap{display:none}
 .mx-body[data-view=map]{grid-template-columns:1fr}
@@ -173,9 +183,19 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
 .mx-row .p b{font-size:15.5px}
 .mx-row .p small{margin-top:2px}
 .mx-row .p small.nomap{color:rgba(13,31,54,.38);font-style:italic;margin-top:5px}
-.mx-page{display:block;margin:16px 0 0;font-size:13px;color:var(--mute)}
-#mxpager{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
-#mxcount{display:block;line-height:1.5}
+/* One bell per row, as in the design: it opens the alert form with that
+   route already filled in. */
+.mx-row{position:relative}
+.mx-row .p{padding-right:40px}
+.mx-row .bell{position:absolute;top:12px;right:8px;width:30px;height:30px;border:1px solid var(--line);
+  background:#fff;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;
+  color:rgba(13,31,54,.42);text-decoration:none}
+.mx-row .bell:hover{border-color:var(--gold);color:var(--gold)}
+.mx-row .bell svg{width:16px;height:16px}
+.mx-page{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;
+  margin:16px 0 0;font-size:13px;color:var(--mute)}
+#mxpager{display:flex;flex-wrap:wrap;gap:6px;margin:0;min-width:0}
+#mxcount{line-height:1.5;min-width:0}
 .mx-page button{box-sizing:border-box;border:1px solid var(--line);background:#fff;border-radius:8px;
   width:34px;height:34px;min-width:0;padding:0;line-height:32px;text-align:center;
   font:inherit;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer;margin:0;flex:0 0 auto}
@@ -194,7 +214,20 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
   padding:40px;pointer-events:none}
 .mx-empty p{margin:0;max-width:380px;text-align:center;background:rgba(13,31,54,.9);color:#e8edf3;
   font-size:14px;line-height:1.6;padding:16px 20px;border-radius:12px}
-.mx-full{top:14px;right:14px;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center}
+/* The design stacks plus, minus and full screen in one column on the right. */
+.mx-mapwrap .leaflet-top.leaflet-right{top:14px;right:14px}
+.mx-mapwrap .leaflet-control-zoom{border:0;margin:0;box-shadow:0 2px 10px rgba(8,19,31,.25)}
+.mx-mapwrap .leaflet-control-zoom a{width:38px;height:38px;line-height:36px;background:#fff;
+  color:var(--navy);border:1px solid var(--line);font-size:19px;font-weight:400}
+.mx-mapwrap .leaflet-control-zoom a:hover{background:#f4f6fa;color:var(--navy)}
+.mx-mapwrap .leaflet-control-zoom-in{border-radius:10px 10px 0 0;border-bottom:0}
+.mx-mapwrap .leaflet-control-zoom-out{border-radius:0 0 10px 10px}
+.mx-full{top:104px;right:14px;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center}
+/* Country names on the basemap. Quiet enough to read the routes over. */
+.mx-cname{width:0!important;height:0!important;margin:0!important;pointer-events:none;overflow:visible}
+.mx-cname span{position:absolute;left:0;top:0;transform:translate(-50%,-50%);
+  font-family:Raleway,sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.03em;
+  color:rgba(203,219,238,.58);text-shadow:0 1px 3px rgba(4,12,22,.9);white-space:nowrap}
 .leaflet-tooltip.mx-dotlab{background:none;background-color:transparent;border:0;box-shadow:none;padding:0;color:#fff;font-family:Raleway,sans-serif;
   font-size:13px;font-weight:600;text-shadow:0 1px 3px rgba(4,12,22,.95),0 0 10px rgba(4,12,22,.8);white-space:nowrap}
 .leaflet-tooltip.mx-dotlab::before,.leaflet-tooltip.mx-dotlab::after{display:none;border:0}
@@ -582,8 +615,8 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
     <button class="mx-go" id="mxgo" type="button">Search</button>
   </div>
   <div class="mx-filters">
-    <div class="mf mf-up"><select id="mxreg"><option value="">Anywhere</option><option>Europe</option><option>North America</option><option>Middle East</option><option>Africa</option><option value="__rest">Rest of world</option></select><label class="mf-l" for="mxreg">Region</label></div>
-    <div class="mf mf-up"><select id="mxac"><option value="">Any</option></select><label class="mf-l" for="mxac">Aircraft</label></div>
+    <span class="mx-pill"><label for="mxreg">Region:</label><select id="mxreg" data-nomf><option value="">Anywhere</option><option>Europe</option><option>North America</option><option>Middle East</option><option>Africa</option><option value="__rest">Rest of world</option></select></span>
+    <span class="mx-pill"><label for="mxac">Aircraft:</label><select id="mxac" data-nomf><option value="">Any</option></select></span>
     <label class="mx-chk"><input type="checkbox" id="mxpriced"> Published prices only</label>
     <button class="mx-clear" id="mxclear" type="button">Clear filters</button>
     <div class="mx-view" role="group" aria-label="How to show the results">
@@ -664,6 +697,7 @@ function flightUrl(x){
 }
 
   var CITYKEYS = {"alicante":["alicante","alc"],"amsterdam":["amsterdam","schiphol"],"antwerp":["antwerp"],"aspen":["aspen","ase"],"athens":["athens"],"austin":["austin","aus"],"barcelona":["barcelona","bcn"],"bari":["bari","bri"],"belfast":["belfast"],"bergen":["bergen","bgo"],"berlin":["berlin","ber"],"birmingham":["birmingham international","birmingham, gb"],"bodrum":["bodrum","bjv"],"boise":["boise","gowen field","boi","kboi"],"bologna":["bologna","blq"],"bolzano":["bolzano","bozen","bzo"],"brussels":["brussels","zaventem"],"bucharest":["bucharest","bucuresti","baneasa","aurel vlaicu","otopeni","bbu","otp","lrbs","lrop"],"cagliari":["cagliari","cag"],"calgary":["calgary","yyc","ybw"],"cannes":["cannes","mandelieu"],"cape-town":["cape town"],"carlsbad":["carlsbad","crq"],"chicago":["chicago","mdw","ord","pwk","dpa"],"cluj-napoca":["cluj","cluj-napoca","cluj napoca","avram iancu","clj","lrcl"],"dallas":["dallas","dal","dfw"],"dublin":["dublin","dub"],"dusseldorf":["dusseldorf","d\u00fcsseldorf","dus"],"edinburgh":["edinburgh","edi"],"farnborough":["farnborough","fab"],"fort-lauderdale":["fort lauderdale","ft lauderdale","fll","fxe"],"fort-worth":["fort worth","ftw","afw"],"geneva":["geneva","gen\u00e8ve","gva"],"girona":["girona","gro"],"houston":["houston","hou","iah","efd"],"ibiza":["ibiza","eivissa"],"innsbruck":["innsbruck","inn","lowi","kranebitten"],"istanbul":["istanbul","ist","saw"],"johannesburg":["johannesburg","lanseria"],"larnaca":["larnaca","larnarca"],"las-vegas":["las vegas"],"liege":["liege","li\u00e8ge","lgg"],"linz":["linz","lnz"],"london":["london","luton","stansted","biggin hill","farnborough","oxford"],"madrid":["madrid","mad"],"malaga":["malaga","m\u00e1laga"],"maun":["maun","mub"],"miami":["miami"],"milan":["milan","milano","lin","mxp","bgy"],"milwaukee":["milwaukee","mke"],"monterey":["monterey","mry"],"montpellier":["montpellier","mpl"],"montreal":["montreal","montr\u00e9al","yul"],"munich":["munich","m\u00fcnchen","muc"],"mykonos":["mykonos","mykonos island","jmk","lgmk"],"naples":["naples","napoli","nap"],"new-york":["new york","teterboro","white plains","westchester","teb","hpn","jfk","lga","ewr","newark","stewart"],"nice":["nice","monaco"],"oakland":["oakland","oak"],"olbia":["olbia"],"oxford":["oxford","kidlington","oxf"],"palma":["palma"],"paris":["paris","bourget"],"pisa":["pisa","psa"],"preveza":["preveza","aktion","pvk","lgpz"],"rotterdam":["rotterdam","rtm"],"salzburg":["salzburg"],"sault-ste-marie":["sault ste marie","sault","yam"],"scottsdale":["scottsdale","sdl"],"sion":["sion","sir"],"teterboro":["teterboro","teb"],"thessaloniki":["thessaloniki","skg"],"toronto":["toronto"],"toulon":["toulon","hyeres","hy\u00e8res","palyvestre"],"turks-and-caicos":["turks and caicos","providenciales","pls","mbpv"],"van-nuys":["van nuys","vny"],"verbier":["verbier"],"verona":["verona","vrn"],"vienna":["vienna"],"washington":["washington","iad","dca"],"waukesha":["waukesha","ues"],"wevelgem":["wevelgem","kortrijk"],"zurich":["zurich","z\u00fcrich","zrh"]};          /* slug -> the words that mean that city */
+  var BELLSVG = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.4 9a5.4 5.4 0 1 0-10.8 0c0 6-2.4 7.8-2.4 7.8h15.6S17.4 15 17.4 9z"/><path d="M13.6 20.4a1.8 1.8 0 0 1-3.2 0"/></svg>';
 
   /* ---------- state ------------------------------------------------- */
   var ALL = [], VIEW = [], page = 0, PER = 12, sel = null, bboxOnly = null;
@@ -675,14 +709,55 @@ function flightUrl(x){
   /* ---------- map ---------------------------------------------------- */
   var mobile = L.Browser.mobile;
   var map = L.map("elmap", { worldCopyJump:true, minZoom:2, maxZoom:9, preferCanvas:true,
-    scrollWheelZoom:false, dragging:!mobile, tap:!mobile, zoomControl:true }).setView([40,-25], 3);
+    scrollWheelZoom:false, dragging:!mobile, tap:!mobile, zoomControl:false }).setView([40,-25], 3);
+  L.control.zoom({ position:"topright" }).addTo(map);   /* stacked with the full screen button */
+  map.createPane("basemap");
+  map.getPane("basemap").style.zIndex = 350;             /* under the routes, over nothing */
 
   /* The basemap is ours: country outlines from a local file, no tiles, no
      provider, no key. CARTO started demanding one in September 2026. */
+  /* Natural Earth writes some names short. These are the ones that would
+     look like a typo on the map, spelled out. */
+  var LONGNAME = { "United States of America":"United States", "Dem. Rep. Congo":"DR Congo",
+    "Central African Rep.":"Central African Republic", "Bosnia and Herz.":"Bosnia and Herzegovina",
+    "Dominican Rep.":"Dominican Republic", "Eq. Guinea":"Equatorial Guinea", "S. Sudan":"South Sudan",
+    "W. Sahara":"Western Sahara", "Solomon Is.":"Solomon Islands", "N. Cyprus":"Northern Cyprus",
+    "Falkland Is.":"Falkland Islands", "Fr. S. Antarctic Lands":"", "Antarctica":"",
+    "Czechia":"Czech Republic", "Macedonia":"North Macedonia", "Swaziland":"Eswatini" };
+  /* How big a country has to be, in square degrees, before its name is worth
+     printing at a given zoom. Without this the world view is a wall of text. */
+  var NAMEAT = { 2:420, 3:150, 4:28, 5:8, 6:1.5 };
+  var names = L.layerGroup(), NAMED = [];
+  function drawNames(){
+    names.clearLayers();
+    if (!NAMED.length) return;
+    var z = map.getZoom(), min = NAMEAT[z] != null ? NAMEAT[z] : (z < 2 ? 1e9 : 0);
+    for (var i = 0; i < NAMED.length; i++) {
+      var c = NAMED[i];
+      if (c.a < min) continue;
+      names.addLayer(L.marker(c.ll, { interactive:false, keyboard:false,
+        icon:L.divIcon({ className:"mx-cname", html:"<span>" + c.t + "</span>", iconSize:null }) }));
+    }
+  }
   fetch("/brand/world-110m.json").then(function(r){ return r.json(); }).then(function(geo){
-    L.geoJSON(geo, { interactive:false, renderer:L.canvas({padding:0.4}),
+    /* The outlines get a pane of their own, below the one the routes are
+       drawn in. bringToBack only reorders inside a canvas, so whichever of
+       the two canvases the browser created last used to sit on top: if the
+       country file arrived after the board, its solid fills painted over
+       every line and dot. A pane fixes the order for good. */
+    L.geoJSON(geo, { interactive:false, pane:"basemap",
+      renderer:L.canvas({ pane:"basemap", padding:0.4 }),
       style:{ color:"#2f4e74", weight:0.6, opacity:0.9, fillColor:"#13263c", fillOpacity:1 } })
-      .addTo(map).bringToBack();
+      .addTo(map);
+    geo.features.forEach(function(ft){
+      var pr = ft.properties || {};
+      if (!pr.name || !pr.lab) return;
+      var t = LONGNAME.hasOwnProperty(pr.name) ? LONGNAME[pr.name] : pr.name;
+      if (!t) return;
+      NAMED.push({ t:t, a:pr.a || 0, ll:L.latLng(pr.lab[1], pr.lab[0]) });
+    });
+    names.addTo(map); drawNames();
+    map.on("zoomend", drawNames);
   }).catch(function(){});
   map.attributionControl.addAttribution('Country outlines: <a href="https://www.naturalearthdata.com/">Natural Earth</a>, public domain');
 
@@ -855,7 +930,11 @@ function flightUrl(x){
         + '<div class="p"><b>' + (m ? esc(fmtPrice(l.price_note)) : 'On enquiry') + '</b>'
         + '<small>' + (m ? 'Whole aircraft' : 'Ask the operator') + '</small>'
         + (l.from_lat == null || l.to_lat == null ? '<small class="nomap">Not on the map</small>' : '')
-        + '</div></div>';
+        + '</div><a class="bell" title="Alert me about this route"'
+        + ' aria-label="Get an alert for ' + esc(short(l.from_label)) + ' to ' + esc(short(l.to_label)) + '"'
+        + ' href="/?af_from=' + encodeURIComponent(short(l.from_label))
+        + '&af_to=' + encodeURIComponent(short(l.to_label)) + '#alerts">' + BELLSVG + '</a>'
+        + '</div>';
     }).join("") || '<p style="color:var(--mute);padding:18px 2px">Nothing matches those filters. Widen the dates, or set an alert and let it come to you.</p>';
 
     var pages = Math.ceil(VIEW.length / PER), out = "";

@@ -3355,5 +3355,24 @@ setTimeout(boot,900);setTimeout(boot,2500);setTimeout(boot,5000);
     <p class="bf-legal">A listing service only. Not a broker, not an operator, not a party to any booking. No commission.</p>
   </div>
 </footer>
+<script>
+/* The bell on a map row links here as /?af_from=London&af_to=Nice#alerts.
+   Fill the two fields from the query string so the person does not retype
+   the route they just clicked. Nothing is sent until they submit. */
+(function(){
+  try {
+    var q = new URLSearchParams(location.search);
+    var from = q.get("af_from"), to = q.get("af_to");
+    if (!from && !to) return;
+    var a = document.getElementById("a-from"), b = document.getElementById("a-to");
+    if (a && from) a.value = from;
+    if (b && to) b.value = to;
+    if (location.hash === "#alerts") {
+      var box = document.getElementById("alerts");
+      if (box) setTimeout(function(){ box.scrollIntoView({ behavior:"smooth", block:"start" }); }, 120);
+    }
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>
