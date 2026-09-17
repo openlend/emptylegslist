@@ -873,9 +873,16 @@ function flightUrl(x){
     drawList(); drawMap();
     var l = sel ? byId(sel) : null;
     if (!l || l.from_lat == null || l.to_lat == null) return;
-    map.fitBounds([[l.from_lat,l.from_lon],[l.to_lat,l.to_lon]], { padding:[120,120], maxZoom:4 });
-    L.popup({ closeButton:true, offset:[0,-14], autoPan:true, autoPanPadding:[70,70] })
-      .setLatLng([(l.from_lat+l.to_lat)/2, (l.from_lon+l.to_lon)/2])
+    /* Radu, 17 September: the card used to sit on the middle of the line and
+       covered the departure city on short legs. A Leaflet popup always opens
+       upward, so anchor it on whichever end is further north: it then rises
+       into empty space above that dot and leaves the other end clear. The
+       extra top padding is the room the card needs. */
+    var top = (l.from_lat >= l.to_lat) ? [l.from_lat, l.from_lon] : [l.to_lat, l.to_lon];
+    map.fitBounds([[l.from_lat,l.from_lon],[l.to_lat,l.to_lon]],
+      { paddingTopLeft:[120,240], paddingBottomRight:[120,90], maxZoom:4, animate:false });
+    L.popup({ closeButton:true, offset:[0,-16], autoPan:true, autoPanPadding:[70,70] })
+      .setLatLng(top)
       .setContent('<b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b><br>'
         + esc(fmtDate(l.departure_date)) + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
         + (l.seats ? ' &middot; ' + l.seats + ' seats' : '')
