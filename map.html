@@ -175,8 +175,10 @@ body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
 .mx-page{display:block;margin:16px 0 0;font-size:13px;color:var(--mute)}
 #mxpager{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
 #mxcount{display:block;line-height:1.5}
-.mx-page button{border:1px solid var(--line);background:#fff;border-radius:8px;min-width:32px;height:32px;
-  font:inherit;font-size:13px;color:var(--navy);cursor:pointer;margin:0;flex:0 0 auto}
+.mx-page button{box-sizing:border-box;border:1px solid var(--line);background:#fff;border-radius:8px;
+  width:34px;height:34px;min-width:0;padding:0;line-height:32px;text-align:center;
+  font:inherit;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer;margin:0;flex:0 0 auto}
+.mx-page button:hover{border-color:var(--navy)}
 .mx-page button.on{background:var(--navy);border-color:var(--navy);color:#fff}
 
 .mx-mapwrap{position:relative;min-width:0;position:sticky;top:14px;display:flex;flex-direction:column}
