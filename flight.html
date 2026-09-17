@@ -471,14 +471,14 @@ h1.fl{margin:0}
   <div class="fl-facts" id="fl-facts"></div>
   <p class="fl-note" id="fl-notes"></p>
   <div class="fl-cta">
-    <a class="btn" id="fl-enq" rel="nofollow" href="/enquire">Send enquiry to the operator</a>
+    <a class="btn" id="fl-enq" rel="nofollow" href="/enquire">Send an enquiry</a>
     <button class="btn2" id="fl-share" type="button">Copy link</button>
     <a class="btn2" id="fl-wa" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
     <a class="btn2" id="fl-alert" href="/#alerts">Alert me on this route</a>
   </div>
   <form id="fl-form" novalidate>
     <h3 id="fl-form-h">Enquire about this flight</h3>
-    <p class="sub">Goes to the operator holding this aircraft. They reply to you directly. We are not a broker and take no commission.</p>
+    <p class="sub">Comes to us, and we pass it to the operator holding this aircraft. They reply to you with availability and a price. We are not a broker and take no commission.</p>
     <div class="g">
       <div class="full"><label class="l" for="fq-email">Email</label><input type="email" id="fq-email" autocomplete="email" placeholder="you@email.com" required></div>
       <div><label class="l" for="fq-name">Your name</label><input type="text" id="fq-name" autocomplete="name" placeholder="Optional"></div>
@@ -647,7 +647,7 @@ function flightUrl(x){
         .then(function(r){
           if (!r.ok) throw new Error("status " + r.status);
           form.style.display = "none";
-          done.textContent = "Sent. We are passing your request for " + label(x) + " to the operator holding this aircraft. They reply to you directly, usually within a few hours in business time.";
+          done.textContent = "Sent. We are passing your request for " + label(x) + " to the operator holding this aircraft. They reply to you directly with availability and a price.";
           done.style.display = "block";
           track("enquiry_sent", { route: label(x), live: !!live, aircraft: x.aircraft_type || "" });
         })

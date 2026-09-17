@@ -518,7 +518,7 @@
       <svg viewBox="0 0 24 24" width="26" height="26" xmlns="http://www.w3.org/2000/svg"><path d="M 5 13 L 10 18 L 19 7" fill="none" stroke="#2c6b43" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <h2>Request sent</h2>
-    <p id="donetext">We are passing it to the operator holding this aircraft. They reply to you directly, usually within a few hours in business time.</p>
+    <p id="donetext">We are passing it to the operator holding this aircraft. They reply to you directly with availability and a price.</p>
     <p style="font-size:13px;color:#8a97a5;">If the leg has already gone, they will say so and can suggest what else is repositioning on that corridor.</p>
     <div class="more">
       <p>While you wait, there may be other flights on your route.</p>
@@ -825,7 +825,7 @@
       if (from && to) {
         document.getElementById("donetext").textContent =
           "We are passing your request for " + from + " to " + to +
-          " to the operator holding this aircraft. They reply to you directly, usually within a few hours in business time.";
+          " to the operator holding this aircraft. They reply to you directly with availability and a price.";
       }
       window.scrollTo({ top: 0, behavior: "smooth" });
     }).catch(function () {
