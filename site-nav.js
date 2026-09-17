@@ -196,7 +196,7 @@
    is already in the HTML, this only shows one region at a time. */
 (function () {
   function wire(root) {
-    var regs = root.querySelectorAll(".eln-regs button");
+    var regs = root.querySelectorAll(".eld-tabs button");
     if (!regs.length) return;
     Array.prototype.forEach.call(regs, function (b) {
       b.addEventListener("click", function () {
@@ -206,7 +206,7 @@
           o.classList.toggle("on", on);
           o.setAttribute("aria-pressed", on ? "true" : "false");
         });
-        Array.prototype.forEach.call(root.querySelectorAll(".eln-pan"), function (pn) {
+        Array.prototype.forEach.call(root.querySelectorAll(".eld-pan"), function (pn) {
           var on = pn.getAttribute("data-region") === want;
           pn.hidden = !on;
           pn.classList.toggle("on", on);
@@ -236,28 +236,29 @@
   var t; window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fold, 200); });
 })();
 
-/* Live counts and search inside the Destinations mega menu.
+/* Live counts, the twelve busiest cities, and search, inside the Destinations
+   mega menu.
    ---------------------------------------------------------------------------
-   The menu used to be a static list. Every other surface on the site shows what
-   is on the board right now, so the navigation was the one place that could be
-   confidently wrong: it offered Cannes and Geneva as "popular" while Nice sat
-   at none and New York, the busiest place on the board, had no link at all.
+   The menu used to be a static list. Every other surface on the site shows
+   what is on the board right now, so the navigation was the one place that
+   could be confidently wrong: it offered Cannes and Geneva as "popular" while
+   Nice sat at none and New York, the busiest place on the board, had no link.
 
-   One POST to public.page_counts fills the whole panel: every city, every
-   country, and the four region totals. It is the same function the destination
-   pages count with, so the menu and the page can never disagree.
+   One POST to public.page_counts fills the panel: every city and every
+   country. It is the same function the destination pages count with, so the
+   menu and the page can never disagree. "Popular cities" then means the twelve
+   with the most legs in that region today, not twelve somebody picked once.
 
-   Nothing is fetched until the menu is opened for the first time, and the
-   answer is kept in sessionStorage for ten minutes, so opening it again on the
-   next page costs nothing. The number is written to a data attribute and drawn
-   by CSS, never into the link text: the anchor text stays "London", which is
-   what a crawler should read. If the fetch fails the menu is exactly what it
-   was before, a list of links. */
+   Nothing is fetched until the menu is opened, and the answer is kept in
+   sessionStorage for ten minutes. The number is written to a data attribute
+   and drawn by CSS, never into the link text, so the anchor text stays
+   "London". If the fetch fails the menu is what it was: a list of links. */
 (function () {
   var BASE = "https://wscowiseslaovmmfuzyv.supabase.co";
   var KEY  = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
-  var CACHE = "el_navcounts_v1";
+  var CACHE = "el_navcounts_v2";
   var TTL = 10 * 60 * 1000;
+  var SHOW = 12;
   var pending = null;
 
   function cached() {
@@ -265,14 +266,12 @@
       var raw = sessionStorage.getItem(CACHE);
       if (!raw) return null;
       var o = JSON.parse(raw);
-      if (!o || (Date.now() - o.t) > TTL) return null;
-      return o.c;
+      return (o && (Date.now() - o.t) <= TTL) ? o.c : null;
     } catch (e) { return null; }
   }
   function keep(c) {
     try { sessionStorage.setItem(CACHE, JSON.stringify({ t: Date.now(), c: c })); } catch (e) {}
   }
-
   function counts() {
     if (pending) return pending;
     var have = cached();
@@ -294,19 +293,32 @@
   function paint(root, c) {
     Array.prototype.forEach.call(root.querySelectorAll("[data-elc]"), function (a) {
       var row = c[a.getAttribute("data-elc")];
-      var n = row && row.live ? row.live : 0;
-      a.setAttribute("data-n", n ? String(n) : "0");
+      var n = (row && row.live) ? row.live : 0;
+      a.setAttribute("data-n", String(n));
       a.setAttribute("data-live", n ? "1" : "0");
     });
+    // Popular means busiest today. Every city stays in the page for a crawler
+    // and for the search box; only twelve are on show.
+    Array.prototype.forEach.call(root.querySelectorAll(".eld-cities"), function (pan) {
+      var as = [].slice.call(pan.children);
+      as.sort(function (x, y) {
+        var d = (+y.getAttribute("data-n") || 0) - (+x.getAttribute("data-n") || 0);
+        return d || x.textContent.localeCompare(y.textContent);
+      });
+      as.forEach(function (a, i) { pan.appendChild(a); a.dataset.rank = i; });
+      trim(pan);
+    });
+  }
+  function trim(pan) {
+    [].slice.call(pan.children).forEach(function (a, i) { a.hidden = i >= SHOW; });
   }
 
   function search(root) {
     var box = root.querySelector(".eln-find-in");
     if (!box) return;
     var none = root.querySelector(".eln-find-none");
-    var pans = root.querySelectorAll(".eln-pan");
-    var regs = root.querySelectorAll(".eln-regs button");
-    var ctry = root.querySelectorAll(".eln-ctry a");
+    var pans = root.querySelectorAll(".eld-pan");
+    var regs = root.querySelectorAll(".eld-tabs button");
 
     function run() {
       var q = box.value.trim().toLowerCase();
@@ -320,41 +332,43 @@
           if (on) shown++;
         });
         hits += shown;
-        // While searching, every region is open at once: somebody typing
+        // While searching every region is open at once: somebody typing
         // "Houston" should not have to know it sits under North America.
-        if (q) { pn.hidden = shown === 0; pn.classList.toggle("on", shown > 0); }
-      });
-      Array.prototype.forEach.call(ctry, function (a) {
-        var on = !q || a.textContent.toLowerCase().indexOf(q) > -1;
-        a.hidden = !on;
-        if (on && q) hits++;
+        if (q) { pn.hidden = shown === 0; }
       });
       if (none) none.hidden = hits !== 0;
-      if (!q) {
-        // Back to the region the tabs say is selected.
-        var want = "0";
-        Array.prototype.forEach.call(regs, function (b) {
-          if (b.classList.contains("on")) want = b.getAttribute("data-region");
-        });
-        Array.prototype.forEach.call(pans, function (pn) {
-          var on = pn.getAttribute("data-region") === want;
-          pn.hidden = !on;
-          pn.classList.toggle("on", on);
-        });
-      }
+      if (!q) restore(root, regs, pans);
+    }
+    function restore(root, regs, pans) {
+      var want = "0";
+      Array.prototype.forEach.call(regs, function (b) {
+        if (b.classList.contains("on")) want = b.getAttribute("data-region");
+      });
+      Array.prototype.forEach.call(pans, function (pn) {
+        pn.hidden = pn.getAttribute("data-region") !== want;
+      });
+      Array.prototype.forEach.call(root.querySelectorAll(".eld-cities"), trim);
     }
     box.addEventListener("input", run);
     box.addEventListener("search", run);
-    // Escape clears the box before it closes the menu.
     box.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && box.value) { e.stopPropagation(); box.value = ""; run(); }
+    });
+    // A region tab press has to put the twelve back after a search.
+    Array.prototype.forEach.call(regs, function (b) {
+      b.addEventListener("click", function () {
+        Array.prototype.forEach.call(root.querySelectorAll(".eld-cities"), trim);
+      });
     });
   }
 
   function init() {
     var roots = document.querySelectorAll(".mega-dest");
     if (!roots.length) return;
-    Array.prototype.forEach.call(roots, search);
+    Array.prototype.forEach.call(roots, function (r) {
+      search(r);
+      Array.prototype.forEach.call(r.querySelectorAll(".eld-cities"), trim);
+    });
     var done = false;
     function load() {
       if (done) return;

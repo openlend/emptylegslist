@@ -296,13 +296,6 @@ body.eln-lock { overflow: hidden; }
 /* routes get their own single column: at two columns the names truncated */
 .eln-mega.mega-dest{grid-template-columns:172px 1.62fr 1fr 226px;gap:30px}
 .eln-mega.mega-dest .eln-col-route .eln-grid{grid-template-columns:1fr}
-.eln-regs{display:flex;flex-direction:column;gap:2px;margin-bottom:12px}
-.eln-regs button{display:block;
-  width:100%;margin:0;padding:9px 11px;border:0;border-radius:6px;background:transparent;
-  color:inherit;font:inherit;font-size:14px;text-align:left;cursor:pointer}
-.eln-regs button:hover{background:rgba(13,31,54,.06)}
-/* the panel is white, so the active label must not be white too */
-.eln-regs button.on{background:rgba(201,162,76,.18);color:var(--navy,#0D1F36);font-weight:600}
 .eln-pan{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 14px}
 .eln-pan[hidden]{display:none}
 @media(max-width:1220px){
@@ -338,38 +331,91 @@ header.elnav .eln-reg { margin: 0; }
 #elnote a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
 @media (max-width: 760px) { #elnote { font-size: 13px; padding: 8px 12px; } }
 
-/* Destinations mega menu: search box, live counts.
-   The count is drawn with a CSS ::after from data-n rather than written into
-   the link, so the anchor text a crawler reads stays "London". */
-.eln-find{display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:8px 11px;
-  border:1px solid rgba(13,31,54,.16);border-radius:10px;background:#fff;color:rgba(13,31,54,.5)}
+/* ===== Destinations mega menu =========================================
+   17 September 2026, built to the layout Radu drew: a title and a search
+   across the top, region tabs under it, then countries, popular cities and
+   the flight links in three columns with a rule between them, popular routes
+   along the bottom of the first two, and an alert bar under the lot.
+
+   The live count beside a city or country is drawn with a CSS ::after from a
+   data attribute, never written into the link, so the anchor text a crawler
+   reads stays "London".                                                  */
+.eln-mega.mega-dest{display:block;padding:0;width:min(1180px,calc(100vw - 48px));max-height:min(86vh,760px);overflow:auto}
+.eld-top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 28px 16px}
+.eld-h{margin:0;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:22px;color:var(--navy,#0D1F36)}
+header.elnav .eln-mega .eld-top h4{font-size:22px;letter-spacing:0;text-transform:none;color:var(--navy,#0D1F36)}
+.eln-find{display:flex;align-items:center;gap:9px;min-width:320px;padding:9px 14px;
+  border:1px solid rgba(13,31,54,.16);border-radius:10px;background:#fff;color:rgba(13,31,54,.45)}
 .eln-find:focus-within{border-color:var(--eln-gold,#C9A24C);color:var(--navy,#0D1F36)}
-.eln-find-in{flex:1;min-width:0;border:0;outline:0;background:transparent;
-  font:inherit;font-size:13.5px;color:var(--navy,#0D1F36)}
-.eln-find-in::-webkit-search-cancel-button{cursor:pointer}
-.eln-find-none{margin:10px 2px 0;font-size:13px;color:rgba(13,31,54,.62)}
-.eln-find-none a{color:var(--navy,#0D1F36)}
-.eln-find-note{margin:12px 2px 0;font-size:11.5px;line-height:1.45;color:rgba(13,31,54,.45)}
-.mega-dest.finding .eln-find-note{display:none}
+.eln-find-in{flex:1;min-width:0;border:0;outline:0;background:transparent;font:inherit;font-size:13.5px;color:var(--navy,#0D1F36)}
 
-header.elnav .eln-mega .eln-pan a,
-header.elnav .eln-mega .eln-ctry a{display:flex;align-items:baseline;gap:6px}
-header.elnav .eln-mega .eln-pan a[data-n]::after,
-header.elnav .eln-mega .eln-ctry a[data-n]::after{
-  content:attr(data-n);margin-left:auto;font-size:11px;font-weight:600;
-  font-variant-numeric:tabular-nums;color:var(--eln-gold,#C9A24C)}
-header.elnav .eln-mega .eln-pan a[data-live="0"]::after,
-header.elnav .eln-mega .eln-ctry a[data-live="0"]::after{content:"\2013";color:rgba(13,31,54,.3)}
-header.elnav .eln-mega .eln-pan a[data-live="0"],
-header.elnav .eln-mega .eln-ctry a[data-live="0"]{color:rgba(13,31,54,.55)}
-.eln-pan a[hidden],.eln-ctry a[hidden]{display:none}
+.eld-tabs{display:flex;gap:6px;padding:0 28px;border-bottom:1px solid rgba(13,31,54,.09)}
+.eld-tabs button{background:transparent;border:0;border-radius:10px 10px 0 0;padding:11px 22px;margin:0 0 -1px;
+  font:inherit;font-size:14px;color:#46525f;cursor:pointer;line-height:1.3}
+.eld-tabs button:hover{color:var(--navy,#0D1F36)}
+.eld-tabs button.on{background:rgba(201,162,76,.15);color:var(--navy,#0D1F36);font-weight:600}
 
-/* The city list is 80 names in three columns and on a 900px laptop it ran off
-   the bottom of the screen, so the last row of cities could not be reached.
-   It scrolls inside the panel instead. */
-.eln-col-city{display:flex;flex-direction:column;min-height:0}
-.eln-col-city .eln-pan{overflow-y:auto;overflow-x:hidden;max-height:min(52vh,420px);
-  scrollbar-width:thin;padding-right:4px}
-.eln-mega.mega-dest{max-height:min(80vh,720px);overflow:hidden}
-.eln-col-city,.eln-col-route,.eln-col-reg{min-width:0}
-.eln-col-route{overflow-y:auto;overflow-x:hidden;max-height:min(70vh,640px);scrollbar-width:thin}
+.eld-grid{display:grid;grid-template-columns:1fr 1.5fr 1fr;
+  grid-template-areas:"ctry city side" "routes routes side";
+  gap:0 0;padding:20px 28px 22px}
+.eld-col{min-width:0;padding:0 26px}
+.eld-ctry{grid-area:ctry;padding-left:0}
+.eld-city{grid-area:city;border-left:1px solid rgba(13,31,54,.09)}
+.eld-side{grid-area:side;border-left:1px solid rgba(13,31,54,.09);padding-right:0}
+.eld-routes{grid-area:routes;min-width:0;padding:18px 26px 0 0;margin-top:16px;
+  border-top:1px solid rgba(13,31,54,.09)}
+header.elnav .eln-mega .eld-grid h5,header.elnav .eln-mega .eld-routes h5{
+  margin:0 0 12px;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--eln-gold,#C9A24C);font-weight:600}
+header.elnav .eln-mega .eld-h2{margin-top:22px!important}
+
+header.elnav .eln-mega [hidden]{display:none!important}
+.eld-ctry .eld-pan{display:flex;flex-direction:column;gap:1px}
+.eld-cities{display:grid;grid-template-columns:1fr 1fr;gap:1px 20px}
+.eld-routes .eld-pan{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 0}
+.eld-routes .eld-pan a{border-left:1px solid rgba(13,31,54,.09);padding-left:16px}
+.eld-routes .eld-pan a:first-child,.eld-routes .eld-pan a:nth-child(4){border-left:0;padding-left:8px}
+
+header.elnav .eln-mega .eld-pan a,
+header.elnav .eln-mega .eld-plain a,
+header.elnav .eln-mega .eld-ico a{display:flex;align-items:center;gap:6px;
+  padding:7px 8px;border-radius:8px;font-size:14px;color:var(--navy,#0D1F36);
+  text-decoration:none;line-height:1.35}
+header.elnav .eln-mega .eld-ico a{gap:13px;padding:9px 8px}
+header.elnav .eln-mega .eld-ico svg{flex:0 0 auto;color:var(--navy,#0D1F36);opacity:.72}
+@media(hover:hover){
+  header.elnav .eln-mega .eld-pan a:hover,
+  header.elnav .eln-mega .eld-plain a:hover,
+  header.elnav .eln-mega .eld-ico a:hover{background:#f4f7fa}}
+.eld-beta{font-size:10.5px;font-weight:600;letter-spacing:.04em;background:rgba(201,162,76,.18);
+  color:#8a6d2c;border-radius:999px;padding:2px 8px;margin-left:2px}
+
+header.elnav .eln-mega .eld-pan a[data-n]::after{content:attr(data-n);margin-left:auto;padding-left:10px;
+  font-size:11px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--eln-gold,#C9A24C)}
+header.elnav .eln-mega .eld-pan a[data-live="0"]::after{content:"none";color:rgba(13,31,54,.3);font-weight:500}
+header.elnav .eln-mega .eld-pan a[data-live="0"]{color:rgba(13,31,54,.5)}
+.eld-routes .eld-pan a[data-n]::after{display:none}
+
+header.elnav .eln-mega a.eln-all{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+  font-size:13.5px;font-weight:600;color:var(--navy,#0D1F36);text-decoration:none;padding:0 8px}
+header.elnav .eln-mega a.eln-all:hover{color:#8a6d2c}
+header.elnav .eln-mega a.eln-all[hidden]{display:none}
+
+.eld-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  background:#fbf8f1;border-top:1px solid rgba(201,162,76,.28);padding:16px 28px}
+.eld-bar p{margin:0;display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--navy,#0D1F36)}
+.eld-bar p svg{color:var(--eln-gold,#C9A24C)}
+header.elnav .eln-mega .eld-bar a{background:var(--eln-gold,#C9A24C);color:#132335;border-radius:999px;
+  padding:11px 20px;font-size:13.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+header.elnav .eln-mega .eld-bar a:hover{background:#b8912f}
+
+.eln-find-none{margin:0;padding:14px 28px;font-size:13.5px;color:rgba(13,31,54,.62);
+  border-top:1px solid rgba(13,31,54,.09)}
+.mega-dest.finding .eld-routes,.mega-dest.finding .eld-side,.mega-dest.finding .eld-tabs{display:none}
+.mega-dest.finding .eld-grid{grid-template-columns:1fr 1.5fr;grid-template-areas:"ctry city"}
+.mega-dest.finding .eld-cities{grid-template-columns:1fr 1fr 1fr}
+
+@media(max-width:1080px){
+  .eld-grid{grid-template-columns:1fr 1fr;grid-template-areas:"ctry city" "side side" "routes routes"}
+  .eld-side{border-left:0;padding-left:0;margin-top:18px;border-top:1px solid rgba(13,31,54,.09);padding-top:16px}
+}
