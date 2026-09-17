@@ -62,14 +62,81 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none}
 footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:640px){.wrap{padding:0 16px 60px}}
 
-/* --- guides, guides.py --- */
 .wrap{max-width:860px}
+/* --- guides, guides.py ---------------------------------------------------
+   17 September 2026. The guides were a single 860px column of prose with a
+   picture at the top. Radu sent a layout with a two part masthead, a strip of
+   live figures under it, numbered sections and a contents rail that follows
+   you down the page. This is that, in our own Playfair and Raleway rather
+   than the mockup's faces, and with every figure in the strip read from the
+   board by live-figures.js rather than typed in.                          */
+.gwide{max-width:1180px;margin:0 auto;padding:0 28px}
+.gcrumb{font-size:12.5px;color:var(--mute);margin:26px 0 14px}
+.gcrumb a{color:var(--mute);text-decoration:none;border-bottom:1px solid var(--line)}
+.gcrumb a:hover{color:var(--navy)}
+.gcrumb span{color:var(--navy)}
+
+.ghead{display:grid;grid-template-columns:1.06fr 1fr;gap:44px;align-items:start;margin:0 0 30px}
+.ghead h1{margin:0 0 14px;font-size:clamp(30px,3.6vw,46px);line-height:1.1}
+.ghead .lede{font-size:17px;line-height:1.6;color:#46525f;margin:0}
+.ghero{margin:0;padding:0}
+.ghero img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
+.ghero figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+@media(max-width:860px){.ghead{grid-template-columns:1fr;gap:22px}}
+
+/* the figure strip */
+.gstrip{display:grid;grid-template-columns:auto repeat(4,1fr);gap:0 26px;align-items:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:0 0 34px}
+.gstrip .gs-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);
+  padding-right:26px;border-right:1px solid var(--line);max-width:150px;line-height:1.5}
+.gs-n b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;
+  font-size:clamp(24px,2.5vw,32px);color:var(--navy);line-height:1.15}
+.gs-n>span{display:block;font-size:13px;color:#46525f;margin-top:5px}
+.gs-n>i{display:block;font-style:normal;font-size:11.5px;color:var(--mute);margin-top:2px}
+@media(max-width:860px){.gstrip{grid-template-columns:1fr 1fr;gap:18px 26px}
+  .gstrip .gs-lab{grid-column:1/-1;border-right:0;padding:0;max-width:none}}
+
+/* body and rail */
+.gbody{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:54px;align-items:start}
+.gart{min-width:0;max-width:720px}
+.gart h2{display:flex;gap:14px;align-items:baseline;scroll-margin-top:110px}
+.gart h2 i{flex:0 0 auto;font-style:normal;width:28px;height:28px;border-radius:999px;
+  background:rgba(201,162,76,.16);color:#8a6d2c;font-size:13.5px;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center;transform:translateY(-2px)}
+.grail{position:sticky;top:96px;font-size:13.5px}
+.gr-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+.gtoc{display:flex;flex-direction:column;gap:2px;border-left:2px solid var(--line);margin:0 0 24px}
+.gtoc a{padding:6px 0 6px 14px;margin-left:-2px;border-left:2px solid transparent;
+  color:#46525f;text-decoration:none;line-height:1.4}
+.gtoc a:hover{color:var(--navy)}
+.gtoc a.on{color:var(--navy);font-weight:600;border-left-color:var(--gold,#C9A24C)}
+.gcta{background:#fbf8f1;border:1px solid rgba(201,162,76,.28);border-radius:14px;padding:18px}
+.gcta b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:18px;
+  color:var(--navy);margin-bottom:5px}
+.gcta p{margin:0 0 12px;font-size:13px;color:#46525f;line-height:1.5}
+.gcta a{display:block;text-align:center;background:var(--navy);color:#fff;text-decoration:none;
+  border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:600}
+.gcta a:hover{background:#16304f}
+@media(max-width:1000px){.gbody{grid-template-columns:1fr;gap:0}
+  .grail{position:static;margin:30px 0 0;max-width:720px}
+  .gtoc{display:grid;grid-template-columns:1fr 1fr;border-left:0;padding-left:0}
+  .gtoc a{padding-left:0;border-left:0}}
+
 figure.gfig{margin:26px 0;padding:0}
 figure.gfig img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
 figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
-.gfaq{background:#fff;border-radius:14px;padding:6px 22px 8px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
-.gfaq h3{font-size:15.5px;font-weight:600;margin:18px 0 4px;color:var(--navy)}
-.gfaq p{margin:0 0 14px}
+
+/* questions, an accordion so the list is scannable */
+.gfaq{margin:10px 0 0}
+.gq{border-bottom:1px solid var(--line);background:none}
+.gq summary{cursor:pointer;list-style:none;padding:15px 34px 15px 0;position:relative;
+  font-size:15.5px;font-weight:600;color:var(--navy);line-height:1.45}
+.gq summary::-webkit-details-marker{display:none}
+.gq summary::after{content:"+";position:absolute;right:6px;top:13px;font-size:20px;font-weight:400;
+  color:var(--gold,#C9A24C);transition:transform .15s ease;transform-origin:50% 55%}
+.gq[open] summary::after{transform:rotate(45deg)}
+.gq p{margin:0 0 16px;font-size:14.5px}
+
 .gmore{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 0}
 .gmore a{display:block;background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
 .gmore a:hover{box-shadow:0 6px 20px rgba(14,35,56,.14)}
@@ -89,6 +156,9 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 
 /* author byline, from authorbits.py, added 16 September 2026 */
 .gby{display:flex;align-items:center;gap:14px;margin:18px 0 8px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.gby img{width:52px;height:52px;border-radius:999px;object-fit:cover;flex:0 0 auto;background:#eef2f7}.gby .n{font-size:14.5px;font-weight:600;color:var(--navy);line-height:1.35}.gby .n a{text-decoration:none;border-bottom:1px solid var(--line)}.gby .r{font-size:12.8px;color:var(--mute);line-height:1.5;margin-top:2px}
+.gby .n a.li{display:inline-flex;align-items:center;vertical-align:-3px;margin-left:7px;border:0;color:#0a66c2;opacity:.9}
+.gby .n a.li:hover{opacity:1}
+.gby .n a.li svg{width:15px;height:15px;fill:currentColor}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -471,40 +541,52 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Guide</p>
+<div class="gwide">
+<nav class="gcrumb" aria-label="Breadcrumb"><a href="/guides/">Guides</a> / <span>Deadhead flights</span></nav>
+<div class="ghead"><div class="ghead-t">
 <h1>Deadhead flights, and how to find one</h1>
 <p class="lede">If you have searched for deadhead flights and landed on pages about empty legs, you were not sent to the wrong place. They are the same flight. Deadhead is the older word and the one American crews use; empty leg is what the operators write on their websites. This page explains the term and then does the useful thing, which is point you at the deadheads on our board right now.</p>
 <div class="gby"><img src="/brand/sig/radu.jpg" width="52" height="52" alt="Radu Balas" loading="lazy" decoding="async"><div><div class="n">By <a href="https://emptylegslist.com/authors/radu-balas" rel="author">Radu Balas</a><a class="li" href="https://www.linkedin.com/in/radubalas/" rel="me nofollow noopener" target="_blank" aria-label="Radu Balas on LinkedIn" title="Radu Balas on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></div><div class="r">More than a decade in aviation. Founder of Empty Leg List and of The Flying Engineer, an aviation directory of more than 3,000 companies across 56 countries.</div></div></div>
 <p class="upd">Updated <time datetime="2026-09-17">17 September 2026</time>. The figures in this guide are read from the live board as this page loads, so they are never a snapshot of an older week.</p>
-<figure class="gfig"><img src="/brand/guides/empty-leg-jet-cabin-seats.jpg" width="1600" height="900" alt="Cabin windows along the fuselage of a business jet waiting on stand" loading="eager"></figure>
-<h2>What a deadhead flight is</h2>
+</div>
+<figure class="ghero"><img src="/brand/guides/empty-leg-jet-cabin-seats.jpg" width="1600" height="900" alt="Cabin windows along the fuselage of a business jet waiting on stand" loading="eager" fetchpriority="high"><figcaption>Cabin windows along the fuselage of a business jet waiting on stand</figcaption></figure>
+</div>
+<div class="gstrip"><div class="gs-lab">The board, right now</div><div class="gs-n"><b data-el="legs">2,119</b><span>Empty legs on the board</span><i>Upcoming, every operator we read</i></div><div class="gs-n"><b data-el="routes">1,608</b><span>Distinct routes</span><i>Departure and arrival pairs</i></div><div class="gs-n"><b data-el="cities">469</b><span>Cities on the board</span><i>Anywhere a leg departs or lands</i></div><div class="gs-n"><b data-el="seat_eur_median">756</b><span>Median per seat, EUR</span><i>Whole aircraft price divided by its seats</i></div></div>
+<div class="gbody"><article class="gart">
+<h2 id="what-a-deadhead-flight-is"><i>1</i><span>What a deadhead flight is</span></h2>
 <p>In aviation, to deadhead is to move without paying passengers. An airline crew member deadheads when they fly as a passenger to reach the aircraft they will work. A charter aircraft deadheads when it flies a sector with nobody in the cabin: out to collect a client, home after dropping one off, or across to a base where the next booking starts. The operator has already committed to that flight. The fuel, the crew and the landing fees are spent whether the cabin is full or not.</p>
 <p>Charter operators call that sector an empty leg, a positioning flight or a repositioning flight. Brokers in the United States often say deadhead. Same aircraft, same date, same empty cabin. When an operator publishes it for sale, at a price below what the same sector would cost as a fresh charter, it is what this whole site lists.</p>
-<h2>Why deadhead flights exist at all</h2>
+<h2 id="why-deadhead-flights-exist-at-all"><i>2</i><span>Why deadhead flights exist at all</span></h2>
 <p>Private jets do not run on a schedule. They go where the client wants and then they have to get back, or get to the next client. Unless the next booking starts exactly where the last one ended, there is a gap, and the aircraft flies that gap empty. A busy operator with a dozen aircraft produces gaps every day.</p>
 <p>We log a few thousand of these a month. In the thirty days to early September 2026 it was 3,052 new legs, all published by the operators that fly them. Our board holds around 1,100 upcoming deadheads at any moment, from a nine seat Citation between Toulon and Nancy to a Falcon 8X across the Atlantic.</p>
-<h2>What makes a deadhead different from a charter</h2>
+<h2 id="what-makes-a-deadhead-different-from-a-charter"><i>3</i><span>What makes a deadhead different from a charter</span></h2>
 <p>Three things, and they are the same three that make an empty leg what it is. The operator sets the route, the date and the aircraft: you fit into a flight that already exists. It is one way, with no return and no such thing as a return seat, which we measured: of the upcoming legs on our board, only 208 in 1,097 have anything at all listed going back the other way inside the following week, and those are separate flights that can sell on their own. And it can disappear. We have watched 622 legs vanish before their departure date, half of them inside 4.5 days of appearing.</p>
 <p>The price reflects all three. Where an operator publishes a figure, it is for the whole aircraft, and it is usually well under a fresh charter on the same sector. Where they publish none, the card says price on enquiry and you ask. How those figures come out across the board, by aircraft type and per seat, is in <a href="/guides/how-much-does-an-empty-leg-private-jet-cost">how much an empty leg private jet costs</a>.</p>
-<h2>How to find a deadhead flight</h2>
+<h2 id="how-to-find-a-deadhead-flight"><i>4</i><span>How to find a deadhead flight</span></h2>
 <p>Search the <a href="/">live list</a> by departure, destination or date, or start from a place: every <a href="/empty-legs/">city</a> and <a href="/empty-legs/united-states">country</a> on the board has a page with its own live list. If nothing fits today, set a <a href="/#alerts">route alert</a>. Close to half of the legs we record appear inside the final week before they fly, so the deadhead you want is more likely to be published next Tuesday than to be sitting there now.</p>
 <p>When you find one, the enquiry goes straight to the operator that flies it. We are a listing service, not a broker: no commission, no markup, and the operator quotes you directly.</p>
-<h2>Questions people ask</h2><div class="gfaq">
-<h3>Is a deadhead flight the same as an empty leg?</h3>
-<p>Yes. Deadhead is the crew and broker word, empty leg is what operators write on their websites. Both describe a private aircraft flying a sector with nobody in the cabin, sold at a discount because the operator has to make the flight anyway.</p>
-<h3>Can I book a deadhead flight one way?</h3>
-<p>Deadhead flights are only one way. The aircraft is repositioning and where it goes next is the operator&#x27;s business. On our board only 208 of 1,097 upcoming legs have any flight listed in the opposite direction within the following week, and those are separate flights.</p>
-<h3>How much does a deadhead private jet cost?</h3>
-<p>Where operators publish a price, the median empty leg in euros on our board is 5,400 for the whole aircraft, or 622 a seat divided by the seats listed. Most American legs carry no published price at all: 24 of 677 on our United States board.</p>
+<h2 id="questions-people-ask"><i>5</i><span>Questions people ask</span></h2>
+<div class="gfaq">
+<details class="gq" open><summary>Is a deadhead flight the same as an empty leg?</summary><p>Yes. Deadhead is the crew and broker word, empty leg is what operators write on their websites. Both describe a private aircraft flying a sector with nobody in the cabin, sold at a discount because the operator has to make the flight anyway.</p></details>
+<details class="gq"><summary>Can I book a deadhead flight one way?</summary><p>Deadhead flights are only one way. The aircraft is repositioning and where it goes next is the operator&#x27;s business. On our board only 208 of 1,097 upcoming legs have any flight listed in the opposite direction within the following week, and those are separate flights.</p></details>
+<details class="gq"><summary>How much does a deadhead private jet cost?</summary><p>Where operators publish a price, the median empty leg in euros on our board is 5,400 for the whole aircraft, or 622 a seat divided by the seats listed. Most American legs carry no published price at all: 24 of 677 on our United States board.</p></details>
 </div>
-<p style="margin-top:26px"><a class="btn" href="/">See what is flying today</a></p>
-<h2>More guides</h2><div class="gmore"><a href="/guides/how-much-does-an-empty-leg-private-jet-cost"><b>How much does an empty leg private jet cost?</b><span>The operator&#x27;s price divided by the seats they listed, on every priced leg on the board. Updated as the board moves.</span></a>
+<h2 id="keep-exploring"><i>6</i><span>Keep exploring</span></h2>
+<div class="gmore"><a href="/guides/how-much-does-an-empty-leg-private-jet-cost"><b>How much does an empty leg private jet cost?</b><span>The operator&#x27;s price divided by the seats they listed, on every priced leg on the board. Updated as the board moves.</span></a>
 <a href="/guides/empty-legs-and-emissions"><b>Empty legs and emissions: what can honestly be said</b><span>Buying an empty leg does not add a flight. It is also not zero emissions. The claims that hold up, and the ones that do not.</span></a>
 <a href="/guides/what-is-an-empty-leg-flight"><b>What is an empty leg flight?</b><span>The meaning of empty leg in plain words, how the flight comes to exist, what it costs and the three catches, with our own numbers behind each.</span></a>
 <a href="/guides/one-way-private-jet-flights"><b>One way private jet flights, and why the cheap ones never come back</b><span>Empty legs are cheap because they are one way. We counted how often a return exists, and it is not often. What to do about it.</span></a></div>
-</div>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Deadhead flights, and how to find one","description":"A deadhead flight is a private jet flying a sector with nobody in the cabin. It is the same thing as an empty leg. What the word means, why they exist, and where the ones on our board are right now.","datePublished":"2026-09-03","dateModified":"2026-09-17","mainEntityOfPage":{"@type":"WebPage","@id":"https://emptylegslist.com/guides/deadhead-flights"},"image":"https://emptylegslist.com/brand/guides/empty-leg-jet-cabin-seats.jpg","author":{"@type":"Person","name":"Radu Balas","url":"https://emptylegslist.com/authors/radu-balas","jobTitle":"Founder, Empty Leg List","sameAs":["https://www.linkedin.com/in/radubalas/","https://theflyingengineer.com/"]},"publisher":{"@type":"Organization","name":"Empty Leg List","url":"https://emptylegslist.com/"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a deadhead flight the same as an empty leg?","acceptedAnswer":{"@type":"Answer","text":"Yes. Deadhead is the crew and broker word, empty leg is what operators write on their websites. Both describe a private aircraft flying a sector with nobody in the cabin, sold at a discount because the operator has to make the flight anyway."}},{"@type":"Question","name":"Can I book a deadhead flight one way?","acceptedAnswer":{"@type":"Answer","text":"Deadhead flights are only one way. The aircraft is repositioning and where it goes next is the operator's business. On our board only 208 of 1,097 upcoming legs have any flight listed in the opposite direction within the following week, and those are separate flights."}},{"@type":"Question","name":"How much does a deadhead private jet cost?","acceptedAnswer":{"@type":"Answer","text":"Where operators publish a price, the median empty leg in euros on our board is 5,400 for the whole aircraft, or 622 a seat divided by the seats listed. Most American legs carry no published price at all: 24 of 677 on our United States board."}}]}]}</script>
+</article>
+<aside class="grail"><p class="gr-lab">In this guide</p><nav class="gtoc"><a href="#what-a-deadhead-flight-is">What a deadhead flight is</a><a href="#why-deadhead-flights-exist-at-all">Why deadhead flights exist at all</a><a href="#what-makes-a-deadhead-different-from-a-charter">What makes a deadhead different from a charter</a><a href="#how-to-find-a-deadhead-flight">How to find a deadhead flight</a><a href="#questions-people-ask">Questions people ask</a><a href="#keep-exploring">Keep exploring</a></nav><div class="gcta"><b>Find a flight at your price</b><p>Every price on the board is the operator’s own figure for the whole aircraft.</p><a href="/#listings">Browse empty leg flights</a></div></aside>
+</div></div>
+<script>
+(function(){var ls=[].slice.call(document.querySelectorAll('.gtoc a'));if(!ls.length)return;
+var hs=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+function mark(){var y=window.scrollY+140,i=0;for(var j=0;j<hs.length;j++){if(hs[j].offsetTop<=y)i=j;}
+ls.forEach(function(a,k){a.classList.toggle('on',k===i);});}
+mark();window.addEventListener('scroll',mark,{passive:true});})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Deadhead flights, and how to find one","description":"A deadhead flight is a private jet flying a sector with nobody in the cabin. It is the same thing as an empty leg. What the word means, why they exist, and where the ones on our board are right now.","datePublished":"2026-09-03","dateModified":"2026-09-17","mainEntityOfPage":{"@type":"WebPage","@id":"https://emptylegslist.com/guides/deadhead-flights"},"image":"https://emptylegslist.com/brand/guides/empty-leg-jet-cabin-seats.jpg","author":{"@type":"Person","name":"Radu Balas","url":"https://emptylegslist.com/authors/radu-balas","jobTitle":"Founder, Empty Leg List","sameAs":["https://www.linkedin.com/in/radubalas/","https://theflyingengineer.com/"]},"publisher":{"@type":"Organization","name":"Empty Leg List","url":"https://emptylegslist.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Guides","item":"https://emptylegslist.com/guides/"},{"@type":"ListItem","position":2,"name":"Deadhead flights, and how to find one","item":"https://emptylegslist.com/guides/deadhead-flights"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a deadhead flight the same as an empty leg?","acceptedAnswer":{"@type":"Answer","text":"Yes. Deadhead is the crew and broker word, empty leg is what operators write on their websites. Both describe a private aircraft flying a sector with nobody in the cabin, sold at a discount because the operator has to make the flight anyway."}},{"@type":"Question","name":"Can I book a deadhead flight one way?","acceptedAnswer":{"@type":"Answer","text":"Deadhead flights are only one way. The aircraft is repositioning and where it goes next is the operator's business. On our board only 208 of 1,097 upcoming legs have any flight listed in the opposite direction within the following week, and those are separate flights."}},{"@type":"Question","name":"How much does a deadhead private jet cost?","acceptedAnswer":{"@type":"Answer","text":"Where operators publish a price, the median empty leg in euros on our board is 5,400 for the whole aircraft, or 622 a seat divided by the seats listed. Most American legs carry no published price at all: 24 of 677 on our United States board."}}]}]}</script>
 <footer id="bigfoot">
   <div class="bf-alert">
     <div class="bf-alert-in">

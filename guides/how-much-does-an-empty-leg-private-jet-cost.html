@@ -99,6 +99,104 @@ figure.gfig img{width:100%;height:auto;display:block;border-radius:14px;box-shad
 figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}}
 
+.wrap{max-width:860px}
+/* --- guides, guides.py ---------------------------------------------------
+   17 September 2026. The guides were a single 860px column of prose with a
+   picture at the top. Radu sent a layout with a two part masthead, a strip of
+   live figures under it, numbered sections and a contents rail that follows
+   you down the page. This is that, in our own Playfair and Raleway rather
+   than the mockup's faces, and with every figure in the strip read from the
+   board by live-figures.js rather than typed in.                          */
+.gwide{max-width:1180px;margin:0 auto;padding:0 28px}
+.gcrumb{font-size:12.5px;color:var(--mute);margin:26px 0 14px}
+.gcrumb a{color:var(--mute);text-decoration:none;border-bottom:1px solid var(--line)}
+.gcrumb a:hover{color:var(--navy)}
+.gcrumb span{color:var(--navy)}
+
+.ghead{display:grid;grid-template-columns:1.06fr 1fr;gap:44px;align-items:start;margin:0 0 30px}
+.ghead h1{margin:0 0 14px;font-size:clamp(30px,3.6vw,46px);line-height:1.1}
+.ghead .lede{font-size:17px;line-height:1.6;color:#46525f;margin:0}
+.ghero{margin:0;padding:0}
+.ghero img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
+.ghero figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+@media(max-width:860px){.ghead{grid-template-columns:1fr;gap:22px}}
+
+/* the figure strip */
+.gstrip{display:grid;grid-template-columns:auto repeat(4,1fr);gap:0 26px;align-items:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:0 0 34px}
+.gstrip .gs-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);
+  padding-right:26px;border-right:1px solid var(--line);max-width:150px;line-height:1.5}
+.gs-n b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;
+  font-size:clamp(24px,2.5vw,32px);color:var(--navy);line-height:1.15}
+.gs-n>span{display:block;font-size:13px;color:#46525f;margin-top:5px}
+.gs-n>i{display:block;font-style:normal;font-size:11.5px;color:var(--mute);margin-top:2px}
+@media(max-width:860px){.gstrip{grid-template-columns:1fr 1fr;gap:18px 26px}
+  .gstrip .gs-lab{grid-column:1/-1;border-right:0;padding:0;max-width:none}}
+
+/* body and rail */
+.gbody{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:54px;align-items:start}
+.gart{min-width:0;max-width:720px}
+.gart h2{display:flex;gap:14px;align-items:baseline;scroll-margin-top:110px}
+.gart h2 i{flex:0 0 auto;font-style:normal;width:28px;height:28px;border-radius:999px;
+  background:rgba(201,162,76,.16);color:#8a6d2c;font-size:13.5px;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center;transform:translateY(-2px)}
+.grail{position:sticky;top:96px;font-size:13.5px}
+.gr-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+.gtoc{display:flex;flex-direction:column;gap:2px;border-left:2px solid var(--line);margin:0 0 24px}
+.gtoc a{padding:6px 0 6px 14px;margin-left:-2px;border-left:2px solid transparent;
+  color:#46525f;text-decoration:none;line-height:1.4}
+.gtoc a:hover{color:var(--navy)}
+.gtoc a.on{color:var(--navy);font-weight:600;border-left-color:var(--gold,#C9A24C)}
+.gcta{background:#fbf8f1;border:1px solid rgba(201,162,76,.28);border-radius:14px;padding:18px}
+.gcta b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:18px;
+  color:var(--navy);margin-bottom:5px}
+.gcta p{margin:0 0 12px;font-size:13px;color:#46525f;line-height:1.5}
+.gcta a{display:block;text-align:center;background:var(--navy);color:#fff;text-decoration:none;
+  border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:600}
+.gcta a:hover{background:#16304f}
+@media(max-width:1000px){.gbody{grid-template-columns:1fr;gap:0}
+  .grail{position:static;margin:30px 0 0;max-width:720px}
+  .gtoc{display:grid;grid-template-columns:1fr 1fr;border-left:0;padding-left:0}
+  .gtoc a{padding-left:0;border-left:0}}
+
+figure.gfig{margin:26px 0;padding:0}
+figure.gfig img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
+figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+
+/* questions, an accordion so the list is scannable */
+.gfaq{margin:10px 0 0}
+.gq{border-bottom:1px solid var(--line);background:none}
+.gq summary{cursor:pointer;list-style:none;padding:15px 34px 15px 0;position:relative;
+  font-size:15.5px;font-weight:600;color:var(--navy);line-height:1.45}
+.gq summary::-webkit-details-marker{display:none}
+.gq summary::after{content:"+";position:absolute;right:6px;top:13px;font-size:20px;font-weight:400;
+  color:var(--gold,#C9A24C);transition:transform .15s ease;transform-origin:50% 55%}
+.gq[open] summary::after{transform:rotate(45deg)}
+.gq p{margin:0 0 16px;font-size:14.5px}
+
+.gmore{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 0}
+.gmore a{display:block;background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
+.gmore a:hover{box-shadow:0 6px 20px rgba(14,35,56,.14)}
+.gmore b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:18px;color:var(--navy);margin-bottom:4px}
+.gmore span{font-size:13.5px;color:#46525f}
+@media(max-width:640px){.gmore{grid-template-columns:1fr}}
+/* the index */
+.gidx{display:grid;gap:16px;margin:8px 0 0}
+.gidx a{display:grid;grid-template-columns:280px 1fr;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
+.gidx a:hover{box-shadow:0 6px 20px rgba(14,35,56,.14)}
+.gidx img{width:100%;height:100%;min-height:170px;object-fit:cover;display:block}
+.gidx div{padding:18px 22px}
+.gidx h2{margin:0 0 6px;font-size:21px}
+.gidx p{margin:0;font-size:14.5px}
+.gidx time{display:block;margin-top:10px;font-size:12.5px;color:var(--mute)}
+@media(max-width:700px){.gidx a{grid-template-columns:1fr}.gidx img{min-height:0;aspect-ratio:16/8}}
+
+/* author byline, from authorbits.py, added 16 September 2026 */
+.gby{display:flex;align-items:center;gap:14px;margin:18px 0 8px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.gby img{width:52px;height:52px;border-radius:999px;object-fit:cover;flex:0 0 auto;background:#eef2f7}.gby .n{font-size:14.5px;font-weight:600;color:var(--navy);line-height:1.35}.gby .n a{text-decoration:none;border-bottom:1px solid var(--line)}.gby .r{font-size:12.8px;color:var(--mute);line-height:1.5;margin-top:2px}
+.gby .n a.li{display:inline-flex;align-items:center;vertical-align:-3px;margin-left:7px;border:0;color:#0a66c2;opacity:.9}
+.gby .n a.li:hover{opacity:1}
+.gby .n a.li svg{width:15px;height:15px;fill:currentColor}
+
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
 #bigfoot *{box-sizing:border-box}   /* index.html is content-box, which made its footer column 56px wider than everywhere else */
@@ -480,26 +578,19 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Guide</p>
+<div class="gwide">
+<nav class="gcrumb" aria-label="Breadcrumb"><a href="/guides/">Guides</a> / <span>Empty leg pricing</span></nav>
+<div class="ghead"><div class="ghead-t">
 <h1>How much does an empty leg private jet cost?</h1>
 <p class="lede">There are plenty of articles answering this question, so normally there would be no reason to write another one. The difference here is that we are not guessing. We record every empty leg the charter operators publish, thousands of flights a month, which means we can finally show what these flights actually cost: by aircraft type, by route, and by seat.</p>
 <div class="gby"><img src="/brand/sig/radu.jpg" width="52" height="52" alt="Radu Balas" loading="lazy" decoding="async"><div><div class="n">By <a href="https://emptylegslist.com/authors/radu-balas" rel="author">Radu Balas</a><a class="li" href="https://www.linkedin.com/in/radubalas/" rel="me nofollow noopener" target="_blank" aria-label="Radu Balas on LinkedIn" title="Radu Balas on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></div><div class="r">More than a decade in aviation. Founder of Empty Leg List and of The Flying Engineer, an aviation directory of more than 3,000 companies across 56 countries.</div></div></div>
-<p class="upd">Updated 17 September 2026. The headline figures are read from the live board as this page loads. Sample sizes are on every number.</p>
-
-<figure class="gfig">
-  <img src="/brand/guides/empty-leg-private-jet-cost.jpg" width="1900" height="820" alt="Rear fuselage, tail and engine of a business jet parked on the apron" loading="eager">
-  <figcaption>An empty leg is this aircraft flying the sector anyway, with nobody in the cabin.</figcaption>
-</figure>
-
-<div class="gstats">
-  <div><b><span data-el="seat_eur_median">780</span></b><span>euros, the median seat across the legs priced in euros</span></div>
-  <div><b><span data-el="seat_eur_lowest">261</span></b><span>euros, the lowest seat on the board right now</span></div>
-  <div><b><span data-el="priced">721</span></b><span>of <span data-el="legs">2,264</span> upcoming legs carry a published price</span></div>
-  <div><b>4.5</b><span>days, how long a leg lasts before it goes</span></div>
+<p class="upd">Updated <time datetime="2026-09-17">17 September 2026</time>. The headline figures are read from the live board as this page loads. Sample sizes are on every number.</p>
 </div>
-
-<h2>The short answer</h2>
+<figure class="ghero"><img src="/brand/guides/empty-leg-private-jet-cost.jpg" width="1900" height="820" alt="Rear fuselage, tail and engine of a business jet parked on the apron" loading="eager" fetchpriority="high"><figcaption>An empty leg is this aircraft flying the sector anyway, with nobody in the cabin.</figcaption></figure>
+</div>
+<div class="gstrip"><div class="gs-lab">What the board says today</div><div class="gs-n"><b data-el="seat_eur_median">756</b><span>Median per seat, EUR</span><i>Operator price for the whole aircraft divided by its seats</i></div><div class="gs-n"><b data-el="seat_eur_lowest">261</b><span>Lowest per seat, EUR</span><i>On the board right now</i></div><div class="gs-n"><b data-el="priced">680</b><span>Legs with a published price</span><i>of <span data-el="legs">2,119</span> upcoming, the rest say on enquiry</i></div><div class="gs-n"><b>4.5</b><span>Days a leg lasts</span><i>Median across 622 legs we watched disappear</i></div></div>
+<div class="gbody"><article class="gart">
+<h2 id="the-short-answer"><i>1</i><span>The short answer</span></h2>
 <p>We log a few thousand empty legs a month. In the thirty days to 3 September 2026 it was <b>3,052 new flights</b>, every one of them taken from the charter operator that flies it. We do not read brokers, so nothing here is somebody reselling another company's aircraft with a margin on top.</p>
 <p>Out of that flow, <b><span data-el="legs">2,264</span> flights are upcoming right now</b>. <b><span data-el="priced">721</span></b> of them carry a price the operator has published, and those are what the per seat arithmetic below is built on. The rest say price on enquiry.</p>
 <p>Across the legs priced in euros, the median works out at <b><span data-el="seat_eur_median">780</span> euros a seat</b> once the operator's price for the whole aircraft is divided by the seats they listed. The lowest on the board right now is <b><span data-el="seat_eur_lowest">261</span> euros</b>.</p>
@@ -507,7 +598,7 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 
 <div class="gpull">Six hundred euros is a business class fare to somewhere unremarkable. It is also, today, a seat on a Citation.</div>
 
-<h2>What an empty leg costs by aircraft type</h2>
+<h2 id="what-an-empty-leg-costs-by-aircraft-type"><i>2</i><span>What an empty leg costs by aircraft type</span></h2>
 <p>Medians of the euro-priced legs, only for types with at least three of them. The seat figure is the operator's own price divided by the seats the operator listed.</p>
 <div class="gscroll">
 <table class="gtab">
@@ -524,7 +615,7 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 
 <p>The pattern is the one you would expect. A light jet with nine seats puts the seat under 600 euros. A large cabin Falcon or Legacy, with more seats but a far higher block cost, lands somewhere over 1,200. What changes the answer is not the size of the cabin, it is how full you can make it.</p>
 
-<h2>Now the part nobody else prints</h2>
+<h2 id="now-the-part-nobody-else-prints"><i>3</i><span>Now the part nobody else prints</span></h2>
 <p>That median is a division, not a fare. The operator sells the aircraft, not the seat. In the example above, fly alone on that Citation and you pay 3,900 euros, so your seat cost 3,900 euros. The 433 exists only if nine of you get on.</p>
 <p>So the honest version of the headline is this: <b>an empty leg turns a private jet into something a group of eight or nine can split.</b> That is the whole trick, and it is why the maths only ever works for people travelling together.</p>
 <p>Two more things the number does not include. Operators quote the flight, and what sits on top of it, landing fees, handling, catering, sometimes a passenger tax, varies by airport and by operator. And an empty leg goes where the aircraft was already going, on the date it was already going, which is the price you actually pay for the discount.</p>
@@ -536,11 +627,11 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   <figcaption>Nine of these is what turns 3,900 euros into 433. Eight of them have to be filled.</figcaption>
 </figure>
 
-<h2>What we cannot tell you</h2>
+<h2 id="what-we-cannot-tell-you"><i>4</i><span>What we cannot tell you</span></h2>
 <p>Of the <span data-el="legs">2,264</span> upcoming legs, <b><span data-el="unpriced">1,543</span> carry no published price at all</b>. Their cards say price on enquiry, because that is what the operator published, and we would rather print that than invent a figure.</p>
 <p>So every number on this page describes the 22 percent of the board that is priced. Whether the unpriced 78 percent would be cheaper or dearer, we do not know, and anyone who tells you they do is guessing.</p>
 
-<h2>The cheapest seats on the board right now</h2>
+<h2 id="the-cheapest-seats-on-the-board-right-now"><i>5</i><span>The cheapest seats on the board right now</span></h2>
 <p>This table is live. It reads our own listings when you open the page and divides each operator's published price by the seats they listed. Pick a currency: we do not convert between them here, because a converted figure is our arithmetic and the point of this page is the operator's.</p>
 <div class="gcur" id="gcur"></div>
 <div class="gscroll">
@@ -556,15 +647,15 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   <figcaption>The same aircraft, a week later, on somebody else's flight.</figcaption>
 </figure>
 
-<h2>How long an empty leg stays available</h2>
+<h2 id="how-long-an-empty-leg-stays-available"><i>6</i><span>How long an empty leg stays available</span></h2>
 <p>We have watched <b>622 legs disappear from operator sites before their departure date</b>. Half of them were gone within <b>4.5 days</b> of first appearing. A quarter went in under 2.8 days. <b>Fifty four vanished in less than 24 hours.</b></p>
 <p>That is the real cost of an empty leg, and it is not money. The flight you want is on the board for a few days and then it is somebody else's.</p>
 
-<h2>How far ahead empty legs are published</h2>
+<h2 id="how-far-ahead-empty-legs-are-published"><i>7</i><span>How far ahead empty legs are published</span></h2>
 <p>Across 3,928 legs we have timestamps for, the median appeared <b>8.7 days</b> before departure. <b>1,780 of them, close to half, appeared inside the last week.</b></p>
 <p>Which means searching two months out is mostly wasted effort. The list you want does not exist yet. Set an alert on the route and let it come to you, or check the <a href="/empty-legs/">city pages</a> in the week you actually want to fly.</p>
 
-<h2>So is an empty leg worth it</h2>
+<h2 id="so-is-an-empty-leg-worth-it"><i>8</i><span>So is an empty leg worth it</span></h2>
 <p>If you are one person with a fixed date and a fixed destination, an empty leg is a bad tool and a scheduled airline is a better one.</p>
 <p>If you are six or eight people who can move a day either way, and you are looking at a route that already has traffic, the arithmetic on this page is real, and the figures above move with the board rather than with the date on this article.</p>
 <p style="margin-top:26px"><a class="btn" href="/">See what is flying today</a></p>
@@ -575,28 +666,28 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <p>We use medians rather than averages, because a single 130,000 dollar Global would drag an average anywhere. The live table above reads the same listings as they stand right now. The written figures are fixed to the date at the top of the page, and when we rerun them they will be restated with a new date rather than quietly edited.</p>
 </details>
 
-<h2>Questions people ask</h2>
+<h2 id="questions-people-ask"><i>9</i><span>Questions people ask</span></h2>
 <div class="gfaq">
-<h3>How much does an empty leg private jet cost?</h3>
-<p>The operator publishes one price for the whole aircraft, one way. Divide it by the seats they listed and you get the per seat figure. The live median and the lowest on the board right now are at the top of this guide, and they move as operators publish.</p>
-<h3>How much are empty leg flights compared with a normal charter?</h3>
-<p>We do not record what the same flight would cost as a full charter, so we cannot give a discount percentage. What we can say is the operator's own published figure: on our board the median priced empty leg in euros is 5,400 for the whole aircraft, one way, and in pounds it is 13,000.</p>
-<h3>Can you buy empty seats on a private jet?</h3>
-<p>Not on an empty leg. The operator sells the whole aircraft, so an empty seat on a private jet is not sold on its own here. The per seat figures on this page are the listed price divided by the listed seats, which only holds if a group fills the cabin.</p>
-<h3>Can I buy a single seat on an empty leg?</h3>
-<p>No. Operators sell the whole aircraft. The per seat figure is the listed price divided by the listed seat count, so it only holds if the cabin is full.</p>
-<h3>Do all empty legs show a price?</h3>
-<p>No. Most of the board says price on enquiry, because that is what the operator published. The live split between priced and on enquiry is at the top of this guide.</p>
-<h3>Can you book a return on an empty leg?</h3>
-<p>No. An empty leg is one way and there is no such thing as a return seat. On any given day only a small minority of the board has anything at all listed going back the other way inside the following week, and those are separate flights that can be sold or withdrawn on their own.</p>
-<h3>How far in advance are empty legs published?</h3>
-<p>Across 3,928 legs with timestamps, the median appeared 8.7 days before departure and 1,780 of them appeared within the last week before the flight.</p>
+<details class="gq" open><summary>How much does an empty leg private jet cost?</summary><p>The operator publishes one price for the whole aircraft, one way. Divide it by the seats they listed and you get the per seat figure. The live median and the lowest on the board right now are at the top of this guide, and they move as operators publish.</p></details>
+<details class="gq"><summary>How much are empty leg flights compared with a normal charter?</summary><p>We do not record what the same flight would cost as a full charter, so we cannot give a discount percentage. What we can say is the operator's own published figure: on our board the median priced empty leg in euros is 5,400 for the whole aircraft, one way, and in pounds it is 13,000.</p></details>
+<details class="gq"><summary>Can you buy empty seats on a private jet?</summary><p>Not on an empty leg. The operator sells the whole aircraft, so an empty seat on a private jet is not sold on its own here. The per seat figures on this page are the listed price divided by the listed seats, which only holds if a group fills the cabin.</p></details>
+<details class="gq"><summary>Can I buy a single seat on an empty leg?</summary><p>No. Operators sell the whole aircraft. The per seat figure is the listed price divided by the listed seat count, so it only holds if the cabin is full.</p></details>
+<details class="gq"><summary>Do all empty legs show a price?</summary><p>No. Most of the board says price on enquiry, because that is what the operator published. The live split between priced and on enquiry is at the top of this guide.</p></details>
+<details class="gq"><summary>Can you book a return on an empty leg?</summary><p>No. An empty leg is one way and there is no such thing as a return seat. On any given day only a small minority of the board has anything at all listed going back the other way inside the following week, and those are separate flights that can be sold or withdrawn on their own.</p></details>
+<details class="gq"><summary>How far in advance are empty legs published?</summary><p>Across 3,928 legs with timestamps, the median appeared 8.7 days before departure and 1,780 of them appeared within the last week before the flight.</p></details>
 </div>
 
-<h2>Related</h2>
-<p>See the <a href="/last-minute-empty-leg-flights">last minute list</a> for everything departing inside seven days, browse <a href="/empty-legs/">every city on the board</a>, or go <a href="/aircraft/">by aircraft type</a> if the cabin matters more than the destination. If you operate aircraft and want your legs listed, <a href="/for-operators">start here</a>.</p>
-</div>
+<h2 id="related"><i>10</i><span>Related</span></h2>
+<p>See the <a href="/last-minute-empty-leg-flights">last minute empty leg flights</a> for everything departing inside seven days, browse <a href="/empty-legs/">every city on the board</a>, or go <a href="/aircraft/">by aircraft type</a> if the cabin matters more than the destination. If you operate aircraft and want your legs listed, <a href="/for-operators">list your empty legs</a>.</p>
+</article><aside class="grail"><p class="gr-lab">In this guide</p><nav class="gtoc"><a href="#the-short-answer">The short answer</a><a href="#what-an-empty-leg-costs-by-aircraft-type">What an empty leg costs by aircraft type</a><a href="#now-the-part-nobody-else-prints">Now the part nobody else prints</a><a href="#what-we-cannot-tell-you">What we cannot tell you</a><a href="#the-cheapest-seats-on-the-board-right-now">The cheapest seats on the board right now</a><a href="#how-long-an-empty-leg-stays-available">How long an empty leg stays available</a><a href="#how-far-ahead-empty-legs-are-published">How far ahead empty legs are published</a><a href="#so-is-an-empty-leg-worth-it">So is an empty leg worth it</a><a href="#questions-people-ask">Questions people ask</a><a href="#related">Related</a></nav><div class="gcta"><b>Find a flight at your price</b><p>Every price on the board is the operator’s own figure for the whole aircraft.</p><a href="/#listings">Browse empty leg flights</a></div></aside></div></div>
 
+<script>
+(function(){var ls=[].slice.call(document.querySelectorAll('.gtoc a'));if(!ls.length)return;
+var hs=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+function mark(){var y=window.scrollY+140,i=0;for(var j=0;j<hs.length;j++){if(hs[j].offsetTop<=y)i=j;}
+ls.forEach(function(a,k){a.classList.toggle('on',k===i);});}
+mark();window.addEventListener('scroll',mark,{passive:true});})();
+</script>
 
 <script src="/place-index.js" defer></script>
 <script>

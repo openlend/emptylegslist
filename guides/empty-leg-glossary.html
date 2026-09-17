@@ -62,14 +62,81 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none}
 footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:640px){.wrap{padding:0 16px 60px}}
 
-/* --- guides, guides.py --- */
 .wrap{max-width:860px}
+/* --- guides, guides.py ---------------------------------------------------
+   17 September 2026. The guides were a single 860px column of prose with a
+   picture at the top. Radu sent a layout with a two part masthead, a strip of
+   live figures under it, numbered sections and a contents rail that follows
+   you down the page. This is that, in our own Playfair and Raleway rather
+   than the mockup's faces, and with every figure in the strip read from the
+   board by live-figures.js rather than typed in.                          */
+.gwide{max-width:1180px;margin:0 auto;padding:0 28px}
+.gcrumb{font-size:12.5px;color:var(--mute);margin:26px 0 14px}
+.gcrumb a{color:var(--mute);text-decoration:none;border-bottom:1px solid var(--line)}
+.gcrumb a:hover{color:var(--navy)}
+.gcrumb span{color:var(--navy)}
+
+.ghead{display:grid;grid-template-columns:1.06fr 1fr;gap:44px;align-items:start;margin:0 0 30px}
+.ghead h1{margin:0 0 14px;font-size:clamp(30px,3.6vw,46px);line-height:1.1}
+.ghead .lede{font-size:17px;line-height:1.6;color:#46525f;margin:0}
+.ghero{margin:0;padding:0}
+.ghero img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
+.ghero figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+@media(max-width:860px){.ghead{grid-template-columns:1fr;gap:22px}}
+
+/* the figure strip */
+.gstrip{display:grid;grid-template-columns:auto repeat(4,1fr);gap:0 26px;align-items:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:0 0 34px}
+.gstrip .gs-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);
+  padding-right:26px;border-right:1px solid var(--line);max-width:150px;line-height:1.5}
+.gs-n b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;
+  font-size:clamp(24px,2.5vw,32px);color:var(--navy);line-height:1.15}
+.gs-n>span{display:block;font-size:13px;color:#46525f;margin-top:5px}
+.gs-n>i{display:block;font-style:normal;font-size:11.5px;color:var(--mute);margin-top:2px}
+@media(max-width:860px){.gstrip{grid-template-columns:1fr 1fr;gap:18px 26px}
+  .gstrip .gs-lab{grid-column:1/-1;border-right:0;padding:0;max-width:none}}
+
+/* body and rail */
+.gbody{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:54px;align-items:start}
+.gart{min-width:0;max-width:720px}
+.gart h2{display:flex;gap:14px;align-items:baseline;scroll-margin-top:110px}
+.gart h2 i{flex:0 0 auto;font-style:normal;width:28px;height:28px;border-radius:999px;
+  background:rgba(201,162,76,.16);color:#8a6d2c;font-size:13.5px;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center;transform:translateY(-2px)}
+.grail{position:sticky;top:96px;font-size:13.5px}
+.gr-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+.gtoc{display:flex;flex-direction:column;gap:2px;border-left:2px solid var(--line);margin:0 0 24px}
+.gtoc a{padding:6px 0 6px 14px;margin-left:-2px;border-left:2px solid transparent;
+  color:#46525f;text-decoration:none;line-height:1.4}
+.gtoc a:hover{color:var(--navy)}
+.gtoc a.on{color:var(--navy);font-weight:600;border-left-color:var(--gold,#C9A24C)}
+.gcta{background:#fbf8f1;border:1px solid rgba(201,162,76,.28);border-radius:14px;padding:18px}
+.gcta b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:18px;
+  color:var(--navy);margin-bottom:5px}
+.gcta p{margin:0 0 12px;font-size:13px;color:#46525f;line-height:1.5}
+.gcta a{display:block;text-align:center;background:var(--navy);color:#fff;text-decoration:none;
+  border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:600}
+.gcta a:hover{background:#16304f}
+@media(max-width:1000px){.gbody{grid-template-columns:1fr;gap:0}
+  .grail{position:static;margin:30px 0 0;max-width:720px}
+  .gtoc{display:grid;grid-template-columns:1fr 1fr;border-left:0;padding-left:0}
+  .gtoc a{padding-left:0;border-left:0}}
+
 figure.gfig{margin:26px 0;padding:0}
 figure.gfig img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
 figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
-.gfaq{background:#fff;border-radius:14px;padding:6px 22px 8px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
-.gfaq h3{font-size:15.5px;font-weight:600;margin:18px 0 4px;color:var(--navy)}
-.gfaq p{margin:0 0 14px}
+
+/* questions, an accordion so the list is scannable */
+.gfaq{margin:10px 0 0}
+.gq{border-bottom:1px solid var(--line);background:none}
+.gq summary{cursor:pointer;list-style:none;padding:15px 34px 15px 0;position:relative;
+  font-size:15.5px;font-weight:600;color:var(--navy);line-height:1.45}
+.gq summary::-webkit-details-marker{display:none}
+.gq summary::after{content:"+";position:absolute;right:6px;top:13px;font-size:20px;font-weight:400;
+  color:var(--gold,#C9A24C);transition:transform .15s ease;transform-origin:50% 55%}
+.gq[open] summary::after{transform:rotate(45deg)}
+.gq p{margin:0 0 16px;font-size:14.5px}
+
 .gmore{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 0}
 .gmore a{display:block;background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
 .gmore a:hover{box-shadow:0 6px 20px rgba(14,35,56,.14)}
@@ -89,6 +156,9 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 
 /* author byline, from authorbits.py, added 16 September 2026 */
 .gby{display:flex;align-items:center;gap:14px;margin:18px 0 8px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.gby img{width:52px;height:52px;border-radius:999px;object-fit:cover;flex:0 0 auto;background:#eef2f7}.gby .n{font-size:14.5px;font-weight:600;color:var(--navy);line-height:1.35}.gby .n a{text-decoration:none;border-bottom:1px solid var(--line)}.gby .r{font-size:12.8px;color:var(--mute);line-height:1.5;margin-top:2px}
+.gby .n a.li{display:inline-flex;align-items:center;vertical-align:-3px;margin-left:7px;border:0;color:#0a66c2;opacity:.9}
+.gby .n a.li:hover{opacity:1}
+.gby .n a.li svg{width:15px;height:15px;fill:currentColor}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -471,52 +541,64 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Guide</p>
+<div class="gwide">
+<nav class="gcrumb" aria-label="Breadcrumb"><a href="/guides/">Guides</a> / <span>Glossary</span></nav>
+<div class="ghead"><div class="ghead-t">
 <h1>The empty leg glossary</h1>
 <p class="lede">The same flight goes by half a dozen names depending on who is talking. Here are the ones you will meet, what they mean, and where on this site each one is answered with a number rather than a definition.</p>
 <div class="gby"><img src="/brand/sig/radu.jpg" width="52" height="52" alt="Radu Balas" loading="lazy" decoding="async"><div><div class="n">By <a href="https://emptylegslist.com/authors/radu-balas" rel="author">Radu Balas</a><a class="li" href="https://www.linkedin.com/in/radubalas/" rel="me nofollow noopener" target="_blank" aria-label="Radu Balas on LinkedIn" title="Radu Balas on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></div><div class="r">More than a decade in aviation. Founder of Empty Leg List and of The Flying Engineer, an aviation directory of more than 3,000 companies across 56 countries.</div></div></div>
 <p class="upd">Updated <time datetime="2026-09-17">17 September 2026</time>. The figures in this guide are read from the live board as this page loads, so they are never a snapshot of an older week.</p>
-<figure class="gfig"><img src="/brand/guides/empty-leg-jet-tail-blue-sky.jpg" width="1900" height="820" alt="The tail and engine of a white business jet against a blue sky" loading="eager"></figure>
-<h2>Empty leg</h2>
-<p>A flight a charter aircraft has to make with nobody in the cabin, sold at a discount. The operator sets the route, the date and the aircraft. One way, no return. Everything on the <a href="/">live list</a> is one.</p>
-<h2>Deadhead, deadhead flight</h2>
-<p>The crew and broker word for the same thing, more common in the United States. An aircraft deadheads when it flies a sector without paying passengers. Explained at length in <a href="/guides/deadhead-flights">deadhead flights</a>.</p>
-<h2>Open leg</h2>
-<p>Another name for an empty leg, used by some brokers to mean a positioning sector that is open for sale. Same flight.</p>
-<h2>Positioning flight, repositioning flight, ferry flight</h2>
-<p>What the operator calls the empty sector internally: moving the aircraft to where the next booking starts, or home to base. Ferry flight is the same idea, usually for maintenance or delivery. When one is offered for sale it becomes an empty leg.</p>
-<h2>Empty seat, spare seat, seat on a private jet</h2>
-<p>Not sold on an empty leg. The operator sells the whole aircraft, so an empty seat on a private jet is not a product here. The per seat figures on this site are arithmetic, the listed price divided by the listed seats, and only hold if a group fills the cabin. See <a href="/guides/how-much-does-an-empty-leg-private-jet-cost">how much an empty leg private jet costs</a>.</p>
-<h2>Price on enquiry</h2>
-<p>What a card says when the operator published no price. We print that rather than guess. It is the majority of the board: <span data-el="unpriced">1,543</span> of the <span data-el="legs">2,264</span> upcoming legs right now.</p>
-<h2>Listed price, whole aircraft price</h2>
-<p>The operator's own published figure for the whole aircraft, one way, shown exactly as written. Never per seat, never a from price.</p>
-<h2>Per seat</h2>
-<p>The listed price divided by the listed seat count. A division, not a fare. The median on our board in euros is 622, on a Citation with nine seats.</p>
-<h2>Charter operator</h2>
-<p>A company that holds the air operator certificate and flies the aircraft. Everything on this site comes from operators publishing their own legs. We do not read brokers.</p>
-<h2>Broker</h2>
-<p>A company that sells flights on aircraft it does not operate, taking a margin. We are not one: no commission, and the enquiry goes to the operator that flies the leg. Broker sites are why a search for empty legs returns so many pages with no actual flights on them.</p>
-<h2>Route alert</h2>
-<p>An email when an operator publishes a leg on a route you chose. Useful because close to half of the legs we record appear inside the final week before departure. Set one on the <a href="/#alerts">home page</a>.</p>
-<h2>Gone, withdrawn, sold</h2>
-<p>What happens to most empty legs. We have watched 622 disappear from operator sites before their departure date, half inside 4.5 days of appearing and 54 inside 24 hours. A listing is a strong indication, not a guarantee.</p>
-<h2>Questions people ask</h2><div class="gfaq">
-<h3>What is the difference between an empty leg and a deadhead?</h3>
-<p>None in practice. Empty leg is what operators write, deadhead is what crews and American brokers say. Both mean a private aircraft flying a sector with nobody in the cabin, sold at a discount.</p>
-<h3>What does price on enquiry mean on an empty leg?</h3>
-<p>The operator published the flight without a price, so you ask them and they quote. Most of the board is like that; where a price is published we show it exactly as listed.</p>
-<h3>What is an open leg flight?</h3>
-<p>A broker&#x27;s name for an empty leg: a positioning sector that is open for sale. Same flight, same rules, one way.</p>
 </div>
-<p style="margin-top:26px"><a class="btn" href="/">See what is flying today</a></p>
-<h2>More guides</h2><div class="gmore"><a href="/guides/how-much-does-an-empty-leg-private-jet-cost"><b>How much does an empty leg private jet cost?</b><span>The operator&#x27;s price divided by the seats they listed, on every priced leg on the board. Updated as the board moves.</span></a>
+<figure class="ghero"><img src="/brand/guides/empty-leg-jet-tail-blue-sky.jpg" width="1900" height="820" alt="The tail and engine of a white business jet against a blue sky" loading="eager" fetchpriority="high"><figcaption>The tail and engine of a white business jet against a blue sky</figcaption></figure>
+</div>
+<div class="gstrip"><div class="gs-lab">The board, right now</div><div class="gs-n"><b data-el="legs">2,119</b><span>Empty legs on the board</span><i>Upcoming, every operator we read</i></div><div class="gs-n"><b data-el="routes">1,608</b><span>Distinct routes</span><i>Departure and arrival pairs</i></div><div class="gs-n"><b data-el="cities">469</b><span>Cities on the board</span><i>Anywhere a leg departs or lands</i></div><div class="gs-n"><b data-el="seat_eur_median">756</b><span>Median per seat, EUR</span><i>Whole aircraft price divided by its seats</i></div></div>
+<div class="gbody"><article class="gart">
+<h2 id="empty-leg"><i>1</i><span>Empty leg</span></h2>
+<p>A flight a charter aircraft has to make with nobody in the cabin, sold at a discount. The operator sets the route, the date and the aircraft. One way, no return. Everything on the <a href="/">live list</a> is one.</p>
+<h2 id="deadhead-deadhead-flight"><i>2</i><span>Deadhead, deadhead flight</span></h2>
+<p>The crew and broker word for the same thing, more common in the United States. An aircraft deadheads when it flies a sector without paying passengers. Explained at length in <a href="/guides/deadhead-flights">deadhead flights</a>.</p>
+<h2 id="open-leg"><i>3</i><span>Open leg</span></h2>
+<p>Another name for an empty leg, used by some brokers to mean a positioning sector that is open for sale. Same flight.</p>
+<h2 id="positioning-flight-repositioning-flight-ferry-fl"><i>4</i><span>Positioning flight, repositioning flight, ferry flight</span></h2>
+<p>What the operator calls the empty sector internally: moving the aircraft to where the next booking starts, or home to base. Ferry flight is the same idea, usually for maintenance or delivery. When one is offered for sale it becomes an empty leg.</p>
+<h2 id="empty-seat-spare-seat-seat-on-a-private-jet"><i>5</i><span>Empty seat, spare seat, seat on a private jet</span></h2>
+<p>Not sold on an empty leg. The operator sells the whole aircraft, so an empty seat on a private jet is not a product here. The per seat figures on this site are arithmetic, the listed price divided by the listed seats, and only hold if a group fills the cabin. See <a href="/guides/how-much-does-an-empty-leg-private-jet-cost">how much an empty leg private jet costs</a>.</p>
+<h2 id="price-on-enquiry"><i>6</i><span>Price on enquiry</span></h2>
+<p>What a card says when the operator published no price. We print that rather than guess. It is the majority of the board: <span data-el="unpriced">1,543</span> of the <span data-el="legs">2,264</span> upcoming legs right now.</p>
+<h2 id="listed-price-whole-aircraft-price"><i>7</i><span>Listed price, whole aircraft price</span></h2>
+<p>The operator's own published figure for the whole aircraft, one way, shown exactly as written. Never per seat, never a from price.</p>
+<h2 id="per-seat"><i>8</i><span>Per seat</span></h2>
+<p>The listed price divided by the listed seat count. A division, not a fare. The median on our board in euros is 622, on a Citation with nine seats.</p>
+<h2 id="charter-operator"><i>9</i><span>Charter operator</span></h2>
+<p>A company that holds the air operator certificate and flies the aircraft. Everything on this site comes from operators publishing their own legs. We do not read brokers.</p>
+<h2 id="broker"><i>10</i><span>Broker</span></h2>
+<p>A company that sells flights on aircraft it does not operate, taking a margin. We are not one: no commission, and the enquiry goes to the operator that flies the leg. Broker sites are why a search for empty legs returns so many pages with no actual flights on them.</p>
+<h2 id="route-alert"><i>11</i><span>Route alert</span></h2>
+<p>An email when an operator publishes a leg on a route you chose. Useful because close to half of the legs we record appear inside the final week before departure. Set one on the <a href="/#alerts">home page</a>.</p>
+<h2 id="gone-withdrawn-sold"><i>12</i><span>Gone, withdrawn, sold</span></h2>
+<p>What happens to most empty legs. We have watched 622 disappear from operator sites before their departure date, half inside 4.5 days of appearing and 54 inside 24 hours. A listing is a strong indication, not a guarantee.</p>
+<h2 id="questions-people-ask"><i>13</i><span>Questions people ask</span></h2>
+<div class="gfaq">
+<details class="gq" open><summary>What is the difference between an empty leg and a deadhead?</summary><p>None in practice. Empty leg is what operators write, deadhead is what crews and American brokers say. Both mean a private aircraft flying a sector with nobody in the cabin, sold at a discount.</p></details>
+<details class="gq"><summary>What does price on enquiry mean on an empty leg?</summary><p>The operator published the flight without a price, so you ask them and they quote. Most of the board is like that; where a price is published we show it exactly as listed.</p></details>
+<details class="gq"><summary>What is an open leg flight?</summary><p>A broker&#x27;s name for an empty leg: a positioning sector that is open for sale. Same flight, same rules, one way.</p></details>
+</div>
+<h2 id="keep-exploring"><i>14</i><span>Keep exploring</span></h2>
+<div class="gmore"><a href="/guides/how-much-does-an-empty-leg-private-jet-cost"><b>How much does an empty leg private jet cost?</b><span>The operator&#x27;s price divided by the seats they listed, on every priced leg on the board. Updated as the board moves.</span></a>
 <a href="/guides/empty-legs-and-emissions"><b>Empty legs and emissions: what can honestly be said</b><span>Buying an empty leg does not add a flight. It is also not zero emissions. The claims that hold up, and the ones that do not.</span></a>
 <a href="/guides/what-is-an-empty-leg-flight"><b>What is an empty leg flight?</b><span>The meaning of empty leg in plain words, how the flight comes to exist, what it costs and the three catches, with our own numbers behind each.</span></a>
 <a href="/guides/deadhead-flights"><b>Deadhead flights, and how to find one</b><span>Deadhead and empty leg are the same flight under two names. Here is what the word means, why the flight exists, and where to find one.</span></a></div>
-</div>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"The empty leg glossary","description":"The words operators, brokers and crews use for an empty private jet flight, and what each one means on this site: empty leg, deadhead, open leg, positioning flight, price on enquiry, per seat and more.","datePublished":"2026-09-03","dateModified":"2026-09-17","mainEntityOfPage":{"@type":"WebPage","@id":"https://emptylegslist.com/guides/empty-leg-glossary"},"image":"https://emptylegslist.com/brand/guides/empty-leg-jet-tail-blue-sky-og.jpg","author":{"@type":"Person","name":"Radu Balas","url":"https://emptylegslist.com/authors/radu-balas","jobTitle":"Founder, Empty Leg List","sameAs":["https://www.linkedin.com/in/radubalas/","https://theflyingengineer.com/"]},"publisher":{"@type":"Organization","name":"Empty Leg List","url":"https://emptylegslist.com/"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between an empty leg and a deadhead?","acceptedAnswer":{"@type":"Answer","text":"None in practice. Empty leg is what operators write, deadhead is what crews and American brokers say. Both mean a private aircraft flying a sector with nobody in the cabin, sold at a discount."}},{"@type":"Question","name":"What does price on enquiry mean on an empty leg?","acceptedAnswer":{"@type":"Answer","text":"The operator published the flight without a price, so you ask them and they quote. Most of the board is like that; where a price is published we show it exactly as listed."}},{"@type":"Question","name":"What is an open leg flight?","acceptedAnswer":{"@type":"Answer","text":"A broker's name for an empty leg: a positioning sector that is open for sale. Same flight, same rules, one way."}}]}]}</script>
+</article>
+<aside class="grail"><p class="gr-lab">In this guide</p><nav class="gtoc"><a href="#empty-leg">Empty leg</a><a href="#deadhead-deadhead-flight">Deadhead, deadhead flight</a><a href="#open-leg">Open leg</a><a href="#positioning-flight-repositioning-flight-ferry-fl">Positioning flight, repositioning flight, ferry flight</a><a href="#empty-seat-spare-seat-seat-on-a-private-jet">Empty seat, spare seat, seat on a private jet</a><a href="#price-on-enquiry">Price on enquiry</a><a href="#listed-price-whole-aircraft-price">Listed price, whole aircraft price</a><a href="#per-seat">Per seat</a><a href="#charter-operator">Charter operator</a><a href="#broker">Broker</a><a href="#route-alert">Route alert</a><a href="#gone-withdrawn-sold">Gone, withdrawn, sold</a><a href="#questions-people-ask">Questions people ask</a><a href="#keep-exploring">Keep exploring</a></nav><div class="gcta"><b>Find a flight at your price</b><p>Every price on the board is the operator’s own figure for the whole aircraft.</p><a href="/#listings">Browse empty leg flights</a></div></aside>
+</div></div>
+<script>
+(function(){var ls=[].slice.call(document.querySelectorAll('.gtoc a'));if(!ls.length)return;
+var hs=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+function mark(){var y=window.scrollY+140,i=0;for(var j=0;j<hs.length;j++){if(hs[j].offsetTop<=y)i=j;}
+ls.forEach(function(a,k){a.classList.toggle('on',k===i);});}
+mark();window.addEventListener('scroll',mark,{passive:true});})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"The empty leg glossary","description":"The words operators, brokers and crews use for an empty private jet flight, and what each one means on this site: empty leg, deadhead, open leg, positioning flight, price on enquiry, per seat and more.","datePublished":"2026-09-03","dateModified":"2026-09-17","mainEntityOfPage":{"@type":"WebPage","@id":"https://emptylegslist.com/guides/empty-leg-glossary"},"image":"https://emptylegslist.com/brand/guides/empty-leg-jet-tail-blue-sky-og.jpg","author":{"@type":"Person","name":"Radu Balas","url":"https://emptylegslist.com/authors/radu-balas","jobTitle":"Founder, Empty Leg List","sameAs":["https://www.linkedin.com/in/radubalas/","https://theflyingengineer.com/"]},"publisher":{"@type":"Organization","name":"Empty Leg List","url":"https://emptylegslist.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Guides","item":"https://emptylegslist.com/guides/"},{"@type":"ListItem","position":2,"name":"The empty leg glossary","item":"https://emptylegslist.com/guides/empty-leg-glossary"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the difference between an empty leg and a deadhead?","acceptedAnswer":{"@type":"Answer","text":"None in practice. Empty leg is what operators write, deadhead is what crews and American brokers say. Both mean a private aircraft flying a sector with nobody in the cabin, sold at a discount."}},{"@type":"Question","name":"What does price on enquiry mean on an empty leg?","acceptedAnswer":{"@type":"Answer","text":"The operator published the flight without a price, so you ask them and they quote. Most of the board is like that; where a price is published we show it exactly as listed."}},{"@type":"Question","name":"What is an open leg flight?","acceptedAnswer":{"@type":"Answer","text":"A broker's name for an empty leg: a positioning sector that is open for sale. Same flight, same rules, one way."}}]}]}</script>
 <footer id="bigfoot">
   <div class="bf-alert">
     <div class="bf-alert-in">

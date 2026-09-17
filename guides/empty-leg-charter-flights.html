@@ -62,14 +62,81 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none}
 footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:640px){.wrap{padding:0 16px 60px}}
 
-/* --- guides, guides.py --- */
 .wrap{max-width:860px}
+/* --- guides, guides.py ---------------------------------------------------
+   17 September 2026. The guides were a single 860px column of prose with a
+   picture at the top. Radu sent a layout with a two part masthead, a strip of
+   live figures under it, numbered sections and a contents rail that follows
+   you down the page. This is that, in our own Playfair and Raleway rather
+   than the mockup's faces, and with every figure in the strip read from the
+   board by live-figures.js rather than typed in.                          */
+.gwide{max-width:1180px;margin:0 auto;padding:0 28px}
+.gcrumb{font-size:12.5px;color:var(--mute);margin:26px 0 14px}
+.gcrumb a{color:var(--mute);text-decoration:none;border-bottom:1px solid var(--line)}
+.gcrumb a:hover{color:var(--navy)}
+.gcrumb span{color:var(--navy)}
+
+.ghead{display:grid;grid-template-columns:1.06fr 1fr;gap:44px;align-items:start;margin:0 0 30px}
+.ghead h1{margin:0 0 14px;font-size:clamp(30px,3.6vw,46px);line-height:1.1}
+.ghead .lede{font-size:17px;line-height:1.6;color:#46525f;margin:0}
+.ghero{margin:0;padding:0}
+.ghero img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
+.ghero figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+@media(max-width:860px){.ghead{grid-template-columns:1fr;gap:22px}}
+
+/* the figure strip */
+.gstrip{display:grid;grid-template-columns:auto repeat(4,1fr);gap:0 26px;align-items:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:0 0 34px}
+.gstrip .gs-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);
+  padding-right:26px;border-right:1px solid var(--line);max-width:150px;line-height:1.5}
+.gs-n b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;
+  font-size:clamp(24px,2.5vw,32px);color:var(--navy);line-height:1.15}
+.gs-n>span{display:block;font-size:13px;color:#46525f;margin-top:5px}
+.gs-n>i{display:block;font-style:normal;font-size:11.5px;color:var(--mute);margin-top:2px}
+@media(max-width:860px){.gstrip{grid-template-columns:1fr 1fr;gap:18px 26px}
+  .gstrip .gs-lab{grid-column:1/-1;border-right:0;padding:0;max-width:none}}
+
+/* body and rail */
+.gbody{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:54px;align-items:start}
+.gart{min-width:0;max-width:720px}
+.gart h2{display:flex;gap:14px;align-items:baseline;scroll-margin-top:110px}
+.gart h2 i{flex:0 0 auto;font-style:normal;width:28px;height:28px;border-radius:999px;
+  background:rgba(201,162,76,.16);color:#8a6d2c;font-size:13.5px;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center;transform:translateY(-2px)}
+.grail{position:sticky;top:96px;font-size:13.5px}
+.gr-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+.gtoc{display:flex;flex-direction:column;gap:2px;border-left:2px solid var(--line);margin:0 0 24px}
+.gtoc a{padding:6px 0 6px 14px;margin-left:-2px;border-left:2px solid transparent;
+  color:#46525f;text-decoration:none;line-height:1.4}
+.gtoc a:hover{color:var(--navy)}
+.gtoc a.on{color:var(--navy);font-weight:600;border-left-color:var(--gold,#C9A24C)}
+.gcta{background:#fbf8f1;border:1px solid rgba(201,162,76,.28);border-radius:14px;padding:18px}
+.gcta b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:18px;
+  color:var(--navy);margin-bottom:5px}
+.gcta p{margin:0 0 12px;font-size:13px;color:#46525f;line-height:1.5}
+.gcta a{display:block;text-align:center;background:var(--navy);color:#fff;text-decoration:none;
+  border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:600}
+.gcta a:hover{background:#16304f}
+@media(max-width:1000px){.gbody{grid-template-columns:1fr;gap:0}
+  .grail{position:static;margin:30px 0 0;max-width:720px}
+  .gtoc{display:grid;grid-template-columns:1fr 1fr;border-left:0;padding-left:0}
+  .gtoc a{padding-left:0;border-left:0}}
+
 figure.gfig{margin:26px 0;padding:0}
 figure.gfig img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
 figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
-.gfaq{background:#fff;border-radius:14px;padding:6px 22px 8px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
-.gfaq h3{font-size:15.5px;font-weight:600;margin:18px 0 4px;color:var(--navy)}
-.gfaq p{margin:0 0 14px}
+
+/* questions, an accordion so the list is scannable */
+.gfaq{margin:10px 0 0}
+.gq{border-bottom:1px solid var(--line);background:none}
+.gq summary{cursor:pointer;list-style:none;padding:15px 34px 15px 0;position:relative;
+  font-size:15.5px;font-weight:600;color:var(--navy);line-height:1.45}
+.gq summary::-webkit-details-marker{display:none}
+.gq summary::after{content:"+";position:absolute;right:6px;top:13px;font-size:20px;font-weight:400;
+  color:var(--gold,#C9A24C);transition:transform .15s ease;transform-origin:50% 55%}
+.gq[open] summary::after{transform:rotate(45deg)}
+.gq p{margin:0 0 16px;font-size:14.5px}
+
 .gmore{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 0}
 .gmore a{display:block;background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
 .gmore a:hover{box-shadow:0 6px 20px rgba(14,35,56,.14)}
@@ -89,6 +156,9 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 
 /* author byline, from authorbits.py, added 16 September 2026 */
 .gby{display:flex;align-items:center;gap:14px;margin:18px 0 8px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.gby img{width:52px;height:52px;border-radius:999px;object-fit:cover;flex:0 0 auto;background:#eef2f7}.gby .n{font-size:14.5px;font-weight:600;color:var(--navy);line-height:1.35}.gby .n a{text-decoration:none;border-bottom:1px solid var(--line)}.gby .r{font-size:12.8px;color:var(--mute);line-height:1.5;margin-top:2px}
+.gby .n a.li{display:inline-flex;align-items:center;vertical-align:-3px;margin-left:7px;border:0;color:#0a66c2;opacity:.9}
+.gby .n a.li:hover{opacity:1}
+.gby .n a.li svg{width:15px;height:15px;fill:currentColor}
 
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
@@ -471,45 +541,55 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
   </div>
 </div>
 <!-- /eln-drawer -->
-<div class="wrap">
-<p style="font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:34px 0 0">Guide</p>
+<div class="gwide">
+<nav class="gcrumb" aria-label="Breadcrumb"><a href="/guides/">Guides</a> / <span>Empty leg charter</span></nav>
+<div class="ghead"><div class="ghead-t">
 <h1>Empty leg charter flights: how chartering an empty leg works</h1>
 <p class="lede">An empty leg charter is a private jet charter like any other, with one difference: the aircraft was going to fly that sector whether you booked it or not. Same aircraft, same crew, same operator, on a route and a date the operator has already fixed. This page is what that changes, what it does not, and what the flights cost when the operator publishes a price.</p>
 <div class="gby"><img src="/brand/sig/radu.jpg" width="52" height="52" alt="Radu Balas" loading="lazy" decoding="async"><div><div class="n">By <a href="https://emptylegslist.com/authors/radu-balas" rel="author">Radu Balas</a><a class="li" href="https://www.linkedin.com/in/radubalas/" rel="me nofollow noopener" target="_blank" aria-label="Radu Balas on LinkedIn" title="Radu Balas on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></div><div class="r">More than a decade in aviation. Founder of Empty Leg List and of The Flying Engineer, an aviation directory of more than 3,000 companies across 56 countries.</div></div></div>
 <p class="upd">Updated <time datetime="2026-09-17">17 September 2026</time>. The figures in this guide are read from the live board as this page loads, so they are never a snapshot of an older week.</p>
-<figure class="gfig"><img src="/brand/guides/empty-leg-jet-engine-detail.jpg" width="1900" height="820" alt="The engine and tail of a dark business jet under an overcast sky" loading="eager"></figure>
-<h2>A full charter and an empty leg charter, side by side</h2>
+</div>
+<figure class="ghero"><img src="/brand/guides/empty-leg-jet-engine-detail.jpg" width="1900" height="820" alt="The engine and tail of a dark business jet under an overcast sky" loading="eager" fetchpriority="high"><figcaption>The engine and tail of a dark business jet under an overcast sky</figcaption></figure>
+</div>
+<div class="gstrip"><div class="gs-lab">The board, right now</div><div class="gs-n"><b data-el="legs">2,119</b><span>Empty legs on the board</span><i>Upcoming, every operator we read</i></div><div class="gs-n"><b data-el="routes">1,608</b><span>Distinct routes</span><i>Departure and arrival pairs</i></div><div class="gs-n"><b data-el="cities">469</b><span>Cities on the board</span><i>Anywhere a leg departs or lands</i></div><div class="gs-n"><b data-el="seat_eur_median">756</b><span>Median per seat, EUR</span><i>Whole aircraft price divided by its seats</i></div></div>
+<div class="gbody"><article class="gart">
+<h2 id="a-full-charter-and-an-empty-leg-charter-side-by-"><i>1</i><span>A full charter and an empty leg charter, side by side</span></h2>
 <p>On a full charter you name the route and the date, and the operator brings the aircraft to you. If the aircraft is based somewhere else, the flight to collect you and the flight home afterwards are part of what you pay for, whether the quote itemises them or not.</p>
 <p>On an empty leg charter it is the other way round. The route and the date exist first, because another client's charter created them, and you fit into the flight. The operator has already committed the crew, the fuel and the fees, so the empty sector is offered for whatever it will fetch. That is the whole reason it is cheaper, and it is also why it cannot be moved: the aircraft has to be at the other end on that day for the next booking.</p>
-<h2>Operator or broker</h2>
+<h2 id="operator-or-broker"><i>2</i><span>Operator or broker</span></h2>
 <p>A charter operator holds the aircraft and the air operator certificate, employs the crew and flies the flight. A broker resells the operator's flight and adds a margin. Both can sell you an empty leg charter, and the same leg can be on a broker's site days after it appeared on the operator's own page.</p>
 <p>On this site every leg is read from the operator's own website and the enquiry goes to that operator. We are a listing service, not a broker, we take no commission and we do not quote. Whoever you book through, the flight is flown by the operator and the contract is a charter contract.</p>
-<h2>What you are quoted for</h2>
+<h2 id="what-you-are-quoted-for"><i>3</i><span>What you are quoted for</span></h2>
 <p>The quote is for the whole aircraft, one way, on the published sector. It is not a seat and it is not a return. Where operators publish a price on our board, the median in euros works out at <span data-el="seat_eur_median">780</span> a seat divided by the seats the operator listed. Most legs carry no published price at all, <span data-el="unpriced">1,543</span> of the <span data-el="legs">2,264</span> on the board right now, and the price comes with the operator's reply.</p>
 <p>What the price includes beyond the flight itself, catering, ground transport, de-icing, overnight crew costs if any, is the operator's to state in the quote, and it varies. Ask for the quote in writing with what it covers. The <a href="/guides/how-much-does-an-empty-leg-private-jet-cost">cost guide</a> has the full table by aircraft type.</p>
-<h2>What an empty leg charter cannot do</h2>
+<h2 id="what-an-empty-leg-charter-cannot-do"><i>4</i><span>What an empty leg charter cannot do</span></h2>
 <p>It cannot wait for you. The date is the date, and the aircraft leaves with or without a passenger. It cannot come back: an empty leg is one way, and on our board only 208 of 1,097 upcoming legs have any flight listed in the opposite direction inside a week, all of them separate flights. And it cannot be promised: we have watched 622 legs disappear before their departure date, half of them inside 4.5 days of appearing, usually because the charter that created them changed or the sector sold. <a href="/guides/one-way-private-jet-flights">One way private jet flights</a> covers the way back.</p>
-<h2>Finding one</h2>
+<h2 id="finding-one"><i>5</i><span>Finding one</span></h2>
 <p>Search the <a href="/">live list</a> by city, country or date, browse a <a href="/empty-legs/">city</a> or <a href="/empty-legs/united-states">country</a> page, or set a <a href="/#alerts">route alert</a> and be told when a leg appears on your route. In the thirty days to early September 2026 we recorded 3,052 new empty legs, and close to half of what we record is published inside the final week before departure. <a href="/guides/how-to-find-empty-leg-flights">How to find empty leg flights</a> goes through it step by step.</p>
-<h2>Questions people ask</h2><div class="gfaq">
-<h3>What is an empty leg charter?</h3>
-<p>A private jet charter on a sector the operator has to fly anyway to reposition the aircraft. Same aircraft and crew as a full charter, at the operator&#x27;s price for that one way sector rather than for a round trip planned around you.</p>
-<h3>Is an empty leg charter the same as a normal charter?</h3>
-<p>The flight is. The difference is who sets the route and the date: on a full charter you do, on an empty leg the operator already has, and you fit into it. The contract is a charter contract either way.</p>
-<h3>How much does an empty leg charter cost?</h3>
-<p>The published price is for the whole aircraft, one way, on that sector. Most legs on the board carry no published price at all, so most quotes come with the operator&#x27;s reply. The live figures, and the breakdown by aircraft type, are on the cost guide.</p>
-<h3>Do I book an empty leg charter with the operator or a broker?</h3>
-<p>Either can sell it. On this site the enquiry goes straight to the operator that flies the leg, with no commission. Through a broker the same flight carries the broker&#x27;s margin.</p>
-<h3>Can an empty leg charter be a return trip?</h3>
-<p>No. The aircraft is repositioning one way. Only 208 of 1,097 upcoming legs on our board have any flight going the other way inside a week, and those are separate flights.</p>
+<h2 id="questions-people-ask"><i>6</i><span>Questions people ask</span></h2>
+<div class="gfaq">
+<details class="gq" open><summary>What is an empty leg charter?</summary><p>A private jet charter on a sector the operator has to fly anyway to reposition the aircraft. Same aircraft and crew as a full charter, at the operator&#x27;s price for that one way sector rather than for a round trip planned around you.</p></details>
+<details class="gq"><summary>Is an empty leg charter the same as a normal charter?</summary><p>The flight is. The difference is who sets the route and the date: on a full charter you do, on an empty leg the operator already has, and you fit into it. The contract is a charter contract either way.</p></details>
+<details class="gq"><summary>How much does an empty leg charter cost?</summary><p>The published price is for the whole aircraft, one way, on that sector. Most legs on the board carry no published price at all, so most quotes come with the operator&#x27;s reply. The live figures, and the breakdown by aircraft type, are on the cost guide.</p></details>
+<details class="gq"><summary>Do I book an empty leg charter with the operator or a broker?</summary><p>Either can sell it. On this site the enquiry goes straight to the operator that flies the leg, with no commission. Through a broker the same flight carries the broker&#x27;s margin.</p></details>
+<details class="gq"><summary>Can an empty leg charter be a return trip?</summary><p>No. The aircraft is repositioning one way. Only 208 of 1,097 upcoming legs on our board have any flight going the other way inside a week, and those are separate flights.</p></details>
 </div>
-<p style="margin-top:26px"><a class="btn" href="/">See what is flying today</a></p>
-<h2>More guides</h2><div class="gmore"><a href="/guides/how-much-does-an-empty-leg-private-jet-cost"><b>How much does an empty leg private jet cost?</b><span>The operator&#x27;s price divided by the seats they listed, on every priced leg on the board. Updated as the board moves.</span></a>
+<h2 id="keep-exploring"><i>7</i><span>Keep exploring</span></h2>
+<div class="gmore"><a href="/guides/how-much-does-an-empty-leg-private-jet-cost"><b>How much does an empty leg private jet cost?</b><span>The operator&#x27;s price divided by the seats they listed, on every priced leg on the board. Updated as the board moves.</span></a>
 <a href="/guides/empty-legs-and-emissions"><b>Empty legs and emissions: what can honestly be said</b><span>Buying an empty leg does not add a flight. It is also not zero emissions. The claims that hold up, and the ones that do not.</span></a>
 <a href="/guides/what-is-an-empty-leg-flight"><b>What is an empty leg flight?</b><span>The meaning of empty leg in plain words, how the flight comes to exist, what it costs and the three catches, with our own numbers behind each.</span></a>
 <a href="/guides/deadhead-flights"><b>Deadhead flights, and how to find one</b><span>Deadhead and empty leg are the same flight under two names. Here is what the word means, why the flight exists, and where to find one.</span></a></div>
-</div>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Empty leg charter flights: how chartering an empty leg works","description":"An empty leg charter is a normal private jet charter on a sector the operator has to fly anyway. What is different from a full charter, operator against broker, what you are quoted for, and what the flights cost, from our own board.","datePublished":"2026-09-03","dateModified":"2026-09-17","mainEntityOfPage":{"@type":"WebPage","@id":"https://emptylegslist.com/guides/empty-leg-charter-flights"},"image":"https://emptylegslist.com/brand/guides/empty-leg-jet-engine-detail-og.jpg","author":{"@type":"Person","name":"Radu Balas","url":"https://emptylegslist.com/authors/radu-balas","jobTitle":"Founder, Empty Leg List","sameAs":["https://www.linkedin.com/in/radubalas/","https://theflyingengineer.com/"]},"publisher":{"@type":"Organization","name":"Empty Leg List","url":"https://emptylegslist.com/"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an empty leg charter?","acceptedAnswer":{"@type":"Answer","text":"A private jet charter on a sector the operator has to fly anyway to reposition the aircraft. Same aircraft and crew as a full charter, at the operator's price for that one way sector rather than for a round trip planned around you."}},{"@type":"Question","name":"Is an empty leg charter the same as a normal charter?","acceptedAnswer":{"@type":"Answer","text":"The flight is. The difference is who sets the route and the date: on a full charter you do, on an empty leg the operator already has, and you fit into it. The contract is a charter contract either way."}},{"@type":"Question","name":"How much does an empty leg charter cost?","acceptedAnswer":{"@type":"Answer","text":"The published price is for the whole aircraft, one way, on that sector. Most legs on the board carry no published price at all, so most quotes come with the operator's reply. The live figures, and the breakdown by aircraft type, are on the cost guide."}},{"@type":"Question","name":"Do I book an empty leg charter with the operator or a broker?","acceptedAnswer":{"@type":"Answer","text":"Either can sell it. On this site the enquiry goes straight to the operator that flies the leg, with no commission. Through a broker the same flight carries the broker's margin."}},{"@type":"Question","name":"Can an empty leg charter be a return trip?","acceptedAnswer":{"@type":"Answer","text":"No. The aircraft is repositioning one way. Only 208 of 1,097 upcoming legs on our board have any flight going the other way inside a week, and those are separate flights."}}]}]}</script>
+</article>
+<aside class="grail"><p class="gr-lab">In this guide</p><nav class="gtoc"><a href="#a-full-charter-and-an-empty-leg-charter-side-by-">A full charter and an empty leg charter, side by side</a><a href="#operator-or-broker">Operator or broker</a><a href="#what-you-are-quoted-for">What you are quoted for</a><a href="#what-an-empty-leg-charter-cannot-do">What an empty leg charter cannot do</a><a href="#finding-one">Finding one</a><a href="#questions-people-ask">Questions people ask</a><a href="#keep-exploring">Keep exploring</a></nav><div class="gcta"><b>Find a flight at your price</b><p>Every price on the board is the operator’s own figure for the whole aircraft.</p><a href="/#listings">Browse empty leg flights</a></div></aside>
+</div></div>
+<script>
+(function(){var ls=[].slice.call(document.querySelectorAll('.gtoc a'));if(!ls.length)return;
+var hs=ls.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));}).filter(Boolean);
+function mark(){var y=window.scrollY+140,i=0;for(var j=0;j<hs.length;j++){if(hs[j].offsetTop<=y)i=j;}
+ls.forEach(function(a,k){a.classList.toggle('on',k===i);});}
+mark();window.addEventListener('scroll',mark,{passive:true});})();
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","headline":"Empty leg charter flights: how chartering an empty leg works","description":"An empty leg charter is a normal private jet charter on a sector the operator has to fly anyway. What is different from a full charter, operator against broker, what you are quoted for, and what the flights cost, from our own board.","datePublished":"2026-09-03","dateModified":"2026-09-17","mainEntityOfPage":{"@type":"WebPage","@id":"https://emptylegslist.com/guides/empty-leg-charter-flights"},"image":"https://emptylegslist.com/brand/guides/empty-leg-jet-engine-detail-og.jpg","author":{"@type":"Person","name":"Radu Balas","url":"https://emptylegslist.com/authors/radu-balas","jobTitle":"Founder, Empty Leg List","sameAs":["https://www.linkedin.com/in/radubalas/","https://theflyingengineer.com/"]},"publisher":{"@type":"Organization","name":"Empty Leg List","url":"https://emptylegslist.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Guides","item":"https://emptylegslist.com/guides/"},{"@type":"ListItem","position":2,"name":"Empty leg charter flights: how chartering an empty leg works","item":"https://emptylegslist.com/guides/empty-leg-charter-flights"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an empty leg charter?","acceptedAnswer":{"@type":"Answer","text":"A private jet charter on a sector the operator has to fly anyway to reposition the aircraft. Same aircraft and crew as a full charter, at the operator's price for that one way sector rather than for a round trip planned around you."}},{"@type":"Question","name":"Is an empty leg charter the same as a normal charter?","acceptedAnswer":{"@type":"Answer","text":"The flight is. The difference is who sets the route and the date: on a full charter you do, on an empty leg the operator already has, and you fit into it. The contract is a charter contract either way."}},{"@type":"Question","name":"How much does an empty leg charter cost?","acceptedAnswer":{"@type":"Answer","text":"The published price is for the whole aircraft, one way, on that sector. Most legs on the board carry no published price at all, so most quotes come with the operator's reply. The live figures, and the breakdown by aircraft type, are on the cost guide."}},{"@type":"Question","name":"Do I book an empty leg charter with the operator or a broker?","acceptedAnswer":{"@type":"Answer","text":"Either can sell it. On this site the enquiry goes straight to the operator that flies the leg, with no commission. Through a broker the same flight carries the broker's margin."}},{"@type":"Question","name":"Can an empty leg charter be a return trip?","acceptedAnswer":{"@type":"Answer","text":"No. The aircraft is repositioning one way. Only 208 of 1,097 upcoming legs on our board have any flight going the other way inside a week, and those are separate flights."}}]}]}</script>
 <footer id="bigfoot">
   <div class="bf-alert">
     <div class="bf-alert-in">
