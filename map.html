@@ -172,10 +172,9 @@ body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
 .mx-row .p b{font-size:15.5px}
 .mx-row .p small{margin-top:2px}
 .mx-row .p small.nomap{color:rgba(13,31,54,.38);font-style:italic;margin-top:5px}
-.mx-page{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0;font-size:13px;color:var(--mute);flex-wrap:nowrap}
-#mxpager{display:flex;gap:5px;flex:0 0 auto}
-#mxcount{flex:1 0 100%;order:2;text-align:left;line-height:1.5;white-space:normal}
-#mxpager{order:1}
+.mx-page{display:block;margin:16px 0 0;font-size:13px;color:var(--mute)}
+#mxpager{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+#mxcount{display:block;line-height:1.5}
 .mx-page button{border:1px solid var(--line);background:#fff;border-radius:8px;min-width:32px;height:32px;
   font:inherit;font-size:13px;color:var(--navy);cursor:pointer;margin:0;flex:0 0 auto}
 .mx-page button.on{background:var(--navy);border-color:var(--navy);color:#fff}
@@ -811,7 +810,7 @@ function flightUrl(x){
     if (sel){
       var l = byId(sel);
       return (l && l.from_lat != null)
-        ? "Showing one flight. Back to all flights puts the rest back."
+        ? "Showing one flight. Click it again, or change a filter, to see them all."
         : "That listing has no map location, so there is nothing to draw. Everything about it is in the list.";
     }
     if (n - placed > 0) out.push((n - placed) + " of these have no map location. They are still in the list.");
@@ -940,6 +939,9 @@ function flightUrl(x){
         .sort(function(a,b){ return types[b]-types[a] || a.localeCompare(b); })
         .map(function(t){ return '<option value="' + esc(t) + '">' + esc(t) + ' (' + types[t] + ')</option>'; }).join("");
       apply();
+      // Radu, 17 September: open on one flight, not on seven hundred.
+      var first = VIEW.filter(function(l){ return l.from_lat != null && l.to_lat != null; })[0];
+      if (first) select(first.id, false);
     })
     .catch(function(){
       $("mxrows").innerHTML = '<p style="color:var(--mute);padding:18px 2px">The board did not load. Refresh the page, or use the <a href="/">live list</a>.</p>';
