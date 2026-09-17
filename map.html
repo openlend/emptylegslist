@@ -93,7 +93,11 @@ p.gtip b{color:var(--navy)}
 body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
 .mx-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin:30px 0 18px}
 .mx-head h1{margin:0 0 6px}
-.mx-head .k{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
+/* Radu, 17 September: the site's --mute is #8a97a5, which is about 2.9:1 on
+   white. Dates, aircraft, seats and the filter captions were too faint to
+   read. --mx-dim is the same idea at about 5.6:1, same light weight. */
+:root{--mx-dim:#55657a}
+.mx-head .k{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mx-dim);margin:0 0 6px}
 .mx-head .lede{margin:0;font-size:16px}
 .mx-alert{display:inline-flex;align-items:center;gap:9px;flex:0 0 auto;background:#fff;border:1px solid var(--line);
   border-radius:12px;padding:11px 18px;font-size:14px;font-weight:600;color:var(--navy);text-decoration:none}
@@ -133,15 +137,15 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
   font:inherit;font-size:14px;font-weight:600;cursor:pointer}
 .mx-go:hover{background:#16304f}
 .mx-filters{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin:16px 0 0;
-  padding:16px 0 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--mute)}
+  padding:16px 0 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--mx-dim)}
 .mx-filters .mf{flex:0 0 auto;width:190px;height:44px}
 .mx-filters .mf > select{height:44px;min-height:44px}
 /* Radu's design has Region and Aircraft as a caption and a small pill, not
    two boxes the size of the search fields. */
-.mx-pill{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;font-size:13.5px;color:var(--mute)}
+.mx-pill{display:inline-flex;align-items:center;gap:8px;flex:0 0 auto;font-size:13.5px;color:var(--mx-dim)}
 /* the site puts uppercase and letter spacing on every label; this one is a
    caption in a sentence, not a field name above a box */
-.mx-pill label{text-transform:none;letter-spacing:0;font-size:13.5px;color:var(--mute)}
+.mx-pill label{text-transform:none;letter-spacing:0;font-size:13.5px;color:var(--mx-dim)}
 .mx-pill select{height:36px;margin:0;border:1px solid var(--line);border-radius:9px;background:#fff;
   font:inherit;font-size:13.5px;font-weight:600;color:var(--navy);padding:0 10px;cursor:pointer;
   max-width:190px}
@@ -164,7 +168,7 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
 .mx-list{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;min-width:0}
 .mx-lh{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:0 0 6px}
 .mx-lh h2{margin:0;font-size:22px}
-.mx-lh p{margin:4px 0 0;font-size:12.5px;color:var(--mute)}
+.mx-lh p{margin:4px 0 0;font-size:12.5px;color:var(--mx-dim)}
 .mx-lh select{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font:inherit;font-size:13px;background:#fff}
 .mx-row{display:flex;align-items:center;gap:12px;min-height:84px;padding:14px 12px;border-bottom:1px solid var(--line);
   border-left:3px solid transparent;cursor:pointer;border-radius:0 8px 8px 0}
@@ -172,9 +176,12 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
 .mx-row.on{background:#fbf8f1;border-left-color:var(--gold)}
 .mx-row .r{flex:1;min-width:0}
 .mx-row b{display:block;font-size:15.5px;color:var(--navy);font-weight:600;line-height:1.35;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  white-space:normal;overflow-wrap:anywhere}
+/* the airport code, where the operator gave one: Birmingham AL is not
+   Birmingham GB, and London is five different airports */
+.mx-row b i{font-style:normal;font-weight:600;color:var(--mx-dim);font-size:13px}
 .mx-row .p b{white-space:nowrap;overflow:visible}
-.mx-row small{display:block;font-size:12.5px;color:var(--mute);margin-top:3px;
+.mx-row small{display:block;font-size:12.5px;color:var(--mx-dim);margin-top:3px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mx-row .p small{white-space:nowrap;overflow:visible}
 .mx-row .go{display:inline-block;margin-top:7px;font-size:13px;font-weight:600;color:var(--navy);text-decoration:none}
@@ -185,6 +192,16 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
 .mx-row .p small.nomap{color:rgba(13,31,54,.38);font-style:italic;margin-top:5px}
 /* One bell per row, as in the design: it opens the alert form with that
    route already filled in. */
+/* What the map is showing, when it is not showing everything. Without it
+   the map can hold one US route while the list runs from Africa to Europe
+   and nothing says why. */
+.mx-state[hidden]{display:none!important}
+.mx-state{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  background:#fbf8f1;border:1px solid rgba(201,162,76,.32);border-radius:10px;
+  padding:9px 12px;margin:10px 0 2px;font-size:13px;color:var(--navy)}
+.mx-state button{margin:0;padding:0;border:0;background:none;font:inherit;font-size:13px;font-weight:600;
+  color:var(--navy);text-decoration:underline;cursor:pointer;flex:0 0 auto}
+.mx-state button:hover{color:#8a6d2c}
 .mx-row{position:relative}
 .mx-row .p{padding-right:40px}
 .mx-row .bell{position:absolute;top:12px;right:8px;width:30px;height:30px;border:1px solid var(--line);
@@ -193,7 +210,7 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
 .mx-row .bell:hover{border-color:var(--gold);color:var(--gold)}
 .mx-row .bell svg{width:16px;height:16px}
 .mx-page{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;
-  margin:16px 0 0;font-size:13px;color:var(--mute)}
+  margin:16px 0 0;font-size:13px;color:var(--mx-dim)}
 #mxpager{display:flex;flex-wrap:wrap;gap:6px;margin:0;min-width:0}
 #mxcount{line-height:1.5;min-width:0}
 .mx-page button{box-sizing:border-box;border:1px solid var(--line);background:#fff;border-radius:8px;
@@ -235,7 +252,7 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
   font-size:12px;line-height:1.8;padding:9px 13px;border-radius:10px;pointer-events:none}
 .maplegend i{display:inline-block;width:20px;height:0;border-top:2px solid #E8BE63;vertical-align:middle;margin-right:8px}
 .maplegend i.w{border-top:2px dashed rgba(255,255,255,.7)}
-.mx-note{font-size:12.5px;color:var(--mute);margin:10px 2px 0}
+.mx-note{font-size:12.5px;color:var(--mx-dim);margin:10px 2px 0}
 .mx-cta{display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fbf8f1;
   border:1px solid rgba(201,162,76,.28);border-radius:14px;padding:16px 20px;margin:20px 0 0}
 .mx-cta p{margin:0;display:flex;align-items:center;gap:12px;font-size:15px;color:var(--navy)}
@@ -243,10 +260,18 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
 .mx-cta a{background:var(--gold);color:#132335;border-radius:999px;padding:11px 22px;font-size:14px;
   font-weight:600;text-decoration:none;white-space:nowrap}
 .mx-cta a:hover{background:#b8912f}
-.leaflet-popup-content{font:14px/1.55 Raleway,sans-serif;color:#16222e;margin:13px 15px}
-.leaflet-popup-content b{color:#0D1F36;font-size:15px}
-.leaflet-popup-content a{color:#0D1F36;font-weight:600}
-.maphint{font-size:12.5px;color:var(--mute);margin:8px 0 0}
+/* The card the map opens: route, then the details, then a real button.
+   The default Leaflet popup is a paragraph of blue links. */
+.leaflet-popup-content{font:14px/1.55 Raleway,sans-serif;color:#16222e;margin:15px 17px}
+.mx-pop .leaflet-popup-content-wrapper{border-radius:12px;box-shadow:0 6px 24px rgba(8,19,31,.28)}
+.leaflet-popup-content b{display:block;color:#0D1F36;font-size:15.5px;line-height:1.35;margin:0 0 8px}
+.leaflet-popup-content b i{font-style:normal;font-weight:600;color:#55657a;font-size:13px}
+.mx-pop-meta{display:block;font-size:13px;line-height:1.6;color:#4b5b6e}
+.mx-pop-price{display:block;font-size:14.5px;font-weight:600;color:#0D1F36;margin:5px 0 12px}
+.mx-pop-go{display:inline-block;background:var(--navy);color:#fff;border-radius:9px;padding:9px 17px;
+  font-size:13.5px;font-weight:600;text-decoration:none}
+.mx-pop-go:hover{background:#16304f;color:#fff}
+.maphint{font-size:12.5px;color:var(--mx-dim);margin:8px 0 0}
 /* The site's form stylesheet puts text-transform:uppercase on every label.
    That is right for the small field captions above the inputs, and wrong for
    a sentence beside a checkbox, which came out as PUBLISHED PRICES ONLY over
@@ -632,8 +657,12 @@ body .wrap.mapx{max-width:1380px;padding-left:24px;padding-right:24px}
 <div class="mx-body" data-view="split">
   <section class="mx-list">
     <div class="mx-lh" data-nofloat>
-      <div><h2>Flights on the board</h2><p>Prices are for the whole aircraft.</p></div>
+      <div><h2 id="mxh2">Flights on the board</h2><p id="mxsub">Prices are for the whole aircraft.</p></div>
       <select id="mxsort" aria-label="Sort"><option value="soon">Soonest first</option><option value="cheap">Cheapest first</option><option value="late">Furthest out</option></select>
+    </div>
+    <div class="mx-state" id="mxstate" hidden>
+      <span id="mxstatet"></span>
+      <button type="button" id="mxstateoff">Show all results</button>
     </div>
     <div id="mxrows"></div>
     <div class="mx-page"><div id="mxpager"></div><span id="mxcount"></span></div>
@@ -799,6 +828,15 @@ function flightUrl(x){
     return t.getUTCDate() + " " + ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][t.getUTCMonth()];
   }
   function short(lab){ return String(lab||"").split(/\s*[(,]/)[0].trim(); }
+  /* short() cut "Birmingham, AL" down to "Birmingham", which is the other
+     Birmingham. full() keeps the qualifier and drops only the bracket. */
+  function full(lab){
+    return String(lab||"").replace(/\s*\([^)]*\)/g, "").replace(/\s+/g, " ").trim();
+  }
+  function withCode(lab, code){
+    var t = esc(full(lab));
+    return code ? t + ' <i>(' + esc(code) + ')</i>' : t;
+  }
   function citySlug(label){
     var t = " " + String(label||"").toLowerCase() + " ";
     for (var slug in CITYKEYS){
@@ -870,7 +908,7 @@ function flightUrl(x){
       lines.addLayer(line);
       [[l.from_label, l.from_lat, l.from_lon], [l.to_label, l.to_lat, l.to_lon]].forEach(function(p){
         var key = p[1].toFixed(2) + "," + p[2].toFixed(2);
-        if (!byCity[key]) byCity[key] = { lab:short(p[0]), lat:p[1], lon:p[2], n:0 };
+        if (!byCity[key]) byCity[key] = { lab:full(p[0]), lat:p[1], lon:p[2], n:0 };
         byCity[key].n++;
       });
       bounds.push([l.from_lat,l.from_lon],[l.to_lat,l.to_lon]);
@@ -902,12 +940,29 @@ function flightUrl(x){
     } else { empty.hidden = true; }
     if (bounds.length && !bboxOnly) map.fitBounds(bounds, { padding:[24,24], maxZoom:6 });
   }
+  /* "689 matching flights", then the filters in words underneath. */
+  var DAYWORD = { "3":"Next 3 days", "7":"Next 7 days", "14":"Next 14 days", "30":"Next 30 days", "":"Any date" };
+  function heading(){
+    var n = VIEW.length;
+    $("mxh2").textContent = n.toLocaleString("en-GB") + (n === 1 ? " matching flight" : " matching flights");
+    var bits = [ DAYWORD[f.days] != null ? DAYWORD[f.days] : "Any date" ];
+    bits.push(f.reg === "__rest" ? "Rest of world" : (f.reg || "All regions"));
+    if (f.from) bits.push("From " + f.from);
+    if (f.to) bits.push("To " + f.to);
+    if (f.pax) bits.push(f.pax + " seats or more");
+    if (f.ac) bits.push(f.ac);
+    if (f.priced) bits.push("Published prices only");
+    $("mxsub").textContent = bits.join(" · ");
+    var bar = $("mxstate"), t = $("mxstatet");
+    if (sel) t.textContent = "Showing the selected flight on the map.";
+    else if (bboxOnly) t.textContent = "Showing flights in the map area.";
+    bar.hidden = !(sel || bboxOnly);
+  }
   function note(placed, drawn){
     var n = VIEW.length, out = [];
     if (sel){
       var l = byId(sel);
-      return (l && l.from_lat != null)
-        ? "Showing one flight. Click it again, or change a filter, to see them all."
+      return (l && l.from_lat != null) ? ""
         : "That listing has no map location, so there is nothing to draw. Everything about it is in the list.";
     }
     if (n - placed > 0) out.push((n - placed) + " of these have no map location. They are still in the list.");
@@ -921,7 +976,8 @@ function flightUrl(x){
     $("mxrows").innerHTML = rows.map(function(l){
       var m = money(l.price_note);
       return '<div class="mx-row' + (l.id===sel ? ' on' : '') + '" data-id="' + esc(l.id) + '">'
-        + '<div class="r"><b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b>'
+        + '<div class="r"><b>' + withCode(l.from_label, l.from_iata)
+        + ' &rarr; ' + withCode(l.to_label, l.to_iata) + '</b>'
         + '<small>' + esc(fmtDate(l.departure_date))
         + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
         + (l.seats ? ' &middot; ' + l.seats + ' seats' : '')
@@ -944,8 +1000,18 @@ function flightUrl(x){
     $("mxpager").innerHTML = pages > 1 ? out : "";
     $("mxcount").textContent = VIEW.length.toLocaleString("en-GB") + " of "
       + ALL.length.toLocaleString("en-GB") + " on the board";
+    heading();   /* every path that redraws the list comes through here */
   }
 
+  /* Padding on fitBounds only guesses at how tall the card is, and the card
+     grows when a route name runs to two lines. Measure it instead, and pan
+     until it clears the top of the map and the Search this area button. */
+  function clearCard(){
+    var el = document.querySelector(".mx-pop"); if (!el) return;
+    var mr = map.getContainer().getBoundingClientRect(), pr = el.getBoundingClientRect();
+    var need = (mr.top + 64) - pr.top;
+    if (need > 0) map.panBy([0, -need], { animate:false });
+  }
   function select(id, fromList){
     map.closePopup();
     sel = (sel === id) ? null : id;      /* click it again to go back to all */
@@ -959,15 +1025,25 @@ function flightUrl(x){
        extra top padding is the room the card needs. */
     var top = (l.from_lat >= l.to_lat) ? [l.from_lat, l.from_lon] : [l.to_lat, l.to_lon];
     map.fitBounds([[l.from_lat,l.from_lon],[l.to_lat,l.to_lon]],
-      { paddingTopLeft:[120,240], paddingBottomRight:[120,90], maxZoom:4, animate:false });
-    L.popup({ closeButton:true, offset:[0,-16], autoPan:true, autoPanPadding:[70,70] })
+      { paddingTopLeft:[120,200], paddingBottomRight:[120,80], maxZoom:4, animate:false });
+    L.popup({ closeButton:true, offset:[0,-16], autoPan:true, autoPanPadding:[70,70],
+      className:"mx-pop", maxWidth:300 })
       .setLatLng(top)
-      .setContent('<b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b><br>'
-        + esc(fmtDate(l.departure_date)) + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
-        + (l.seats ? ' &middot; ' + l.seats + ' seats' : '')
-        + '<br>' + esc(fmtPrice(l.price_note)) + (l.price_note ? ' &middot; whole aircraft' : '')
-        + '<br><a href="/flight?id=' + encodeURIComponent(l.id) + '">View flight &rarr;</a>')
+      .setContent('<b>' + withCode(l.from_label, l.from_iata)
+        + ' &rarr; ' + withCode(l.to_label, l.to_iata) + '</b>'
+        + '<span class="mx-pop-meta">' + esc(fmtDate(l.departure_date))
+        + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
+        + (l.seats ? ' &middot; ' + l.seats + ' seats' : '') + '</span>'
+        + '<span class="mx-pop-price">' + esc(fmtPrice(l.price_note))
+        + (l.price_note ? ' &middot; whole aircraft' : '') + '</span>'
+        + '<a class="mx-pop-go" href="/flight?id=' + encodeURIComponent(l.id) + '">View flight &rarr;</a>')
       .openOn(map);
+    /* Padding on fitBounds only guesses at how tall the card is, and the card
+       grows when a route name runs to two lines. Measure it instead, and pan
+       until it clears the top of the map and the Search this area button. */
+    setTimeout(clearCard, 0);
+    setTimeout(clearCard, 400);   /* the first selection happens before the
+                                     sticky column has settled, so check twice */
   }
   function byId(id){ for (var i=0;i<ALL.length;i++) if (ALL[i].id===id) return ALL[i]; return null; }
 
@@ -1030,6 +1106,9 @@ function flightUrl(x){
   map.on("moveend", function(){ if (ALL.length) $("mxarea").hidden = false; });
   $("mxarea").addEventListener("click", function(){
     bboxOnly = map.getBounds(); this.hidden = true; apply();
+  });
+  $("mxstateoff").addEventListener("click", function(){
+    bboxOnly = null; $("mxarea").hidden = true; apply();   /* apply clears the selection */
   });
 
   /* ---------- load ------------------------------------------------------ */
