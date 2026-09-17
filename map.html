@@ -89,7 +89,7 @@ p.gtip b{color:var(--navy)}
 .pill.live{background:#e3f4ea;color:#1c7a4a}.pill.gone{background:#f6e6e4;color:#b3261e}.pill.soon{background:#fff3d6;color:#7a5a00}
 @media(max-width:760px){.gstats{grid-template-columns:repeat(2,1fr)}table.gtab{font-size:13.5px}table.gtab td,table.gtab th{padding:10px 8px}}
 
-.wrap.mapx{max-width:1240px}
+body .wrap.mapx{max-width:1240px;padding-left:28px;padding-right:28px}
 .mx-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin:30px 0 18px}
 .mx-head h1{margin:0 0 6px}
 .mx-head .k{font-size:12.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:0 0 6px}
@@ -146,18 +146,21 @@ p.gtip b{color:var(--navy)}
 .mx-row .p{flex:0 0 auto;text-align:right}
 .mx-row .p b{font-size:15.5px}
 .mx-row .p small{margin-top:2px}
-.mx-page{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0;font-size:13px;color:var(--mute)}
-.mx-page button{border:1px solid var(--line);background:#fff;border-radius:8px;min-width:34px;height:34px;
-  font:inherit;font-size:13px;color:var(--navy);cursor:pointer;margin-right:5px}
+.mx-page{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0;font-size:13px;color:var(--mute);flex-wrap:nowrap}
+#mxpager{display:flex;gap:5px;flex:0 0 auto}
+#mxcount{text-align:right;line-height:1.4}
+.mx-page button{border:1px solid var(--line);background:#fff;border-radius:8px;min-width:32px;height:32px;
+  font:inherit;font-size:13px;color:var(--navy);cursor:pointer;margin:0;flex:0 0 auto}
 .mx-page button.on{background:var(--navy);border-color:var(--navy);color:#fff}
 
-.mx-mapwrap{position:relative;min-width:0}
+.mx-mapwrap{position:relative;min-width:0;position:sticky;top:14px}
 #elmap{width:100%;height:min(74vh,700px);border-radius:14px;background:#0b1b2b}
 .mx-mapwrap.full{position:fixed;inset:0;z-index:9000;background:#0b1b2b;padding:10px}
 .mx-mapwrap.full #elmap{height:100%;border-radius:10px}
 .mx-area,.mx-full{position:absolute;z-index:500;background:#fff;border:1px solid var(--line);border-radius:10px;
   font:inherit;font-size:13.5px;font-weight:600;color:var(--navy);cursor:pointer;box-shadow:0 2px 10px rgba(8,19,31,.25)}
 .mx-area{top:14px;left:50%;transform:translateX(-50%);padding:9px 16px;display:inline-flex;align-items:center;gap:8px}
+.mx-back{top:14px;left:58px;padding:9px 16px}
 .mx-full{top:110px;right:14px;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center}
 .maplegend{position:absolute;left:14px;bottom:14px;z-index:500;background:rgba(13,31,54,.86);color:#e8edf3;
   font-size:12px;line-height:1.8;padding:9px 13px;border-radius:10px;pointer-events:none}
@@ -575,6 +578,7 @@ p.gtip b{color:var(--navy)}
   <div class="mx-mapwrap" id="mxmapwrap">
     <div id="elmap"></div>
     <button class="mx-area" id="mxarea" type="button" hidden><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6.4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg> Search this area</button>
+    <button class="mx-back" id="mxback" type="button" hidden>&larr; Back to all flights</button>
     <button class="mx-full" id="mxfull" type="button" aria-label="Full screen"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 3.5h-5v5M15.5 3.5h5v5M20.5 15.5v5h-5M3.5 15.5v5h5"/></svg></button>
     <div class="maplegend"><i></i>Published price<br><i class="w"></i>Price on enquiry</div>
     <label class="mx-all"><span>Show every route</span><input type="checkbox" id="mxall"></label>
@@ -734,6 +738,9 @@ function flightUrl(x){
   function drawMap(){
     lines.clearLayers(); dots.clearLayers();
     var placed = VIEW.filter(function(l){ return l.from_lat != null && l.to_lat != null; });
+    /* Radu, 17 September: clicking a flight should show that flight, not leave
+       it to be found among seven hundred others. */
+    if (sel) placed = placed.filter(function(l){ return l.id === sel; });
     var use = (f.all || placed.length <= CAP) ? placed : placed.slice(0, CAP);
     var byCity = {}, bounds = [];
     use.forEach(function(l){
@@ -766,6 +773,12 @@ function flightUrl(x){
   }
   function note(placed, drawn){
     var n = VIEW.length, out = [];
+    if (sel){
+      var l = byId(sel);
+      return (l && l.from_lat != null)
+        ? "Showing one flight. Back to all flights puts the rest back."
+        : "That listing has no map location, so there is nothing to draw. Everything about it is in the list.";
+    }
     if (n - placed > 0) out.push((n - placed) + " of these have no map location. They are still in the list.");
     if (drawn < placed) out.push("Showing the first " + drawn + " routes; tick Show every route for all " + placed + ".");
     return out.join(" ");
@@ -795,29 +808,26 @@ function flightUrl(x){
       + ALL.length.toLocaleString("en-GB") + " on the board";
   }
 
-  function select(id, scroll){
-    sel = id; drawList();
-    lines.eachLayer(function(ln){
-      var on = ln._legId === id;
-      ln.setStyle({ weight: on ? 3.4 : (ln.options.dashArray ? 1.2 : 2),
-                    opacity: on ? 1 : (ln.options.dashArray ? 0.42 : 0.95),
-                    color: on ? "#E8BE63" : ln.options.color });
-      if (on){ ln.bringToFront(); var l = byId(id);
-        if (l) L.popup({ closeButton:true })
-          .setLatLng([(l.from_lat+l.to_lat)/2, (l.from_lon+l.to_lon)/2])
-          .setContent('<b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b><br>'
-            + esc(fmtDate(l.departure_date)) + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
-            + '<br>' + esc(fmtPrice(l.price_note)) + (l.price_note ? ' &middot; whole aircraft' : '')
-            + '<br><a href="/flight?id=' + encodeURIComponent(l.id) + '">View flight &rarr;</a>')
-          .openOn(map);
-      }
-    });
-    if (scroll){ var l = byId(id); if (l && l.from_lat != null)
-      map.panTo([(l.from_lat+l.to_lat)/2, (l.from_lon+l.to_lon)/2]); }
+  function select(id, fromList){
+    sel = (sel === id) ? null : id;      /* click it again to go back to all */
+    drawList(); drawMap();
+    $("mxback").hidden = !sel;
+    var l = sel ? byId(sel) : null;
+    if (!l || l.from_lat == null) return;
+    map.fitBounds([[l.from_lat,l.from_lon],[l.to_lat,l.to_lon]], { padding:[60,60], maxZoom:7 });
+    L.popup({ closeButton:true })
+      .setLatLng([(l.from_lat+l.to_lat)/2, (l.from_lon+l.to_lon)/2])
+      .setContent('<b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b><br>'
+        + esc(fmtDate(l.departure_date)) + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
+        + (l.seats ? ' &middot; ' + l.seats + ' seats' : '')
+        + '<br>' + esc(fmtPrice(l.price_note)) + (l.price_note ? ' &middot; whole aircraft' : '')
+        + '<br><a href="/flight?id=' + encodeURIComponent(l.id) + '">View flight &rarr;</a>')
+      .openOn(map);
   }
   function byId(id){ for (var i=0;i<ALL.length;i++) if (ALL[i].id===id) return ALL[i]; return null; }
 
   function apply(resetPage){
+    sel = null; $("mxback").hidden = true;
     VIEW = ALL.filter(matches); sortView();
     if (resetPage !== false) page = 0;
     drawList(); drawMap();
@@ -877,6 +887,7 @@ function flightUrl(x){
   $("mxarea").addEventListener("click", function(){
     bboxOnly = map.getBounds(); this.hidden = true; apply();
   });
+  $("mxback").addEventListener("click", function(){ if (sel) select(sel, false); });
 
   /* ---------- load ------------------------------------------------------ */
   apiAll("leg_geo?select=id,from_label,to_label,from_lat,from_lon,to_lat,to_lon,departure_date,aircraft_type,seats,price_note,region&order=departure_date,id")
