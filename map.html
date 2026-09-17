@@ -852,8 +852,8 @@ function flightUrl(x){
     drawList(); drawMap();
     var l = sel ? byId(sel) : null;
     if (!l || l.from_lat == null || l.to_lat == null) return;
-    map.fitBounds([[l.from_lat,l.from_lon],[l.to_lat,l.to_lon]], { padding:[90,90], maxZoom:5 });
-    L.popup({ closeButton:true })
+    map.fitBounds([[l.from_lat,l.from_lon],[l.to_lat,l.to_lon]], { padding:[120,120], maxZoom:4 });
+    L.popup({ closeButton:true, offset:[0,-14], autoPan:true, autoPanPadding:[70,70] })
       .setLatLng([(l.from_lat+l.to_lat)/2, (l.from_lon+l.to_lon)/2])
       .setContent('<b>' + esc(short(l.from_label)) + ' &rarr; ' + esc(short(l.to_label)) + '</b><br>'
         + esc(fmtDate(l.departure_date)) + (l.aircraft_type ? ' &middot; ' + esc(l.aircraft_type) : '')
