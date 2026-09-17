@@ -76,7 +76,8 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 .gcrumb a:hover{color:var(--navy)}
 .gcrumb span{color:var(--navy)}
 
-.ghead{display:grid;grid-template-columns:1.06fr 1fr;gap:44px;align-items:start;margin:0 0 30px}
+.ghead{display:grid;grid-template-columns:1.06fr 1fr;gap:44px;align-items:start;margin:0 0 18px}
+.ghead .upd{margin-bottom:0}
 .ghead h1{margin:0 0 14px;font-size:clamp(30px,3.6vw,46px);line-height:1.1}
 .ghead .lede{font-size:17px;line-height:1.6;color:#46525f;margin:0}
 .ghero{margin:0;padding:0}
@@ -86,7 +87,7 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 /* the figure strip */
 .gstrip{display:grid;grid-template-columns:auto repeat(4,1fr);gap:0 26px;align-items:center;
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:0 0 34px}
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:0 0 30px}
 .gstrip .gs-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);
   padding-right:26px;border-right:1px solid var(--line);max-width:150px;line-height:1.5}
 .gs-n b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;
@@ -98,7 +99,14 @@ footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 
 /* body and rail */
 .gbody{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:54px;align-items:start}
-.gart{min-width:0;max-width:720px}
+.gart{min-width:0;max-width:760px;font-size:17px;line-height:1.78}
+.gart p{font-size:17px;line-height:1.78;margin:0 0 18px}
+.gart h2 span{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(24px,2.3vw,30px);line-height:1.25}
+.gart h2{margin:38px 0 14px}
+.gcall{background:#fbf8f1;border-left:3px solid var(--gold,#C9A24C);border-radius:0 14px 14px 0;
+  padding:4px 26px 10px;margin:0 0 30px}
+.gcall h2{margin-top:22px}
+.gcall p:last-child{margin-bottom:8px}
 .gart h2{display:flex;gap:14px;align-items:baseline;scroll-margin-top:110px}
 .gart h2 i{flex:0 0 auto;font-style:normal;width:28px;height:28px;border-radius:999px;
   background:rgba(201,162,76,.16);color:#8a6d2c;font-size:13.5px;font-weight:600;
@@ -137,12 +145,18 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 .gq[open] summary::after{transform:rotate(45deg)}
 .gq p{margin:0 0 16px;font-size:14.5px}
 
-.gmore{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 0}
-.gmore a{display:block;background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
-.gmore a:hover{box-shadow:0 6px 20px rgba(14,35,56,.14)}
-.gmore b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:18px;color:var(--navy);margin-bottom:4px}
-.gmore span{font-size:13.5px;color:#46525f}
-@media(max-width:640px){.gmore{grid-template-columns:1fr}}
+.gmore{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:10px 0 0;
+  border-top:1px solid var(--line)}
+.gmore a{display:block;padding:18px 20px 18px 0;color:inherit;text-decoration:none;
+  border-right:1px solid var(--line)}
+.gmore a:nth-child(3n){border-right:0}
+.gmore a:nth-child(n+2){padding-left:20px}
+.gmore a:hover b{color:#8a6d2c}
+.gmore b{display:block;font-size:15px;font-weight:600;color:var(--navy);margin-bottom:4px;line-height:1.4}
+.gmore b::after{content:" 92";color:var(--gold,#C9A24C)}
+.gmore span{display:none}
+@media(max-width:760px){.gmore{grid-template-columns:1fr}
+  .gmore a{border-right:0;border-bottom:1px solid var(--line);padding-left:0}}
 /* the index */
 .gidx{display:grid;gap:16px;margin:8px 0 0}
 .gidx a{display:grid;grid-template-columns:280px 1fr;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
@@ -461,16 +475,18 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 <div class="ghead"><div class="ghead-t">
 <h1>Deadhead flights, and how to find one</h1>
 <p class="lede">If you have searched for deadhead flights and landed on pages about empty legs, you were not sent to the wrong place. They are the same flight. Deadhead is the older word and the one American crews use; empty leg is what the operators write on their websites. This page explains the term and then does the useful thing, which is point you at the deadheads on our board right now.</p>
-<div class="gby"><img src="/brand/sig/radu.jpg" width="52" height="52" alt="Radu Balas" loading="lazy" decoding="async"><div><div class="n">By <a href="https://emptylegslist.com/authors/radu-balas" rel="author">Radu Balas</a><a class="li" href="https://www.linkedin.com/in/radubalas/" rel="me nofollow noopener" target="_blank" aria-label="Radu Balas on LinkedIn" title="Radu Balas on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></div><div class="r">More than a decade in aviation. Founder of Empty Leg List and of The Flying Engineer, an aviation directory of more than 3,000 companies across 56 countries.</div></div></div>
+<div class="gby"><img src="/brand/sig/radu.jpg" width="46" height="46" alt="Radu Balas" loading="lazy" decoding="async"><div><div class="n"><a href="https://emptylegslist.com/authors/radu-balas" rel="author">Radu Balas</a><a class="li" href="https://www.linkedin.com/in/radubalas/" rel="me nofollow noopener" target="_blank" aria-label="Radu Balas on LinkedIn" title="Radu Balas on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></div><div class="r">Founder, Empty Leg List</div></div></div>
 <p class="upd">Updated <time datetime="2026-09-17">17 September 2026</time>. The figures in this guide are read from the live board as this page loads, so they are never a snapshot of an older week.</p>
 </div>
 <figure class="ghero"><img src="/brand/guides/empty-leg-jet-cabin-seats.jpg" width="1600" height="900" alt="Cabin windows along the fuselage of a business jet waiting on stand" loading="eager" fetchpriority="high"><figcaption>Cabin windows along the fuselage of a business jet waiting on stand</figcaption></figure>
 </div>
 <div class="gstrip"><div class="gs-lab">The board, right now</div><div class="gs-n"><b data-el="legs">2,119</b><span>Empty legs on the board</span><i>Upcoming, every operator we read</i></div><div class="gs-n"><b data-el="routes">1,608</b><span>Distinct routes</span><i>Departure and arrival pairs</i></div><div class="gs-n"><b data-el="cities">469</b><span>Cities on the board</span><i>Anywhere a leg departs or lands</i></div><div class="gs-n"><b data-el="seat_eur_median">756</b><span>Median per seat, EUR</span><i>Whole aircraft price divided by its seats</i></div></div>
 <div class="gbody"><article class="gart">
+<div class="gcall">
 <h2 id="what-a-deadhead-flight-is"><i>1</i><span>What a deadhead flight is</span></h2>
 <p>In aviation, to deadhead is to move without paying passengers. An airline crew member deadheads when they fly as a passenger to reach the aircraft they will work. A charter aircraft deadheads when it flies a sector with nobody in the cabin: out to collect a client, home after dropping one off, or across to a base where the next booking starts. The operator has already committed to that flight. The fuel, the crew and the landing fees are spent whether the cabin is full or not.</p>
 <p>Charter operators call that sector an empty leg, a positioning flight or a repositioning flight. Brokers in the United States often say deadhead. Same aircraft, same date, same empty cabin. When an operator publishes it for sale, at a price below what the same sector would cost as a fresh charter, it is what this whole site lists.</p>
+</div>
 <h2 id="why-deadhead-flights-exist-at-all"><i>2</i><span>Why deadhead flights exist at all</span></h2>
 <p>Private jets do not run on a schedule. They go where the client wants and then they have to get back, or get to the next client. Unless the next booking starts exactly where the last one ended, there is a gap, and the aircraft flies that gap empty. A busy operator with a dozen aircraft produces gaps every day.</p>
 <p>We log a few thousand of these a month. In the thirty days to early September 2026 it was 3,052 new legs, all published by the operators that fly them. Our board holds around 1,100 upcoming deadheads at any moment, from a nine seat Citation between Toulon and Nancy to a Falcon 8X across the Atlantic.</p>

@@ -62,20 +62,101 @@ footer a{color:rgba(255,255,255,.85);text-decoration:none}
 footer .nav{display:flex;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:640px){.wrap{padding:0 16px 60px}}
 
-/* --- guides, guides.py --- */
 .wrap{max-width:860px}
+/* --- guides, guides.py ---------------------------------------------------
+   17 September 2026. The guides were a single 860px column of prose with a
+   picture at the top. Radu sent a layout with a two part masthead, a strip of
+   live figures under it, numbered sections and a contents rail that follows
+   you down the page. This is that, in our own Playfair and Raleway rather
+   than the mockup's faces, and with every figure in the strip read from the
+   board by live-figures.js rather than typed in.                          */
+.gwide{max-width:1180px;margin:0 auto;padding:0 28px}
+.gcrumb{font-size:12.5px;color:var(--mute);margin:26px 0 14px}
+.gcrumb a{color:var(--mute);text-decoration:none;border-bottom:1px solid var(--line)}
+.gcrumb a:hover{color:var(--navy)}
+.gcrumb span{color:var(--navy)}
+
+.ghead{display:grid;grid-template-columns:1.06fr 1fr;gap:44px;align-items:start;margin:0 0 18px}
+.ghead .upd{margin-bottom:0}
+.ghead h1{margin:0 0 14px;font-size:clamp(30px,3.6vw,46px);line-height:1.1}
+.ghead .lede{font-size:17px;line-height:1.6;color:#46525f;margin:0}
+.ghero{margin:0;padding:0}
+.ghero img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
+.ghero figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+@media(max-width:860px){.ghead{grid-template-columns:1fr;gap:22px}}
+
+/* the figure strip */
+.gstrip{display:grid;grid-template-columns:auto repeat(4,1fr);gap:0 26px;align-items:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;margin:0 0 30px}
+.gstrip .gs-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);
+  padding-right:26px;border-right:1px solid var(--line);max-width:150px;line-height:1.5}
+.gs-n b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;
+  font-size:clamp(24px,2.5vw,32px);color:var(--navy);line-height:1.15}
+.gs-n>span{display:block;font-size:13px;color:#46525f;margin-top:5px}
+.gs-n>i{display:block;font-style:normal;font-size:11.5px;color:var(--mute);margin-top:2px}
+@media(max-width:860px){.gstrip{grid-template-columns:1fr 1fr;gap:18px 26px}
+  .gstrip .gs-lab{grid-column:1/-1;border-right:0;padding:0;max-width:none}}
+
+/* body and rail */
+.gbody{display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:54px;align-items:start}
+.gart{min-width:0;max-width:760px;font-size:17px;line-height:1.78}
+.gart p{font-size:17px;line-height:1.78;margin:0 0 18px}
+.gart h2 span{font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:clamp(24px,2.3vw,30px);line-height:1.25}
+.gart h2{margin:38px 0 14px}
+.gcall{background:#fbf8f1;border-left:3px solid var(--gold,#C9A24C);border-radius:0 14px 14px 0;
+  padding:4px 26px 10px;margin:0 0 30px}
+.gcall h2{margin-top:22px}
+.gcall p:last-child{margin-bottom:8px}
+.gart h2{display:flex;gap:14px;align-items:baseline;scroll-margin-top:110px}
+.gart h2 i{flex:0 0 auto;font-style:normal;width:28px;height:28px;border-radius:999px;
+  background:rgba(201,162,76,.16);color:#8a6d2c;font-size:13.5px;font-weight:600;
+  display:inline-flex;align-items:center;justify-content:center;transform:translateY(-2px)}
+.grail{position:sticky;top:96px;font-size:13.5px}
+.gr-lab{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+.gtoc{display:flex;flex-direction:column;gap:2px;border-left:2px solid var(--line);margin:0 0 24px}
+.gtoc a{padding:6px 0 6px 14px;margin-left:-2px;border-left:2px solid transparent;
+  color:#46525f;text-decoration:none;line-height:1.4}
+.gtoc a:hover{color:var(--navy)}
+.gtoc a.on{color:var(--navy);font-weight:600;border-left-color:var(--gold,#C9A24C)}
+.gcta{background:#fbf8f1;border:1px solid rgba(201,162,76,.28);border-radius:14px;padding:18px}
+.gcta b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:18px;
+  color:var(--navy);margin-bottom:5px}
+.gcta p{margin:0 0 12px;font-size:13px;color:#46525f;line-height:1.5}
+.gcta a{display:block;text-align:center;background:var(--navy);color:#fff;text-decoration:none;
+  border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:600}
+.gcta a:hover{background:#16304f}
+@media(max-width:1000px){.gbody{grid-template-columns:1fr;gap:0}
+  .grail{position:static;margin:30px 0 0;max-width:720px}
+  .gtoc{display:grid;grid-template-columns:1fr 1fr;border-left:0;padding-left:0}
+  .gtoc a{padding-left:0;border-left:0}}
+
 figure.gfig{margin:26px 0;padding:0}
 figure.gfig img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 1px 3px rgba(14,35,56,.09)}
 figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
-.gfaq{background:#fff;border-radius:14px;padding:6px 22px 8px;box-shadow:0 1px 3px rgba(14,35,56,.07)}
-.gfaq h3{font-size:15.5px;font-weight:600;margin:18px 0 4px;color:var(--navy)}
-.gfaq p{margin:0 0 14px}
-.gmore{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 0}
-.gmore a{display:block;background:#fff;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
-.gmore a:hover{box-shadow:0 6px 20px rgba(14,35,56,.14)}
-.gmore b{display:block;font-family:"Playfair Display",Georgia,serif;font-weight:400;font-size:18px;color:var(--navy);margin-bottom:4px}
-.gmore span{font-size:13.5px;color:#46525f}
-@media(max-width:640px){.gmore{grid-template-columns:1fr}}
+
+/* questions, an accordion so the list is scannable */
+.gfaq{margin:10px 0 0}
+.gq{border-bottom:1px solid var(--line);background:none}
+.gq summary{cursor:pointer;list-style:none;padding:15px 34px 15px 0;position:relative;
+  font-size:15.5px;font-weight:600;color:var(--navy);line-height:1.45}
+.gq summary::-webkit-details-marker{display:none}
+.gq summary::after{content:"+";position:absolute;right:6px;top:13px;font-size:20px;font-weight:400;
+  color:var(--gold,#C9A24C);transition:transform .15s ease;transform-origin:50% 55%}
+.gq[open] summary::after{transform:rotate(45deg)}
+.gq p{margin:0 0 16px;font-size:14.5px}
+
+.gmore{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:10px 0 0;
+  border-top:1px solid var(--line)}
+.gmore a{display:block;padding:18px 20px 18px 0;color:inherit;text-decoration:none;
+  border-right:1px solid var(--line)}
+.gmore a:nth-child(3n){border-right:0}
+.gmore a:nth-child(n+2){padding-left:20px}
+.gmore a:hover b{color:#8a6d2c}
+.gmore b{display:block;font-size:15px;font-weight:600;color:var(--navy);margin-bottom:4px;line-height:1.4}
+.gmore b::after{content:" 92";color:var(--gold,#C9A24C)}
+.gmore span{display:none}
+@media(max-width:760px){.gmore{grid-template-columns:1fr}
+  .gmore a{border-right:0;border-bottom:1px solid var(--line);padding-left:0}}
 /* the index */
 .gidx{display:grid;gap:16px;margin:8px 0 0}
 .gidx a{display:grid;grid-template-columns:280px 1fr;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(14,35,56,.07);color:inherit;text-decoration:none}
@@ -89,6 +170,9 @@ figure.gfig figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
 
 /* author byline, from authorbits.py, added 16 September 2026 */
 .gby{display:flex;align-items:center;gap:14px;margin:18px 0 8px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.gby img{width:52px;height:52px;border-radius:999px;object-fit:cover;flex:0 0 auto;background:#eef2f7}.gby .n{font-size:14.5px;font-weight:600;color:var(--navy);line-height:1.35}.gby .n a{text-decoration:none;border-bottom:1px solid var(--line)}.gby .r{font-size:12.8px;color:var(--mute);line-height:1.5;margin-top:2px}
+.gby .n a.li{display:inline-flex;align-items:center;vertical-align:-3px;margin-left:7px;border:0;color:#0a66c2;opacity:.9}
+.gby .n a.li:hover{opacity:1}
+.gby .n a.li svg{width:15px;height:15px;fill:currentColor}
 
 /* author page, authorpage.py */
 .aupic{display:flex;gap:22px;align-items:flex-start;margin:22px 0 10px;flex-wrap:wrap}.aupic img{width:150px;height:150px;border-radius:14px;object-fit:cover;background:#eef2f7;flex:0 0 auto}.aupic p{margin:0 0 8px}
