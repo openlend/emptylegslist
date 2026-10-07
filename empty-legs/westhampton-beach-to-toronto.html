@@ -591,7 +591,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   </table>
 <script>
 (function(){
-  var MODE = "route", A = ["westhampton", "gabreski", "fok"], B = ["toronto", "pearson"], FROM = "Westhampton Beach", TO = "Toronto", NAME = "";
+  var MODE = "route", A = ["westhampton", "gabreski", "fok"], B = ["toronto", "mississauga", "pearson"], FROM = "Westhampton Beach", TO = "Toronto", NAME = "";
   var BASE = "https://wscowiseslaovmmfuzyv.supabase.co", KEY = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
   var SEL = "id,from_label,to_label,from_city,to_city,departure_date,aircraft_type,seats,price_note,is_live,first_seen_at,est_flight_time";
   var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -732,7 +732,7 @@ table.dbt td.lead{font-weight:500;color:#0D1F36}
   var box = document.getElementById("db"); if (!box) return;
   if (box.hidden){ if (!/[?&#]data\b/.test(location.search + location.hash)) return;
     ["db","dbh","dbp"].forEach(function(id){ var e = document.getElementById(id); if (e) e.hidden = false; }); }
-  var MODE = "route", A = ["westhampton", "gabreski", "fok"], B = ["toronto", "pearson"], FILT = "", CODES = [];
+  var MODE = "route", A = ["westhampton", "gabreski", "fok"], B = ["toronto", "mississauga", "pearson"], FILT = "", CODES = [];
   var BASE = "https://wscowiseslaovmmfuzyv.supabase.co", KEY = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
   var SEL = "id,from_label,to_label,from_city,to_city,from_country,to_country,departure_date,price_note,is_live,last_seen_at";
   var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -967,7 +967,7 @@ table.dbt td.lead{font-weight:500;color:#0D1F36}
 (function(){
 var BASE="https://wscowiseslaovmmfuzyv.supabase.co";
 var KEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
-var FROMK=["westhampton", "gabreski", "fok"], TOK=["toronto", "pearson"];
+var FROMK=["westhampton", "gabreski", "fok"], TOK=["toronto", "mississauga", "pearson"];
 var FROMC="Westhampton Beach", TOC="Toronto";
 var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function esc(s){var d=document.createElement("div");d.textContent=(s==null?"":String(s));return d.innerHTML;}

@@ -715,6 +715,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/chicago-to-minneapolis</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/chicago-to-naples</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/cleveland-to-nantucket</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
@@ -965,6 +977,12 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/jacksonville-to-miami</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/johannesburg-to-cape-town</loc>
@@ -1375,8 +1393,20 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/naples-to-chicago</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/naples-to-dallas</loc>
     <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/naples-to-miami</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1639,6 +1669,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/scottsdale-to-san-diego</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/scottsdale-to-santa-ana</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
@@ -1717,6 +1753,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://emptylegslist.com/empty-legs/teterboro-to-charleston</loc>
+    <lastmod>2026-10-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://emptylegslist.com/empty-legs/teterboro-to-chicago</loc>
     <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
@@ -1731,6 +1773,12 @@
   <url>
     <loc>https://emptylegslist.com/empty-legs/teterboro-to-columbus</loc>
     <lastmod>2026-10-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/teterboro-to-pittsburgh</loc>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -1769,6 +1817,12 @@
     <lastmod>2026-09-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/toronto-to-miami</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/toronto-to-montreal</loc>
@@ -1835,6 +1889,12 @@
     <lastmod>2026-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://emptylegslist.com/empty-legs/tucson-to-las-vegas</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://emptylegslist.com/empty-legs/van-nuys-to-las-vegas</loc>

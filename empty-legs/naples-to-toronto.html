@@ -202,6 +202,25 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 .mapinner iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .mapnote{font-size:12.5px;color:var(--mute);margin:8px 2px 0}
 
+/* --- route city pair, routepair.py --- */
+.rpair{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#fff}
+.rpair a{position:relative;isolation:isolate;display:block;text-decoration:none;
+  min-height:min(26vw,240px);overflow:hidden}
+.rpair img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 45%;transition:transform .5s ease}
+.rpair a:hover img,.rpair a:focus-visible img{transform:scale(1.04)}
+.rpair .rp-veil{position:absolute;inset:0;background:linear-gradient(180deg,
+  rgba(9,22,40,.10) 0%,rgba(9,22,40,.42) 58%,rgba(9,22,40,.86) 100%)}
+.rpair .rp-txt{position:relative;z-index:1;height:100%;display:flex;
+  flex-direction:column;justify-content:flex-end;padding:18px 20px}
+.rpair .rp-k{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;
+  font-size:11px;font-weight:600;margin-bottom:5px}
+.rpair .rp-h{color:#fff;font-family:"Playfair Display",Georgia,serif;
+  font-weight:400;font-size:clamp(19px,2.6vw,27px);line-height:1.12}
+@media(max-width:640px){
+  .rpair a{min-height:150px}
+  .rpair .rp-txt{padding:13px 14px}
+}
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
 #bigfoot *{box-sizing:border-box}   /* index.html is content-box, which made its footer column 56px wider than everywhere else */
@@ -537,6 +556,21 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <img src="/brand/heroes/toronto-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="Toronto, the arrival city on the Naples to Toronto empty leg route">
   <div class="rin"><div class="rk">Empty legs, Naples to Toronto</div></div>
 </section>
+
+<!-- route city pair, routepair.py -->
+<section class="rpair">
+  <a href="/empty-legs/naples">
+    <img src="/brand/heroes/naples-empty-legs-private-jet.jpg" width="2400" height="1040" loading="lazy" decoding="async" alt="Naples, the departure city on the Naples to Toronto empty leg route">
+    <span class="rp-veil"></span>
+    <span class="rp-txt"><span class="rp-k">Departure</span><span class="rp-h">Naples</span></span>
+  </a>
+  <a href="/empty-legs/toronto">
+    <img src="/brand/heroes/toronto-empty-legs-private-jet.jpg" width="2400" height="1040" loading="lazy" decoding="async" alt="Toronto, the arrival city on the Naples to Toronto empty leg route">
+    <span class="rp-veil"></span>
+    <span class="rp-txt"><span class="rp-k">Arrival</span><span class="rp-h">Toronto</span></span>
+  </a>
+</section>
+<!-- /route city pair -->
 <div class="wrap">
 <h1>Empty legs from Naples to Toronto</h1>
 <p class="lede">One way empty legs between Naples in Florida and Toronto, exactly as the operators list them. The operator confirms availability and the price with you directly.</p>
@@ -593,7 +627,7 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   </table>
 <script>
 (function(){
-  var MODE = "route", A = ["naples", "apf"], B = ["toronto", "pearson", "yyz"], FROM = "Naples", TO = "Toronto", NAME = "";
+  var MODE = "route", A = ["naples", "apf"], B = ["toronto", "mississauga", "pearson", "yyz"], FROM = "Naples", TO = "Toronto", NAME = "";
   var BASE = "https://wscowiseslaovmmfuzyv.supabase.co", KEY = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
   var SEL = "id,from_label,to_label,from_city,to_city,departure_date,aircraft_type,seats,price_note,is_live,first_seen_at,est_flight_time";
   var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -734,7 +768,7 @@ table.dbt td.lead{font-weight:500;color:#0D1F36}
   var box = document.getElementById("db"); if (!box) return;
   if (box.hidden){ if (!/[?&#]data\b/.test(location.search + location.hash)) return;
     ["db","dbh","dbp"].forEach(function(id){ var e = document.getElementById(id); if (e) e.hidden = false; }); }
-  var MODE = "route", A = ["naples", "apf"], B = ["toronto", "pearson", "yyz"], FILT = "", CODES = [];
+  var MODE = "route", A = ["naples", "apf"], B = ["toronto", "mississauga", "pearson", "yyz"], FILT = "", CODES = [];
   var BASE = "https://wscowiseslaovmmfuzyv.supabase.co", KEY = "sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
   var SEL = "id,from_label,to_label,from_city,to_city,from_country,to_country,departure_date,price_note,is_live,last_seen_at";
   var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -854,8 +888,8 @@ table.dbt td.lead{font-weight:500;color:#0D1F36}
 <h2>Other routes we track</h2>
 <div class="more">
 <a href="/empty-legs/toronto-to-naples">Toronto to Naples</a>
-<a href="/empty-legs/montreal-to-toronto">Montreal to Toronto</a>
-<a href="/empty-legs/naples-to-dallas">Naples to Dallas</a>
+<a href="/empty-legs/chicago-to-naples">Chicago to Naples</a>
+<a href="/empty-legs/miami-to-naples">Miami to Naples</a>
 </div>
 <p style="margin-top:26px"><a class="btn" href="/">See all empty legs</a> &nbsp; <a href="/aircraft/" style="font-size:14px">Browse by aircraft type</a></p>
 </div>
@@ -971,7 +1005,7 @@ table.dbt td.lead{font-weight:500;color:#0D1F36}
 (function(){
 var BASE="https://wscowiseslaovmmfuzyv.supabase.co";
 var KEY="sb_publishable_CZvCh8iZrNsaqOcGonZxLQ_XkEkenSy";
-var FROMK=["naples", "apf"], TOK=["toronto", "pearson", "yyz"];
+var FROMK=["naples", "apf"], TOK=["toronto", "mississauga", "pearson", "yyz"];
 var FROMC="Naples", TOC="Toronto";
 var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 function esc(s){var d=document.createElement("div");d.textContent=(s==null?"":String(s));return d.innerHTML;}
