@@ -202,6 +202,26 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 .mapinner iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .mapnote{font-size:12.5px;color:var(--mute);margin:8px 2px 0}
 
+/* --- route city pair, routepair.py --- */
+.rpair{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#fff}
+.rpair a{position:relative;isolation:isolate;display:block;text-decoration:none;
+  min-height:min(26vw,240px);overflow:hidden}
+.rpair img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 45%;transition:transform .5s ease}
+.rpair a:hover img,.rpair a:focus-visible img{transform:scale(1.04)}
+.rpair .rp-veil{position:absolute;inset:0;background:linear-gradient(180deg,
+  rgba(9,22,40,.10) 0%,rgba(9,22,40,.42) 58%,rgba(9,22,40,.86) 100%)}
+.rpair .rp-txt{position:relative;z-index:1;height:100%;display:flex;
+  flex-direction:column;justify-content:flex-end;padding:18px 20px}
+.rpair .rp-k{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;
+  font-size:11px;font-weight:600;margin-bottom:5px}
+.rpair .rp-h{color:#fff;font-family:"Playfair Display",Georgia,serif;
+  font-weight:400;font-size:clamp(19px,2.6vw,27px);line-height:1.12}
+@media(max-width:640px){
+  .rpair a{min-height:150px}
+  .rpair .rp-txt{padding:13px 14px}
+}
+
 /* ---------- shared site footer (footer.py) ---------- */
 #bigfoot{background:#0D1F36;color:#fff;margin-top:64px;text-align:left;padding:0;font-size:15px}
 #bigfoot *{box-sizing:border-box}   /* index.html is content-box, which made its footer column 56px wider than everywhere else */
@@ -273,6 +293,9 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <script src="/site-forms.js" defer></script>
 <script src="/place-index.js" defer></script>
 <script>function elDisp(s){if(window.EL_PLACE&&EL_PLACE.canon){var c=EL_PLACE.canon(s);if(c)return c;}return String(s||"").trim();}</script>
+<!-- siteld.py -->
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://emptylegslist.com/"},{"@type":"ListItem","position":2,"name":"Empty legs by city","item":"https://emptylegslist.com/empty-legs/"},{"@type":"ListItem","position":3,"name":"Empty legs from Miami to Milwaukee","item":"https://emptylegslist.com/empty-legs/miami-to-milwaukee"}]},{"@type":"WebPage","@id":"https://emptylegslist.com/empty-legs/miami-to-milwaukee","url":"https://emptylegslist.com/empty-legs/miami-to-milwaukee","name":"Miami to Milwaukee empty legs","description":"Empty leg flights from Miami to Milwaukee, exactly as the charter operators list them. Eight legs on record, every one the same aircraft type, none with a published price.","isPartOf":{"@type":"WebSite","name":"Empty Leg List","url":"https://emptylegslist.com/"},"primaryImageOfPage":{"@type":"ImageObject","contentUrl":"https://emptylegslist.com/brand/heroes/milwaukee-empty-legs-private-jet.jpg"}}]}</script>
+<!-- /siteld.py -->
 </head>
 <body>
 <div id="elnote"><p>To see all flights you need to be signed in. It is free today and takes 1 minute. <a href="/account">Sign in</a> or <a href="/#gate">create a free account</a>.</p></div>
@@ -534,6 +557,21 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <img src="/brand/heroes/milwaukee-empty-legs-private-jet.jpg" width="2400" height="1040" fetchpriority="high" decoding="async" alt="Milwaukee, the arrival city on the Miami to Milwaukee empty leg route">
   <div class="rin"><div class="rk">Miami to Milwaukee, empty legs</div></div>
 </section>
+
+<!-- route city pair, routepair.py -->
+<section class="rpair">
+  <a href="/empty-legs/miami">
+    <img src="/brand/heroes/miami-empty-legs-private-jet.jpg" width="2400" height="1040" loading="lazy" decoding="async" alt="Miami, the departure city on the Miami to Milwaukee empty leg route">
+    <span class="rp-veil"></span>
+    <span class="rp-txt"><span class="rp-k">Departure</span><span class="rp-h">Miami</span></span>
+  </a>
+  <a href="/empty-legs/milwaukee">
+    <img src="/brand/heroes/milwaukee-empty-legs-private-jet.jpg" width="2400" height="1040" loading="lazy" decoding="async" alt="Milwaukee, the arrival city on the Miami to Milwaukee empty leg route">
+    <span class="rp-veil"></span>
+    <span class="rp-txt"><span class="rp-k">Arrival</span><span class="rp-h">Milwaukee</span></span>
+  </a>
+</section>
+<!-- /route city pair -->
 <div class="wrap">
 <h1>Empty legs from Miami to Milwaukee</h1>
 <p class="lede">One way empty legs between Miami and Milwaukee, exactly as the operators list them. The operator confirms availability and the price with you directly.</p>
@@ -549,6 +587,8 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
 <p>Straight line distance between the two cities. Actual routing and flight time depend on the aircraft and the airports.</p>
 </div>
 <p class="meta" id="updnote" style="margin:-10px 0 18px">Checking this route...</p>
+<style>.abar{background:#fff;border:1px solid #edf1f5;border-left:4px solid #C9A24C;border-radius:12px;padding:14px 16px;margin:0 0 18px;box-shadow:0 1px 3px rgba(14,35,56,.06)}.abar form{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center}.abar .abar-t{flex:1 1 100%;font-weight:600;font-size:14.5px;color:#0D1F36}.abar input[type=email]{flex:1 1 220px;min-width:0;padding:10px 12px;border:1px solid #dfe5ec;border-radius:9px;font:inherit;font-size:14px}.abar input:focus{outline:none;border-color:#0D1F36}.abar button{flex:0 0 auto;background:#C9A24C;color:#241d00;border:0;border-radius:9px;padding:10px 18px;font:inherit;font-weight:600;font-size:13.5px;cursor:pointer}.abar .abar-n{margin:8px 0 0;font-size:12px;color:#6b7885}.abar .abar-n a{color:#6b7885}.abar.abar-err input{border-color:#b3261e}.abar .abar-ok{font-size:14px;color:#1c7a4a;font-weight:500}@media(min-width:700px){.abar .abar-t{flex:1 1 auto}}</style>
+<div class="abar" data-from="Miami" data-to="Milwaukee"><form novalidate><span class="abar-t">Email me when a Miami to Milwaukee leg is listed</span><input type="email" placeholder="you@email.com" autocomplete="email" aria-label="Email address" required><button type="submit">Notify me</button></form><p class="abar-n">Both directions, the moment it appears. One click to stop. <a href="/privacy">Privacy</a>.</p></div>
 <div id="rows"></div>
 
 <h2>Why this route produces empty legs</h2>
@@ -597,6 +637,9 @@ table td:nth-child(3){grid-column:1 / -1;font-size:12.5px;color:#5d6b79}
   <p class="meta"><b>This is a record, not availability.</b> These are the legs we saw on this corridor in that window, kept so the route has a history you can judge it by. None of them is bookable from this table. What is actually open right now is the live list above, and if it is empty the route alert is the way to catch the next one.</p>
 
   <h2>Before you book</h2>
+<!-- guide link, sitelinks.py -->
+<p>The price on a card is the operator's figure for the whole aircraft. What that comes to per seat, across every type we see, is in <a href="/guides/how-much-does-an-empty-leg-private-jet-cost">how much an empty leg private jet costs</a>.</p>
+<!-- /guide link -->
   <p><b>No operator on this corridor publishes a price.</b> All eight legs are Jet OUT listings and Jet OUT publishes no figure on any of its 988 listings on our board, so the price comes from the operator when you ask and we show nothing rather than guess.</p>
   <p><b>What every listing does give is the aircraft and the cabin:</b> a Cessna Citation CJ4 with eight seats, on all eight legs. None of them gives a block time and none gives a tail number.</p>
   <p>Whatever figure you are quoted is for the whole aircraft rather than a seat, and the operator sets it. Eight seats is the cabin, not a minimum.</p>
